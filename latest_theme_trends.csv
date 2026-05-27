@@ -1,0 +1,13 @@
+﻿theme,trend_score,activity_score,current_count,gained_5d,lost_5d,net_5d,gained_10d,lost_10d,net_10d,gained_30d,lost_30d,net_30d,breakout_count,breakout_concentration_pct,consolidating_count,new_leaders_30d,removed_leaders_30d,current_tickers
+Biotech & health,-36.0,36.0,3,0,6,-6,0,6,-6,0,6,-6,0,0.0,3,,CAPR;ERAS;KOD;SIBN;SLS;TNGX,AGL;CELC;CLYM
+Power & electrification,-17.5,18.5,3,0,3,-3,0,3,-3,0,3,-3,1,33.33,1,,DGXX;PCT;PL,BE;BW;FCEL
+Semiconductors & AI compute,-8.0,16.0,12,4,6,-2,4,6,-2,4,6,-2,8,66.67,0,ALAB;ATOM;CRDO;NVTS,BAND;ENPH;INOD;POET;SAIL;SEDG,AAOI;AEHR;ALAB;ATOM;AXTI;CRDO;LWLG;MRAM;MXL;NVTS;SNDK;WOLF
+Defense & space,14.0,14.0,4,3,1,2,3,1,2,3,1,2,4,100.0,0,PL;RDW;SIDU,ICHR,PL;RDW;SATL;SIDU
+Quantum computing,12.0,12.0,2,2,0,2,2,0,2,2,0,2,0,0.0,0,QBTS;RGTI,,QBTS;RGTI
+Industrial components,7.0,7.0,2,1,0,1,1,0,1,1,0,1,2,100.0,0,TE,,TE;VPG
+Optical & networking,6.5,6.5,2,1,0,1,1,0,1,1,0,1,1,50.0,1,BAND,,BAND;LITE
+Unclassified,-5.5,6.5,1,1,2,-1,1,2,-1,1,2,-1,1,100.0,0,DXYZ,SG;VSTS,DXYZ
+Software & data,6.0,6.0,1,1,0,1,1,0,1,1,0,1,0,0.0,1,INOD,,INOD
+Auto & autonomy,0.5,0.5,1,0,0,0,0,0,0,0,0,0,1,100.0,0,,,AEVA
+Media & broadcasting,0.0,0.0,1,0,0,0,0,0,0,0,0,0,0,0.0,0,,,EVC
+Metals & mining,0.0,0.0,1,0,0,0,0,0,0,0,0,0,0,0.0,0,,,HYMC

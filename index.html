@@ -252,6 +252,88 @@ h2 {
   white-space: nowrap;
 }
 
+.theme-trend-panel {
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.theme-trend-list {
+  display: grid;
+  gap: 7px;
+  padding: 10px;
+}
+
+.theme-trend-header {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.4fr) repeat(3, minmax(82px, 0.55fr)) minmax(92px, 0.6fr) minmax(220px, 1.2fr);
+  gap: 8px;
+  padding: 0 9px 2px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.theme-trend-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(190px, 1.4fr) repeat(3, minmax(82px, 0.55fr)) minmax(92px, 0.6fr) minmax(220px, 1.2fr);
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid var(--theme-border, var(--border));
+  border-radius: 7px;
+  background: linear-gradient(90deg, var(--theme-bg, var(--panel-2)), var(--panel));
+  color: var(--text);
+  text-align: left;
+}
+
+.theme-trend-row:hover,
+.theme-trend-row:focus-visible {
+  border-color: var(--theme-fg, var(--blue));
+}
+
+.theme-trend-main,
+.trend-period,
+.trend-breakout {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.theme-trend-main {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-trend-main strong,
+.trend-period strong,
+.trend-breakout strong {
+  font-size: 16px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.trend-period small,
+.trend-breakout small,
+.trend-tickers {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trend-tickers {
+  display: block;
+}
+
 .change-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(180px, 1fr));
@@ -576,7 +658,7 @@ select:focus {
 
 table {
   width: 100%;
-  min-width: 1180px;
+  min-width: 1360px;
   border-collapse: collapse;
 }
 
@@ -978,6 +1060,19 @@ tbody tr.selected {
     grid-template-columns: repeat(2, minmax(180px, 1fr));
   }
 
+  .theme-trend-row {
+    grid-template-columns: minmax(190px, 1fr) repeat(3, minmax(76px, 0.4fr));
+  }
+
+  .theme-trend-header {
+    display: none;
+  }
+
+  .trend-breakout,
+  .trend-tickers {
+    grid-column: span 2;
+  }
+
   .control-strip {
     grid-template-columns: 1fr 1fr;
   }
@@ -1009,9 +1104,15 @@ tbody tr.selected {
   .metric-grid,
   .top-themes-list,
   .change-strip,
+  .theme-trend-row,
   .control-strip,
   .side-rail {
     grid-template-columns: 1fr;
+  }
+
+  .trend-breakout,
+  .trend-tickers {
+    grid-column: auto;
   }
 
   .control-strip {
@@ -1038,10 +1139,12 @@ tbody tr.selected {
             Atualizar dados
           </button>
           <span class="refresh-status" id="refreshStatus" aria-live="polite"></span>
-          <a class="action-link" href="../outputs/latest_report.md">Relatorio</a>
-          <a class="action-link" href="../outputs/latest_all_leaders.csv">All leaders CSV</a>
-          <a class="action-link" href="../outputs/latest_leaders_consolidating.csv">Consolidacao CSV</a>
-          <a class="action-link" href="../outputs/latest_watchlist_changes.csv">Mudancas CSV</a>
+          <a class="action-link" href="./latest_report.md">Relatorio</a>
+          <a class="action-link" href="./latest_all_leaders.csv">All leaders CSV</a>
+          <a class="action-link" href="./latest_leaders_consolidating.csv">Consolidacao CSV</a>
+          <a class="action-link" href="./latest_watchlist_changes.csv">Mudancas CSV</a>
+          <a class="action-link" href="./latest_ticker_history.csv">Ticker hist CSV</a>
+          <a class="action-link" href="./latest_theme_trends.csv">Temas trend CSV</a>
         </div>
       </header>
 
@@ -1074,6 +1177,17 @@ tbody tr.selected {
           <span class="row-count" id="topThemesCount">--</span>
         </div>
         <div id="topThemesPanel" class="top-themes-list"></div>
+      </section>
+
+      <section class="theme-trend-panel" aria-label="Tendencia dos temas">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Rotacao</p>
+            <h2>Tendencia dos temas</h2>
+          </div>
+          <span class="row-count" id="themeTrendCount">--</span>
+        </div>
+        <div id="themeTrendList" class="theme-trend-list"></div>
       </section>
 
       <section class="change-strip" aria-label="Mudancas da watchlist">
@@ -1207,6 +1321,9 @@ tbody tr.selected {
                   <th data-sort="country">Pais</th>
                   <th data-sort="market_cap">Valor mercado</th>
                   <th data-sort="leadership_score">Score</th>
+                  <th data-sort="days_in_watchlist_30d">Dias 30d</th>
+                  <th data-sort="consecutive_days">Seq.</th>
+                  <th data-sort="reentry_count">Reent.</th>
                   <th data-sort="perf_1w_pct">1W</th>
                   <th data-sort="perf_1m_pct">1M</th>
                   <th data-sort="perf_3m_pct">3M</th>
@@ -1256,16 +1373,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 132.600006,
+      "consecutive_days": 2,
       "consolidation_score": 85.070259,
       "country": "United States",
       "day_high": 143.160004,
       "day_low": 131.600006,
       "day_open": 142.789993,
+      "days_in_watchlist_30d": 2,
       "dcr": 8.650521,
       "distance_to_52w_high_pct": 1.055807,
       "distance_to_pivot_pct": 6.613868,
       "excess_vs_spy_qqq_avg_pct": 1989.662505,
+      "first_seen": "2026-05-18",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 91.651767,
       "market_cap": 6927006721.92,
       "market_cap_fmt": "6.9B",
@@ -1292,6 +1413,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 1,
       "rank_pct_3m": 0.995842,
       "rank_pct_6m": 1,
+      "reentry_count": 0,
       "rvol_10d": 0.724022,
       "sector": "Technology",
       "status": "Breakout",
@@ -1318,16 +1440,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 73.5,
+      "consecutive_days": 2,
       "consolidation_score": 79.999271,
       "country": "United States",
       "day_high": 80.699997,
       "day_low": 70.800003,
       "day_open": 77.779999,
+      "days_in_watchlist_30d": 2,
       "dcr": 27.272713,
       "distance_to_52w_high_pct": 0.326531,
       "distance_to_pivot_pct": 9.959183,
       "excess_vs_spy_qqq_avg_pct": 973.603837,
+      "first_seen": "2026-05-18",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 91.56341,
       "market_cap": 2868924457.35,
       "market_cap_fmt": "2.9B",
@@ -1354,6 +1480,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.99896,
       "rank_pct_3m": 0.994802,
       "rank_pct_6m": 0.980249,
+      "reentry_count": 0,
       "rvol_10d": 0.863634,
       "sector": "Technology",
       "status": "Developing",
@@ -1380,16 +1507,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 31.790001,
+      "consecutive_days": 1,
       "consolidation_score": 103.371401,
       "country": "United States",
       "day_high": 33.82,
       "day_low": 30.6,
       "day_open": 31.360001,
+      "days_in_watchlist_30d": 1,
       "dcr": 36.956546,
       "distance_to_52w_high_pct": -25.070777,
       "distance_to_pivot_pct": -7.203526,
       "excess_vs_spy_qqq_avg_pct": 240.591919,
+      "first_seen": "2026-05-26",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 87.610187,
       "market_cap": 4597137975.22,
       "market_cap_fmt": "4.6B",
@@ -1416,6 +1547,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.961538,
       "rank_pct_3m": 0.996881,
       "rank_pct_6m": 0.97817,
+      "reentry_count": 0,
       "rvol_10d": 1.205926,
       "sector": "Technology",
       "status": "Breakout",
@@ -1443,16 +1575,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 6.2,
+      "consecutive_days": 1,
       "consolidation_score": 114.122984,
       "country": "United States",
       "day_high": 6.64,
       "day_low": 5,
       "day_open": 5.37,
+      "days_in_watchlist_30d": 1,
       "dcr": 73.170726,
       "distance_to_52w_high_pct": -3.387097,
       "distance_to_pivot_pct": -15.806452,
       "excess_vs_spy_qqq_avg_pct": 267.584462,
+      "first_seen": "2026-05-26",
       "industry": "RADIOTELEPHONE COMMUNICATIONS",
+      "last_seen": "2026-05-26",
       "leadership_score": 87.355509,
       "market_cap": 316181579.14,
       "market_cap_fmt": "316.2M",
@@ -1479,6 +1615,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.910603,
       "rank_pct_3m": 0.989605,
       "rank_pct_6m": 0.997921,
+      "reentry_count": 0,
       "rvol_10d": 2.302044,
       "sector": "Telecommunications",
       "status": "Breakout",
@@ -1506,16 +1643,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 1589.550049,
+      "consecutive_days": 2,
       "consolidation_score": 91.330509,
       "country": "United States",
       "day_high": 1641.73999,
       "day_low": 1520,
       "day_open": 1535.64502,
+      "days_in_watchlist_30d": 2,
       "dcr": 57.129994,
       "distance_to_52w_high_pct": 0.657419,
       "distance_to_pivot_pct": 0.657416,
       "excess_vs_spy_qqq_avg_pct": 992.516092,
+      "first_seen": "2026-05-18",
       "industry": "COMPUTER STORAGE DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 87.194387,
       "market_cap": 197405128311.58,
       "market_cap_fmt": "197.4B",
@@ -1542,6 +1683,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.997921,
       "rank_pct_3m": 0.970894,
       "rank_pct_6m": 0.995842,
+      "reentry_count": 0,
       "rvol_10d": 0.972918,
       "sector": "Technology",
       "status": "Breakout",
@@ -1568,16 +1710,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 96.120003,
+      "consecutive_days": 2,
       "consolidation_score": 79.117916,
       "country": "United States",
       "day_high": 106.279999,
       "day_low": 90.199997,
       "day_open": 106.279999,
+      "days_in_watchlist_30d": 2,
       "dcr": 36.815952,
       "distance_to_52w_high_pct": 8.478985,
       "distance_to_pivot_pct": 8.478978,
       "excess_vs_spy_qqq_avg_pct": 355.616095,
+      "first_seen": "2026-05-18",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 86.393971,
       "market_cap": 7831689574.139999,
       "market_cap_fmt": "7.8B",
@@ -1604,6 +1750,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.97817,
       "rank_pct_3m": 0.99896,
       "rank_pct_6m": 0.994802,
+      "reentry_count": 0,
       "rvol_10d": 1.592985,
       "sector": "Technology",
       "status": "Breakout",
@@ -1630,16 +1777,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 109.919998,
+      "consecutive_days": 2,
       "consolidation_score": 93.348796,
       "country": "United States",
       "day_high": 111.57,
       "day_low": 97.300003,
       "day_open": 99,
+      "days_in_watchlist_30d": 2,
       "dcr": 88.437268,
       "distance_to_52w_high_pct": -1.063501,
       "distance_to_pivot_pct": -1.064409,
       "excess_vs_spy_qqq_avg_pct": 351.943661,
+      "first_seen": "2026-05-18",
       "industry": "INSTRUMENTS FOR MEAS & TESTING OF ELECTRICITY & ELEC SIGNALS",
+      "last_seen": "2026-05-26",
       "leadership_score": 86.253638,
       "market_cap": 2628548436.78,
       "market_cap_fmt": "2.6B",
@@ -1666,6 +1817,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.992723,
       "rank_pct_3m": 0.986486,
       "rank_pct_6m": 0.990644,
+      "reentry_count": 0,
       "rvol_10d": 1.012849,
       "sector": "Industrials",
       "status": "Breakout",
@@ -1692,16 +1844,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 61.18,
+      "consecutive_days": 2,
       "consolidation_score": 83.596447,
       "country": "United States",
       "day_high": 62.237999,
       "day_low": 59.98,
       "day_open": 62.237999,
+      "days_in_watchlist_30d": 2,
       "dcr": 53.144423,
       "distance_to_52w_high_pct": -7.862046,
       "distance_to_pivot_pct": 1.38934,
       "excess_vs_spy_qqq_avg_pct": 224.483537,
+      "first_seen": "2026-05-18",
       "industry": "SERVICES-PREPACKAGED SOFTWARE",
+      "last_seen": "2026-05-26",
       "leadership_score": 86.134096,
       "market_cap": 1791368326.65,
       "market_cap_fmt": "1.8B",
@@ -1728,6 +1884,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.923077,
       "rank_pct_3m": 0.997921,
       "rank_pct_6m": 0.986486,
+      "reentry_count": 0,
       "rvol_10d": 0.689854,
       "sector": "Technology",
       "status": "Breakout",
@@ -1754,16 +1911,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 10.74,
+      "consecutive_days": 2,
       "consolidation_score": 91.072087,
       "country": "Uruguay",
       "day_high": 12,
       "day_low": 10.39,
       "day_open": 11.056,
+      "days_in_watchlist_30d": 2,
       "dcr": 21.7391,
       "distance_to_52w_high_pct": -7.821229,
       "distance_to_pivot_pct": -0.977649,
       "excess_vs_spy_qqq_avg_pct": 235.250644,
+      "first_seen": "2026-05-18",
       "industry": "RADIO & TV BROADCASTING & COMMUNICATIONS EQUIPMENT",
+      "last_seen": "2026-05-26",
       "leadership_score": 86.009356,
       "market_cap": 1414248685.38,
       "market_cap_fmt": "1.4B",
@@ -1790,6 +1951,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.838877,
       "rank_pct_3m": 0.993763,
       "rank_pct_6m": 0.996881,
+      "reentry_count": 0,
       "rvol_10d": 1.323022,
       "sector": "Technology",
       "status": "Breakout",
@@ -1816,16 +1978,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 22.040001,
+      "consecutive_days": 1,
       "consolidation_score": 117.731221,
       "country": "United States",
       "day_high": 23.1,
       "day_low": 19.219999,
       "day_open": 19.645,
+      "days_in_watchlist_30d": 1,
       "dcr": 72.680434,
       "distance_to_52w_high_pct": 0.952813,
       "distance_to_pivot_pct": -18.829407,
       "excess_vs_spy_qqq_avg_pct": 135.648969,
+      "first_seen": "2026-05-26",
       "industry": "Military/Government/Technical",
+      "last_seen": "2026-05-26",
       "leadership_score": 85.81185,
       "market_cap": 4384168765,
       "market_cap_fmt": "4.4B",
@@ -1852,6 +2018,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.626819,
       "rank_pct_3m": 0.977131,
       "rank_pct_6m": 0.984407,
+      "reentry_count": 0,
       "rvol_10d": 1.914288,
       "sector": "Industrials",
       "status": "Breakout",
@@ -1879,17 +2046,21 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 85.269997,
+      "consecutive_days": 2,
       "consolidating_change": "included",
       "consolidation_score": 78.286542,
       "country": "United States",
       "day_high": 88.959999,
       "day_low": 81.870003,
       "day_open": 88.470001,
+      "days_in_watchlist_30d": 2,
       "dcr": 47.954805,
       "distance_to_52w_high_pct": -0.433916,
       "distance_to_pivot_pct": 6.110012,
       "excess_vs_spy_qqq_avg_pct": 303.828818,
+      "first_seen": "2026-05-18",
       "industry": "SERVICES-MISC HEALTH & ALLIED SERVICES, NEC",
+      "last_seen": "2026-05-26",
       "leadership_score": 85.752599,
       "market_cap": 1448152624.8,
       "market_cap_fmt": "1.4B",
@@ -1916,6 +2087,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.575884,
       "rank_pct_3m": 1,
       "rank_pct_6m": 0.992723,
+      "reentry_count": 0,
       "rvol_10d": 0.522622,
       "sector": "Health Care",
       "status": "Ready",
@@ -1942,16 +2114,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 12.11,
+      "consecutive_days": 1,
       "consolidation_score": 99.112825,
       "country": "United States",
       "day_high": 12.365,
       "day_low": 9.545,
       "day_open": 9.64,
+      "days_in_watchlist_30d": 1,
       "dcr": 90.957442,
       "distance_to_52w_high_pct": -5.202312,
       "distance_to_pivot_pct": -5.202313,
       "excess_vs_spy_qqq_avg_pct": 146.756894,
+      "first_seen": "2026-05-26",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 85.515593,
       "market_cap": 309921580,
       "market_cap_fmt": "309.9M",
@@ -1978,6 +2154,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.655925,
       "rank_pct_3m": 0.963617,
       "rank_pct_6m": 0.991684,
+      "reentry_count": 0,
       "rvol_10d": 2.079691,
       "sector": "Technology",
       "status": "Breakout",
@@ -2005,16 +2182,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 177.619995,
+      "consecutive_days": 2,
       "consolidation_score": 60.058836,
       "country": "United States",
       "day_high": 194.949997,
       "day_low": 176.610001,
       "day_open": 186.660004,
+      "days_in_watchlist_30d": 2,
       "dcr": 5.507059,
       "distance_to_52w_high_pct": 31.556131,
       "distance_to_pivot_pct": 31.556134,
       "excess_vs_spy_qqq_avg_pct": 373.922476,
+      "first_seen": "2026-05-18",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 83.431393,
       "market_cap": 13902861810.42,
       "market_cap_fmt": "13.9B",
@@ -2041,6 +2222,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.984407,
       "rank_pct_3m": 0.992723,
       "rank_pct_6m": 0.99896,
+      "reentry_count": 0,
       "rvol_10d": 0.821462,
       "sector": "Technology",
       "status": "Developing",
@@ -2067,16 +2249,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 32.700001,
+      "consecutive_days": 2,
       "consolidation_score": 59.968399,
       "country": "United States",
       "day_high": 34.689999,
       "day_low": 29.610001,
       "day_open": 34.400002,
+      "days_in_watchlist_30d": 2,
       "dcr": 60.826798,
       "distance_to_52w_high_pct": 57.492355,
       "distance_to_pivot_pct": 57.492351,
       "excess_vs_spy_qqq_avg_pct": 201.167726,
+      "first_seen": "2026-05-18",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 83.280665,
       "market_cap": 781976692.95,
       "market_cap_fmt": "782.0M",
@@ -2103,6 +2289,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.945946,
       "rank_pct_3m": 0.990644,
       "rank_pct_6m": 0.981289,
+      "reentry_count": 0,
       "rvol_10d": 0.793481,
       "sector": "Technology",
       "status": "Developing",
@@ -2129,16 +2316,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 24.4,
+      "consecutive_days": 2,
       "consolidation_score": 67.835728,
       "country": "United States",
       "day_high": 27.689899,
       "day_low": 23.73,
       "day_open": 25.450001,
+      "days_in_watchlist_30d": 2,
       "dcr": 16.919622,
       "distance_to_52w_high_pct": -6.434426,
       "distance_to_pivot_pct": 12.008198,
       "excess_vs_spy_qqq_avg_pct": 194.450636,
+      "first_seen": "2026-05-18",
       "industry": "ELECTRICAL INDUSTRIAL APPARATUS",
+      "last_seen": "2026-05-26",
       "leadership_score": 83.080042,
       "market_cap": 939827342.84,
       "market_cap_fmt": "939.8M",
@@ -2165,6 +2356,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.948025,
       "rank_pct_3m": 0.983368,
       "rank_pct_6m": 0.969854,
+      "reentry_count": 0,
       "rvol_10d": 0.812215,
       "sector": "Energy",
       "status": "Breakout",
@@ -2191,16 +2383,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 10.45,
+      "consecutive_days": 1,
       "consolidation_score": 98.264634,
       "country": "Luxembourg",
       "day_high": 10.8,
       "day_low": 8.48,
       "day_open": 8.52,
+      "days_in_watchlist_30d": 1,
       "dcr": 84.913781,
       "distance_to_52w_high_pct": -6.411483,
       "distance_to_pivot_pct": -9.760761,
       "excess_vs_spy_qqq_avg_pct": 275.512056,
+      "first_seen": "2026-05-26",
       "industry": "Industrial Machinery/Components",
+      "last_seen": "2026-05-26",
       "leadership_score": 82.705821,
       "market_cap": 2918385921,
       "market_cap_fmt": "2.9B",
@@ -2227,6 +2423,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.989605,
       "rank_pct_3m": 0.845114,
       "rank_pct_6m": 0.968815,
+      "reentry_count": 0,
       "rvol_10d": 1.380867,
       "sector": "Miscellaneous",
       "status": "Breakout",
@@ -2254,16 +2451,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 123.410004,
+      "consecutive_days": 2,
       "consolidation_score": 94.818133,
       "country": "United States",
       "day_high": 124.400002,
       "day_low": 115,
       "day_open": 121.370003,
+      "days_in_watchlist_30d": 2,
       "dcr": 89.46811,
       "distance_to_52w_high_pct": -14.780002,
       "distance_to_pivot_pct": -7.535858,
       "excess_vs_spy_qqq_avg_pct": 179.423283,
+      "first_seen": "2026-05-18",
       "industry": "ELECTRONIC COMPONENTS & ACCESSORIES",
+      "last_seen": "2026-05-26",
       "leadership_score": 82.523909,
       "market_cap": 1399398210,
       "market_cap_fmt": "1.4B",
@@ -2290,6 +2491,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.932432,
       "rank_pct_3m": 0.97817,
       "rank_pct_6m": 0.97921,
+      "reentry_count": 0,
       "rvol_10d": 1.487214,
       "sector": "Technology",
       "status": "Breakout",
@@ -2316,16 +2518,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 48.32,
+      "consecutive_days": 2,
       "consolidation_score": 95.283897,
       "country": "United States",
       "day_high": 51.130001,
       "day_low": 45.860001,
       "day_open": 47.695,
+      "days_in_watchlist_30d": 2,
       "dcr": 46.679295,
       "distance_to_52w_high_pct": -10.078642,
       "distance_to_pivot_pct": -5.256624,
       "excess_vs_spy_qqq_avg_pct": 321.944036,
+      "first_seen": "2026-05-18",
       "industry": "RADIO & TV BROADCASTING & COMMUNICATIONS EQUIPMENT",
+      "last_seen": "2026-05-26",
       "leadership_score": 82.331601,
       "market_cap": 14829520885.56,
       "market_cap_fmt": "14.8B",
@@ -2352,6 +2558,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.994802,
       "rank_pct_3m": 0.938669,
       "rank_pct_6m": 0.982328,
+      "reentry_count": 0,
       "rvol_10d": 1.826646,
       "sector": "Technology",
       "status": "Breakout",
@@ -2378,16 +2585,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 318.720001,
+      "consecutive_days": 1,
       "consolidation_score": 90.653118,
       "country": "United States",
       "day_high": 321.98999,
       "day_low": 290.5,
       "day_open": 315,
+      "days_in_watchlist_30d": 1,
       "dcr": 89.615783,
       "distance_to_52w_high_pct": -17.513805,
       "distance_to_pivot_pct": -0.913028,
       "excess_vs_spy_qqq_avg_pct": 106.911595,
+      "first_seen": "2026-05-26",
       "industry": "Semiconductors",
+      "last_seen": "2026-05-26",
       "leadership_score": 82.139293,
       "market_cap": 54631138318,
       "market_cap_fmt": "54.6B",
@@ -2414,6 +2625,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.878378,
       "rank_pct_3m": 0.969854,
       "rank_pct_6m": 0.89605,
+      "reentry_count": 0,
       "rvol_10d": 1.182564,
       "sector": "Technology",
       "status": "Breakout",
@@ -2441,16 +2653,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 302.399994,
+      "consecutive_days": 2,
       "consolidation_score": 75.127821,
       "country": "United States",
       "day_high": 318,
       "day_low": 300.5,
       "day_open": 315.950012,
+      "days_in_watchlist_30d": 2,
       "dcr": 10.857108,
       "distance_to_52w_high_pct": 2.513228,
       "distance_to_pivot_pct": 6.75595,
       "excess_vs_spy_qqq_avg_pct": 364.318369,
+      "first_seen": "2026-05-18",
       "industry": "ELECTRICAL INDUSTRIAL APPARATUS",
+      "last_seen": "2026-05-26",
       "leadership_score": 82.102911,
       "market_cap": 73588473090.28,
       "market_cap_fmt": "73.6B",
@@ -2477,6 +2693,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.995842,
       "rank_pct_3m": 0.920998,
       "rank_pct_6m": 0.955301,
+      "reentry_count": 0,
       "rvol_10d": 0.799472,
       "sector": "Energy",
       "status": "Developing",
@@ -2503,16 +2720,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 8.75,
+      "consecutive_days": 2,
       "consolidation_score": 57.666886,
       "country": "United States",
       "day_high": 9.81,
       "day_low": 8.74,
       "day_open": 9.81,
+      "days_in_watchlist_30d": 2,
       "dcr": 0.9346,
       "distance_to_52w_high_pct": 7.428571,
       "distance_to_pivot_pct": 15.657142,
       "excess_vs_spy_qqq_avg_pct": 171.949304,
+      "first_seen": "2026-05-18",
       "industry": "TELEVISION BROADCASTING STATIONS",
+      "last_seen": "2026-05-26",
       "leadership_score": 81.920998,
       "market_cap": 736313440,
       "market_cap_fmt": "736.3M",
@@ -2539,6 +2760,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.931393,
       "rank_pct_3m": 0.988565,
       "rank_pct_6m": 0.961538,
+      "reentry_count": 0,
       "rvol_10d": 0.603446,
       "sector": "Industrials",
       "status": "Developing",
@@ -2565,17 +2787,21 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 11.39,
+      "consecutive_days": 2,
       "consolidating_change": "included",
       "consolidation_score": 70.707476,
       "country": "United States",
       "day_high": 11.57,
       "day_low": 11.1346,
       "day_open": 11.19,
+      "days_in_watchlist_30d": 2,
       "dcr": 58.658854,
       "distance_to_52w_high_pct": 9.569798,
       "distance_to_pivot_pct": 9.569791,
       "excess_vs_spy_qqq_avg_pct": 289.695664,
+      "first_seen": "2026-05-18",
       "industry": "PHARMACEUTICAL PREPARATIONS",
+      "last_seen": "2026-05-26",
       "leadership_score": 81.77027,
       "market_cap": 565733967.24,
       "market_cap_fmt": "565.7M",
@@ -2602,6 +2828,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.982328,
       "rank_pct_3m": 0.9158,
       "rank_pct_6m": 0.993763,
+      "reentry_count": 0,
       "rvol_10d": 1.139656,
       "sector": "Health Care",
       "status": "Ready",
@@ -2628,16 +2855,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 28.129999,
+      "consecutive_days": 2,
       "consolidation_score": 94.344374,
       "country": "United States",
       "day_high": 28.32,
       "day_low": 24.49,
       "day_open": 26.34,
+      "days_in_watchlist_30d": 2,
       "dcr": 95.03915,
       "distance_to_52w_high_pct": 37.931034,
       "distance_to_pivot_pct": -9.811583,
       "excess_vs_spy_qqq_avg_pct": 82.785399,
+      "first_seen": "2026-05-18",
       "industry": "Auto Parts:O.E.M.",
+      "last_seen": "2026-05-26",
       "leadership_score": 79.378332,
       "market_cap": 1773338295,
       "market_cap_fmt": "1.8B",
@@ -2664,6 +2895,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.634096,
       "rank_pct_3m": 0.956341,
       "rank_pct_6m": 0.93763,
+      "reentry_count": 0,
       "rvol_10d": 1.211849,
       "sector": "Consumer Discretionary",
       "status": "Breakout",
@@ -2690,17 +2922,21 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 19.65,
+      "consecutive_days": 2,
       "consolidating_change": "included",
       "consolidation_score": 65.051179,
       "country": "United States",
       "day_high": 19.99,
       "day_low": 18.422701,
       "day_open": 19.389999,
+      "days_in_watchlist_30d": 2,
       "dcr": 78.306617,
       "distance_to_52w_high_pct": 12.111959,
       "distance_to_pivot_pct": 12.111965,
       "excess_vs_spy_qqq_avg_pct": 608.009329,
+      "first_seen": "2026-05-18",
       "industry": "HEATING EQUIPMENT, EXCEPT ELECTRIC & WARM AIR FURNACES",
+      "last_seen": "2026-05-26",
       "leadership_score": 78.698545,
       "market_cap": 2744681895.15,
       "market_cap_fmt": "2.7B",
@@ -2727,6 +2963,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.996881,
       "rank_pct_3m": 0.953222,
       "rank_pct_6m": 0.954262,
+      "reentry_count": 0,
       "rvol_10d": 0.788743,
       "sector": "Industrials",
       "status": "Ready",
@@ -2753,16 +2990,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 221.639999,
+      "consecutive_days": 1,
       "consolidation_score": 88.596053,
       "country": "United States",
       "day_high": 233.699997,
       "day_low": 211.580002,
       "day_open": 228.009995,
+      "days_in_watchlist_30d": 1,
       "dcr": 45.479203,
       "distance_to_52w_high_pct": -3.537268,
       "distance_to_pivot_pct": -1.213681,
       "excess_vs_spy_qqq_avg_pct": 78.001758,
+      "first_seen": "2026-05-26",
       "industry": "Semiconductors",
+      "last_seen": "2026-05-26",
       "leadership_score": 77.959219,
       "market_cap": 40881484702,
       "market_cap_fmt": "40.9B",
@@ -2789,6 +3030,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.892931,
       "rank_pct_3m": 0.924116,
       "rank_pct_6m": 0.752599,
+      "reentry_count": 0,
       "rvol_10d": 1.344327,
       "sector": "Technology",
       "status": "Breakout",
@@ -2816,16 +3058,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 60.209999,
+      "consecutive_days": 1,
       "consolidation_score": 51.011971,
       "country": "United States",
       "day_high": 72.870003,
       "day_low": 55,
       "day_open": 71.879997,
+      "days_in_watchlist_30d": 1,
       "dcr": 29.154999,
       "distance_to_52w_high_pct": 18.319216,
       "distance_to_pivot_pct": 18.319214,
       "excess_vs_spy_qqq_avg_pct": 76.062765,
+      "first_seen": "2026-05-26",
       "industry": null,
+      "last_seen": "2026-05-26",
       "leadership_score": 77.484655,
       "market_cap": 1595202374,
       "market_cap_fmt": "1.6B",
@@ -2852,6 +3098,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.517672,
       "rank_pct_3m": 0.962578,
       "rank_pct_6m": 0.933472,
+      "reentry_count": 0,
       "rvol_10d": 1.728245,
       "sector": null,
       "status": "Breakout",
@@ -2879,17 +3126,21 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 910.809998,
+      "consecutive_days": 2,
       "consolidating_change": "included",
       "consolidation_score": 51.624808,
       "country": "United States",
       "day_high": 962.47998,
       "day_low": 903.020081,
       "day_open": 961.650024,
+      "days_in_watchlist_30d": 2,
       "dcr": 13.101127,
       "distance_to_52w_high_pct": 19.199394,
       "distance_to_pivot_pct": 19.1994,
       "excess_vs_spy_qqq_avg_pct": 270.267,
+      "first_seen": "2026-05-18",
       "industry": "COMMUNICATIONS EQUIPMENT, NEC",
+      "last_seen": "2026-05-26",
       "leadership_score": 77.373181,
       "market_cap": 68851444000,
       "market_cap_fmt": "68.9B",
@@ -2916,6 +3167,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.991684,
       "rank_pct_3m": 0.759875,
       "rank_pct_6m": 0.970894,
+      "reentry_count": 0,
       "rvol_10d": 0.841474,
       "sector": "Telecommunications",
       "status": "Ready",
@@ -2942,16 +3194,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 11.97,
+      "consecutive_days": 2,
       "consolidation_score": 56.414553,
       "country": "United States",
       "day_high": 13.3,
       "day_low": 11.69,
       "day_open": 13.06,
+      "days_in_watchlist_30d": 2,
       "dcr": 17.39134,
       "distance_to_52w_high_pct": 56.299081,
       "distance_to_pivot_pct": 56.307424,
       "excess_vs_spy_qqq_avg_pct": 253.331793,
+      "first_seen": "2026-05-18",
       "industry": "MISCELLANEOUS PLASTICS PRODUCTS",
+      "last_seen": "2026-05-26",
       "leadership_score": 77.357588,
       "market_cap": 1785782934.88,
       "market_cap_fmt": "1.8B",
@@ -2978,6 +3234,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.987526,
       "rank_pct_3m": 0.991684,
       "rank_pct_6m": 0.939709,
+      "reentry_count": 0,
       "rvol_10d": 0.822407,
       "sector": "Industrials",
       "status": "Developing",
@@ -3004,17 +3261,21 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 95.910004,
+      "consecutive_days": 2,
       "consolidating_change": "included",
       "consolidation_score": 48.468768,
       "country": "United States",
       "day_high": 100.900002,
       "day_low": 94.400002,
       "day_open": 97.5,
+      "days_in_watchlist_30d": 2,
       "dcr": 23.230802,
       "distance_to_52w_high_pct": 19.664269,
       "distance_to_pivot_pct": 19.664261,
       "excess_vs_spy_qqq_avg_pct": 83.102615,
+      "first_seen": "2026-05-18",
       "industry": "SERVICES-COMPUTER PROCESSING & DATA PREPARATION",
+      "last_seen": "2026-05-26",
       "leadership_score": 76.608598,
       "market_cap": 3093115509.76,
       "market_cap_fmt": "3.1B",
@@ -3041,6 +3302,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.806653,
       "rank_pct_3m": 0.95842,
       "rank_pct_6m": 0.810811,
+      "reentry_count": 0,
       "rvol_10d": 0.45339,
       "sector": "Technology",
       "status": "Ready",
@@ -3067,17 +3329,21 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 134.259995,
+      "consecutive_days": 2,
       "consolidating_change": "included",
       "consolidation_score": 62.906935,
       "country": "United States",
       "day_high": 140.850006,
       "day_low": 132.850006,
       "day_open": 140.850006,
+      "days_in_watchlist_30d": 2,
       "dcr": 17.624855,
       "distance_to_52w_high_pct": 12.483241,
       "distance_to_pivot_pct": 12.483249,
       "excess_vs_spy_qqq_avg_pct": 230.623648,
+      "first_seen": "2026-05-18",
       "industry": "SERVICES-MEDICAL LABORATORIES",
+      "last_seen": "2026-05-26",
       "leadership_score": 76.053015,
       "market_cap": 6445927947.84,
       "market_cap_fmt": "6.4B",
@@ -3104,6 +3370,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.993763,
       "rank_pct_3m": 0.724532,
       "rank_pct_6m": 0.664241,
+      "reentry_count": 0,
       "rvol_10d": 0.575916,
       "sector": "Health Care",
       "status": "Ready",
@@ -3130,16 +3397,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 25.065001,
+      "consecutive_days": 1,
       "consolidation_score": 60.765163,
       "country": "United States",
       "day_high": 26.57,
       "day_low": 23.719999,
       "day_open": 26.01,
+      "days_in_watchlist_30d": 1,
       "dcr": 47.193019,
       "distance_to_52w_high_pct": 131.997207,
       "distance_to_pivot_pct": 10.851782,
       "excess_vs_spy_qqq_avg_pct": 33.305757,
+      "first_seen": "2026-05-26",
       "industry": "EDP Services",
+      "last_seen": "2026-05-26",
       "leadership_score": 71.73806,
       "market_cap": 8331576097,
       "market_cap_fmt": "8.3B",
@@ -3166,6 +3437,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.650728,
       "rank_pct_3m": 0.857588,
       "rank_pct_6m": 0.465696,
+      "reentry_count": 0,
       "rvol_10d": 1.434657,
       "sector": "Technology",
       "status": "Developing",
@@ -3193,16 +3465,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 27.82,
+      "consecutive_days": 1,
       "consolidation_score": 56.748471,
       "country": "United States",
       "day_high": 29.48,
       "day_low": 26.330099,
       "day_open": 29.35,
+      "days_in_watchlist_30d": 1,
       "dcr": 47.299926,
       "distance_to_52w_high_pct": 68.044572,
       "distance_to_pivot_pct": 13.407619,
       "excess_vs_spy_qqq_avg_pct": 29.841004,
+      "first_seen": "2026-05-26",
       "industry": "EDP Services",
+      "last_seen": "2026-05-26",
       "leadership_score": 71.433165,
       "market_cap": 10202640060,
       "market_cap_fmt": "10.2B",
@@ -3229,6 +3505,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.54158,
       "rank_pct_3m": 0.849272,
       "rank_pct_6m": 0.623701,
+      "reentry_count": 0,
       "rvol_10d": 1.108708,
       "sector": "Technology",
       "status": "Developing",
@@ -3256,16 +3533,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 33.220001,
+      "consecutive_days": 2,
       "consolidation_score": 44.023701,
       "country": "United States",
       "day_high": 34.259998,
       "day_low": 32.787498,
       "day_open": 33.5,
+      "days_in_watchlist_30d": 2,
       "dcr": 29.372006,
       "distance_to_52w_high_pct": 76.790789,
       "distance_to_pivot_pct": 39.373864,
       "excess_vs_spy_qqq_avg_pct": 228.2388,
+      "first_seen": "2026-05-18",
       "industry": "Precious Metals",
+      "last_seen": "2026-05-26",
       "leadership_score": 70.039501,
       "market_cap": 3034999165,
       "market_cap_fmt": "3.0B",
@@ -3292,6 +3573,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.990644,
       "rank_pct_3m": 0.071726,
       "rank_pct_6m": 0.960499,
+      "reentry_count": 0,
       "rvol_10d": 0.615098,
       "sector": "Basic Materials",
       "status": "Developing",
@@ -3321,16 +3603,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 132.600006,
+      "consecutive_days": 2,
       "consolidation_score": 85.070259,
       "country": "United States",
       "day_high": 143.160004,
       "day_low": 131.600006,
       "day_open": 142.789993,
+      "days_in_watchlist_30d": 2,
       "dcr": 8.650521,
       "distance_to_52w_high_pct": 1.055807,
       "distance_to_pivot_pct": 6.613868,
       "excess_vs_spy_qqq_avg_pct": 1989.662505,
+      "first_seen": "2026-05-18",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 91.651767,
       "market_cap": 6927006721.92,
       "market_cap_fmt": "6.9B",
@@ -3357,6 +3643,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 1,
       "rank_pct_3m": 0.995842,
       "rank_pct_6m": 1,
+      "reentry_count": 0,
       "rvol_10d": 0.724022,
       "sector": "Technology",
       "status": "Breakout",
@@ -3383,16 +3670,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 31.790001,
+      "consecutive_days": 1,
       "consolidation_score": 103.371401,
       "country": "United States",
       "day_high": 33.82,
       "day_low": 30.6,
       "day_open": 31.360001,
+      "days_in_watchlist_30d": 1,
       "dcr": 36.956546,
       "distance_to_52w_high_pct": -25.070777,
       "distance_to_pivot_pct": -7.203526,
       "excess_vs_spy_qqq_avg_pct": 240.591919,
+      "first_seen": "2026-05-26",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 87.610187,
       "market_cap": 4597137975.22,
       "market_cap_fmt": "4.6B",
@@ -3419,6 +3710,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.961538,
       "rank_pct_3m": 0.996881,
       "rank_pct_6m": 0.97817,
+      "reentry_count": 0,
       "rvol_10d": 1.205926,
       "sector": "Technology",
       "status": "Breakout",
@@ -3446,16 +3738,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 6.2,
+      "consecutive_days": 1,
       "consolidation_score": 114.122984,
       "country": "United States",
       "day_high": 6.64,
       "day_low": 5,
       "day_open": 5.37,
+      "days_in_watchlist_30d": 1,
       "dcr": 73.170726,
       "distance_to_52w_high_pct": -3.387097,
       "distance_to_pivot_pct": -15.806452,
       "excess_vs_spy_qqq_avg_pct": 267.584462,
+      "first_seen": "2026-05-26",
       "industry": "RADIOTELEPHONE COMMUNICATIONS",
+      "last_seen": "2026-05-26",
       "leadership_score": 87.355509,
       "market_cap": 316181579.14,
       "market_cap_fmt": "316.2M",
@@ -3482,6 +3778,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.910603,
       "rank_pct_3m": 0.989605,
       "rank_pct_6m": 0.997921,
+      "reentry_count": 0,
       "rvol_10d": 2.302044,
       "sector": "Telecommunications",
       "status": "Breakout",
@@ -3509,16 +3806,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 1589.550049,
+      "consecutive_days": 2,
       "consolidation_score": 91.330509,
       "country": "United States",
       "day_high": 1641.73999,
       "day_low": 1520,
       "day_open": 1535.64502,
+      "days_in_watchlist_30d": 2,
       "dcr": 57.129994,
       "distance_to_52w_high_pct": 0.657419,
       "distance_to_pivot_pct": 0.657416,
       "excess_vs_spy_qqq_avg_pct": 992.516092,
+      "first_seen": "2026-05-18",
       "industry": "COMPUTER STORAGE DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 87.194387,
       "market_cap": 197405128311.58,
       "market_cap_fmt": "197.4B",
@@ -3545,6 +3846,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.997921,
       "rank_pct_3m": 0.970894,
       "rank_pct_6m": 0.995842,
+      "reentry_count": 0,
       "rvol_10d": 0.972918,
       "sector": "Technology",
       "status": "Breakout",
@@ -3571,16 +3873,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 96.120003,
+      "consecutive_days": 2,
       "consolidation_score": 79.117916,
       "country": "United States",
       "day_high": 106.279999,
       "day_low": 90.199997,
       "day_open": 106.279999,
+      "days_in_watchlist_30d": 2,
       "dcr": 36.815952,
       "distance_to_52w_high_pct": 8.478985,
       "distance_to_pivot_pct": 8.478978,
       "excess_vs_spy_qqq_avg_pct": 355.616095,
+      "first_seen": "2026-05-18",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 86.393971,
       "market_cap": 7831689574.139999,
       "market_cap_fmt": "7.8B",
@@ -3607,6 +3913,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.97817,
       "rank_pct_3m": 0.99896,
       "rank_pct_6m": 0.994802,
+      "reentry_count": 0,
       "rvol_10d": 1.592985,
       "sector": "Technology",
       "status": "Breakout",
@@ -3633,16 +3940,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 109.919998,
+      "consecutive_days": 2,
       "consolidation_score": 93.348796,
       "country": "United States",
       "day_high": 111.57,
       "day_low": 97.300003,
       "day_open": 99,
+      "days_in_watchlist_30d": 2,
       "dcr": 88.437268,
       "distance_to_52w_high_pct": -1.063501,
       "distance_to_pivot_pct": -1.064409,
       "excess_vs_spy_qqq_avg_pct": 351.943661,
+      "first_seen": "2026-05-18",
       "industry": "INSTRUMENTS FOR MEAS & TESTING OF ELECTRICITY & ELEC SIGNALS",
+      "last_seen": "2026-05-26",
       "leadership_score": 86.253638,
       "market_cap": 2628548436.78,
       "market_cap_fmt": "2.6B",
@@ -3669,6 +3980,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.992723,
       "rank_pct_3m": 0.986486,
       "rank_pct_6m": 0.990644,
+      "reentry_count": 0,
       "rvol_10d": 1.012849,
       "sector": "Industrials",
       "status": "Breakout",
@@ -3695,16 +4007,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 61.18,
+      "consecutive_days": 2,
       "consolidation_score": 83.596447,
       "country": "United States",
       "day_high": 62.237999,
       "day_low": 59.98,
       "day_open": 62.237999,
+      "days_in_watchlist_30d": 2,
       "dcr": 53.144423,
       "distance_to_52w_high_pct": -7.862046,
       "distance_to_pivot_pct": 1.38934,
       "excess_vs_spy_qqq_avg_pct": 224.483537,
+      "first_seen": "2026-05-18",
       "industry": "SERVICES-PREPACKAGED SOFTWARE",
+      "last_seen": "2026-05-26",
       "leadership_score": 86.134096,
       "market_cap": 1791368326.65,
       "market_cap_fmt": "1.8B",
@@ -3731,6 +4047,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.923077,
       "rank_pct_3m": 0.997921,
       "rank_pct_6m": 0.986486,
+      "reentry_count": 0,
       "rvol_10d": 0.689854,
       "sector": "Technology",
       "status": "Breakout",
@@ -3757,16 +4074,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 10.74,
+      "consecutive_days": 2,
       "consolidation_score": 91.072087,
       "country": "Uruguay",
       "day_high": 12,
       "day_low": 10.39,
       "day_open": 11.056,
+      "days_in_watchlist_30d": 2,
       "dcr": 21.7391,
       "distance_to_52w_high_pct": -7.821229,
       "distance_to_pivot_pct": -0.977649,
       "excess_vs_spy_qqq_avg_pct": 235.250644,
+      "first_seen": "2026-05-18",
       "industry": "RADIO & TV BROADCASTING & COMMUNICATIONS EQUIPMENT",
+      "last_seen": "2026-05-26",
       "leadership_score": 86.009356,
       "market_cap": 1414248685.38,
       "market_cap_fmt": "1.4B",
@@ -3793,6 +4114,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.838877,
       "rank_pct_3m": 0.993763,
       "rank_pct_6m": 0.996881,
+      "reentry_count": 0,
       "rvol_10d": 1.323022,
       "sector": "Technology",
       "status": "Breakout",
@@ -3819,16 +4141,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 22.040001,
+      "consecutive_days": 1,
       "consolidation_score": 117.731221,
       "country": "United States",
       "day_high": 23.1,
       "day_low": 19.219999,
       "day_open": 19.645,
+      "days_in_watchlist_30d": 1,
       "dcr": 72.680434,
       "distance_to_52w_high_pct": 0.952813,
       "distance_to_pivot_pct": -18.829407,
       "excess_vs_spy_qqq_avg_pct": 135.648969,
+      "first_seen": "2026-05-26",
       "industry": "Military/Government/Technical",
+      "last_seen": "2026-05-26",
       "leadership_score": 85.81185,
       "market_cap": 4384168765,
       "market_cap_fmt": "4.4B",
@@ -3855,6 +4181,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.626819,
       "rank_pct_3m": 0.977131,
       "rank_pct_6m": 0.984407,
+      "reentry_count": 0,
       "rvol_10d": 1.914288,
       "sector": "Industrials",
       "status": "Breakout",
@@ -3882,16 +4209,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 12.11,
+      "consecutive_days": 1,
       "consolidation_score": 99.112825,
       "country": "United States",
       "day_high": 12.365,
       "day_low": 9.545,
       "day_open": 9.64,
+      "days_in_watchlist_30d": 1,
       "dcr": 90.957442,
       "distance_to_52w_high_pct": -5.202312,
       "distance_to_pivot_pct": -5.202313,
       "excess_vs_spy_qqq_avg_pct": 146.756894,
+      "first_seen": "2026-05-26",
       "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "last_seen": "2026-05-26",
       "leadership_score": 85.515593,
       "market_cap": 309921580,
       "market_cap_fmt": "309.9M",
@@ -3918,6 +4249,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.655925,
       "rank_pct_3m": 0.963617,
       "rank_pct_6m": 0.991684,
+      "reentry_count": 0,
       "rvol_10d": 2.079691,
       "sector": "Technology",
       "status": "Breakout",
@@ -3945,16 +4277,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 24.4,
+      "consecutive_days": 2,
       "consolidation_score": 67.835728,
       "country": "United States",
       "day_high": 27.689899,
       "day_low": 23.73,
       "day_open": 25.450001,
+      "days_in_watchlist_30d": 2,
       "dcr": 16.919622,
       "distance_to_52w_high_pct": -6.434426,
       "distance_to_pivot_pct": 12.008198,
       "excess_vs_spy_qqq_avg_pct": 194.450636,
+      "first_seen": "2026-05-18",
       "industry": "ELECTRICAL INDUSTRIAL APPARATUS",
+      "last_seen": "2026-05-26",
       "leadership_score": 83.080042,
       "market_cap": 939827342.84,
       "market_cap_fmt": "939.8M",
@@ -3981,6 +4317,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.948025,
       "rank_pct_3m": 0.983368,
       "rank_pct_6m": 0.969854,
+      "reentry_count": 0,
       "rvol_10d": 0.812215,
       "sector": "Energy",
       "status": "Breakout",
@@ -4007,16 +4344,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 10.45,
+      "consecutive_days": 1,
       "consolidation_score": 98.264634,
       "country": "Luxembourg",
       "day_high": 10.8,
       "day_low": 8.48,
       "day_open": 8.52,
+      "days_in_watchlist_30d": 1,
       "dcr": 84.913781,
       "distance_to_52w_high_pct": -6.411483,
       "distance_to_pivot_pct": -9.760761,
       "excess_vs_spy_qqq_avg_pct": 275.512056,
+      "first_seen": "2026-05-26",
       "industry": "Industrial Machinery/Components",
+      "last_seen": "2026-05-26",
       "leadership_score": 82.705821,
       "market_cap": 2918385921,
       "market_cap_fmt": "2.9B",
@@ -4043,6 +4384,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.989605,
       "rank_pct_3m": 0.845114,
       "rank_pct_6m": 0.968815,
+      "reentry_count": 0,
       "rvol_10d": 1.380867,
       "sector": "Miscellaneous",
       "status": "Breakout",
@@ -4070,16 +4412,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 123.410004,
+      "consecutive_days": 2,
       "consolidation_score": 94.818133,
       "country": "United States",
       "day_high": 124.400002,
       "day_low": 115,
       "day_open": 121.370003,
+      "days_in_watchlist_30d": 2,
       "dcr": 89.46811,
       "distance_to_52w_high_pct": -14.780002,
       "distance_to_pivot_pct": -7.535858,
       "excess_vs_spy_qqq_avg_pct": 179.423283,
+      "first_seen": "2026-05-18",
       "industry": "ELECTRONIC COMPONENTS & ACCESSORIES",
+      "last_seen": "2026-05-26",
       "leadership_score": 82.523909,
       "market_cap": 1399398210,
       "market_cap_fmt": "1.4B",
@@ -4106,6 +4452,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.932432,
       "rank_pct_3m": 0.97817,
       "rank_pct_6m": 0.97921,
+      "reentry_count": 0,
       "rvol_10d": 1.487214,
       "sector": "Technology",
       "status": "Breakout",
@@ -4132,16 +4479,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 48.32,
+      "consecutive_days": 2,
       "consolidation_score": 95.283897,
       "country": "United States",
       "day_high": 51.130001,
       "day_low": 45.860001,
       "day_open": 47.695,
+      "days_in_watchlist_30d": 2,
       "dcr": 46.679295,
       "distance_to_52w_high_pct": -10.078642,
       "distance_to_pivot_pct": -5.256624,
       "excess_vs_spy_qqq_avg_pct": 321.944036,
+      "first_seen": "2026-05-18",
       "industry": "RADIO & TV BROADCASTING & COMMUNICATIONS EQUIPMENT",
+      "last_seen": "2026-05-26",
       "leadership_score": 82.331601,
       "market_cap": 14829520885.56,
       "market_cap_fmt": "14.8B",
@@ -4168,6 +4519,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.994802,
       "rank_pct_3m": 0.938669,
       "rank_pct_6m": 0.982328,
+      "reentry_count": 0,
       "rvol_10d": 1.826646,
       "sector": "Technology",
       "status": "Breakout",
@@ -4194,16 +4546,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 318.720001,
+      "consecutive_days": 1,
       "consolidation_score": 90.653118,
       "country": "United States",
       "day_high": 321.98999,
       "day_low": 290.5,
       "day_open": 315,
+      "days_in_watchlist_30d": 1,
       "dcr": 89.615783,
       "distance_to_52w_high_pct": -17.513805,
       "distance_to_pivot_pct": -0.913028,
       "excess_vs_spy_qqq_avg_pct": 106.911595,
+      "first_seen": "2026-05-26",
       "industry": "Semiconductors",
+      "last_seen": "2026-05-26",
       "leadership_score": 82.139293,
       "market_cap": 54631138318,
       "market_cap_fmt": "54.6B",
@@ -4230,6 +4586,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.878378,
       "rank_pct_3m": 0.969854,
       "rank_pct_6m": 0.89605,
+      "reentry_count": 0,
       "rvol_10d": 1.182564,
       "sector": "Technology",
       "status": "Breakout",
@@ -4257,16 +4614,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 28.129999,
+      "consecutive_days": 2,
       "consolidation_score": 94.344374,
       "country": "United States",
       "day_high": 28.32,
       "day_low": 24.49,
       "day_open": 26.34,
+      "days_in_watchlist_30d": 2,
       "dcr": 95.03915,
       "distance_to_52w_high_pct": 37.931034,
       "distance_to_pivot_pct": -9.811583,
       "excess_vs_spy_qqq_avg_pct": 82.785399,
+      "first_seen": "2026-05-18",
       "industry": "Auto Parts:O.E.M.",
+      "last_seen": "2026-05-26",
       "leadership_score": 79.378332,
       "market_cap": 1773338295,
       "market_cap_fmt": "1.8B",
@@ -4293,6 +4654,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.634096,
       "rank_pct_3m": 0.956341,
       "rank_pct_6m": 0.93763,
+      "reentry_count": 0,
       "rvol_10d": 1.211849,
       "sector": "Consumer Discretionary",
       "status": "Breakout",
@@ -4319,16 +4681,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 221.639999,
+      "consecutive_days": 1,
       "consolidation_score": 88.596053,
       "country": "United States",
       "day_high": 233.699997,
       "day_low": 211.580002,
       "day_open": 228.009995,
+      "days_in_watchlist_30d": 1,
       "dcr": 45.479203,
       "distance_to_52w_high_pct": -3.537268,
       "distance_to_pivot_pct": -1.213681,
       "excess_vs_spy_qqq_avg_pct": 78.001758,
+      "first_seen": "2026-05-26",
       "industry": "Semiconductors",
+      "last_seen": "2026-05-26",
       "leadership_score": 77.959219,
       "market_cap": 40881484702,
       "market_cap_fmt": "40.9B",
@@ -4355,6 +4721,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.892931,
       "rank_pct_3m": 0.924116,
       "rank_pct_6m": 0.752599,
+      "reentry_count": 0,
       "rvol_10d": 1.344327,
       "sector": "Technology",
       "status": "Breakout",
@@ -4382,16 +4749,20 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 60.209999,
+      "consecutive_days": 1,
       "consolidation_score": 51.011971,
       "country": "United States",
       "day_high": 72.870003,
       "day_low": 55,
       "day_open": 71.879997,
+      "days_in_watchlist_30d": 1,
       "dcr": 29.154999,
       "distance_to_52w_high_pct": 18.319216,
       "distance_to_pivot_pct": 18.319214,
       "excess_vs_spy_qqq_avg_pct": 76.062765,
+      "first_seen": "2026-05-26",
       "industry": null,
+      "last_seen": "2026-05-26",
       "leadership_score": 77.484655,
       "market_cap": 1595202374,
       "market_cap_fmt": "1.6B",
@@ -4418,6 +4789,7 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.517672,
       "rank_pct_3m": 0.962578,
       "rank_pct_6m": 0.933472,
+      "reentry_count": 0,
       "rvol_10d": 1.728245,
       "sector": null,
       "status": "Breakout",
@@ -4437,7 +4809,7 @@ window.RADAR_DATA = {
       "watchlist_change": "included"
     }
   ],
-  "generated_at": "2026-05-26T23:51:50-03:00",
+  "generated_at": "2026-05-27T00:07:02-03:00",
   "leaders_consolidating": [
     {
       "adr_pct": 11.825797,
@@ -4855,6 +5227,518 @@ window.RADAR_DATA = {
       "6m": 10
     }
   },
+  "theme_trends": [
+    {
+      "activity_score": 36.0,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 0.0,
+      "breakout_count": 0,
+      "consolidating_count": 3,
+      "current_count": 3,
+      "current_tickers": [
+        "AGL",
+        "CELC",
+        "CLYM"
+      ],
+      "gained_10d": 0,
+      "gained_30d": 0,
+      "gained_5d": 0,
+      "lost_10d": 6,
+      "lost_30d": 6,
+      "lost_5d": 6,
+      "net_10d": -6,
+      "net_30d": -6,
+      "net_5d": -6,
+      "new_leaders_10d": [],
+      "new_leaders_30d": [],
+      "new_leaders_5d": [],
+      "removed_leaders_10d": [
+        "CAPR",
+        "ERAS",
+        "KOD",
+        "SIBN",
+        "SLS",
+        "TNGX"
+      ],
+      "removed_leaders_30d": [
+        "CAPR",
+        "ERAS",
+        "KOD",
+        "SIBN",
+        "SLS",
+        "TNGX"
+      ],
+      "removed_leaders_5d": [
+        "CAPR",
+        "ERAS",
+        "KOD",
+        "SIBN",
+        "SLS",
+        "TNGX"
+      ],
+      "theme": "Biotech & health",
+      "trend_score": -36.0
+    },
+    {
+      "activity_score": 18.5,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 33.33,
+      "breakout_count": 1,
+      "consolidating_count": 1,
+      "current_count": 3,
+      "current_tickers": [
+        "BE",
+        "BW",
+        "FCEL"
+      ],
+      "gained_10d": 0,
+      "gained_30d": 0,
+      "gained_5d": 0,
+      "lost_10d": 3,
+      "lost_30d": 3,
+      "lost_5d": 3,
+      "net_10d": -3,
+      "net_30d": -3,
+      "net_5d": -3,
+      "new_leaders_10d": [],
+      "new_leaders_30d": [],
+      "new_leaders_5d": [],
+      "removed_leaders_10d": [
+        "DGXX",
+        "PCT",
+        "PL"
+      ],
+      "removed_leaders_30d": [
+        "DGXX",
+        "PCT",
+        "PL"
+      ],
+      "removed_leaders_5d": [
+        "DGXX",
+        "PCT",
+        "PL"
+      ],
+      "theme": "Power & electrification",
+      "trend_score": -17.5
+    },
+    {
+      "activity_score": 16.0,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 66.67,
+      "breakout_count": 8,
+      "consolidating_count": 0,
+      "current_count": 12,
+      "current_tickers": [
+        "AAOI",
+        "AEHR",
+        "ALAB",
+        "ATOM",
+        "AXTI",
+        "CRDO",
+        "LWLG",
+        "MRAM",
+        "MXL",
+        "NVTS",
+        "SNDK",
+        "WOLF"
+      ],
+      "gained_10d": 4,
+      "gained_30d": 4,
+      "gained_5d": 4,
+      "lost_10d": 6,
+      "lost_30d": 6,
+      "lost_5d": 6,
+      "net_10d": -2,
+      "net_30d": -2,
+      "net_5d": -2,
+      "new_leaders_10d": [
+        "ALAB",
+        "ATOM",
+        "CRDO",
+        "NVTS"
+      ],
+      "new_leaders_30d": [
+        "ALAB",
+        "ATOM",
+        "CRDO",
+        "NVTS"
+      ],
+      "new_leaders_5d": [
+        "ALAB",
+        "ATOM",
+        "CRDO",
+        "NVTS"
+      ],
+      "removed_leaders_10d": [
+        "BAND",
+        "ENPH",
+        "INOD",
+        "POET",
+        "SAIL",
+        "SEDG"
+      ],
+      "removed_leaders_30d": [
+        "BAND",
+        "ENPH",
+        "INOD",
+        "POET",
+        "SAIL",
+        "SEDG"
+      ],
+      "removed_leaders_5d": [
+        "BAND",
+        "ENPH",
+        "INOD",
+        "POET",
+        "SAIL",
+        "SEDG"
+      ],
+      "theme": "Semiconductors & AI compute",
+      "trend_score": -8.0
+    },
+    {
+      "activity_score": 14.0,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 100.0,
+      "breakout_count": 4,
+      "consolidating_count": 0,
+      "current_count": 4,
+      "current_tickers": [
+        "PL",
+        "RDW",
+        "SATL",
+        "SIDU"
+      ],
+      "gained_10d": 3,
+      "gained_30d": 3,
+      "gained_5d": 3,
+      "lost_10d": 1,
+      "lost_30d": 1,
+      "lost_5d": 1,
+      "net_10d": 2,
+      "net_30d": 2,
+      "net_5d": 2,
+      "new_leaders_10d": [
+        "PL",
+        "RDW",
+        "SIDU"
+      ],
+      "new_leaders_30d": [
+        "PL",
+        "RDW",
+        "SIDU"
+      ],
+      "new_leaders_5d": [
+        "PL",
+        "RDW",
+        "SIDU"
+      ],
+      "removed_leaders_10d": [
+        "ICHR"
+      ],
+      "removed_leaders_30d": [
+        "ICHR"
+      ],
+      "removed_leaders_5d": [
+        "ICHR"
+      ],
+      "theme": "Defense & space",
+      "trend_score": 14.0
+    },
+    {
+      "activity_score": 12.0,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 0.0,
+      "breakout_count": 0,
+      "consolidating_count": 0,
+      "current_count": 2,
+      "current_tickers": [
+        "QBTS",
+        "RGTI"
+      ],
+      "gained_10d": 2,
+      "gained_30d": 2,
+      "gained_5d": 2,
+      "lost_10d": 0,
+      "lost_30d": 0,
+      "lost_5d": 0,
+      "net_10d": 2,
+      "net_30d": 2,
+      "net_5d": 2,
+      "new_leaders_10d": [
+        "QBTS",
+        "RGTI"
+      ],
+      "new_leaders_30d": [
+        "QBTS",
+        "RGTI"
+      ],
+      "new_leaders_5d": [
+        "QBTS",
+        "RGTI"
+      ],
+      "removed_leaders_10d": [],
+      "removed_leaders_30d": [],
+      "removed_leaders_5d": [],
+      "theme": "Quantum computing",
+      "trend_score": 12.0
+    },
+    {
+      "activity_score": 7.0,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 100.0,
+      "breakout_count": 2,
+      "consolidating_count": 0,
+      "current_count": 2,
+      "current_tickers": [
+        "TE",
+        "VPG"
+      ],
+      "gained_10d": 1,
+      "gained_30d": 1,
+      "gained_5d": 1,
+      "lost_10d": 0,
+      "lost_30d": 0,
+      "lost_5d": 0,
+      "net_10d": 1,
+      "net_30d": 1,
+      "net_5d": 1,
+      "new_leaders_10d": [
+        "TE"
+      ],
+      "new_leaders_30d": [
+        "TE"
+      ],
+      "new_leaders_5d": [
+        "TE"
+      ],
+      "removed_leaders_10d": [],
+      "removed_leaders_30d": [],
+      "removed_leaders_5d": [],
+      "theme": "Industrial components",
+      "trend_score": 7.0
+    },
+    {
+      "activity_score": 6.5,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 50.0,
+      "breakout_count": 1,
+      "consolidating_count": 1,
+      "current_count": 2,
+      "current_tickers": [
+        "BAND",
+        "LITE"
+      ],
+      "gained_10d": 1,
+      "gained_30d": 1,
+      "gained_5d": 1,
+      "lost_10d": 0,
+      "lost_30d": 0,
+      "lost_5d": 0,
+      "net_10d": 1,
+      "net_30d": 1,
+      "net_5d": 1,
+      "new_leaders_10d": [
+        "BAND"
+      ],
+      "new_leaders_30d": [
+        "BAND"
+      ],
+      "new_leaders_5d": [
+        "BAND"
+      ],
+      "removed_leaders_10d": [],
+      "removed_leaders_30d": [],
+      "removed_leaders_5d": [],
+      "theme": "Optical & networking",
+      "trend_score": 6.5
+    },
+    {
+      "activity_score": 6.5,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 100.0,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "current_count": 1,
+      "current_tickers": [
+        "DXYZ"
+      ],
+      "gained_10d": 1,
+      "gained_30d": 1,
+      "gained_5d": 1,
+      "lost_10d": 2,
+      "lost_30d": 2,
+      "lost_5d": 2,
+      "net_10d": -1,
+      "net_30d": -1,
+      "net_5d": -1,
+      "new_leaders_10d": [
+        "DXYZ"
+      ],
+      "new_leaders_30d": [
+        "DXYZ"
+      ],
+      "new_leaders_5d": [
+        "DXYZ"
+      ],
+      "removed_leaders_10d": [
+        "SG",
+        "VSTS"
+      ],
+      "removed_leaders_30d": [
+        "SG",
+        "VSTS"
+      ],
+      "removed_leaders_5d": [
+        "SG",
+        "VSTS"
+      ],
+      "theme": "Unclassified",
+      "trend_score": -5.5
+    },
+    {
+      "activity_score": 6.0,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 0.0,
+      "breakout_count": 0,
+      "consolidating_count": 1,
+      "current_count": 1,
+      "current_tickers": [
+        "INOD"
+      ],
+      "gained_10d": 1,
+      "gained_30d": 1,
+      "gained_5d": 1,
+      "lost_10d": 0,
+      "lost_30d": 0,
+      "lost_5d": 0,
+      "net_10d": 1,
+      "net_30d": 1,
+      "net_5d": 1,
+      "new_leaders_10d": [
+        "INOD"
+      ],
+      "new_leaders_30d": [
+        "INOD"
+      ],
+      "new_leaders_5d": [
+        "INOD"
+      ],
+      "removed_leaders_10d": [],
+      "removed_leaders_30d": [],
+      "removed_leaders_5d": [],
+      "theme": "Software & data",
+      "trend_score": 6.0
+    },
+    {
+      "activity_score": 0.5,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 100.0,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "current_count": 1,
+      "current_tickers": [
+        "AEVA"
+      ],
+      "gained_10d": 0,
+      "gained_30d": 0,
+      "gained_5d": 0,
+      "lost_10d": 0,
+      "lost_30d": 0,
+      "lost_5d": 0,
+      "net_10d": 0,
+      "net_30d": 0,
+      "net_5d": 0,
+      "new_leaders_10d": [],
+      "new_leaders_30d": [],
+      "new_leaders_5d": [],
+      "removed_leaders_10d": [],
+      "removed_leaders_30d": [],
+      "removed_leaders_5d": [],
+      "theme": "Auto & autonomy",
+      "trend_score": 0.5
+    },
+    {
+      "activity_score": 0.0,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 0.0,
+      "breakout_count": 0,
+      "consolidating_count": 0,
+      "current_count": 1,
+      "current_tickers": [
+        "EVC"
+      ],
+      "gained_10d": 0,
+      "gained_30d": 0,
+      "gained_5d": 0,
+      "lost_10d": 0,
+      "lost_30d": 0,
+      "lost_5d": 0,
+      "net_10d": 0,
+      "net_30d": 0,
+      "net_5d": 0,
+      "new_leaders_10d": [],
+      "new_leaders_30d": [],
+      "new_leaders_5d": [],
+      "removed_leaders_10d": [],
+      "removed_leaders_30d": [],
+      "removed_leaders_5d": [],
+      "theme": "Media & broadcasting",
+      "trend_score": 0.0
+    },
+    {
+      "activity_score": 0.0,
+      "baseline_10d": "2026-05-18",
+      "baseline_30d": "2026-05-18",
+      "baseline_5d": "2026-05-18",
+      "breakout_concentration_pct": 0.0,
+      "breakout_count": 0,
+      "consolidating_count": 0,
+      "current_count": 1,
+      "current_tickers": [
+        "HYMC"
+      ],
+      "gained_10d": 0,
+      "gained_30d": 0,
+      "gained_5d": 0,
+      "lost_10d": 0,
+      "lost_30d": 0,
+      "lost_5d": 0,
+      "net_10d": 0,
+      "net_30d": 0,
+      "net_5d": 0,
+      "new_leaders_10d": [],
+      "new_leaders_30d": [],
+      "new_leaders_5d": [],
+      "removed_leaders_10d": [],
+      "removed_leaders_30d": [],
+      "removed_leaders_5d": [],
+      "theme": "Metals & mining",
+      "trend_score": 0.0
+    }
+  ],
   "themes": [
     {
       "avg_adr_pct": 11.5034,
@@ -5092,6 +5976,404 @@ window.RADAR_DATA = {
         "3m": 0,
         "6m": 0
       }
+    }
+  ],
+  "ticker_history": [
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 91.651767,
+      "name": "AXT Inc",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "AXTI"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 91.56341,
+      "name": "Wolfspeed, Inc.",
+      "reentry_count": 0,
+      "status": "Developing",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "WOLF"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 87.194387,
+      "name": "Sandisk Corporation Common Stock",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "SNDK"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 86.393971,
+      "name": "MaxLinear, Inc. Common Stock",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "MXL"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 86.253638,
+      "name": "Aehr Test Systems",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "AEHR"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 86.134096,
+      "name": "Bandwidth Inc. Class A Common Stock",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Optical & networking",
+      "ticker": "BAND"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 86.009356,
+      "name": "Satellogic Inc. Class A Ordinary Shares",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Defense & space",
+      "ticker": "SATL"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 85.752599,
+      "name": "agilon health, inc.",
+      "reentry_count": 0,
+      "status": "Ready",
+      "theme": "Biotech & health",
+      "ticker": "AGL"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 83.431393,
+      "name": "Applied Optoelectronics, Inc.",
+      "reentry_count": 0,
+      "status": "Developing",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "AAOI"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 83.280665,
+      "name": "Everspin Technologies, Inc",
+      "reentry_count": 0,
+      "status": "Developing",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "MRAM"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 83.080042,
+      "name": "FuelCell Energy Inc  NEW (DE)",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Power & electrification",
+      "ticker": "FCEL"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 82.523909,
+      "name": "Vishay Precision Group, Inc.",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Industrial components",
+      "ticker": "VPG"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 82.331601,
+      "name": "Planet Labs PBC",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Defense & space",
+      "ticker": "PL"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 82.102911,
+      "name": "Bloom Energy Corporation",
+      "reentry_count": 0,
+      "status": "Developing",
+      "theme": "Power & electrification",
+      "ticker": "BE"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 81.920998,
+      "name": "Entravision Communication",
+      "reentry_count": 0,
+      "status": "Developing",
+      "theme": "Media & broadcasting",
+      "ticker": "EVC"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 81.77027,
+      "name": "Climb Bio, Inc. Common Stock",
+      "reentry_count": 0,
+      "status": "Ready",
+      "theme": "Biotech & health",
+      "ticker": "CLYM"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 79.378332,
+      "name": "Aeva Technologies Inc. Common Stock",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Auto & autonomy",
+      "ticker": "AEVA"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 78.698545,
+      "name": "Babcock & Wilcox Enterprises, Inc.",
+      "reentry_count": 0,
+      "status": "Ready",
+      "theme": "Power & electrification",
+      "ticker": "BW"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 77.373181,
+      "name": "Lumentum Holdings Inc. Common Stock",
+      "reentry_count": 0,
+      "status": "Ready",
+      "theme": "Optical & networking",
+      "ticker": "LITE"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 77.357588,
+      "name": "Lightwave Logic, Inc. Common Stock",
+      "reentry_count": 0,
+      "status": "Developing",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "LWLG"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 76.608598,
+      "name": "Innodata Inc.",
+      "reentry_count": 0,
+      "status": "Ready",
+      "theme": "Software & data",
+      "ticker": "INOD"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 76.053015,
+      "name": "Celcuity Inc. Common Stock",
+      "reentry_count": 0,
+      "status": "Ready",
+      "theme": "Biotech & health",
+      "ticker": "CELC"
+    },
+    {
+      "consecutive_days": 2,
+      "days_in_watchlist_30d": 2,
+      "first_seen": "2026-05-18",
+      "last_seen": "2026-05-26",
+      "leadership_score": 70.039501,
+      "name": "Hycroft Mining Holding Corporation Class A Common Stock",
+      "reentry_count": 0,
+      "status": "Developing",
+      "theme": "Metals & mining",
+      "ticker": "HYMC"
+    },
+    {
+      "consecutive_days": 1,
+      "days_in_watchlist_30d": 1,
+      "first_seen": "2026-05-26",
+      "last_seen": "2026-05-26",
+      "leadership_score": 87.610187,
+      "name": "Navitas Semiconductor Corporation Common Stock",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "NVTS"
+    },
+    {
+      "consecutive_days": 1,
+      "days_in_watchlist_30d": 1,
+      "first_seen": "2026-05-26",
+      "last_seen": "2026-05-26",
+      "leadership_score": 87.355509,
+      "name": "Sidus Space, Inc. Class A Common Stock",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Defense & space",
+      "ticker": "SIDU"
+    },
+    {
+      "consecutive_days": 1,
+      "days_in_watchlist_30d": 1,
+      "first_seen": "2026-05-26",
+      "last_seen": "2026-05-26",
+      "leadership_score": 85.81185,
+      "name": "Redwire Corporation Common Stock",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Defense & space",
+      "ticker": "RDW"
+    },
+    {
+      "consecutive_days": 1,
+      "days_in_watchlist_30d": 1,
+      "first_seen": "2026-05-26",
+      "last_seen": "2026-05-26",
+      "leadership_score": 85.515593,
+      "name": "Atomera Incorporated Common Stock",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "ATOM"
+    },
+    {
+      "consecutive_days": 1,
+      "days_in_watchlist_30d": 1,
+      "first_seen": "2026-05-26",
+      "last_seen": "2026-05-26",
+      "leadership_score": 82.705821,
+      "name": "T1 Energy Inc. Common Stock",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Industrial components",
+      "ticker": "TE"
+    },
+    {
+      "consecutive_days": 1,
+      "days_in_watchlist_30d": 1,
+      "first_seen": "2026-05-26",
+      "last_seen": "2026-05-26",
+      "leadership_score": 82.139293,
+      "name": "Astera Labs Inc. Common Stock",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "ALAB"
+    },
+    {
+      "consecutive_days": 1,
+      "days_in_watchlist_30d": 1,
+      "first_seen": "2026-05-26",
+      "last_seen": "2026-05-26",
+      "leadership_score": 77.959219,
+      "name": "Credo Technology Group Holding Ltd Ordinary Shares",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Semiconductors & AI compute",
+      "ticker": "CRDO"
+    },
+    {
+      "consecutive_days": 1,
+      "days_in_watchlist_30d": 1,
+      "first_seen": "2026-05-26",
+      "last_seen": "2026-05-26",
+      "leadership_score": 77.484655,
+      "name": "Destiny Tech100 Inc.",
+      "reentry_count": 0,
+      "status": "Breakout",
+      "theme": "Unclassified",
+      "ticker": "DXYZ"
+    },
+    {
+      "consecutive_days": 1,
+      "days_in_watchlist_30d": 1,
+      "first_seen": "2026-05-26",
+      "last_seen": "2026-05-26",
+      "leadership_score": 71.73806,
+      "name": "Rigetti Computing Inc. Common Stock",
+      "reentry_count": 0,
+      "status": "Developing",
+      "theme": "Quantum computing",
+      "ticker": "RGTI"
+    },
+    {
+      "consecutive_days": 1,
+      "days_in_watchlist_30d": 1,
+      "first_seen": "2026-05-26",
+      "last_seen": "2026-05-26",
+      "leadership_score": 71.433165,
+      "name": "D-Wave Quantum Inc. Common Shares",
+      "reentry_count": 0,
+      "status": "Developing",
+      "theme": "Quantum computing",
+      "ticker": "QBTS"
     }
   ],
   "top_by_window": {
@@ -5447,7 +6729,7 @@ window.RADAR_DATA = {
     "technical_universe_count": 996
   },
   "watchlist_change_history": {
-    "days": 31,
+    "days": 30,
     "records": [
       {
         "change": "included",
@@ -5567,7 +6849,7 @@ window.RADAR_DATA = {
         "name": "Vestis Corporation",
         "previous_day": "2026-05-18",
         "status": "Leader",
-        "theme": "WHOLESALE-MISCELLANEOUS NONDURABLE GOODS",
+        "theme": "Unclassified",
         "ticker": "VSTS"
       },
       {
@@ -5578,7 +6860,7 @@ window.RADAR_DATA = {
         "name": "Tango Therapeutics, Inc.",
         "previous_day": "2026-05-18",
         "status": "Developing",
-        "theme": "Biotech / pharma / Energy / oil & gas",
+        "theme": "Biotech & health",
         "ticker": "TNGX"
       },
       {
@@ -5589,7 +6871,7 @@ window.RADAR_DATA = {
         "name": "SELLAS Life Sciences Group, Inc. Common Stock",
         "previous_day": "2026-05-18",
         "status": "Developing",
-        "theme": "Biotech / pharma",
+        "theme": "Biotech & health",
         "ticker": "SLS"
       },
       {
@@ -5600,7 +6882,7 @@ window.RADAR_DATA = {
         "name": "SI-BONE Inc. Common Stock",
         "previous_day": "2026-05-18",
         "status": "Leader",
-        "theme": "Medical/Dental Instruments",
+        "theme": "Biotech & health",
         "ticker": "SIBN"
       },
       {
@@ -5611,7 +6893,7 @@ window.RADAR_DATA = {
         "name": "Sweetgreen Inc. Class A Common Stock",
         "previous_day": "2026-05-18",
         "status": "Extended",
-        "theme": "Restaurants",
+        "theme": "Unclassified",
         "ticker": "SG"
       },
       {
@@ -5622,7 +6904,7 @@ window.RADAR_DATA = {
         "name": "SolarEdge Technologies, Inc.",
         "previous_day": "2026-05-18",
         "status": "Developing",
-        "theme": "AI infrastructure / Semiconductors",
+        "theme": "Semiconductors & AI compute",
         "ticker": "SEDG"
       },
       {
@@ -5633,7 +6915,7 @@ window.RADAR_DATA = {
         "name": "SailPoint Inc. Common Stock",
         "previous_day": "2026-05-18",
         "status": "Extended",
-        "theme": "AI infrastructure",
+        "theme": "Semiconductors & AI compute",
         "ticker": "SAIL"
       },
       {
@@ -5644,7 +6926,7 @@ window.RADAR_DATA = {
         "name": "POET Technologies Inc. Common Shares",
         "previous_day": "2026-05-18",
         "status": "Developing",
-        "theme": "AI infrastructure / Semiconductors",
+        "theme": "Semiconductors & AI compute",
         "ticker": "POET"
       },
       {
@@ -5655,7 +6937,7 @@ window.RADAR_DATA = {
         "name": "PureCycle Technologies Inc. Common stock",
         "previous_day": "2026-05-18",
         "status": "Leader",
-        "theme": "Major Chemicals",
+        "theme": "Power & electrification",
         "ticker": "PCT"
       },
       {
@@ -5666,7 +6948,7 @@ window.RADAR_DATA = {
         "name": "Kodiak Sciences Inc Common Stock",
         "previous_day": "2026-05-18",
         "status": "Developing",
-        "theme": "BIOLOGICAL PRODUCTS, (NO DIAGNOSTIC SUBSTANCES)",
+        "theme": "Biotech & health",
         "ticker": "KOD"
       },
       {
@@ -5677,7 +6959,7 @@ window.RADAR_DATA = {
         "name": "Ichor Holdings",
         "previous_day": "2026-05-18",
         "status": "Developing",
-        "theme": "Semiconductors / Defense / aerospace",
+        "theme": "Defense & space",
         "ticker": "ICHR"
       },
       {
@@ -5688,7 +6970,7 @@ window.RADAR_DATA = {
         "name": "Erasca, Inc. Common Stock",
         "previous_day": "2026-05-18",
         "status": "Developing",
-        "theme": "Biotech / pharma / Energy / oil & gas",
+        "theme": "Biotech & health",
         "ticker": "ERAS"
       },
       {
@@ -5699,7 +6981,7 @@ window.RADAR_DATA = {
         "name": "Enphase Energy, Inc.",
         "previous_day": "2026-05-18",
         "status": "Developing",
-        "theme": "Semiconductors",
+        "theme": "Semiconductors & AI compute",
         "ticker": "ENPH"
       },
       {
@@ -5710,7 +6992,7 @@ window.RADAR_DATA = {
         "name": "Digi Power X Inc. Subordinate Voting Shares",
         "previous_day": "2026-05-18",
         "status": "Developing",
-        "theme": "AI infrastructure / Power / grid",
+        "theme": "Power & electrification",
         "ticker": "DGXX"
       },
       {
@@ -5721,7 +7003,7 @@ window.RADAR_DATA = {
         "name": "Capricor Therapeutics Inc. Common Stock",
         "previous_day": "2026-05-18",
         "status": "Developing",
-        "theme": "Biotech / pharma",
+        "theme": "Biotech & health",
         "ticker": "CAPR"
       },
       {
@@ -5791,7 +7073,7 @@ window.RADAR_DATA = {
         "ticker": "AGL"
       }
     ],
-    "since": "2026-04-26",
+    "since": "2026-04-27",
     "summary": {
       "consolidating_excluded": 0,
       "consolidating_included": 6,
@@ -5799,23 +7081,23 @@ window.RADAR_DATA = {
       "included": 10,
       "top_excluded_themes": [
         [
-          "Biotech / pharma / Energy / oil & gas",
+          "Biotech & health",
+          6
+        ],
+        [
+          "Semiconductors & AI compute",
+          4
+        ],
+        [
+          "Unclassified",
           2
         ],
         [
-          "Biotech / pharma",
+          "Power & electrification",
           2
         ],
         [
-          "AI infrastructure / Semiconductors",
-          2
-        ],
-        [
-          "WHOLESALE-MISCELLANEOUS NONDURABLE GOODS",
-          1
-        ],
-        [
-          "Medical/Dental Instruments",
+          "Defense & space",
           1
         ]
       ],
@@ -5850,105 +7132,105 @@ window.RADAR_DATA = {
         "leadership_score": 72.997295,
         "name": "Capricor Therapeutics Inc. Common Stock",
         "status": "Developing",
-        "theme": "Biotech / pharma",
+        "theme": "Biotech & health",
         "ticker": "CAPR"
       },
       {
         "leadership_score": 84.956947,
         "name": "Digi Power X Inc. Subordinate Voting Shares",
         "status": "Developing",
-        "theme": "AI infrastructure / Power / grid",
+        "theme": "Power & electrification",
         "ticker": "DGXX"
       },
       {
         "leadership_score": 69.514001,
         "name": "Enphase Energy, Inc.",
         "status": "Developing",
-        "theme": "Semiconductors",
+        "theme": "Semiconductors & AI compute",
         "ticker": "ENPH"
       },
       {
         "leadership_score": 72.845401,
         "name": "Erasca, Inc. Common Stock",
         "status": "Developing",
-        "theme": "Biotech / pharma / Energy / oil & gas",
+        "theme": "Biotech & health",
         "ticker": "ERAS"
       },
       {
         "leadership_score": 76.089041,
         "name": "Ichor Holdings",
         "status": "Developing",
-        "theme": "Semiconductors / Defense / aerospace",
+        "theme": "Defense & space",
         "ticker": "ICHR"
       },
       {
         "leadership_score": 73.589041,
         "name": "Kodiak Sciences Inc Common Stock",
         "status": "Developing",
-        "theme": "BIOLOGICAL PRODUCTS, (NO DIAGNOSTIC SUBSTANCES)",
+        "theme": "Biotech & health",
         "ticker": "KOD"
       },
       {
         "leadership_score": 73.286384,
         "name": "PureCycle Technologies Inc. Common stock",
         "status": "Leader",
-        "theme": "Major Chemicals",
+        "theme": "Power & electrification",
         "ticker": "PCT"
       },
       {
         "leadership_score": 81.764188,
         "name": "POET Technologies Inc. Common Shares",
         "status": "Developing",
-        "theme": "AI infrastructure / Semiconductors",
+        "theme": "Semiconductors & AI compute",
         "ticker": "POET"
       },
       {
         "leadership_score": 62.463796,
         "name": "SailPoint Inc. Common Stock",
         "status": "Extended",
-        "theme": "AI infrastructure",
+        "theme": "Semiconductors & AI compute",
         "ticker": "SAIL"
       },
       {
         "leadership_score": 76.265601,
         "name": "SolarEdge Technologies, Inc.",
         "status": "Developing",
-        "theme": "AI infrastructure / Semiconductors",
+        "theme": "Semiconductors & AI compute",
         "ticker": "SEDG"
       },
       {
         "leadership_score": 67.813457,
         "name": "Sweetgreen Inc. Class A Common Stock",
         "status": "Extended",
-        "theme": "Restaurants",
+        "theme": "Unclassified",
         "ticker": "SG"
       },
       {
         "leadership_score": 62.297456,
         "name": "SI-BONE Inc. Common Stock",
         "status": "Leader",
-        "theme": "Medical/Dental Instruments",
+        "theme": "Biotech & health",
         "ticker": "SIBN"
       },
       {
         "leadership_score": 87.143836,
         "name": "SELLAS Life Sciences Group, Inc. Common Stock",
         "status": "Developing",
-        "theme": "Biotech / pharma",
+        "theme": "Biotech & health",
         "ticker": "SLS"
       },
       {
         "leadership_score": 74.322896,
         "name": "Tango Therapeutics, Inc.",
         "status": "Developing",
-        "theme": "Biotech / pharma / Energy / oil & gas",
+        "theme": "Biotech & health",
         "ticker": "TNGX"
       },
       {
         "leadership_score": 76.114528,
         "name": "Vestis Corporation",
         "status": "Leader",
-        "theme": "WHOLESALE-MISCELLANEOUS NONDURABLE GOODS",
+        "theme": "Unclassified",
         "ticker": "VSTS"
       }
     ],
@@ -6116,6 +7398,8 @@ const el = {
   metricTopTheme: document.querySelector("#metricTopTheme"),
   topThemesCount: document.querySelector("#topThemesCount"),
   topThemesPanel: document.querySelector("#topThemesPanel"),
+  themeTrendCount: document.querySelector("#themeTrendCount"),
+  themeTrendList: document.querySelector("#themeTrendList"),
   watchlistIncludedCount: document.querySelector("#watchlistIncludedCount"),
   watchlistExcludedCount: document.querySelector("#watchlistExcludedCount"),
   consolidatingIncludedCount: document.querySelector("#consolidatingIncludedCount"),
@@ -6400,6 +7684,78 @@ function renderTopThemesPanel() {
   el.topThemesPanel.innerHTML = topThemes.length
     ? topThemes.map(topThemeCard).join("")
     : '<div class="empty-state">Sem temas.</div>';
+}
+
+function signedCount(value) {
+  const number = Number(value) || 0;
+  return number > 0 ? `+${number}` : `${number}`;
+}
+
+function compactTickerList(tickers, limit = 7) {
+  const clean = (tickers || []).filter(Boolean);
+  if (!clean.length) return "--";
+  const head = clean.slice(0, limit).join(", ");
+  return clean.length > limit ? `${head} +${clean.length - limit}` : head;
+}
+
+function trendCell(theme, period) {
+  const net = Number(theme[`net_${period}d`] || 0);
+  const gained = Number(theme[`gained_${period}d`] || 0);
+  const lost = Number(theme[`lost_${period}d`] || 0);
+  const cls = net > 0 ? "positive" : net < 0 ? "negative" : "";
+  return `
+    <span class="trend-period ${cls}">
+      <strong>${signedCount(net)}</strong>
+      <small>+${gained} / -${lost}</small>
+    </span>
+  `;
+}
+
+function renderThemeTrends() {
+  const trends = DATA.theme_trends || [];
+  if (el.themeTrendCount) el.themeTrendCount.textContent = trends.length;
+  if (!el.themeTrendList) return;
+  if (!trends.length) {
+    el.themeTrendList.innerHTML = '<div class="empty-state">Sem historico de temas.</div>';
+    return;
+  }
+
+  const rows = trends
+    .slice(0, 10)
+    .map(
+      (theme) => `
+        <button type="button" class="theme-trend-row" data-theme="${escapeHtml(
+          theme.theme,
+        )}" style="${themeStyle(theme.theme)}">
+          <span class="theme-trend-main">
+            <span class="theme-chip">${escapeHtml(theme.theme)}</span>
+            <strong>${theme.current_count || 0}</strong>
+          </span>
+          ${trendCell(theme, 5)}
+          ${trendCell(theme, 10)}
+          ${trendCell(theme, 30)}
+          <span class="trend-breakout">
+            <strong>${theme.breakout_count || 0}</strong>
+            <small>${formatPercent(theme.breakout_concentration_pct, 0)} rompidos</small>
+          </span>
+          <small class="trend-tickers">
+            Novos 30d: ${escapeHtml(compactTickerList(theme.new_leaders_30d))}
+          </small>
+        </button>
+      `,
+    )
+    .join("");
+  el.themeTrendList.innerHTML = `
+    <div class="theme-trend-header">
+      <span>Tema</span>
+      <span>5d</span>
+      <span>10d</span>
+      <span>30d</span>
+      <span>Rompidos</span>
+      <span>Novos 30d</span>
+    </div>
+    ${rows}
+  `;
 }
 
 function changeTickerList(rows, variant = "added") {
@@ -6702,7 +8058,7 @@ function renderLeadersTable() {
   el.leadersCount.textContent = rows.length;
   if (!rows.length) {
     el.leadersBody.innerHTML =
-      '<tr><td colspan="12"><div class="empty-state">Nenhum leader nos filtros atuais.</div></td></tr>';
+      '<tr><td colspan="15"><div class="empty-state">Nenhum leader nos filtros atuais.</div></td></tr>';
     return;
   }
   el.leadersBody.innerHTML = rows
@@ -6721,6 +8077,9 @@ function renderLeadersTable() {
           <td>${escapeHtml(row.country || "--")}</td>
           <td class="num">${escapeHtml(row.market_cap_fmt || formatMoney(row.market_cap))}</td>
           <td class="num">${formatNumber(row.leadership_score, 1)}</td>
+          <td class="num">${formatNumber(row.days_in_watchlist_30d, 0)}</td>
+          <td class="num">${formatNumber(row.consecutive_days, 0)}</td>
+          <td class="num">${formatNumber(row.reentry_count, 0)}</td>
           ${perfCell(row, "perf_1w_pct")}
           ${perfCell(row, "perf_1m_pct")}
           ${perfCell(row, "perf_3m_pct")}
@@ -6765,6 +8124,11 @@ function renderDetail() {
       ${detailStat("RVOL(10)", formatNumber(row.rvol_10d, 2))}
       ${detailStat("ADR", formatPercent(row.adr_pct))}
       ${detailStat("Score", formatNumber(row.leadership_score, 1))}
+      ${detailStat("First seen", row.first_seen || "--")}
+      ${detailStat("Last seen", row.last_seen || "--")}
+      ${detailStat("Dias 30d", formatNumber(row.days_in_watchlist_30d, 0))}
+      ${detailStat("Sequencia", formatNumber(row.consecutive_days, 0))}
+      ${detailStat("Reentradas", formatNumber(row.reentry_count, 0))}
       ${detailStat("Subtemas", row.theme_tags || "--")}
       ${detailStat("Excesso SPY/QQQ", formatPercent(row.excess_vs_spy_qqq_avg_pct, 1))}
       ${detailStat("Pivot", formatNumber(row.pivot, 2))}
@@ -6832,6 +8196,7 @@ function renderWindowLeaders() {
 function renderAll() {
   renderMetrics();
   renderTopThemesPanel();
+  renderThemeTrends();
   renderWatchlistChanges();
   renderChangeHistory();
   renderFilters();

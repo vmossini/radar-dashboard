@@ -9,21 +9,21 @@
 2026-05-26,2026-05-18,all_leaders,included,CRDO,Credo Technology Group Holding Ltd Ordinary Shares,Semiconductors & AI compute,Breakout,77.959219
 2026-05-26,2026-05-18,all_leaders,included,ATOM,Atomera Incorporated Common Stock,Semiconductors & AI compute,Breakout,85.515593
 2026-05-26,2026-05-18,all_leaders,included,ALAB,Astera Labs Inc. Common Stock,Semiconductors & AI compute,Breakout,82.139293
-2026-05-26,2026-05-18,all_leaders,excluded,VSTS,Vestis Corporation,WHOLESALE-MISCELLANEOUS NONDURABLE GOODS,Leader,76.114528
-2026-05-26,2026-05-18,all_leaders,excluded,TNGX,"Tango Therapeutics, Inc.",Biotech / pharma / Energy / oil & gas,Developing,74.322896
-2026-05-26,2026-05-18,all_leaders,excluded,SLS,"SELLAS Life Sciences Group, Inc. Common Stock",Biotech / pharma,Developing,87.143836
-2026-05-26,2026-05-18,all_leaders,excluded,SIBN,SI-BONE Inc. Common Stock,Medical/Dental Instruments,Leader,62.297456
-2026-05-26,2026-05-18,all_leaders,excluded,SG,Sweetgreen Inc. Class A Common Stock,Restaurants,Extended,67.813457
-2026-05-26,2026-05-18,all_leaders,excluded,SEDG,"SolarEdge Technologies, Inc.",AI infrastructure / Semiconductors,Developing,76.265601
-2026-05-26,2026-05-18,all_leaders,excluded,SAIL,SailPoint Inc. Common Stock,AI infrastructure,Extended,62.463796
-2026-05-26,2026-05-18,all_leaders,excluded,POET,POET Technologies Inc. Common Shares,AI infrastructure / Semiconductors,Developing,81.764188
-2026-05-26,2026-05-18,all_leaders,excluded,PCT,PureCycle Technologies Inc. Common stock,Major Chemicals,Leader,73.286384
-2026-05-26,2026-05-18,all_leaders,excluded,KOD,Kodiak Sciences Inc Common Stock,"BIOLOGICAL PRODUCTS, (NO DIAGNOSTIC SUBSTANCES)",Developing,73.589041
-2026-05-26,2026-05-18,all_leaders,excluded,ICHR,Ichor Holdings,Semiconductors / Defense / aerospace,Developing,76.089041
-2026-05-26,2026-05-18,all_leaders,excluded,ERAS,"Erasca, Inc. Common Stock",Biotech / pharma / Energy / oil & gas,Developing,72.845401
-2026-05-26,2026-05-18,all_leaders,excluded,ENPH,"Enphase Energy, Inc.",Semiconductors,Developing,69.514001
-2026-05-26,2026-05-18,all_leaders,excluded,DGXX,Digi Power X Inc. Subordinate Voting Shares,AI infrastructure / Power / grid,Developing,84.956947
-2026-05-26,2026-05-18,all_leaders,excluded,CAPR,Capricor Therapeutics Inc. Common Stock,Biotech / pharma,Developing,72.997295
+2026-05-26,2026-05-18,all_leaders,excluded,VSTS,Vestis Corporation,Unclassified,Leader,76.114528
+2026-05-26,2026-05-18,all_leaders,excluded,TNGX,"Tango Therapeutics, Inc.",Biotech & health,Developing,74.322896
+2026-05-26,2026-05-18,all_leaders,excluded,SLS,"SELLAS Life Sciences Group, Inc. Common Stock",Biotech & health,Developing,87.143836
+2026-05-26,2026-05-18,all_leaders,excluded,SIBN,SI-BONE Inc. Common Stock,Biotech & health,Leader,62.297456
+2026-05-26,2026-05-18,all_leaders,excluded,SG,Sweetgreen Inc. Class A Common Stock,Unclassified,Extended,67.813457
+2026-05-26,2026-05-18,all_leaders,excluded,SEDG,"SolarEdge Technologies, Inc.",Semiconductors & AI compute,Developing,76.265601
+2026-05-26,2026-05-18,all_leaders,excluded,SAIL,SailPoint Inc. Common Stock,Semiconductors & AI compute,Extended,62.463796
+2026-05-26,2026-05-18,all_leaders,excluded,POET,POET Technologies Inc. Common Shares,Semiconductors & AI compute,Developing,81.764188
+2026-05-26,2026-05-18,all_leaders,excluded,PCT,PureCycle Technologies Inc. Common stock,Power & electrification,Leader,73.286384
+2026-05-26,2026-05-18,all_leaders,excluded,KOD,Kodiak Sciences Inc Common Stock,Biotech & health,Developing,73.589041
+2026-05-26,2026-05-18,all_leaders,excluded,ICHR,Ichor Holdings,Defense & space,Developing,76.089041
+2026-05-26,2026-05-18,all_leaders,excluded,ERAS,"Erasca, Inc. Common Stock",Biotech & health,Developing,72.845401
+2026-05-26,2026-05-18,all_leaders,excluded,ENPH,"Enphase Energy, Inc.",Semiconductors & AI compute,Developing,69.514001
+2026-05-26,2026-05-18,all_leaders,excluded,DGXX,Digi Power X Inc. Subordinate Voting Shares,Power & electrification,Developing,84.956947
+2026-05-26,2026-05-18,all_leaders,excluded,CAPR,Capricor Therapeutics Inc. Common Stock,Biotech & health,Developing,72.997295
 2026-05-26,2026-05-18,leaders_consolidating,consolidating_included,LITE,Lumentum Holdings Inc. Common Stock,Optical & networking,Ready,77.373181
 2026-05-26,2026-05-18,leaders_consolidating,consolidating_included,INOD,Innodata Inc.,Software & data,Ready,76.608598
 2026-05-26,2026-05-18,leaders_consolidating,consolidating_included,CLYM,"Climb Bio, Inc. Common Stock",Biotech & health,Ready,81.77027
