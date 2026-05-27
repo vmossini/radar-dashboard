@@ -14,20 +14,18 @@
 ## Temas fortes
 | Tema | Leaders | Ready | Score | Top tickers |
 | --- | --- | --- | --- | --- |
-| Semiconductors & AI compute | 13 |  | 214.9 | AXTI, WOLF, NVTS, SNDK, MXL, AEHR, ATOM, AAOI |
+| Semiconductors & AI compute | 12 |  | 205.0 | AXTI, WOLF, NVTS, SNDK, MXL, AEHR, ATOM, AAOI |
 | Defense & space | 4 |  | 125.4 | SIDU, SATL, RDW, PL |
 | Biotech & health | 3 | 3 | 126.2 | AGL, CLYM, CELC |
+| Power & electrification | 3 | 1 | 116.3 | FCEL, BE, BW |
 | Optical & networking | 2 | 1 | 106.8 | BAND, LITE |
-| Power & electrification | 2 | 1 | 105.4 | BE, BW |
 | Industrial components | 2 |  | 102.6 | TE, VPG |
+| Quantum computing | 2 |  | 91.6 | RGTI, QBTS |
 | Media & broadcasting | 1 |  | 91.9 | EVC |
 | Software & data | 1 | 1 | 91.6 | INOD |
 | Auto & autonomy | 1 |  | 89.4 | AEVA |
 | Unclassified | 1 |  | 87.5 | DXYZ |
-| EDP Services | 1 |  | 81.7 | RGTI |
-| Quantum computing | 1 |  | 81.4 | QBTS |
-
-_Mostrando 12 de 13._
+| Metals & mining | 1 |  | 80.0 | HYMC |
 
 ## All leaders - resumo
 - Top1 1W: `10`
@@ -52,7 +50,7 @@ _Mostrando 12 de 13._
 | ATOM | Atomera Incorporated Common Stock | Semiconductors & AI compute | 85.5 | 51.3 | 40.8 | 128.3 | 508.5 | 82.9 | 10.3 | Breakout |
 | AAOI | Applied Optoelectronics, Inc. | Semiconductors & AI compute | 83.4 | 2.5 | 9.5 | 215.7 | 811.3 | 908.6 | 13.6 | Developing |
 | MRAM | Everspin Technologies, Inc | Semiconductors & AI compute | 83.3 | -1.9 | 132.4 | 195.4 | 326.3 | 431.7 | 18.2 | Developing |
-| FCEL | FuelCell Energy Inc  NEW (DE) | Semiconductors & AI compute | 83.1 | 37.5 | 118.2 | 173.2 | 288.5 | 432.8 | 13.7 | Breakout |
+| FCEL | FuelCell Energy Inc  NEW (DE) | Power & electrification | 83.1 | 37.5 | 118.2 | 173.2 | 288.5 | 432.8 | 13.7 | Breakout |
 | TE | T1 Energy Inc. Common Stock | Industrial components | 82.7 | 49.3 | 97.5 | 47.4 | 284.2 | 977.2 | 9.2 | Breakout |
 | VPG | Vishay Precision Group, Inc. | Industrial components | 82.5 | 17.3 | 103.6 | 163.8 | 321.5 | 369.1 | 6.8 | Breakout |
 | PL | Planet Labs PBC | Defense & space | 82.3 | 16.1 | 36.3 | 95.5 | 330.3 | 1209.5 | 8.2 | Breakout |
@@ -68,7 +66,7 @@ _Mostrando 12 de 13._
 | LWLG | Lightwave Logic, Inc. Common Stock | Semiconductors & AI compute | 77.4 | 3.3 | -5.5 | 198.5 | 189.1 | 959.3 | 15.1 | Developing |
 | INOD | Innodata Inc. | Software & data | 76.6 | 1.3 | 126.5 | 117.0 | 83.5 | 165.3 | 11.6 | Ready |
 | CELC | Celcuity Inc. Common Stock | Biotech & health | 76.1 | 1.6 | 10.9 | 26.9 | 42.8 | 1148.9 | 6.4 | Ready |
-| RGTI | Rigetti Computing Inc. Common Stock | EDP Services | 71.7 | 50.8 | 50.9 | 52.1 | 9.9 | 80.8 | 8.6 | Developing |
+| RGTI | Rigetti Computing Inc. Common Stock | Quantum computing | 71.7 | 50.8 | 50.9 | 52.1 | 9.9 | 80.8 | 8.6 | Developing |
 | QBTS | D-Wave Quantum Inc. Common Shares | Quantum computing | 71.4 | 46.0 | 50.5 | 49.1 | 35.6 | 46.1 | 8.6 | Developing |
 | HYMC | Hycroft Mining Holding Corporation Class A Common Stock | Metals & mining | 70.0 | -4.6 | -12.7 | -29.2 | 239.7 | 1026.1 | 9.1 | Developing |
 
@@ -85,7 +83,7 @@ _Mostrando 12 de 13._
 | SATL | Satellogic Inc. Class A Ordinary Shares | Defense & space | Breakout | Uruguay | 1.4B | 10.74 | 12.00 | 1.32 | 10.65 | 10.64 |
 | RDW | Redwire Corporation Common Stock | Defense & space | Breakout | United States | 4.4B | 22.04 | 23.10 | 1.91 | 17.90 | 17.89 |
 | ATOM | Atomera Incorporated Common Stock | Semiconductors & AI compute | Breakout | United States | 309.9M | 12.11 | 12.36 | 2.08 | 11.49 | 11.48 |
-| FCEL | FuelCell Energy Inc  NEW (DE) | Semiconductors & AI compute | Breakout | United States | 939.8M | 24.40 | 27.69 | 0.81 | 27.34 | 27.33 |
+| FCEL | FuelCell Energy Inc  NEW (DE) | Power & electrification | Breakout | United States | 939.8M | 24.40 | 27.69 | 0.81 | 27.34 | 27.33 |
 | TE | T1 Energy Inc. Common Stock | Industrial components | Breakout | Luxembourg | 2.9B | 10.45 | 10.80 | 1.38 | 9.44 | 9.43 |
 | VPG | Vishay Precision Group, Inc. | Industrial components | Breakout | United States | 1.4B | 123.41 | 124.40 | 1.49 | 114.12 | 114.11 |
 | PL | Planet Labs PBC | Defense & space | Breakout | United States | 14.8B | 48.32 | 51.13 | 1.83 | 45.79 | 45.78 |
@@ -99,7 +97,7 @@ _Mostrando 12 de 13._
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | AGL | agilon health, inc. | Biotech & health | United States | 1.4B | 78.3 | 85.27 | 90.48 | 6.1 | 5 | 0.52 | 90.49 | nao verificado |
 | CLYM | Climb Bio, Inc. Common Stock | Biotech & health | United States | 565.7M | 70.7 | 11.39 | 12.48 | 9.6 | 12 | 1.14 | 12.49 | nao verificado |
-| BW | Babcock & Wilcox Enterprises, Inc. | Power & electrification | United States | 2.7B | 63.1 | 19.65 | 22.03 | 12.1 | 6 | 0.79 | 22.04 | nao verificado |
+| BW | Babcock & Wilcox Enterprises, Inc. | Power & electrification | United States | 2.7B | 65.1 | 19.65 | 22.03 | 12.1 | 6 | 0.79 | 22.04 | nao verificado |
 | CELC | Celcuity Inc. Common Stock | Biotech & health | United States | 6.4B | 62.9 | 134.26 | 151.02 | 12.5 | 15 | 0.58 | 151.03 | nao verificado |
 | LITE | Lumentum Holdings Inc. Common Stock | Optical & networking | United States | 68.9B | 51.6 | 910.81 | 1085.68 | 19.2 | 9 | 0.84 | 1085.69 | nao verificado |
 | INOD | Innodata Inc. | Software & data | United States | 3.1B | 48.5 | 95.91 | 114.77 | 19.7 | 10 | 0.45 | 114.78 | nao verificado |
