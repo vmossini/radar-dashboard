@@ -344,6 +344,89 @@ h2 {
   font-weight: 800;
 }
 
+.change-history-panel {
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.change-history-list {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+}
+
+.change-history-day {
+  display: grid;
+  gap: 7px;
+  padding: 9px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel-2);
+}
+
+.change-history-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.change-history-head strong {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.change-history-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.history-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 23px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.history-chip.added {
+  border: 1px solid #9ccbb8;
+  background: #dff1ea;
+  color: var(--green);
+}
+
+.history-chip.removed {
+  border: 1px solid #dfa9a2;
+  background: #f6e3e1;
+  color: var(--red);
+}
+
+.history-chip.watch {
+  border: 1px solid #cdbb77;
+  background: #f4efd9;
+  color: #6b5a17;
+}
+
+.history-chip.neutral {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--muted);
+}
+
+.history-chip span {
+  color: currentColor;
+  opacity: 0.74;
+}
+
 .control-strip {
   position: sticky;
   top: 0;
@@ -958,6 +1041,7 @@ tbody tr.selected {
           <a class="action-link" href="../outputs/latest_report.md">Relatorio</a>
           <a class="action-link" href="../outputs/latest_all_leaders.csv">All leaders CSV</a>
           <a class="action-link" href="../outputs/latest_leaders_consolidating.csv">Consolidacao CSV</a>
+          <a class="action-link" href="../outputs/latest_watchlist_changes.csv">Mudancas CSV</a>
         </div>
       </header>
 
@@ -1013,6 +1097,17 @@ tbody tr.selected {
           <strong id="consolidatingExcludedCount">--</strong>
           <div id="consolidatingExcludedList" class="change-list"></div>
         </div>
+      </section>
+
+      <section class="change-history-panel" aria-label="Historico de mudancas">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Watchlist</p>
+            <h2>Historico 30d</h2>
+          </div>
+          <span class="row-count" id="changeHistoryCount">--</span>
+        </div>
+        <div id="changeHistoryList" class="change-history-list"></div>
       </section>
 
       <section class="control-strip" aria-label="Filtros">
@@ -4342,7 +4437,7 @@ window.RADAR_DATA = {
       "watchlist_change": "included"
     }
   ],
-  "generated_at": "2026-05-26T23:41:23-03:00",
+  "generated_at": "2026-05-26T23:51:50-03:00",
   "leaders_consolidating": [
     {
       "adr_pct": 11.825797,
@@ -5351,6 +5446,404 @@ window.RADAR_DATA = {
     "raw_history_tickers": 14201,
     "technical_universe_count": 996
   },
+  "watchlist_change_history": {
+    "days": 31,
+    "records": [
+      {
+        "change": "included",
+        "day": "2026-05-26",
+        "leadership_score": 82.705821,
+        "list": "all_leaders",
+        "name": "T1 Energy Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Breakout",
+        "theme": "Industrial components",
+        "ticker": "TE"
+      },
+      {
+        "change": "included",
+        "day": "2026-05-26",
+        "leadership_score": 87.355509,
+        "list": "all_leaders",
+        "name": "Sidus Space, Inc. Class A Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Breakout",
+        "theme": "Defense & space",
+        "ticker": "SIDU"
+      },
+      {
+        "change": "included",
+        "day": "2026-05-26",
+        "leadership_score": 71.73806,
+        "list": "all_leaders",
+        "name": "Rigetti Computing Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "Quantum computing",
+        "ticker": "RGTI"
+      },
+      {
+        "change": "included",
+        "day": "2026-05-26",
+        "leadership_score": 85.81185,
+        "list": "all_leaders",
+        "name": "Redwire Corporation Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Breakout",
+        "theme": "Defense & space",
+        "ticker": "RDW"
+      },
+      {
+        "change": "included",
+        "day": "2026-05-26",
+        "leadership_score": 71.433165,
+        "list": "all_leaders",
+        "name": "D-Wave Quantum Inc. Common Shares",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "Quantum computing",
+        "ticker": "QBTS"
+      },
+      {
+        "change": "included",
+        "day": "2026-05-26",
+        "leadership_score": 87.610187,
+        "list": "all_leaders",
+        "name": "Navitas Semiconductor Corporation Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Breakout",
+        "theme": "Semiconductors & AI compute",
+        "ticker": "NVTS"
+      },
+      {
+        "change": "included",
+        "day": "2026-05-26",
+        "leadership_score": 77.484655,
+        "list": "all_leaders",
+        "name": "Destiny Tech100 Inc.",
+        "previous_day": "2026-05-18",
+        "status": "Breakout",
+        "theme": "Unclassified",
+        "ticker": "DXYZ"
+      },
+      {
+        "change": "included",
+        "day": "2026-05-26",
+        "leadership_score": 77.959219,
+        "list": "all_leaders",
+        "name": "Credo Technology Group Holding Ltd Ordinary Shares",
+        "previous_day": "2026-05-18",
+        "status": "Breakout",
+        "theme": "Semiconductors & AI compute",
+        "ticker": "CRDO"
+      },
+      {
+        "change": "included",
+        "day": "2026-05-26",
+        "leadership_score": 85.515593,
+        "list": "all_leaders",
+        "name": "Atomera Incorporated Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Breakout",
+        "theme": "Semiconductors & AI compute",
+        "ticker": "ATOM"
+      },
+      {
+        "change": "included",
+        "day": "2026-05-26",
+        "leadership_score": 82.139293,
+        "list": "all_leaders",
+        "name": "Astera Labs Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Breakout",
+        "theme": "Semiconductors & AI compute",
+        "ticker": "ALAB"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 76.114528,
+        "list": "all_leaders",
+        "name": "Vestis Corporation",
+        "previous_day": "2026-05-18",
+        "status": "Leader",
+        "theme": "WHOLESALE-MISCELLANEOUS NONDURABLE GOODS",
+        "ticker": "VSTS"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 74.322896,
+        "list": "all_leaders",
+        "name": "Tango Therapeutics, Inc.",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "Biotech / pharma / Energy / oil & gas",
+        "ticker": "TNGX"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 87.143836,
+        "list": "all_leaders",
+        "name": "SELLAS Life Sciences Group, Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "Biotech / pharma",
+        "ticker": "SLS"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 62.297456,
+        "list": "all_leaders",
+        "name": "SI-BONE Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Leader",
+        "theme": "Medical/Dental Instruments",
+        "ticker": "SIBN"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 67.813457,
+        "list": "all_leaders",
+        "name": "Sweetgreen Inc. Class A Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Extended",
+        "theme": "Restaurants",
+        "ticker": "SG"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 76.265601,
+        "list": "all_leaders",
+        "name": "SolarEdge Technologies, Inc.",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "SEDG"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 62.463796,
+        "list": "all_leaders",
+        "name": "SailPoint Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Extended",
+        "theme": "AI infrastructure",
+        "ticker": "SAIL"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 81.764188,
+        "list": "all_leaders",
+        "name": "POET Technologies Inc. Common Shares",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "POET"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 73.286384,
+        "list": "all_leaders",
+        "name": "PureCycle Technologies Inc. Common stock",
+        "previous_day": "2026-05-18",
+        "status": "Leader",
+        "theme": "Major Chemicals",
+        "ticker": "PCT"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 73.589041,
+        "list": "all_leaders",
+        "name": "Kodiak Sciences Inc Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "BIOLOGICAL PRODUCTS, (NO DIAGNOSTIC SUBSTANCES)",
+        "ticker": "KOD"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 76.089041,
+        "list": "all_leaders",
+        "name": "Ichor Holdings",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "Semiconductors / Defense / aerospace",
+        "ticker": "ICHR"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 72.845401,
+        "list": "all_leaders",
+        "name": "Erasca, Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "Biotech / pharma / Energy / oil & gas",
+        "ticker": "ERAS"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 69.514001,
+        "list": "all_leaders",
+        "name": "Enphase Energy, Inc.",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "Semiconductors",
+        "ticker": "ENPH"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 84.956947,
+        "list": "all_leaders",
+        "name": "Digi Power X Inc. Subordinate Voting Shares",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "AI infrastructure / Power / grid",
+        "ticker": "DGXX"
+      },
+      {
+        "change": "excluded",
+        "day": "2026-05-26",
+        "leadership_score": 72.997295,
+        "list": "all_leaders",
+        "name": "Capricor Therapeutics Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Developing",
+        "theme": "Biotech / pharma",
+        "ticker": "CAPR"
+      },
+      {
+        "change": "consolidating_included",
+        "day": "2026-05-26",
+        "leadership_score": 77.373181,
+        "list": "leaders_consolidating",
+        "name": "Lumentum Holdings Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Ready",
+        "theme": "Optical & networking",
+        "ticker": "LITE"
+      },
+      {
+        "change": "consolidating_included",
+        "day": "2026-05-26",
+        "leadership_score": 76.608598,
+        "list": "leaders_consolidating",
+        "name": "Innodata Inc.",
+        "previous_day": "2026-05-18",
+        "status": "Ready",
+        "theme": "Software & data",
+        "ticker": "INOD"
+      },
+      {
+        "change": "consolidating_included",
+        "day": "2026-05-26",
+        "leadership_score": 81.77027,
+        "list": "leaders_consolidating",
+        "name": "Climb Bio, Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Ready",
+        "theme": "Biotech & health",
+        "ticker": "CLYM"
+      },
+      {
+        "change": "consolidating_included",
+        "day": "2026-05-26",
+        "leadership_score": 76.053015,
+        "list": "leaders_consolidating",
+        "name": "Celcuity Inc. Common Stock",
+        "previous_day": "2026-05-18",
+        "status": "Ready",
+        "theme": "Biotech & health",
+        "ticker": "CELC"
+      },
+      {
+        "change": "consolidating_included",
+        "day": "2026-05-26",
+        "leadership_score": 78.698545,
+        "list": "leaders_consolidating",
+        "name": "Babcock & Wilcox Enterprises, Inc.",
+        "previous_day": "2026-05-18",
+        "status": "Ready",
+        "theme": "Power & electrification",
+        "ticker": "BW"
+      },
+      {
+        "change": "consolidating_included",
+        "day": "2026-05-26",
+        "leadership_score": 85.752599,
+        "list": "leaders_consolidating",
+        "name": "agilon health, inc.",
+        "previous_day": "2026-05-18",
+        "status": "Ready",
+        "theme": "Biotech & health",
+        "ticker": "AGL"
+      }
+    ],
+    "since": "2026-04-26",
+    "summary": {
+      "consolidating_excluded": 0,
+      "consolidating_included": 6,
+      "excluded": 15,
+      "included": 10,
+      "top_excluded_themes": [
+        [
+          "Biotech / pharma / Energy / oil & gas",
+          2
+        ],
+        [
+          "Biotech / pharma",
+          2
+        ],
+        [
+          "AI infrastructure / Semiconductors",
+          2
+        ],
+        [
+          "WHOLESALE-MISCELLANEOUS NONDURABLE GOODS",
+          1
+        ],
+        [
+          "Medical/Dental Instruments",
+          1
+        ]
+      ],
+      "top_included_themes": [
+        [
+          "Semiconductors & AI compute",
+          4
+        ],
+        [
+          "Defense & space",
+          2
+        ],
+        [
+          "Quantum computing",
+          2
+        ],
+        [
+          "Industrial components",
+          1
+        ],
+        [
+          "Unclassified",
+          1
+        ]
+      ]
+    },
+    "through": "2026-05-26"
+  },
   "watchlist_changes": {
     "all_excluded": [
       {
@@ -5631,6 +6124,8 @@ const el = {
   watchlistExcludedList: document.querySelector("#watchlistExcludedList"),
   consolidatingIncludedList: document.querySelector("#consolidatingIncludedList"),
   consolidatingExcludedList: document.querySelector("#consolidatingExcludedList"),
+  changeHistoryCount: document.querySelector("#changeHistoryCount"),
+  changeHistoryList: document.querySelector("#changeHistoryList"),
   searchInput: document.querySelector("#searchInput"),
   themeFilter: document.querySelector("#themeFilter"),
   statusControls: document.querySelector("#statusControls"),
@@ -5932,6 +6427,73 @@ function renderWatchlistChanges() {
   el.watchlistExcludedList.innerHTML = changeTickerList(changes.all_excluded, "removed");
   el.consolidatingIncludedList.innerHTML = changeTickerList(changes.consolidating_included, "watch");
   el.consolidatingExcludedList.innerHTML = changeTickerList(changes.consolidating_excluded, "neutral");
+}
+
+function changeVariant(change) {
+  if (change === "included") return "added";
+  if (change === "excluded") return "removed";
+  if (change === "consolidating_included") return "watch";
+  return "neutral";
+}
+
+function changeLabel(change) {
+  if (change === "included") return "Incluido";
+  if (change === "excluded") return "Excluido";
+  if (change === "consolidating_included") return "Entrou consol.";
+  if (change === "consolidating_excluded") return "Saiu consol.";
+  return change || "--";
+}
+
+function renderChangeHistory() {
+  const history = DATA.watchlist_change_history || {};
+  const records = history.records || [];
+  if (el.changeHistoryCount) el.changeHistoryCount.textContent = records.length;
+  if (!el.changeHistoryList) return;
+  if (!records.length) {
+    el.changeHistoryList.innerHTML = '<div class="empty-state">Sem historico suficiente.</div>';
+    return;
+  }
+
+  const byDay = new Map();
+  records.forEach((record) => {
+    if (!byDay.has(record.day)) byDay.set(record.day, []);
+    byDay.get(record.day).push(record);
+  });
+
+  el.changeHistoryList.innerHTML = [...byDay.entries()]
+    .slice(0, 12)
+    .map(([day, dayRecords]) => {
+      const counts = dayRecords.reduce((acc, record) => {
+        acc[record.change] = (acc[record.change] || 0) + 1;
+        return acc;
+      }, {});
+      return `
+        <div class="change-history-day">
+          <div class="change-history-head">
+            <strong>${escapeHtml(day)}</strong>
+            <span>+${counts.included || 0} / -${counts.excluded || 0} | consol. +${
+              counts.consolidating_included || 0
+            } / -${counts.consolidating_excluded || 0}</span>
+          </div>
+          <div class="change-history-items">
+            ${dayRecords
+              .slice(0, 40)
+              .map(
+                (record) => `
+                  <span class="history-chip ${changeVariant(record.change)}" title="${escapeHtml(
+                    [record.name, record.theme].filter(Boolean).join(" | "),
+                  )}">
+                    <strong>${escapeHtml(record.ticker)}</strong>
+                    <span>${escapeHtml(changeLabel(record.change))}</span>
+                  </span>
+                `,
+              )
+              .join("")}
+          </div>
+        </div>
+      `;
+    })
+    .join("");
 }
 
 const UPDATE_ENDPOINTS = Array.from(
@@ -6271,6 +6833,7 @@ function renderAll() {
   renderMetrics();
   renderTopThemesPanel();
   renderWatchlistChanges();
+  renderChangeHistory();
   renderFilters();
   renderBreakoutsTable();
   renderConsolidatingTable();
