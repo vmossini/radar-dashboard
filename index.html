@@ -1,0 +1,5818 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Radar de Lideranca</title>
+    <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f7f6;
+  --panel: #ffffff;
+  --panel-2: #f9fbfa;
+  --text: #17202a;
+  --muted: #61707d;
+  --border: #d9e0dd;
+  --border-strong: #bcc8c4;
+  --blue: #255f99;
+  --green: #21735b;
+  --amber: #9b6417;
+  --red: #a4443b;
+  --violet: #5b4a90;
+  --cyan: #13717c;
+  --shadow: 0 8px 24px rgba(28, 38, 48, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  width: min(1760px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 20px 0 36px;
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 0 18px;
+}
+
+.eyebrow {
+  margin: 0 0 3px;
+  color: var(--cyan);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 4px;
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.subhead {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.file-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.action-link {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 11px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.action-link:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.metric {
+  min-height: 92px;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.metric-label,
+.metric span:last-child {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.metric strong {
+  display: block;
+  margin: 4px 0 3px;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.control-strip {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: minmax(260px, 1.2fr) minmax(220px, 0.9fr) auto auto;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(245, 247, 246, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.search-box,
+.select-box {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.search-box span,
+.select-box span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--text);
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37, 95, 153, 0.14);
+}
+
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 36px;
+  align-items: center;
+}
+
+.segmented button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.segmented button.active {
+  border-color: #22313f;
+  background: #22313f;
+  color: #fff;
+}
+
+.windows button.active {
+  border-color: var(--violet);
+  background: var(--violet);
+}
+
+.section-block,
+.rail-panel {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.primary-block {
+  margin-bottom: 12px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 54px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-heading.compact {
+  min-height: 44px;
+  padding: 10px 12px;
+}
+
+.row-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 26px;
+  padding: 0 9px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 12px;
+}
+
+.workbench > * {
+  min-width: 0;
+}
+
+.side-rail {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.table-wrap.tall {
+  max-height: 720px;
+}
+
+table {
+  width: 100%;
+  min-width: 1180px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #edf2f0;
+  color: #42505c;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+th[data-sort] {
+  cursor: pointer;
+}
+
+tbody tr {
+  background: var(--panel);
+}
+
+tbody tr:hover,
+tbody tr.selected {
+  background: #eef7f4;
+}
+
+.ticker-cell {
+  display: grid;
+  gap: 2px;
+  min-width: 108px;
+}
+
+.ticker-cell strong {
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.ticker-cell span {
+  max-width: 230px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 12px;
+  text-overflow: ellipsis;
+}
+
+.theme-cell {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.theme-cell span,
+.theme-cell small {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.theme-cell small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.theme-chip {
+  width: fit-content;
+  max-width: 100%;
+  padding: 3px 7px;
+  border: 1px solid var(--theme-border, var(--border));
+  border-radius: 6px;
+  background: var(--theme-bg, var(--panel-2));
+  color: var(--theme-fg, var(--text));
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.positive {
+  color: var(--green);
+  font-weight: 800;
+}
+
+.negative {
+  color: var(--red);
+  font-weight: 800;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 74px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.pill-ready {
+  background: #dff1ea;
+  color: var(--green);
+}
+
+.pill-developing {
+  background: #faebd7;
+  color: var(--amber);
+}
+
+.pill-extended {
+  background: #f6e3e1;
+  color: var(--red);
+}
+
+.pill-leader {
+  background: #e3ecf6;
+  color: var(--blue);
+}
+
+.pill-triggered {
+  background: #ece8f6;
+  color: var(--violet);
+}
+
+.pill-breakout {
+  background: #dceff2;
+  color: var(--cyan);
+}
+
+.pill-default {
+  background: #eef0f2;
+  color: #52606b;
+}
+
+.perf-cell {
+  min-width: 88px;
+}
+
+.perf-bar {
+  width: 78px;
+  height: 3px;
+  margin-top: 4px;
+  border-radius: 99px;
+  background: #e1e6e4;
+  overflow: hidden;
+}
+
+.perf-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--green);
+}
+
+.flag-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  max-width: 160px;
+}
+
+.flag {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 5px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.detail-panel {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.detail-title {
+  display: grid;
+  gap: 4px;
+}
+
+.detail-title strong {
+  font-size: 18px;
+}
+
+.detail-title span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.theme-context-card {
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+  border: 1px solid var(--theme-border, #c7d9d4);
+  border-radius: 7px;
+  background: var(--theme-bg, #eef7f4);
+}
+
+.theme-context-card span {
+  color: var(--theme-fg, var(--cyan));
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.theme-context-card strong {
+  color: var(--theme-fg, var(--text));
+  font-size: 19px;
+  line-height: 1.15;
+}
+
+.theme-context-card small,
+.theme-context-card em {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+}
+
+.detail-stat {
+  min-height: 58px;
+  padding: 9px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel-2);
+}
+
+.detail-stat span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.detail-stat strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.note-line {
+  padding: 9px;
+  border-left: 3px solid var(--blue);
+  background: #f3f7fb;
+  color: #334250;
+  font-size: 12px;
+}
+
+.theme-list {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+}
+
+.theme-row {
+  width: 100%;
+  display: grid;
+  gap: 4px;
+  padding: 9px;
+  border: 1px solid var(--theme-border, var(--border));
+  border-radius: 7px;
+  background: linear-gradient(90deg, var(--theme-bg, var(--panel-2)), var(--panel-2));
+  color: var(--text);
+  text-align: left;
+}
+
+.theme-row:hover,
+.theme-row.active {
+  border-color: var(--theme-fg, var(--blue));
+}
+
+.theme-row-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.theme-row small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.theme-meter {
+  height: 4px;
+  border-radius: 99px;
+  background: #e1e6e4;
+  overflow: hidden;
+}
+
+.theme-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--theme-fg, var(--cyan));
+}
+
+.window-leaders {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+}
+
+.window-group {
+  display: grid;
+  gap: 5px;
+}
+
+.window-title {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.window-row {
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  gap: 7px;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 7px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel-2);
+  font-size: 12px;
+}
+
+.window-row span:nth-child(2) {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--theme-fg, var(--muted));
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.window-theme {
+  width: fit-content;
+  max-width: 100%;
+  padding: 2px 6px;
+  border: 1px solid var(--theme-border, transparent);
+  border-radius: 5px;
+  background: var(--theme-bg, transparent);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.empty-state {
+  padding: 18px;
+  color: var(--muted);
+}
+
+@media (max-width: 1180px) {
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+
+  .control-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .side-rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .app-shell {
+    width: min(100% - 20px, 1760px);
+    padding-top: 10px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .file-actions {
+    justify-content: flex-start;
+  }
+
+  .metric-grid,
+  .control-strip,
+  .side-rail {
+    grid-template-columns: 1fr;
+  }
+
+  .control-strip {
+    position: static;
+  }
+
+  h1 {
+    font-size: 21px;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Radar diario</p>
+          <h1>Radar de Lideranca e Consolidacao</h1>
+          <p class="subhead" id="sourceLine">Carregando snapshot...</p>
+        </div>
+        <div class="file-actions" aria-label="Arquivos do radar">
+          <a class="action-link" href="../outputs/latest_report.md">Relatorio</a>
+          <a class="action-link" href="../outputs/latest_all_leaders.csv">All leaders CSV</a>
+          <a class="action-link" href="../outputs/latest_leaders_consolidating.csv">Consolidacao CSV</a>
+        </div>
+      </header>
+
+      <section class="metric-grid" aria-label="Resumo">
+        <div class="metric">
+          <span class="metric-label">All leaders</span>
+          <strong id="metricLeaders">--</strong>
+          <span id="metricWindowLine">--</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Perto de romper</span>
+          <strong id="metricConsolidating">--</strong>
+          <span id="metricReadyLine">--</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Rompidos hoje</span>
+          <strong id="metricBreakouts">--</strong>
+          <span id="metricBreakoutLine">--</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Temas</span>
+          <strong id="metricThemes">--</strong>
+          <span id="metricTopTheme">--</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">ADR medio</span>
+          <strong id="metricAdr">--</strong>
+          <span>Filtro operacional: ADR &gt; 4%</span>
+        </div>
+      </section>
+
+      <section class="control-strip" aria-label="Filtros">
+        <label class="search-box">
+          <span>Busca</span>
+          <input id="searchInput" type="search" placeholder="Ticker, empresa, tema..." autocomplete="off" />
+        </label>
+        <label class="select-box">
+          <span>Tema</span>
+          <select id="themeFilter"></select>
+        </label>
+        <div class="segmented" id="statusControls" aria-label="Status"></div>
+        <div class="segmented windows" id="windowControls" aria-label="Janela top 1%">
+          <button type="button" data-window="1w">1W</button>
+          <button type="button" data-window="1m">1M</button>
+          <button type="button" data-window="3m">3M</button>
+          <button type="button" data-window="6m">6M</button>
+          <button type="button" data-window="1y">1Y</button>
+        </div>
+      </section>
+
+      <section class="section-block primary-block">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Acionados no dia</p>
+            <h2>Rompidos</h2>
+          </div>
+          <span class="row-count" id="breakoutsCount">--</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-sort="ticker">Ticker</th>
+                <th data-sort="status">Status</th>
+                <th data-sort="theme">Tema</th>
+                <th data-sort="country">Pais</th>
+                <th data-sort="market_cap">Valor mercado</th>
+                <th data-sort="close">Close</th>
+                <th data-sort="day_high">High dia</th>
+                <th data-sort="rvol_10d">RVOL(10)</th>
+                <th data-sort="trigger">Trigger</th>
+                <th data-sort="pivot">Pivot</th>
+              </tr>
+            </thead>
+            <tbody id="breakoutsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section-block primary-block">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Lista operacional</p>
+            <h2>Lideres em consolidacao</h2>
+          </div>
+          <span class="row-count" id="consolidatingCount">--</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-sort="ticker">Ticker</th>
+                <th data-sort="theme">Tema</th>
+                <th data-sort="country">Pais</th>
+                <th data-sort="market_cap">Valor mercado</th>
+                <th data-sort="close">Close</th>
+                <th data-sort="pivot">Pivot</th>
+                <th data-sort="distance_to_pivot_pct">Dist. pivot</th>
+                <th data-sort="base_days">Base</th>
+                <th data-sort="rvol_10d">RVOL(10)</th>
+                <th data-sort="consolidation_score">Setup</th>
+                <th>Trigger</th>
+              </tr>
+            </thead>
+            <tbody id="consolidatingBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="workbench">
+        <div class="section-block">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Universo filtrado</p>
+              <h2>All leaders</h2>
+            </div>
+            <span class="row-count" id="leadersCount">--</span>
+          </div>
+          <div class="table-wrap tall">
+            <table>
+              <thead>
+                <tr>
+                  <th data-sort="ticker">Ticker</th>
+                  <th data-sort="status">Status</th>
+                  <th data-sort="theme">Tema</th>
+                  <th data-sort="country">Pais</th>
+                  <th data-sort="market_cap">Valor mercado</th>
+                  <th data-sort="leadership_score">Score</th>
+                  <th data-sort="perf_1w_pct">1W</th>
+                  <th data-sort="perf_1m_pct">1M</th>
+                  <th data-sort="perf_3m_pct">3M</th>
+                  <th data-sort="perf_6m_pct">6M</th>
+                  <th data-sort="perf_1y_pct">1Y</th>
+                  <th data-sort="adr_pct">ADR</th>
+                </tr>
+              </thead>
+              <tbody id="leadersBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <aside class="side-rail" aria-label="Rankings e detalhes">
+          <section class="rail-panel">
+            <div class="section-heading compact">
+              <h2>Detalhe</h2>
+            </div>
+            <div id="detailPanel" class="detail-panel"></div>
+          </section>
+
+          <section class="rail-panel">
+            <div class="section-heading compact">
+              <h2>Temas fortes</h2>
+            </div>
+            <div id="themeList" class="theme-list"></div>
+          </section>
+
+          <section class="rail-panel">
+            <div class="section-heading compact">
+              <h2>Melhores por janela</h2>
+            </div>
+            <div id="windowLeaders" class="window-leaders"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+    <script>
+window.RADAR_DATA = {
+  "all_leaders": [
+    {
+      "adr_pct": 12.950872,
+      "adv20_dollar": 1132751449.045973,
+      "asof": "2026-05-26",
+      "atr14_pct": 12.969187,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 132.600006,
+      "consolidation_score": 77.070259,
+      "country": "United States",
+      "day_high": 143.160004,
+      "day_low": 131.600006,
+      "day_open": 142.789993,
+      "dcr": 8.650521,
+      "distance_to_52w_high_pct": 1.055807,
+      "distance_to_pivot_pct": 6.613868,
+      "excess_vs_spy_qqq_avg_pct": 1989.662505,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 91.651767,
+      "market_cap": 6927006721.92,
+      "market_cap_fmt": "6.9B",
+      "metadata_asof": "2026-05-18",
+      "name": "AXT Inc",
+      "perf_1m_pct": 74.107143,
+      "perf_1w_pct": 25.236116,
+      "perf_1y_pct": 8345.859873,
+      "perf_3m_pct": 277.993158,
+      "perf_6m_pct": 1303.174603,
+      "pivot": 141.369995,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 134,
+      "range_10d_atr": 2.400399,
+      "range_5d_atr": 2.400399,
+      "rank_1m": 23,
+      "rank_1w": 42,
+      "rank_1y": 1,
+      "rank_3m": 5,
+      "rank_6m": 1,
+      "rank_pct_1m": 0.977131,
+      "rank_pct_1w": 0.95738,
+      "rank_pct_1y": 1,
+      "rank_pct_3m": 0.995842,
+      "rank_pct_6m": 1,
+      "rvol_10d": 0.724022,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Semiconductors / China / EM consumer",
+      "ticker": "AXTI",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": true,
+      "top1_6m": true,
+      "top1_window_count": 3,
+      "trigger": 141.379995,
+      "type": "CS",
+      "volume": 6645287,
+      "volume_dry_up_ratio": 0.815289
+    },
+    {
+      "adr_pct": 13.330029,
+      "adv20_dollar": 569775163.046114,
+      "asof": "2026-05-26",
+      "atr14_pct": 14.515646,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 73.5,
+      "consolidation_score": 75.999271,
+      "country": "United States",
+      "day_high": 80.699997,
+      "day_low": 70.800003,
+      "day_open": 77.779999,
+      "dcr": 27.272713,
+      "distance_to_52w_high_pct": 0.326531,
+      "distance_to_pivot_pct": 9.959183,
+      "excess_vs_spy_qqq_avg_pct": 973.603837,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 91.56341,
+      "market_cap": 2868924457.35,
+      "market_cap_fmt": "2.9B",
+      "metadata_asof": "2026-05-18",
+      "name": "Wolfspeed, Inc.",
+      "perf_1m_pct": 135.350624,
+      "perf_1w_pct": 23.841618,
+      "perf_1y_pct": 4198.245614,
+      "perf_3m_pct": 264.764268,
+      "perf_6m_pct": 323.875433,
+      "pivot": 80.82,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 73.74,
+      "range_10d_atr": 3.338645,
+      "range_5d_atr": 2.534446,
+      "rank_1m": 3,
+      "rank_1w": 49,
+      "rank_1y": 2,
+      "rank_3m": 6,
+      "rank_6m": 20,
+      "rank_pct_1m": 0.997921,
+      "rank_pct_1w": 0.950104,
+      "rank_pct_1y": 0.99896,
+      "rank_pct_3m": 0.994802,
+      "rank_pct_6m": 0.980249,
+      "rvol_10d": 0.863634,
+      "sector": "Technology",
+      "status": "Developing",
+      "theme": "Semiconductors / Power / grid",
+      "ticker": "WOLF",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": true,
+      "top1_6m": false,
+      "top1_window_count": 3,
+      "trigger": 80.83,
+      "type": "CS",
+      "volume": 10972018,
+      "volume_dry_up_ratio": 0.861248
+    },
+    {
+      "adr_pct": 9.479621,
+      "adv20_dollar": 781126915.799943,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.308722,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 31.790001,
+      "consolidation_score": 99.371401,
+      "country": "United States",
+      "day_high": 33.82,
+      "day_low": 30.6,
+      "day_open": 31.360001,
+      "dcr": 36.956546,
+      "distance_to_52w_high_pct": -25.070777,
+      "distance_to_pivot_pct": -7.203526,
+      "excess_vs_spy_qqq_avg_pct": 240.591919,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 87.610187,
+      "market_cap": 4597137975.22,
+      "market_cap_fmt": "4.6B",
+      "metadata_asof": "2026-05-18",
+      "name": "Navitas Semiconductor Corporation Common Stock",
+      "perf_1m_pct": 83.969907,
+      "perf_1w_pct": 61.616675,
+      "perf_1y_pct": 529.50495,
+      "perf_3m_pct": 284.866828,
+      "perf_6m_pct": 321.059603,
+      "pivot": 29.5,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 23.82,
+      "range_10d_atr": 4.979947,
+      "range_5d_atr": 4.979947,
+      "rank_1m": 15,
+      "rank_1w": 1,
+      "rank_1y": 38,
+      "rank_3m": 4,
+      "rank_6m": 22,
+      "rank_pct_1m": 0.985447,
+      "rank_pct_1w": 1,
+      "rank_pct_1y": 0.961538,
+      "rank_pct_3m": 0.996881,
+      "rank_pct_6m": 0.97817,
+      "rvol_10d": 1.205926,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Semiconductors / Power / grid",
+      "ticker": "NVTS",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": false,
+      "top1_window_count": 2,
+      "trigger": 29.51,
+      "type": "CS",
+      "volume": 49538107,
+      "volume_dry_up_ratio": 1.070901
+    },
+    {
+      "adr_pct": 10.252303,
+      "adv20_dollar": 88489281.940489,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.528801,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 6.2,
+      "consolidation_score": 108.122984,
+      "country": "United States",
+      "day_high": 6.64,
+      "day_low": 5,
+      "day_open": 5.37,
+      "dcr": 73.170726,
+      "distance_to_52w_high_pct": -3.387097,
+      "distance_to_pivot_pct": -15.806452,
+      "excess_vs_spy_qqq_avg_pct": 267.584462,
+      "industry": "RADIOTELEPHONE COMMUNICATIONS",
+      "leadership_score": 87.355509,
+      "market_cap": 316181579.14,
+      "market_cap_fmt": "316.2M",
+      "metadata_asof": "2026-05-18",
+      "name": "Sidus Space, Inc. Class A Common Stock",
+      "perf_1m_pct": 81.28655,
+      "perf_1w_pct": 58.567775,
+      "perf_1y_pct": 307.894737,
+      "perf_3m_pct": 195.238095,
+      "perf_6m_pct": 772.993523,
+      "pivot": 5.22,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 5.99,
+      "range_10d_atr": 5.407594,
+      "range_5d_atr": 4.963344,
+      "rank_1m": 17,
+      "rank_1w": 2,
+      "rank_1y": 87,
+      "rank_3m": 11,
+      "rank_6m": 3,
+      "rank_pct_1m": 0.983368,
+      "rank_pct_1w": 0.99896,
+      "rank_pct_1y": 0.910603,
+      "rank_pct_3m": 0.989605,
+      "rank_pct_6m": 0.997921,
+      "rvol_10d": 2.302044,
+      "sector": "Telecommunications",
+      "status": "Breakout",
+      "theme": "AI infrastructure / Defense / aerospace",
+      "ticker": "SIDU",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 5.23,
+      "type": "CS",
+      "volume": 59394905,
+      "volume_dry_up_ratio": 1.44764
+    },
+    {
+      "adr_pct": 7.282717,
+      "adv20_dollar": 20653378248.228355,
+      "asof": "2026-05-26",
+      "atr14_pct": 7.978961,
+      "base_days": 10,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 1589.550049,
+      "consolidation_score": 89.330509,
+      "country": "United States",
+      "day_high": 1641.73999,
+      "day_low": 1520,
+      "day_open": 1535.64502,
+      "dcr": 57.129994,
+      "distance_to_52w_high_pct": 0.657419,
+      "distance_to_pivot_pct": 0.657416,
+      "excess_vs_spy_qqq_avg_pct": 992.516092,
+      "industry": "COMPUTER STORAGE DEVICES",
+      "leadership_score": 87.194387,
+      "market_cap": 197405128311.58,
+      "market_cap_fmt": "197.4B",
+      "metadata_asof": "2026-05-18",
+      "name": "Sandisk Corporation Common Stock",
+      "perf_1m_pct": 60.576826,
+      "perf_1w_pct": 19.245167,
+      "perf_1y_pct": 4100.713531,
+      "perf_3m_pct": 148.942868,
+      "perf_6m_pct": 711.160441,
+      "pivot": 1600,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 1600,
+      "range_10d_atr": 2.873226,
+      "range_5d_atr": 2.867076,
+      "rank_1m": 34,
+      "rank_1w": 71,
+      "rank_1y": 3,
+      "rank_3m": 29,
+      "rank_6m": 5,
+      "rank_pct_1m": 0.965696,
+      "rank_pct_1w": 0.927235,
+      "rank_pct_1y": 0.997921,
+      "rank_pct_3m": 0.970894,
+      "rank_pct_6m": 0.995842,
+      "rvol_10d": 0.972918,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "AI infrastructure / Semiconductors",
+      "ticker": "SNDK",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 1600.01,
+      "type": "CS",
+      "volume": 12666761,
+      "volume_dry_up_ratio": 0.771733
+    },
+    {
+      "adr_pct": 11.946376,
+      "adv20_dollar": 511760382.613944,
+      "asof": "2026-05-26",
+      "atr14_pct": 12.514118,
+      "base_days": 10,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 96.120003,
+      "consolidation_score": 77.117916,
+      "country": "United States",
+      "day_high": 106.279999,
+      "day_low": 90.199997,
+      "day_open": 106.279999,
+      "dcr": 36.815952,
+      "distance_to_52w_high_pct": 8.478985,
+      "distance_to_pivot_pct": 8.478978,
+      "excess_vs_spy_qqq_avg_pct": 355.616095,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 86.393971,
+      "market_cap": 7831689574.139999,
+      "market_cap_fmt": "7.8B",
+      "metadata_asof": "2026-05-18",
+      "name": "MaxLinear, Inc. Common Stock",
+      "perf_1m_pct": 59.350133,
+      "perf_1w_pct": 9.901669,
+      "perf_1y_pct": 723.650386,
+      "perf_3m_pct": 426.684932,
+      "perf_6m_pct": 636.551724,
+      "pivot": 104.269997,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 104.27,
+      "range_10d_atr": 2.164014,
+      "range_5d_atr": 1.974466,
+      "rank_1m": 37,
+      "rank_1w": 238,
+      "rank_1y": 22,
+      "rank_3m": 2,
+      "rank_6m": 6,
+      "rank_pct_1m": 0.962578,
+      "rank_pct_1w": 0.753638,
+      "rank_pct_1y": 0.97817,
+      "rank_pct_3m": 0.99896,
+      "rank_pct_6m": 0.994802,
+      "rvol_10d": 1.592985,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "AI infrastructure / Semiconductors",
+      "ticker": "MXL",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 104.279997,
+      "type": "CS",
+      "volume": 7550667,
+      "volume_dry_up_ratio": 0.767599
+    },
+    {
+      "adr_pct": 10.281503,
+      "adv20_dollar": 258402903.69714,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.619411,
+      "base_days": 7,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 109.919998,
+      "consolidation_score": 89.348796,
+      "country": "United States",
+      "day_high": 111.57,
+      "day_low": 97.300003,
+      "day_open": 99,
+      "dcr": 88.437268,
+      "distance_to_52w_high_pct": -1.063501,
+      "distance_to_pivot_pct": -1.064409,
+      "excess_vs_spy_qqq_avg_pct": 351.943661,
+      "industry": "INSTRUMENTS FOR MEAS & TESTING OF ELECTRICITY & ELEC SIGNALS",
+      "leadership_score": 86.253638,
+      "market_cap": 2628548436.78,
+      "market_cap_fmt": "2.6B",
+      "metadata_asof": "2026-05-18",
+      "name": "Aehr Test Systems",
+      "perf_1m_pct": 14.607444,
+      "perf_1w_pct": 31.530454,
+      "perf_1y_pct": 1144.847112,
+      "perf_3m_pct": 180.193729,
+      "perf_6m_pct": 466.597938,
+      "pivot": 108.75,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 108.751,
+      "range_10d_atr": 2.982132,
+      "range_5d_atr": 2.982132,
+      "rank_1m": 222,
+      "rank_1w": 24,
+      "rank_1y": 8,
+      "rank_3m": 14,
+      "rank_6m": 10,
+      "rank_pct_1m": 0.77027,
+      "rank_pct_1w": 0.976091,
+      "rank_pct_1y": 0.992723,
+      "rank_pct_3m": 0.986486,
+      "rank_pct_6m": 0.990644,
+      "rvol_10d": 1.012849,
+      "sector": "Industrials",
+      "status": "Breakout",
+      "theme": "Semiconductors / Power / grid",
+      "ticker": "AEHR",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 108.76,
+      "type": "CS",
+      "volume": 2683745,
+      "volume_dry_up_ratio": 0.789046
+    },
+    {
+      "adr_pct": 5.882874,
+      "adv20_dollar": 67927705.133905,
+      "asof": "2026-05-26",
+      "atr14_pct": 5.902722,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 61.18,
+      "consolidation_score": 83.596447,
+      "country": "United States",
+      "day_high": 62.237999,
+      "day_low": 59.98,
+      "day_open": 62.237999,
+      "dcr": 53.144423,
+      "distance_to_52w_high_pct": -7.862046,
+      "distance_to_pivot_pct": 1.38934,
+      "excess_vs_spy_qqq_avg_pct": 224.483537,
+      "industry": "SERVICES-PREPACKAGED SOFTWARE",
+      "leadership_score": 86.134096,
+      "market_cap": 1791368326.65,
+      "market_cap_fmt": "1.8B",
+      "metadata_asof": "2026-05-18",
+      "name": "Bandwidth Inc. Class A Common Stock",
+      "perf_1m_pct": 153.648425,
+      "perf_1w_pct": 9.347632,
+      "perf_1y_pct": 337.93844,
+      "perf_3m_pct": 343.654822,
+      "perf_6m_pct": 355.886736,
+      "pivot": 62.029999,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 56.37,
+      "range_10d_atr": 3.937102,
+      "range_5d_atr": 2.397484,
+      "rank_1m": 2,
+      "rank_1w": 261,
+      "rank_1y": 75,
+      "rank_3m": 3,
+      "rank_6m": 14,
+      "rank_pct_1m": 0.99896,
+      "rank_pct_1w": 0.72973,
+      "rank_pct_1y": 0.923077,
+      "rank_pct_3m": 0.997921,
+      "rank_pct_6m": 0.986486,
+      "rvol_10d": 0.689854,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "AI infrastructure",
+      "ticker": "BAND",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": false,
+      "top1_window_count": 2,
+      "trigger": 62.039999,
+      "type": "CS",
+      "volume": 736005,
+      "volume_dry_up_ratio": 0.680745
+    },
+    {
+      "adr_pct": 9.608273,
+      "adv20_dollar": 79377049.297704,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.097764,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 10.74,
+      "consolidation_score": 85.072087,
+      "country": "Uruguay",
+      "day_high": 12,
+      "day_low": 10.39,
+      "day_open": 11.056,
+      "dcr": 21.7391,
+      "distance_to_52w_high_pct": -7.821229,
+      "distance_to_pivot_pct": -0.977649,
+      "excess_vs_spy_qqq_avg_pct": 235.250644,
+      "industry": "RADIO & TV BROADCASTING & COMMUNICATIONS EQUIPMENT",
+      "leadership_score": 86.009356,
+      "market_cap": 1414248685.38,
+      "market_cap_fmt": "1.4B",
+      "metadata_asof": "2026-05-18",
+      "name": "Satellogic Inc. Class A Ordinary Shares",
+      "perf_1m_pct": 74.068071,
+      "perf_1w_pct": 12.578616,
+      "perf_1y_pct": 189.487871,
+      "perf_3m_pct": 232.50774,
+      "perf_6m_pct": 745.669291,
+      "pivot": 10.635,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 9.9,
+      "range_10d_atr": 4.555095,
+      "range_5d_atr": 2.987552,
+      "rank_1m": 24,
+      "rank_1w": 170,
+      "rank_1y": 156,
+      "rank_3m": 7,
+      "rank_6m": 4,
+      "rank_pct_1m": 0.976091,
+      "rank_pct_1w": 0.824324,
+      "rank_pct_1y": 0.838877,
+      "rank_pct_3m": 0.993763,
+      "rank_pct_6m": 0.996881,
+      "rvol_10d": 1.323022,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Defense / aerospace / Robotics / automation",
+      "ticker": "SATL",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 10.645,
+      "type": "CS",
+      "volume": 14355807,
+      "volume_dry_up_ratio": 1.073963
+    },
+    {
+      "adr_pct": 8.554252,
+      "adv20_dollar": 579861738.539268,
+      "asof": "2026-05-26",
+      "atr14_pct": 9.41632,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 22.040001,
+      "consolidation_score": 111.731221,
+      "country": "United States",
+      "day_high": 23.1,
+      "day_low": 19.219999,
+      "day_open": 19.645,
+      "dcr": 72.680434,
+      "distance_to_52w_high_pct": 0.952813,
+      "distance_to_pivot_pct": -18.829407,
+      "excess_vs_spy_qqq_avg_pct": 135.648969,
+      "industry": "Military/Government/Technical",
+      "leadership_score": 85.81185,
+      "market_cap": 4384168765,
+      "market_cap_fmt": "4.4B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "Redwire Corporation Common Stock",
+      "perf_1m_pct": 127.68595,
+      "perf_1w_pct": 57.879656,
+      "perf_1y_pct": 73.406766,
+      "perf_3m_pct": 161.75772,
+      "perf_6m_pct": 335.573123,
+      "pivot": 17.889999,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 22.25,
+      "range_10d_atr": 5.873688,
+      "range_5d_atr": 4.934091,
+      "rank_1m": 6,
+      "rank_1w": 3,
+      "rank_1y": 360,
+      "rank_3m": 23,
+      "rank_6m": 16,
+      "rank_pct_1m": 0.994802,
+      "rank_pct_1w": 0.997921,
+      "rank_pct_1y": 0.626819,
+      "rank_pct_3m": 0.977131,
+      "rank_pct_6m": 0.984407,
+      "rvol_10d": 1.914288,
+      "sector": "Industrials",
+      "status": "Breakout",
+      "theme": "Military/Government/Technical",
+      "ticker": "RDW",
+      "top1_1m": true,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 2,
+      "trigger": 17.899999,
+      "type": "CS",
+      "volume": 98572589,
+      "volume_dry_up_ratio": 1.453499
+    },
+    {
+      "adr_pct": 11.825797,
+      "adv20_dollar": 35792603.278367,
+      "asof": "2026-05-26",
+      "atr14_pct": 12.991003,
+      "base_days": 5,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 85.269997,
+      "consolidation_score": 74.286542,
+      "country": "United States",
+      "day_high": 88.959999,
+      "day_low": 81.870003,
+      "day_open": 88.470001,
+      "dcr": 47.954805,
+      "distance_to_52w_high_pct": -0.433916,
+      "distance_to_pivot_pct": 6.110012,
+      "excess_vs_spy_qqq_avg_pct": 303.828818,
+      "industry": "SERVICES-MISC HEALTH & ALLIED SERVICES, NEC",
+      "leadership_score": 85.752599,
+      "market_cap": 1448152624.8,
+      "market_cap_fmt": "1.4B",
+      "metadata_asof": "2026-05-18",
+      "name": "agilon health, inc.",
+      "perf_1m_pct": 225.333842,
+      "perf_1w_pct": -1.762673,
+      "perf_1y_pct": 55.036364,
+      "perf_3m_pct": 765.685279,
+      "perf_6m_pct": 552.909648,
+      "pivot": 90.480003,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 84.9,
+      "range_10d_atr": 2.980385,
+      "range_5d_atr": 1.363132,
+      "rank_1m": 1,
+      "rank_1w": 788,
+      "rank_1y": 409,
+      "rank_3m": 1,
+      "rank_6m": 8,
+      "rank_pct_1m": 1,
+      "rank_pct_1w": 0.181913,
+      "rank_pct_1y": 0.575884,
+      "rank_pct_3m": 1,
+      "rank_pct_6m": 0.992723,
+      "rvol_10d": 0.522622,
+      "sector": "Health Care",
+      "status": "Ready",
+      "theme": "SERVICES-MISC HEALTH & ALLIED SERVICES, NEC",
+      "ticker": "AGL",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": true,
+      "top1_window_count": 3,
+      "trigger": 90.490003,
+      "type": "CS",
+      "volume": 234563,
+      "volume_dry_up_ratio": 0.50338
+    },
+    {
+      "adr_pct": 10.28253,
+      "adv20_dollar": 26670956.916292,
+      "asof": "2026-05-26",
+      "atr14_pct": 11.108294,
+      "base_days": 14,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 12.11,
+      "consolidation_score": 97.112825,
+      "country": "United States",
+      "day_high": 12.365,
+      "day_low": 9.545,
+      "day_open": 9.64,
+      "dcr": 90.957442,
+      "distance_to_52w_high_pct": -5.202312,
+      "distance_to_pivot_pct": -5.202313,
+      "excess_vs_spy_qqq_avg_pct": 146.756894,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 85.515593,
+      "market_cap": 309921580,
+      "market_cap_fmt": "309.9M",
+      "metadata_asof": "2026-05-18",
+      "name": "Atomera Incorporated Common Stock",
+      "perf_1m_pct": 40.813953,
+      "perf_1w_pct": 51.28045,
+      "perf_1y_pct": 82.930514,
+      "perf_3m_pct": 128.275212,
+      "perf_6m_pct": 508.542714,
+      "pivot": 11.48,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 11.48,
+      "range_10d_atr": 3.854404,
+      "range_5d_atr": 3.854404,
+      "rank_1m": 75,
+      "rank_1w": 4,
+      "rank_1y": 332,
+      "rank_3m": 36,
+      "rank_6m": 9,
+      "rank_pct_1m": 0.923077,
+      "rank_pct_1w": 0.996881,
+      "rank_pct_1y": 0.655925,
+      "rank_pct_3m": 0.963617,
+      "rank_pct_6m": 0.991684,
+      "rvol_10d": 2.079691,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Semiconductors",
+      "ticker": "ATOM",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 11.49,
+      "type": "CS",
+      "volume": 3719881,
+      "volume_dry_up_ratio": 0.692851
+    },
+    {
+      "adr_pct": 13.638707,
+      "adv20_dollar": 2087713665.751682,
+      "asof": "2026-05-26",
+      "atr14_pct": 14.367349,
+      "base_days": 8,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 177.619995,
+      "consolidation_score": 58.058836,
+      "country": "United States",
+      "day_high": 194.949997,
+      "day_low": 176.610001,
+      "day_open": 186.660004,
+      "dcr": 5.507059,
+      "distance_to_52w_high_pct": 31.556131,
+      "distance_to_pivot_pct": 31.556134,
+      "excess_vs_spy_qqq_avg_pct": 373.922476,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 83.431393,
+      "market_cap": 13902861810.42,
+      "market_cap_fmt": "13.9B",
+      "metadata_asof": "2026-05-18",
+      "name": "Applied Optoelectronics, Inc.",
+      "perf_1m_pct": 9.52704,
+      "perf_1w_pct": 2.516449,
+      "perf_1y_pct": 908.631459,
+      "perf_3m_pct": 215.656655,
+      "perf_6m_pct": 811.339148,
+      "pivot": 233.669998,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 233.67,
+      "range_10d_atr": 2.882918,
+      "range_5d_atr": 1.365634,
+      "rank_1m": 299,
+      "rank_1w": 550,
+      "rank_1y": 16,
+      "rank_3m": 8,
+      "rank_6m": 2,
+      "rank_pct_1m": 0.690229,
+      "rank_pct_1w": 0.429314,
+      "rank_pct_1y": 0.984407,
+      "rank_pct_3m": 0.992723,
+      "rank_pct_6m": 0.99896,
+      "rvol_10d": 0.821462,
+      "sector": "Technology",
+      "status": "Developing",
+      "theme": "AI infrastructure / Semiconductors",
+      "ticker": "AAOI",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 233.679998,
+      "type": "CS",
+      "volume": 10200961,
+      "volume_dry_up_ratio": 0.832996
+    },
+    {
+      "adr_pct": 18.152469,
+      "adv20_dollar": 234452393.545546,
+      "asof": "2026-05-26",
+      "atr14_pct": 19.918523,
+      "base_days": 8,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 32.700001,
+      "consolidation_score": 57.968399,
+      "country": "United States",
+      "day_high": 34.689999,
+      "day_low": 29.610001,
+      "day_open": 34.400002,
+      "dcr": 60.826798,
+      "distance_to_52w_high_pct": 57.492355,
+      "distance_to_pivot_pct": 57.492351,
+      "excess_vs_spy_qqq_avg_pct": 201.167726,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 83.280665,
+      "market_cap": 781976692.95,
+      "market_cap_fmt": "782.0M",
+      "metadata_asof": "2026-05-18",
+      "name": "Everspin Technologies, Inc",
+      "perf_1m_pct": 132.409382,
+      "perf_1w_pct": -1.949025,
+      "perf_1y_pct": 431.707317,
+      "perf_3m_pct": 195.392954,
+      "perf_6m_pct": 326.336375,
+      "pivot": 51.5,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 51.5,
+      "range_10d_atr": 3.577264,
+      "range_5d_atr": 1.311152,
+      "rank_1m": 5,
+      "rank_1w": 790,
+      "rank_1y": 53,
+      "rank_3m": 10,
+      "rank_6m": 19,
+      "rank_pct_1m": 0.995842,
+      "rank_pct_1w": 0.179834,
+      "rank_pct_1y": 0.945946,
+      "rank_pct_3m": 0.990644,
+      "rank_pct_6m": 0.981289,
+      "rvol_10d": 0.793481,
+      "sector": "Technology",
+      "status": "Developing",
+      "theme": "AI infrastructure / Semiconductors",
+      "ticker": "MRAM",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": false,
+      "top1_window_count": 2,
+      "trigger": 51.51,
+      "type": "CS",
+      "volume": 7443786,
+      "volume_dry_up_ratio": 0.750356
+    },
+    {
+      "adr_pct": 13.694351,
+      "adv20_dollar": 228527192.772357,
+      "asof": "2026-05-26",
+      "atr14_pct": 13.858286,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 24.4,
+      "consolidation_score": 63.835728,
+      "country": "United States",
+      "day_high": 27.689899,
+      "day_low": 23.73,
+      "day_open": 25.450001,
+      "dcr": 16.919622,
+      "distance_to_52w_high_pct": -6.434426,
+      "distance_to_pivot_pct": 12.008198,
+      "excess_vs_spy_qqq_avg_pct": 194.450636,
+      "industry": "ELECTRICAL INDUSTRIAL APPARATUS",
+      "leadership_score": 83.080042,
+      "market_cap": 939827342.84,
+      "market_cap_fmt": "939.8M",
+      "metadata_asof": "2026-05-18",
+      "name": "FuelCell Energy Inc  NEW (DE)",
+      "perf_1m_pct": 118.246869,
+      "perf_1w_pct": 37.542277,
+      "perf_1y_pct": 432.751092,
+      "perf_3m_pct": 173.236282,
+      "perf_6m_pct": 288.535032,
+      "pivot": 27.33,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 22.83,
+      "range_10d_atr": 3.888867,
+      "range_5d_atr": 3.418651,
+      "rank_1m": 8,
+      "rank_1w": 13,
+      "rank_1y": 51,
+      "rank_3m": 17,
+      "rank_6m": 30,
+      "rank_pct_1m": 0.992723,
+      "rank_pct_1w": 0.987526,
+      "rank_pct_1y": 0.948025,
+      "rank_pct_3m": 0.983368,
+      "rank_pct_6m": 0.969854,
+      "rvol_10d": 0.812215,
+      "sector": "Energy",
+      "status": "Breakout",
+      "theme": "AI infrastructure / Power / grid",
+      "ticker": "FCEL",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 27.34,
+      "type": "CS",
+      "volume": 12165060,
+      "volume_dry_up_ratio": 1.119774
+    },
+    {
+      "adr_pct": 9.192072,
+      "adv20_dollar": 256613525.274727,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.241285,
+      "base_days": 2,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 10.45,
+      "consolidation_score": 96.264634,
+      "country": "Luxembourg",
+      "day_high": 10.8,
+      "day_low": 8.48,
+      "day_open": 8.52,
+      "dcr": 84.913781,
+      "distance_to_52w_high_pct": -6.411483,
+      "distance_to_pivot_pct": -9.760761,
+      "excess_vs_spy_qqq_avg_pct": 275.512056,
+      "industry": "Industrial Machinery/Components",
+      "leadership_score": 82.705821,
+      "market_cap": 2918385921,
+      "market_cap_fmt": "2.9B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "T1 Energy Inc. Common Stock",
+      "perf_1m_pct": 97.542533,
+      "perf_1w_pct": 49.285714,
+      "perf_1y_pct": 977.208535,
+      "perf_3m_pct": 47.390691,
+      "perf_6m_pct": 284.191176,
+      "pivot": 9.43,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 9.78,
+      "range_10d_atr": 5.176533,
+      "range_5d_atr": 4.410332,
+      "rank_1m": 11,
+      "rank_1w": 6,
+      "rank_1y": 11,
+      "rank_3m": 150,
+      "rank_6m": 31,
+      "rank_pct_1m": 0.989605,
+      "rank_pct_1w": 0.994802,
+      "rank_pct_1y": 0.989605,
+      "rank_pct_3m": 0.845114,
+      "rank_pct_6m": 0.968815,
+      "rvol_10d": 1.380867,
+      "sector": "Miscellaneous",
+      "status": "Breakout",
+      "theme": "Industrial Machinery/Components",
+      "ticker": "TE",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 9.44,
+      "type": "CS",
+      "volume": 70636718,
+      "volume_dry_up_ratio": 2.239006
+    },
+    {
+      "adr_pct": 6.759119,
+      "adv20_dollar": 56438713.926334,
+      "asof": "2026-05-26",
+      "atr14_pct": 8.035352,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 123.410004,
+      "consolidation_score": 92.818133,
+      "country": "United States",
+      "day_high": 124.400002,
+      "day_low": 115,
+      "day_open": 121.370003,
+      "dcr": 89.46811,
+      "distance_to_52w_high_pct": -14.780002,
+      "distance_to_pivot_pct": -7.535858,
+      "excess_vs_spy_qqq_avg_pct": 179.423283,
+      "industry": "ELECTRONIC COMPONENTS & ACCESSORIES",
+      "leadership_score": 82.523909,
+      "market_cap": 1399398210,
+      "market_cap_fmt": "1.4B",
+      "metadata_asof": "2026-05-18",
+      "name": "Vishay Precision Group, Inc.",
+      "perf_1m_pct": 103.579677,
+      "perf_1w_pct": 17.298736,
+      "perf_1y_pct": 369.061193,
+      "perf_3m_pct": 163.752939,
+      "perf_6m_pct": 321.48224,
+      "pivot": 114.110001,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 105.17,
+      "range_10d_atr": 4.563135,
+      "range_5d_atr": 3.467982,
+      "rank_1m": 10,
+      "rank_1w": 89,
+      "rank_1y": 66,
+      "rank_3m": 22,
+      "rank_6m": 21,
+      "rank_pct_1m": 0.990644,
+      "rank_pct_1w": 0.908524,
+      "rank_pct_1y": 0.932432,
+      "rank_pct_3m": 0.97817,
+      "rank_pct_6m": 0.97921,
+      "rvol_10d": 1.487214,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "ELECTRONIC COMPONENTS & ACCESSORIES",
+      "ticker": "VPG",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 114.120001,
+      "type": "CS",
+      "volume": 1230625,
+      "volume_dry_up_ratio": 1.301017
+    },
+    {
+      "adr_pct": 8.174078,
+      "adv20_dollar": 379691323.69232,
+      "asof": "2026-05-26",
+      "atr14_pct": 8.571725,
+      "base_days": 5,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 48.32,
+      "consolidation_score": 89.283897,
+      "country": "United States",
+      "day_high": 51.130001,
+      "day_low": 45.860001,
+      "day_open": 47.695,
+      "dcr": 46.679295,
+      "distance_to_52w_high_pct": -10.078642,
+      "distance_to_pivot_pct": -5.256624,
+      "excess_vs_spy_qqq_avg_pct": 321.944036,
+      "industry": "RADIO & TV BROADCASTING & COMMUNICATIONS EQUIPMENT",
+      "leadership_score": 82.331601,
+      "market_cap": 14829520885.56,
+      "market_cap_fmt": "14.8B",
+      "metadata_asof": "2026-05-18",
+      "name": "Planet Labs PBC",
+      "perf_1m_pct": 36.343115,
+      "perf_1w_pct": 16.125931,
+      "perf_1y_pct": 1209.485095,
+      "perf_3m_pct": 95.548361,
+      "perf_6m_pct": 330.276046,
+      "pivot": 45.779999,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 43.45,
+      "range_10d_atr": 3.165247,
+      "range_5d_atr": 3.165247,
+      "rank_1m": 93,
+      "rank_1w": 104,
+      "rank_1y": 6,
+      "rank_3m": 60,
+      "rank_6m": 18,
+      "rank_pct_1m": 0.904366,
+      "rank_pct_1w": 0.892931,
+      "rank_pct_1y": 0.994802,
+      "rank_pct_3m": 0.938669,
+      "rank_pct_6m": 0.982328,
+      "rvol_10d": 1.826646,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Power / grid / Defense / aerospace",
+      "ticker": "PL",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 45.789999,
+      "type": "CS",
+      "volume": 16858554,
+      "volume_dry_up_ratio": 1.08986
+    },
+    {
+      "adr_pct": 7.531285,
+      "adv20_dollar": 1483583495.775299,
+      "asof": "2026-05-26",
+      "atr14_pct": 7.729175,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 318.720001,
+      "consolidation_score": 88.653118,
+      "country": "United States",
+      "day_high": 321.98999,
+      "day_low": 290.5,
+      "day_open": 315,
+      "dcr": 89.615783,
+      "distance_to_52w_high_pct": -17.513805,
+      "distance_to_pivot_pct": -0.913028,
+      "excess_vs_spy_qqq_avg_pct": 106.911595,
+      "industry": "Semiconductors",
+      "leadership_score": 82.139293,
+      "market_cap": 54631138318,
+      "market_cap_fmt": "54.6B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "Astera Labs Inc. Common Stock",
+      "perf_1m_pct": 49.746288,
+      "perf_1w_pct": 47.843028,
+      "perf_1y_pct": 237.985154,
+      "perf_3m_pct": 148.224299,
+      "perf_6m_pct": 128.817575,
+      "pivot": 315.809998,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 262.9,
+      "range_10d_atr": 5.252405,
+      "range_5d_atr": 4.52375,
+      "rank_1m": 53,
+      "rank_1w": 7,
+      "rank_1y": 118,
+      "rank_3m": 30,
+      "rank_6m": 101,
+      "rank_pct_1m": 0.945946,
+      "rank_pct_1w": 0.993763,
+      "rank_pct_1y": 0.878378,
+      "rank_pct_3m": 0.969854,
+      "rank_pct_6m": 0.89605,
+      "rvol_10d": 1.182564,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Semiconductors",
+      "ticker": "ALAB",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 315.819998,
+      "type": "CS",
+      "volume": 7928750,
+      "volume_dry_up_ratio": 1.302849
+    },
+    {
+      "adr_pct": 8.195035,
+      "adv20_dollar": 3036067122.96772,
+      "asof": "2026-05-26",
+      "atr14_pct": 8.855135,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 302.399994,
+      "consolidation_score": 73.127821,
+      "country": "United States",
+      "day_high": 318,
+      "day_low": 300.5,
+      "day_open": 315.950012,
+      "dcr": 10.857108,
+      "distance_to_52w_high_pct": 2.513228,
+      "distance_to_pivot_pct": 6.75595,
+      "excess_vs_spy_qqq_avg_pct": 364.318369,
+      "industry": "ELECTRICAL INDUSTRIAL APPARATUS",
+      "leadership_score": 82.102911,
+      "market_cap": 73588473090.28,
+      "market_cap_fmt": "73.6B",
+      "metadata_asof": "2026-05-18",
+      "name": "Bloom Energy Corporation",
+      "perf_1m_pct": 30.812822,
+      "perf_1w_pct": 16.887635,
+      "perf_1y_pct": 1546.162221,
+      "perf_3m_pct": 81.949458,
+      "perf_6m_pct": 223.838081,
+      "pivot": 322.829987,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 310,
+      "range_10d_atr": 3.027866,
+      "range_5d_atr": 3.027866,
+      "rank_1m": 112,
+      "rank_1w": 96,
+      "rank_1y": 5,
+      "rank_3m": 77,
+      "rank_6m": 44,
+      "rank_pct_1m": 0.884615,
+      "rank_pct_1w": 0.901247,
+      "rank_pct_1y": 0.995842,
+      "rank_pct_3m": 0.920998,
+      "rank_pct_6m": 0.955301,
+      "rvol_10d": 0.799472,
+      "sector": "Energy",
+      "status": "Developing",
+      "theme": "Power / grid / Energy / oil & gas",
+      "ticker": "BE",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 322.839987,
+      "type": "CS",
+      "volume": 7961675,
+      "volume_dry_up_ratio": 0.927566
+    },
+    {
+      "adr_pct": 12.285715,
+      "adv20_dollar": 41469093.267956,
+      "asof": "2026-05-26",
+      "atr14_pct": 14.465306,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 8.75,
+      "consolidation_score": 57.666886,
+      "country": "United States",
+      "day_high": 9.81,
+      "day_low": 8.74,
+      "day_open": 9.81,
+      "dcr": 0.9346,
+      "distance_to_52w_high_pct": 7.428571,
+      "distance_to_pivot_pct": 15.657142,
+      "excess_vs_spy_qqq_avg_pct": 171.949304,
+      "industry": "TELEVISION BROADCASTING STATIONS",
+      "leadership_score": 81.920998,
+      "market_cap": 736313440,
+      "market_cap_fmt": "736.3M",
+      "metadata_asof": "2026-05-18",
+      "name": "Entravision Communication",
+      "perf_1m_pct": 133.333333,
+      "perf_1w_pct": 9.375,
+      "perf_1y_pct": 362.962963,
+      "perf_3m_pct": 191.666667,
+      "perf_6m_pct": 240.466926,
+      "pivot": 10.12,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 9.4,
+      "range_10d_atr": 2.10158,
+      "range_5d_atr": 2.10158,
+      "rank_1m": 4,
+      "rank_1w": 257,
+      "rank_1y": 67,
+      "rank_3m": 12,
+      "rank_6m": 38,
+      "rank_pct_1m": 0.996881,
+      "rank_pct_1w": 0.733888,
+      "rank_pct_1y": 0.931393,
+      "rank_pct_3m": 0.988565,
+      "rank_pct_6m": 0.961538,
+      "rvol_10d": 0.603446,
+      "sector": "Industrials",
+      "status": "Developing",
+      "theme": "TELEVISION BROADCASTING STATIONS",
+      "ticker": "EVC",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 10.13,
+      "type": "CS",
+      "volume": 2750598,
+      "volume_dry_up_ratio": 0.70274
+    },
+    {
+      "adr_pct": 6.88787,
+      "adv20_dollar": 10045311.495482,
+      "asof": "2026-05-26",
+      "atr14_pct": 7.110246,
+      "base_days": 12,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 11.39,
+      "consolidation_score": 66.707476,
+      "country": "United States",
+      "day_high": 11.57,
+      "day_low": 11.1346,
+      "day_open": 11.19,
+      "dcr": 58.658854,
+      "distance_to_52w_high_pct": 9.569798,
+      "distance_to_pivot_pct": 9.569791,
+      "excess_vs_spy_qqq_avg_pct": 289.695664,
+      "industry": "PHARMACEUTICAL PREPARATIONS",
+      "leadership_score": 81.77027,
+      "market_cap": 565733967.24,
+      "market_cap_fmt": "565.7M",
+      "metadata_asof": "2026-05-18",
+      "name": "Climb Bio, Inc. Common Stock",
+      "perf_1m_pct": 24.617068,
+      "perf_1w_pct": 15.283401,
+      "perf_1y_pct": 849.166667,
+      "perf_3m_pct": 79.08805,
+      "perf_6m_pct": 558.381503,
+      "pivot": 12.48,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 12.48,
+      "range_10d_atr": 3.062268,
+      "range_5d_atr": 2.864703,
+      "rank_1m": 157,
+      "rank_1w": 116,
+      "rank_1y": 18,
+      "rank_3m": 82,
+      "rank_6m": 7,
+      "rank_pct_1m": 0.837838,
+      "rank_pct_1w": 0.880457,
+      "rank_pct_1y": 0.982328,
+      "rank_pct_3m": 0.9158,
+      "rank_pct_6m": 0.993763,
+      "rvol_10d": 1.139656,
+      "sector": "Health Care",
+      "status": "Ready",
+      "theme": "Biotech / pharma / Energy / oil & gas",
+      "ticker": "CLYM",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": true,
+      "top1_window_count": 1,
+      "trigger": 12.49,
+      "type": "CS",
+      "volume": 676067,
+      "volume_dry_up_ratio": 0.609699
+    },
+    {
+      "adr_pct": 9.373825,
+      "adv20_dollar": 47915077.886348,
+      "asof": "2026-05-26",
+      "atr14_pct": 9.780102,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 28.129999,
+      "consolidation_score": 94.344374,
+      "country": "United States",
+      "day_high": 28.32,
+      "day_low": 24.49,
+      "day_open": 26.34,
+      "dcr": 95.03915,
+      "distance_to_52w_high_pct": 37.931034,
+      "distance_to_pivot_pct": -9.811583,
+      "excess_vs_spy_qqq_avg_pct": 82.785399,
+      "industry": "Auto Parts:O.E.M.",
+      "leadership_score": 79.378332,
+      "market_cap": 1773338295,
+      "market_cap_fmt": "1.8B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "Aeva Technologies Inc. Common Stock",
+      "perf_1m_pct": 73.964131,
+      "perf_1w_pct": 44.627249,
+      "perf_1y_pct": 74.720497,
+      "perf_3m_pct": 115.390505,
+      "perf_6m_pct": 183.282981,
+      "pivot": 25.370001,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 38.8,
+      "range_10d_atr": 4.743483,
+      "range_5d_atr": 3.994704,
+      "rank_1m": 25,
+      "rank_1w": 9,
+      "rank_1y": 353,
+      "rank_3m": 43,
+      "rank_6m": 61,
+      "rank_pct_1m": 0.975052,
+      "rank_pct_1w": 0.991684,
+      "rank_pct_1y": 0.634096,
+      "rank_pct_3m": 0.956341,
+      "rank_pct_6m": 0.93763,
+      "rvol_10d": 1.211849,
+      "sector": "Consumer Discretionary",
+      "status": "Breakout",
+      "theme": "Auto Parts:O.E.M.",
+      "ticker": "AEVA",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 25.380001,
+      "type": "CS",
+      "volume": 3521319,
+      "volume_dry_up_ratio": 1.026895
+    },
+    {
+      "adr_pct": 10.196037,
+      "adv20_dollar": 75366149.454444,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.606797,
+      "base_days": 6,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 19.65,
+      "consolidation_score": 63.051179,
+      "country": "United States",
+      "day_high": 19.99,
+      "day_low": 18.422701,
+      "day_open": 19.389999,
+      "dcr": 78.306617,
+      "distance_to_52w_high_pct": 12.111959,
+      "distance_to_pivot_pct": 12.111965,
+      "excess_vs_spy_qqq_avg_pct": 608.009329,
+      "industry": "HEATING EQUIPMENT, EXCEPT ELECTRIC & WARM AIR FURNACES",
+      "leadership_score": 78.698545,
+      "market_cap": 2744681895.15,
+      "market_cap_fmt": "2.7B",
+      "metadata_asof": "2026-05-18",
+      "name": "Babcock & Wilcox Enterprises, Inc.",
+      "perf_1m_pct": 35.517241,
+      "perf_1w_pct": -2.48139,
+      "perf_1y_pct": 2747.826087,
+      "perf_3m_pct": 114.052288,
+      "perf_6m_pct": 223.190789,
+      "pivot": 22.030001,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 22.03,
+      "range_10d_atr": 2.10149,
+      "range_5d_atr": 1.08433,
+      "rank_1m": 97,
+      "rank_1w": 806,
+      "rank_1y": 4,
+      "rank_3m": 46,
+      "rank_6m": 45,
+      "rank_pct_1m": 0.900208,
+      "rank_pct_1w": 0.163202,
+      "rank_pct_1y": 0.996881,
+      "rank_pct_3m": 0.953222,
+      "rank_pct_6m": 0.954262,
+      "rvol_10d": 0.788743,
+      "sector": "Industrials",
+      "status": "Ready",
+      "theme": "Power / grid / Energy / oil & gas",
+      "ticker": "BW",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 22.040001,
+      "type": "CS",
+      "volume": 4221264,
+      "volume_dry_up_ratio": 0.821156
+    },
+    {
+      "adr_pct": 8.078867,
+      "adv20_dollar": 1195629981.500688,
+      "asof": "2026-05-26",
+      "atr14_pct": 8.484608,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 221.639999,
+      "consolidation_score": 86.596053,
+      "country": "United States",
+      "day_high": 233.699997,
+      "day_low": 211.580002,
+      "day_open": 228.009995,
+      "dcr": 45.479203,
+      "distance_to_52w_high_pct": -3.537268,
+      "distance_to_pivot_pct": -1.213681,
+      "excess_vs_spy_qqq_avg_pct": 78.001758,
+      "industry": "Semiconductors",
+      "leadership_score": 77.959219,
+      "market_cap": 40881484702,
+      "market_cap_fmt": "40.9B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "Credo Technology Group Holding Ltd Ordinary Shares",
+      "perf_1m_pct": 13.638228,
+      "perf_1w_pct": 41.831446,
+      "perf_1y_pct": 264.659427,
+      "perf_3m_pct": 83.431267,
+      "perf_6m_pct": 64.506791,
+      "pivot": 218.949997,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 213.8,
+      "range_10d_atr": 4.506977,
+      "range_5d_atr": 4.506977,
+      "rank_1m": 236,
+      "rank_1w": 10,
+      "rank_1y": 104,
+      "rank_3m": 74,
+      "rank_6m": 239,
+      "rank_pct_1m": 0.755717,
+      "rank_pct_1w": 0.990644,
+      "rank_pct_1y": 0.892931,
+      "rank_pct_3m": 0.924116,
+      "rank_pct_6m": 0.752599,
+      "rvol_10d": 1.344327,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Semiconductors",
+      "ticker": "CRDO",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 218.959997,
+      "type": "CS",
+      "volume": 9551118,
+      "volume_dry_up_ratio": 1.282145
+    },
+    {
+      "adr_pct": 13.956866,
+      "adv20_dollar": 326999867.36857,
+      "asof": "2026-05-26",
+      "atr14_pct": 16.738203,
+      "base_days": 10,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 60.209999,
+      "consolidation_score": 51.011971,
+      "country": "United States",
+      "day_high": 72.870003,
+      "day_low": 55,
+      "day_open": 71.879997,
+      "dcr": 29.154999,
+      "distance_to_52w_high_pct": 18.319216,
+      "distance_to_pivot_pct": 18.319214,
+      "excess_vs_spy_qqq_avg_pct": 76.062765,
+      "industry": null,
+      "leadership_score": 77.484655,
+      "market_cap": 1595202374,
+      "market_cap_fmt": "1.6B",
+      "metadata_asof": "2026-05-18",
+      "name": "Destiny Tech100 Inc.",
+      "perf_1m_pct": 104.517663,
+      "perf_1w_pct": 13.603774,
+      "perf_1y_pct": 38.892734,
+      "perf_3m_pct": 121.441707,
+      "perf_6m_pct": 179.916318,
+      "pivot": 71.239998,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 71.24,
+      "range_10d_atr": 3.013474,
+      "range_5d_atr": 2.610718,
+      "rank_1m": 9,
+      "rank_1w": 150,
+      "rank_1y": 465,
+      "rank_3m": 37,
+      "rank_6m": 65,
+      "rank_pct_1m": 0.991684,
+      "rank_pct_1w": 0.845114,
+      "rank_pct_1y": 0.517672,
+      "rank_pct_3m": 0.962578,
+      "rank_pct_6m": 0.933472,
+      "rvol_10d": 1.728245,
+      "sector": null,
+      "status": "Breakout",
+      "theme": "Unclassified",
+      "ticker": "DXYZ",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 71.249998,
+      "type": "CS",
+      "volume": 13756177,
+      "volume_dry_up_ratio": 1.409842
+    },
+    {
+      "adr_pct": 8.905181,
+      "adv20_dollar": 5880298202.720019,
+      "asof": "2026-05-26",
+      "atr14_pct": 9.796539,
+      "base_days": 9,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 910.809998,
+      "consolidation_score": 49.624808,
+      "country": "United States",
+      "day_high": 962.47998,
+      "day_low": 903.020081,
+      "day_open": 961.650024,
+      "dcr": 13.101127,
+      "distance_to_52w_high_pct": 19.199394,
+      "distance_to_pivot_pct": 19.1994,
+      "excess_vs_spy_qqq_avg_pct": 270.267,
+      "industry": "COMMUNICATIONS EQUIPMENT, NEC",
+      "leadership_score": 77.373181,
+      "market_cap": 68851444000,
+      "market_cap_fmt": "68.9B",
+      "metadata_asof": "2026-05-18",
+      "name": "Lumentum Holdings Inc. Common Stock",
+      "perf_1m_pct": 3.308607,
+      "perf_1w_pct": 2.91871,
+      "perf_1y_pct": 1100.329468,
+      "perf_3m_pct": 32.333241,
+      "perf_6m_pct": 290.503344,
+      "pivot": 1085.680054,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 1085.68,
+      "range_10d_atr": 2.697365,
+      "range_5d_atr": 1.482385,
+      "rank_1m": 405,
+      "rank_1w": 533,
+      "rank_1y": 9,
+      "rank_3m": 232,
+      "rank_6m": 29,
+      "rank_pct_1m": 0.580042,
+      "rank_pct_1w": 0.446985,
+      "rank_pct_1y": 0.991684,
+      "rank_pct_3m": 0.759875,
+      "rank_pct_6m": 0.970894,
+      "rvol_10d": 0.841474,
+      "sector": "Telecommunications",
+      "status": "Ready",
+      "theme": "COMMUNICATIONS EQUIPMENT, NEC",
+      "ticker": "LITE",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 1085.690054,
+      "type": "CS",
+      "volume": 5172636,
+      "volume_dry_up_ratio": 0.774126
+    },
+    {
+      "adr_pct": 15.085332,
+      "adv20_dollar": 139926794.515652,
+      "asof": "2026-05-26",
+      "atr14_pct": 16.296693,
+      "base_days": 8,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 11.97,
+      "consolidation_score": 54.414553,
+      "country": "United States",
+      "day_high": 13.3,
+      "day_low": 11.69,
+      "day_open": 13.06,
+      "dcr": 17.39134,
+      "distance_to_52w_high_pct": 56.299081,
+      "distance_to_pivot_pct": 56.307424,
+      "excess_vs_spy_qqq_avg_pct": 253.331793,
+      "industry": "MISCELLANEOUS PLASTICS PRODUCTS",
+      "leadership_score": 77.357588,
+      "market_cap": 1785782934.88,
+      "market_cap_fmt": "1.8B",
+      "metadata_asof": "2026-05-18",
+      "name": "Lightwave Logic, Inc. Common Stock",
+      "perf_1m_pct": -5.487564,
+      "perf_1w_pct": 3.278689,
+      "perf_1y_pct": 959.292035,
+      "perf_3m_pct": 198.503741,
+      "perf_6m_pct": 189.130435,
+      "pivot": 18.709999,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 18.709,
+      "range_10d_atr": 4.121567,
+      "range_5d_atr": 1.491761,
+      "rank_1m": 616,
+      "rank_1w": 514,
+      "rank_1y": 13,
+      "rank_3m": 9,
+      "rank_6m": 59,
+      "rank_pct_1m": 0.360707,
+      "rank_pct_1w": 0.466736,
+      "rank_pct_1y": 0.987526,
+      "rank_pct_3m": 0.991684,
+      "rank_pct_6m": 0.939709,
+      "rvol_10d": 0.822407,
+      "sector": "Industrials",
+      "status": "Developing",
+      "theme": "Semiconductors",
+      "ticker": "LWLG",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 18.719999,
+      "type": "CS",
+      "volume": 7349729,
+      "volume_dry_up_ratio": 0.678084
+    },
+    {
+      "adr_pct": 11.566647,
+      "adv20_dollar": 268930550.308753,
+      "asof": "2026-05-26",
+      "atr14_pct": 13.713749,
+      "base_days": 10,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 95.910004,
+      "consolidation_score": 50.468768,
+      "country": "United States",
+      "day_high": 100.900002,
+      "day_low": 94.400002,
+      "day_open": 97.5,
+      "dcr": 23.230802,
+      "distance_to_52w_high_pct": 19.664269,
+      "distance_to_pivot_pct": 19.664261,
+      "excess_vs_spy_qqq_avg_pct": 83.102615,
+      "industry": "SERVICES-COMPUTER PROCESSING & DATA PREPARATION",
+      "leadership_score": 76.608598,
+      "market_cap": 3093115509.76,
+      "market_cap_fmt": "3.1B",
+      "metadata_asof": "2026-05-18",
+      "name": "Innodata Inc.",
+      "perf_1m_pct": 126.523382,
+      "perf_1w_pct": 1.256334,
+      "perf_1y_pct": 165.311203,
+      "perf_3m_pct": 116.99095,
+      "perf_6m_pct": 83.489573,
+      "pivot": 114.769997,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 114.77,
+      "range_10d_atr": 1.833062,
+      "range_5d_atr": 1.25372,
+      "rank_1m": 7,
+      "rank_1w": 630,
+      "rank_1y": 187,
+      "rank_3m": 41,
+      "rank_6m": 183,
+      "rank_pct_1m": 0.993763,
+      "rank_pct_1w": 0.346154,
+      "rank_pct_1y": 0.806653,
+      "rank_pct_3m": 0.95842,
+      "rank_pct_6m": 0.810811,
+      "rvol_10d": 0.45339,
+      "sector": "Technology",
+      "status": "Ready",
+      "theme": "AI infrastructure",
+      "ticker": "INOD",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 114.779997,
+      "type": "CS",
+      "volume": 1470508,
+      "volume_dry_up_ratio": 0.546966
+    },
+    {
+      "adr_pct": 6.399256,
+      "adv20_dollar": 162546848.641817,
+      "asof": "2026-05-26",
+      "atr14_pct": 6.506192,
+      "base_days": 15,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 134.259995,
+      "consolidation_score": 58.906935,
+      "country": "United States",
+      "day_high": 140.850006,
+      "day_low": 132.850006,
+      "day_open": 140.850006,
+      "dcr": 17.624855,
+      "distance_to_52w_high_pct": 12.483241,
+      "distance_to_pivot_pct": 12.483249,
+      "excess_vs_spy_qqq_avg_pct": 230.623648,
+      "industry": "SERVICES-MEDICAL LABORATORIES",
+      "leadership_score": 76.053015,
+      "market_cap": 6445927947.84,
+      "market_cap_fmt": "6.4B",
+      "metadata_asof": "2026-05-18",
+      "name": "Celcuity Inc. Common Stock",
+      "perf_1m_pct": 10.931174,
+      "perf_1w_pct": 1.573612,
+      "perf_1y_pct": 1148.930233,
+      "perf_3m_pct": 26.911806,
+      "perf_6m_pct": 42.829787,
+      "pivot": 151.020004,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 151.02,
+      "range_10d_atr": 2.422952,
+      "range_5d_atr": 1.725201,
+      "rank_1m": 271,
+      "rank_1w": 612,
+      "rank_1y": 7,
+      "rank_3m": 266,
+      "rank_6m": 324,
+      "rank_pct_1m": 0.719335,
+      "rank_pct_1w": 0.364865,
+      "rank_pct_1y": 0.993763,
+      "rank_pct_3m": 0.724532,
+      "rank_pct_6m": 0.664241,
+      "rvol_10d": 0.575916,
+      "sector": "Health Care",
+      "status": "Ready",
+      "theme": "Biotech / pharma",
+      "ticker": "CELC",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 151.030004,
+      "type": "CS",
+      "volume": 609204,
+      "volume_dry_up_ratio": 0.568034
+    },
+    {
+      "adr_pct": 8.611325,
+      "adv20_dollar": 973656120.567942,
+      "asof": "2026-05-26",
+      "atr14_pct": 9.640078,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 25.065001,
+      "consolidation_score": 58.765163,
+      "country": "United States",
+      "day_high": 26.57,
+      "day_low": 23.719999,
+      "day_open": 26.01,
+      "dcr": 47.193019,
+      "distance_to_52w_high_pct": 131.997207,
+      "distance_to_pivot_pct": 10.851782,
+      "excess_vs_spy_qqq_avg_pct": 33.305757,
+      "industry": "EDP Services",
+      "leadership_score": 71.73806,
+      "market_cap": 8331576097,
+      "market_cap_fmt": "8.3B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "Rigetti Computing Inc. Common Stock",
+      "perf_1m_pct": 50.90307,
+      "perf_1w_pct": 50.812274,
+      "perf_1y_pct": 80.844156,
+      "perf_3m_pct": 52.093447,
+      "perf_6m_pct": 9.934211,
+      "pivot": 27.785,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 58.1501,
+      "range_10d_atr": 5.100804,
+      "range_5d_atr": 5.100804,
+      "rank_1m": 50,
+      "rank_1w": 5,
+      "rank_1y": 337,
+      "rank_3m": 138,
+      "rank_6m": 515,
+      "rank_pct_1m": 0.949064,
+      "rank_pct_1w": 0.995842,
+      "rank_pct_1y": 0.650728,
+      "rank_pct_3m": 0.857588,
+      "rank_pct_6m": 0.465696,
+      "rvol_10d": 1.434657,
+      "sector": "Technology",
+      "status": "Developing",
+      "theme": "EDP Services",
+      "ticker": "RGTI",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 27.795,
+      "type": "CS",
+      "volume": 87885519,
+      "volume_dry_up_ratio": 2.134214
+    },
+    {
+      "adr_pct": 8.624807,
+      "adv20_dollar": 907162911.146796,
+      "asof": "2026-05-26",
+      "atr14_pct": 9.720628,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 27.82,
+      "consolidation_score": 54.748471,
+      "country": "United States",
+      "day_high": 29.48,
+      "day_low": 26.330099,
+      "day_open": 29.35,
+      "dcr": 47.299926,
+      "distance_to_52w_high_pct": 68.044572,
+      "distance_to_pivot_pct": 13.407619,
+      "excess_vs_spy_qqq_avg_pct": 29.841004,
+      "industry": "EDP Services",
+      "leadership_score": 71.433165,
+      "market_cap": 10202640060,
+      "market_cap_fmt": "10.2B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "D-Wave Quantum Inc. Common Shares",
+      "perf_1m_pct": 50.459708,
+      "perf_1w_pct": 45.960126,
+      "perf_1y_pct": 46.113445,
+      "perf_3m_pct": 49.08896,
+      "perf_6m_pct": 35.641151,
+      "pivot": 31.549999,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 46.75,
+      "range_10d_atr": 5.108571,
+      "range_5d_atr": 5.108571,
+      "rank_1m": 51,
+      "rank_1w": 8,
+      "rank_1y": 442,
+      "rank_3m": 146,
+      "rank_6m": 363,
+      "rank_pct_1m": 0.948025,
+      "rank_pct_1w": 0.992723,
+      "rank_pct_1y": 0.54158,
+      "rank_pct_3m": 0.849272,
+      "rank_pct_6m": 0.623701,
+      "rvol_10d": 1.108708,
+      "sector": "Technology",
+      "status": "Developing",
+      "theme": "Quantum",
+      "ticker": "QBTS",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 31.559999,
+      "type": "CS",
+      "volume": 54202959,
+      "volume_dry_up_ratio": 1.888677
+    },
+    {
+      "adr_pct": 9.068656,
+      "adv20_dollar": 84585706.89316,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.549369,
+      "base_days": 8,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 33.220001,
+      "consolidation_score": 44.023701,
+      "country": "United States",
+      "day_high": 34.259998,
+      "day_low": 32.787498,
+      "day_open": 33.5,
+      "dcr": 29.372006,
+      "distance_to_52w_high_pct": 76.790789,
+      "distance_to_pivot_pct": 39.373864,
+      "excess_vs_spy_qqq_avg_pct": 228.2388,
+      "industry": "Precious Metals",
+      "leadership_score": 70.039501,
+      "market_cap": 3034999165,
+      "market_cap_fmt": "3.0B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "Hycroft Mining Holding Corporation Class A Common Stock",
+      "perf_1m_pct": -12.670873,
+      "perf_1w_pct": -4.622452,
+      "perf_1y_pct": 1026.101695,
+      "perf_3m_pct": -29.228803,
+      "perf_6m_pct": 239.672802,
+      "pivot": 46.299999,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 58.7299,
+      "range_10d_atr": 4.268796,
+      "range_5d_atr": 0.895991,
+      "rank_1m": 788,
+      "rank_1w": 879,
+      "rank_1y": 10,
+      "rank_3m": 894,
+      "rank_6m": 39,
+      "rank_pct_1m": 0.181913,
+      "rank_pct_1w": 0.087318,
+      "rank_pct_1y": 0.990644,
+      "rank_pct_3m": 0.071726,
+      "rank_pct_6m": 0.960499,
+      "rvol_10d": 0.615098,
+      "sector": "Basic Materials",
+      "status": "Developing",
+      "theme": "Crypto / blockchain / Metals / mining",
+      "ticker": "HYMC",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 46.309999,
+      "type": "CS",
+      "volume": 1597238,
+      "volume_dry_up_ratio": 0.905591
+    }
+  ],
+  "asof": "2026-05-26",
+  "breakouts_today": [
+    {
+      "adr_pct": 12.950872,
+      "adv20_dollar": 1132751449.045973,
+      "asof": "2026-05-26",
+      "atr14_pct": 12.969187,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 132.600006,
+      "consolidation_score": 77.070259,
+      "country": "United States",
+      "day_high": 143.160004,
+      "day_low": 131.600006,
+      "day_open": 142.789993,
+      "dcr": 8.650521,
+      "distance_to_52w_high_pct": 1.055807,
+      "distance_to_pivot_pct": 6.613868,
+      "excess_vs_spy_qqq_avg_pct": 1989.662505,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 91.651767,
+      "market_cap": 6927006721.92,
+      "market_cap_fmt": "6.9B",
+      "metadata_asof": "2026-05-18",
+      "name": "AXT Inc",
+      "perf_1m_pct": 74.107143,
+      "perf_1w_pct": 25.236116,
+      "perf_1y_pct": 8345.859873,
+      "perf_3m_pct": 277.993158,
+      "perf_6m_pct": 1303.174603,
+      "pivot": 141.369995,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 134,
+      "range_10d_atr": 2.400399,
+      "range_5d_atr": 2.400399,
+      "rank_1m": 23,
+      "rank_1w": 42,
+      "rank_1y": 1,
+      "rank_3m": 5,
+      "rank_6m": 1,
+      "rank_pct_1m": 0.977131,
+      "rank_pct_1w": 0.95738,
+      "rank_pct_1y": 1,
+      "rank_pct_3m": 0.995842,
+      "rank_pct_6m": 1,
+      "rvol_10d": 0.724022,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Semiconductors / China / EM consumer",
+      "ticker": "AXTI",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": true,
+      "top1_6m": true,
+      "top1_window_count": 3,
+      "trigger": 141.379995,
+      "type": "CS",
+      "volume": 6645287,
+      "volume_dry_up_ratio": 0.815289
+    },
+    {
+      "adr_pct": 9.479621,
+      "adv20_dollar": 781126915.799943,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.308722,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 31.790001,
+      "consolidation_score": 99.371401,
+      "country": "United States",
+      "day_high": 33.82,
+      "day_low": 30.6,
+      "day_open": 31.360001,
+      "dcr": 36.956546,
+      "distance_to_52w_high_pct": -25.070777,
+      "distance_to_pivot_pct": -7.203526,
+      "excess_vs_spy_qqq_avg_pct": 240.591919,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 87.610187,
+      "market_cap": 4597137975.22,
+      "market_cap_fmt": "4.6B",
+      "metadata_asof": "2026-05-18",
+      "name": "Navitas Semiconductor Corporation Common Stock",
+      "perf_1m_pct": 83.969907,
+      "perf_1w_pct": 61.616675,
+      "perf_1y_pct": 529.50495,
+      "perf_3m_pct": 284.866828,
+      "perf_6m_pct": 321.059603,
+      "pivot": 29.5,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 23.82,
+      "range_10d_atr": 4.979947,
+      "range_5d_atr": 4.979947,
+      "rank_1m": 15,
+      "rank_1w": 1,
+      "rank_1y": 38,
+      "rank_3m": 4,
+      "rank_6m": 22,
+      "rank_pct_1m": 0.985447,
+      "rank_pct_1w": 1,
+      "rank_pct_1y": 0.961538,
+      "rank_pct_3m": 0.996881,
+      "rank_pct_6m": 0.97817,
+      "rvol_10d": 1.205926,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Semiconductors / Power / grid",
+      "ticker": "NVTS",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": false,
+      "top1_window_count": 2,
+      "trigger": 29.51,
+      "type": "CS",
+      "volume": 49538107,
+      "volume_dry_up_ratio": 1.070901
+    },
+    {
+      "adr_pct": 10.252303,
+      "adv20_dollar": 88489281.940489,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.528801,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 6.2,
+      "consolidation_score": 108.122984,
+      "country": "United States",
+      "day_high": 6.64,
+      "day_low": 5,
+      "day_open": 5.37,
+      "dcr": 73.170726,
+      "distance_to_52w_high_pct": -3.387097,
+      "distance_to_pivot_pct": -15.806452,
+      "excess_vs_spy_qqq_avg_pct": 267.584462,
+      "industry": "RADIOTELEPHONE COMMUNICATIONS",
+      "leadership_score": 87.355509,
+      "market_cap": 316181579.14,
+      "market_cap_fmt": "316.2M",
+      "metadata_asof": "2026-05-18",
+      "name": "Sidus Space, Inc. Class A Common Stock",
+      "perf_1m_pct": 81.28655,
+      "perf_1w_pct": 58.567775,
+      "perf_1y_pct": 307.894737,
+      "perf_3m_pct": 195.238095,
+      "perf_6m_pct": 772.993523,
+      "pivot": 5.22,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 5.99,
+      "range_10d_atr": 5.407594,
+      "range_5d_atr": 4.963344,
+      "rank_1m": 17,
+      "rank_1w": 2,
+      "rank_1y": 87,
+      "rank_3m": 11,
+      "rank_6m": 3,
+      "rank_pct_1m": 0.983368,
+      "rank_pct_1w": 0.99896,
+      "rank_pct_1y": 0.910603,
+      "rank_pct_3m": 0.989605,
+      "rank_pct_6m": 0.997921,
+      "rvol_10d": 2.302044,
+      "sector": "Telecommunications",
+      "status": "Breakout",
+      "theme": "AI infrastructure / Defense / aerospace",
+      "ticker": "SIDU",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 5.23,
+      "type": "CS",
+      "volume": 59394905,
+      "volume_dry_up_ratio": 1.44764
+    },
+    {
+      "adr_pct": 7.282717,
+      "adv20_dollar": 20653378248.228355,
+      "asof": "2026-05-26",
+      "atr14_pct": 7.978961,
+      "base_days": 10,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 1589.550049,
+      "consolidation_score": 89.330509,
+      "country": "United States",
+      "day_high": 1641.73999,
+      "day_low": 1520,
+      "day_open": 1535.64502,
+      "dcr": 57.129994,
+      "distance_to_52w_high_pct": 0.657419,
+      "distance_to_pivot_pct": 0.657416,
+      "excess_vs_spy_qqq_avg_pct": 992.516092,
+      "industry": "COMPUTER STORAGE DEVICES",
+      "leadership_score": 87.194387,
+      "market_cap": 197405128311.58,
+      "market_cap_fmt": "197.4B",
+      "metadata_asof": "2026-05-18",
+      "name": "Sandisk Corporation Common Stock",
+      "perf_1m_pct": 60.576826,
+      "perf_1w_pct": 19.245167,
+      "perf_1y_pct": 4100.713531,
+      "perf_3m_pct": 148.942868,
+      "perf_6m_pct": 711.160441,
+      "pivot": 1600,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 1600,
+      "range_10d_atr": 2.873226,
+      "range_5d_atr": 2.867076,
+      "rank_1m": 34,
+      "rank_1w": 71,
+      "rank_1y": 3,
+      "rank_3m": 29,
+      "rank_6m": 5,
+      "rank_pct_1m": 0.965696,
+      "rank_pct_1w": 0.927235,
+      "rank_pct_1y": 0.997921,
+      "rank_pct_3m": 0.970894,
+      "rank_pct_6m": 0.995842,
+      "rvol_10d": 0.972918,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "AI infrastructure / Semiconductors",
+      "ticker": "SNDK",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 1600.01,
+      "type": "CS",
+      "volume": 12666761,
+      "volume_dry_up_ratio": 0.771733
+    },
+    {
+      "adr_pct": 11.946376,
+      "adv20_dollar": 511760382.613944,
+      "asof": "2026-05-26",
+      "atr14_pct": 12.514118,
+      "base_days": 10,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 96.120003,
+      "consolidation_score": 77.117916,
+      "country": "United States",
+      "day_high": 106.279999,
+      "day_low": 90.199997,
+      "day_open": 106.279999,
+      "dcr": 36.815952,
+      "distance_to_52w_high_pct": 8.478985,
+      "distance_to_pivot_pct": 8.478978,
+      "excess_vs_spy_qqq_avg_pct": 355.616095,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 86.393971,
+      "market_cap": 7831689574.139999,
+      "market_cap_fmt": "7.8B",
+      "metadata_asof": "2026-05-18",
+      "name": "MaxLinear, Inc. Common Stock",
+      "perf_1m_pct": 59.350133,
+      "perf_1w_pct": 9.901669,
+      "perf_1y_pct": 723.650386,
+      "perf_3m_pct": 426.684932,
+      "perf_6m_pct": 636.551724,
+      "pivot": 104.269997,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 104.27,
+      "range_10d_atr": 2.164014,
+      "range_5d_atr": 1.974466,
+      "rank_1m": 37,
+      "rank_1w": 238,
+      "rank_1y": 22,
+      "rank_3m": 2,
+      "rank_6m": 6,
+      "rank_pct_1m": 0.962578,
+      "rank_pct_1w": 0.753638,
+      "rank_pct_1y": 0.97817,
+      "rank_pct_3m": 0.99896,
+      "rank_pct_6m": 0.994802,
+      "rvol_10d": 1.592985,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "AI infrastructure / Semiconductors",
+      "ticker": "MXL",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 104.279997,
+      "type": "CS",
+      "volume": 7550667,
+      "volume_dry_up_ratio": 0.767599
+    },
+    {
+      "adr_pct": 10.281503,
+      "adv20_dollar": 258402903.69714,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.619411,
+      "base_days": 7,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 109.919998,
+      "consolidation_score": 89.348796,
+      "country": "United States",
+      "day_high": 111.57,
+      "day_low": 97.300003,
+      "day_open": 99,
+      "dcr": 88.437268,
+      "distance_to_52w_high_pct": -1.063501,
+      "distance_to_pivot_pct": -1.064409,
+      "excess_vs_spy_qqq_avg_pct": 351.943661,
+      "industry": "INSTRUMENTS FOR MEAS & TESTING OF ELECTRICITY & ELEC SIGNALS",
+      "leadership_score": 86.253638,
+      "market_cap": 2628548436.78,
+      "market_cap_fmt": "2.6B",
+      "metadata_asof": "2026-05-18",
+      "name": "Aehr Test Systems",
+      "perf_1m_pct": 14.607444,
+      "perf_1w_pct": 31.530454,
+      "perf_1y_pct": 1144.847112,
+      "perf_3m_pct": 180.193729,
+      "perf_6m_pct": 466.597938,
+      "pivot": 108.75,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 108.751,
+      "range_10d_atr": 2.982132,
+      "range_5d_atr": 2.982132,
+      "rank_1m": 222,
+      "rank_1w": 24,
+      "rank_1y": 8,
+      "rank_3m": 14,
+      "rank_6m": 10,
+      "rank_pct_1m": 0.77027,
+      "rank_pct_1w": 0.976091,
+      "rank_pct_1y": 0.992723,
+      "rank_pct_3m": 0.986486,
+      "rank_pct_6m": 0.990644,
+      "rvol_10d": 1.012849,
+      "sector": "Industrials",
+      "status": "Breakout",
+      "theme": "Semiconductors / Power / grid",
+      "ticker": "AEHR",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 108.76,
+      "type": "CS",
+      "volume": 2683745,
+      "volume_dry_up_ratio": 0.789046
+    },
+    {
+      "adr_pct": 5.882874,
+      "adv20_dollar": 67927705.133905,
+      "asof": "2026-05-26",
+      "atr14_pct": 5.902722,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 61.18,
+      "consolidation_score": 83.596447,
+      "country": "United States",
+      "day_high": 62.237999,
+      "day_low": 59.98,
+      "day_open": 62.237999,
+      "dcr": 53.144423,
+      "distance_to_52w_high_pct": -7.862046,
+      "distance_to_pivot_pct": 1.38934,
+      "excess_vs_spy_qqq_avg_pct": 224.483537,
+      "industry": "SERVICES-PREPACKAGED SOFTWARE",
+      "leadership_score": 86.134096,
+      "market_cap": 1791368326.65,
+      "market_cap_fmt": "1.8B",
+      "metadata_asof": "2026-05-18",
+      "name": "Bandwidth Inc. Class A Common Stock",
+      "perf_1m_pct": 153.648425,
+      "perf_1w_pct": 9.347632,
+      "perf_1y_pct": 337.93844,
+      "perf_3m_pct": 343.654822,
+      "perf_6m_pct": 355.886736,
+      "pivot": 62.029999,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 56.37,
+      "range_10d_atr": 3.937102,
+      "range_5d_atr": 2.397484,
+      "rank_1m": 2,
+      "rank_1w": 261,
+      "rank_1y": 75,
+      "rank_3m": 3,
+      "rank_6m": 14,
+      "rank_pct_1m": 0.99896,
+      "rank_pct_1w": 0.72973,
+      "rank_pct_1y": 0.923077,
+      "rank_pct_3m": 0.997921,
+      "rank_pct_6m": 0.986486,
+      "rvol_10d": 0.689854,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "AI infrastructure",
+      "ticker": "BAND",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": false,
+      "top1_window_count": 2,
+      "trigger": 62.039999,
+      "type": "CS",
+      "volume": 736005,
+      "volume_dry_up_ratio": 0.680745
+    },
+    {
+      "adr_pct": 9.608273,
+      "adv20_dollar": 79377049.297704,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.097764,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 10.74,
+      "consolidation_score": 85.072087,
+      "country": "Uruguay",
+      "day_high": 12,
+      "day_low": 10.39,
+      "day_open": 11.056,
+      "dcr": 21.7391,
+      "distance_to_52w_high_pct": -7.821229,
+      "distance_to_pivot_pct": -0.977649,
+      "excess_vs_spy_qqq_avg_pct": 235.250644,
+      "industry": "RADIO & TV BROADCASTING & COMMUNICATIONS EQUIPMENT",
+      "leadership_score": 86.009356,
+      "market_cap": 1414248685.38,
+      "market_cap_fmt": "1.4B",
+      "metadata_asof": "2026-05-18",
+      "name": "Satellogic Inc. Class A Ordinary Shares",
+      "perf_1m_pct": 74.068071,
+      "perf_1w_pct": 12.578616,
+      "perf_1y_pct": 189.487871,
+      "perf_3m_pct": 232.50774,
+      "perf_6m_pct": 745.669291,
+      "pivot": 10.635,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 9.9,
+      "range_10d_atr": 4.555095,
+      "range_5d_atr": 2.987552,
+      "rank_1m": 24,
+      "rank_1w": 170,
+      "rank_1y": 156,
+      "rank_3m": 7,
+      "rank_6m": 4,
+      "rank_pct_1m": 0.976091,
+      "rank_pct_1w": 0.824324,
+      "rank_pct_1y": 0.838877,
+      "rank_pct_3m": 0.993763,
+      "rank_pct_6m": 0.996881,
+      "rvol_10d": 1.323022,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Defense / aerospace / Robotics / automation",
+      "ticker": "SATL",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 10.645,
+      "type": "CS",
+      "volume": 14355807,
+      "volume_dry_up_ratio": 1.073963
+    },
+    {
+      "adr_pct": 8.554252,
+      "adv20_dollar": 579861738.539268,
+      "asof": "2026-05-26",
+      "atr14_pct": 9.41632,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 22.040001,
+      "consolidation_score": 111.731221,
+      "country": "United States",
+      "day_high": 23.1,
+      "day_low": 19.219999,
+      "day_open": 19.645,
+      "dcr": 72.680434,
+      "distance_to_52w_high_pct": 0.952813,
+      "distance_to_pivot_pct": -18.829407,
+      "excess_vs_spy_qqq_avg_pct": 135.648969,
+      "industry": "Military/Government/Technical",
+      "leadership_score": 85.81185,
+      "market_cap": 4384168765,
+      "market_cap_fmt": "4.4B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "Redwire Corporation Common Stock",
+      "perf_1m_pct": 127.68595,
+      "perf_1w_pct": 57.879656,
+      "perf_1y_pct": 73.406766,
+      "perf_3m_pct": 161.75772,
+      "perf_6m_pct": 335.573123,
+      "pivot": 17.889999,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 22.25,
+      "range_10d_atr": 5.873688,
+      "range_5d_atr": 4.934091,
+      "rank_1m": 6,
+      "rank_1w": 3,
+      "rank_1y": 360,
+      "rank_3m": 23,
+      "rank_6m": 16,
+      "rank_pct_1m": 0.994802,
+      "rank_pct_1w": 0.997921,
+      "rank_pct_1y": 0.626819,
+      "rank_pct_3m": 0.977131,
+      "rank_pct_6m": 0.984407,
+      "rvol_10d": 1.914288,
+      "sector": "Industrials",
+      "status": "Breakout",
+      "theme": "Military/Government/Technical",
+      "ticker": "RDW",
+      "top1_1m": true,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 2,
+      "trigger": 17.899999,
+      "type": "CS",
+      "volume": 98572589,
+      "volume_dry_up_ratio": 1.453499
+    },
+    {
+      "adr_pct": 10.28253,
+      "adv20_dollar": 26670956.916292,
+      "asof": "2026-05-26",
+      "atr14_pct": 11.108294,
+      "base_days": 14,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 12.11,
+      "consolidation_score": 97.112825,
+      "country": "United States",
+      "day_high": 12.365,
+      "day_low": 9.545,
+      "day_open": 9.64,
+      "dcr": 90.957442,
+      "distance_to_52w_high_pct": -5.202312,
+      "distance_to_pivot_pct": -5.202313,
+      "excess_vs_spy_qqq_avg_pct": 146.756894,
+      "industry": "SEMICONDUCTORS & RELATED DEVICES",
+      "leadership_score": 85.515593,
+      "market_cap": 309921580,
+      "market_cap_fmt": "309.9M",
+      "metadata_asof": "2026-05-18",
+      "name": "Atomera Incorporated Common Stock",
+      "perf_1m_pct": 40.813953,
+      "perf_1w_pct": 51.28045,
+      "perf_1y_pct": 82.930514,
+      "perf_3m_pct": 128.275212,
+      "perf_6m_pct": 508.542714,
+      "pivot": 11.48,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 11.48,
+      "range_10d_atr": 3.854404,
+      "range_5d_atr": 3.854404,
+      "rank_1m": 75,
+      "rank_1w": 4,
+      "rank_1y": 332,
+      "rank_3m": 36,
+      "rank_6m": 9,
+      "rank_pct_1m": 0.923077,
+      "rank_pct_1w": 0.996881,
+      "rank_pct_1y": 0.655925,
+      "rank_pct_3m": 0.963617,
+      "rank_pct_6m": 0.991684,
+      "rvol_10d": 2.079691,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Semiconductors",
+      "ticker": "ATOM",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": true,
+      "top1_window_count": 2,
+      "trigger": 11.49,
+      "type": "CS",
+      "volume": 3719881,
+      "volume_dry_up_ratio": 0.692851
+    },
+    {
+      "adr_pct": 13.694351,
+      "adv20_dollar": 228527192.772357,
+      "asof": "2026-05-26",
+      "atr14_pct": 13.858286,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 24.4,
+      "consolidation_score": 63.835728,
+      "country": "United States",
+      "day_high": 27.689899,
+      "day_low": 23.73,
+      "day_open": 25.450001,
+      "dcr": 16.919622,
+      "distance_to_52w_high_pct": -6.434426,
+      "distance_to_pivot_pct": 12.008198,
+      "excess_vs_spy_qqq_avg_pct": 194.450636,
+      "industry": "ELECTRICAL INDUSTRIAL APPARATUS",
+      "leadership_score": 83.080042,
+      "market_cap": 939827342.84,
+      "market_cap_fmt": "939.8M",
+      "metadata_asof": "2026-05-18",
+      "name": "FuelCell Energy Inc  NEW (DE)",
+      "perf_1m_pct": 118.246869,
+      "perf_1w_pct": 37.542277,
+      "perf_1y_pct": 432.751092,
+      "perf_3m_pct": 173.236282,
+      "perf_6m_pct": 288.535032,
+      "pivot": 27.33,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 22.83,
+      "range_10d_atr": 3.888867,
+      "range_5d_atr": 3.418651,
+      "rank_1m": 8,
+      "rank_1w": 13,
+      "rank_1y": 51,
+      "rank_3m": 17,
+      "rank_6m": 30,
+      "rank_pct_1m": 0.992723,
+      "rank_pct_1w": 0.987526,
+      "rank_pct_1y": 0.948025,
+      "rank_pct_3m": 0.983368,
+      "rank_pct_6m": 0.969854,
+      "rvol_10d": 0.812215,
+      "sector": "Energy",
+      "status": "Breakout",
+      "theme": "AI infrastructure / Power / grid",
+      "ticker": "FCEL",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 27.34,
+      "type": "CS",
+      "volume": 12165060,
+      "volume_dry_up_ratio": 1.119774
+    },
+    {
+      "adr_pct": 9.192072,
+      "adv20_dollar": 256613525.274727,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.241285,
+      "base_days": 2,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 10.45,
+      "consolidation_score": 96.264634,
+      "country": "Luxembourg",
+      "day_high": 10.8,
+      "day_low": 8.48,
+      "day_open": 8.52,
+      "dcr": 84.913781,
+      "distance_to_52w_high_pct": -6.411483,
+      "distance_to_pivot_pct": -9.760761,
+      "excess_vs_spy_qqq_avg_pct": 275.512056,
+      "industry": "Industrial Machinery/Components",
+      "leadership_score": 82.705821,
+      "market_cap": 2918385921,
+      "market_cap_fmt": "2.9B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "T1 Energy Inc. Common Stock",
+      "perf_1m_pct": 97.542533,
+      "perf_1w_pct": 49.285714,
+      "perf_1y_pct": 977.208535,
+      "perf_3m_pct": 47.390691,
+      "perf_6m_pct": 284.191176,
+      "pivot": 9.43,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 9.78,
+      "range_10d_atr": 5.176533,
+      "range_5d_atr": 4.410332,
+      "rank_1m": 11,
+      "rank_1w": 6,
+      "rank_1y": 11,
+      "rank_3m": 150,
+      "rank_6m": 31,
+      "rank_pct_1m": 0.989605,
+      "rank_pct_1w": 0.994802,
+      "rank_pct_1y": 0.989605,
+      "rank_pct_3m": 0.845114,
+      "rank_pct_6m": 0.968815,
+      "rvol_10d": 1.380867,
+      "sector": "Miscellaneous",
+      "status": "Breakout",
+      "theme": "Industrial Machinery/Components",
+      "ticker": "TE",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 9.44,
+      "type": "CS",
+      "volume": 70636718,
+      "volume_dry_up_ratio": 2.239006
+    },
+    {
+      "adr_pct": 6.759119,
+      "adv20_dollar": 56438713.926334,
+      "asof": "2026-05-26",
+      "atr14_pct": 8.035352,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 123.410004,
+      "consolidation_score": 92.818133,
+      "country": "United States",
+      "day_high": 124.400002,
+      "day_low": 115,
+      "day_open": 121.370003,
+      "dcr": 89.46811,
+      "distance_to_52w_high_pct": -14.780002,
+      "distance_to_pivot_pct": -7.535858,
+      "excess_vs_spy_qqq_avg_pct": 179.423283,
+      "industry": "ELECTRONIC COMPONENTS & ACCESSORIES",
+      "leadership_score": 82.523909,
+      "market_cap": 1399398210,
+      "market_cap_fmt": "1.4B",
+      "metadata_asof": "2026-05-18",
+      "name": "Vishay Precision Group, Inc.",
+      "perf_1m_pct": 103.579677,
+      "perf_1w_pct": 17.298736,
+      "perf_1y_pct": 369.061193,
+      "perf_3m_pct": 163.752939,
+      "perf_6m_pct": 321.48224,
+      "pivot": 114.110001,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 105.17,
+      "range_10d_atr": 4.563135,
+      "range_5d_atr": 3.467982,
+      "rank_1m": 10,
+      "rank_1w": 89,
+      "rank_1y": 66,
+      "rank_3m": 22,
+      "rank_6m": 21,
+      "rank_pct_1m": 0.990644,
+      "rank_pct_1w": 0.908524,
+      "rank_pct_1y": 0.932432,
+      "rank_pct_3m": 0.97817,
+      "rank_pct_6m": 0.97921,
+      "rvol_10d": 1.487214,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "ELECTRONIC COMPONENTS & ACCESSORIES",
+      "ticker": "VPG",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 114.120001,
+      "type": "CS",
+      "volume": 1230625,
+      "volume_dry_up_ratio": 1.301017
+    },
+    {
+      "adr_pct": 8.174078,
+      "adv20_dollar": 379691323.69232,
+      "asof": "2026-05-26",
+      "atr14_pct": 8.571725,
+      "base_days": 5,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 48.32,
+      "consolidation_score": 89.283897,
+      "country": "United States",
+      "day_high": 51.130001,
+      "day_low": 45.860001,
+      "day_open": 47.695,
+      "dcr": 46.679295,
+      "distance_to_52w_high_pct": -10.078642,
+      "distance_to_pivot_pct": -5.256624,
+      "excess_vs_spy_qqq_avg_pct": 321.944036,
+      "industry": "RADIO & TV BROADCASTING & COMMUNICATIONS EQUIPMENT",
+      "leadership_score": 82.331601,
+      "market_cap": 14829520885.56,
+      "market_cap_fmt": "14.8B",
+      "metadata_asof": "2026-05-18",
+      "name": "Planet Labs PBC",
+      "perf_1m_pct": 36.343115,
+      "perf_1w_pct": 16.125931,
+      "perf_1y_pct": 1209.485095,
+      "perf_3m_pct": 95.548361,
+      "perf_6m_pct": 330.276046,
+      "pivot": 45.779999,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 43.45,
+      "range_10d_atr": 3.165247,
+      "range_5d_atr": 3.165247,
+      "rank_1m": 93,
+      "rank_1w": 104,
+      "rank_1y": 6,
+      "rank_3m": 60,
+      "rank_6m": 18,
+      "rank_pct_1m": 0.904366,
+      "rank_pct_1w": 0.892931,
+      "rank_pct_1y": 0.994802,
+      "rank_pct_3m": 0.938669,
+      "rank_pct_6m": 0.982328,
+      "rvol_10d": 1.826646,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Power / grid / Defense / aerospace",
+      "ticker": "PL",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 45.789999,
+      "type": "CS",
+      "volume": 16858554,
+      "volume_dry_up_ratio": 1.08986
+    },
+    {
+      "adr_pct": 7.531285,
+      "adv20_dollar": 1483583495.775299,
+      "asof": "2026-05-26",
+      "atr14_pct": 7.729175,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 318.720001,
+      "consolidation_score": 88.653118,
+      "country": "United States",
+      "day_high": 321.98999,
+      "day_low": 290.5,
+      "day_open": 315,
+      "dcr": 89.615783,
+      "distance_to_52w_high_pct": -17.513805,
+      "distance_to_pivot_pct": -0.913028,
+      "excess_vs_spy_qqq_avg_pct": 106.911595,
+      "industry": "Semiconductors",
+      "leadership_score": 82.139293,
+      "market_cap": 54631138318,
+      "market_cap_fmt": "54.6B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "Astera Labs Inc. Common Stock",
+      "perf_1m_pct": 49.746288,
+      "perf_1w_pct": 47.843028,
+      "perf_1y_pct": 237.985154,
+      "perf_3m_pct": 148.224299,
+      "perf_6m_pct": 128.817575,
+      "pivot": 315.809998,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 262.9,
+      "range_10d_atr": 5.252405,
+      "range_5d_atr": 4.52375,
+      "rank_1m": 53,
+      "rank_1w": 7,
+      "rank_1y": 118,
+      "rank_3m": 30,
+      "rank_6m": 101,
+      "rank_pct_1m": 0.945946,
+      "rank_pct_1w": 0.993763,
+      "rank_pct_1y": 0.878378,
+      "rank_pct_3m": 0.969854,
+      "rank_pct_6m": 0.89605,
+      "rvol_10d": 1.182564,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Semiconductors",
+      "ticker": "ALAB",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 315.819998,
+      "type": "CS",
+      "volume": 7928750,
+      "volume_dry_up_ratio": 1.302849
+    },
+    {
+      "adr_pct": 9.373825,
+      "adv20_dollar": 47915077.886348,
+      "asof": "2026-05-26",
+      "atr14_pct": 9.780102,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 28.129999,
+      "consolidation_score": 94.344374,
+      "country": "United States",
+      "day_high": 28.32,
+      "day_low": 24.49,
+      "day_open": 26.34,
+      "dcr": 95.03915,
+      "distance_to_52w_high_pct": 37.931034,
+      "distance_to_pivot_pct": -9.811583,
+      "excess_vs_spy_qqq_avg_pct": 82.785399,
+      "industry": "Auto Parts:O.E.M.",
+      "leadership_score": 79.378332,
+      "market_cap": 1773338295,
+      "market_cap_fmt": "1.8B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "Aeva Technologies Inc. Common Stock",
+      "perf_1m_pct": 73.964131,
+      "perf_1w_pct": 44.627249,
+      "perf_1y_pct": 74.720497,
+      "perf_3m_pct": 115.390505,
+      "perf_6m_pct": 183.282981,
+      "pivot": 25.370001,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 38.8,
+      "range_10d_atr": 4.743483,
+      "range_5d_atr": 3.994704,
+      "rank_1m": 25,
+      "rank_1w": 9,
+      "rank_1y": 353,
+      "rank_3m": 43,
+      "rank_6m": 61,
+      "rank_pct_1m": 0.975052,
+      "rank_pct_1w": 0.991684,
+      "rank_pct_1y": 0.634096,
+      "rank_pct_3m": 0.956341,
+      "rank_pct_6m": 0.93763,
+      "rvol_10d": 1.211849,
+      "sector": "Consumer Discretionary",
+      "status": "Breakout",
+      "theme": "Auto Parts:O.E.M.",
+      "ticker": "AEVA",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 25.380001,
+      "type": "CS",
+      "volume": 3521319,
+      "volume_dry_up_ratio": 1.026895
+    },
+    {
+      "adr_pct": 8.078867,
+      "adv20_dollar": 1195629981.500688,
+      "asof": "2026-05-26",
+      "atr14_pct": 8.484608,
+      "base_days": 1,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 221.639999,
+      "consolidation_score": 86.596053,
+      "country": "United States",
+      "day_high": 233.699997,
+      "day_low": 211.580002,
+      "day_open": 228.009995,
+      "dcr": 45.479203,
+      "distance_to_52w_high_pct": -3.537268,
+      "distance_to_pivot_pct": -1.213681,
+      "excess_vs_spy_qqq_avg_pct": 78.001758,
+      "industry": "Semiconductors",
+      "leadership_score": 77.959219,
+      "market_cap": 40881484702,
+      "market_cap_fmt": "40.9B",
+      "metadata_asof": "nasdaq_2026-05-26",
+      "name": "Credo Technology Group Holding Ltd Ordinary Shares",
+      "perf_1m_pct": 13.638228,
+      "perf_1w_pct": 41.831446,
+      "perf_1y_pct": 264.659427,
+      "perf_3m_pct": 83.431267,
+      "perf_6m_pct": 64.506791,
+      "pivot": 218.949997,
+      "pivot_horizon": "20D",
+      "primary_exchange": null,
+      "prior_52w_high": 213.8,
+      "range_10d_atr": 4.506977,
+      "range_5d_atr": 4.506977,
+      "rank_1m": 236,
+      "rank_1w": 10,
+      "rank_1y": 104,
+      "rank_3m": 74,
+      "rank_6m": 239,
+      "rank_pct_1m": 0.755717,
+      "rank_pct_1w": 0.990644,
+      "rank_pct_1y": 0.892931,
+      "rank_pct_3m": 0.924116,
+      "rank_pct_6m": 0.752599,
+      "rvol_10d": 1.344327,
+      "sector": "Technology",
+      "status": "Breakout",
+      "theme": "Semiconductors",
+      "ticker": "CRDO",
+      "top1_1m": false,
+      "top1_1w": true,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 218.959997,
+      "type": "CS",
+      "volume": 9551118,
+      "volume_dry_up_ratio": 1.282145
+    },
+    {
+      "adr_pct": 13.956866,
+      "adv20_dollar": 326999867.36857,
+      "asof": "2026-05-26",
+      "atr14_pct": 16.738203,
+      "base_days": 10,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 60.209999,
+      "consolidation_score": 51.011971,
+      "country": "United States",
+      "day_high": 72.870003,
+      "day_low": 55,
+      "day_open": 71.879997,
+      "dcr": 29.154999,
+      "distance_to_52w_high_pct": 18.319216,
+      "distance_to_pivot_pct": 18.319214,
+      "excess_vs_spy_qqq_avg_pct": 76.062765,
+      "industry": null,
+      "leadership_score": 77.484655,
+      "market_cap": 1595202374,
+      "market_cap_fmt": "1.6B",
+      "metadata_asof": "2026-05-18",
+      "name": "Destiny Tech100 Inc.",
+      "perf_1m_pct": 104.517663,
+      "perf_1w_pct": 13.603774,
+      "perf_1y_pct": 38.892734,
+      "perf_3m_pct": 121.441707,
+      "perf_6m_pct": 179.916318,
+      "pivot": 71.239998,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 71.24,
+      "range_10d_atr": 3.013474,
+      "range_5d_atr": 2.610718,
+      "rank_1m": 9,
+      "rank_1w": 150,
+      "rank_1y": 465,
+      "rank_3m": 37,
+      "rank_6m": 65,
+      "rank_pct_1m": 0.991684,
+      "rank_pct_1w": 0.845114,
+      "rank_pct_1y": 0.517672,
+      "rank_pct_3m": 0.962578,
+      "rank_pct_6m": 0.933472,
+      "rvol_10d": 1.728245,
+      "sector": null,
+      "status": "Breakout",
+      "theme": "Unclassified",
+      "ticker": "DXYZ",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 71.249998,
+      "type": "CS",
+      "volume": 13756177,
+      "volume_dry_up_ratio": 1.409842
+    }
+  ],
+  "generated_at": "2026-05-26T21:44:37-03:00",
+  "leaders_consolidating": [
+    {
+      "adr_pct": 11.825797,
+      "adv20_dollar": 35792603.278367,
+      "asof": "2026-05-26",
+      "atr14_pct": 12.991003,
+      "base_days": 5,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 85.269997,
+      "consolidation_score": 74.286542,
+      "country": "United States",
+      "day_high": 88.959999,
+      "day_low": 81.870003,
+      "day_open": 88.470001,
+      "dcr": 47.954805,
+      "distance_to_52w_high_pct": -0.433916,
+      "distance_to_pivot_pct": 6.110012,
+      "excess_vs_spy_qqq_avg_pct": 303.828818,
+      "industry": "SERVICES-MISC HEALTH & ALLIED SERVICES, NEC",
+      "leadership_score": 85.752599,
+      "market_cap": 1448152624.8,
+      "market_cap_fmt": "1.4B",
+      "metadata_asof": "2026-05-18",
+      "name": "agilon health, inc.",
+      "perf_1m_pct": 225.333842,
+      "perf_1w_pct": -1.762673,
+      "perf_1y_pct": 55.036364,
+      "perf_3m_pct": 765.685279,
+      "perf_6m_pct": 552.909648,
+      "pivot": 90.480003,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 84.9,
+      "range_10d_atr": 2.980385,
+      "range_5d_atr": 1.363132,
+      "rank_1m": 1,
+      "rank_1w": 788,
+      "rank_1y": 409,
+      "rank_3m": 1,
+      "rank_6m": 8,
+      "rank_pct_1m": 1,
+      "rank_pct_1w": 0.181913,
+      "rank_pct_1y": 0.575884,
+      "rank_pct_3m": 1,
+      "rank_pct_6m": 0.992723,
+      "rvol_10d": 0.522622,
+      "sector": "Health Care",
+      "status": "Ready",
+      "theme": "SERVICES-MISC HEALTH & ALLIED SERVICES, NEC",
+      "ticker": "AGL",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": true,
+      "top1_6m": true,
+      "top1_window_count": 3,
+      "trigger": 90.490003,
+      "type": "CS",
+      "volume": 234563,
+      "volume_dry_up_ratio": 0.50338
+    },
+    {
+      "adr_pct": 6.88787,
+      "adv20_dollar": 10045311.495482,
+      "asof": "2026-05-26",
+      "atr14_pct": 7.110246,
+      "base_days": 12,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 11.39,
+      "consolidation_score": 66.707476,
+      "country": "United States",
+      "day_high": 11.57,
+      "day_low": 11.1346,
+      "day_open": 11.19,
+      "dcr": 58.658854,
+      "distance_to_52w_high_pct": 9.569798,
+      "distance_to_pivot_pct": 9.569791,
+      "excess_vs_spy_qqq_avg_pct": 289.695664,
+      "industry": "PHARMACEUTICAL PREPARATIONS",
+      "leadership_score": 81.77027,
+      "market_cap": 565733967.24,
+      "market_cap_fmt": "565.7M",
+      "metadata_asof": "2026-05-18",
+      "name": "Climb Bio, Inc. Common Stock",
+      "perf_1m_pct": 24.617068,
+      "perf_1w_pct": 15.283401,
+      "perf_1y_pct": 849.166667,
+      "perf_3m_pct": 79.08805,
+      "perf_6m_pct": 558.381503,
+      "pivot": 12.48,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 12.48,
+      "range_10d_atr": 3.062268,
+      "range_5d_atr": 2.864703,
+      "rank_1m": 157,
+      "rank_1w": 116,
+      "rank_1y": 18,
+      "rank_3m": 82,
+      "rank_6m": 7,
+      "rank_pct_1m": 0.837838,
+      "rank_pct_1w": 0.880457,
+      "rank_pct_1y": 0.982328,
+      "rank_pct_3m": 0.9158,
+      "rank_pct_6m": 0.993763,
+      "rvol_10d": 1.139656,
+      "sector": "Health Care",
+      "status": "Ready",
+      "theme": "Biotech / pharma / Energy / oil & gas",
+      "ticker": "CLYM",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": true,
+      "top1_window_count": 1,
+      "trigger": 12.49,
+      "type": "CS",
+      "volume": 676067,
+      "volume_dry_up_ratio": 0.609699
+    },
+    {
+      "adr_pct": 10.196037,
+      "adv20_dollar": 75366149.454444,
+      "asof": "2026-05-26",
+      "atr14_pct": 10.606797,
+      "base_days": 6,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 19.65,
+      "consolidation_score": 63.051179,
+      "country": "United States",
+      "day_high": 19.99,
+      "day_low": 18.422701,
+      "day_open": 19.389999,
+      "dcr": 78.306617,
+      "distance_to_52w_high_pct": 12.111959,
+      "distance_to_pivot_pct": 12.111965,
+      "excess_vs_spy_qqq_avg_pct": 608.009329,
+      "industry": "HEATING EQUIPMENT, EXCEPT ELECTRIC & WARM AIR FURNACES",
+      "leadership_score": 78.698545,
+      "market_cap": 2744681895.15,
+      "market_cap_fmt": "2.7B",
+      "metadata_asof": "2026-05-18",
+      "name": "Babcock & Wilcox Enterprises, Inc.",
+      "perf_1m_pct": 35.517241,
+      "perf_1w_pct": -2.48139,
+      "perf_1y_pct": 2747.826087,
+      "perf_3m_pct": 114.052288,
+      "perf_6m_pct": 223.190789,
+      "pivot": 22.030001,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNYS",
+      "prior_52w_high": 22.03,
+      "range_10d_atr": 2.10149,
+      "range_5d_atr": 1.08433,
+      "rank_1m": 97,
+      "rank_1w": 806,
+      "rank_1y": 4,
+      "rank_3m": 46,
+      "rank_6m": 45,
+      "rank_pct_1m": 0.900208,
+      "rank_pct_1w": 0.163202,
+      "rank_pct_1y": 0.996881,
+      "rank_pct_3m": 0.953222,
+      "rank_pct_6m": 0.954262,
+      "rvol_10d": 0.788743,
+      "sector": "Industrials",
+      "status": "Ready",
+      "theme": "Power / grid / Energy / oil & gas",
+      "ticker": "BW",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 22.040001,
+      "type": "CS",
+      "volume": 4221264,
+      "volume_dry_up_ratio": 0.821156
+    },
+    {
+      "adr_pct": 6.399256,
+      "adv20_dollar": 162546848.641817,
+      "asof": "2026-05-26",
+      "atr14_pct": 6.506192,
+      "base_days": 15,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 134.259995,
+      "consolidation_score": 58.906935,
+      "country": "United States",
+      "day_high": 140.850006,
+      "day_low": 132.850006,
+      "day_open": 140.850006,
+      "dcr": 17.624855,
+      "distance_to_52w_high_pct": 12.483241,
+      "distance_to_pivot_pct": 12.483249,
+      "excess_vs_spy_qqq_avg_pct": 230.623648,
+      "industry": "SERVICES-MEDICAL LABORATORIES",
+      "leadership_score": 76.053015,
+      "market_cap": 6445927947.84,
+      "market_cap_fmt": "6.4B",
+      "metadata_asof": "2026-05-18",
+      "name": "Celcuity Inc. Common Stock",
+      "perf_1m_pct": 10.931174,
+      "perf_1w_pct": 1.573612,
+      "perf_1y_pct": 1148.930233,
+      "perf_3m_pct": 26.911806,
+      "perf_6m_pct": 42.829787,
+      "pivot": 151.020004,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 151.02,
+      "range_10d_atr": 2.422952,
+      "range_5d_atr": 1.725201,
+      "rank_1m": 271,
+      "rank_1w": 612,
+      "rank_1y": 7,
+      "rank_3m": 266,
+      "rank_6m": 324,
+      "rank_pct_1m": 0.719335,
+      "rank_pct_1w": 0.364865,
+      "rank_pct_1y": 0.993763,
+      "rank_pct_3m": 0.724532,
+      "rank_pct_6m": 0.664241,
+      "rvol_10d": 0.575916,
+      "sector": "Health Care",
+      "status": "Ready",
+      "theme": "Biotech / pharma",
+      "ticker": "CELC",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 151.030004,
+      "type": "CS",
+      "volume": 609204,
+      "volume_dry_up_ratio": 0.568034
+    },
+    {
+      "adr_pct": 11.566647,
+      "adv20_dollar": 268930550.308753,
+      "asof": "2026-05-26",
+      "atr14_pct": 13.713749,
+      "base_days": 10,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 95.910004,
+      "consolidation_score": 50.468768,
+      "country": "United States",
+      "day_high": 100.900002,
+      "day_low": 94.400002,
+      "day_open": 97.5,
+      "dcr": 23.230802,
+      "distance_to_52w_high_pct": 19.664269,
+      "distance_to_pivot_pct": 19.664261,
+      "excess_vs_spy_qqq_avg_pct": 83.102615,
+      "industry": "SERVICES-COMPUTER PROCESSING & DATA PREPARATION",
+      "leadership_score": 76.608598,
+      "market_cap": 3093115509.76,
+      "market_cap_fmt": "3.1B",
+      "metadata_asof": "2026-05-18",
+      "name": "Innodata Inc.",
+      "perf_1m_pct": 126.523382,
+      "perf_1w_pct": 1.256334,
+      "perf_1y_pct": 165.311203,
+      "perf_3m_pct": 116.99095,
+      "perf_6m_pct": 83.489573,
+      "pivot": 114.769997,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 114.77,
+      "range_10d_atr": 1.833062,
+      "range_5d_atr": 1.25372,
+      "rank_1m": 7,
+      "rank_1w": 630,
+      "rank_1y": 187,
+      "rank_3m": 41,
+      "rank_6m": 183,
+      "rank_pct_1m": 0.993763,
+      "rank_pct_1w": 0.346154,
+      "rank_pct_1y": 0.806653,
+      "rank_pct_3m": 0.95842,
+      "rank_pct_6m": 0.810811,
+      "rvol_10d": 0.45339,
+      "sector": "Technology",
+      "status": "Ready",
+      "theme": "AI infrastructure",
+      "ticker": "INOD",
+      "top1_1m": true,
+      "top1_1w": false,
+      "top1_1y": false,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 114.779997,
+      "type": "CS",
+      "volume": 1470508,
+      "volume_dry_up_ratio": 0.546966
+    },
+    {
+      "adr_pct": 8.905181,
+      "adv20_dollar": 5880298202.720019,
+      "asof": "2026-05-26",
+      "atr14_pct": 9.796539,
+      "base_days": 9,
+      "catalyst": "nao verificado",
+      "catalyst_date": null,
+      "close": 910.809998,
+      "consolidation_score": 49.624808,
+      "country": "United States",
+      "day_high": 962.47998,
+      "day_low": 903.020081,
+      "day_open": 961.650024,
+      "dcr": 13.101127,
+      "distance_to_52w_high_pct": 19.199394,
+      "distance_to_pivot_pct": 19.1994,
+      "excess_vs_spy_qqq_avg_pct": 270.267,
+      "industry": "COMMUNICATIONS EQUIPMENT, NEC",
+      "leadership_score": 77.373181,
+      "market_cap": 68851444000,
+      "market_cap_fmt": "68.9B",
+      "metadata_asof": "2026-05-18",
+      "name": "Lumentum Holdings Inc. Common Stock",
+      "perf_1m_pct": 3.308607,
+      "perf_1w_pct": 2.91871,
+      "perf_1y_pct": 1100.329468,
+      "perf_3m_pct": 32.333241,
+      "perf_6m_pct": 290.503344,
+      "pivot": 1085.680054,
+      "pivot_horizon": "20D",
+      "primary_exchange": "XNAS",
+      "prior_52w_high": 1085.68,
+      "range_10d_atr": 2.697365,
+      "range_5d_atr": 1.482385,
+      "rank_1m": 405,
+      "rank_1w": 533,
+      "rank_1y": 9,
+      "rank_3m": 232,
+      "rank_6m": 29,
+      "rank_pct_1m": 0.580042,
+      "rank_pct_1w": 0.446985,
+      "rank_pct_1y": 0.991684,
+      "rank_pct_3m": 0.759875,
+      "rank_pct_6m": 0.970894,
+      "rvol_10d": 0.841474,
+      "sector": "Telecommunications",
+      "status": "Ready",
+      "theme": "COMMUNICATIONS EQUIPMENT, NEC",
+      "ticker": "LITE",
+      "top1_1m": false,
+      "top1_1w": false,
+      "top1_1y": true,
+      "top1_3m": false,
+      "top1_6m": false,
+      "top1_window_count": 1,
+      "trigger": 1085.690054,
+      "type": "CS",
+      "volume": 5172636,
+      "volume_dry_up_ratio": 0.774126
+    }
+  ],
+  "source_files": {
+    "all_leaders": "outputs\latest_all_leaders.csv",
+    "latest_report": "outputs\latest_report.md",
+    "leaders_consolidating": "outputs\latest_leaders_consolidating.csv"
+  },
+  "summary": {
+    "all_leaders_count": 33,
+    "avg_adr_pct": 10.1835,
+    "avg_leadership_score": 82.0199,
+    "breakouts_today_count": 18,
+    "consolidating_subset_all": true,
+    "leaders_consolidating_count": 6,
+    "sector_counts": {
+      "Basic Materials": 1,
+      "Consumer Discretionary": 1,
+      "Energy": 2,
+      "Health Care": 3,
+      "Industrials": 5,
+      "Miscellaneous": 1,
+      "Technology": 17,
+      "Telecommunications": 2,
+      "Unknown": 1
+    },
+    "status_counts": {
+      "Breakout": 18,
+      "Developing": 9,
+      "Ready": 6
+    },
+    "themes_count": 23,
+    "window_counts": {
+      "1m": 10,
+      "1w": 10,
+      "1y": 10,
+      "3m": 10,
+      "6m": 10
+    }
+  },
+  "themes": [
+    {
+      "avg_adr_pct": 12.7551,
+      "avg_leadership_score": 85.0751,
+      "breakout_count": 2,
+      "consolidating_count": 0,
+      "count": 4,
+      "theme": "AI infrastructure / Semiconductors",
+      "tickers": [
+        "SNDK",
+        "MXL",
+        "AAOI",
+        "MRAM"
+      ],
+      "windows": {
+        "1m": 1,
+        "1w": 0,
+        "1y": 1,
+        "3m": 3,
+        "6m": 3
+      }
+    },
+    {
+      "avg_adr_pct": 10.2445,
+      "avg_leadership_score": 80.7429,
+      "breakout_count": 3,
+      "consolidating_count": 0,
+      "count": 4,
+      "theme": "Semiconductors",
+      "tickers": [
+        "ATOM",
+        "ALAB",
+        "CRDO",
+        "LWLG"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 3,
+        "1y": 0,
+        "3m": 1,
+        "6m": 1
+      }
+    },
+    {
+      "avg_adr_pct": 11.0304,
+      "avg_leadership_score": 88.4757,
+      "breakout_count": 2,
+      "consolidating_count": 0,
+      "count": 3,
+      "theme": "Semiconductors / Power / grid",
+      "tickers": [
+        "WOLF",
+        "NVTS",
+        "AEHR"
+      ],
+      "windows": {
+        "1m": 1,
+        "1w": 1,
+        "1y": 2,
+        "3m": 2,
+        "6m": 1
+      }
+    },
+    {
+      "avg_adr_pct": 8.7248,
+      "avg_leadership_score": 81.3713,
+      "breakout_count": 1,
+      "consolidating_count": 1,
+      "count": 2,
+      "theme": "AI infrastructure",
+      "tickers": [
+        "BAND",
+        "INOD"
+      ],
+      "windows": {
+        "1m": 2,
+        "1w": 0,
+        "1y": 0,
+        "3m": 1,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 9.1955,
+      "avg_leadership_score": 80.4007,
+      "breakout_count": 0,
+      "consolidating_count": 1,
+      "count": 2,
+      "theme": "Power / grid / Energy / oil & gas",
+      "tickers": [
+        "BE",
+        "BW"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 0,
+        "1y": 2,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 11.8258,
+      "avg_leadership_score": 85.7526,
+      "breakout_count": 0,
+      "consolidating_count": 1,
+      "count": 1,
+      "theme": "SERVICES-MISC HEALTH & ALLIED SERVICES, NEC",
+      "tickers": [
+        "AGL"
+      ],
+      "windows": {
+        "1m": 1,
+        "1w": 0,
+        "1y": 0,
+        "3m": 1,
+        "6m": 1
+      }
+    },
+    {
+      "avg_adr_pct": 6.8879,
+      "avg_leadership_score": 81.7703,
+      "breakout_count": 0,
+      "consolidating_count": 1,
+      "count": 1,
+      "theme": "Biotech / pharma / Energy / oil & gas",
+      "tickers": [
+        "CLYM"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 0,
+        "1y": 0,
+        "3m": 0,
+        "6m": 1
+      }
+    },
+    {
+      "avg_adr_pct": 8.9052,
+      "avg_leadership_score": 77.3732,
+      "breakout_count": 0,
+      "consolidating_count": 1,
+      "count": 1,
+      "theme": "COMMUNICATIONS EQUIPMENT, NEC",
+      "tickers": [
+        "LITE"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 0,
+        "1y": 1,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 6.3993,
+      "avg_leadership_score": 76.053,
+      "breakout_count": 0,
+      "consolidating_count": 1,
+      "count": 1,
+      "theme": "Biotech / pharma",
+      "tickers": [
+        "CELC"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 0,
+        "1y": 1,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 12.9509,
+      "avg_leadership_score": 91.6518,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "Semiconductors / China / EM consumer",
+      "tickers": [
+        "AXTI"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 0,
+        "1y": 1,
+        "3m": 1,
+        "6m": 1
+      }
+    },
+    {
+      "avg_adr_pct": 10.2523,
+      "avg_leadership_score": 87.3555,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "AI infrastructure / Defense / aerospace",
+      "tickers": [
+        "SIDU"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 1,
+        "1y": 0,
+        "3m": 0,
+        "6m": 1
+      }
+    },
+    {
+      "avg_adr_pct": 9.6083,
+      "avg_leadership_score": 86.0094,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "Defense / aerospace / Robotics / automation",
+      "tickers": [
+        "SATL"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 0,
+        "1y": 0,
+        "3m": 1,
+        "6m": 1
+      }
+    },
+    {
+      "avg_adr_pct": 8.5543,
+      "avg_leadership_score": 85.8119,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "Military/Government/Technical",
+      "tickers": [
+        "RDW"
+      ],
+      "windows": {
+        "1m": 1,
+        "1w": 1,
+        "1y": 0,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 13.6944,
+      "avg_leadership_score": 83.08,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "AI infrastructure / Power / grid",
+      "tickers": [
+        "FCEL"
+      ],
+      "windows": {
+        "1m": 1,
+        "1w": 0,
+        "1y": 0,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 9.1921,
+      "avg_leadership_score": 82.7058,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "Industrial Machinery/Components",
+      "tickers": [
+        "TE"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 1,
+        "1y": 0,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 6.7591,
+      "avg_leadership_score": 82.5239,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "ELECTRONIC COMPONENTS & ACCESSORIES",
+      "tickers": [
+        "VPG"
+      ],
+      "windows": {
+        "1m": 1,
+        "1w": 0,
+        "1y": 0,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 8.1741,
+      "avg_leadership_score": 82.3316,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "Power / grid / Defense / aerospace",
+      "tickers": [
+        "PL"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 0,
+        "1y": 1,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 12.2857,
+      "avg_leadership_score": 81.921,
+      "breakout_count": 0,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "TELEVISION BROADCASTING STATIONS",
+      "tickers": [
+        "EVC"
+      ],
+      "windows": {
+        "1m": 1,
+        "1w": 0,
+        "1y": 0,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 9.3738,
+      "avg_leadership_score": 79.3783,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "Auto Parts:O.E.M.",
+      "tickers": [
+        "AEVA"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 1,
+        "1y": 0,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 13.9569,
+      "avg_leadership_score": 77.4847,
+      "breakout_count": 1,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "Unclassified",
+      "tickers": [
+        "DXYZ"
+      ],
+      "windows": {
+        "1m": 1,
+        "1w": 0,
+        "1y": 0,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 8.6113,
+      "avg_leadership_score": 71.7381,
+      "breakout_count": 0,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "EDP Services",
+      "tickers": [
+        "RGTI"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 1,
+        "1y": 0,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 8.6248,
+      "avg_leadership_score": 71.4332,
+      "breakout_count": 0,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "Quantum",
+      "tickers": [
+        "QBTS"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 1,
+        "1y": 0,
+        "3m": 0,
+        "6m": 0
+      }
+    },
+    {
+      "avg_adr_pct": 9.0687,
+      "avg_leadership_score": 70.0395,
+      "breakout_count": 0,
+      "consolidating_count": 0,
+      "count": 1,
+      "theme": "Crypto / blockchain / Metals / mining",
+      "tickers": [
+        "HYMC"
+      ],
+      "windows": {
+        "1m": 0,
+        "1w": 0,
+        "1y": 1,
+        "3m": 0,
+        "6m": 0
+      }
+    }
+  ],
+  "top_by_window": {
+    "1m": [
+      {
+        "name": "agilon health, inc.",
+        "performance": 225.333842,
+        "status": "Ready",
+        "theme": "SERVICES-MISC HEALTH & ALLIED SERVICES, NEC",
+        "ticker": "AGL",
+        "top1": true
+      },
+      {
+        "name": "Bandwidth Inc. Class A Common Stock",
+        "performance": 153.648425,
+        "status": "Breakout",
+        "theme": "AI infrastructure",
+        "ticker": "BAND",
+        "top1": true
+      },
+      {
+        "name": "Wolfspeed, Inc.",
+        "performance": 135.350624,
+        "status": "Developing",
+        "theme": "Semiconductors / Power / grid",
+        "ticker": "WOLF",
+        "top1": true
+      },
+      {
+        "name": "Entravision Communication",
+        "performance": 133.333333,
+        "status": "Developing",
+        "theme": "TELEVISION BROADCASTING STATIONS",
+        "ticker": "EVC",
+        "top1": true
+      },
+      {
+        "name": "Everspin Technologies, Inc",
+        "performance": 132.409382,
+        "status": "Developing",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "MRAM",
+        "top1": true
+      },
+      {
+        "name": "Redwire Corporation Common Stock",
+        "performance": 127.68595,
+        "status": "Breakout",
+        "theme": "Military/Government/Technical",
+        "ticker": "RDW",
+        "top1": true
+      },
+      {
+        "name": "Innodata Inc.",
+        "performance": 126.523382,
+        "status": "Ready",
+        "theme": "AI infrastructure",
+        "ticker": "INOD",
+        "top1": true
+      },
+      {
+        "name": "FuelCell Energy Inc  NEW (DE)",
+        "performance": 118.246869,
+        "status": "Breakout",
+        "theme": "AI infrastructure / Power / grid",
+        "ticker": "FCEL",
+        "top1": true
+      }
+    ],
+    "1w": [
+      {
+        "name": "Navitas Semiconductor Corporation Common Stock",
+        "performance": 61.616675,
+        "status": "Breakout",
+        "theme": "Semiconductors / Power / grid",
+        "ticker": "NVTS",
+        "top1": true
+      },
+      {
+        "name": "Sidus Space, Inc. Class A Common Stock",
+        "performance": 58.567775,
+        "status": "Breakout",
+        "theme": "AI infrastructure / Defense / aerospace",
+        "ticker": "SIDU",
+        "top1": true
+      },
+      {
+        "name": "Redwire Corporation Common Stock",
+        "performance": 57.879656,
+        "status": "Breakout",
+        "theme": "Military/Government/Technical",
+        "ticker": "RDW",
+        "top1": true
+      },
+      {
+        "name": "Atomera Incorporated Common Stock",
+        "performance": 51.28045,
+        "status": "Breakout",
+        "theme": "Semiconductors",
+        "ticker": "ATOM",
+        "top1": true
+      },
+      {
+        "name": "Rigetti Computing Inc. Common Stock",
+        "performance": 50.812274,
+        "status": "Developing",
+        "theme": "EDP Services",
+        "ticker": "RGTI",
+        "top1": true
+      },
+      {
+        "name": "T1 Energy Inc. Common Stock",
+        "performance": 49.285714,
+        "status": "Breakout",
+        "theme": "Industrial Machinery/Components",
+        "ticker": "TE",
+        "top1": true
+      },
+      {
+        "name": "Astera Labs Inc. Common Stock",
+        "performance": 47.843028,
+        "status": "Breakout",
+        "theme": "Semiconductors",
+        "ticker": "ALAB",
+        "top1": true
+      },
+      {
+        "name": "D-Wave Quantum Inc. Common Shares",
+        "performance": 45.960126,
+        "status": "Developing",
+        "theme": "Quantum",
+        "ticker": "QBTS",
+        "top1": true
+      }
+    ],
+    "1y": [
+      {
+        "name": "AXT Inc",
+        "performance": 8345.859873,
+        "status": "Breakout",
+        "theme": "Semiconductors / China / EM consumer",
+        "ticker": "AXTI",
+        "top1": true
+      },
+      {
+        "name": "Wolfspeed, Inc.",
+        "performance": 4198.245614,
+        "status": "Developing",
+        "theme": "Semiconductors / Power / grid",
+        "ticker": "WOLF",
+        "top1": true
+      },
+      {
+        "name": "Sandisk Corporation Common Stock",
+        "performance": 4100.713531,
+        "status": "Breakout",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "SNDK",
+        "top1": true
+      },
+      {
+        "name": "Babcock & Wilcox Enterprises, Inc.",
+        "performance": 2747.826087,
+        "status": "Ready",
+        "theme": "Power / grid / Energy / oil & gas",
+        "ticker": "BW",
+        "top1": true
+      },
+      {
+        "name": "Bloom Energy Corporation",
+        "performance": 1546.162221,
+        "status": "Developing",
+        "theme": "Power / grid / Energy / oil & gas",
+        "ticker": "BE",
+        "top1": true
+      },
+      {
+        "name": "Planet Labs PBC",
+        "performance": 1209.485095,
+        "status": "Breakout",
+        "theme": "Power / grid / Defense / aerospace",
+        "ticker": "PL",
+        "top1": true
+      },
+      {
+        "name": "Celcuity Inc. Common Stock",
+        "performance": 1148.930233,
+        "status": "Ready",
+        "theme": "Biotech / pharma",
+        "ticker": "CELC",
+        "top1": true
+      },
+      {
+        "name": "Aehr Test Systems",
+        "performance": 1144.847112,
+        "status": "Breakout",
+        "theme": "Semiconductors / Power / grid",
+        "ticker": "AEHR",
+        "top1": true
+      }
+    ],
+    "3m": [
+      {
+        "name": "agilon health, inc.",
+        "performance": 765.685279,
+        "status": "Ready",
+        "theme": "SERVICES-MISC HEALTH & ALLIED SERVICES, NEC",
+        "ticker": "AGL",
+        "top1": true
+      },
+      {
+        "name": "MaxLinear, Inc. Common Stock",
+        "performance": 426.684932,
+        "status": "Breakout",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "MXL",
+        "top1": true
+      },
+      {
+        "name": "Bandwidth Inc. Class A Common Stock",
+        "performance": 343.654822,
+        "status": "Breakout",
+        "theme": "AI infrastructure",
+        "ticker": "BAND",
+        "top1": true
+      },
+      {
+        "name": "Navitas Semiconductor Corporation Common Stock",
+        "performance": 284.866828,
+        "status": "Breakout",
+        "theme": "Semiconductors / Power / grid",
+        "ticker": "NVTS",
+        "top1": true
+      },
+      {
+        "name": "AXT Inc",
+        "performance": 277.993158,
+        "status": "Breakout",
+        "theme": "Semiconductors / China / EM consumer",
+        "ticker": "AXTI",
+        "top1": true
+      },
+      {
+        "name": "Wolfspeed, Inc.",
+        "performance": 264.764268,
+        "status": "Developing",
+        "theme": "Semiconductors / Power / grid",
+        "ticker": "WOLF",
+        "top1": true
+      },
+      {
+        "name": "Satellogic Inc. Class A Ordinary Shares",
+        "performance": 232.50774,
+        "status": "Breakout",
+        "theme": "Defense / aerospace / Robotics / automation",
+        "ticker": "SATL",
+        "top1": true
+      },
+      {
+        "name": "Applied Optoelectronics, Inc.",
+        "performance": 215.656655,
+        "status": "Developing",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "AAOI",
+        "top1": true
+      }
+    ],
+    "6m": [
+      {
+        "name": "AXT Inc",
+        "performance": 1303.174603,
+        "status": "Breakout",
+        "theme": "Semiconductors / China / EM consumer",
+        "ticker": "AXTI",
+        "top1": true
+      },
+      {
+        "name": "Applied Optoelectronics, Inc.",
+        "performance": 811.339148,
+        "status": "Developing",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "AAOI",
+        "top1": true
+      },
+      {
+        "name": "Sidus Space, Inc. Class A Common Stock",
+        "performance": 772.993523,
+        "status": "Breakout",
+        "theme": "AI infrastructure / Defense / aerospace",
+        "ticker": "SIDU",
+        "top1": true
+      },
+      {
+        "name": "Satellogic Inc. Class A Ordinary Shares",
+        "performance": 745.669291,
+        "status": "Breakout",
+        "theme": "Defense / aerospace / Robotics / automation",
+        "ticker": "SATL",
+        "top1": true
+      },
+      {
+        "name": "Sandisk Corporation Common Stock",
+        "performance": 711.160441,
+        "status": "Breakout",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "SNDK",
+        "top1": true
+      },
+      {
+        "name": "MaxLinear, Inc. Common Stock",
+        "performance": 636.551724,
+        "status": "Breakout",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "MXL",
+        "top1": true
+      },
+      {
+        "name": "Climb Bio, Inc. Common Stock",
+        "performance": 558.381503,
+        "status": "Ready",
+        "theme": "Biotech / pharma / Energy / oil & gas",
+        "ticker": "CLYM",
+        "top1": true
+      },
+      {
+        "name": "agilon health, inc.",
+        "performance": 552.909648,
+        "status": "Ready",
+        "theme": "SERVICES-MISC HEALTH & ALLIED SERVICES, NEC",
+        "ticker": "AGL",
+        "top1": true
+      }
+    ]
+  },
+  "validation": {
+    "all_adr_ok": true,
+    "all_leaders_count": 33,
+    "all_leaders_have_top1_flag": true,
+    "asof": "2026-05-26",
+    "consolidating_subset_all": true,
+    "duplicate_all_leaders": 0,
+    "duplicate_consolidating": 0,
+    "final_universe_count": 963,
+    "leaders_consolidating_count": 6,
+    "min_adr_pct": 4.0,
+    "new_52w_high_count": 74,
+    "news_status": "nao solicitado",
+    "path": "outputs\2026-05-26\validation_2026-05-26.json",
+    "raw_history_tickers": 14201,
+    "technical_universe_count": 996
+  }
+};
+    </script>
+    <script>
+const DATA = window.RADAR_DATA || {};
+
+const WINDOWS = [
+  { label: "1W", key: "1w", perf: "perf_1w_pct", flag: "top1_1w" },
+  { label: "1M", key: "1m", perf: "perf_1m_pct", flag: "top1_1m" },
+  { label: "3M", key: "3m", perf: "perf_3m_pct", flag: "top1_3m" },
+  { label: "6M", key: "6m", perf: "perf_6m_pct", flag: "top1_6m" },
+  { label: "1Y", key: "1y", perf: "perf_1y_pct", flag: "top1_1y" },
+];
+
+const state = {
+  search: "",
+  status: "All",
+  theme: "All",
+  windows: new Set(),
+  sortKey: "leadership_score",
+  sortDir: "desc",
+  selectedTicker:
+    DATA.breakouts_today?.[0]?.ticker ||
+    DATA.leaders_consolidating?.[0]?.ticker ||
+    DATA.all_leaders?.[0]?.ticker ||
+    null,
+};
+
+const el = {
+  sourceLine: document.querySelector("#sourceLine"),
+  metricLeaders: document.querySelector("#metricLeaders"),
+  metricWindowLine: document.querySelector("#metricWindowLine"),
+  metricConsolidating: document.querySelector("#metricConsolidating"),
+  metricReadyLine: document.querySelector("#metricReadyLine"),
+  metricBreakouts: document.querySelector("#metricBreakouts"),
+  metricBreakoutLine: document.querySelector("#metricBreakoutLine"),
+  metricThemes: document.querySelector("#metricThemes"),
+  metricTopTheme: document.querySelector("#metricTopTheme"),
+  metricAdr: document.querySelector("#metricAdr"),
+  searchInput: document.querySelector("#searchInput"),
+  themeFilter: document.querySelector("#themeFilter"),
+  statusControls: document.querySelector("#statusControls"),
+  windowControls: document.querySelector("#windowControls"),
+  breakoutsBody: document.querySelector("#breakoutsBody"),
+  consolidatingBody: document.querySelector("#consolidatingBody"),
+  leadersBody: document.querySelector("#leadersBody"),
+  breakoutsCount: document.querySelector("#breakoutsCount"),
+  consolidatingCount: document.querySelector("#consolidatingCount"),
+  leadersCount: document.querySelector("#leadersCount"),
+  detailPanel: document.querySelector("#detailPanel"),
+  themeList: document.querySelector("#themeList"),
+  windowLeaders: document.querySelector("#windowLeaders"),
+};
+
+const rowsByTicker = new Map(
+  [
+    ...(DATA.all_leaders || []),
+    ...(DATA.breakouts_today || []),
+    ...(DATA.leaders_consolidating || []),
+  ].map((row) => [
+    String(row.ticker || "").toUpperCase(),
+    row,
+  ]),
+);
+
+const perfMax = Object.fromEntries(
+  WINDOWS.map((windowConfig) => [
+    windowConfig.perf,
+    Math.max(
+      1,
+      ...(DATA.all_leaders || []).map((row) => Math.max(0, Number(row[windowConfig.perf]) || 0)),
+    ),
+  ]),
+);
+
+const themeMap = new Map((DATA.themes || []).map((theme) => [theme.theme, theme]));
+const THEME_PALETTE = [
+  { fg: "#174c6a", bg: "#e2f2f8", border: "#94cadd" },
+  { fg: "#6f3f13", bg: "#f8ebda", border: "#d9ad76" },
+  { fg: "#275c45", bg: "#e0f2e9", border: "#91cbb0" },
+  { fg: "#6b3257", bg: "#f5e5ef", border: "#d8a5c3" },
+  { fg: "#5b4a16", bg: "#f4efd9", border: "#d1c273" },
+  { fg: "#294f8f", bg: "#e5edf9", border: "#9bb8e0" },
+  { fg: "#7a322b", bg: "#f7e4e1", border: "#d99c95" },
+  { fg: "#3f4c25", bg: "#eaf1dc", border: "#b5ca82" },
+  { fg: "#4c3f86", bg: "#ece8f7", border: "#b1a5dc" },
+  { fg: "#1f6570", bg: "#dff2f3", border: "#8cc9cd" },
+  { fg: "#654421", bg: "#f1e8dc", border: "#c8a77e" },
+  { fg: "#354d5d", bg: "#e4edf1", border: "#9db9c6" },
+];
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function formatNumber(value, digits = 2) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) return "--";
+  return Number(value).toLocaleString("en-US", {
+    maximumFractionDigits: digits,
+    minimumFractionDigits: digits,
+  });
+}
+
+function formatPercent(value, digits = 2) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) return "--";
+  const number = Number(value);
+  const precision = Math.abs(number) >= 100 ? 1 : digits;
+  return `${formatNumber(number, precision)}%`;
+}
+
+function formatMoney(value) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) return "--";
+  const number = Number(value);
+  const abs = Math.abs(number);
+  if (abs >= 1e12) return `$${formatNumber(number / 1e12, 2)}T`;
+  if (abs >= 1e9) return `$${formatNumber(number / 1e9, 2)}B`;
+  if (abs >= 1e6) return `$${formatNumber(number / 1e6, 1)}M`;
+  if (abs >= 1e3) return `$${formatNumber(number / 1e3, 1)}K`;
+  return `$${formatNumber(number, 0)}`;
+}
+
+function statusClass(status) {
+  const normalized = String(status || "").toLowerCase();
+  if (normalized === "ready") return "pill-ready";
+  if (normalized === "developing") return "pill-developing";
+  if (normalized === "extended") return "pill-extended";
+  if (normalized === "leader") return "pill-leader";
+  if (normalized === "triggered") return "pill-triggered";
+  if (normalized === "breakout") return "pill-breakout";
+  return "pill-default";
+}
+
+function pill(status) {
+  return `<span class="pill ${statusClass(status)}">${escapeHtml(status || "Unknown")}</span>`;
+}
+
+function signedClass(value) {
+  const number = Number(value);
+  if (Number.isNaN(number)) return "";
+  return number >= 0 ? "positive" : "negative";
+}
+
+function perfCell(row, key) {
+  const value = Number(row[key]);
+  const width =
+    value > 0
+      ? Math.min(100, (Math.log10(value + 1) / Math.log10((perfMax[key] || value) + 1)) * 100)
+      : 0;
+  return `
+    <td class="perf-cell">
+      <span class="num ${signedClass(value)}">${formatPercent(value)}</span>
+      <div class="perf-bar" aria-hidden="true"><span style="width: ${width}%"></span></div>
+    </td>
+  `;
+}
+
+function tickerCell(row) {
+  return `
+    <td>
+      <div class="ticker-cell">
+        <strong>${escapeHtml(row.ticker)}</strong>
+        <span title="${escapeHtml(row.name)}">${escapeHtml(row.name)}</span>
+      </div>
+    </td>
+  `;
+}
+
+function themeContext(themeName) {
+  return themeMap.get(themeName) || {
+    theme: themeName || "Unclassified",
+    count: 0,
+    consolidating_count: 0,
+    breakout_count: 0,
+    tickers: [],
+  };
+}
+
+function hashText(value) {
+  return String(value || "Unclassified")
+    .split("")
+    .reduce((hash, char) => (hash * 31 + char.charCodeAt(0)) >>> 0, 7);
+}
+
+function themeColors(themeName) {
+  return THEME_PALETTE[hashText(themeName) % THEME_PALETTE.length];
+}
+
+function themeStyle(themeName) {
+  const color = themeColors(themeName);
+  return `--theme-fg:${color.fg};--theme-bg:${color.bg};--theme-border:${color.border};`;
+}
+
+function themeCell(row) {
+  const context = themeContext(row.theme);
+  return `
+    <td class="theme-cell" title="${escapeHtml(row.theme)}" style="${themeStyle(row.theme)}">
+      <span class="theme-chip">${escapeHtml(row.theme)}</span>
+      <small>${context.count} leaders no tema</small>
+    </td>
+  `;
+}
+
+function flagStack(row) {
+  const flags = WINDOWS.filter((windowConfig) => row[windowConfig.flag])
+    .map((windowConfig) => `<span class="flag">${windowConfig.label}</span>`)
+    .join("");
+  return flags || '<span class="flag">No top1 flag</span>';
+}
+
+function filterRows(rows) {
+  const query = state.search.trim().toLowerCase();
+  return (rows || []).filter((row) => {
+    const searchable = [
+      row.ticker,
+      row.name,
+      row.theme,
+      row.sector,
+      row.industry,
+      row.country,
+      row.status,
+    ]
+      .join(" ")
+      .toLowerCase();
+    const searchOk = !query || searchable.includes(query);
+    const statusOk = state.status === "All" || row.status === state.status;
+    const themeOk = state.theme === "All" || row.theme === state.theme;
+    const windowsOk =
+      state.windows.size === 0 ||
+      WINDOWS.some((windowConfig) => state.windows.has(windowConfig.key) && row[windowConfig.flag]);
+    return searchOk && statusOk && themeOk && windowsOk;
+  });
+}
+
+function sortRows(rows) {
+  const multiplier = state.sortDir === "asc" ? 1 : -1;
+  return [...rows].sort((a, b) => {
+    const left = a[state.sortKey];
+    const right = b[state.sortKey];
+    const leftNumber = Number(left);
+    const rightNumber = Number(right);
+    if (!Number.isNaN(leftNumber) && !Number.isNaN(rightNumber)) {
+      return (leftNumber - rightNumber) * multiplier;
+    }
+    return String(left ?? "").localeCompare(String(right ?? "")) * multiplier;
+  });
+}
+
+function renderMetrics() {
+  const summary = DATA.summary || {};
+  const topTheme = DATA.themes?.[0];
+  const windowCounts = summary.window_counts || {};
+  const readyCount = summary.status_counts?.Ready || 0;
+  const leaderLine = ["1W", "1M", "3M", "6M", "1Y"]
+    .map((label) => `${label} ${windowCounts[label.toLowerCase()] ?? 0}`)
+    .join(" | ");
+
+  el.sourceLine.textContent = `Dados ${DATA.asof || "--"} | gerado ${formatDateTime(
+    DATA.generated_at,
+  )} | subset valido: ${summary.consolidating_subset_all ? "sim" : "nao"}`;
+  el.metricLeaders.textContent = summary.all_leaders_count ?? "--";
+  el.metricWindowLine.textContent = leaderLine;
+  el.metricConsolidating.textContent = summary.leaders_consolidating_count ?? "--";
+  el.metricReadyLine.textContent = `${readyCount} Ready`;
+  el.metricBreakouts.textContent = summary.breakouts_today_count ?? "--";
+  el.metricBreakoutLine.textContent = breakoutLine();
+  el.metricThemes.textContent = summary.themes_count ?? "--";
+  el.metricTopTheme.textContent = topTheme
+    ? `${topTheme.theme} (${topTheme.count})`
+    : "Sem temas";
+  el.metricAdr.textContent = formatPercent(summary.avg_adr_pct);
+}
+
+function breakoutLine() {
+  const rows = DATA.breakouts_today || [];
+  if (!rows.length) return "Nenhum rompimento";
+  return rows
+    .slice(0, 3)
+    .map((row) => `${row.ticker} Breakout`)
+    .join(" | ");
+}
+
+function formatDateTime(value) {
+  if (!value) return "--";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value);
+  return date.toLocaleString("pt-BR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+function renderFilters() {
+  const statuses = ["All", ...Object.keys(DATA.summary?.status_counts || {}).sort()];
+  el.statusControls.innerHTML = statuses
+    .map(
+      (status) =>
+        `<button type="button" data-status="${escapeHtml(status)}" class="${
+          state.status === status ? "active" : ""
+        }">${escapeHtml(status)}</button>`,
+    )
+    .join("");
+
+  const themes = ["All", ...(DATA.themes || []).map((theme) => theme.theme)];
+  el.themeFilter.innerHTML = themes
+    .map(
+      (theme) =>
+        `<option value="${escapeHtml(theme)}" ${
+          state.theme === theme ? "selected" : ""
+        }>${escapeHtml(theme)}</option>`,
+    )
+    .join("");
+
+  el.windowControls.querySelectorAll("button[data-window]").forEach((button) => {
+    button.classList.toggle("active", state.windows.has(button.dataset.window));
+  });
+}
+
+function renderConsolidatingTable() {
+  const rows = sortRows(filterRows(DATA.leaders_consolidating || []));
+  el.consolidatingCount.textContent = rows.length;
+  if (!rows.length) {
+    el.consolidatingBody.innerHTML =
+      '<tr><td colspan="11"><div class="empty-state">Sem lider em consolidacao para os filtros atuais.</div></td></tr>';
+    return;
+  }
+  el.consolidatingBody.innerHTML = rows
+    .map(
+      (row) => `
+        <tr data-ticker="${escapeHtml(row.ticker)}" class="${
+          state.selectedTicker === row.ticker ? "selected" : ""
+        }">
+          ${tickerCell(row)}
+          ${themeCell(row)}
+          <td>${escapeHtml(row.country || "--")}</td>
+          <td class="num">${escapeHtml(row.market_cap_fmt || formatMoney(row.market_cap))}</td>
+          <td class="num">${formatNumber(row.close, 2)}</td>
+          <td class="num">${formatNumber(row.pivot, 2)}</td>
+          <td class="num ${signedClass(-Number(row.distance_to_pivot_pct || 0))}">${formatPercent(
+            row.distance_to_pivot_pct,
+          )}</td>
+          <td class="num">${formatNumber(row.base_days, 0)}</td>
+          <td class="num">${formatNumber(row.rvol_10d, 2)}</td>
+          <td class="num">${formatNumber(row.consolidation_score, 1)}</td>
+          <td class="num">${formatNumber(row.trigger, 2)}</td>
+        </tr>
+      `,
+    )
+    .join("");
+}
+
+function renderBreakoutsTable() {
+  const rows = sortRows(filterRows(DATA.breakouts_today || []));
+  el.breakoutsCount.textContent = rows.length;
+  if (!rows.length) {
+    el.breakoutsBody.innerHTML =
+      '<tr><td colspan="10"><div class="empty-state">Nenhum leader acionou o trigger para os filtros atuais.</div></td></tr>';
+    return;
+  }
+  el.breakoutsBody.innerHTML = rows
+    .map(
+      (row) => `
+        <tr data-ticker="${escapeHtml(row.ticker)}" class="${
+          state.selectedTicker === row.ticker ? "selected" : ""
+        }">
+          ${tickerCell(row)}
+          <td>${pill(row.status)}</td>
+          ${themeCell(row)}
+          <td>${escapeHtml(row.country || "--")}</td>
+          <td class="num">${escapeHtml(row.market_cap_fmt || formatMoney(row.market_cap))}</td>
+          <td class="num">${formatNumber(row.close, 2)}</td>
+          <td class="num">${formatNumber(row.day_high, 2)}</td>
+          <td class="num">${formatNumber(row.rvol_10d, 2)}</td>
+          <td class="num">${formatNumber(row.trigger, 2)}</td>
+          <td class="num">${formatNumber(row.pivot, 2)}</td>
+        </tr>
+      `,
+    )
+    .join("");
+}
+
+function renderLeadersTable() {
+  const rows = sortRows(filterRows(DATA.all_leaders || []));
+  el.leadersCount.textContent = rows.length;
+  if (!rows.length) {
+    el.leadersBody.innerHTML =
+      '<tr><td colspan="12"><div class="empty-state">Nenhum leader nos filtros atuais.</div></td></tr>';
+    return;
+  }
+  el.leadersBody.innerHTML = rows
+    .map(
+      (row) => `
+        <tr data-ticker="${escapeHtml(row.ticker)}" class="${
+          state.selectedTicker === row.ticker ? "selected" : ""
+        }">
+          ${tickerCell(row)}
+          <td>${pill(row.status)}</td>
+          <td class="theme-cell" title="${escapeHtml(row.theme)}" style="${themeStyle(row.theme)}">
+            <span class="theme-chip">${escapeHtml(row.theme)}</span>
+            <small>${themeContext(row.theme).count} leaders no tema</small>
+            <div class="flag-stack">${flagStack(row)}</div>
+          </td>
+          <td>${escapeHtml(row.country || "--")}</td>
+          <td class="num">${escapeHtml(row.market_cap_fmt || formatMoney(row.market_cap))}</td>
+          <td class="num">${formatNumber(row.leadership_score, 1)}</td>
+          ${perfCell(row, "perf_1w_pct")}
+          ${perfCell(row, "perf_1m_pct")}
+          ${perfCell(row, "perf_3m_pct")}
+          ${perfCell(row, "perf_6m_pct")}
+          ${perfCell(row, "perf_1y_pct")}
+          <td class="num">${formatPercent(row.adr_pct)}</td>
+        </tr>
+      `,
+    )
+    .join("");
+}
+
+function renderDetail() {
+  const row = rowsByTicker.get(String(state.selectedTicker || "").toUpperCase());
+  if (!row) {
+    el.detailPanel.innerHTML = '<div class="empty-state">Sem ticker selecionado.</div>';
+    return;
+  }
+  const context = themeContext(row.theme);
+  const contextTickers = (context.tickers || []).filter(Boolean).slice(0, 12).join(", ");
+
+  el.detailPanel.innerHTML = `
+    <div class="detail-title">
+      <strong>${escapeHtml(row.ticker)} ${pill(row.status)}</strong>
+      <span>${escapeHtml(row.name)}</span>
+      <span>${escapeHtml(row.theme || "Unclassified")}</span>
+    </div>
+    <div class="theme-context-card" style="${themeStyle(row.theme)}">
+      <span>Concentracao do tema</span>
+      <strong>${context.count || 0} leaders</strong>
+      <small>${context.breakout_count || 0} rompidos hoje | ${
+        context.consolidating_count || 0
+      } em consolidacao</small>
+      <em>${escapeHtml(contextTickers || "Sem pares no mesmo tema")}</em>
+    </div>
+    <div class="detail-grid">
+      ${detailStat("Close", formatNumber(row.close, 2))}
+      ${detailStat("High dia", formatNumber(row.day_high, 2))}
+      ${detailStat("Market cap", row.market_cap_fmt || formatMoney(row.market_cap))}
+      ${detailStat("Pais", row.country || "--")}
+      ${detailStat("ADV20", formatMoney(row.adv20_dollar))}
+      ${detailStat("RVOL(10)", formatNumber(row.rvol_10d, 2))}
+      ${detailStat("ADR", formatPercent(row.adr_pct))}
+      ${detailStat("Score", formatNumber(row.leadership_score, 1))}
+      ${detailStat("Excesso SPY/QQQ", formatPercent(row.excess_vs_spy_qqq_avg_pct, 1))}
+      ${detailStat("Pivot", formatNumber(row.pivot, 2))}
+      ${detailStat("Dist. pivot", formatPercent(row.distance_to_pivot_pct))}
+      ${detailStat("Base", `${formatNumber(row.base_days, 0)} dias`)}
+    </div>
+    <div class="flag-stack">${flagStack(row)}</div>
+    <div class="note-line">Trigger ${formatNumber(row.trigger, 2)} | Catalyst: ${escapeHtml(
+      row.catalyst || "nao verificado",
+    )}</div>
+  `;
+}
+
+function detailStat(label, value) {
+  return `<div class="detail-stat"><span>${escapeHtml(label)}</span><strong>${escapeHtml(
+    value,
+  )}</strong></div>`;
+}
+
+function renderThemes() {
+  const maxCount = Math.max(1, ...(DATA.themes || []).map((theme) => theme.count || 0));
+  el.themeList.innerHTML = (DATA.themes || [])
+    .slice(0, 12)
+    .map((theme) => {
+      const width = Math.max(6, ((theme.count || 0) / maxCount) * 100);
+      return `
+        <button type="button" class="theme-row ${
+          state.theme === theme.theme ? "active" : ""
+        }" data-theme="${escapeHtml(theme.theme)}" style="${themeStyle(theme.theme)}">
+          <span class="theme-row-head">
+            <span class="theme-chip">${escapeHtml(theme.theme)}</span>
+            <span>${theme.count}</span>
+          </span>
+          <small>${escapeHtml((theme.tickers || []).join(", "))}</small>
+          <span class="theme-meter" aria-hidden="true"><span style="width:${width}%"></span></span>
+        </button>
+      `;
+    })
+    .join("");
+}
+
+function renderWindowLeaders() {
+  el.windowLeaders.innerHTML = WINDOWS.map((windowConfig) => {
+    const rows = DATA.top_by_window?.[windowConfig.key] || [];
+    return `
+      <div class="window-group">
+        <div class="window-title"><span>${windowConfig.label}</span><span>Top perf</span></div>
+        ${rows
+          .slice(0, 5)
+          .map(
+            (row) => `
+              <div class="window-row" data-ticker="${escapeHtml(row.ticker)}">
+                <strong>${escapeHtml(row.ticker)}</strong>
+                <span class="window-theme" style="${themeStyle(row.theme)}">${escapeHtml(row.theme)}</span>
+                <span class="num positive">${formatPercent(row.performance, 1)}</span>
+              </div>
+            `,
+          )
+          .join("")}
+      </div>
+    `;
+  }).join("");
+}
+
+function renderAll() {
+  renderMetrics();
+  renderFilters();
+  renderBreakoutsTable();
+  renderConsolidatingTable();
+  renderLeadersTable();
+  renderDetail();
+  renderThemes();
+  renderWindowLeaders();
+}
+
+function updateAndRender(callback) {
+  callback();
+  renderAll();
+}
+
+el.searchInput.addEventListener("input", (event) => {
+  updateAndRender(() => {
+    state.search = event.target.value;
+  });
+});
+
+el.themeFilter.addEventListener("change", (event) => {
+  updateAndRender(() => {
+    state.theme = event.target.value;
+  });
+});
+
+el.statusControls.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-status]");
+  if (!button) return;
+  updateAndRender(() => {
+    state.status = button.dataset.status;
+  });
+});
+
+el.windowControls.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-window]");
+  if (!button) return;
+  updateAndRender(() => {
+    if (state.windows.has(button.dataset.window)) {
+      state.windows.delete(button.dataset.window);
+    } else {
+      state.windows.add(button.dataset.window);
+    }
+  });
+});
+
+document.addEventListener("click", (event) => {
+  const sortable = event.target.closest("th[data-sort]");
+  if (sortable) {
+    updateAndRender(() => {
+      const nextKey = sortable.dataset.sort;
+      if (state.sortKey === nextKey) {
+        state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+      } else {
+        state.sortKey = nextKey;
+        state.sortDir = "desc";
+      }
+    });
+    return;
+  }
+
+  const tickerRow = event.target.closest("[data-ticker]");
+  if (tickerRow) {
+    updateAndRender(() => {
+      state.selectedTicker = tickerRow.dataset.ticker;
+    });
+  }
+
+  const themeRow = event.target.closest("[data-theme]");
+  if (themeRow) {
+    updateAndRender(() => {
+      state.theme = themeRow.dataset.theme;
+    });
+  }
+});
+
+renderAll();
+
+    </script>
+  </body>
+</html>
