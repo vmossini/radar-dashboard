@@ -1,34 +1,32 @@
 ﻿ticker,name,theme,status,first_seen,last_seen,days_in_watchlist_30d,consecutive_days,reentry_count,leadership_score
-AXTI,AXT Inc,Semiconductors & AI compute,Breakout,2026-05-18,2026-05-26,2,2,0,91.651767
-WOLF,"Wolfspeed, Inc.",Semiconductors & AI compute,Developing,2026-05-18,2026-05-26,2,2,0,91.56341
-SNDK,Sandisk Corporation Common Stock,Semiconductors & AI compute,Breakout,2026-05-18,2026-05-26,2,2,0,87.194387
-MXL,"MaxLinear, Inc. Common Stock",Semiconductors & AI compute,Breakout,2026-05-18,2026-05-26,2,2,0,86.393971
-AEHR,Aehr Test Systems,Semiconductors & AI compute,Breakout,2026-05-18,2026-05-26,2,2,0,86.253638
-BAND,Bandwidth Inc. Class A Common Stock,Optical & networking,Breakout,2026-05-18,2026-05-26,2,2,0,86.134096
-SATL,Satellogic Inc. Class A Ordinary Shares,Defense & space,Breakout,2026-05-18,2026-05-26,2,2,0,86.009356
-AGL,"agilon health, inc.",Biotech & health,Ready,2026-05-18,2026-05-26,2,2,0,85.752599
-AAOI,"Applied Optoelectronics, Inc.",Semiconductors & AI compute,Developing,2026-05-18,2026-05-26,2,2,0,83.431393
-MRAM,"Everspin Technologies, Inc",Semiconductors & AI compute,Developing,2026-05-18,2026-05-26,2,2,0,83.280665
-FCEL,FuelCell Energy Inc  NEW (DE),Power & electrification,Breakout,2026-05-18,2026-05-26,2,2,0,83.080042
-VPG,"Vishay Precision Group, Inc.",Industrial components,Breakout,2026-05-18,2026-05-26,2,2,0,82.523909
-PL,Planet Labs PBC,Defense & space,Breakout,2026-05-18,2026-05-26,2,2,0,82.331601
-BE,Bloom Energy Corporation,Power & electrification,Developing,2026-05-18,2026-05-26,2,2,0,82.102911
-EVC,Entravision Communication,Media & broadcasting,Developing,2026-05-18,2026-05-26,2,2,0,81.920998
-CLYM,"Climb Bio, Inc. Common Stock",Biotech & health,Ready,2026-05-18,2026-05-26,2,2,0,81.77027
-AEVA,Aeva Technologies Inc. Common Stock,Auto & autonomy,Breakout,2026-05-18,2026-05-26,2,2,0,79.378332
-BW,"Babcock & Wilcox Enterprises, Inc.",Power & electrification,Ready,2026-05-18,2026-05-26,2,2,0,78.698545
-LITE,Lumentum Holdings Inc. Common Stock,Optical & networking,Ready,2026-05-18,2026-05-26,2,2,0,77.373181
-LWLG,"Lightwave Logic, Inc. Common Stock",Semiconductors & AI compute,Developing,2026-05-18,2026-05-26,2,2,0,77.357588
-INOD,Innodata Inc.,Software & data,Ready,2026-05-18,2026-05-26,2,2,0,76.608598
-CELC,Celcuity Inc. Common Stock,Biotech & health,Ready,2026-05-18,2026-05-26,2,2,0,76.053015
-HYMC,Hycroft Mining Holding Corporation Class A Common Stock,Metals & mining,Developing,2026-05-18,2026-05-26,2,2,0,70.039501
-NVTS,Navitas Semiconductor Corporation Common Stock,Semiconductors & AI compute,Breakout,2026-05-26,2026-05-26,1,1,0,87.610187
-SIDU,"Sidus Space, Inc. Class A Common Stock",Defense & space,Breakout,2026-05-26,2026-05-26,1,1,0,87.355509
-RDW,Redwire Corporation Common Stock,Defense & space,Breakout,2026-05-26,2026-05-26,1,1,0,85.81185
-ATOM,Atomera Incorporated Common Stock,Semiconductors & AI compute,Breakout,2026-05-26,2026-05-26,1,1,0,85.515593
-TE,T1 Energy Inc. Common Stock,Industrial components,Breakout,2026-05-26,2026-05-26,1,1,0,82.705821
-ALAB,Astera Labs Inc. Common Stock,Semiconductors & AI compute,Breakout,2026-05-26,2026-05-26,1,1,0,82.139293
-CRDO,Credo Technology Group Holding Ltd Ordinary Shares,Semiconductors & AI compute,Breakout,2026-05-26,2026-05-26,1,1,0,77.959219
-DXYZ,Destiny Tech100 Inc.,Unclassified,Breakout,2026-05-26,2026-05-26,1,1,0,77.484655
-RGTI,Rigetti Computing Inc. Common Stock,Quantum computing,Developing,2026-05-26,2026-05-26,1,1,0,71.73806
-QBTS,D-Wave Quantum Inc. Common Shares,Quantum computing,Developing,2026-05-26,2026-05-26,1,1,0,71.433165
+WOLF,"Wolfspeed, Inc.",Semiconductors & AI compute,Developing,2026-05-18,2026-05-27,3,3,0,90.746082
+AXTI,AXT Inc,Semiconductors & AI compute,Developing,2026-05-18,2026-05-27,3,3,0,90.484848
+SNDK,Sandisk Corporation Common Stock,Semiconductors & AI compute,Breakout,2026-05-18,2026-05-27,3,3,0,86.803553
+AEHR,Aehr Test Systems,Semiconductors & AI compute,Leader,2026-05-18,2026-05-27,3,3,0,86.636364
+BAND,Bandwidth Inc. Class A Common Stock,Optical & networking,Leader,2026-05-18,2026-05-27,3,3,0,86.16092
+EVC,Entravision Communication,Media & broadcasting,Developing,2026-05-18,2026-05-27,3,3,0,85.795193
+MXL,"MaxLinear, Inc. Common Stock",Semiconductors & AI compute,Developing,2026-05-18,2026-05-27,3,3,0,84.15465
+AAOI,"Applied Optoelectronics, Inc.",Semiconductors & AI compute,Developing,2026-05-18,2026-05-27,3,3,0,83.914316
+FCEL,FuelCell Energy Inc  NEW (DE),Power & electrification,Developing,2026-05-18,2026-05-27,3,3,0,82.850575
+VPG,"Vishay Precision Group, Inc.",Industrial components,Breakout,2026-05-18,2026-05-27,3,3,0,82.756531
+PL,Planet Labs PBC,Defense & space,Leader,2026-05-18,2026-05-27,3,3,0,82.573668
+SATL,Satellogic Inc. Class A Ordinary Shares,Defense & space,Developing,2026-05-18,2026-05-27,3,3,0,82.242424
+BE,Bloom Energy Corporation,Power & electrification,Developing,2026-05-18,2026-05-27,3,3,0,81.257053
+AGL,"agilon health, inc.",Biotech & health,Ready,2026-05-18,2026-05-27,3,3,0,80.92581
+MRAM,"Everspin Technologies, Inc",Semiconductors & AI compute,Developing,2026-05-18,2026-05-27,3,3,0,79.491118
+AEVA,Aeva Technologies Inc. Common Stock,Auto & autonomy,Breakout,2026-05-18,2026-05-27,3,3,0,79.457045
+BW,"Babcock & Wilcox Enterprises, Inc.",Power & electrification,Ready,2026-05-18,2026-05-27,3,3,0,78.545455
+INOD,Innodata Inc.,Software & data,Developing,2026-05-18,2026-05-27,3,3,0,76.327928
+LITE,Lumentum Holdings Inc. Common Stock,Optical & networking,Developing,2026-05-18,2026-05-27,3,3,0,75.483804
+CELC,Celcuity Inc. Common Stock,Biotech & health,Ready,2026-05-18,2026-05-27,3,3,0,75.431557
+SIDU,"Sidus Space, Inc. Class A Common Stock",Defense & space,Breakout,2026-05-26,2026-05-27,2,2,0,91.498433
+NVTS,Navitas Semiconductor Corporation Common Stock,Semiconductors & AI compute,Developing,2026-05-26,2026-05-27,2,2,0,87.477534
+RDW,Redwire Corporation Common Stock,Defense & space,Breakout,2026-05-26,2026-05-27,2,2,0,86.171369
+ATOM,Atomera Incorporated Common Stock,Semiconductors & AI compute,Developing,2026-05-26,2026-05-27,2,2,0,85.267503
+TE,T1 Energy Inc. Common Stock,Industrial components,Breakout,2026-05-26,2026-05-27,2,2,0,82.53187
+RGTI,Rigetti Computing Inc. Common Stock,Quantum computing,Developing,2026-05-26,2026-05-27,2,2,0,70.416361
+QBTS,D-Wave Quantum Inc. Common Shares,Quantum computing,Developing,2026-05-26,2026-05-27,2,2,0,70.367865
+SLS,"SELLAS Life Sciences Group, Inc. Common Stock",Biotech & health,Developing,2026-05-18,2026-05-27,2,1,1,81.884013
+ENPH,"Enphase Energy, Inc.",Semiconductors & AI compute,Breakout,2026-05-18,2026-05-27,2,1,1,81.761084
+TNGX,"Tango Therapeutics, Inc.",Biotech & health,Developing,2026-05-18,2026-05-27,2,1,1,73.46186
+OUST,Ouster Inc. Common Stock,Industrial components,Leader,2026-05-27,2026-05-27,1,1,0,82.166144
