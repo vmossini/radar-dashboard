@@ -951,7 +951,7 @@ tbody tr.selected {
           <p class="subhead" id="sourceLine">Carregando snapshot...</p>
         </div>
         <div class="file-actions" aria-label="Arquivos do radar">
-          <button class="refresh-button" id="refreshButton" type="button" title="Buscar snapshot publicado mais recente">
+          <button class="refresh-button" id="refreshButton" type="button" title="Acionar rotina no PC local quando ele estiver acessivel">
             Atualizar dados
           </button>
           <span class="refresh-status" id="refreshStatus" aria-live="polite"></span>
@@ -4342,7 +4342,7 @@ window.RADAR_DATA = {
       "watchlist_change": "included"
     }
   ],
-  "generated_at": "2026-05-26T23:35:43-03:00",
+  "generated_at": "2026-05-26T23:41:23-03:00",
   "leaders_consolidating": [
     {
       "adr_pct": 11.825797,
@@ -5967,8 +5967,7 @@ function updateElapsedLabel(startedAt) {
 
 async function pollUpdateStatus(endpoint = activeUpdateEndpoint) {
   if (!endpoint) {
-    setRefreshUi("Servidor indisponivel; recarregando", false);
-    window.setTimeout(reloadSnapshot, 700);
+    setRefreshUi("Sem acesso remoto ao PC", false);
     return;
   }
   try {
@@ -5991,9 +5990,8 @@ async function pollUpdateStatus(endpoint = activeUpdateEndpoint) {
     setRefreshUi("Falhou", false);
     console.warn("Radar update failed", status.last_message, status.last_log);
   } catch (error) {
-    setRefreshUi("Servidor indisponivel; recarregando", false);
+    setRefreshUi("Sem acesso remoto ao PC", false);
     console.warn("Radar update server unavailable", error);
-    window.setTimeout(reloadSnapshot, 700);
   }
 }
 
@@ -6022,9 +6020,8 @@ async function refreshSnapshot() {
       failures.push({ endpoint, error });
     }
   }
-  setRefreshUi("Servidor indisponivel; recarregando", false);
+  setRefreshUi("Sem acesso remoto ao PC", false);
   console.warn("Radar update server unavailable", failures);
-  window.setTimeout(reloadSnapshot, 700);
 }
 
 function breakoutLine() {
