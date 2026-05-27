@@ -122,7 +122,31 @@ h2 {
   font-weight: 700;
 }
 
-.action-link:hover {
+.refresh-button {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  border: 1px solid #22313f;
+  border-radius: 7px;
+  background: #22313f;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.refresh-button:hover {
+  box-shadow: var(--shadow);
+}
+
+.refresh-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.action-link:hover,
+.refresh-button:hover {
   border-color: var(--border-strong);
   box-shadow: var(--shadow);
 }
@@ -748,6 +772,9 @@ tbody tr.selected {
           <p class="subhead" id="sourceLine">Carregando snapshot...</p>
         </div>
         <div class="file-actions" aria-label="Arquivos do radar">
+          <button class="refresh-button" id="refreshButton" type="button" title="Buscar snapshot publicado mais recente">
+            Atualizar dados
+          </button>
           <a class="action-link" href="../outputs/latest_report.md">Relatorio</a>
           <a class="action-link" href="../outputs/latest_all_leaders.csv">All leaders CSV</a>
           <a class="action-link" href="../outputs/latest_leaders_consolidating.csv">Consolidacao CSV</a>
@@ -4034,7 +4061,7 @@ window.RADAR_DATA = {
       "volume_dry_up_ratio": 1.409842
     }
   ],
-  "generated_at": "2026-05-26T21:44:37-03:00",
+  "generated_at": "2026-05-26T22:23:00-03:00",
   "leaders_consolidating": [
     {
       "adr_pct": 11.825797,
@@ -5244,6 +5271,7 @@ const state = {
 
 const el = {
   sourceLine: document.querySelector("#sourceLine"),
+  refreshButton: document.querySelector("#refreshButton"),
   metricLeaders: document.querySelector("#metricLeaders"),
   metricWindowLine: document.querySelector("#metricWindowLine"),
   metricConsolidating: document.querySelector("#metricConsolidating"),
@@ -5489,6 +5517,16 @@ function renderMetrics() {
     ? `${topTheme.theme} (${topTheme.count})`
     : "Sem temas";
   el.metricAdr.textContent = formatPercent(summary.avg_adr_pct);
+}
+
+function refreshSnapshot() {
+  if (el.refreshButton) {
+    el.refreshButton.disabled = true;
+    el.refreshButton.textContent = "Atualizando...";
+  }
+  const url = new URL(window.location.href);
+  url.searchParams.set("refresh", Date.now().toString());
+  window.location.replace(url.toString());
 }
 
 function breakoutLine() {
@@ -5780,6 +5818,10 @@ el.windowControls.addEventListener("click", (event) => {
     }
   });
 });
+
+if (el.refreshButton) {
+  el.refreshButton.addEventListener("click", refreshSnapshot);
+}
 
 document.addEventListener("click", (event) => {
   const sortable = event.target.closest("th[data-sort]");
