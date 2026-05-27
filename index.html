@@ -4121,7 +4121,7 @@ window.RADAR_DATA = {
       "volume_dry_up_ratio": 1.409842
     }
   ],
-  "generated_at": "2026-05-26T22:44:06-03:00",
+  "generated_at": "2026-05-26T23:07:42-03:00",
   "leaders_consolidating": [
     {
       "adr_pct": 11.825797,
@@ -5104,6 +5104,7 @@ window.RADAR_DATA = {
       }
     ]
   },
+  "update_endpoints": [],
   "validation": {
     "all_adr_ok": true,
     "all_leaders_count": 33,
@@ -5400,8 +5401,11 @@ function renderMetrics() {
   el.metricAdr.textContent = formatPercent(summary.avg_adr_pct);
 }
 
-const UPDATE_SERVER = "http://127.0.0.1:8766";
+const UPDATE_ENDPOINTS = Array.from(
+  new Set([...(DATA.update_endpoints || []), "http://127.0.0.1:8766"].filter(Boolean)),
+).map((endpoint) => String(endpoint).replace(/\/+$/, ""));
 let statusTimer = null;
+let activeUpdateEndpoint = null;
 
 function setRefreshUi(status, busy = false) {
   if (el.refreshButton) {
@@ -5428,9 +5432,14 @@ function updateElapsedLabel(startedAt) {
   return `Rodando ${Math.floor(seconds / 60)}m ${seconds % 60}s`;
 }
 
-async function pollUpdateStatus() {
+async function pollUpdateStatus(endpoint = activeUpdateEndpoint) {
+  if (!endpoint) {
+    setRefreshUi("Servidor indisponivel; recarregando", false);
+    window.setTimeout(reloadSnapshot, 700);
+    return;
+  }
   try {
-    const response = await fetch(`${UPDATE_SERVER}/status`, {
+    const response = await fetch(`${endpoint}/status`, {
       cache: "no-store",
       headers: { "X-Radar-Action": "status" },
     });
@@ -5438,7 +5447,7 @@ async function pollUpdateStatus() {
     const status = await response.json();
     if (status.running) {
       setRefreshUi(updateElapsedLabel(status.last_started_at), true);
-      statusTimer = window.setTimeout(pollUpdateStatus, 5000);
+      statusTimer = window.setTimeout(() => pollUpdateStatus(endpoint), 5000);
       return;
     }
     if (status.last_success) {
@@ -5449,7 +5458,7 @@ async function pollUpdateStatus() {
     setRefreshUi("Falhou", false);
     console.warn("Radar update failed", status.last_message, status.last_log);
   } catch (error) {
-    setRefreshUi("Servidor local offline; recarregando", false);
+    setRefreshUi("Servidor indisponivel; recarregando", false);
     console.warn("Radar update server unavailable", error);
     window.setTimeout(reloadSnapshot, 700);
   }
@@ -5461,21 +5470,28 @@ async function refreshSnapshot() {
     statusTimer = null;
   }
   setRefreshUi("Disparando rotina", true);
-  try {
-    const response = await fetch(`${UPDATE_SERVER}/update`, {
-      method: "POST",
-      cache: "no-store",
-      headers: { "X-Radar-Action": "update" },
-    });
-    if (response.status !== 202 && response.status !== 409) {
-      throw new Error(`update ${response.status}`);
+  const failures = [];
+  for (const endpoint of UPDATE_ENDPOINTS) {
+    try {
+      const response = await fetch(`${endpoint}/update`, {
+        method: "POST",
+        cache: "no-store",
+        headers: { "X-Radar-Action": "update" },
+      });
+      if (response.status !== 202 && response.status !== 409) {
+        throw new Error(`update ${response.status}`);
+      }
+      activeUpdateEndpoint = endpoint;
+      setRefreshUi(endpoint.includes("127.0.0.1") ? "Rodando local" : "Rodando via Tailscale", true);
+      await pollUpdateStatus(endpoint);
+      return;
+    } catch (error) {
+      failures.push({ endpoint, error });
     }
-    await pollUpdateStatus();
-  } catch (error) {
-    setRefreshUi("Servidor local offline; recarregando", false);
-    console.warn("Radar update server unavailable", error);
-    window.setTimeout(reloadSnapshot, 700);
   }
+  setRefreshUi("Servidor indisponivel; recarregando", false);
+  console.warn("Radar update server unavailable", failures);
+  window.setTimeout(reloadSnapshot, 700);
 }
 
 function breakoutLine() {
