@@ -93,20 +93,20 @@ _Mostrando 40 de 51._
 | VICR | Vicor Corp | Power & electrification | Chase Breakout |  | 1 | United States | 11.4B | 345.84 | 1.17 |
 | ENPH | Enphase Energy, Inc. | Semiconductors & AI compute | Chase Breakout |  | 3 | United States | 6.5B | 70.28 | 0.82 |
 | SPIR | Spire Global, Inc. | Defense & space | Chase Breakout |  | 1 | United States | 743.3M | 25.48 | 1.91 |
-| MU | Micron Technology, Inc. | Semiconductors & AI compute | Chase Breakout |  | 1 | United States | 768.6B | 928.41 | 1.46 |
-| SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | Chase Breakout |  | 1 | United States | 197.4B | 1589.94 | 0.91 |
+| MU | Micron Technology, Inc. | Semiconductors & AI compute | Chase Breakout |  | 1 | United States | 768.6B | 928.41 | 1.47 |
+| SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | Chase Breakout |  | 1 | United States | 197.4B | 1589.94 | 0.93 |
 | RKLB | Rocket Lab Corporation Common Stock | Defense & space | Chase Breakout |  | 2 | United States | 75.9B | 150.23 | 1.09 |
 | AEHR | Aehr Test Systems | Semiconductors & AI compute | Chase Breakout |  | 1 | United States | 2.6B | 103.82 | 1.18 |
 | OUST | Ouster Inc. Common Stock | Industrial components | Chase Breakout |  | 2 | United States | 2.7B | 44.23 | 0.80 |
 | BB | BlackBerry Limited | Software & data | Chase Breakout |  | 3 | Canada | 3.7B | 8.67 | 1.57 |
 | ASTS | AST SpaceMobile Inc. Class A Common Stock | Defense & space | Chase Breakout |  | 6 | United States | 46.5B | 129.60 | 1.51 |
-| UCTT | Ultra Clean Holdings, Inc. | Semiconductors & AI compute | New Breakout | 5 |  | United States | 3.5B | 91.58 | 1.41 |
+| UCTT | Ultra Clean Holdings, Inc. | Semiconductors & AI compute | New Breakout | 5 |  | United States | 3.5B | 91.58 | 1.43 |
 | XMTR | Xometry, Inc. Class A Common Stock | SERVICES-BUSINESS SERVICES, NEC | Chase Breakout |  | 1 | United States | 4.6B | 94.56 | 0.55 |
 | UMAC | Unusual Machines Inc. Common Stock | Optical & networking | Chase Breakout |  | 1 | United States | 825.9M | 18.83 | 1.39 |
 | RUM | Rumble Inc. Class A Common Stock | Software & data | Chase Breakout |  | 1 | United States | 3.9B | 9.75 | 1.52 |
-| IREN | IREN Limited Ordinary Shares | EDP Services | New Breakout | 10 |  | Australia | 21.4B | 67.84 | 2.03 |
+| IREN | IREN Limited Ordinary Shares | EDP Services | New Breakout | 10 |  | Australia | 21.4B | 67.84 | 2.04 |
 | ERAS | Erasca, Inc. Common Stock | Biotech & health | New Breakout | 10 |  | United States | 3.2B | 12.47 | 2.10 |
-| ASPI | ASP Isotopes Inc. Common Stock | Major Chemicals | Chase Breakout |  | 1 | United States | 872.5M | 6.67 | 1.42 |
+| ASPI | ASP Isotopes Inc. Common Stock | Major Chemicals | Chase Breakout |  | 1 | United States | 872.5M | 6.67 | 1.43 |
 | AMWD | American Woodmark Corporation Common Stock | Forest Products | New Breakout | 10 |  | United States | 620.2M | 48.09 | 0.86 |
 
 ## Leaders consolidating
