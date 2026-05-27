@@ -161,7 +161,7 @@ h2 {
 
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
   gap: 10px;
   margin-bottom: 12px;
 }
@@ -187,6 +187,161 @@ h2 {
   font-size: 26px;
   line-height: 1.05;
   letter-spacing: 0;
+}
+
+.top-themes-panel {
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.inline-heading {
+  border-bottom: 0;
+  padding-bottom: 4px;
+}
+
+.top-themes-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0 10px 10px;
+}
+
+.top-theme-card {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+  min-height: 86px;
+  padding: 10px;
+  border: 1px solid var(--theme-border, var(--border));
+  border-radius: 7px;
+  background: linear-gradient(180deg, var(--theme-bg, var(--panel-2)), var(--panel));
+  color: var(--text);
+  text-align: left;
+}
+
+.top-theme-card:hover,
+.top-theme-card:focus-visible {
+  border-color: var(--theme-fg, var(--blue));
+  box-shadow: var(--shadow);
+}
+
+.top-theme-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.top-theme-head strong {
+  color: var(--theme-fg, var(--text));
+  font-size: 22px;
+  line-height: 1;
+}
+
+.top-theme-meta,
+.top-theme-card small {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.change-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.change-card {
+  min-height: 86px;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.change-card > span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.change-card strong {
+  display: inline-block;
+  margin: 3px 0 7px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.change-card-added {
+  border-color: #b7d7ca;
+  background: #f2faf6;
+}
+
+.change-card-removed {
+  border-color: #e4c2bd;
+  background: #fff7f5;
+}
+
+.change-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-height: 23px;
+}
+
+.change-chip,
+.change-badge,
+.muted-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 21px;
+  padding: 0 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.change-chip.added,
+.badge-added {
+  border: 1px solid #9ccbb8;
+  background: #dff1ea;
+  color: var(--green);
+}
+
+.change-chip.removed {
+  border: 1px solid #dfa9a2;
+  background: #f6e3e1;
+  color: var(--red);
+}
+
+.change-chip.watch,
+.badge-watch {
+  border: 1px solid #cdbb77;
+  background: #f4efd9;
+  color: #6b5a17;
+}
+
+.change-chip.neutral {
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--muted);
+}
+
+.muted-mini {
+  color: var(--muted);
+  font-weight: 800;
 }
 
 .control-strip {
@@ -380,6 +535,12 @@ tbody tr.selected {
   display: grid;
   gap: 2px;
   min-width: 108px;
+}
+
+.ticker-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .ticker-cell strong {
@@ -726,6 +887,14 @@ tbody tr.selected {
     grid-template-columns: repeat(2, minmax(160px, 1fr));
   }
 
+  .top-themes-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .change-strip {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+
   .control-strip {
     grid-template-columns: 1fr 1fr;
   }
@@ -755,6 +924,8 @@ tbody tr.selected {
   }
 
   .metric-grid,
+  .top-themes-list,
+  .change-strip,
   .control-strip,
   .side-rail {
     grid-template-columns: 1fr;
@@ -811,10 +982,36 @@ tbody tr.selected {
           <strong id="metricThemes">--</strong>
           <span id="metricTopTheme">--</span>
         </div>
-        <div class="metric">
-          <span class="metric-label">ADR medio</span>
-          <strong id="metricAdr">--</strong>
-          <span>Filtro operacional: ADR &gt; 4%</span>
+      </section>
+
+      <section class="top-themes-panel" aria-label="Top 5 temas">
+        <div class="section-heading compact inline-heading">
+          <h2>Top 5 temas</h2>
+          <span class="row-count" id="topThemesCount">--</span>
+        </div>
+        <div id="topThemesPanel" class="top-themes-list"></div>
+      </section>
+
+      <section class="change-strip" aria-label="Mudancas da watchlist">
+        <div class="change-card change-card-added">
+          <span>Incluidos</span>
+          <strong id="watchlistIncludedCount">--</strong>
+          <div id="watchlistIncludedList" class="change-list"></div>
+        </div>
+        <div class="change-card change-card-removed">
+          <span>Excluidos</span>
+          <strong id="watchlistExcludedCount">--</strong>
+          <div id="watchlistExcludedList" class="change-list"></div>
+        </div>
+        <div class="change-card">
+          <span>Entraram em consolidacao</span>
+          <strong id="consolidatingIncludedCount">--</strong>
+          <div id="consolidatingIncludedList" class="change-list"></div>
+        </div>
+        <div class="change-card">
+          <span>Sairam da consolidacao</span>
+          <strong id="consolidatingExcludedCount">--</strong>
+          <div id="consolidatingExcludedList" class="change-list"></div>
         </div>
       </section>
 
@@ -1139,7 +1336,8 @@ window.RADAR_DATA = {
       "trigger": 29.51,
       "type": "CS",
       "volume": 49538107,
-      "volume_dry_up_ratio": 1.070901
+      "volume_dry_up_ratio": 1.070901,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 10.252303,
@@ -1201,7 +1399,8 @@ window.RADAR_DATA = {
       "trigger": 5.23,
       "type": "CS",
       "volume": 59394905,
-      "volume_dry_up_ratio": 1.44764
+      "volume_dry_up_ratio": 1.44764,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 7.282717,
@@ -1573,7 +1772,8 @@ window.RADAR_DATA = {
       "trigger": 17.899999,
       "type": "CS",
       "volume": 98572589,
-      "volume_dry_up_ratio": 1.453499
+      "volume_dry_up_ratio": 1.453499,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 11.825797,
@@ -1584,6 +1784,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 85.269997,
+      "consolidating_change": "included",
       "consolidation_score": 78.286542,
       "country": "United States",
       "day_high": 88.959999,
@@ -1697,7 +1898,8 @@ window.RADAR_DATA = {
       "trigger": 11.49,
       "type": "CS",
       "volume": 3719881,
-      "volume_dry_up_ratio": 0.692851
+      "volume_dry_up_ratio": 0.692851,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 13.638707,
@@ -1945,7 +2147,8 @@ window.RADAR_DATA = {
       "trigger": 9.44,
       "type": "CS",
       "volume": 70636718,
-      "volume_dry_up_ratio": 2.239006
+      "volume_dry_up_ratio": 2.239006,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 6.759119,
@@ -2131,7 +2334,8 @@ window.RADAR_DATA = {
       "trigger": 315.819998,
       "type": "CS",
       "volume": 7928750,
-      "volume_dry_up_ratio": 1.302849
+      "volume_dry_up_ratio": 1.302849,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 8.195035,
@@ -2266,6 +2470,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 11.39,
+      "consolidating_change": "included",
       "consolidation_score": 70.707476,
       "country": "United States",
       "day_high": 11.57,
@@ -2390,6 +2595,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 19.65,
+      "consolidating_change": "included",
       "consolidation_score": 65.051179,
       "country": "United States",
       "day_high": 19.99,
@@ -2503,7 +2709,8 @@ window.RADAR_DATA = {
       "trigger": 218.959997,
       "type": "CS",
       "volume": 9551118,
-      "volume_dry_up_ratio": 1.282145
+      "volume_dry_up_ratio": 1.282145,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 13.956866,
@@ -2565,7 +2772,8 @@ window.RADAR_DATA = {
       "trigger": 71.249998,
       "type": "CS",
       "volume": 13756177,
-      "volume_dry_up_ratio": 1.409842
+      "volume_dry_up_ratio": 1.409842,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 8.905181,
@@ -2576,6 +2784,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 910.809998,
+      "consolidating_change": "included",
       "consolidation_score": 51.624808,
       "country": "United States",
       "day_high": 962.47998,
@@ -2700,6 +2909,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 95.910004,
+      "consolidating_change": "included",
       "consolidation_score": 48.468768,
       "country": "United States",
       "day_high": 100.900002,
@@ -2762,6 +2972,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 134.259995,
+      "consolidating_change": "included",
       "consolidation_score": 62.906935,
       "country": "United States",
       "day_high": 140.850006,
@@ -2875,7 +3086,8 @@ window.RADAR_DATA = {
       "trigger": 27.795,
       "type": "CS",
       "volume": 87885519,
-      "volume_dry_up_ratio": 2.134214
+      "volume_dry_up_ratio": 2.134214,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 8.624807,
@@ -2937,7 +3149,8 @@ window.RADAR_DATA = {
       "trigger": 31.559999,
       "type": "CS",
       "volume": 54202959,
-      "volume_dry_up_ratio": 1.888677
+      "volume_dry_up_ratio": 1.888677,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 9.068656,
@@ -3126,7 +3339,8 @@ window.RADAR_DATA = {
       "trigger": 29.51,
       "type": "CS",
       "volume": 49538107,
-      "volume_dry_up_ratio": 1.070901
+      "volume_dry_up_ratio": 1.070901,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 10.252303,
@@ -3188,7 +3402,8 @@ window.RADAR_DATA = {
       "trigger": 5.23,
       "type": "CS",
       "volume": 59394905,
-      "volume_dry_up_ratio": 1.44764
+      "volume_dry_up_ratio": 1.44764,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 7.282717,
@@ -3560,7 +3775,8 @@ window.RADAR_DATA = {
       "trigger": 17.899999,
       "type": "CS",
       "volume": 98572589,
-      "volume_dry_up_ratio": 1.453499
+      "volume_dry_up_ratio": 1.453499,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 10.28253,
@@ -3622,7 +3838,8 @@ window.RADAR_DATA = {
       "trigger": 11.49,
       "type": "CS",
       "volume": 3719881,
-      "volume_dry_up_ratio": 0.692851
+      "volume_dry_up_ratio": 0.692851,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 13.694351,
@@ -3746,7 +3963,8 @@ window.RADAR_DATA = {
       "trigger": 9.44,
       "type": "CS",
       "volume": 70636718,
-      "volume_dry_up_ratio": 2.239006
+      "volume_dry_up_ratio": 2.239006,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 6.759119,
@@ -3932,7 +4150,8 @@ window.RADAR_DATA = {
       "trigger": 315.819998,
       "type": "CS",
       "volume": 7928750,
-      "volume_dry_up_ratio": 1.302849
+      "volume_dry_up_ratio": 1.302849,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 9.373825,
@@ -4056,7 +4275,8 @@ window.RADAR_DATA = {
       "trigger": 218.959997,
       "type": "CS",
       "volume": 9551118,
-      "volume_dry_up_ratio": 1.282145
+      "volume_dry_up_ratio": 1.282145,
+      "watchlist_change": "included"
     },
     {
       "adr_pct": 13.956866,
@@ -4118,10 +4338,11 @@ window.RADAR_DATA = {
       "trigger": 71.249998,
       "type": "CS",
       "volume": 13756177,
-      "volume_dry_up_ratio": 1.409842
+      "volume_dry_up_ratio": 1.409842,
+      "watchlist_change": "included"
     }
   ],
-  "generated_at": "2026-05-26T23:23:50-03:00",
+  "generated_at": "2026-05-26T23:35:43-03:00",
   "leaders_consolidating": [
     {
       "adr_pct": 11.825797,
@@ -4132,6 +4353,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 85.269997,
+      "consolidating_change": "included",
       "consolidation_score": 78.286542,
       "country": "United States",
       "day_high": 88.959999,
@@ -4194,6 +4416,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 11.39,
+      "consolidating_change": "included",
       "consolidation_score": 70.707476,
       "country": "United States",
       "day_high": 11.57,
@@ -4256,6 +4479,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 19.65,
+      "consolidating_change": "included",
       "consolidation_score": 65.051179,
       "country": "United States",
       "day_high": 19.99,
@@ -4318,6 +4542,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 134.259995,
+      "consolidating_change": "included",
       "consolidation_score": 62.906935,
       "country": "United States",
       "day_high": 140.850006,
@@ -4380,6 +4605,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 910.809998,
+      "consolidating_change": "included",
       "consolidation_score": 51.624808,
       "country": "United States",
       "day_high": 962.47998,
@@ -4442,6 +4668,7 @@ window.RADAR_DATA = {
       "catalyst": "nao verificado",
       "catalyst_date": null,
       "close": 95.910004,
+      "consolidating_change": "included",
       "consolidation_score": 48.468768,
       "country": "United States",
       "day_high": 100.900002,
@@ -5123,6 +5350,237 @@ window.RADAR_DATA = {
     "path": "outputs\2026-05-26\validation_2026-05-26.json",
     "raw_history_tickers": 14201,
     "technical_universe_count": 996
+  },
+  "watchlist_changes": {
+    "all_excluded": [
+      {
+        "leadership_score": 72.997295,
+        "name": "Capricor Therapeutics Inc. Common Stock",
+        "status": "Developing",
+        "theme": "Biotech / pharma",
+        "ticker": "CAPR"
+      },
+      {
+        "leadership_score": 84.956947,
+        "name": "Digi Power X Inc. Subordinate Voting Shares",
+        "status": "Developing",
+        "theme": "AI infrastructure / Power / grid",
+        "ticker": "DGXX"
+      },
+      {
+        "leadership_score": 69.514001,
+        "name": "Enphase Energy, Inc.",
+        "status": "Developing",
+        "theme": "Semiconductors",
+        "ticker": "ENPH"
+      },
+      {
+        "leadership_score": 72.845401,
+        "name": "Erasca, Inc. Common Stock",
+        "status": "Developing",
+        "theme": "Biotech / pharma / Energy / oil & gas",
+        "ticker": "ERAS"
+      },
+      {
+        "leadership_score": 76.089041,
+        "name": "Ichor Holdings",
+        "status": "Developing",
+        "theme": "Semiconductors / Defense / aerospace",
+        "ticker": "ICHR"
+      },
+      {
+        "leadership_score": 73.589041,
+        "name": "Kodiak Sciences Inc Common Stock",
+        "status": "Developing",
+        "theme": "BIOLOGICAL PRODUCTS, (NO DIAGNOSTIC SUBSTANCES)",
+        "ticker": "KOD"
+      },
+      {
+        "leadership_score": 73.286384,
+        "name": "PureCycle Technologies Inc. Common stock",
+        "status": "Leader",
+        "theme": "Major Chemicals",
+        "ticker": "PCT"
+      },
+      {
+        "leadership_score": 81.764188,
+        "name": "POET Technologies Inc. Common Shares",
+        "status": "Developing",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "POET"
+      },
+      {
+        "leadership_score": 62.463796,
+        "name": "SailPoint Inc. Common Stock",
+        "status": "Extended",
+        "theme": "AI infrastructure",
+        "ticker": "SAIL"
+      },
+      {
+        "leadership_score": 76.265601,
+        "name": "SolarEdge Technologies, Inc.",
+        "status": "Developing",
+        "theme": "AI infrastructure / Semiconductors",
+        "ticker": "SEDG"
+      },
+      {
+        "leadership_score": 67.813457,
+        "name": "Sweetgreen Inc. Class A Common Stock",
+        "status": "Extended",
+        "theme": "Restaurants",
+        "ticker": "SG"
+      },
+      {
+        "leadership_score": 62.297456,
+        "name": "SI-BONE Inc. Common Stock",
+        "status": "Leader",
+        "theme": "Medical/Dental Instruments",
+        "ticker": "SIBN"
+      },
+      {
+        "leadership_score": 87.143836,
+        "name": "SELLAS Life Sciences Group, Inc. Common Stock",
+        "status": "Developing",
+        "theme": "Biotech / pharma",
+        "ticker": "SLS"
+      },
+      {
+        "leadership_score": 74.322896,
+        "name": "Tango Therapeutics, Inc.",
+        "status": "Developing",
+        "theme": "Biotech / pharma / Energy / oil & gas",
+        "ticker": "TNGX"
+      },
+      {
+        "leadership_score": 76.114528,
+        "name": "Vestis Corporation",
+        "status": "Leader",
+        "theme": "WHOLESALE-MISCELLANEOUS NONDURABLE GOODS",
+        "ticker": "VSTS"
+      }
+    ],
+    "all_excluded_count": 15,
+    "all_included": [
+      {
+        "leadership_score": 82.139293,
+        "name": "Astera Labs Inc. Common Stock",
+        "status": "Breakout",
+        "theme": "Semiconductors & AI compute",
+        "ticker": "ALAB"
+      },
+      {
+        "leadership_score": 85.515593,
+        "name": "Atomera Incorporated Common Stock",
+        "status": "Breakout",
+        "theme": "Semiconductors & AI compute",
+        "ticker": "ATOM"
+      },
+      {
+        "leadership_score": 77.959219,
+        "name": "Credo Technology Group Holding Ltd Ordinary Shares",
+        "status": "Breakout",
+        "theme": "Semiconductors & AI compute",
+        "ticker": "CRDO"
+      },
+      {
+        "leadership_score": 77.484655,
+        "name": "Destiny Tech100 Inc.",
+        "status": "Breakout",
+        "theme": "Unclassified",
+        "ticker": "DXYZ"
+      },
+      {
+        "leadership_score": 87.610187,
+        "name": "Navitas Semiconductor Corporation Common Stock",
+        "status": "Breakout",
+        "theme": "Semiconductors & AI compute",
+        "ticker": "NVTS"
+      },
+      {
+        "leadership_score": 71.433165,
+        "name": "D-Wave Quantum Inc. Common Shares",
+        "status": "Developing",
+        "theme": "Quantum computing",
+        "ticker": "QBTS"
+      },
+      {
+        "leadership_score": 85.81185,
+        "name": "Redwire Corporation Common Stock",
+        "status": "Breakout",
+        "theme": "Defense & space",
+        "ticker": "RDW"
+      },
+      {
+        "leadership_score": 71.73806,
+        "name": "Rigetti Computing Inc. Common Stock",
+        "status": "Developing",
+        "theme": "Quantum computing",
+        "ticker": "RGTI"
+      },
+      {
+        "leadership_score": 87.355509,
+        "name": "Sidus Space, Inc. Class A Common Stock",
+        "status": "Breakout",
+        "theme": "Defense & space",
+        "ticker": "SIDU"
+      },
+      {
+        "leadership_score": 82.705821,
+        "name": "T1 Energy Inc. Common Stock",
+        "status": "Breakout",
+        "theme": "Industrial components",
+        "ticker": "TE"
+      }
+    ],
+    "all_included_count": 10,
+    "consolidating_excluded": [],
+    "consolidating_excluded_count": 0,
+    "consolidating_included": [
+      {
+        "leadership_score": 85.752599,
+        "name": "agilon health, inc.",
+        "status": "Ready",
+        "theme": "Biotech & health",
+        "ticker": "AGL"
+      },
+      {
+        "leadership_score": 78.698545,
+        "name": "Babcock & Wilcox Enterprises, Inc.",
+        "status": "Ready",
+        "theme": "Power & electrification",
+        "ticker": "BW"
+      },
+      {
+        "leadership_score": 76.053015,
+        "name": "Celcuity Inc. Common Stock",
+        "status": "Ready",
+        "theme": "Biotech & health",
+        "ticker": "CELC"
+      },
+      {
+        "leadership_score": 81.77027,
+        "name": "Climb Bio, Inc. Common Stock",
+        "status": "Ready",
+        "theme": "Biotech & health",
+        "ticker": "CLYM"
+      },
+      {
+        "leadership_score": 76.608598,
+        "name": "Innodata Inc.",
+        "status": "Ready",
+        "theme": "Software & data",
+        "ticker": "INOD"
+      },
+      {
+        "leadership_score": 77.373181,
+        "name": "Lumentum Holdings Inc. Common Stock",
+        "status": "Ready",
+        "theme": "Optical & networking",
+        "ticker": "LITE"
+      }
+    ],
+    "consolidating_included_count": 6,
+    "previous_asof": "2026-05-18"
   }
 };
     </script>
@@ -5163,7 +5621,16 @@ const el = {
   metricBreakoutLine: document.querySelector("#metricBreakoutLine"),
   metricThemes: document.querySelector("#metricThemes"),
   metricTopTheme: document.querySelector("#metricTopTheme"),
-  metricAdr: document.querySelector("#metricAdr"),
+  topThemesCount: document.querySelector("#topThemesCount"),
+  topThemesPanel: document.querySelector("#topThemesPanel"),
+  watchlistIncludedCount: document.querySelector("#watchlistIncludedCount"),
+  watchlistExcludedCount: document.querySelector("#watchlistExcludedCount"),
+  consolidatingIncludedCount: document.querySelector("#consolidatingIncludedCount"),
+  consolidatingExcludedCount: document.querySelector("#consolidatingExcludedCount"),
+  watchlistIncludedList: document.querySelector("#watchlistIncludedList"),
+  watchlistExcludedList: document.querySelector("#watchlistExcludedList"),
+  consolidatingIncludedList: document.querySelector("#consolidatingIncludedList"),
+  consolidatingExcludedList: document.querySelector("#consolidatingExcludedList"),
   searchInput: document.querySelector("#searchInput"),
   themeFilter: document.querySelector("#themeFilter"),
   statusControls: document.querySelector("#statusControls"),
@@ -5287,10 +5754,21 @@ function perfCell(row, key) {
 }
 
 function tickerCell(row) {
+  const badges = [
+    row.watchlist_change === "included"
+      ? '<span class="change-badge badge-added">Novo</span>'
+      : "",
+    row.consolidating_change === "included"
+      ? '<span class="change-badge badge-watch">Nova consol.</span>'
+      : "",
+  ].join("");
   return `
     <td>
       <div class="ticker-cell">
-        <strong>${escapeHtml(row.ticker)}</strong>
+        <div class="ticker-line">
+          <strong>${escapeHtml(row.ticker)}</strong>
+          ${badges}
+        </div>
         <span title="${escapeHtml(row.name)}">${escapeHtml(row.name)}</span>
       </div>
     </td>
@@ -5400,7 +5878,60 @@ function renderMetrics() {
   el.metricTopTheme.textContent = topTheme
     ? `${topTheme.theme} (${topTheme.count})`
     : "Sem temas";
-  el.metricAdr.textContent = formatPercent(summary.avg_adr_pct);
+}
+
+function topThemeCard(theme) {
+  const tickers = (theme.tickers || []).filter(Boolean).slice(0, 8).join(", ");
+  const breakoutCount = theme.breakout_count || 0;
+  const consolidatingCount = theme.consolidating_count || 0;
+  return `
+    <button type="button" class="top-theme-card" data-theme="${escapeHtml(
+      theme.theme,
+    )}" style="${themeStyle(theme.theme)}">
+      <span class="top-theme-head">
+        <span class="theme-chip">${escapeHtml(theme.theme)}</span>
+        <strong>${theme.count || 0}</strong>
+      </span>
+      <span class="top-theme-meta">${consolidatingCount} perto | ${breakoutCount} rompidos</span>
+      <small>${escapeHtml(tickers || "Sem tickers")}</small>
+    </button>
+  `;
+}
+
+function renderTopThemesPanel() {
+  const topThemes = (DATA.themes || []).slice(0, 5);
+  if (el.topThemesCount) el.topThemesCount.textContent = topThemes.length;
+  if (!el.topThemesPanel) return;
+  el.topThemesPanel.innerHTML = topThemes.length
+    ? topThemes.map(topThemeCard).join("")
+    : '<div class="empty-state">Sem temas.</div>';
+}
+
+function changeTickerList(rows, variant = "added") {
+  const clean = (rows || []).filter((row) => row?.ticker);
+  if (!clean.length) return '<span class="muted-mini">nenhum</span>';
+  return clean
+    .slice(0, 18)
+    .map(
+      (row) => `
+        <span class="change-chip ${variant}" title="${escapeHtml(row.name || row.ticker)}">
+          ${escapeHtml(row.ticker)}
+        </span>
+      `,
+    )
+    .join("");
+}
+
+function renderWatchlistChanges() {
+  const changes = DATA.watchlist_changes || {};
+  el.watchlistIncludedCount.textContent = changes.all_included_count ?? 0;
+  el.watchlistExcludedCount.textContent = changes.all_excluded_count ?? 0;
+  el.consolidatingIncludedCount.textContent = changes.consolidating_included_count ?? 0;
+  el.consolidatingExcludedCount.textContent = changes.consolidating_excluded_count ?? 0;
+  el.watchlistIncludedList.innerHTML = changeTickerList(changes.all_included, "added");
+  el.watchlistExcludedList.innerHTML = changeTickerList(changes.all_excluded, "removed");
+  el.consolidatingIncludedList.innerHTML = changeTickerList(changes.consolidating_included, "watch");
+  el.consolidatingExcludedList.innerHTML = changeTickerList(changes.consolidating_excluded, "neutral");
 }
 
 const UPDATE_ENDPOINTS = Array.from(
@@ -5741,6 +6272,8 @@ function renderWindowLeaders() {
 
 function renderAll() {
   renderMetrics();
+  renderTopThemesPanel();
+  renderWatchlistChanges();
   renderFilters();
   renderBreakoutsTable();
   renderConsolidatingTable();
