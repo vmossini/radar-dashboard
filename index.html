@@ -145,6 +145,14 @@ h2 {
   opacity: 0.72;
 }
 
+.refresh-status {
+  min-width: 86px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+}
+
 .action-link:hover,
 .refresh-button:hover {
   border-color: var(--border-strong);
@@ -775,6 +783,7 @@ tbody tr.selected {
           <button class="refresh-button" id="refreshButton" type="button" title="Buscar snapshot publicado mais recente">
             Atualizar dados
           </button>
+          <span class="refresh-status" id="refreshStatus" aria-live="polite"></span>
           <a class="action-link" href="../outputs/latest_report.md">Relatorio</a>
           <a class="action-link" href="../outputs/latest_all_leaders.csv">All leaders CSV</a>
           <a class="action-link" href="../outputs/latest_leaders_consolidating.csv">Consolidacao CSV</a>
@@ -4061,7 +4070,7 @@ window.RADAR_DATA = {
       "volume_dry_up_ratio": 1.409842
     }
   ],
-  "generated_at": "2026-05-26T22:23:00-03:00",
+  "generated_at": "2026-05-26T22:27:06-03:00",
   "leaders_consolidating": [
     {
       "adr_pct": 11.825797,
@@ -5272,6 +5281,7 @@ const state = {
 const el = {
   sourceLine: document.querySelector("#sourceLine"),
   refreshButton: document.querySelector("#refreshButton"),
+  refreshStatus: document.querySelector("#refreshStatus"),
   metricLeaders: document.querySelector("#metricLeaders"),
   metricWindowLine: document.querySelector("#metricWindowLine"),
   metricConsolidating: document.querySelector("#metricConsolidating"),
@@ -5519,14 +5529,82 @@ function renderMetrics() {
   el.metricAdr.textContent = formatPercent(summary.avg_adr_pct);
 }
 
-function refreshSnapshot() {
+const UPDATE_SERVER = "http://127.0.0.1:8766";
+let statusTimer = null;
+
+function setRefreshUi(status, busy = false) {
   if (el.refreshButton) {
-    el.refreshButton.disabled = true;
-    el.refreshButton.textContent = "Atualizando...";
+    el.refreshButton.disabled = busy;
+    el.refreshButton.textContent = busy ? "Atualizando..." : "Atualizar dados";
   }
+  if (el.refreshStatus) {
+    el.refreshStatus.textContent = status || "";
+  }
+}
+
+function reloadSnapshot() {
   const url = new URL(window.location.href);
   url.searchParams.set("refresh", Date.now().toString());
   window.location.replace(url.toString());
+}
+
+function updateElapsedLabel(startedAt) {
+  if (!startedAt) return "Rodando";
+  const started = new Date(startedAt);
+  if (Number.isNaN(started.getTime())) return "Rodando";
+  const seconds = Math.max(0, Math.round((Date.now() - started.getTime()) / 1000));
+  if (seconds < 60) return `Rodando ${seconds}s`;
+  return `Rodando ${Math.floor(seconds / 60)}m ${seconds % 60}s`;
+}
+
+async function pollUpdateStatus() {
+  try {
+    const response = await fetch(`${UPDATE_SERVER}/status`, {
+      cache: "no-store",
+      headers: { "X-Radar-Action": "status" },
+    });
+    if (!response.ok) throw new Error(`status ${response.status}`);
+    const status = await response.json();
+    if (status.running) {
+      setRefreshUi(updateElapsedLabel(status.last_started_at), true);
+      statusTimer = window.setTimeout(pollUpdateStatus, 5000);
+      return;
+    }
+    if (status.last_success) {
+      setRefreshUi("Publicado", false);
+      window.setTimeout(reloadSnapshot, 1000);
+      return;
+    }
+    setRefreshUi("Falhou", false);
+    console.warn("Radar update failed", status.last_message, status.last_log);
+  } catch (error) {
+    setRefreshUi("Servidor local offline; recarregando", false);
+    console.warn("Radar update server unavailable", error);
+    window.setTimeout(reloadSnapshot, 700);
+  }
+}
+
+async function refreshSnapshot() {
+  if (statusTimer) {
+    window.clearTimeout(statusTimer);
+    statusTimer = null;
+  }
+  setRefreshUi("Disparando rotina", true);
+  try {
+    const response = await fetch(`${UPDATE_SERVER}/update`, {
+      method: "POST",
+      cache: "no-store",
+      headers: { "X-Radar-Action": "update" },
+    });
+    if (response.status !== 202 && response.status !== 409) {
+      throw new Error(`update ${response.status}`);
+    }
+    await pollUpdateStatus();
+  } catch (error) {
+    setRefreshUi("Servidor local offline; recarregando", false);
+    console.warn("Radar update server unavailable", error);
+    window.setTimeout(reloadSnapshot, 700);
+  }
 }
 
 function breakoutLine() {
