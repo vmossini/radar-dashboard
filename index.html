@@ -526,8 +526,7 @@ tbody tr {
   background: var(--panel);
 }
 
-tbody tr:hover,
-tbody tr.selected {
+tbody tr:hover {
   background: #eef7f4;
 }
 
@@ -689,92 +688,6 @@ tbody tr.selected {
   font-weight: 900;
 }
 
-.detail-panel {
-  display: grid;
-  gap: 10px;
-  padding: 12px;
-}
-
-.detail-title {
-  display: grid;
-  gap: 4px;
-}
-
-.detail-title strong {
-  font-size: 18px;
-}
-
-.detail-title span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.detail-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.theme-context-card {
-  display: grid;
-  gap: 3px;
-  padding: 10px;
-  border: 1px solid var(--theme-border, #c7d9d4);
-  border-radius: 7px;
-  background: var(--theme-bg, #eef7f4);
-}
-
-.theme-context-card span {
-  color: var(--theme-fg, var(--cyan));
-  font-size: 11px;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.theme-context-card strong {
-  color: var(--theme-fg, var(--text));
-  font-size: 19px;
-  line-height: 1.15;
-}
-
-.theme-context-card small,
-.theme-context-card em {
-  color: var(--muted);
-  font-size: 12px;
-  font-style: normal;
-}
-
-.detail-stat {
-  min-height: 58px;
-  padding: 9px;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  background: var(--panel-2);
-}
-
-.detail-stat span {
-  display: block;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.detail-stat strong {
-  display: block;
-  margin-top: 3px;
-  font-size: 15px;
-  font-variant-numeric: tabular-nums;
-}
-
-.note-line {
-  padding: 9px;
-  border-left: 3px solid var(--blue);
-  background: #f3f7fb;
-  color: #334250;
-  font-size: 12px;
-}
-
 .theme-list {
   display: grid;
   gap: 6px;
@@ -904,7 +817,7 @@ tbody tr.selected {
   }
 
   .side-rail {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1129,14 +1042,7 @@ tbody tr.selected {
           </div>
         </div>
 
-        <aside class="side-rail" aria-label="Rankings e detalhes">
-          <section class="rail-panel">
-            <div class="section-heading compact">
-              <h2>Detalhe</h2>
-            </div>
-            <div id="detailPanel" class="detail-panel"></div>
-          </section>
-
+        <aside class="side-rail" aria-label="Rankings">
           <section class="rail-panel">
             <div class="section-heading compact">
               <h2>Temas fortes</h2>
@@ -4601,7 +4507,7 @@ window.RADAR_DATA = {
       "watchlist_change": "included"
     }
   ],
-  "generated_at": "2026-05-27T00:21:15-03:00",
+  "generated_at": "2026-05-27T00:30:37-03:00",
   "leaders_consolidating": [
     {
       "adr_pct": 11.825797,
@@ -6259,11 +6165,6 @@ const state = {
   windows: new Set(),
   sortKey: "leadership_score",
   sortDir: "desc",
-  selectedTicker:
-    DATA.breakouts_today?.[0]?.ticker ||
-    DATA.leaders_consolidating?.[0]?.ticker ||
-    DATA.all_leaders?.[0]?.ticker ||
-    null,
 };
 
 const el = {
@@ -6298,21 +6199,9 @@ const el = {
   breakoutsCount: document.querySelector("#breakoutsCount"),
   consolidatingCount: document.querySelector("#consolidatingCount"),
   leadersCount: document.querySelector("#leadersCount"),
-  detailPanel: document.querySelector("#detailPanel"),
   themeList: document.querySelector("#themeList"),
   windowLeaders: document.querySelector("#windowLeaders"),
 };
-
-const rowsByTicker = new Map(
-  [
-    ...(DATA.all_leaders || []),
-    ...(DATA.breakouts_today || []),
-    ...(DATA.leaders_consolidating || []),
-  ].map((row) => [
-    String(row.ticker || "").toUpperCase(),
-    row,
-  ]),
-);
 
 const perfMax = Object.fromEntries(
   WINDOWS.map((windowConfig) => [
@@ -6740,9 +6629,7 @@ function renderConsolidatingTable() {
   el.consolidatingBody.innerHTML = rows
     .map(
       (row) => `
-        <tr data-ticker="${escapeHtml(row.ticker)}" class="${
-          state.selectedTicker === row.ticker ? "selected" : ""
-        }">
+        <tr data-ticker="${escapeHtml(row.ticker)}">
           ${tickerCell(row)}
           ${themeCell(row)}
           <td>${escapeHtml(row.country || "--")}</td>
@@ -6773,9 +6660,7 @@ function renderBreakoutsTable() {
   el.breakoutsBody.innerHTML = rows
     .map(
       (row) => `
-        <tr data-ticker="${escapeHtml(row.ticker)}" class="${
-          state.selectedTicker === row.ticker ? "selected" : ""
-        }">
+        <tr data-ticker="${escapeHtml(row.ticker)}">
           ${tickerCell(row)}
           <td>${pill(row.status)}</td>
           ${themeCell(row)}
@@ -6803,9 +6688,7 @@ function renderLeadersTable() {
   el.leadersBody.innerHTML = rows
     .map(
       (row) => `
-        <tr data-ticker="${escapeHtml(row.ticker)}" class="${
-          state.selectedTicker === row.ticker ? "selected" : ""
-        }">
+        <tr data-ticker="${escapeHtml(row.ticker)}">
           ${tickerCell(row)}
           <td>${pill(row.status)}</td>
           <td class="theme-cell" title="${escapeHtml(row.theme)}" style="${themeStyle(row.theme)}">
@@ -6829,62 +6712,6 @@ function renderLeadersTable() {
       `,
     )
     .join("");
-}
-
-function renderDetail() {
-  const row = rowsByTicker.get(String(state.selectedTicker || "").toUpperCase());
-  if (!row) {
-    el.detailPanel.innerHTML = '<div class="empty-state">Sem ticker selecionado.</div>';
-    return;
-  }
-  const context = themeContext(row.theme);
-  const contextTickers = (context.tickers || []).filter(Boolean).slice(0, 12).join(", ");
-
-  el.detailPanel.innerHTML = `
-    <div class="detail-title">
-      <strong>${escapeHtml(row.ticker)} ${pill(row.status)}</strong>
-      <span>${escapeHtml(row.name)}</span>
-      <span>${escapeHtml(row.theme || "Unclassified")}</span>
-    </div>
-    <div class="theme-context-card" style="${themeStyle(row.theme)}">
-      <span>Concentracao do tema</span>
-      <strong>${context.count || 0} leaders</strong>
-      <small>${context.breakout_count || 0} rompidos hoje | ${
-        context.consolidating_count || 0
-      } em consolidacao</small>
-      <em>${escapeHtml(contextTickers || "Sem pares no mesmo tema")}</em>
-    </div>
-    <div class="detail-grid">
-      ${detailStat("Close", formatNumber(row.close, 2))}
-      ${detailStat("High dia", formatNumber(row.day_high, 2))}
-      ${detailStat("Market cap", row.market_cap_fmt || formatMoney(row.market_cap))}
-      ${detailStat("Pais", row.country || "--")}
-      ${detailStat("ADV20", formatMoney(row.adv20_dollar))}
-      ${detailStat("RVOL(10)", formatNumber(row.rvol_10d, 2))}
-      ${detailStat("ADR", formatPercent(row.adr_pct))}
-      ${detailStat("Score", formatNumber(row.leadership_score, 1))}
-      ${detailStat("First seen", row.first_seen || "--")}
-      ${detailStat("Last seen", row.last_seen || "--")}
-      ${detailStat("Dias 30d", formatNumber(row.days_in_watchlist_30d, 0))}
-      ${detailStat("Sequencia", formatNumber(row.consecutive_days, 0))}
-      ${detailStat("Reentradas", formatNumber(row.reentry_count, 0))}
-      ${detailStat("Subtemas", row.theme_tags || "--")}
-      ${detailStat("Excesso SPY/QQQ", formatPercent(row.excess_vs_spy_qqq_avg_pct, 1))}
-      ${detailStat("Pivot", formatNumber(row.pivot, 2))}
-      ${detailStat("Dist. pivot", formatPercent(row.distance_to_pivot_pct))}
-      ${detailStat("Base", `${formatNumber(row.base_days, 0)} dias`)}
-    </div>
-    <div class="flag-stack">${flagStack(row)}</div>
-    <div class="note-line">Trigger ${formatNumber(row.trigger, 2)} | Catalyst: ${escapeHtml(
-      row.catalyst || "nao verificado",
-    )}</div>
-  `;
-}
-
-function detailStat(label, value) {
-  return `<div class="detail-stat"><span>${escapeHtml(label)}</span><strong>${escapeHtml(
-    value,
-  )}</strong></div>`;
 }
 
 function renderThemes() {
@@ -6940,7 +6767,6 @@ function renderAll() {
   renderBreakoutsTable();
   renderConsolidatingTable();
   renderLeadersTable();
-  renderDetail();
   renderThemes();
   renderWindowLeaders();
 }
@@ -6999,13 +6825,6 @@ document.addEventListener("click", (event) => {
       }
     });
     return;
-  }
-
-  const tickerRow = event.target.closest("[data-ticker]");
-  if (tickerRow) {
-    updateAndRender(() => {
-      state.selectedTicker = tickerRow.dataset.ticker;
-    });
   }
 
   const themeRow = event.target.closest("[data-theme]");
