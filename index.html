@@ -1128,35 +1128,6 @@ tbody tr:hover {
         </div>
       </section>
 
-      <section class="section-block primary-block">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Lista operacional</p>
-            <h2>Lideres em consolidacao</h2>
-          </div>
-          <span class="row-count" id="consolidatingCount">--</span>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th data-sort="ticker" title="Ticker negociado.">Ticker</th>
-                <th data-sort="theme" title="Tema principal do ticker.">Tema</th>
-                <th data-sort="country" title="Pais da empresa.">Pais</th>
-                <th data-sort="market_cap" title="Valor de mercado atual aproximado.">Valor mercado</th>
-                <th data-sort="close" title="Ultimo preco disponivel no painel.">Close</th>
-                <th data-sort="pivot" title="Maxima de referencia da base usada para medir proximidade do rompimento.">Pivot</th>
-                <th data-sort="distance_to_pivot_pct" title="Distancia percentual ate o pivot. Valores entre 0% e 20% entram como perto de romper.">Dist. pivot</th>
-                <th data-sort="base_days" title="Idade da base medida pela posicao do pivot dentro da janela diaria de referencia.">Base setup</th>
-                <th data-sort="rvol_10d" title="Volume relativo de 10 dias no mesmo ponto do pregao quando intraday; no fechamento, volume do dia versus media dos 10 dias anteriores.">RVOL(10)</th>
-                <th data-sort="leadership_score" title="Posicao do ticker no ranking geral de All leaders, calculada pelo score interno de lideranca. Menor numero = melhor posicao.">Rank</th>
-              </tr>
-            </thead>
-            <tbody id="consolidatingBody"></tbody>
-          </table>
-        </div>
-      </section>
-
       <section class="workbench">
         <div class="section-block">
           <div class="section-heading">
@@ -7818,7 +7789,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-05-27",
   "data_mode": "intraday",
-  "generated_at": "2026-05-28T00:33:05-03:00",
+  "generated_at": "2026-05-28T00:38:23-03:00",
   "intraday_asof": "2026-05-27",
   "intraday_timestamp": "2026-05-27T20:01:51+00:00",
   "leaders_consolidating": [
@@ -10435,7 +10406,6 @@ function renderAll() {
   renderWatchlistChanges();
   renderFilters();
   renderBreakoutsTable();
-  renderConsolidatingTable();
   renderLeadersTable();
   renderThemes();
   renderWindowLeaders();
