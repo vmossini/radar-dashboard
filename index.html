@@ -189,58 +189,6 @@ h2 {
   letter-spacing: 0;
 }
 
-.breakout-type-strip {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(130px, 1fr));
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.breakout-type-card {
-  min-height: 66px;
-  display: grid;
-  gap: 3px;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--panel);
-  color: var(--text);
-  text-align: left;
-}
-
-.breakout-type-card span {
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.breakout-type-card strong {
-  font-size: 26px;
-  line-height: 1;
-}
-
-.breakout-type-card.active,
-.breakout-type-card:hover,
-.breakout-type-card:focus-visible {
-  box-shadow: var(--shadow);
-}
-
-.breakout-type-card.type-ath {
-  border-color: #d6ab45;
-  background: #fff7df;
-}
-
-.breakout-type-card.type-52w {
-  border-color: #79bdb9;
-  background: #e3f5f3;
-}
-
-.breakout-type-card.type-1m {
-  border-color: #94bde5;
-  background: #e7f0fb;
-}
-
 .top-themes-panel {
   margin-bottom: 12px;
   border: 1px solid var(--border);
@@ -1014,10 +962,6 @@ tbody tr:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .breakout-type-strip {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .change-strip {
     grid-template-columns: repeat(2, minmax(180px, 1fr));
   }
@@ -1051,8 +995,7 @@ tbody tr:hover {
   }
 
   .metric-grid,
-  .breakout-type-strip,
-  .top-themes-list,
+    .top-themes-list,
   .change-strip,
   .control-strip,
   .side-rail {
@@ -1112,8 +1055,6 @@ tbody tr:hover {
           <span id="metricTopTheme">--</span>
         </div>
       </section>
-
-      <section class="breakout-type-strip" id="breakoutTypeCards" aria-label="Tipos de rompimento"></section>
 
       <section class="top-themes-panel" aria-label="Top 5 temas">
         <div class="section-heading compact inline-heading">
@@ -7864,7 +7805,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-05-27",
   "data_mode": "intraday",
-  "generated_at": "2026-05-28T00:49:13-03:00",
+  "generated_at": "2026-05-28T00:51:51-03:00",
   "intraday_asof": "2026-05-27",
   "intraday_timestamp": "2026-05-27T20:01:51+00:00",
   "leaders_consolidating": [
@@ -9779,7 +9720,6 @@ const el = {
   metricBreakoutLine: document.querySelector("#metricBreakoutLine"),
   metricThemes: document.querySelector("#metricThemes"),
   metricTopTheme: document.querySelector("#metricTopTheme"),
-  breakoutTypeCards: document.querySelector("#breakoutTypeCards"),
   topThemesCount: document.querySelector("#topThemesCount"),
   topThemesPanel: document.querySelector("#topThemesPanel"),
   watchlistIncludedCount: document.querySelector("#watchlistIncludedCount"),
@@ -10139,23 +10079,6 @@ function renderTopThemesPanel() {
     : '<div class="empty-state">Sem temas.</div>';
 }
 
-function renderBreakoutTypeCards() {
-  if (!el.breakoutTypeCards) return;
-  const counts = DATA.summary?.breakout_type_counts || {};
-  el.breakoutTypeCards.innerHTML = ["ATH", "52W", "1M"]
-    .map((type) => {
-      const active = state.breakoutType === type ? "active" : "";
-      const label = breakoutTypeLabel(type);
-      return `
-        <button type="button" class="breakout-type-card ${breakoutTypeClass(type)} ${active}" data-breakout-type="${type}">
-          <span>${label}</span>
-          <strong>${counts[type] || 0}</strong>
-        </button>
-      `;
-    })
-    .join("");
-}
-
 function changeTickerList(rows, variant = "added") {
   const clean = (rows || []).filter((row) => row?.ticker);
   if (!clean.length) return '<span class="muted-mini">nenhum</span>';
@@ -10480,7 +10403,6 @@ function renderWindowLeaders() {
 
 function renderAll() {
   renderMetrics();
-  renderBreakoutTypeCards();
   renderTopThemesPanel();
   renderWatchlistChanges();
   renderFilters();
@@ -10542,14 +10464,6 @@ if (el.refreshButton) {
 }
 
 document.addEventListener("click", (event) => {
-  const breakoutCard = event.target.closest("#breakoutTypeCards [data-breakout-type]");
-  if (breakoutCard) {
-    updateAndRender(() => {
-      state.breakoutType = breakoutCard.dataset.breakoutType;
-    });
-    return;
-  }
-
   const sortable = event.target.closest("th[data-sort]");
   if (sortable) {
     updateAndRender(() => {
