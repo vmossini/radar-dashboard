@@ -41,37 +41,37 @@ _Mostrando 12 de 15._
 | RDW | Redwire Corporation Common Stock | Defense & space | 99.8 | 72.5 | 157.2 | 178.4 | 352.8 | 84.6 | 8.4 | Chase Breakout |
 | HYLN | Hyliion Holdings Corp. | Power & electrification | 94.8 | 69.7 | 277.2 | 261.5 | 308.2 | 478.3 | 9.9 | Chase Breakout |
 | SIDU | Sidus Space, Inc. Class A Common Stock | Defense & space | 94.6 | 69.0 | 81.6 | 194.0 | 718.4 | 290.1 | 11.3 | Chase Breakout |
-| MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | 91.7 | 6.6 | 95.7 | 442.4 | 643.4 | 773.8 | 11.5 | Developing |
+| MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | 91.7 | 6.6 | 95.7 | 442.4 | 643.4 | 773.8 | 11.5 | Leader |
 | AGL | agilon health, inc. | Biotech & health | 90.7 | 2.3 | 256.4 | 621.8 | 480.8 | 62.6 | 11.8 | New Breakout |
-| RXT | Rackspace Technology, Inc. Common Stock | Defense & space | 89.6 | -1.4 | 201.6 | 243.0 | 338.9 | 317.1 | 26.3 | Developing |
-| FCEL | FuelCell Energy Inc  NEW (DE) | Power & electrification | 89.2 | 36.5 | 121.8 | 175.5 | 279.6 | 332.3 | 14.4 | Developing |
-| NVTS | Navitas Semiconductor Corporation Common Stock | Semiconductors & AI compute | 88.9 | 48.6 | 57.8 | 192.3 | 282.0 | 554.9 | 10.8 | Developing |
+| RXT | Rackspace Technology, Inc. Common Stock | Defense & space | 89.6 | -1.4 | 201.6 | 243.0 | 338.9 | 317.1 | 26.3 | Leader |
+| FCEL | FuelCell Energy Inc  NEW (DE) | Power & electrification | 89.2 | 36.5 | 121.8 | 175.5 | 279.6 | 332.3 | 14.4 | Leader |
+| NVTS | Navitas Semiconductor Corporation Common Stock | Semiconductors & AI compute | 88.9 | 48.6 | 57.8 | 192.3 | 282.0 | 554.9 | 10.8 | Leader |
 | TE | T1 Energy Inc. Common Stock | Industrial components | 88.6 | 59.3 | 106.4 | 51.8 | 302.9 | 943.8 | 9.6 | Chase Breakout |
-| EVC | Entravision Communication | Media & broadcasting | 88.5 | 17.8 | 147.3 | 214.2 | 250.0 | 401.1 | 10.4 | Developing |
-| ATOM | Atomera Incorporated Common Stock | Semiconductors & AI compute | 88.4 | 47.3 | 44.6 | 79.9 | 454.3 | 62.9 | 10.2 | Developing |
+| EVC | Entravision Communication | Media & broadcasting | 88.5 | 17.8 | 147.3 | 214.2 | 250.0 | 401.1 | 10.4 | Leader |
+| ATOM | Atomera Incorporated Common Stock | Semiconductors & AI compute | 88.4 | 47.3 | 44.6 | 79.9 | 454.3 | 62.9 | 10.2 | Leader |
 | OPTX | Syntec Optics Holdings, Inc. Class A Common Stock | Defense & space | 88.3 | 56.2 | 26.8 | 71.0 | 853.6 | 589.0 | 9.7 | Chase Breakout |
 | BLDP | Ballard Power Systems Inc. | Power & electrification | 88.2 | 45.7 | 87.4 | 179.4 | 124.7 | 351.1 | 8.5 | Leader |
-| GCTS | GCT Semiconductor Holding, Inc. | Semiconductors & AI compute | 88.0 | 15.7 | 151.2 | 165.6 | 147.3 | 211.5 | 13.8 | Developing |
-| DMRC | Digimarc Corporation Common Stock | EDP Services | 87.8 | 40.8 | 87.8 | 201.1 | 94.1 | 7.9 | 10.3 | Developing |
-| AXTI | AXT Inc | Semiconductors & AI compute | 87.3 | 8.8 | 75.0 | 199.7 | 1274.8 | 8308.9 | 14.0 | Developing |
-| WOLF | Wolfspeed, Inc. | Semiconductors & AI compute | 86.6 | 7.5 | 113.2 | 209.0 | 268.2 | 4262.8 | 16.2 | Developing |
-| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | 86.0 | 4.2 | 132.8 | 306.2 | 300.7 | 306.8 | 6.8 | Developing |
+| GCTS | GCT Semiconductor Holding, Inc. | Semiconductors & AI compute | 88.0 | 15.7 | 151.2 | 165.6 | 147.3 | 211.5 | 13.8 | Leader |
+| DMRC | Digimarc Corporation Common Stock | EDP Services | 87.8 | 40.8 | 87.8 | 201.1 | 94.1 | 7.9 | 10.3 | Leader |
+| AXTI | AXT Inc | Semiconductors & AI compute | 87.3 | 8.8 | 75.0 | 199.7 | 1274.8 | 8308.9 | 14.0 | Leader |
+| WOLF | Wolfspeed, Inc. | Semiconductors & AI compute | 86.6 | 7.5 | 113.2 | 209.0 | 268.2 | 4262.8 | 16.2 | Leader |
+| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | 86.0 | 4.2 | 132.8 | 306.2 | 300.7 | 306.8 | 6.8 | Leader |
 | ENPH | Enphase Energy, Inc. | Semiconductors & AI compute | 85.6 | 50.3 | 99.4 | 44.9 | 161.0 | 77.3 | 7.7 | Chase Breakout |
-| AAOI | Applied Optoelectronics, Inc. | Semiconductors & AI compute | 85.2 | 5.0 | 23.4 | 209.4 | 773.8 | 905.8 | 13.6 | Developing |
-| SATL | Satellogic Inc. Class A Ordinary Shares | Defense & space | 84.8 | 1.1 | 55.9 | 204.4 | 618.4 | 167.7 | 10.7 | Developing |
+| AAOI | Applied Optoelectronics, Inc. | Semiconductors & AI compute | 85.2 | 5.0 | 23.4 | 209.4 | 773.8 | 905.8 | 13.6 | Leader |
+| SATL | Satellogic Inc. Class A Ordinary Shares | Defense & space | 84.8 | 1.1 | 55.9 | 204.4 | 618.4 | 167.7 | 10.7 | Leader |
 | AIRS | AirSculpt Technologies Inc. Common Stock | Medical/Nursing Services | 84.1 | 11.1 | 120.4 | 200.0 | 47.5 | 27.1 | 8.2 | Leader |
 | VPG | Vishay Precision Group, Inc. | Industrial components | 83.9 | 28.6 | 115.0 | 160.6 | 304.5 | 384.5 | 7.1 | Chase Breakout |
 | AEVA | Aeva Technologies Inc. Common Stock | Auto & autonomy | 83.9 | 54.2 | 82.2 | 114.7 | 198.6 | 82.5 | 9.2 | Chase Breakout |
 | MU | Micron Technology, Inc. | Semiconductors & AI compute | 83.4 | 32.9 | 77.0 | 116.4 | 347.7 | 894.3 | 6.0 | Chase Breakout |
 | SPIR | Spire Global, Inc. | Defense & space | 83.4 | 33.2 | 55.3 | 181.9 | 231.3 | 139.5 | 8.3 | Chase Breakout |
-| LUNR | Intuitive Machines, Inc. Class A Common Stock | Defense & space | 83.3 | 24.3 | 54.0 | 153.9 | 368.0 | 255.7 | 12.0 | Developing |
+| LUNR | Intuitive Machines, Inc. Class A Common Stock | Defense & space | 83.3 | 24.3 | 54.0 | 153.9 | 368.0 | 255.7 | 12.0 | Leader |
 | SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | 82.9 | 14.9 | 48.6 | 151.4 | 693.9 | 4164.9 | 7.4 | Chase Breakout |
-| QUIK | QuickLogic Corp | Semiconductors & AI compute | 82.9 | 25.7 | 43.5 | 174.0 | 289.4 | 347.8 | 8.8 | Developing |
+| QUIK | QuickLogic Corp | Semiconductors & AI compute | 82.9 | 25.7 | 43.5 | 174.0 | 289.4 | 347.8 | 8.8 | Leader |
 | PL | Planet Labs PBC | Defense & space | 82.6 | 21.4 | 42.4 | 105.0 | 352.3 | 1271.7 | 7.7 | Leader |
 | VICR | Vicor Corp | Power & electrification | 82.5 | 42.1 | 28.8 | 75.4 | 309.9 | 729.9 | 7.5 | Chase Breakout |
 | AEHR | Aehr Test Systems | Semiconductors & AI compute | 82.5 | 28.0 | 17.3 | 150.3 | 412.2 | 1073.1 | 10.9 | Chase Breakout |
 | CLYM | Climb Bio, Inc. Common Stock | Biotech & health | 82.4 | 23.9 | 25.9 | 68.7 | 603.5 | 913.6 | 6.4 | Ready |
-| SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | 82.3 | 13.0 | 75.8 | 88.6 | 460.8 | 354.0 | 9.2 | Developing |
+| SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | 82.3 | 13.0 | 75.8 | 88.6 | 460.8 | 354.0 | 9.2 | Leader |
 | OUST | Ouster Inc. Common Stock | Industrial components | 81.2 | 48.8 | 64.3 | 123.4 | 121.9 | 329.8 | 9.6 | Chase Breakout |
 | BB | BlackBerry Limited | Software & data | 80.7 | 39.6 | 63.0 | 153.5 | 107.9 | 130.6 | 6.1 | Chase Breakout |
 | ASTS | AST SpaceMobile Inc. Class A Common Stock | Defense & space | 79.8 | 47.1 | 67.9 | 57.4 | 152.3 | 437.9 | 7.4 | Chase Breakout |
