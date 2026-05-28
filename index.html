@@ -401,7 +401,7 @@ h2 {
   top: 0;
   z-index: 10;
   display: grid;
-  grid-template-columns: minmax(260px, 1.2fr) minmax(220px, 0.9fr) auto auto auto;
+  grid-template-columns: minmax(260px, 1.2fr) minmax(220px, 0.9fr) minmax(260px, auto) minmax(210px, auto) minmax(230px, auto);
   gap: 10px;
   align-items: end;
   margin-bottom: 12px;
@@ -413,14 +413,16 @@ h2 {
 }
 
 .search-box,
-.select-box {
+.select-box,
+.filter-group {
   display: grid;
   gap: 5px;
   min-width: 0;
 }
 
 .search-box span,
-.select-box span {
+.select-box span,
+.filter-group > span {
   color: var(--muted);
   font-size: 11px;
   font-weight: 800;
@@ -451,6 +453,10 @@ select:focus {
   gap: 4px;
   min-height: 36px;
   align-items: center;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #f1f5f3;
 }
 
 .segmented button {
@@ -1089,13 +1095,22 @@ tbody tr:hover {
           <span>Tema</span>
           <select id="themeFilter"></select>
         </label>
-        <div class="segmented" id="statusControls" aria-label="Status"></div>
-        <div class="segmented breakout-types" id="breakoutTypeControls" aria-label="Tipo de rompimento"></div>
-        <div class="segmented windows" id="windowControls" aria-label="Janela top 2%">
-          <button type="button" data-window="1w">1W</button>
-          <button type="button" data-window="1m">1M</button>
-          <button type="button" data-window="3m">3M</button>
-          <button type="button" data-window="6m">6M</button>
+        <div class="filter-group">
+          <span>Status</span>
+          <div class="segmented" id="statusControls" aria-label="Status"></div>
+        </div>
+        <div class="filter-group">
+          <span>Tipo breakout</span>
+          <div class="segmented breakout-types" id="breakoutTypeControls" aria-label="Tipo de rompimento"></div>
+        </div>
+        <div class="filter-group">
+          <span>Janela lideranca</span>
+          <div class="segmented windows" id="windowControls" aria-label="Janela top 2%">
+            <button type="button" data-window="1w">1W</button>
+            <button type="button" data-window="1m">1M</button>
+            <button type="button" data-window="3m">3M</button>
+            <button type="button" data-window="6m">6M</button>
+          </div>
         </div>
       </section>
 
@@ -7789,7 +7804,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-05-27",
   "data_mode": "intraday",
-  "generated_at": "2026-05-28T00:42:52-03:00",
+  "generated_at": "2026-05-28T00:44:07-03:00",
   "intraday_asof": "2026-05-27",
   "intraday_timestamp": "2026-05-27T20:01:51+00:00",
   "leaders_consolidating": [
@@ -10221,7 +10236,7 @@ function renderFilters() {
     "New Breakout",
     "Chase Breakout",
     ...Object.keys(DATA.summary?.status_counts || {}).sort(),
-  ].filter((status, index, list) => list.indexOf(status) === index);
+  ].filter((status, index, list) => status !== "Developing" && list.indexOf(status) === index);
   el.statusControls.innerHTML = statuses
     .map(
       (status) =>
