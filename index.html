@@ -570,6 +570,11 @@ table {
   border-collapse: collapse;
 }
 
+.breakouts-table {
+  min-width: 1240px;
+  table-layout: fixed;
+}
+
 th,
 td {
   padding: 9px 10px;
@@ -712,11 +717,6 @@ tbody tr:hover {
   color: var(--green);
 }
 
-.pill-developing {
-  background: #faebd7;
-  color: var(--amber);
-}
-
 .pill-extended {
   background: #f6e3e1;
   color: var(--red);
@@ -797,6 +797,66 @@ tbody tr:hover {
   background: #f9dfd8;
   color: #9c3328;
   font-weight: 900;
+}
+
+.breakouts-table th:nth-child(1),
+.breakouts-table td:nth-child(1) {
+  width: 275px;
+}
+
+.breakouts-table th:nth-child(2),
+.breakouts-table td:nth-child(2) {
+  width: 190px;
+}
+
+.breakouts-table th:nth-child(3),
+.breakouts-table td:nth-child(3) {
+  width: 78px;
+  text-align: center;
+}
+
+.breakouts-table th:nth-child(4),
+.breakouts-table td:nth-child(4),
+.breakouts-table th:nth-child(5),
+.breakouts-table td:nth-child(5) {
+  width: 72px;
+  text-align: center;
+}
+
+.breakouts-table th:nth-child(6),
+.breakouts-table td:nth-child(6) {
+  width: 300px;
+}
+
+.breakouts-table th:nth-child(7),
+.breakouts-table td:nth-child(7) {
+  width: 130px;
+}
+
+.breakouts-table th:nth-child(8),
+.breakouts-table td:nth-child(8) {
+  width: 130px;
+  text-align: right;
+}
+
+.breakouts-table th:nth-child(9),
+.breakouts-table td:nth-child(9),
+.breakouts-table th:nth-child(10),
+.breakouts-table td:nth-child(10) {
+  width: 95px;
+  text-align: right;
+}
+
+.breakouts-table .rank-cell {
+  text-align: center;
+}
+
+.breakouts-table .theme-cell {
+  max-width: none;
+}
+
+.breakouts-table .breakout-status-pill {
+  width: 132px;
 }
 
 .perf-cell {
@@ -1123,7 +1183,7 @@ tbody tr:hover {
           <span class="row-count" id="breakoutsCount">--</span>
         </div>
         <div class="table-wrap">
-          <table>
+          <table class="breakouts-table">
             <thead>
               <tr>
                 <th data-sort="ticker" title="Ticker negociado.">Ticker</th>
@@ -7804,7 +7864,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-05-27",
   "data_mode": "intraday",
-  "generated_at": "2026-05-28T00:44:07-03:00",
+  "generated_at": "2026-05-28T00:49:13-03:00",
   "intraday_asof": "2026-05-27",
   "intraday_timestamp": "2026-05-27T20:01:51+00:00",
   "leaders_consolidating": [
@@ -9809,7 +9869,6 @@ function formatMoney(value) {
 function statusClass(status) {
   const normalized = String(status || "").toLowerCase();
   if (normalized === "ready") return "pill-ready";
-  if (normalized === "developing") return "pill-developing";
   if (normalized === "extended") return "pill-extended";
   if (normalized === "leader") return "pill-leader";
   if (normalized === "triggered") return "pill-triggered";
@@ -9838,14 +9897,20 @@ function breakoutTypePill(row) {
 function breakoutTypeLabel(type) {
   const normalized = String(type || "1M").toUpperCase();
   if (normalized === "ATH") return "ATH";
+  if (normalized === "ALL") return "ATH";
   if (normalized === "52W") return "52W";
   return "1M";
+}
+
+function isBreakoutStatus(status) {
+  const normalized = String(status || "").toLowerCase();
+  return ["breakout", "new breakout", "chase breakout"].includes(normalized);
 }
 
 function statusPill(row) {
   const status = row.status || "Unknown";
   const type = row.breakout_type;
-  if (!type) return pill(status);
+  if (!type || !isBreakoutStatus(status)) return pill(status);
   return `<span class="pill breakout-status-pill ${statusClass(status)} ${breakoutTypeClass(type)}">${escapeHtml(
     `${status} - ${breakoutTypeLabel(type)}`,
   )}</span>`;
