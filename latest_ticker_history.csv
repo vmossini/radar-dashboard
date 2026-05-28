@@ -1,56 +1,46 @@
 ﻿ticker,name,theme,status,first_seen,last_seen,days_in_watchlist_30d,consecutive_days,reentry_count,leadership_score
-MXL,"MaxLinear, Inc. Common Stock",Semiconductors & AI compute,Leader,2026-05-18,2026-05-27,3,3,0,91.74878
-AGL,"agilon health, inc.",Biotech & health,New Breakout,2026-05-18,2026-05-27,3,3,0,90.743902
-FCEL,FuelCell Energy Inc  NEW (DE),Power & electrification,Leader,2026-05-18,2026-05-27,3,3,0,89.180488
-EVC,Entravision Communication,Media & broadcasting,Leader,2026-05-18,2026-05-27,3,3,0,88.542683
-AXTI,AXT Inc,Semiconductors & AI compute,Leader,2026-05-18,2026-05-27,3,3,0,87.268293
-WOLF,"Wolfspeed, Inc.",Semiconductors & AI compute,Leader,2026-05-18,2026-05-27,3,3,0,86.582927
-BAND,Bandwidth Inc. Class A Common Stock,Optical & networking,Leader,2026-05-18,2026-05-27,3,3,0,86.021951
-AAOI,"Applied Optoelectronics, Inc.",Semiconductors & AI compute,Leader,2026-05-18,2026-05-27,3,3,0,85.180488
-SATL,Satellogic Inc. Class A Ordinary Shares,Defense & space,Leader,2026-05-18,2026-05-27,3,3,0,84.809756
-VPG,"Vishay Precision Group, Inc.",Industrial components,Chase Breakout,2026-05-18,2026-05-27,3,3,0,83.896341
-AEVA,Aeva Technologies Inc. Common Stock,Auto & autonomy,Chase Breakout,2026-05-18,2026-05-27,3,3,0,83.889024
-SNDK,Sandisk Corporation Common Stock,Semiconductors & AI compute,Chase Breakout,2026-05-18,2026-05-27,3,3,0,82.903659
-PL,Planet Labs PBC,Defense & space,Leader,2026-05-18,2026-05-27,3,3,0,82.614634
-AEHR,Aehr Test Systems,Semiconductors & AI compute,Chase Breakout,2026-05-18,2026-05-27,3,3,0,82.462195
-CLYM,"Climb Bio, Inc. Common Stock",Biotech & health,Ready,2026-05-18,2026-05-27,3,3,0,82.363415
-MRAM,"Everspin Technologies, Inc",Semiconductors & AI compute,Leader,2026-05-18,2026-05-27,3,3,0,78.458537
-INOD,Innodata Inc.,Software & data,Leader,2026-05-18,2026-05-27,3,3,0,73.93977
-RDW,Redwire Corporation Common Stock,Defense & space,Chase Breakout,2026-05-26,2026-05-27,2,2,0,99.786585
-SIDU,"Sidus Space, Inc. Class A Common Stock",Defense & space,Chase Breakout,2026-05-26,2026-05-27,2,2,0,94.637805
-NVTS,Navitas Semiconductor Corporation Common Stock,Semiconductors & AI compute,Leader,2026-05-26,2026-05-27,2,2,0,88.895122
-TE,T1 Energy Inc. Common Stock,Industrial components,Chase Breakout,2026-05-26,2026-05-27,2,2,0,88.606098
-ATOM,Atomera Incorporated Common Stock,Semiconductors & AI compute,Leader,2026-05-26,2026-05-27,2,2,0,88.396341
-QBTS,D-Wave Quantum Inc. Common Shares,Quantum computing,Leader,2026-05-26,2026-05-27,2,2,0,73.693991
-RGTI,Rigetti Computing Inc. Common Stock,Quantum computing,Leader,2026-05-26,2026-05-27,2,2,0,71.934079
-ENPH,"Enphase Energy, Inc.",Semiconductors & AI compute,Chase Breakout,2026-05-18,2026-05-27,2,1,1,85.64424
-SLS,"SELLAS Life Sciences Group, Inc. Common Stock",Biotech & health,Leader,2026-05-18,2026-05-27,2,1,1,82.342683
-ICHR,Ichor Holdings,Semiconductors & AI compute,Ready,2026-05-18,2026-05-27,2,1,1,79.136585
-CAPR,Capricor Therapeutics Inc. Common Stock,Biotech & health,Leader,2026-05-18,2026-05-27,2,1,1,72.191162
-ERAS,"Erasca, Inc. Common Stock",Biotech & health,New Breakout,2026-05-18,2026-05-27,2,1,1,69.790798
-HYLN,Hyliion Holdings Corp.,Power & electrification,Chase Breakout,2026-05-27,2026-05-27,1,1,0,94.841463
-RXT,"Rackspace Technology, Inc. Common Stock",Defense & space,Leader,2026-05-27,2026-05-27,1,1,0,89.60122
-OPTX,"Syntec Optics Holdings, Inc. Class A Common Stock",Defense & space,Chase Breakout,2026-05-27,2026-05-27,1,1,0,88.285366
-BLDP,Ballard Power Systems Inc.,Power & electrification,Leader,2026-05-27,2026-05-27,1,1,0,88.218765
-GCTS,"GCT Semiconductor Holding, Inc.",Semiconductors & AI compute,Leader,2026-05-27,2026-05-27,1,1,0,87.995122
-DMRC,Digimarc Corporation Common Stock,EDP Services,Leader,2026-05-27,2026-05-27,1,1,0,87.823905
-AIRS,AirSculpt Technologies Inc. Common Stock,Biotech & health,Leader,2026-05-27,2026-05-27,1,1,0,84.066286
-MU,"Micron Technology, Inc.",Semiconductors & AI compute,Chase Breakout,2026-05-27,2026-05-27,1,1,0,83.42439
-SPIR,"Spire Global, Inc.",Defense & space,Chase Breakout,2026-05-27,2026-05-27,1,1,0,83.390244
-LUNR,"Intuitive Machines, Inc. Class A Common Stock",Defense & space,Leader,2026-05-27,2026-05-27,1,1,0,83.257317
-QUIK,QuickLogic Corp,Semiconductors & AI compute,Leader,2026-05-27,2026-05-27,1,1,0,82.885366
-VICR,Vicor Corp,Power & electrification,Chase Breakout,2026-05-27,2026-05-27,1,1,0,82.508537
-OUST,Ouster Inc. Common Stock,Industrial components,Chase Breakout,2026-05-27,2026-05-27,1,1,0,81.151863
-BB,BlackBerry Limited,Software & data,Chase Breakout,2026-05-27,2026-05-27,1,1,0,80.73017
-ASTS,AST SpaceMobile Inc. Class A Common Stock,Defense & space,Chase Breakout,2026-05-27,2026-05-27,1,1,0,79.760319
-VLN,Valens Semiconductor Ltd.,Semiconductors & AI compute,Ready,2026-05-27,2026-05-27,1,1,0,79.201588
-UCTT,"Ultra Clean Holdings, Inc.",Semiconductors & AI compute,New Breakout,2026-05-27,2026-05-27,1,1,0,78.505487
-KULR,KULR Technology Group Inc. Common Stock,Power & electrification,Chase Breakout,2026-05-27,2026-05-27,1,1,0,78.273472
-VUZI,Vuzix Corporation Common Stock,Optical & networking,Leader,2026-05-27,2026-05-27,1,1,0,77.627882
-XRX,Xerox Holdings Corporation Common Stock,Software & data,Leader,2026-05-27,2026-05-27,1,1,0,76.95828
-XMTR,"Xometry, Inc. Class A Common Stock","SERVICES-BUSINESS SERVICES, NEC",Chase Breakout,2026-05-27,2026-05-27,1,1,0,76.537614
-IREN,IREN Limited Ordinary Shares,EDP Services,New Breakout,2026-05-27,2026-05-27,1,1,0,74.851142
-EDIT,Editas Medicine Inc. Common Stock,Biotech & health,Chase Breakout,2026-05-27,2026-05-27,1,1,0,73.925684
-SVCO,"Silvaco Group, Inc. Common Stock",Semiconductors & AI compute,Leader,2026-05-27,2026-05-27,1,1,0,73.016946
-SPCE,Virgin Galactic Holdings Inc. Common Stock,Transportation Services,Leader,2026-05-27,2026-05-27,1,1,0,72.898024
-CTEV,Claritev Corporation Class A Common Stock,Business Services,Leader,2026-05-27,2026-05-27,1,1,0,63.484769
+AGL,"agilon health, inc.",Biotech & health,Leader,2026-05-18,2026-05-28,4,4,0,93.627075
+AXTI,AXT Inc,Semiconductors & AI compute,Leader,2026-05-18,2026-05-28,4,4,0,88.978289
+EVC,Entravision Communication,Media & broadcasting,Leader,2026-05-18,2026-05-28,4,4,0,88.619093
+WOLF,"Wolfspeed, Inc.",Semiconductors & AI compute,Leader,2026-05-18,2026-05-28,4,4,0,86.979566
+AAOI,"Applied Optoelectronics, Inc.",Semiconductors & AI compute,Leader,2026-05-18,2026-05-28,4,4,0,85.959451
+SATL,Satellogic Inc. Class A Ordinary Shares,Defense & space,Leader,2026-05-18,2026-05-28,4,4,0,85.668902
+BAND,Bandwidth Inc. Class A Common Stock,Optical & networking,Leader,2026-05-18,2026-05-28,4,4,0,85.255428
+MXL,"MaxLinear, Inc. Common Stock",Semiconductors & AI compute,Leader,2026-05-18,2026-05-28,4,4,0,84.818008
+FCEL,FuelCell Energy Inc  NEW (DE),Power & electrification,Leader,2026-05-18,2026-05-28,4,4,0,83.48659
+VPG,"Vishay Precision Group, Inc.",Industrial components,Leader,2026-05-18,2026-05-28,4,4,0,83.303001
+SNDK,Sandisk Corporation Common Stock,Semiconductors & AI compute,Leader,2026-05-18,2026-05-28,4,4,0,83.081098
+AEHR,Aehr Test Systems,Semiconductors & AI compute,Leader,2026-05-18,2026-05-28,4,4,0,82.083333
+MRAM,"Everspin Technologies, Inc",Semiconductors & AI compute,Leader,2026-05-18,2026-05-28,4,4,0,80.124521
+INOD,Innodata Inc.,Software & data,Leader,2026-05-18,2026-05-28,4,4,0,73.093954
+RDW,Redwire Corporation Common Stock,Defense & space,Chase Breakout,2026-05-26,2026-05-28,3,3,0,94.663155
+ATOM,Atomera Incorporated Common Stock,Semiconductors & AI compute,Leader,2026-05-26,2026-05-28,3,3,0,88.285441
+SIDU,"Sidus Space, Inc. Class A Common Stock",Defense & space,Leader,2026-05-26,2026-05-28,3,3,0,83.788314
+NVTS,Navitas Semiconductor Corporation Common Stock,Semiconductors & AI compute,Leader,2026-05-26,2026-05-28,3,3,0,83.461047
+TE,T1 Energy Inc. Common Stock,Industrial components,Leader,2026-05-26,2026-05-28,3,3,0,82.669221
+QBTS,D-Wave Quantum Inc. Common Shares,Quantum computing,Leader,2026-05-26,2026-05-28,3,3,0,73.020629
+RGTI,Rigetti Computing Inc. Common Stock,Quantum computing,Leader,2026-05-26,2026-05-28,3,3,0,70.676325
+ENPH,"Enphase Energy, Inc.",Semiconductors & AI compute,Leader,2026-05-18,2026-05-28,3,2,1,85.217143
+SLS,"SELLAS Life Sciences Group, Inc. Common Stock",Biotech & health,Ready,2026-05-18,2026-05-28,3,2,1,79.559387
+ICHR,Ichor Holdings,Semiconductors & AI compute,Ready,2026-05-18,2026-05-28,3,2,1,76.175176
+CAPR,Capricor Therapeutics Inc. Common Stock,Biotech & health,Ready,2026-05-18,2026-05-28,3,2,1,72.193487
+HYLN,Hyliion Holdings Corp.,Power & electrification,Leader,2026-05-27,2026-05-28,2,2,0,94.776501
+RXT,"Rackspace Technology, Inc. Common Stock",Defense & space,Leader,2026-05-27,2026-05-28,2,2,0,89.455619
+GCTS,"GCT Semiconductor Holding, Inc.",Semiconductors & AI compute,Leader,2026-05-27,2026-05-28,2,2,0,88.389208
+LUNR,"Intuitive Machines, Inc. Class A Common Stock",Defense & space,Leader,2026-05-27,2026-05-28,2,2,0,83.446679
+BLDP,Ballard Power Systems Inc.,Power & electrification,Leader,2026-05-27,2026-05-28,2,2,0,82.780978
+QUIK,QuickLogic Corp,Semiconductors & AI compute,Leader,2026-05-27,2026-05-28,2,2,0,81.218072
+BB,BlackBerry Limited,Software & data,Leader,2026-05-27,2026-05-28,2,2,0,80.548711
+OUST,Ouster Inc. Common Stock,Industrial components,Leader,2026-05-27,2026-05-28,2,2,0,78.699563
+ASTS,AST SpaceMobile Inc. Class A Common Stock,Defense & space,Leader,2026-05-27,2026-05-28,2,2,0,78.394528
+XMTR,"Xometry, Inc. Class A Common Stock","SERVICES-BUSINESS SERVICES, NEC",Chase Breakout,2026-05-27,2026-05-28,2,2,0,76.563395
+SPCE,Virgin Galactic Holdings Inc. Common Stock,Transportation Services,Leader,2026-05-27,2026-05-28,2,2,0,73.07817
+LWLG,"Lightwave Logic, Inc. Common Stock",Semiconductors & AI compute,Leader,2026-05-18,2026-05-28,3,1,1,73.872268
+ALAB,Astera Labs Inc. Common Stock,Semiconductors & AI compute,Chase Breakout,2026-05-26,2026-05-28,2,1,1,81.109516
+UMAC,Unusual Machines Inc. Common Stock,Optical & networking,Chase Breakout,2026-05-28,2026-05-28,1,1,0,84.145913
+DOCN,"DigitalOcean Holdings, Inc.",Software & data,Leader,2026-05-28,2026-05-28,1,1,0,78.149745
+HLIT,Harmonic Inc,Optical & networking,Leader,2026-05-28,2026-05-28,1,1,0,76.70896
+PDYN,Palladyne AI Corp. Common Stock,Software & data,Chase Breakout,2026-05-28,2026-05-28,1,1,0,73.219466
+INDI,indie Semiconductor Inc. Class A Common Stock,Semiconductors & AI compute,Leader,2026-05-28,2026-05-28,1,1,0,72.632649
+RCAT,Red Cat Holdings Inc. Common Stock,Software & data,New Breakout,2026-05-28,2026-05-28,1,1,0,72.147225
+ASPI,ASP Isotopes Inc. Common Stock,Power & electrification,Chase Breakout,2026-05-28,2026-05-28,1,1,0,71.745845
