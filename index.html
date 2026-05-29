@@ -1186,8 +1186,6 @@ tbody tr:hover {
                 <th data-sort="breakout_chase_count" title="Quantidade de candles diarios consecutivos de breakout ate o candle atual, limitada a 10.">Chase</th>
                 <th data-sort="theme" title="Tema principal do ticker.">Tema</th>
                 <th data-sort="country" title="Pais da empresa.">Pais</th>
-                <th data-sort="market_cap" title="Valor de mercado atual aproximado.">Valor mercado</th>
-                <th data-sort="close" title="Ultimo preco disponivel no painel.">Close</th>
                 <th data-sort="rvol_10d" title="Volume relativo de 10 dias no mesmo ponto do pregao quando intraday; no fechamento, volume do dia versus media dos 10 dias anteriores.">RVOL(10)</th>
               </tr>
             </thead>
@@ -1213,7 +1211,6 @@ tbody tr:hover {
                   <th data-sort="status" title="Classificacao atual do ticker no radar.">Status</th>
                   <th data-sort="theme" title="Tema principal do ticker.">Tema</th>
                   <th data-sort="country" title="Pais da empresa.">Pais</th>
-                  <th data-sort="market_cap" title="Valor de mercado atual aproximado.">Valor mercado</th>
                   <th data-sort="leadership_score" title="Posicao na lista geral, calculada pelo score interno de lideranca. Menor numero = melhor posicao.">Rank</th>
                   <th data-sort="days_in_watchlist_30d" title="Quantidade de dias em que o ticker apareceu na lista de lideres nos ultimos 30 dias.">Dias lista</th>
                   <th data-sort="consecutive_days" title="Sequencia atual de dias consecutivos em que o ticker permanece na lista de lideres.">Seq. lista</th>
@@ -7461,7 +7458,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-05-27",
   "data_mode": "intraday",
-  "generated_at": "2026-05-28T18:30:59-03:00",
+  "generated_at": "2026-05-28T22:39:36-03:00",
   "intraday_asof": "2026-05-28",
   "intraday_timestamp": "2026-05-28T20:02:25+00:00",
   "leaders_consolidating": [
@@ -9813,7 +9810,7 @@ function renderConsolidatingTable() {
   el.consolidatingCount.textContent = rows.length;
   if (!rows.length) {
     el.consolidatingBody.innerHTML =
-      '<tr><td colspan="10"><div class="empty-state">Sem lider em consolidacao para os filtros atuais.</div></td></tr>';
+      '<tr><td colspan="8"><div class="empty-state">Sem lider em consolidacao para os filtros atuais.</div></td></tr>';
     return;
   }
   el.consolidatingBody.innerHTML = rows
@@ -9823,8 +9820,6 @@ function renderConsolidatingTable() {
           ${tickerCell(row)}
           ${themeCell(row)}
           <td>${escapeHtml(row.country || "--")}</td>
-          <td class="num">${escapeHtml(row.market_cap_fmt || formatMoney(row.market_cap))}</td>
-          <td class="num">${formatNumber(row.close, 2)}</td>
           <td class="num">${formatNumber(row.pivot, 2)}</td>
           <td class="num ${signedClass(-Number(row.distance_to_pivot_pct || 0))}">${formatPercent(
             row.distance_to_pivot_pct,
@@ -9844,7 +9839,7 @@ function renderBreakoutsTable() {
   el.breakoutsCount.textContent = rows.length;
   if (!rows.length) {
     el.breakoutsBody.innerHTML =
-      '<tr><td colspan="10"><div class="empty-state">Nenhum leader rompeu para os filtros atuais.</div></td></tr>';
+      '<tr><td colspan="8"><div class="empty-state">Nenhum leader rompeu para os filtros atuais.</div></td></tr>';
     return;
   }
   el.breakoutsBody.innerHTML = rows
@@ -9858,8 +9853,6 @@ function renderBreakoutsTable() {
           <td class="num">${formatNumber(row.breakout_chase_count, 0)}</td>
           ${themeCell(row)}
           <td>${escapeHtml(row.country || "--")}</td>
-          <td class="num">${escapeHtml(row.market_cap_fmt || formatMoney(row.market_cap))}</td>
-          <td class="num">${formatNumber(row.close, 2)}</td>
           ${rvolCell(row)}
         </tr>
       `,
@@ -9873,7 +9866,7 @@ function renderLeadersTable() {
   el.leadersCount.textContent = rows.length;
   if (!rows.length) {
     el.leadersBody.innerHTML =
-      '<tr><td colspan="15"><div class="empty-state">Nenhum leader nos filtros atuais.</div></td></tr>';
+      '<tr><td colspan="14"><div class="empty-state">Nenhum leader nos filtros atuais.</div></td></tr>';
     return;
   }
   el.leadersBody.innerHTML = rows
@@ -9888,7 +9881,6 @@ function renderLeadersTable() {
             <div class="flag-stack">${flagStack(row)}</div>
           </td>
           <td>${escapeHtml(row.country || "--")}</td>
-          <td class="num">${escapeHtml(row.market_cap_fmt || formatMoney(row.market_cap))}</td>
           ${rankCell(row, ranks.get(row.ticker), "leadership_score", "Rank geral")}
           <td class="num">${formatNumber(row.days_in_watchlist_30d, 0)}</td>
           <td class="num">${formatNumber(row.consecutive_days, 0)}</td>
