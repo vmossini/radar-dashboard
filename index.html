@@ -8301,7 +8301,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-05-27",
   "data_mode": "intraday",
-  "generated_at": "2026-05-28T22:56:13-03:00",
+  "generated_at": "2026-05-28T22:58:40-03:00",
   "intraday_asof": "2026-05-28",
   "intraday_timestamp": "2026-05-28T20:02:25+00:00",
   "leaders_consolidating": [
@@ -10790,7 +10790,7 @@ function rankDeltaMarkup(row) {
   if (Number.isNaN(delta)) return "";
   if (delta > 0) return `<span class="rank-delta rank-delta-up">+${formatNumber(delta, 0)}</span>`;
   if (delta < 0) return `<span class="rank-delta rank-delta-down">${formatNumber(delta, 0)}</span>`;
-  return '<span class="rank-delta rank-delta-flat">0</span>';
+  return "";
 }
 
 function rankCell(row, rank, scoreKey, label) {
