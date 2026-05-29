@@ -563,17 +563,22 @@ table {
 }
 
 .breakouts-table {
-  min-width: 1240px;
+  min-width: 1120px;
   table-layout: fixed;
 }
 
 th,
 td {
-  padding: 9px 10px;
+  padding: 8px 10px;
   border-bottom: 1px solid var(--border);
   text-align: left;
   vertical-align: middle;
   white-space: nowrap;
+}
+
+.breakouts-table th,
+.breakouts-table td {
+  padding: 6px 10px;
 }
 
 th {
@@ -847,24 +852,24 @@ tbody tr:hover {
 }
 
 .rvol-hot {
-  background: #f9dfd8;
+  background: transparent;
   color: #9c3328;
   font-weight: 900;
 }
 
 .breakouts-table th:nth-child(1),
 .breakouts-table td:nth-child(1) {
-  width: 275px;
+  width: 260px;
 }
 
 .breakouts-table th:nth-child(2),
 .breakouts-table td:nth-child(2) {
-  width: 190px;
+  width: 150px;
 }
 
 .breakouts-table th:nth-child(3),
 .breakouts-table td:nth-child(3) {
-  width: 78px;
+  width: 70px;
   text-align: center;
 }
 
@@ -872,13 +877,13 @@ tbody tr:hover {
 .breakouts-table td:nth-child(4),
 .breakouts-table th:nth-child(5),
 .breakouts-table td:nth-child(5) {
-  width: 72px;
+  width: 64px;
   text-align: center;
 }
 
 .breakouts-table th:nth-child(6),
 .breakouts-table td:nth-child(6) {
-  width: 300px;
+  width: 270px;
 }
 
 .breakouts-table th:nth-child(7),
@@ -888,15 +893,7 @@ tbody tr:hover {
 
 .breakouts-table th:nth-child(8),
 .breakouts-table td:nth-child(8) {
-  width: 130px;
-  text-align: right;
-}
-
-.breakouts-table th:nth-child(9),
-.breakouts-table td:nth-child(9),
-.breakouts-table th:nth-child(10),
-.breakouts-table td:nth-child(10) {
-  width: 95px;
+  width: 80px;
   text-align: right;
 }
 
@@ -904,12 +901,32 @@ tbody tr:hover {
   text-align: center;
 }
 
+.breakouts-table .rank-stack {
+  justify-items: center;
+  gap: 0;
+}
+
+.breakouts-table .rank-delta {
+  display: none;
+}
+
+.breakouts-table .rank-badge {
+  min-width: 38px;
+  height: 24px;
+}
+
+.breakouts-table .pill {
+  height: 22px;
+  padding: 0 7px;
+  font-size: 10.5px;
+}
+
 .breakouts-table .theme-cell {
   max-width: none;
 }
 
 .breakouts-table .breakout-status-pill {
-  width: 132px;
+  width: 126px;
 }
 
 .perf-cell {
@@ -8301,7 +8318,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-05-27",
   "data_mode": "intraday",
-  "generated_at": "2026-05-28T22:58:40-03:00",
+  "generated_at": "2026-05-28T23:04:34-03:00",
   "intraday_asof": "2026-05-28",
   "intraday_timestamp": "2026-05-28T20:02:25+00:00",
   "leaders_consolidating": [
