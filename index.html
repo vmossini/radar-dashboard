@@ -7458,7 +7458,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-05-27",
   "data_mode": "intraday",
-  "generated_at": "2026-05-28T22:39:36-03:00",
+  "generated_at": "2026-05-28T22:42:51-03:00",
   "intraday_asof": "2026-05-28",
   "intraday_timestamp": "2026-05-28T20:02:25+00:00",
   "leaders_consolidating": [
@@ -9527,16 +9527,7 @@ function renderMetrics() {
     .map((label) => `${label} ${windowCounts[label.toLowerCase()] ?? 0}`)
     .join(" | ");
 
-  const sourcePrefix =
-    DATA.data_mode === "intraday"
-      ? `Intraday ${DATA.intraday_asof || DATA.asof || "--"} | preco/volume ${formatDateTime(
-          DATA.intraday_timestamp,
-        )} | base diaria ${DATA.daily_asof || "--"}`
-      : `Dados ${DATA.asof || "--"}`;
-
-  el.sourceLine.textContent = `${sourcePrefix} | gerado ${formatDateTime(
-    DATA.generated_at,
-  )} | subset valido: ${summary.consolidating_subset_all ? "sim" : "nao"}`;
+  el.sourceLine.textContent = `Ultima atualizacao: ${formatDateTime(DATA.generated_at || DATA.intraday_timestamp)}`;
   el.metricLeaders.textContent = summary.all_leaders_count ?? "--";
   el.metricWindowLine.textContent = leaderLine;
   el.metricConsolidating.textContent = summary.leaders_consolidating_count ?? "--";
