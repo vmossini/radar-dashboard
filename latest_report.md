@@ -41,7 +41,7 @@ _Mostrando 12 de 17._
 | RDW | Redwire Corporation Common Stock | Defense & space | 99.7 | 60.1 | 185.7 | 170.9 | 354.2 | 58.6 | 9.3 | Leader |
 | HYLN | Hyliion Holdings Corp. | Power & electrification | 94.8 | 66.4 | 290.5 | 241.0 | 279.9 | 308.8 | 11.1 | Leader |
 | AGL | agilon health, inc. | Biotech & health | 94.1 | 14.5 | 230.9 | 526.4 | 477.6 | 57.1 | 10.0 | Leader |
-| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | 93.5 | 11.0 | 168.5 | 338.4 | 351.8 | 340.8 | 6.1 | New Breakout |
+| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | 93.5 | 11.0 | 168.5 | 338.4 | 351.8 | 340.8 | 6.1 | Breakout |
 | RXT | Rackspace Technology, Inc. Common Stock | Defense & space | 89.3 | 19.4 | 251.7 | 165.1 | 397.1 | 361.6 | 20.7 | Leader |
 | VPG | Vishay Precision Group, Inc. | Industrial components | 88.7 | 20.4 | 122.7 | 172.0 | 272.3 | 380.5 | 8.0 | Leader |
 | BLDP | Ballard Power Systems Inc. | Power & electrification | 88.5 | 32.1 | 102.9 | 184.6 | 134.7 | 359.1 | 8.3 | Leader |
@@ -58,7 +58,7 @@ _Mostrando 12 de 17._
 | AXTI | AXT Inc | Semiconductors & AI compute | 83.1 | -14.8 | 45.2 | 172.2 | 1017.7 | 6598.7 | 16.5 | Leader |
 | WOLF | Wolfspeed, Inc. | Semiconductors & AI compute | 83.0 | -14.7 | 131.3 | 200.6 | 198.5 | 4195.7 | 18.2 | Leader |
 | PL | Planet Labs PBC | Defense & space | 82.7 | 20.4 | 50.1 | 111.8 | 336.0 | 1181.7 | 7.8 | Leader |
-| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | 82.6 | 14.4 | 95.8 | 168.7 | 193.4 | 210.3 | 7.7 | New Breakout |
+| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | 82.6 | 14.4 | 95.8 | 168.7 | 193.4 | 210.3 | 7.7 | Breakout |
 | TE | T1 Energy Inc. Common Stock | Industrial components | 82.5 | 21.1 | 116.0 | 71.4 | 221.0 | 794.9 | 10.5 | Leader |
 | NVTS | Navitas Semiconductor Corporation Common Stock | Semiconductors & AI compute | 82.3 | 9.1 | 71.8 | 195.6 | 231.3 | 331.8 | 11.9 | Leader |
 | BB | BlackBerry Limited | Software & data | 82.1 | 35.3 | 67.3 | 165.5 | 125.0 | 120.0 | 6.2 | Chase Breakout |
@@ -66,13 +66,13 @@ _Mostrando 12 de 17._
 | AEVA | Aeva Technologies Inc. Common Stock | Auto & autonomy | 82.0 | 31.1 | 91.2 | 112.5 | 169.9 | 63.4 | 10.4 | Leader |
 | OSS | One Stop Systems, Inc. Common Stock | ELECTRONIC COMPUTERS | 82.0 | 10.1 | 106.8 | 120.2 | 294.4 | 558.7 | 8.1 | Leader |
 | AMBQ | Ambiq Micro Inc. Common Stock | Semiconductors & AI compute | 81.0 | 4.0 | 129.2 | 159.5 | 239.8 |  | 8.4 | Leader |
-| OUST | Ouster Inc. Common Stock | Industrial components | 80.8 | 31.2 | 80.3 | 143.0 | 111.4 | 285.7 | 9.6 | New Breakout |
+| OUST | Ouster Inc. Common Stock | Industrial components | 80.8 | 31.2 | 80.3 | 143.0 | 111.4 | 285.7 | 9.6 | Breakout |
 | ABSI | Absci Corporation Common Stock | Power & electrification | 80.1 | 32.6 | 43.3 | 146.4 | 119.9 | 146.4 | 8.2 | New Breakout |
 | INOD | Innodata Inc. | Software & data | 80.0 | 6.5 | 162.8 | 137.7 | 88.5 | 166.9 | 10.9 | Ready |
 | KEEL | Keel Infrastructure Corp. Common Stock | Finance: Consumer Services | 79.5 | 22.4 | 107.3 |  |  |  | 8.8 | Chase Breakout |
 | DOCN | DigitalOcean Holdings, Inc. | Software & data | 78.9 | -1.5 | 61.0 | 178.2 | 247.3 | 451.6 | 6.6 | Ready |
 | SWMR | Swarmer Inc Common Stock | Software & data | 78.8 | 58.1 | 52.7 |  |  |  | 9.5 | Leader |
-| ENPH | Enphase Energy, Inc. | Semiconductors & AI compute | 78.6 | 9.7 | 119.2 | 61.7 | 146.7 | 75.5 | 8.6 | New Breakout |
+| ENPH | Enphase Energy, Inc. | Semiconductors & AI compute | 78.6 | 9.7 | 119.2 | 61.7 | 146.7 | 75.5 | 8.6 | Breakout |
 | ICHR | Ichor Holdings | Semiconductors & AI compute | 78.2 | 9.5 | 12.2 | 50.4 | 341.2 | 338.5 | 6.5 | Ready |
 | PSNL | Personalis Inc. Common Stock | Medical Specialities | 77.8 | 38.2 | 126.2 | 25.8 | 1.7 | 142.6 | 6.7 | Chase Breakout |
 | XMTR | Xometry, Inc. Class A Common Stock | SERVICES-BUSINESS SERVICES, NEC | 77.7 | 9.7 | 110.4 | 132.3 | 65.2 | 177.6 | 4.9 | Leader |
@@ -84,20 +84,20 @@ _Mostrando 40 de 48._
 ## Rompidos hoje
 | Ticker | Name | Theme | Status | Base | Chase | Country | MktCap | Close | RVOL10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | New Breakout | 2 |  | United States | 1.8B | 64.97 | 1.64 |
+| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | Breakout | 2 |  | United States | 1.8B | 64.97 | 1.64 |
 | SHAZ | SharonAI Holdings Inc. Class A Common Stock | EDP Services | Chase Breakout |  | 1 | United States | 1.3B | 75.83 | 0.66 |
 | SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | Chase Breakout |  | 3 | United States | 197.4B | 1694.98 | 0.80 |
 | SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | Chase Breakout |  | 1 | United States | 1.4B | 9.31 | 2.25 |
-| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | New Breakout | 2 |  | United States | 2.3B | 55.83 | 1.67 |
+| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | Breakout | 2 |  | United States | 2.3B | 55.83 | 1.67 |
 | BB | BlackBerry Limited | Software & data | Chase Breakout |  | 5 | Canada | 3.7B | 9.00 | 1.16 |
-| OUST | Ouster Inc. Common Stock | Industrial components | New Breakout | 1 |  | United States | 2.9B | 46.05 | 1.13 |
+| OUST | Ouster Inc. Common Stock | Industrial components | Breakout | 1 |  | United States | 2.9B | 46.05 | 1.13 |
 | ABSI | Absci Corporation Common Stock | Power & electrification | New Breakout | 10 |  | United States | 771.0M | 6.75 | 2.80 |
 | KEEL | Keel Infrastructure Corp. Common Stock | Finance: Consumer Services | Chase Breakout |  | 5 | Canada | 3.4B | 5.68 | 1.12 |
-| ENPH | Enphase Energy, Inc. | Semiconductors & AI compute | New Breakout | 1 |  | United States | 6.5B | 68.36 | 0.66 |
+| ENPH | Enphase Energy, Inc. | Semiconductors & AI compute | Breakout | 1 |  | United States | 6.5B | 68.36 | 0.66 |
 | PSNL | Personalis Inc. Common Stock | Medical Specialities | Chase Breakout |  | 6 | United States | 1.2B | 11.40 | 1.66 |
 | TSSI | TSS Inc. Common Stock | Professional Services | New Breakout | 10 |  | United States | 462.7M | 16.48 | 7.83 |
 | ASPI | ASP Isotopes Inc. Common Stock | Major Chemicals | Chase Breakout |  | 3 | United States | 979.5M | 7.78 | 1.16 |
-| CRNC | Cerence Inc. Common Stock | Software & data | New Breakout | 3 |  | United States | 581.1M | 12.86 | 1.14 |
+| CRNC | Cerence Inc. Common Stock | Software & data | Breakout | 3 |  | United States | 581.1M | 12.86 | 1.14 |
 | IMSR | Terrestrial Energy Inc. Common Stock | Unclassified | New Breakout | 10 |  | United States | 967.2M | 9.13 | 2.22 |
 
 ## Leaders consolidating

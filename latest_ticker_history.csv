@@ -1,6 +1,6 @@
 ﻿ticker,name,theme,status,first_seen,last_seen,days_in_watchlist_30d,consecutive_days,reentry_count,days_in_top2_30d,top2_days_detail,top2_new_window,global_rank,previous_global_rank,rank_delta,leadership_score
 AGL,"agilon health, inc.",Biotech & health,Leader,2026-05-18,2026-05-29,5,5,0,5,1M 5d | 3M 5d | 6M 5d,False,3,3,0,94.064605
-BAND,Bandwidth Inc. Class A Common Stock,Optical & networking,New Breakout,2026-05-18,2026-05-29,5,5,0,1,1M 5d | 3M 5d | 6M 1d,True,4,16,12,93.455627
+BAND,Bandwidth Inc. Class A Common Stock,Optical & networking,Breakout,2026-05-18,2026-05-29,5,5,0,1,1M 5d | 3M 5d | 6M 1d,True,4,16,12,93.455627
 VPG,"Vishay Precision Group, Inc.",Industrial components,Leader,2026-05-18,2026-05-29,5,5,0,1,1M 5d | 3M 1d,True,6,22,16,88.696276
 SNDK,Sandisk Corporation Common Stock,Semiconductors & AI compute,Chase Breakout,2026-05-18,2026-05-29,5,5,0,1,3M 1d | 6M 5d,True,9,23,14,87.841004
 SATL,Satellogic Inc. Class A Ordinary Shares,Defense & space,Leader,2026-05-18,2026-05-29,5,5,0,5,3M 5d | 6M 5d,False,10,15,5,84.520248
@@ -36,14 +36,14 @@ ASPI,ASP Isotopes Inc. Common Stock,Power & electrification,Chase Breakout,2026-
 PDYN,Palladyne AI Corp. Common Stock,Software & data,Leader,2026-05-28,2026-05-29,2,2,0,2,1W 2d,False,47,43,-4,72.807982
 PL,Planet Labs PBC,Defense & space,Leader,2026-05-18,2026-05-29,4,1,1,2,6M 2d,False,20,,,82.665065
 AEVA,Aeva Technologies Inc. Common Stock,Auto & autonomy,Leader,2026-05-18,2026-05-29,4,1,1,4,1W 4d,False,26,,,82.038434
-ENPH,"Enphase Energy, Inc.",Semiconductors & AI compute,New Breakout,2026-05-18,2026-05-29,3,1,2,2,1M 2d,False,35,,,78.555812
-OUST,Ouster Inc. Common Stock,Industrial components,New Breakout,2026-05-27,2026-05-29,2,1,1,2,1W 2d,False,29,,,80.835675
-PENG,"Penguin Solutions, Inc. Ordinary Shares",Semiconductors & AI compute,New Breakout,2026-05-29,2026-05-29,1,1,0,1,3M 1d,True,21,,,82.608058
+ENPH,"Enphase Energy, Inc.",Semiconductors & AI compute,Breakout,2026-05-18,2026-05-29,3,1,2,2,1M 2d,False,35,,,78.555812
+OUST,Ouster Inc. Common Stock,Industrial components,Breakout,2026-05-27,2026-05-29,2,1,1,2,1W 2d,False,29,,,80.835675
+PENG,"Penguin Solutions, Inc. Ordinary Shares",Semiconductors & AI compute,Breakout,2026-05-29,2026-05-29,1,1,0,1,3M 1d,True,21,,,82.608058
 OSS,"One Stop Systems, Inc. Common Stock",ELECTRONIC COMPUTERS,Leader,2026-05-29,2026-05-29,1,1,0,1,1M 1d,True,27,,,82.02793
 ABSI,Absci Corporation Common Stock,Power & electrification,New Breakout,2026-05-29,2026-05-29,1,1,0,1,1W 1d,True,30,,,80.142349
 KEEL,Keel Infrastructure Corp. Common Stock,Finance: Consumer Services,Chase Breakout,2026-05-29,2026-05-29,1,1,0,1,1M 1d,True,32,,,79.476461
 PSNL,Personalis Inc. Common Stock,Biotech & health,Chase Breakout,2026-05-29,2026-05-29,1,1,0,1,1W 1d | 1M 1d,True,37,,,77.757735
 TSSI,TSS Inc. Common Stock,Professional Services,New Breakout,2026-05-29,2026-05-29,1,1,0,1,1W 1d,True,40,,,74.995075
-CRNC,Cerence Inc. Common Stock,Software & data,New Breakout,2026-05-29,2026-05-29,1,1,0,1,1W 1d,True,44,,,73.604071
+CRNC,Cerence Inc. Common Stock,Software & data,Breakout,2026-05-29,2026-05-29,1,1,0,1,1W 1d,True,44,,,73.604071
 AMPX,"Amprius Technologies, Inc.",Semiconductors & AI compute,Ready,2026-05-29,2026-05-29,1,1,0,1,1W 1d,True,46,,,73.164172
 IMSR,Terrestrial Energy Inc. Common Stock,Unclassified,New Breakout,2026-05-29,2026-05-29,1,1,0,1,1W 1d,True,48,,,69.788185
