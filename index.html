@@ -1330,6 +1330,7 @@ tbody tr:hover {
                   <th data-sort="theme" title="Tema principal do ticker.">Tema</th>
                   <th data-sort="country" title="Pais da empresa.">Pais</th>
                   <th data-sort="leadership_score" title="Posicao na lista geral, calculada pelo score interno de lideranca. Menor numero = melhor posicao.">Rank</th>
+                  <th data-sort="breakout_base_count" title="Tamanho da base: quantidade de candles diarios sem breakout antes do rompimento/setup atual, limitada a 10. Se houve breakout no caminho, a contagem reinicia.">Base</th>
                   <th data-sort="days_in_top2_30d" title="Dias no top 2% das janelas de lideranca ativas hoje, nos ultimos 30 dias.">Dias top2</th>
                   <th data-sort="days_in_watchlist_30d" title="Quantidade de dias em que o ticker apareceu na lista de lideres nos ultimos 30 dias.">Dias lista</th>
                   <th data-sort="consecutive_days" title="Sequencia atual de dias consecutivos em que o ticker permanece na lista de lideres.">Seq. lista</th>
@@ -8634,7 +8635,7 @@ function renderLeadersTable() {
   el.leadersCount.textContent = rows.length;
   if (!rows.length) {
     el.leadersBody.innerHTML =
-      '<tr><td colspan="15"><div class="empty-state">Nenhum leader nos filtros atuais.</div></td></tr>';
+      '<tr><td colspan="16"><div class="empty-state">Nenhum leader nos filtros atuais.</div></td></tr>';
     return;
   }
   el.leadersBody.innerHTML = rows
@@ -8650,6 +8651,7 @@ function renderLeadersTable() {
           </td>
           <td>${escapeHtml(row.country || "--")}</td>
           ${rankCell(row, ranks.get(row.ticker), "leadership_score", "Rank geral")}
+          <td class="num" title="Tamanho da base em candles diarios sem breakout antes do rompimento/setup atual.">${formatNumber(row.breakout_base_count, 0)}</td>
           ${top2DaysCell(row)}
           <td class="num">${formatNumber(row.days_in_watchlist_30d, 0)}</td>
           <td class="num">${formatNumber(row.consecutive_days, 0)}</td>
