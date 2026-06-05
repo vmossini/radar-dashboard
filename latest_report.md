@@ -3,7 +3,7 @@
 - All leaders: `37` tickers.
 - Leaders consolidating: `5` tickers.
 - Rompidos hoje: `7` tickers.
-- Fonte de preco/volume: `intraday`; base diaria `2026-06-04`; intraday atualizados `0`.
+- Fonte de preco/volume: `daily`; base diaria `2026-06-04`; intraday atualizados `0`.
 - CSV all leaders: `C:\Users\Computador\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-06-04\all_leaders_2026-06-04.csv`
 - CSV consolidating: `C:\Users\Computador\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-06-04\leaders_consolidating_2026-06-04.csv`
 
