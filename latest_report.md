@@ -3,7 +3,7 @@
 - All leaders: `37` tickers.
 - Leaders consolidating: `5` tickers.
 - Rompidos hoje: `7` tickers.
-- Fonte de preco/volume: `intraday`; base diaria `2026-06-04`; intraday atualizados `37`.
+- Fonte de preco/volume: `intraday`; base diaria `2026-06-04`; intraday atualizados `0`.
 - CSV all leaders: `C:\Users\Computador\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-06-04\all_leaders_2026-06-04.csv`
 - CSV consolidating: `C:\Users\Computador\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-06-04\leaders_consolidating_2026-06-04.csv`
 
@@ -37,9 +37,9 @@
 
 | Ticker | Name | Theme | Score | 1W | 1M | 3M | 6M | 1Y | ADR | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| AGL | agilon health, inc. | Biotech & health | 99.9 | 5.4 | 256.1 | 473.2 | 477.1 | 67.8 | 9.3 | Breakout |
-| HYLN | Hyliion Holdings Corp. | Power & electrification | 99.7 | 6.0 | 229.9 | 279.1 | 321.0 | 401.3 | 12.4 | Breakout |
-| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | 92.7 | 26.9 | 54.6 | 353.2 | 415.1 | 404.8 | 6.8 | Breakout |
+| AGL | agilon health, inc. | Biotech & health | 99.9 | 5.4 | 256.1 | 473.2 | 477.1 | 67.8 | 9.3 | New Breakout |
+| HYLN | Hyliion Holdings Corp. | Power & electrification | 99.7 | 6.0 | 229.9 | 279.1 | 321.0 | 401.3 | 12.4 | New Breakout |
+| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | 92.7 | 26.9 | 54.6 | 353.2 | 415.1 | 404.8 | 6.8 | New Breakout |
 | PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | 92.6 | 31.6 | 95.2 | 274.9 | 243.1 | 269.9 | 7.6 | Leader |
 | RXT | Rackspace Technology, Inc. Common Stock | Defense & space | 92.5 | 15.3 | 128.2 | 134.9 | 462.5 | 442.7 | 15.2 | Leader |
 | EVC | Entravision Communication | Media & broadcasting | 92.4 | -3.3 | 127.9 | 200.3 | 227.4 | 355.8 | 8.5 | Ready |
@@ -57,7 +57,7 @@
 | WOLF | Wolfspeed, Inc. | Semiconductors & AI compute | 85.7 | 3.1 | 83.1 | 254.1 | 214.0 | 4690.0 | 15.6 | Leader |
 | AMBQ | Ambiq Micro Inc. Common Stock | Semiconductors & AI compute | 85.5 | 2.4 | 109.9 | 182.8 | 241.9 |  | 7.3 | Leader |
 | MRAM | Everspin Technologies, Inc | Semiconductors & AI compute | 85.2 | -9.1 | 49.2 | 211.8 | 246.6 | 393.4 | 16.9 | Leader |
-| INOD | Innodata Inc. | Software & data | 85.1 | 22.3 | 166.2 | 173.6 | 105.7 | 174.4 | 8.2 | Breakout |
+| INOD | Innodata Inc. | Software & data | 85.1 | 22.3 | 166.2 | 173.6 | 105.7 | 174.4 | 8.2 | New Breakout |
 | SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | 85.0 | -1.5 | 85.6 | 71.2 | 550.4 | 451.2 | 9.5 | Leader |
 | MU | Micron Technology, Inc. | Semiconductors & AI compute | 84.9 | 7.8 | 55.6 | 150.9 | 315.9 | 874.1 | 5.5 | Leader |
 | ALAB | Astera Labs Inc. Common Stock | Semiconductors & AI compute | 84.9 | 2.5 | 66.0 | 198.4 | 150.5 | 276.5 | 7.7 | Leader |
@@ -73,27 +73,27 @@
 | ERAS | Erasca, Inc. Common Stock | Biotech & health | 78.9 | 8.8 | 32.8 | -14.6 | 359.2 | 818.3 | 6.9 | Leader |
 | FLNC | Fluence Energy Inc. Class A Common Stock | Industrial components | 78.3 | 27.1 | 113.9 | 72.3 | 36.0 | 469.2 | 9.9 | Leader |
 | SPCE | Virgin Galactic Holdings Inc. Common Stock | Transportation Services | 76.7 | 4.2 | 92.7 | 84.4 | 21.0 | 45.7 | 20.7 | Leader |
-| PSNL | Personalis Inc. Common Stock | Medical Specialities | 75.3 | 10.2 | 117.6 | 41.4 | 19.8 | 148.0 | 7.5 | Breakout |
+| PSNL | Personalis Inc. Common Stock | Medical Specialities | 75.3 | 10.2 | 117.6 | 41.4 | 19.8 | 148.0 | 7.5 | New Breakout |
 
 ## Rompidos hoje
 | Ticker | Name | Theme | Status | Base | Chase | Country | MktCap | Close | RVOL10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| AGL | agilon health, inc. | Biotech & health | Breakout | 4 |  | United States | 1.4B | 95.23 | 1.23 |
-| HYLN | Hyliion Holdings Corp. | Power & electrification | Breakout | 4 |  | United States | 749.0M | 7.62 | 0.91 |
-| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | Breakout | 1 |  | United States | 1.8B | 73.19 | 1.54 |
-| INOD | Innodata Inc. | Software & data | Breakout | 1 |  | United States | 3.1B | 121.50 | 1.74 |
-| DOCN | DigitalOcean Holdings, Inc. | Software & data | Chase Breakout |  | 3 | United States | 15.4B | 180.50 | 1.43 |
-| TE | T1 Energy Inc. Common Stock | Industrial components | Chase Breakout |  | 2 | Luxembourg | 3.3B | 11.66 | 0.82 |
-| PSNL | Personalis Inc. Common Stock | Medical Specialities | Breakout | 3 |  | United States | 1.3B | 12.10 | 1.92 |
+| AGL | agilon health, inc. | Biotech & health | New Breakout | 4 |  | United States | 1.4B | 95.23 | 1.05 |
+| HYLN | Hyliion Holdings Corp. | Power & electrification | New Breakout | 4 |  | United States | 749.0M | 7.62 | 0.94 |
+| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | New Breakout | 1 |  | United States | 1.8B | 73.19 | 1.49 |
+| INOD | Innodata Inc. | Software & data | New Breakout | 1 |  | United States | 3.1B | 121.50 | 1.59 |
+| DOCN | DigitalOcean Holdings, Inc. | Software & data | Chase Breakout |  | 3 | United States | 15.4B | 180.50 | 1.12 |
+| TE | T1 Energy Inc. Common Stock | Industrial components | Chase Breakout |  | 2 | Luxembourg | 3.3B | 11.66 | 0.71 |
+| PSNL | Personalis Inc. Common Stock | Medical Specialities | New Breakout | 3 |  | United States | 1.3B | 12.10 | 1.77 |
 
 ## Leaders consolidating
 | Ticker | Name | Theme | Country | MktCap | Score | Close | Pivot | Dist% | Base | RVOL10 | Catalyst |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | United States | 7.8B | 75.6 | 94.21 | 106.28 | 12.8 | 7 | 0.72 | nao verificado |
-| ICHR | Ichor Holdings | Semiconductors & AI compute | United States | 2.3B | 74.0 | 71.06 | 78.00 | 9.8 | 17 | 0.85 | nao verificado |
-| EVC | Entravision Communication | Media & broadcasting | United States | 736.3M | 70.1 | 9.07 | 10.12 | 11.6 | 8 | 0.71 | nao verificado |
-| AAOI | Applied Optoelectronics, Inc. | Semiconductors & AI compute | United States | 13.9B | 67.5 | 202.89 | 233.67 | 15.2 | 15 | 1.41 | nao verificado |
-| CLYM | Climb Bio, Inc. Common Stock | Biotech & health | United States | 565.7M | 64.4 | 10.91 | 12.48 | 14.4 | 19 | 1.47 | nao verificado |
+| MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | United States | 7.8B | 75.6 | 94.21 | 106.28 | 12.8 | 7 | 0.66 | nao verificado |
+| ICHR | Ichor Holdings | Semiconductors & AI compute | United States | 2.3B | 74.0 | 71.06 | 78.00 | 9.8 | 17 | 0.68 | nao verificado |
+| EVC | Entravision Communication | Media & broadcasting | United States | 736.3M | 70.1 | 9.07 | 10.12 | 11.6 | 8 | 0.60 | nao verificado |
+| AAOI | Applied Optoelectronics, Inc. | Semiconductors & AI compute | United States | 13.9B | 67.5 | 202.89 | 233.67 | 15.2 | 15 | 1.28 | nao verificado |
+| CLYM | Climb Bio, Inc. Common Stock | Biotech & health | United States | 565.7M | 64.4 | 10.91 | 12.48 | 14.4 | 19 | 1.09 | nao verificado |
 
 ## Mudancas do dia
 - Novos leaders: `MRAM, MU, PSNL, SPCE`
@@ -110,5 +110,5 @@
 - Todos com DollarVol(10) > 10.0M: `True`
 - Todos com AvgVol(10) > 200.0K acoes: `True`
 - Todos com ADR% > 4.5: `True`
-- Intraday timestamp: `2026-06-04T20:04:17+00:00`
+- Intraday timestamp: `n/a`
 - Noticias/catalysts: `nao solicitado`

@@ -1,11 +1,11 @@
 ﻿ticker,name,theme,status,first_seen,last_seen,days_in_watchlist_30d,consecutive_days,reentry_count,days_in_top2_30d,top2_days_detail,top2_new_window,global_rank,previous_global_rank,rank_delta,leadership_score
-AGL,"agilon health, inc.",Biotech & health,Breakout,2026-05-18,2026-06-04,9,9,0,9,1M 9d | 3M 9d | 6M 9d,False,1,1,0,99.92969
-BAND,Bandwidth Inc. Class A Common Stock,Optical & networking,Breakout,2026-05-18,2026-06-04,9,9,0,5,3M 9d | 6M 5d,False,3,8,5,92.677794
+AGL,"agilon health, inc.",Biotech & health,New Breakout,2026-05-18,2026-06-04,9,9,0,9,1M 9d | 3M 9d | 6M 9d,False,1,1,0,99.92969
+BAND,Bandwidth Inc. Class A Common Stock,Optical & networking,New Breakout,2026-05-18,2026-06-04,9,9,0,5,3M 9d | 6M 5d,False,3,8,5,92.677794
 EVC,Entravision Communication,Media & broadcasting,Ready,2026-05-18,2026-06-04,9,9,0,7,1M 9d | 3M 7d,False,6,6,0,92.416236
 VPG,"Vishay Precision Group, Inc.",Industrial components,Leader,2026-05-18,2026-06-04,9,9,0,3,1M 9d | 3M 3d,False,7,9,2,92.133999
 SNDK,Sandisk Corporation Common Stock,Semiconductors & AI compute,Leader,2026-05-18,2026-06-04,9,9,0,5,3M 5d | 6M 9d,False,8,5,-3,91.972795
 MXL,"MaxLinear, Inc. Common Stock",Semiconductors & AI compute,Ready,2026-05-18,2026-06-04,9,9,0,9,3M 9d | 6M 9d,False,11,12,1,91.383903
-INOD,Innodata Inc.,Software & data,Breakout,2026-05-18,2026-06-04,9,9,0,9,1M 9d,False,21,24,3,85.134468
+INOD,Innodata Inc.,Software & data,New Breakout,2026-05-18,2026-06-04,9,9,0,9,1M 9d,False,21,24,3,85.134468
 SATL,Satellogic Inc. Class A Ordinary Shares,Defense & space,Leader,2026-05-18,2026-06-04,9,9,0,9,6M 9d,False,28,30,2,84.048261
 AAOI,"Applied Optoelectronics, Inc.",Semiconductors & AI compute,Ready,2026-05-18,2026-06-04,9,9,0,9,6M 9d,False,29,32,3,83.814776
 AXTI,AXT Inc,Semiconductors & AI compute,Leader,2026-05-18,2026-06-04,9,9,0,9,6M 9d,False,30,33,3,82.32212
@@ -13,7 +13,7 @@ RDW,Redwire Corporation Common Stock,Defense & space,Leader,2026-05-26,2026-06-0
 SIDU,"Sidus Space, Inc. Class A Common Stock",Defense & space,Leader,2026-05-26,2026-06-04,8,8,0,8,6M 8d,False,16,18,2,85.728603
 SLS,"SELLAS Life Sciences Group, Inc. Common Stock",Biotech & health,Leader,2026-05-18,2026-06-04,8,7,1,8,6M 8d,False,22,28,6,85.036201
 ICHR,Ichor Holdings,Semiconductors & AI compute,Ready,2026-05-18,2026-06-04,8,7,1,8,6M 8d,False,32,35,3,81.123128
-HYLN,Hyliion Holdings Corp.,Power & electrification,Breakout,2026-05-27,2026-06-04,7,7,0,1,1M 7d | 3M 7d | 6M 1d,True,2,2,0,99.68484
+HYLN,Hyliion Holdings Corp.,Power & electrification,New Breakout,2026-05-27,2026-06-04,7,7,0,1,1M 7d | 3M 7d | 6M 1d,True,2,2,0,99.68484
 RXT,"Rackspace Technology, Inc. Common Stock",Defense & space,Leader,2026-05-27,2026-06-04,7,7,0,7,1M 7d | 6M 7d,False,5,4,-1,92.494728
 GCTS,"GCT Semiconductor Holding, Inc.",Semiconductors & AI compute,Leader,2026-05-27,2026-06-04,7,7,0,7,1M 7d | 3M 7d,False,9,11,2,91.631563
 ALAB,Astera Labs Inc. Common Stock,Semiconductors & AI compute,Leader,2026-05-26,2026-06-04,7,6,1,6,3M 6d,False,24,22,-2,84.909825
@@ -33,6 +33,6 @@ TE,T1 Energy Inc. Common Stock,Industrial components,Chase Breakout,2026-05-26,2
 SWMR,Swarmer Inc Common Stock,Software & data,Leader,2026-05-28,2026-06-04,4,2,1,2,1M 2d,False,13,15,2,86.257788
 MNTS,Momentus Inc. Class A Common Stock,Defense & space,Leader,2026-06-03,2026-06-04,2,2,0,2,1M 2d | 3M 2d,False,12,13,1,90.299794
 MRAM,"Everspin Technologies, Inc",Semiconductors & AI compute,Leader,2026-05-18,2026-06-04,5,1,1,4,3M 4d,False,20,,,85.217986
-PSNL,Personalis Inc. Common Stock,Biotech & health,Breakout,2026-05-29,2026-06-04,4,1,1,4,1M 4d,False,37,,,75.33322
+PSNL,Personalis Inc. Common Stock,Biotech & health,New Breakout,2026-05-29,2026-06-04,4,1,1,4,1M 4d,False,37,,,75.33322
 MU,"Micron Technology, Inc.",Semiconductors & AI compute,Leader,2026-05-27,2026-06-04,3,1,2,3,6M 3d,False,23,,,84.920473
 SPCE,Virgin Galactic Holdings Inc. Common Stock,Transportation Services,Leader,2026-05-27,2026-06-04,3,1,1,1,1M 1d,True,36,,,76.712527
