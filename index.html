@@ -918,22 +918,28 @@ tbody tr:hover {
 
 .breakouts-table th:nth-child(6),
 .breakouts-table td:nth-child(6) {
-  width: 270px;
+  width: 64px;
+  text-align: center;
 }
 
 .breakouts-table th:nth-child(7),
 .breakouts-table td:nth-child(7) {
-  width: 120px;
+  width: 270px;
 }
 
 .breakouts-table th:nth-child(8),
 .breakouts-table td:nth-child(8) {
-  width: 58px;
-  text-align: center;
+  width: 120px;
 }
 
 .breakouts-table th:nth-child(9),
 .breakouts-table td:nth-child(9) {
+  width: 58px;
+  text-align: center;
+}
+
+.breakouts-table th:nth-child(10),
+.breakouts-table td:nth-child(10) {
   width: 80px;
   text-align: right;
 }
@@ -972,6 +978,24 @@ tbody tr:hover {
 
 .breakouts-table .breakout-status-pill {
   width: 126px;
+}
+
+.rmv-cell {
+  font-weight: 900;
+}
+
+.rmv-hot {
+  color: #17664f;
+  background: #d9f2e7;
+}
+
+.rmv-warm {
+  color: #7a4d0f;
+  background: #fff1cf;
+}
+
+.rmv-cool {
+  color: var(--muted);
 }
 
 .perf-cell {
@@ -1306,6 +1330,7 @@ tbody tr:hover {
                 <th data-sort="status" title="Status acionado no dia: New/Chase Breakout estrutural ou Leader Trigger - 1D acima da maxima do dia anterior.">Status</th>
                 <th data-sort="leadership_score" title="Posicao do ticker no ranking geral de All leaders, calculada pelo score interno de lideranca. Menor numero = melhor posicao.">Rank</th>
                 <th data-sort="breakout_base_count" title="Quantidade de candles diarios sem breakout antes do rompimento atual, limitada a 10. Se houve breakout no caminho, a contagem reinicia.">Base</th>
+                <th data-sort="rmv15_tight_count" title="Quantidade dos ultimos 15 candles cujo RMV ficou abaixo de 15. Maior numero = mais candles comprimidos.">RMV</th>
                 <th data-sort="breakout_chase_count" title="Quantidade de candles diarios consecutivos de breakout ate o candle atual, limitada a 10.">Chase</th>
                 <th data-sort="theme" title="Tema principal do ticker.">Tema</th>
                 <th data-sort="country" title="Pais da empresa.">Pais</th>
@@ -1335,6 +1360,7 @@ tbody tr:hover {
                 <th data-sort="country" title="Pais da empresa.">Pais</th>
                 <th data-sort="leadership_score" title="Posicao do ticker no ranking geral de All leaders. Menor numero = melhor posicao.">Rank</th>
                 <th data-sort="breakout_base_count" title="Quantidade de candles diarios sem breakout antes do setup atual, limitada a 10.">Base</th>
+                <th data-sort="rmv15_tight_count" title="Quantidade dos ultimos 15 candles cujo RMV ficou abaixo de 15. Maior numero = mais candles comprimidos.">RMV</th>
                 <th data-sort="distance_to_pivot_pct" title="Distancia percentual ate o pivot de 1 mes.">Dist.</th>
                 <th data-sort="day_change_pct" title="Variacao do preco atual contra o fechamento anterior. A tabela mostra apenas nomes com +0,1% ou mais.">Dia</th>
                 <th data-sort="rvol_10d" title="Volume relativo de 10 dias.">RVOL(10)</th>
@@ -1364,6 +1390,7 @@ tbody tr:hover {
                   <th data-sort="country" title="Pais da empresa.">Pais</th>
                   <th data-sort="leadership_score" title="Posicao na lista geral, calculada pelo score interno de lideranca. Menor numero = melhor posicao.">Rank</th>
                   <th data-sort="breakout_base_count" title="Tamanho da base: quantidade de candles diarios sem breakout antes do rompimento/setup atual, limitada a 10. Se houve breakout no caminho, a contagem reinicia.">Base</th>
+                  <th data-sort="rmv15_tight_count" title="Quantidade dos ultimos 15 candles cujo RMV ficou abaixo de 15. Maior numero = mais candles comprimidos.">RMV</th>
                   <th data-sort="days_in_top2_30d" title="Dias no top 2% das janelas de lideranca ativas hoje, nos ultimos 30 dias.">Dias top2</th>
                   <th data-sort="days_in_watchlist_30d" title="Quantidade de dias em que o ticker apareceu na lista de lideres nos ultimos 30 dias.">Dias lista</th>
                   <th data-sort="consecutive_days" title="Sequencia atual de dias consecutivos em que o ticker permanece na lista de lideres.">Seq. lista</th>
@@ -1491,6 +1518,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 1,
       "rank_pct_6m": 0.995349,
       "reentry_count": 0,
+      "rmv15": 31.489159,
+      "rmv15_prior_max": 15.235001,
+      "rmv15_prior_min": 4.625,
+      "rmv15_range": 7.966,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 0.896024,
       "rvol_10d_basis": "intraday_same_time_68x5m",
       "sector": "Health Care",
@@ -1601,6 +1635,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 1,
       "rank_pct_6m": 0.995349,
       "reentry_count": 0,
+      "rmv15": 31.489159,
+      "rmv15_prior_max": 15.235001,
+      "rmv15_prior_min": 4.625,
+      "rmv15_range": 7.966,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 0.896024,
       "rvol_10d_basis": "intraday_same_time_68x5m",
       "sector": "Health Care",
@@ -1711,6 +1752,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 1,
       "rank_pct_6m": 0.995349,
       "reentry_count": 0,
+      "rmv15": 31.489159,
+      "rmv15_prior_max": 15.235001,
+      "rmv15_prior_min": 4.625,
+      "rmv15_range": 7.966,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 0.896024,
       "rvol_10d_basis": "intraday_same_time_68x5m",
       "sector": "Health Care",
@@ -1819,6 +1867,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.994312,
       "rank_pct_6m": 0.983721,
       "reentry_count": 0,
+      "rmv15": 49.360471,
+      "rmv15_prior_max": 1.97,
+      "rmv15_prior_min": 0.25,
+      "rmv15_range": 1.099,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 0.8987,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Consumer Discretionary",
@@ -1927,6 +1982,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.997725,
       "rank_pct_6m": 0.99186,
       "reentry_count": 0,
+      "rmv15": 44.259018,
+      "rmv15_prior_max": 9.890003,
+      "rmv15_prior_min": 1.745003,
+      "rmv15_range": 5.3499,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 1.62094,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -2035,6 +2097,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.960182,
       "rank_pct_6m": 0.990698,
       "reentry_count": 0,
+      "rmv15": 17.512021,
+      "rmv15_prior_max": 2.29,
+      "rmv15_prior_min": 0.417,
+      "rmv15_range": 0.745,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 5,
+      "rmv15_tight_count_prior14": 5,
       "rvol_10d": 0.603836,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -2143,6 +2212,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.984073,
       "rank_pct_6m": 0.975581,
       "reentry_count": 0,
+      "rmv15": 51.189117,
+      "rmv15_prior_max": 16.169998,
+      "rmv15_prior_min": 7.340004,
+      "rmv15_range": 11.86,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 0.948951,
       "rvol_10d_basis": "intraday_same_time_77x5m",
       "sector": "Technology",
@@ -2251,6 +2327,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.988623,
       "rank_pct_6m": 1,
       "reentry_count": 0,
+      "rmv15": 99.141322,
+      "rmv15_prior_max": 168.619995,
+      "rmv15_prior_min": 54.47998,
+      "rmv15_range": 167.6399,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 3,
+      "rmv15_tight_count_prior14": 3,
       "rvol_10d": 1.436182,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -2359,6 +2442,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.98521,
       "rank_pct_6m": 0.931395,
       "reentry_count": 1,
+      "rmv15": 66.35511,
+      "rmv15_prior_max": 1.35,
+      "rmv15_prior_min": 0.28,
+      "rmv15_range": 0.99,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 1.220002,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -2469,6 +2559,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.817975,
       "rank_pct_6m": 0.993023,
       "reentry_count": 1,
+      "rmv15": 30.645178,
+      "rmv15_prior_max": 1.98,
+      "rmv15_prior_min": 0.43,
+      "rmv15_range": 0.905,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 0.665886,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Health Care",
@@ -2577,6 +2674,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.990899,
       "rank_pct_6m": 0.986047,
       "reentry_count": 0,
+      "rmv15": 66.62706,
+      "rmv15_prior_max": 23.580002,
+      "rmv15_prior_min": 6.740005,
+      "rmv15_range": 17.96,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 1.358593,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -2685,6 +2789,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.998862,
       "rank_pct_6m": 0.989535,
       "reentry_count": 0,
+      "rmv15": 56.886879,
+      "rmv15_prior_max": 16.080002,
+      "rmv15_prior_min": 7.150002,
+      "rmv15_range": 12.23,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 0.898503,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -2793,6 +2904,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.987486,
       "rank_pct_6m": 0.987209,
       "reentry_count": 1,
+      "rmv15": 71.324024,
+      "rmv15_prior_max": 18.449997,
+      "rmv15_prior_min": 5.949997,
+      "rmv15_range": 14.8655,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 5,
+      "rmv15_tight_count_prior14": 5,
       "rvol_10d": 1.178495,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Industrials",
@@ -2901,6 +3019,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.996587,
       "rank_pct_6m": 0.540698,
       "reentry_count": 0,
+      "rmv15": 72.941151,
+      "rmv15_prior_max": 4.730001,
+      "rmv15_prior_min": 0.48,
+      "rmv15_range": 3.58,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 0.432249,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Industrials",
@@ -3009,6 +3134,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.986348,
       "rank_pct_6m": 0.998837,
       "reentry_count": 0,
+      "rmv15": 42.491103,
+      "rmv15_prior_max": 25.359993,
+      "rmv15_prior_min": 11.310005,
+      "rmv15_range": 17.28,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 1.333438,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -3117,6 +3249,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": null,
       "rank_pct_6m": null,
       "reentry_count": 1,
+      "rmv15": 48.924136,
+      "rmv15_prior_max": 29.550003,
+      "rmv15_prior_min": 2.130001,
+      "rmv15_range": 15.545,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 0.629612,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -3225,6 +3364,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.955631,
       "rank_pct_6m": 0.97907,
       "reentry_count": 0,
+      "rmv15": 86.315819,
+      "rmv15_prior_max": 3.959999,
+      "rmv15_prior_min": 1.11,
+      "rmv15_range": 3.57,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 0,
+      "rmv15_tight_count_prior14": 0,
       "rvol_10d": 0.808372,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Industrials",
@@ -3333,6 +3479,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.992036,
       "rank_pct_6m": 0.962791,
       "reentry_count": 0,
+      "rmv15": 73.543976,
+      "rmv15_prior_max": 13.009998,
+      "rmv15_prior_min": 2.089996,
+      "rmv15_range": 10.121,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 0,
+      "rmv15_tight_count_prior14": 0,
       "rvol_10d": 1.619444,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -3441,6 +3594,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.989761,
       "rank_pct_6m": 0.968605,
       "reentry_count": 1,
+      "rmv15": 97.781998,
+      "rmv15_prior_max": 5.09,
+      "rmv15_prior_min": 1.934,
+      "rmv15_range": 5.02,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 4,
+      "rmv15_tight_count_prior14": 4,
       "rvol_10d": 0.90627,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -3549,6 +3709,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.979522,
       "rank_pct_6m": 0.955814,
       "reentry_count": 0,
+      "rmv15": 100,
+      "rmv15_prior_max": 8.089996,
+      "rmv15_prior_min": 4.420006,
+      "rmv15_range": 9.638,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 0,
+      "rmv15_tight_count_prior14": 0,
       "rvol_10d": 0.903326,
       "rvol_10d_basis": "intraday_same_time_77x5m",
       "sector": "Technology",
@@ -3657,6 +3824,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.995449,
       "rank_pct_6m": null,
       "reentry_count": 0,
+      "rmv15": 90.125896,
+      "rmv15_prior_max": 12.430004,
+      "rmv15_prior_min": 4.490002,
+      "rmv15_range": 11.646,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 0,
+      "rmv15_tight_count_prior14": 0,
       "rvol_10d": 1.152857,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -3765,6 +3939,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.956769,
       "rank_pct_6m": 0.994186,
       "reentry_count": 0,
+      "rmv15": 50.393711,
+      "rmv15_prior_max": 1.64,
+      "rmv15_prior_min": 0.37,
+      "rmv15_range": 1.01,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 0,
+      "rmv15_tight_count_prior14": 0,
       "rvol_10d": 0.860148,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Telecommunications",
@@ -3873,6 +4054,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.993174,
       "rank_pct_6m": 0.947674,
       "reentry_count": 1,
+      "rmv15": 27.275982,
+      "rmv15_prior_max": 17.532997,
+      "rmv15_prior_min": 6.34,
+      "rmv15_range": 9.393,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 0.811663,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -3981,6 +4169,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.967008,
       "rank_pct_6m": 0.984884,
       "reentry_count": 2,
+      "rmv15": 100,
+      "rmv15_prior_max": 96.5,
+      "rmv15_prior_min": 30.590027,
+      "rmv15_range": 97.88,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 3,
+      "rmv15_tight_count_prior14": 3,
       "rvol_10d": 1.575881,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -4089,6 +4284,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.982935,
       "rank_pct_6m": 0.965116,
       "reentry_count": 1,
+      "rmv15": 13.886392,
+      "rmv15_prior_max": 7.35,
+      "rmv15_prior_min": 2.914,
+      "rmv15_range": 3.53,
+      "rmv15_tight": true,
+      "rmv15_tight_count": 5,
+      "rmv15_tight_count_prior14": 4,
       "rvol_10d": 0.572229,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -4197,6 +4399,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.98066,
       "rank_pct_6m": 0.915116,
       "reentry_count": 1,
+      "rmv15": 63.568647,
+      "rmv15_prior_max": 45.410004,
+      "rmv15_prior_min": 14.529999,
+      "rmv15_range": 34.16,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 0,
+      "rmv15_tight_count_prior14": 0,
       "rvol_10d": 1.486606,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -4305,6 +4514,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.959044,
       "rank_pct_6m": 0.840698,
       "reentry_count": 0,
+      "rmv15": 85.509244,
+      "rmv15_prior_max": 21.129997,
+      "rmv15_prior_min": 6.5,
+      "rmv15_range": 19.01,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 4,
+      "rmv15_tight_count_prior14": 4,
       "rvol_10d": 1.149517,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -4413,6 +4629,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.858931,
       "rank_pct_6m": 0.952326,
       "reentry_count": 2,
+      "rmv15": 61.37339,
+      "rmv15_prior_max": 8.08,
+      "rmv15_prior_min": 1.09,
+      "rmv15_range": 5.38,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 0,
+      "rmv15_tight_count_prior14": 0,
       "rvol_10d": 0.515512,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -4522,6 +4745,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.919226,
       "rank_pct_6m": 0.997674,
       "reentry_count": 0,
+      "rmv15": 69.474818,
+      "rmv15_prior_max": 42.929993,
+      "rmv15_prior_min": 14.559998,
+      "rmv15_range": 34.27,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 9,
+      "rmv15_tight_count_prior14": 9,
       "rvol_10d": 1.862306,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -4630,6 +4860,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.96587,
       "rank_pct_6m": 0.988372,
       "reentry_count": 0,
+      "rmv15": 69.387775,
+      "rmv15_prior_max": 1.61,
+      "rmv15_prior_min": 0.434,
+      "rmv15_range": 1.25,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 0.789208,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -4738,6 +4975,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.981797,
       "rank_pct_6m": 0.89186,
       "reentry_count": 1,
+      "rmv15": 54.566029,
+      "rmv15_prior_max": 1.49,
+      "rmv15_prior_min": 0.165,
+      "rmv15_range": 0.888,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 5,
+      "rmv15_tight_count_prior14": 5,
       "rvol_10d": 1.043936,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Health Care",
@@ -4847,6 +5091,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.789534,
       "rank_pct_6m": 0.916279,
       "reentry_count": 1,
+      "rmv15": 90.652142,
+      "rmv15_prior_max": 2.320001,
+      "rmv15_prior_min": 0.48,
+      "rmv15_range": 2.148,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 0,
+      "rmv15_tight_count_prior14": 0,
       "rvol_10d": 0.87171,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Miscellaneous",
@@ -4955,6 +5206,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.810011,
       "rank_pct_6m": 0.996512,
       "reentry_count": 1,
+      "rmv15": 66.244747,
+      "rmv15_prior_max": 1.62,
+      "rmv15_prior_min": 0.434999,
+      "rmv15_range": 1.22,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 5,
+      "rmv15_tight_count_prior14": 5,
       "rvol_10d": 0.990315,
       "rvol_10d_basis": "intraday_same_time_77x5m",
       "sector": "Health Care",
@@ -5063,6 +5321,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.911263,
       "rank_pct_6m": 0.980233,
       "reentry_count": 1,
+      "rmv15": 56.000014,
+      "rmv15_prior_max": 2.82,
+      "rmv15_prior_min": 0.57,
+      "rmv15_range": 1.83,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 6,
+      "rmv15_tight_count_prior14": 6,
       "rvol_10d": 1.190814,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -5172,6 +5437,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.948805,
       "rank_pct_6m": 0.747674,
       "reentry_count": 1,
+      "rmv15": 100,
+      "rmv15_prior_max": 1.44,
+      "rmv15_prior_min": 0.55,
+      "rmv15_range": 1.615,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 1.458797,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Industrials",
@@ -5281,6 +5553,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.787258,
       "rank_pct_6m": 0.884884,
       "reentry_count": 3,
+      "rmv15": 100,
+      "rmv15_prior_max": 10.419998,
+      "rmv15_prior_min": 4.090004,
+      "rmv15_range": 10.55,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 1.419341,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -5389,6 +5668,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.845279,
       "rank_pct_6m": 0.981395,
       "reentry_count": 1,
+      "rmv15": 64.183826,
+      "rmv15_prior_max": 8.32,
+      "rmv15_prior_min": 2.010002,
+      "rmv15_range": 6.06,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 4,
+      "rmv15_tight_count_prior14": 4,
       "rvol_10d": 0.873323,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Technology",
@@ -5497,6 +5783,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.837315,
       "rank_pct_6m": 0.616279,
       "reentry_count": 0,
+      "rmv15": 63.041395,
+      "rmv15_prior_max": 5.636,
+      "rmv15_prior_min": 1.48,
+      "rmv15_range": 4.1,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 0,
+      "rmv15_tight_count_prior14": 0,
       "rvol_10d": 0.892664,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Miscellaneous",
@@ -5605,6 +5898,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.167235,
       "rank_pct_6m": 0.982558,
       "reentry_count": 2,
+      "rmv15": 61.111111,
+      "rmv15_prior_max": 2.17,
+      "rmv15_prior_min": 0.37,
+      "rmv15_range": 1.47,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 1.176228,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Health Care",
@@ -5713,6 +6013,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.895336,
       "rank_pct_6m": 0.517442,
       "reentry_count": 1,
+      "rmv15": 19.444451,
+      "rmv15_prior_max": 2.65,
+      "rmv15_prior_min": 0.13,
+      "rmv15_range": 0.62,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 0.353426,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Consumer Discretionary",
@@ -5821,6 +6128,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 0.780432,
       "rank_pct_6m": 0.551163,
       "reentry_count": 1,
+      "rmv15": 76.646726,
+      "rmv15_prior_max": 1.94,
+      "rmv15_prior_min": 0.27,
+      "rmv15_range": 1.55,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 1.37255,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Health Care",
@@ -5932,6 +6246,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 1,
       "rank_pct_6m": 0.995349,
       "reentry_count": 0,
+      "rmv15": 31.489159,
+      "rmv15_prior_max": 15.235001,
+      "rmv15_prior_min": 4.625,
+      "rmv15_range": 7.966,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 0.896024,
       "rvol_10d_basis": "intraday_same_time_68x5m",
       "sector": "Health Care",
@@ -5953,7 +6274,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-05",
   "data_mode": "intraday",
-  "generated_at": "2026-06-07T14:51:37-03:00",
+  "generated_at": "2026-06-07T15:01:13-03:00",
   "intraday_asof": "2026-06-05",
   "intraday_timestamp": "2026-06-05T20:03:08+00:00",
   "leader_triggers_today": [],
@@ -6035,6 +6356,13 @@ window.RADAR_DATA = {
       "rank_pct_1y": 0.943696,
       "rank_pct_3m": 0.817975,
       "rank_pct_6m": 0.993023,
+      "rmv15": 30.645178,
+      "rmv15_prior_max": 1.98,
+      "rmv15_prior_min": 0.43,
+      "rmv15_range": 0.905,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 1,
+      "rmv15_tight_count_prior14": 1,
       "rvol_10d": 0.665886,
       "rvol_10d_basis": "intraday_same_time_78x5m",
       "sector": "Health Care",
@@ -6148,6 +6476,13 @@ window.RADAR_DATA = {
       "rank_pct_3m": 1,
       "rank_pct_6m": 0.995349,
       "reentry_count": 0,
+      "rmv15": 31.489159,
+      "rmv15_prior_max": 15.235001,
+      "rmv15_prior_min": 4.625,
+      "rmv15_range": 7.966,
+      "rmv15_tight": false,
+      "rmv15_tight_count": 2,
+      "rmv15_tight_count_prior14": 2,
       "rvol_10d": 0.896024,
       "rvol_10d_basis": "intraday_same_time_68x5m",
       "sector": "Health Care",
@@ -7864,6 +8199,19 @@ function rvolCell(row) {
   )}</td>`;
 }
 
+function rmvTightCell(row) {
+  const count = Number(row.rmv15_tight_count);
+  const rmv = Number(row.rmv15);
+  const hasCount = !Number.isNaN(count);
+  const level = hasCount && count >= 10 ? "hot" : hasCount && count >= 6 ? "warm" : "cool";
+  const title = hasCount
+    ? `RMV Tight: ${count}/15 candles com RMV abaixo de 15. RMV atual: ${formatNumber(rmv, 1)}.`
+    : "RMV Tight indisponivel: historico insuficiente para calcular os ultimos 15 candles.";
+  return `<td class="num rmv-cell rmv-${level}" title="${escapeHtml(title)}">${
+    hasCount ? `${formatNumber(count, 0)}/15` : "--"
+  }</td>`;
+}
+
 function dayChangePct(row) {
   const explicit = Number(row.day_change_pct);
   if (!Number.isNaN(explicit)) return explicit;
@@ -8436,6 +8784,7 @@ function renderConsolidatingTable() {
           <td>${escapeHtml(row.country || "--")}</td>
           ${rankCell(row, ranks.get(row.ticker), "leadership_score", "Rank geral")}
           <td class="num">${formatNumber(row.breakout_base_count, 0)}</td>
+          ${rmvTightCell(row)}
           <td class="num ${signedClass(-Number(row.distance_to_pivot_pct || 0))}">${formatPercent(
             row.distance_to_pivot_pct,
           )}</td>
@@ -8453,7 +8802,7 @@ function renderBreakoutsTable() {
   el.breakoutsCount.textContent = rows.length;
   if (!rows.length) {
     el.breakoutsBody.innerHTML =
-      '<tr><td colspan="9"><div class="empty-state">Nenhum acionamento para os filtros atuais.</div></td></tr>';
+      '<tr><td colspan="10"><div class="empty-state">Nenhum acionamento para os filtros atuais.</div></td></tr>';
     return;
   }
   el.breakoutsBody.innerHTML = rows
@@ -8464,6 +8813,7 @@ function renderBreakoutsTable() {
           <td>${statusPill(row)}</td>
           ${rankCell(row, ranks.get(row.ticker), "leadership_score", "Rank geral")}
           <td class="num">${formatNumber(row.breakout_base_count, 0)}</td>
+          ${rmvTightCell(row)}
           <td class="num">${formatNumber(row.breakout_chase_count, 0)}</td>
           ${themeCell(row, { flags: true })}
           <td>${escapeHtml(row.country || "--")}</td>
@@ -8481,7 +8831,7 @@ function renderLeadersTable() {
   el.leadersCount.textContent = rows.length;
   if (!rows.length) {
     el.leadersBody.innerHTML =
-      '<tr><td colspan="16"><div class="empty-state">Nenhum leader nos filtros atuais.</div></td></tr>';
+      '<tr><td colspan="17"><div class="empty-state">Nenhum leader nos filtros atuais.</div></td></tr>';
     return;
   }
   el.leadersBody.innerHTML = rows
@@ -8498,6 +8848,7 @@ function renderLeadersTable() {
           <td>${escapeHtml(row.country || "--")}</td>
           ${rankCell(row, ranks.get(row.ticker), "leadership_score", "Rank geral")}
           <td class="num" title="Tamanho da base em candles diarios sem breakout antes do rompimento/setup atual.">${formatNumber(row.breakout_base_count, 0)}</td>
+          ${rmvTightCell(row)}
           ${top2DaysCell(row)}
           <td class="num">${formatNumber(row.days_in_watchlist_30d, 0)}</td>
           <td class="num">${formatNumber(row.consecutive_days, 0)}</td>
