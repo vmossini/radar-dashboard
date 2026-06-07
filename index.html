@@ -562,8 +562,9 @@ table {
   border-collapse: collapse;
 }
 
-.breakouts-table {
-  min-width: 1200px;
+.breakouts-table,
+.active-table {
+  min-width: 1120px;
   table-layout: fixed;
 }
 
@@ -577,7 +578,9 @@ td {
 }
 
 .breakouts-table th,
-.breakouts-table td {
+.breakouts-table td,
+.active-table th,
+.active-table td {
   padding: 6px 10px;
 }
 
@@ -893,17 +896,23 @@ tbody tr:hover {
 }
 
 .breakouts-table th:nth-child(1),
-.breakouts-table td:nth-child(1) {
+.breakouts-table td:nth-child(1),
+.active-table th:nth-child(1),
+.active-table td:nth-child(1) {
   width: 260px;
 }
 
 .breakouts-table th:nth-child(2),
-.breakouts-table td:nth-child(2) {
+.breakouts-table td:nth-child(2),
+.active-table th:nth-child(2),
+.active-table td:nth-child(2) {
   width: 150px;
 }
 
 .breakouts-table th:nth-child(3),
-.breakouts-table td:nth-child(3) {
+.breakouts-table td:nth-child(3),
+.active-table th:nth-child(3),
+.active-table td:nth-child(3) {
   width: 70px;
   text-align: center;
 }
@@ -911,57 +920,79 @@ tbody tr:hover {
 .breakouts-table th:nth-child(4),
 .breakouts-table td:nth-child(4),
 .breakouts-table th:nth-child(5),
-.breakouts-table td:nth-child(5) {
-  width: 64px;
+.breakouts-table td:nth-child(5),
+.active-table th:nth-child(4),
+.active-table td:nth-child(4),
+.active-table th:nth-child(5),
+.active-table td:nth-child(5) {
+  width: 68px;
   text-align: center;
 }
 
 .breakouts-table th:nth-child(6),
-.breakouts-table td:nth-child(6) {
-  width: 270px;
+.breakouts-table td:nth-child(6),
+.active-table th:nth-child(6),
+.active-table td:nth-child(6) {
+  width: 86px;
+  text-align: right;
 }
 
 .breakouts-table th:nth-child(7),
 .breakouts-table td:nth-child(7),
+.active-table th:nth-child(7),
+.active-table td:nth-child(7) {
+  width: 300px;
+}
+
 .breakouts-table th:nth-child(8),
-.breakouts-table td:nth-child(8) {
+.breakouts-table td:nth-child(8),
+.active-table th:nth-child(8),
+.active-table td:nth-child(8) {
   width: 80px;
   text-align: right;
 }
 
-.breakouts-table .rank-cell {
+.breakouts-table .rank-cell,
+.active-table .rank-cell {
   text-align: center;
 }
 
-.breakouts-table .rank-stack {
+.breakouts-table .rank-stack,
+.active-table .rank-stack {
   justify-items: center;
   gap: 0;
 }
 
-.breakouts-table .rank-delta {
+.breakouts-table .rank-delta,
+.active-table .rank-delta {
   display: none;
 }
 
-.breakouts-table .rank-badge {
+.breakouts-table .rank-badge,
+.active-table .rank-badge {
   min-width: 38px;
   height: 24px;
 }
 
-.breakouts-table .pill {
+.breakouts-table .pill,
+.active-table .pill {
   height: 22px;
   padding: 0 7px;
   font-size: 10.5px;
 }
 
-.breakouts-table .theme-cell {
+.breakouts-table .theme-cell,
+.active-table .theme-cell {
   max-width: none;
 }
 
-.breakouts-table .flag-stack {
+.breakouts-table .flag-stack,
+.active-table .flag-stack {
   margin-top: 4px;
 }
 
-.breakouts-table .breakout-status-pill {
+.breakouts-table .breakout-status-pill,
+.active-table .breakout-status-pill {
   width: 126px;
 }
 
@@ -1316,9 +1347,9 @@ tbody tr:hover {
                 <th data-sort="leadership_score" title="Posicao do ticker no ranking geral de All leaders, calculada pelo score interno de lideranca. Menor numero = melhor posicao.">Rank</th>
                 <th data-sort="breakout_base_count" title="Quantidade de candles diarios sem breakout antes do rompimento atual, limitada a 10. Se houve breakout no caminho, a contagem reinicia.">Base</th>
                 <th data-sort="rmv15_tight_count" title="Quantidade dos ultimos 15 candles cujo RMV ficou abaixo de 15. Maior numero = mais candles comprimidos.">RMV</th>
+                <th data-sort="rvol_10d" title="Volume relativo de 10 dias no mesmo ponto do pregao quando intraday; no fechamento, volume do dia versus media dos 10 dias anteriores.">RVOL(10)</th>
                 <th data-sort="theme" title="Tema principal do ticker.">Tema</th>
                 <th data-sort="day_change_pct" title="Variacao do preco atual contra o fechamento anterior.">Dia</th>
-                <th data-sort="rvol_10d" title="Volume relativo de 10 dias no mesmo ponto do pregao quando intraday; no fechamento, volume do dia versus media dos 10 dias anteriores.">RVOL(10)</th>
               </tr>
             </thead>
             <tbody id="breakoutsBody"></tbody>
@@ -1343,9 +1374,9 @@ tbody tr:hover {
                 <th data-sort="leadership_score" title="Posicao do ticker no ranking geral de All leaders. Menor numero = melhor posicao.">Rank</th>
                 <th data-sort="breakout_base_count" title="Quantidade de candles diarios sem breakout antes do setup atual, limitada a 10.">Base</th>
                 <th data-sort="rmv15_tight_count" title="Quantidade dos ultimos 15 candles cujo RMV ficou abaixo de 15. Maior numero = mais candles comprimidos.">RMV</th>
+                <th data-sort="rvol_10d" title="Volume relativo de 10 dias.">RVOL(10)</th>
                 <th data-sort="theme" title="Tema principal do ticker.">Tema</th>
                 <th data-sort="day_change_pct" title="Variacao do preco atual contra o fechamento anterior. A tabela mostra apenas nomes com +0,1% ou mais.">Dia</th>
-                <th data-sort="rvol_10d" title="Volume relativo de 10 dias.">RVOL(10)</th>
               </tr>
             </thead>
             <tbody id="activeBody"></tbody>
@@ -7639,7 +7670,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-05",
   "data_mode": "intraday",
-  "generated_at": "2026-06-07T18:03:28-03:00",
+  "generated_at": "2026-06-07T18:10:45-03:00",
   "intraday_asof": "2026-06-05",
   "intraday_timestamp": "2026-06-05T20:03:08+00:00",
   "leader_triggers_today": [
@@ -10043,6 +10074,7 @@ const BREAKOUT_TYPES = [
 const QUICK_FILTERS = [
   { key: "All", label: "Todos" },
   { key: "NewRadar", label: "Novos" },
+  { key: "Consolidating", label: "Consolidação" },
 ];
 
 const state = {
@@ -10455,7 +10487,8 @@ function filterRows(rows, options = {}) {
     const searchOk = !query || searchable.includes(query);
     const quickFilterOk =
       state.quickFilter === "All" ||
-      (state.quickFilter === "NewRadar" && row.watchlist_change === "included");
+      (state.quickFilter === "NewRadar" && row.watchlist_change === "included") ||
+      (state.quickFilter === "Consolidating" && String(row.status || "").toLowerCase() === "ready");
     const themeOk = state.theme === "All" || row.theme === state.theme;
     const breakoutTypeOk =
       !options.breakoutType || state.breakoutType === "All" || row.breakout_type === state.breakoutType;
@@ -10844,9 +10877,9 @@ function renderActiveTable() {
           ${rankCell(row, ranks.get(row.ticker), "leadership_score", "Rank geral")}
           <td class="num">${formatNumber(row.breakout_base_count, 0)}</td>
           ${rmvTightCell(row)}
+          ${rvolCell(row)}
           ${themeCell(row, { flags: true })}
           ${dayChangeCell(row)}
-          ${rvolCell(row)}
         </tr>
       `,
     )
@@ -10871,9 +10904,9 @@ function renderBreakoutsTable() {
           ${rankCell(row, ranks.get(row.ticker), "leadership_score", "Rank geral")}
           <td class="num">${formatNumber(row.breakout_base_count, 0)}</td>
           ${rmvTightCell(row)}
+          ${rvolCell(row)}
           ${themeCell(row, { flags: true })}
           ${dayChangeCell(row)}
-          ${rvolCell(row)}
         </tr>
       `,
     )
