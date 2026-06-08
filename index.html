@@ -1660,7 +1660,7 @@ tbody tr:hover {
         <section class="section-block">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Replay historico</p>
+              <p class="eyebrow">Replay historico parcial</p>
               <h2>Simulacao dia a dia</h2>
             </div>
             <span class="row-count" id="agentReplayCount">--</span>
@@ -11424,7 +11424,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-08",
   "data_mode": "intraday",
-  "generated_at": "2026-06-08T15:59:14-03:00",
+  "generated_at": "2026-06-08T16:10:22-03:00",
   "intraday_asof": "2026-06-08",
   "intraday_timestamp": "2026-06-08T18:26:51+00:00",
   "leader_triggers_today": [
@@ -14307,6 +14307,16 @@ window.RADAR_DATA = {
         "stop_model": "prior_30m_lows"
       },
       "available": true,
+      "coverage": {
+        "coverage_pct": 0.05238095238095238,
+        "eligible_signals": 210,
+        "executed_trades": 11,
+        "skip_reasons": {
+          "entry_trigger_not_seen_after_rule": 6,
+          "missing_file": 193
+        },
+        "skipped_signals": 199
+      },
       "equity": [
         {
           "closed_positions": "0",
@@ -16225,6 +16235,7 @@ function renderAgent() {
   const metrics = agent.metrics || {};
   const replay = agent.replay || {};
   const replayMetrics = replay.metrics || {};
+  const replayCoverage = replay.coverage || {};
   const replayTrades = replay.trades || [];
   const openPositions = agent.open_positions || [];
   const history = agent.history || [];
@@ -16266,7 +16277,10 @@ function renderAgent() {
 
   const replayCards = [
     ["Periodo", `${escapeHtml(replay.assumptions?.start_date || "--")} -> ${escapeHtml(replay.assumptions?.end_date || "--")}`, "Periodo do replay historico."],
+    ["Elegiveis", formatNumber(replayCoverage.eligible_signals, 0), "Sinais elegiveis antes da exigencia de intraday."],
     ["Trades", formatNumber(replayMetrics.total_trades, 0), "Trades simulados no replay historico."],
+    ["Pulados", formatNumber(replayCoverage.skipped_signals, 0), "Sinais pulados, normalmente por falta de intraday local."],
+    ["Cobertura", formatPercent((replayCoverage.coverage_pct || 0) * 100, 1), "Percentual dos sinais elegiveis com intraday suficiente para replay."],
     ["Fechados", formatNumber(replayMetrics.closed_trades, 0), "Trades fechados no replay."],
     ["Abertos", formatNumber(replayMetrics.open_trades, 0), "Trades ainda marcados a mercado no fim do replay."],
     ["Expectancy R", formatNumber(replayMetrics.expectancy_r, 2), "Media de R dos trades fechados do replay."],
