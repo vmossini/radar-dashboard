@@ -2,3 +2,5 @@ event_key,event_type,timestamp,asof,ticker,position_id,price,shares,risk_dollars
 entry:2026-06-08:AGL:2026-06-08T18:26:51+00:00,entry,2026-06-08T18:26:51+00:00,2026-06-08,AGL,2026-06-08:AGL,99.145,18,96.75,,,5d_breakout,paper trade entry; no real order sent
 entry:2026-06-08:BAND:2026-06-08T18:26:51+00:00,entry,2026-06-08T18:26:51+00:00,2026-06-08,BAND,2026-06-08:BAND,75.5099,43,98.04,,,5d_breakout,paper trade entry; no real order sent
 stop:2026-06-08:BAND:2026-06-08T18:26:51+00:00,exit,2026-06-08T18:26:51+00:00,2026-06-08,BAND,2026-06-08:BAND,73.23,43,98.04,-1.0,-98.04,stop,paper trade exit
+correction:2026-06-08:AGL:2026-06-08T18:26:51+00:00,correction,2026-06-08T18:26:51+00:00,2026-06-08,AGL,2026-06-08:AGL,97.49,18,96.75,,,rule_change_base_lt_5,invalidated by new paper-agent rule: entry_base_count must be >= 5
+correction:2026-06-08:BAND:2026-06-08T18:26:51+00:00,correction,2026-06-08T18:26:51+00:00,2026-06-08,BAND,2026-06-08:BAND,70.43,43,98.04,,,rule_change_base_lt_5,invalidated by new paper-agent rule: entry_base_count must be >= 5

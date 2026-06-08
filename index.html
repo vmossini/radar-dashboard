@@ -1606,7 +1606,7 @@ tbody tr:hover {
           </div>
           <div class="agent-rule">
             <strong>Regra</strong>
-            <span>Radar principal + rompimento da maxima dos 5 pregoes anteriores. Risco fixo de $100 por posicao.</span>
+            <span>Radar principal + base minima de 5 dias + rompimento da maxima dos 5 pregoes anteriores. Risco fixo de $100 por posicao.</span>
           </div>
         </section>
 
@@ -11395,7 +11395,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-08",
   "data_mode": "intraday",
-  "generated_at": "2026-06-08T15:34:12-03:00",
+  "generated_at": "2026-06-08T15:41:02-03:00",
   "intraday_asof": "2026-06-08",
   "intraday_timestamp": "2026-06-08T18:26:51+00:00",
   "leader_triggers_today": [
@@ -14198,6 +14198,36 @@ window.RADAR_DATA = {
         "shares": "43",
         "ticker": "BAND",
         "timestamp": "2026-06-08T18:26:51+00:00"
+      },
+      {
+        "asof": "2026-06-08",
+        "event_key": "correction:2026-06-08:AGL:2026-06-08T18:26:51+00:00",
+        "event_type": "correction",
+        "note": "invalidated by new paper-agent rule: entry_base_count must be >= 5",
+        "pnl": "",
+        "position_id": "2026-06-08:AGL",
+        "price": "97.49",
+        "r_multiple": "",
+        "reason": "rule_change_base_lt_5",
+        "risk_dollars": "96.75",
+        "shares": "18",
+        "ticker": "AGL",
+        "timestamp": "2026-06-08T18:26:51+00:00"
+      },
+      {
+        "asof": "2026-06-08",
+        "event_key": "correction:2026-06-08:BAND:2026-06-08T18:26:51+00:00",
+        "event_type": "correction",
+        "note": "invalidated by new paper-agent rule: entry_base_count must be >= 5",
+        "pnl": "",
+        "position_id": "2026-06-08:BAND",
+        "price": "70.43",
+        "r_multiple": "",
+        "reason": "rule_change_base_lt_5",
+        "risk_dollars": "98.04",
+        "shares": "43",
+        "ticker": "BAND",
+        "timestamp": "2026-06-08T18:26:51+00:00"
       }
     ],
     "files": {
@@ -14205,103 +14235,36 @@ window.RADAR_DATA = {
       "events": "outputs\\trade_agent_events.csv",
       "positions": "outputs\\trade_agent_positions.csv"
     },
-    "history": [
-      {
-        "entry_basis": "5d_breakout_scan",
-        "entry_date": "2026-06-08",
-        "entry_notional": "3246.93",
-        "entry_price": "75.5099",
-        "entry_rank": "3",
-        "entry_status": "Chase Breakout",
-        "entry_time": "09:30",
-        "entry_timestamp": "2026-06-08T18:26:51+00:00",
-        "exit_date": "2026-06-08",
-        "exit_price": "73.23",
-        "exit_reason": "stop",
-        "exit_time": "",
-        "exit_timestamp": "2026-06-08T18:26:51+00:00",
-        "last_price": "70.43",
-        "last_r": "-2.228124",
-        "last_update": "2026-06-08T18:26:51+00:00",
-        "name": "Bandwidth Inc. Class A Common Stock",
-        "open_days": "0",
-        "open_pnl": "0.0",
-        "pnl": "-98.04",
-        "position_id": "2026-06-08:BAND",
-        "prior_5d_high": "75.499901",
-        "r_multiple": "-1.0",
-        "risk_dollars": "98.04",
-        "risk_per_share": "2.279898",
-        "shares": "43",
-        "sma20": "39.896",
-        "status": "closed",
-        "stop_price": "73.23",
-        "theme": "Optical & networking",
-        "ticker": "BAND"
-      }
-    ],
+    "history": [],
     "initial_capital": 10000.0,
     "metrics": {
       "asof": "2026-06-08",
-      "avg_r": -1.0,
-      "best_r": -1.0,
-      "closed_trades": 1,
-      "equity_marked": 9872.17,
-      "expectancy_dollar": -100.0,
-      "expectancy_r": -1.0,
-      "loss_rate": 1.0,
-      "max_drawdown": -0.012783,
-      "median_r": -1.0,
-      "notional_open": 1754.82,
-      "open_pnl": -29.79,
-      "open_positions": 1,
+      "avg_r": 0.0,
+      "best_r": 0.0,
+      "closed_trades": 0,
+      "equity_marked": 10000.0,
+      "expectancy_dollar": 0.0,
+      "expectancy_r": 0.0,
+      "loss_rate": 0.0,
+      "max_drawdown": 0.0,
+      "median_r": 0.0,
+      "notional_open": 0,
+      "open_pnl": 0,
+      "open_positions": 0,
       "payoff_ratio": 0.0,
       "profit_factor": 0.0,
-      "realized_pnl": -98.04,
-      "return_pct": -0.012783,
-      "risk_open": 96.75,
+      "realized_pnl": 0,
+      "return_pct": 0.0,
+      "risk_open": 0,
       "scratch_rate": 0.0,
       "timestamp": "2026-06-08T18:26:51+00:00",
-      "total_trades": 2,
+      "total_trades": 0,
+      "trades_today": 0,
       "win_rate": 0.0,
-      "worst_r": -1.0
+      "worst_r": 0.0
     },
     "mode": "paper",
-    "open_positions": [
-      {
-        "entry_basis": "5d_breakout_scan",
-        "entry_date": "2026-06-08",
-        "entry_notional": "1784.61",
-        "entry_price": "99.145",
-        "entry_rank": "2",
-        "entry_status": "Chase Breakout",
-        "entry_time": "10:20",
-        "entry_timestamp": "2026-06-08T18:26:51+00:00",
-        "exit_date": "",
-        "exit_price": "",
-        "exit_reason": "",
-        "exit_time": "",
-        "exit_timestamp": "",
-        "last_price": 97.49,
-        "last_r": -0.307907,
-        "last_update": "2026-06-08T18:26:51+00:00",
-        "name": "agilon health, inc.",
-        "open_days": 0,
-        "open_pnl": -29.79,
-        "pnl": "",
-        "position_id": "2026-06-08:AGL",
-        "prior_5d_high": "99.135002",
-        "r_multiple": "",
-        "risk_dollars": "96.75",
-        "risk_per_share": "5.375005",
-        "shares": "18",
-        "sma20": 44.4285,
-        "status": "open",
-        "stop_price": "93.77",
-        "theme": "Biotech & health",
-        "ticker": "AGL"
-      }
-    ],
+    "open_positions": [],
     "risk_dollars_per_position": 100.0
   },
   "update_endpoints": [
@@ -15453,8 +15416,6 @@ function renderAgent() {
   const metrics = agent.metrics || {};
   const openPositions = agent.open_positions || [];
   const history = agent.history || [];
-  const events = agent.events || [];
-  const todaysEntries = events.filter((event) => event.asof === DATA.asof && event.event_type === "entry").length;
 
   if (el.agentOpenPositions) el.agentOpenPositions.textContent = metrics.open_positions ?? 0;
   if (el.agentRiskOpen) el.agentRiskOpen.textContent = `Risco ${formatMoney(metrics.risk_open || 0)}`;
@@ -15468,7 +15429,7 @@ function renderAgent() {
     el.agentRealizedPnl.className = signedClass(metrics.realized_pnl);
   }
   if (el.agentReturn) el.agentReturn.textContent = `Retorno ${formatPercent((metrics.return_pct || 0) * 100, 2)}`;
-  if (el.agentTradesToday) el.agentTradesToday.textContent = todaysEntries;
+  if (el.agentTradesToday) el.agentTradesToday.textContent = metrics.trades_today ?? 0;
 
   const systemCards = [
     ["Total trades", formatNumber(metrics.total_trades, 0), "Total de trades paper registrados."],
