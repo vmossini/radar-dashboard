@@ -917,7 +917,7 @@ tbody tr:hover {
 
 .breakouts-table th:nth-child(3),
 .breakouts-table td:nth-child(3) {
-  width: 56px;
+  width: 70px;
   text-align: center;
 }
 
@@ -929,7 +929,7 @@ tbody tr:hover {
 
 .breakouts-table th:nth-child(4),
 .breakouts-table td:nth-child(4) {
-  width: 70px;
+  width: 56px;
   text-align: center;
 }
 
@@ -1363,8 +1363,8 @@ tbody tr:hover {
               <tr>
                 <th data-sort="ticker" title="Ticker negociado.">Ticker</th>
                 <th data-sort="status" title="Sinal acionado no dia: New/Chase Breakout estrutural ou Leader Trigger - 1D acima da maxima do dia anterior.">Sinal</th>
-                <th data-sort="or30_breakout" title="Indica se o ticker rompeu a maxima do primeiro candle de 30 minutos do dia.">30m</th>
                 <th data-sort="leadership_score" title="Posicao do ticker no ranking geral de All leaders, calculada pelo score interno de lideranca. Menor numero = melhor posicao.">Rank</th>
+                <th data-sort="or30_breakout" title="Indica se o ticker rompeu a maxima do primeiro candle de 30 minutos do dia.">30m</th>
                 <th data-sort="breakout_base_count" title="Quantidade de candles diarios sem breakout antes do rompimento atual, limitada a 10. Se houve breakout no caminho, a contagem reinicia.">Base</th>
                 <th data-sort="rmv15_tight_count" title="Quantidade dos ultimos 15 candles cujo RMV ficou abaixo de 15. Maior numero = mais candles comprimidos.">RMV</th>
                 <th data-sort="rvol_10d" title="Volume relativo de 10 dias no mesmo ponto do pregao quando intraday; no fechamento, volume do dia versus media dos 10 dias anteriores.">RVOL(10)</th>
@@ -14868,8 +14868,8 @@ function renderBreakoutsTable() {
         <tr data-ticker="${escapeHtml(row.ticker)}">
           ${tickerCell(row)}
           <td>${signalPill(row)}</td>
-          ${or30Cell(row)}
           ${rankCell(row, ranks.get(row.ticker), "leadership_score", "Rank geral")}
+          ${or30Cell(row)}
           <td class="num">${formatNumber(row.breakout_base_count, 0)}</td>
           ${rmvTightCell(row)}
           ${rvolCell(row)}
