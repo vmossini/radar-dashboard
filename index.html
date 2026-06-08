@@ -1660,8 +1660,8 @@ tbody tr:hover {
         <section class="section-block">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Replay historico parcial</p>
-              <h2>Simulacao dia a dia</h2>
+              <p class="eyebrow">Teste real paper</p>
+              <h2>Walk-forward dia a dia</h2>
             </div>
             <span class="row-count" id="agentReplayCount">--</span>
           </div>
@@ -11666,7 +11666,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-08",
   "data_mode": "intraday",
-  "generated_at": "2026-06-08T20:02:32-03:00",
+  "generated_at": "2026-06-08T20:08:50-03:00",
   "intraday_asof": "2026-06-08",
   "intraday_timestamp": "2026-06-08T20:03:23+00:00",
   "leader_triggers_today": [
@@ -14556,10 +14556,12 @@ window.RADAR_DATA = {
       "assumptions": {
         "entry": "5D trigger. If first 5D break is inside OR30, entry waits for OR30 high + tick; otherwise entry at 5D trigger.",
         "exit": "Later-day stop has priority over close below SMA20.",
+        "mode": "walk_forward_paper_test_audit",
         "same_day_stop": "Only post-entry candles after the entry candle may stop same day; entry-candle sequence is warned as ambiguous, not assumed.",
         "source": "Radar daily histories plus minute cache, including AmiBroker-exported intraday files when present.",
         "stop": "Minimum regular-session intraday low strictly before the entry candle."
       },
+      "audit": {},
       "available": true,
       "coverage": {},
       "equity": [],
@@ -15760,24 +15762,26 @@ function renderAgent() {
   }
 
   const replayCards = [
-    ["Periodo", `${escapeHtml(replay.assumptions?.start_date || "--")} -> ${escapeHtml(replay.assumptions?.end_date || "--")}`, "Periodo do replay historico."],
-    ["Elegiveis", formatNumber(replayCoverage.eligible_signals, 0), "Sinais elegiveis antes da exigencia de intraday."],
-    ["Trades", formatNumber(replayMetrics.total_trades, 0), "Trades simulados no replay historico."],
+    ["Status teste", escapeHtml(replay.assumptions?.test_status || "--"), "Completo somente quando nao ha falta de intraday nos sinais elegiveis."],
+    ["Auditoria", escapeHtml(replay.audit?.status || "--"), "Auditoria independente trade a trade: entrada, stop, sizing, saida, P/L e membership."],
+    ["Periodo", `${escapeHtml(replay.assumptions?.start_date || "--")} -> ${escapeHtml(replay.assumptions?.end_date || "--")}`, "Periodo do teste walk-forward dia a dia."],
+    ["Elegiveis", formatNumber(replayCoverage.eligible_signals, 0), "Sinais elegiveis no teste antes da regra intraday."],
+    ["Trades", formatNumber(replayMetrics.total_trades, 0), "Trades executados no teste paper walk-forward."],
     ["Pulados", formatNumber(replayCoverage.skipped_signals, 0), "Sinais pulados porque nao acionaram a regra ou nao tinham dados suficientes."],
-    ["Cobertura dados", formatPercent((replayCoverage.intraday_coverage_pct ?? replayCoverage.coverage_pct ?? 0) * 100, 1), "Percentual dos sinais elegiveis com intraday suficiente para replay."],
+    ["Cobertura dados", formatPercent((replayCoverage.intraday_coverage_pct ?? replayCoverage.coverage_pct ?? 0) * 100, 1), "Percentual dos sinais elegiveis com intraday suficiente. Abaixo de 100%, o teste nao deve ser tratado como completo."],
     ["Conversao", formatPercent((replayCoverage.trade_conversion_pct || 0) * 100, 1), "Percentual dos sinais elegiveis que viraram trade pela regra."],
-    ["Fechados", formatNumber(replayMetrics.closed_trades, 0), "Trades fechados no replay."],
-    ["Abertos", formatNumber(replayMetrics.open_trades, 0), "Trades ainda marcados a mercado no fim do replay."],
-    ["Expectancy R", formatNumber(replayMetrics.expectancy_r, 2), "Media de R dos trades fechados do replay."],
+    ["Fechados", formatNumber(replayMetrics.closed_trades, 0), "Trades fechados no teste."],
+    ["Abertos", formatNumber(replayMetrics.open_trades, 0), "Trades ainda marcados a mercado no fim do teste."],
+    ["Expectancy R", formatNumber(replayMetrics.expectancy_r, 2), "Media de R dos trades fechados do teste."],
     ["Win rate", formatPercent((replayMetrics.win_rate || 0) * 100, 1), "Percentual de trades fechados positivos."],
     ["Profit factor", formatNumber(replayMetrics.profit_factor, 2), "Lucro bruto dividido pela perda bruta."],
-    ["Retorno", formatPercent((replayMetrics.return_pct || 0) * 100, 2), "Retorno marcado a mercado no fim do replay."],
+    ["Retorno", formatPercent((replayMetrics.return_pct || 0) * 100, 2), "Retorno marcado a mercado no fim do teste."],
   ];
-  if (el.agentReplayCount) el.agentReplayCount.textContent = replay.available ? `${replayTrades.length} trades` : "sem replay";
+  if (el.agentReplayCount) el.agentReplayCount.textContent = replay.available ? `${replayTrades.length} trades` : "sem teste";
   if (el.agentReplayMetrics) {
     el.agentReplayMetrics.innerHTML = replay.available
       ? replayCards.map((item) => agentMetricCard(...item)).join("")
-      : '<div class="empty-state">Replay historico ainda nao gerado.</div>';
+      : '<div class="empty-state">Teste walk-forward ainda nao gerado.</div>';
   }
   if (el.agentReplayBody) {
     el.agentReplayBody.innerHTML = replayTrades.length
@@ -15800,7 +15804,7 @@ function renderAgent() {
             `,
           )
           .join("")
-      : '<tr><td colspan="9"><div class="empty-state">Nenhum trade no replay historico.</div></td></tr>';
+      : '<tr><td colspan="9"><div class="empty-state">Nenhum trade no teste walk-forward.</div></td></tr>';
   }
 
   if (el.agentOpenCount) el.agentOpenCount.textContent = openPositions.length;
