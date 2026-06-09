@@ -4,3 +4,10 @@ entry:2026-06-08:BAND:2026-06-08T18:26:51+00:00,entry,2026-06-08T18:26:51+00:00,
 stop:2026-06-08:BAND:2026-06-08T18:26:51+00:00,exit,2026-06-08T18:26:51+00:00,2026-06-08,BAND,2026-06-08:BAND,73.23,43,98.04,-1.0,-98.04,stop,paper trade exit
 correction:2026-06-08:AGL:2026-06-08T18:26:51+00:00,correction,2026-06-08T18:26:51+00:00,2026-06-08,AGL,2026-06-08:AGL,97.49,18,96.75,,,rule_change_base_lt_5,invalidated by new paper-agent rule: entry_base_count must be >= 5
 correction:2026-06-08:BAND:2026-06-08T18:26:51+00:00,correction,2026-06-08T18:26:51+00:00,2026-06-08,BAND,2026-06-08:BAND,70.43,43,98.04,,,rule_change_base_lt_5,invalidated by new paper-agent rule: entry_base_count must be >= 5
+entry:2026-06-09:ABSI:2026-06-09T13:36:19+00:00,entry,2026-06-09T13:36:19+00:00,2026-06-09,ABSI,2026-06-09:ABSI,6.73,4999,99.98,,,52w_high_breakout,paper trade entry; no real order sent
+entry:2026-06-09:OUST:2026-06-09T13:36:19+00:00,entry,2026-06-09T13:36:19+00:00,2026-06-09,OUST,2026-06-09:OUST,41.66,666,99.9,,,52w_high_breakout,paper trade entry; no real order sent
+entry:2026-06-09:SEDG:2026-06-09T13:36:19+00:00,entry,2026-06-09T13:36:19+00:00,2026-06-09,SEDG,2026-06-09:SEDG,63.54,32,97.28,,,52w_high_breakout,paper trade entry; no real order sent
+stop:2026-06-09:SEDG:2026-06-09T13:40:53+00:00,exit,2026-06-09T13:40:53+00:00,2026-06-09,SEDG,2026-06-09:SEDG,60.5,32,97.28,-1.0,-97.28,stop,paper trade exit
+stop:2026-06-09:OUST:2026-06-09T13:40:53+00:00,exit,2026-06-09T13:40:53+00:00,2026-06-09,OUST,2026-06-09:OUST,41.51,666,99.9,-1.0,-99.9,stop,paper trade exit
+stop:2026-06-09:ABSI:2026-06-09T13:40:53+00:00,exit,2026-06-09T13:40:53+00:00,2026-06-09,ABSI,2026-06-09:ABSI,6.71,4999,99.98,-1.0,-99.98,stop,paper trade exit
+entry:2026-06-09:UCTT:2026-06-09T13:40:53+00:00,entry,2026-06-09T13:40:53+00:00,2026-06-09,UCTT,2026-06-09:UCTT,88.3821,160,99.54,,,52w_high_breakout,paper trade entry; no real order sent
