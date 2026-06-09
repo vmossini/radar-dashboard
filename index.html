@@ -12543,14 +12543,14 @@ window.RADAR_DATA = {
       "range_10d_atr": 3.166518,
       "range_5d_atr": 3.166518,
       "rank_1m": 446,
-      "rank_1w": 1587,
+      "rank_1w": 1588,
       "rank_1y": 26,
       "rank_3m": 56,
       "rank_6m": 38,
       "rank_delta": null,
       "rank_new_top10": false,
       "rank_pct_1m": 0.787183,
-      "rank_pct_1w": 0.241511,
+      "rank_pct_1w": 0.241033,
       "rank_pct_1y": 0.98716,
       "rank_pct_3m": 0.973456,
       "rank_pct_6m": 0.981737,
@@ -19896,7 +19896,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-09",
   "data_mode": "intraday",
-  "generated_at": "2026-06-09T17:05:34-03:00",
+  "generated_at": "2026-06-09T17:10:40-03:00",
   "intraday_asof": "2026-06-09",
   "intraday_timestamp": "2026-06-09T20:00:01+00:00",
   "leaders_consolidating": [
@@ -29150,6 +29150,9 @@ function isLeaderTriggerStatus(status) {
 
 function signalText(row) {
   const status = row.status || "Unknown";
+  if (String(status || "").toLowerCase() === "breakout baseline") {
+    return `${statusLabel(status)} - 52W`;
+  }
   if (isBreakoutStatus(status) && row.breakout_type) {
     return `${statusLabel(status)} - ${breakoutTypeLabel(row.breakout_type)}`;
   }
