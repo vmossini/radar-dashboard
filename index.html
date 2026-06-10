@@ -598,9 +598,13 @@ table {
 }
 
 .breakouts-table,
-.momentum-burst-table,
 .active-table {
   min-width: 1120px;
+  table-layout: fixed;
+}
+
+.momentum-burst-table {
+  min-width: 1220px;
   table-layout: fixed;
 }
 
@@ -1084,13 +1088,15 @@ tbody tr:hover {
 .momentum-burst-table th:nth-child(7),
 .momentum-burst-table td:nth-child(7),
 .momentum-burst-table th:nth-child(8),
-.momentum-burst-table td:nth-child(8) {
+.momentum-burst-table td:nth-child(8),
+.momentum-burst-table th:nth-child(9),
+.momentum-burst-table td:nth-child(9) {
   width: 82px;
   text-align: right;
 }
 
-.momentum-burst-table th:nth-child(9),
-.momentum-burst-table td:nth-child(9) {
+.momentum-burst-table th:nth-child(10),
+.momentum-burst-table td:nth-child(10) {
   width: 300px;
 }
 
@@ -1646,6 +1652,7 @@ tbody tr:hover {
                 <th data-sort="high_proximity_pct" title="Distância do preço atual até a máxima do dia como percentual do range. Regra: <= 30%.">Perto high</th>
                 <th data-sort="range_expansion_ratio" title="Range de hoje dividido pelo range de ontem. Regra: >= 1.">Range x</th>
                 <th data-sort="prior_day_move_pct" title="Variação do fechamento de ontem contra o fechamento de dois pregões atrás. Regra: <= 2%.">Ontem</th>
+                <th data-sort="volume_vs_prior_day" title="Volume de hoje dividido pelo volume de ontem. Leitura de qualidade Stockbee: volume acima do dia anterior melhora o sinal.">Vol x</th>
                 <th data-sort="rvol_10d" title="Volume relativo de 10 dias. Não é filtro duro da tabela, mas ajuda a qualificar o sinal.">RVOL(10)</th>
                 <th data-sort="rmv15_tight_count" title="Quantidade dos últimos 15 candles cujo RMV ficou abaixo de 15. Maior número = mais compressão prévia.">RMV</th>
                 <th data-sort="theme" title="Tema principal do ticker.">Tema</th>
@@ -23196,7 +23203,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-09",
   "data_mode": "intraday",
-  "generated_at": "2026-06-09T23:09:25-03:00",
+  "generated_at": "2026-06-09T23:12:18-03:00",
   "intraday_asof": "2026-06-09",
   "intraday_timestamp": "2026-06-09T20:03:36+00:00",
   "leaders_consolidating": [
@@ -34436,6 +34443,18 @@ function priorMoveCell(row) {
   return `<td class="num ${signedClass(move)}" title="${escapeHtml(title)}">${formatPercent(move, 2)}</td>`;
 }
 
+function volumeVsPriorCell(row) {
+  const ratio = Number(row.volume_vs_prior_day);
+  const valid = !Number.isNaN(ratio);
+  const level = valid && ratio >= 1.5 ? "hot" : valid && ratio >= 1 ? "warm" : "cool";
+  const title = valid
+    ? `Volume de hoje / volume de ontem: ${formatNumber(ratio, 2)}x. Stockbee prefere volume acima do dia anterior.`
+    : "Volume versus ontem indisponivel.";
+  return `<td class="num burst-cell burst-${level}" title="${escapeHtml(title)}">${
+    valid ? `${formatNumber(ratio, 2)}x` : "--"
+  }</td>`;
+}
+
 function or30Cell(row) {
   const high = Number(row.or30_high);
   const hasHigh = !Number.isNaN(high) && high > 0;
@@ -35017,7 +35036,7 @@ function renderMomentumBurstTable() {
   if (!el.momentumBurstBody) return;
   if (!rows.length) {
     el.momentumBurstBody.innerHTML =
-      '<tr><td colspan="9"><div class="empty-state">Nenhum Momentum Burst entre os lideres atuais.</div></td></tr>';
+      '<tr><td colspan="10"><div class="empty-state">Nenhum Momentum Burst entre os lideres atuais.</div></td></tr>';
     return;
   }
   el.momentumBurstBody.innerHTML = rows
@@ -35030,6 +35049,7 @@ function renderMomentumBurstTable() {
           ${highProximityCell(row)}
           ${rangeExpansionCell(row)}
           ${priorMoveCell(row)}
+          ${volumeVsPriorCell(row)}
           ${rvolCell(row)}
           ${rmvTightCell(row)}
           ${themeCell(row, { flags: true })}
