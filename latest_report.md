@@ -1,154 +1,148 @@
-# Radar Diario de Lideranca e Consolidacao - 2026-06-11
+# Radar Diario de Lideranca e Consolidacao - 2026-06-12
 
-- All leaders: `91` tickers.
-- Ativos no dia: `84` tickers.
-- Leaders consolidating: `34` tickers.
-- Acionados hoje: `20` tickers.
-- Fonte de preco/volume: `intraday`; base diaria `2026-06-11`; intraday atualizados `91`.
-- CSV all leaders: `C:\Users\Computador\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-06-11\all_leaders_2026-06-11.csv`
-- CSV consolidating: `C:\Users\Computador\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-06-11\leaders_consolidating_2026-06-11.csv`
+- All leaders: `93` tickers.
+- Ativos no dia: `48` tickers.
+- Leaders consolidating: `30` tickers.
+- Acionados hoje: `18` tickers.
+- Fonte de preco/volume: `intraday`; base diaria `2026-06-12`; intraday atualizados `93`.
+- CSV all leaders: `C:\Users\Computador\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-06-12\all_leaders_2026-06-12.csv`
+- CSV consolidating: `C:\Users\Computador\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-06-12\leaders_consolidating_2026-06-12.csv`
 
 ## Market regime
 - SPY close 738.65, vs SMA20 +1.8%, vs SMA50 +6.8%; QQQ close 705.88, vs SMA20 +3.3%, vs SMA50 +11.4%
-- Universo final pos-filtros: `1378`.
-- 52W highs no universo final: `53`.
+- Universo final pos-filtros: `1365`.
+- 52W highs no universo final: `62`.
 
 ## Temas fortes
 | Tema | Leaders | Ready | Score | Top tickers |
 | --- | --- | --- | --- | --- |
-| Semiconductors & AI compute | 30 | 13 | 448.5 | PENG, SNDK, ALAB, MU, AMBQ, QUIK, SVCO, AEHR |
-| Biotech & health | 10 | 3 | 194.8 | AGL, SLS, TNGX, CLYM, ERAS, MGNX, ADPT, SEPN |
-| Software & data | 8 | 5 | 186.4 | BB, DOCN, NAVN, FLEX, INOD, SWMR, DUOT, FTK |
-| Defense & space | 8 | 2 | 173.9 | OPTX, SATL, RXT, SIDU, IRDM, RDW, VOYG, PL |
-| Power & electrification | 5 | 1 | 141.2 | HYLN, STRZ, ABSI, FCEL, VICR |
-| Industrial components | 5 | 1 | 140.0 | VPG, VELO, ACMR, OUST, TE |
-| Optical & networking | 3 | 1 | 122.5 | BAND, SILC, UMAC |
-| EDP Services | 2 |  | 101.5 | SHAZ, ALOY |
-| Medical Specialities | 2 |  | 101.5 | CLOV, PSNL |
-| Transportation Services | 2 |  | 96.3 | SPCE, PAL |
-| Services-Misc. Amusement & Recreation | 2 |  | 88.4 | STUB, GENI |
-| Media & broadcasting | 1 | 1 | 107.1 | EVC |
+| Semiconductors & AI compute | 31 | 11 | 448.7 | SNDK, PENG, ALAB, AMBQ, STX, SVCO, AEHR, INTC |
+| Biotech & health | 10 | 3 | 194.3 | AGL, TNGX, SLS, ERAS, CLYM, MGNX, SEPN, ARTV |
+| Software & data | 8 | 5 | 185.2 | BB, DOCN, XRX, SWMR, INOD, FLEX, DUOT, SMWB |
+| Power & electrification | 7 | 4 | 171.5 | HYLN, STRZ, ABSI, MEC, VICR, FCEL, MEI |
+| Defense & space | 6 |  | 146.2 | OPTX, CDNL, RXT, MNTS, SIDU, SATL |
+| Industrial components | 4 |  | 124.4 | VPG, ACMR, VELO, TE |
+| Optical & networking | 3 | 1 | 121.4 | BAND, SILC, UMAC |
+| Finance: Consumer Services | 3 | 1 | 115.7 | BTDR, PURR, HIVE |
+| EDP Services | 2 |  | 98.9 | SHAZ, ALOY |
+| Medical Specialities | 2 |  | 96.9 | CLOV, PSNL |
+| Transportation Services | 2 |  | 91.4 | SPCE, PAL |
+| Services-Misc. Amusement & Recreation | 2 |  | 89.1 | STUB, GENI |
 
 _Mostrando 12 de 25._
 
 ## All leaders - resumo
 - Janela de entrada: `1M/3M/6M`. `1W` fica apenas como contexto/aceleracao.
-- Top 3% 1W contexto: `11`
-- Top 3% 1M: `42`
+- Top 3% 1W contexto: `14`
+- Top 3% 1M: `41`
 - Top 3% 3M: `41`
-- Top 3% 6M: `40`
+- Top 3% 6M: `39`
 
 | Ticker | Name | Theme | Score | 1W | 1M | 3M | 6M | 1Y | ADR | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| AGL | agilon health, inc. | Biotech & health | 100.0 | 22.0 | 67.0 | 668.1 | 605.8 | 103.8 | 7.6 | Chase Breakout |
-| HYLN | Hyliion Holdings Corp. | Power & electrification | 99.9 | -1.4 | 180.2 | 261.1 | 291.1 | 375.3 | 15.1 | Leader |
-| VPG | Vishay Precision Group, Inc. | Industrial components | 99.6 | 10.5 | 65.6 | 239.7 | 285.3 | 439.8 | 8.8 | Breakout Baseline |
-| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | 99.6 | -9.6 | 45.8 | 262.0 | 194.8 | 221.5 | 11.0 | Ready |
-| OPTX | Syntec Optics Holdings, Inc. Class A Common Stock | Defense & space | 93.0 | 7.4 | 98.2 | 106.9 | 859.9 | 787.4 | 12.5 | New Breakout |
-| SHAZ | SharonAI Holdings Inc. Class A Common Stock | EDP Services | 92.8 | -5.9 | 37.3 | 261.9 |  |  | 12.9 | Leader |
-| SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | 92.8 | 6.9 | 29.6 | 204.0 | 757.3 | 4423.9 | 7.1 | Breakout Baseline |
-| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | 92.8 | -12.2 | 30.0 | 319.4 | 310.8 | 324.1 | 9.6 | Leader |
-| VELO | Velo3D Inc. Common stock | Industrial components | 92.8 | 62.6 | 117.7 | 97.2 | 364.5 |  | 11.7 | Breakout Baseline |
-| ALAB | Astera Labs Inc. Common Stock | Semiconductors & AI compute | 92.6 | 2.6 | 79.8 | 206.5 | 119.9 | 301.8 | 8.2 | Ready |
-| EVC | Entravision Communication | Media & broadcasting | 92.1 | 10.0 | 23.1 | 229.4 | 209.0 | 310.7 | 7.3 | Ready |
-| MU | Micron Technology, Inc. | Semiconductors & AI compute | 92.1 | -0.0 | 29.9 | 145.7 | 294.5 | 772.5 | 6.8 | Ready |
-| AMBQ | Ambiq Micro Inc. Common Stock | Semiconductors & AI compute | 92.1 | -1.9 | 25.6 | 209.8 | 183.0 |  | 8.0 | Ready |
-| BB | BlackBerry Limited | Software & data | 91.8 | -10.2 | 49.4 | 171.6 | 110.7 | 124.4 | 10.2 | Ready |
-| SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | 91.5 | -14.3 | 48.5 | 54.1 | 307.9 | 403.2 | 10.1 | Leader |
-| QUIK | QuickLogic Corp | Semiconductors & AI compute | 90.9 | -8.2 | 14.4 | 144.7 | 242.2 | 226.3 | 9.0 | Ready |
-| DOCN | DigitalOcean Holdings, Inc. | Software & data | 90.8 | -3.2 | 12.2 | 163.9 | 251.5 | 492.4 | 7.8 | Ready |
-| SILC | Silicom Ltd | Optical & networking | 90.6 | 10.9 | 12.4 | 149.5 | 234.5 | 229.1 | 9.7 | Ready |
-| SVCO | Silvaco Group, Inc. Common Stock | Semiconductors & AI compute | 90.5 | -12.3 | 7.6 | 247.6 | 183.9 | 132.2 | 9.3 | Leader |
-| AEHR | Aehr Test Systems | Semiconductors & AI compute | 90.3 | -11.6 | 6.5 | 173.7 | 320.2 | 743.8 | 12.0 | Ready |
-| CLOV | Clover Health Investments Corp. Class A Common Stock | Medical Specialities | 90.0 | 22.8 | 49.4 | 148.7 | 89.2 | 63.9 | 5.6 | Chase Breakout |
-| STRZ | Starz Entertainment Corp. Common Shares | Power & electrification | 89.6 | 1.0 | 39.1 | 89.2 | 163.5 | 49.3 | 5.8 | New Breakout |
-| RXO | RXO, Inc. | TRANSPORTATION SERVICES | 89.0 | 3.1 | 42.1 | 135.7 | 96.4 | 72.7 | 4.6 | Leader |
-| SATL | Satellogic Inc. Class A Ordinary Shares | Defense & space | 88.7 | -7.6 | -0.4 | 150.7 | 297.9 | 108.9 | 12.4 | Leader |
-| INTC | Intel Corp | Semiconductors & AI compute | 87.9 | 4.6 | -3.0 | 158.5 | 188.8 | 429.7 | 6.5 | Ready |
-| MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | 86.7 | -13.9 | -11.8 | 391.5 | 316.9 | 545.1 | 13.9 | Leader |
-| RXT | Rackspace Technology, Inc. Common Stock | Defense & space | 86.6 | 0.2 | -11.5 | 221.8 | 423.4 | 324.2 | 14.3 | Leader |
-| BTDR | Bitdeer Technologies Group Class A Ordinary Shares | Finance: Consumer Services | 86.0 | -10.1 | 37.6 | 140.5 | 44.4 | 23.4 | 10.4 | Ready |
-| SIDU | Sidus Space, Inc. Class A Common Stock | Defense & space | 85.7 | -6.7 | 32.2 | 102.3 | 451.6 | 185.1 | 18.0 | Leader |
-| UCTT | Ultra Clean Holdings, Inc. | Semiconductors & AI compute | 84.8 | 11.9 | 26.3 | 87.0 | 284.7 | 384.2 | 7.1 | Chase Breakout |
-| ICHR | Ichor Holdings | Semiconductors & AI compute | 84.6 | 18.3 | 14.7 | 101.8 | 367.9 | 336.8 | 7.3 | Chase Breakout |
-| TNGX | Tango Therapeutics, Inc. | Biotech & health | 83.9 | 34.6 | 26.9 | 73.9 | 227.0 | 567.1 | 7.1 | Leader |
-| ACMR | ACM Research Inc. Class A Common Stock | Industrial components | 83.6 | 1.7 | 45.6 | 102.6 | 147.6 | 261.3 | 9.2 | Ready |
-| STX | Seagate Technology Holdings PLC Ordinary Shares (Ireland) | Semiconductors & AI compute | 82.8 | -6.3 | 7.3 | 132.1 | 206.9 | 578.2 | 5.8 | Ready |
-| SPCE | Virgin Galactic Holdings Inc. Common Stock | Transportation Services | 82.8 | 21.4 | 105.4 | 128.3 | 50.4 | 67.5 | 20.8 | Leader |
-| ABSI | Absci Corporation Common Stock | Power & electrification | 82.7 | -11.3 | 21.6 | 183.0 | 84.9 | 114.9 | 10.6 | Ready |
-| IRDM | Iridium Communications Inc. | Defense & space | 82.6 | -4.1 | 19.8 | 101.4 | 181.2 | 72.5 | 7.3 | Ready |
-| RDW | Redwire Corporation Common Stock | Defense & space | 82.4 | -20.3 | 47.8 | 80.3 | 134.4 | -6.0 | 16.6 | Leader |
-| WDC | Western Digital Corp. | Semiconductors & AI compute | 82.4 | -8.0 | 8.3 | 102.7 | 212.2 | 846.0 | 5.9 | Ready |
-| CEVA | CEVA Inc. | Semiconductors & AI compute | 81.8 | -8.1 | 22.8 | 147.5 | 98.9 | 112.4 | 8.1 | Ready |
+| AGL | agilon health, inc. | Biotech & health | 99.9 | 16.6 | 56.8 | 652.7 | 570.5 | 97.2 | 7.5 | Chase Breakout |
+| HYLN | Hyliion Holdings Corp. | Power & electrification | 99.9 | 7.2 | 106.1 | 268.2 | 281.4 | 365.4 | 12.9 | Ready |
+| SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | 99.7 | 27.0 | 36.8 | 199.3 | 750.3 | 4821.9 | 7.0 | Chase Breakout |
+| VPG | Vishay Precision Group, Inc. | Industrial components | 99.5 | 18.7 | 40.1 | 240.2 | 263.9 | 428.3 | 8.9 | Chase Breakout |
+| OPTX | Syntec Optics Holdings, Inc. Class A Common Stock | Defense & space | 92.9 | 16.7 | 96.6 | 99.2 | 760.4 | 733.3 | 12.0 | Chase Breakout |
+| BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | 92.7 | -9.5 | 28.1 | 329.0 | 327.6 | 345.1 | 9.1 | Leader |
+| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | 92.7 | 7.1 | 32.9 | 256.7 | 186.2 | 214.7 | 10.5 | Ready |
+| ALAB | Astera Labs Inc. Common Stock | Semiconductors & AI compute | 92.7 | 15.8 | 63.8 | 205.2 | 123.4 | 288.4 | 7.9 | Breakout Baseline |
+| BB | BlackBerry Limited | Software & data | 91.9 | -2.3 | 50.7 | 175.1 | 109.8 | 120.9 | 9.2 | Ready |
+| AMBQ | Ambiq Micro Inc. Common Stock | Semiconductors & AI compute | 91.8 | 13.7 | 18.8 | 234.1 | 180.5 |  | 7.5 | New Breakout |
+| CDNL | Cardinal Infrastructure Group Inc. Class A Common Stock | Defense & space | 91.2 | 13.7 | 25.2 | 133.4 | 192.5 |  | 7.1 | New Breakout |
+| STX | Seagate Technology Holdings PLC Ordinary Shares (Ireland) | Semiconductors & AI compute | 90.5 | 9.9 | 13.9 | 142.6 | 211.5 | 636.1 | 5.7 | Ready |
+| SVCO | Silvaco Group, Inc. Common Stock | Semiconductors & AI compute | 90.4 | 7.7 | 14.1 | 141.9 | 189.8 | 150.4 | 9.8 | Ready |
+| EVC | Entravision Communication | Media & broadcasting | 90.3 | 10.1 | 8.3 | 223.1 | 198.1 | 304.2 | 6.8 | Ready |
+| AEHR | Aehr Test Systems | Semiconductors & AI compute | 89.8 | 10.2 | 5.1 | 204.1 | 319.8 | 831.9 | 11.6 | Ready |
+| DOCN | DigitalOcean Holdings, Inc. | Software & data | 89.6 | 0.3 | 7.1 | 148.3 | 236.6 | 490.2 | 7.6 | Ready |
+| INTC | Intel Corp | Semiconductors & AI compute | 89.0 | 25.6 | 3.6 | 172.2 | 205.5 | 502.4 | 6.5 | New Breakout |
+| RXO | RXO, Inc. | TRANSPORTATION SERVICES | 88.8 | 5.5 | 43.1 | 133.9 | 87.4 | 76.5 | 4.7 | Leader |
+| QUIK | QuickLogic Corp | Semiconductors & AI compute | 88.1 | 9.1 | -0.1 | 142.3 | 242.4 | 257.0 | 8.8 | Ready |
+| MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | 88.1 | 4.4 | -3.7 | 400.1 | 330.7 | 579.5 | 12.7 | Leader |
+| SILC | Silicom Ltd | Optical & networking | 87.6 | 22.1 | -1.0 | 143.8 | 212.6 | 201.6 | 9.5 | Ready |
+| RXT | Rackspace Technology, Inc. Common Stock | Defense & space | 87.5 | 15.6 | -5.7 | 184.1 | 353.3 | 280.4 | 13.4 | Leader |
+| BTDR | Bitdeer Technologies Group Class A Ordinary Shares | Finance: Consumer Services | 86.6 | 2.1 | 34.9 | 137.7 | 55.3 | 28.9 | 10.2 | Ready |
+| UCTT | Ultra Clean Holdings, Inc. | Semiconductors & AI compute | 85.2 | 32.7 | 28.1 | 98.1 | 287.1 | 404.9 | 6.9 | Chase Breakout |
+| MU | Micron Technology, Inc. | Semiconductors & AI compute | 85.0 | 13.6 | 22.1 | 130.4 | 272.2 | 746.0 | 6.8 | Ready |
+| ICHR | Ichor Holdings | Semiconductors & AI compute | 84.8 | 38.0 | 16.8 | 109.5 | 368.2 | 353.7 | 7.4 | Chase Breakout |
+| MNTS | Momentus Inc. Class A Common Stock | Defense & space | 84.6 | -19.9 | 103.2 | 194.3 | -24.8 | -52.5 | 25.9 | Leader |
+| TNGX | Tango Therapeutics, Inc. | Biotech & health | 84.2 | 53.0 | 21.3 | 78.8 | 237.4 | 552.7 | 6.9 | Leader |
+| VECO | Veeco Instruments Inc | Semiconductors & AI compute | 84.2 | 32.6 | 28.6 | 150.3 | 140.5 | 259.2 | 6.4 | New Breakout |
+| SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | 83.8 | -4.9 | 19.9 | 45.8 | 299.5 | 422.0 | 9.3 | Leader |
+| SIDU | Sidus Space, Inc. Class A Common Stock | Defense & space | 83.4 | -10.5 | 15.6 | 81.2 | 233.6 | 128.5 | 18.3 | Leader |
+| ACMR | ACM Research Inc. Class A Common Stock | Industrial components | 83.3 | 23.1 | 45.1 | 102.6 | 138.0 | 263.4 | 8.6 | Breakout Baseline |
+| WDC | Western Digital Corp. | Semiconductors & AI compute | 83.2 | 10.0 | 13.9 | 106.7 | 209.4 | 911.2 | 5.9 | Ready |
+| AMD | Advanced Micro Devices | Semiconductors & AI compute | 82.9 | 9.7 | 14.8 | 164.5 | 131.0 | 322.3 | 5.8 | Ready |
+| STRZ | Starz Entertainment Corp. Common Shares | Power & electrification | 82.9 | 7.4 | 42.8 | 100.1 | 136.8 | 62.7 | 6.1 | Chase Breakout |
+| AIP | Arteris, Inc. Common Stock | Semiconductors & AI compute | 82.8 | 19.6 | 15.3 | 180.2 | 109.1 | 381.2 | 6.7 | Breakout Baseline |
+| ABSI | Absci Corporation Common Stock | Power & electrification | 82.7 | 6.2 | 28.3 | 184.5 | 71.3 | 125.9 | 10.1 | Ready |
+| VELO | Velo3D Inc. Common stock | Industrial components | 82.5 | 60.9 | 21.4 | 80.9 | 196.5 |  | 13.6 | Leader |
+| HUT | Hut 8 Corp. Common Stock | Semiconductors & AI compute | 82.2 | 5.9 | 9.7 | 146.0 | 158.2 | 541.8 | 8.7 | Ready |
+| CEVA | CEVA Inc. | Semiconductors & AI compute | 81.8 | 5.6 | 20.7 | 152.4 | 97.5 | 114.7 | 8.2 | Ready |
 
-_Mostrando 40 de 91._
+_Mostrando 40 de 93._
 
 ## Acionados hoje
 | Ticker | Name | Theme | Status | Tipo | Base | Chase | Country | MktCap | Close | RVOL10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| AGL | agilon health, inc. | Biotech & health | Chase Breakout |  |  | 5 | United States | 1.4B | 116.16 | 1.23 |
-| VPG | Vishay Precision Group, Inc. | Industrial components | Breakout Baseline |  | 6 |  | United States | 1.4B | 141.70 | 1.62 |
-| OPTX | Syntec Optics Holdings, Inc. Class A Common Stock | Defense & space | New Breakout |  | 1 |  | United States | 261.0M | 14.11 | 1.02 |
-| SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | Breakout Baseline |  | 5 |  | United States | 197.4B | 1881.51 | 1.38 |
-| VELO | Velo3D Inc. Common stock | Industrial components | Breakout Baseline |  | 9 |  | United States | 675.9M | 30.61 | 4.20 |
-| CLOV | Clover Health Investments Corp. Class A Common Stock | Medical Specialities | Chase Breakout |  |  | 2 | United States | 2.6B | 4.90 | 1.85 |
-| STRZ | Starz Entertainment Corp. Common Shares | Power & electrification | New Breakout |  | 3 |  | United States | 357.1M | 28.30 | 1.76 |
-| UCTT | Ultra Clean Holdings, Inc. | Semiconductors & AI compute | Chase Breakout |  |  | 2 | United States | 3.5B | 104.83 | 1.31 |
-| ICHR | Ichor Holdings | Semiconductors & AI compute | Chase Breakout |  |  | 1 | United States | 2.3B | 84.04 | 1.44 |
-| WEST | Westrock Coffee Company Common Stock | BEVERAGES | Chase Breakout |  |  | 1 | United States | 812.7M | 9.49 | 1.62 |
-| NAVN | Navan Inc. Class A Common Stock | Software & data | New Breakout |  | 6 |  | United States | 5.3B | 22.63 | 5.12 |
-| CRDO | Credo Technology Group Holding Ltd Ordinary Shares | Semiconductors & AI compute | Chase Breakout |  |  | 2 | United States | 43.8B | 264.76 | 1.25 |
-| ALNT | Allient Inc. Common Stock | Semiconductors & AI compute | New Breakout |  | 4 |  | United States | 1.0B | 91.23 | 1.00 |
-| ADPT | Adaptive Biotechnologies Corporation Common Stock | Biotech & health | New Breakout |  | 3 |  | United States | 2.7B | 18.73 | 2.68 |
-| SEPN | Septerna Inc. Common Stock | Biotech & health | New Breakout |  | 2 |  | United States | 1.4B | 34.03 | 1.68 |
-| SUPV | Grupo Supervielle S.A. American Depositary Shares each Representing five Class B shares | Commercial Banks | New Breakout |  | 6 |  |  | 882.4M | 10.89 | 1.96 |
-| PAL | Proficient Auto Logistics Inc. Common Stock | Transportation Services | New Breakout |  | 1 |  | United States | 222.7M | 8.40 | 1.57 |
-| GENI | Genius Sports Limited Ordinary Shares | Services-Misc. Amusement & Recreation | New Breakout |  | 1 |  | Guernsey | 1.7B | 7.03 | 1.60 |
-| WGS | GeneDx Holdings Corp. Class A Common Stock | SERVICES-HEALTH SERVICES | Chase Breakout |  |  | 1 | United States | 1.0B | 60.99 | 1.66 |
-| FWRD | Forward Air Corporation Common Stock | Integrated Freight & Logistics | Chase Breakout |  |  | 2 | United States | 387.4M | 12.57 | 1.12 |
+| SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | Chase Breakout |  |  | 1 | United States | 197.4B | 1980.10 | 1.09 |
+| AMBQ | Ambiq Micro Inc. Common Stock | Semiconductors & AI compute | New Breakout |  | 6 |  | United States | 1.8B | 84.72 | 0.97 |
+| CDNL | Cardinal Infrastructure Group Inc. Class A Common Stock | Defense & space | New Breakout |  | 5 |  | United States | 2.8B | 68.73 | 1.03 |
+| INTC | Intel Corp | Semiconductors & AI compute | New Breakout |  | 10 |  | United States | 543.7B | 124.57 | 1.26 |
+| UCTT | Ultra Clean Holdings, Inc. | Semiconductors & AI compute | Chase Breakout |  |  | 3 | United States | 3.5B | 108.90 | 0.93 |
+| ICHR | Ichor Holdings | Semiconductors & AI compute | Chase Breakout |  |  | 2 | United States | 2.3B | 86.80 | 1.19 |
+| VECO | Veeco Instruments Inc | Semiconductors & AI compute | New Breakout |  | 2 |  | United States | 3.4B | 77.48 | 1.17 |
+| ACMR | ACM Research Inc. Class A Common Stock | Industrial components | Breakout Baseline |  | 9 |  | United States | 6.1B | 93.95 | 1.58 |
+| AIP | Arteris, Inc. Common Stock | Semiconductors & AI compute | Breakout Baseline |  | 6 |  | United States | 1.5B | 41.00 | 1.65 |
+| MEC | Mayville Engineering Company, Inc. | Power & electrification | Chase Breakout |  |  | 1 | United States | 510.7M | 35.48 | 0.67 |
+| VIAV | Viavi Solutions Inc. Common Stock | Semiconductors & AI compute | New Breakout |  | 10 |  | United States | 11.6B | 53.46 | 1.00 |
+| ALNT | Allient Inc. Common Stock | Semiconductors & AI compute | Chase Breakout |  |  | 1 | United States | 1.0B | 91.37 | 1.06 |
+| ALOY | REalloys Inc. Common Stock | EDP Services | New Breakout |  | 3 |  | United States | 860.7M | 15.22 | 1.28 |
+| SEPN | Septerna Inc. Common Stock | Biotech & health | Chase Breakout |  |  | 1 | United States | 1.5B | 35.95 | 0.90 |
+| SUPV | Grupo Supervielle S.A. American Depositary Shares each Representing five Class B shares | Commercial Banks | Chase Breakout |  |  | 1 |  | 994.7M | 11.00 | 0.61 |
+| STUB | StubHub Holdings Inc. Class A Common Stock | Services-Misc. Amusement & Recreation | New Breakout |  | 1 |  | United States | 4.0B | 11.46 | 1.83 |
+| WNC | Wabash National Corporation Common Stock | Construction/Ag Equipment/Trucks | Chase Breakout |  |  | 1 | United States | 363.6M | 9.71 | 2.56 |
+| FWRD | Forward Air Corporation Common Stock | Integrated Freight & Logistics | Chase Breakout |  |  | 3 | United States | 397.5M | 13.33 | 2.54 |
 
 ## Leaders consolidating
 | Ticker | Name | Theme | Country | MktCap | Score | Close | Pivot | Dist% | Base | RVOL10 | Catalyst |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| ALAB | Astera Labs Inc. Common Stock | Semiconductors & AI compute | United States | 56.7B | 93.6 | 367.47 | 372.37 | 1.3 | 6 | 1.14 | nao verificado |
-| AMBQ | Ambiq Micro Inc. Common Stock | Semiconductors & AI compute | United States | 1.6B | 91.0 | 83.39 | 85.77 | 2.8 | 6 | 0.73 | nao verificado |
-| DOCN | DigitalOcean Holdings, Inc. | Software & data | United States | 15.4B | 86.2 | 174.75 | 184.46 | 5.6 | 5 | 0.74 | nao verificado |
-| ACMR | ACM Research Inc. Class A Common Stock | Industrial components | United States | 5.3B | 86.1 | 91.70 | 94.21 | 2.7 | 9 | 0.86 | nao verificado |
-| EVC | Entravision Communication | Media & broadcasting | United States | 736.3M | 85.2 | 9.98 | 10.12 | 1.4 | 13 | 0.87 | nao verificado |
-| AIP | Arteris, Inc. Common Stock | Semiconductors & AI compute | United States | 1.5B | 82.0 | 37.31 | 38.99 | 4.5 | 6 | 1.31 | nao verificado |
-| MU | Micron Technology, Inc. | Semiconductors & AI compute | United States | 768.6B | 81.2 | 995.87 | 1089.29 | 9.4 | 6 | 1.11 | nao verificado |
-| INTC | Intel Corp | Semiconductors & AI compute | United States | 543.7B | 80.4 | 116.96 | 126.64 | 8.3 | 9 | 1.68 | nao verificado |
-| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | United States | 2.3B | 79.0 | 64.33 | 73.24 | 13.9 | 7 | 0.60 | nao verificado |
-| IRDM | Iridium Communications Inc. | Defense & space | United States | 4.6B | 77.8 | 49.91 | 53.83 | 7.9 | 6 | 1.64 | nao verificado |
-| ERAS | Erasca, Inc. Common Stock | Biotech & health | United States | 3.2B | 77.4 | 14.01 | 15.03 | 7.3 | 8 | 1.01 | nao verificado |
-| QUIK | QuickLogic Corp | Semiconductors & AI compute | United States | 327.2M | 77.1 | 21.80 | 24.33 | 11.6 | 5 | 0.74 | nao verificado |
-| FTK | Flotek Industries, Inc. | Software & data | United States | 719.2M | 76.1 | 24.18 | 25.54 | 5.6 | 5 | 1.10 | nao verificado |
-| SILC | Silicom Ltd | Optical & networking | Israel | 244.6M | 74.9 | 47.66 | 52.58 | 10.3 | 19 | 0.84 | nao verificado |
-| VOYG | Voyager Technologies Inc. Class A Common Stock | Defense & space | United States | 2.4B | 74.7 | 47.87 | 52.40 | 9.5 | 10 | 2.50 | nao verificado |
-| FLEX | Flex Ltd. Ordinary Shares | Software & data | Singapore | 47.7B | 73.5 | 151.99 | 166.86 | 9.8 | 6 | 0.67 | nao verificado |
-| STX | Seagate Technology Holdings PLC Ordinary Shares (Ireland) | Semiconductors & AI compute | Ireland | 166.1B | 72.6 | 868.09 | 966.80 | 11.4 | 6 | 1.03 | nao verificado |
-| CLYM | Climb Bio, Inc. Common Stock | Biotech & health | United States | 565.7M | 70.8 | 10.91 | 12.20 | 11.8 | 11 | 0.46 | nao verificado |
-| AMD | Advanced Micro Devices | Semiconductors & AI compute | United States | 686.5B | 70.7 | 488.45 | 546.44 | 11.9 | 6 | 1.07 | nao verificado |
-| CEVA | CEVA Inc. | Semiconductors & AI compute | United States | 1.0B | 70.3 | 45.54 | 51.25 | 12.5 | 6 | 0.48 | nao verificado |
-| ABSI | Absci Corporation Common Stock | Power & electrification | United States | 771.0M | 69.3 | 6.51 | 7.39 | 13.5 | 5 | 0.72 | nao verificado |
-| WDC | Western Digital Corp. | Semiconductors & AI compute | United States | 158.1B | 68.7 | 529.29 | 602.54 | 13.8 | 6 | 1.12 | nao verificado |
-| BB | BlackBerry Limited | Software & data | Canada | 3.7B | 68.6 | 9.29 | 10.93 | 17.7 | 5 | 0.53 | nao verificado |
-| VIAV | Viavi Solutions Inc. Common Stock | Semiconductors & AI compute | United States | 11.6B | 68.5 | 50.24 | 55.80 | 11.1 | 20 | 0.71 | nao verificado |
-| AIRS | AirSculpt Technologies Inc. Common Stock | Medical/Nursing Services | United States | 350.6M | 68.3 | 5.35 | 5.79 | 8.2 | 5 | 0.70 | nao verificado |
-| AEHR | Aehr Test Systems | Semiconductors & AI compute | United States | 2.6B | 66.8 | 103.03 | 121.80 | 18.2 | 6 | 0.75 | nao verificado |
-| AVR | Anteris Technologies Global Corp. Common Stock | ORTHOPEDIC, PROSTHETIC & SURGICAL APPLIANCES & SUPPLIES | United States | 736.9M | 65.2 | 9.31 | 10.14 | 8.9 | 5 | 0.75 | nao verificado |
-| MGNX | MacroGenics, Inc. | Biotech & health | United States | 276.5M | 63.2 | 4.01 | 4.64 | 15.7 | 13 | 1.36 | nao verificado |
-| INOD | Innodata Inc. | Software & data | United States | 3.1B | 60.0 | 105.36 | 125.14 | 18.8 | 5 | 0.46 | nao verificado |
-| BTDR | Bitdeer Technologies Group Class A Ordinary Shares | Finance: Consumer Services | Singapore | 3.9B | 57.5 | 17.65 | 20.72 | 17.4 | 6 | 0.95 | nao verificado |
-| LODE | Comstock Inc. Common Stock | Major Chemicals | United States | 282.4M | 54.5 | 4.08 | 4.64 | 13.7 | 5 | 0.83 | nao verificado |
-| SG | Sweetgreen Inc. Class A Common Stock | Restaurants | United States | 1.0B | 53.0 | 9.14 | 10.63 | 16.3 | 13 | 0.95 | nao verificado |
-| XMTR | Xometry, Inc. Class A Common Stock | SERVICES-BUSINESS SERVICES, NEC | United States | 4.6B | 52.9 | 86.15 | 99.86 | 15.9 | 8 | 0.72 | nao verificado |
-| BTQ | BTQ Technologies Corp. Common Stock | Unclassified | Canada | 589.5M | 46.9 | 4.40 | 5.13 | 16.6 | 5 | 0.88 | nao verificado |
+| STX | Seagate Technology Holdings PLC Ordinary Shares (Ireland) | Semiconductors & AI compute | Ireland | 166.1B | 88.6 | 931.04 | 966.80 | 3.8 | 7 | 1.25 | nao verificado |
+| HYLN | Hyliion Holdings Corp. | Power & electrification | United States | 749.0M | 88.4 | 7.40 | 7.97 | 7.7 | 5 | 0.68 | nao verificado |
+| DOCN | DigitalOcean Holdings, Inc. | Software & data | United States | 15.4B | 81.4 | 170.44 | 184.46 | 8.2 | 6 | 0.81 | nao verificado |
+| TWST | Twist Bioscience Corporation Common Stock | Semiconductors & AI compute | United States | 3.1B | 80.2 | 76.17 | 80.50 | 5.7 | 6 | 1.76 | nao verificado |
+| AMD | Advanced Micro Devices | Semiconductors & AI compute | United States | 686.5B | 79.5 | 511.57 | 546.44 | 6.8 | 7 | 1.12 | nao verificado |
+| WDC | Western Digital Corp. | Semiconductors & AI compute | United States | 158.1B | 79.4 | 562.92 | 602.54 | 7.0 | 7 | 1.05 | nao verificado |
+| EVC | Entravision Communication | Media & broadcasting | United States | 736.3M | 79.1 | 9.66 | 10.12 | 4.8 | 14 | 0.95 | nao verificado |
+| CLYM | Climb Bio, Inc. Common Stock | Biotech & health | United States | 565.7M | 78.9 | 11.44 | 12.20 | 6.6 | 12 | 0.41 | nao verificado |
+| ERAS | Erasca, Inc. Common Stock | Biotech & health | United States | 3.2B | 78.4 | 14.05 | 15.03 | 7.0 | 9 | 0.37 | nao verificado |
+| ABSI | Absci Corporation Common Stock | Power & electrification | United States | 771.0M | 76.6 | 6.80 | 7.39 | 8.7 | 6 | 0.96 | nao verificado |
+| XRX | Xerox Holdings Corporation Common Stock | Software & data | United States | 346.6M | 76.5 | 3.47 | 3.75 | 8.1 | 5 | 0.77 | nao verificado |
+| QUIK | QuickLogic Corp | Semiconductors & AI compute | United States | 327.2M | 75.6 | 21.81 | 24.33 | 11.6 | 6 | 0.89 | nao verificado |
+| AEHR | Aehr Test Systems | Semiconductors & AI compute | United States | 2.6B | 75.4 | 108.47 | 121.80 | 12.3 | 7 | 0.72 | nao verificado |
+| MU | Micron Technology, Inc. | Semiconductors & AI compute | United States | 768.6B | 74.6 | 981.61 | 1089.29 | 11.0 | 7 | 0.80 | nao verificado |
+| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | United States | 2.3B | 74.3 | 64.13 | 73.24 | 14.2 | 8 | 0.45 | nao verificado |
+| CEVA | CEVA Inc. | Semiconductors & AI compute | United States | 1.0B | 72.1 | 46.03 | 51.25 | 11.3 | 7 | 0.58 | nao verificado |
+| SMWB | Similarweb Ltd. Ordinary Shares | Software & data |  | 367.9M | 71.3 | 4.38 | 4.67 | 6.6 | 8 | 0.52 | nao verificado |
+| SVCO | Silvaco Group, Inc. Common Stock | Semiconductors & AI compute | United States | 316.0M | 69.9 | 12.17 | 14.14 | 16.2 | 7 | 0.55 | nao verificado |
+| FLEX | Flex Ltd. Ordinary Shares | Software & data | Singapore | 47.7B | 69.7 | 149.71 | 166.86 | 11.5 | 7 | 1.13 | nao verificado |
+| SILC | Silicom Ltd | Optical & networking | Israel | 244.6M | 68.8 | 46.45 | 52.58 | 13.2 | 20 | 0.94 | nao verificado |
+| AIRS | AirSculpt Technologies Inc. Common Stock | Medical/Nursing Services | United States | 377.4M | 68.7 | 5.35 | 5.79 | 8.2 | 6 | 0.92 | nao verificado |
+| BB | BlackBerry Limited | Software & data | Canada | 3.7B | 66.7 | 9.19 | 10.93 | 18.9 | 6 | 0.40 | nao verificado |
+| BTDR | Bitdeer Technologies Group Class A Ordinary Shares | Finance: Consumer Services | Singapore | 4.3B | 63.6 | 17.83 | 20.72 | 16.2 | 7 | 0.69 | nao verificado |
+| AVR | Anteris Technologies Global Corp. Common Stock | ORTHOPEDIC, PROSTHETIC & SURGICAL APPLIANCES & SUPPLIES | United States | 736.9M | 62.0 | 9.15 | 10.14 | 10.8 | 6 | 0.58 | nao verificado |
+| HUT | Hut 8 Corp. Common Stock | Semiconductors & AI compute | United States | 10.8B | 61.6 | 118.86 | 140.80 | 18.5 | 8 | 0.77 | nao verificado |
+| MGNX | MacroGenics, Inc. | Biotech & health | United States | 276.5M | 61.0 | 3.96 | 4.64 | 17.2 | 14 | 0.89 | nao verificado |
+| MEI | Methode Electronics | Power & electrification | United States | 373.8M | 59.7 | 12.02 | 13.90 | 15.6 | 20 | 0.78 | nao verificado |
+| VICR | Vicor Corp | Power & electrification | United States | 11.4B | 58.0 | 303.77 | 361.89 | 19.1 | 12 | 0.68 | nao verificado |
+| XMTR | Xometry, Inc. Class A Common Stock | SERVICES-BUSINESS SERVICES, NEC | United States | 4.6B | 54.2 | 86.99 | 99.86 | 14.8 | 9 | 0.49 | nao verificado |
+| SG | Sweetgreen Inc. Class A Common Stock | Restaurants | United States | 1.1B | 51.5 | 9.07 | 10.63 | 17.2 | 14 | 0.50 | nao verificado |
 
 ## Mudancas do dia
-- Novos leaders: `ACMR, ADPT, BTDR, BTQ, CRDO, FWRD, KOPN, LODE, PAL, PL, RDW, SEDG, SEPN, SG, SUPV, TE, VIAV, XMTR`
-- Sairam de leaders: `AEVA, ATEX, BLDP, CDNL, FJET, HPK, LEGN, MMED, MNTS, MRVL, NMAX, OSCR, PLSE, QDEL, SIBN, SMWB, VECO, ZNTL`
-- Novos em consolidacao: `ABSI, ACMR, AEHR, AIRS, AMD, AVR, BB, BTDR, BTQ, CEVA, DOCN, FTK, INOD, LODE, MU, PENG, QUIK, SG, VIAV, VOYG, WDC, XMTR`
+- Novos leaders: `ARTV, BFLY, CDNL, HIVE, MEC, MEI, MMED, MNTS, NEO, PURR, SMWB, TWST, VECO, WNC, XRX`
+- Sairam de leaders: `ADPT, BTQ, CRDO, ENPH, FTK, IRDM, LODE, NAVN, OUST, PL, RDW, VOYG, WEST`
+- Novos em consolidacao: `HUT, HYLN, MEI, SMWB, SVCO, TWST, VICR, XRX`
 
 ## Validacao
 - Duplicatas em all_leaders: `0`
@@ -159,6 +153,6 @@ _Mostrando 40 de 91._
 - Todos com DollarVol(10) >= 2.0M: `True`
 - Todos com AvgVol(10) > 100.0K acoes: `True`
 - Todos com ADR14 > 4.0: `True`
-- Ativos no dia com performance >= 0.1%: `84`
-- Intraday timestamp: `2026-06-11T20:03:01+00:00`
+- Ativos no dia com performance >= 0.1%: `48`
+- Intraday timestamp: `2026-06-12T20:03:59+00:00`
 - Noticias/catalysts: `nao solicitado`
