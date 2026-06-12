@@ -10,7 +10,7 @@
 
 ## Market regime
 - SPY close 738.65, vs SMA20 +1.8%, vs SMA50 +6.8%; QQQ close 705.88, vs SMA20 +3.3%, vs SMA50 +11.4%
-- Universo final pos-filtros: `1420`.
+- Universo final pos-filtros: `1431`.
 - 52W highs no universo final: `38`.
 
 ## Temas fortes
@@ -50,7 +50,7 @@ _Mostrando 12 de 28._
 | OPTX | Syntec Optics Holdings, Inc. Class A Common Stock | Defense & space | 92.8 | 16.7 | 96.6 | 99.2 | 760.4 | 733.3 | 13.4 | Chase Breakout |
 | VPG | Vishay Precision Group, Inc. | Industrial components | 92.7 | 18.7 | 40.1 | 240.2 | 263.9 | 428.3 | 8.8 | Chase Breakout |
 | BAND | Bandwidth Inc. Class A Common Stock | Optical & networking | 92.6 | -9.5 | 28.1 | 329.0 | 327.6 | 345.1 | 9.3 | Leader |
-| ALAB | Astera Labs Inc. Common Stock | Semiconductors & AI compute | 92.5 | 15.8 | 63.8 | 205.2 | 123.4 | 288.4 | 8.5 | Breakout Baseline |
+| ALAB | Astera Labs Inc. Common Stock | Semiconductors & AI compute | 92.6 | 15.8 | 63.8 | 205.2 | 123.4 | 288.4 | 8.5 | Breakout Baseline |
 | PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | 92.5 | 7.1 | 32.9 | 256.7 | 186.2 | 214.7 | 10.8 | Ready |
 | APPS | Digital Turbine Inc. Common Stock | Multi-Sector Companies | 92.4 | 8.3 | 136.9 | 174.2 | 95.6 | 88.1 | 11.1 | Leader |
 | ATEX | Anterix Inc. Common Stock | Optical & networking | 92.3 | 23.8 | 49.2 | 122.9 | 281.8 | 202.8 | 6.6 | Chase Breakout |
@@ -65,7 +65,7 @@ _Mostrando 12 de 28._
 | MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | 88.0 | 4.4 | -3.7 | 400.1 | 330.7 | 579.5 | 12.6 | Leader |
 | QUIK | QuickLogic Corp | Semiconductors & AI compute | 87.9 | 9.1 | -0.1 | 142.3 | 242.4 | 257.0 | 9.1 | Ready |
 | SILC | Silicom Ltd | Optical & networking | 87.4 | 22.1 | -1.0 | 143.8 | 212.6 | 201.6 | 10.0 | Ready |
-| RXT | Rackspace Technology, Inc. Common Stock | Defense & space | 87.3 | 15.6 | -5.7 | 184.1 | 353.3 | 280.4 | 14.9 | Leader |
+| RXT | Rackspace Technology, Inc. Common Stock | Defense & space | 87.4 | 15.6 | -5.7 | 184.1 | 353.3 | 280.4 | 14.9 | Leader |
 | UCTT | Ultra Clean Holdings, Inc. | Semiconductors & AI compute | 85.0 | 32.7 | 28.1 | 98.1 | 287.1 | 404.9 | 7.0 | Chase Breakout |
 | MU | Micron Technology, Inc. | Semiconductors & AI compute | 84.7 | 13.6 | 22.1 | 130.4 | 272.2 | 746.0 | 7.1 | Ready |
 | ICHR | Ichor Holdings | Semiconductors & AI compute | 84.5 | 38.0 | 16.8 | 109.5 | 368.2 | 353.7 | 7.4 | Chase Breakout |
@@ -138,7 +138,7 @@ _Mostrando 40 de 96._
 | MGNX | MacroGenics, Inc. | Biotech & health | United States | 276.5M | 60.7 | 3.96 | 4.64 | 17.2 | 14 | 0.89 | nao verificado |
 | VICR | Vicor Corp | Power & electrification | United States | 11.4B | 57.9 | 303.77 | 361.89 | 19.1 | 12 | 0.68 | nao verificado |
 | BTDR | Bitdeer Technologies Group Class A Ordinary Shares | Finance: Consumer Services | Singapore | 4.3B | 57.4 | 17.83 | 20.72 | 16.2 | 7 | 0.69 | nao verificado |
-| XMTR | Xometry, Inc. Class A Common Stock | SERVICES-BUSINESS SERVICES, NEC | United States | 4.6B | 53.9 | 86.99 | 99.86 | 14.8 | 9 | 0.49 | nao verificado |
+| XMTR | Xometry, Inc. Class A Common Stock | SERVICES-BUSINESS SERVICES, NEC | United States | 4.6B | 54.0 | 86.99 | 99.86 | 14.8 | 9 | 0.49 | nao verificado |
 
 ## Mudancas do dia
 - Novos leaders: `AMPG, APPS, ATEX, BBAR, BBNX, BFLY, BIRK, CBRL, CDNL, DELL, HPE, KSS, MNTS, MOV, MRVL, OKTA, PURR, SMWB, SNOW, STM, VECO, VSH, WNC`
