@@ -1,13 +1,17 @@
 event_key,event_type,timestamp,asof,ticker,position_id,price,shares,risk_dollars,r_multiple,pnl,reason,note
-entry:2026-06-08:AGL:2026-06-08T18:26:51+00:00,entry,2026-06-08T18:26:51+00:00,2026-06-08,AGL,2026-06-08:AGL,99.145,18,96.75,,,5d_breakout,paper trade entry; no real order sent
-entry:2026-06-08:BAND:2026-06-08T18:26:51+00:00,entry,2026-06-08T18:26:51+00:00,2026-06-08,BAND,2026-06-08:BAND,75.5099,43,98.04,,,5d_breakout,paper trade entry; no real order sent
-stop:2026-06-08:BAND:2026-06-08T18:26:51+00:00,exit,2026-06-08T18:26:51+00:00,2026-06-08,BAND,2026-06-08:BAND,73.23,43,98.04,-1.0,-98.04,stop,paper trade exit
-correction:2026-06-08:AGL:2026-06-08T18:26:51+00:00,correction,2026-06-08T18:26:51+00:00,2026-06-08,AGL,2026-06-08:AGL,97.49,18,96.75,,,rule_change_base_lt_5,invalidated by new paper-agent rule: entry_base_count must be >= 5
-correction:2026-06-08:BAND:2026-06-08T18:26:51+00:00,correction,2026-06-08T18:26:51+00:00,2026-06-08,BAND,2026-06-08:BAND,70.43,43,98.04,,,rule_change_base_lt_5,invalidated by new paper-agent rule: entry_base_count must be >= 5
-entry:2026-06-09:ABSI:2026-06-09T13:36:19+00:00,entry,2026-06-09T13:36:19+00:00,2026-06-09,ABSI,2026-06-09:ABSI,6.73,4999,99.98,,,52w_high_breakout,paper trade entry; no real order sent
-entry:2026-06-09:OUST:2026-06-09T13:36:19+00:00,entry,2026-06-09T13:36:19+00:00,2026-06-09,OUST,2026-06-09:OUST,41.66,666,99.9,,,52w_high_breakout,paper trade entry; no real order sent
-entry:2026-06-09:SEDG:2026-06-09T13:36:19+00:00,entry,2026-06-09T13:36:19+00:00,2026-06-09,SEDG,2026-06-09:SEDG,63.54,32,97.28,,,52w_high_breakout,paper trade entry; no real order sent
-stop:2026-06-09:SEDG:2026-06-09T13:40:53+00:00,exit,2026-06-09T13:40:53+00:00,2026-06-09,SEDG,2026-06-09:SEDG,60.5,32,97.28,-1.0,-97.28,stop,paper trade exit
-stop:2026-06-09:OUST:2026-06-09T13:40:53+00:00,exit,2026-06-09T13:40:53+00:00,2026-06-09,OUST,2026-06-09:OUST,41.51,666,99.9,-1.0,-99.9,stop,paper trade exit
-stop:2026-06-09:ABSI:2026-06-09T13:40:53+00:00,exit,2026-06-09T13:40:53+00:00,2026-06-09,ABSI,2026-06-09:ABSI,6.71,4999,99.98,-1.0,-99.98,stop,paper trade exit
-entry:2026-06-09:UCTT:2026-06-09T13:40:53+00:00,entry,2026-06-09T13:40:53+00:00,2026-06-09,UCTT,2026-06-09:UCTT,88.3821,160,99.54,,,52w_high_breakout,paper trade entry; no real order sent
+entry:2026-06-15:HYLN:2026-06-15T19:12:49+00:00,entry,2026-06-15T19:12:49+00:00,2026-06-15,HYLN,2026-06-15:HYLN,7.98,55,98.44,,,52w_intraday_break,paper trade entry; no real order sent
+entry:2026-06-15:VPG:2026-06-15T19:12:49+00:00,entry,2026-06-15T19:12:49+00:00,2026-06-15,VPG,2026-06-15:VPG,146.76,3,75.4,,,open_above_52w_or30,paper trade entry; no real order sent
+entry:2026-06-15:ALAB:2026-06-15T19:12:49+00:00,entry,2026-06-15T19:12:49+00:00,2026-06-15,ALAB,2026-06-15:ALAB,391.0,1,68.36,,,52w_intraday_break,paper trade entry; no real order sent
+entry:2026-06-15:AEHR:2026-06-15T19:12:49+00:00,entry,2026-06-15T19:12:49+00:00,2026-06-15,AEHR,2026-06-15:AEHR,121.81,3,78.68,,,52w_intraday_break,paper trade entry; no real order sent
+entry:2026-06-15:DOCN:2026-06-15T19:12:49+00:00,entry,2026-06-15T19:12:49+00:00,2026-06-15,DOCN,2026-06-15:DOCN,184.47,3,84.01,,,52w_intraday_break,paper trade entry; no real order sent
+entry:2026-06-15:TNGX:2026-06-15T19:12:49+00:00,entry,2026-06-15T19:12:49+00:00,2026-06-15,TNGX,2026-06-15:TNGX,32.8,18,97.26,,,52w_intraday_break,paper trade entry; no real order sent
+entry:2026-06-15:AMD:2026-06-15T19:12:49+00:00,entry,2026-06-15T19:12:49+00:00,2026-06-15,AMD,2026-06-15:AMD,546.45,1,69.72,,,52w_intraday_break,paper trade entry; no real order sent
+entry:2026-06-15:ABSI:2026-06-15T19:12:49+00:00,entry,2026-06-15T19:12:49+00:00,2026-06-15,ABSI,2026-06-15:ABSI,7.4,66,99.01,,,52w_intraday_break,paper trade entry; no real order sent
+entry:2026-06-15:TWST:2026-06-15T19:12:49+00:00,entry,2026-06-15T19:12:49+00:00,2026-06-15,TWST,2026-06-15:TWST,80.51,9,92.7,,,52w_intraday_break,paper trade entry; no real order sent
+entry:2026-06-15:AIP:2026-06-15T19:12:49+00:00,entry,2026-06-15T19:12:49+00:00,2026-06-15,AIP,2026-06-15:AIP,43.3,17,98.87,,,open_above_52w_or30,paper trade entry; no real order sent
+entry:2026-06-15:VECO:2026-06-15T19:42:16+00:00,entry,2026-06-15T19:42:16+00:00,2026-06-15,VECO,2026-06-15:VECO,85.38,8,89.84,,,open_above_52w_or30,paper trade entry; no real order sent
+correction:2026-06-15:VECO:invalid_entry_not_breakout_baseline,correction,2026-06-15T19:42:16+00:00,2026-06-15,VECO,2026-06-15:VECO,83.34,8,89.84,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
+correction:2026-06-15:VPG:invalid_entry_not_breakout_baseline,correction,2026-06-15T19:42:16+00:00,2026-06-15,VPG,2026-06-15:VPG,146.37,3,75.4,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
+correction:2026-06-15:TNGX:invalid_entry_not_breakout_baseline,correction,2026-06-15T19:42:16+00:00,2026-06-15,TNGX,2026-06-15:TNGX,32.34,18,97.26,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
+correction:2026-06-15:ALAB:invalid_entry_not_breakout_baseline,correction,2026-06-15T19:42:16+00:00,2026-06-15,ALAB,2026-06-15:ALAB,392.085,1,68.36,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
+correction:2026-06-15:AIP:invalid_entry_not_breakout_baseline,correction,2026-06-15T19:42:16+00:00,2026-06-15,AIP,2026-06-15:AIP,43.15,17,98.87,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
