@@ -1454,32 +1454,93 @@ tbody tr:hover {
 }
 
 .agent-table {
-  min-width: 1200px;
+  min-width: 1220px;
   table-layout: fixed;
 }
 
 .agent-table th,
 .agent-table td {
-  padding: 7px 9px;
+  padding: 8px 10px;
 }
 
 .agent-table td small {
   display: block;
-  max-width: 220px;
+  max-width: 100%;
   overflow: hidden;
   color: var(--muted);
   font-size: 11px;
+  line-height: 1.25;
   text-overflow: ellipsis;
 }
 
+.agent-table th:nth-child(1),
+.agent-table td:nth-child(1) {
+  width: 150px;
+}
+
+.agent-table th:nth-child(2),
+.agent-table td:nth-child(2) {
+  width: 150px;
+}
+
+.agent-table th:nth-child(3),
+.agent-table td:nth-child(3) {
+  width: 150px;
+}
+
+.agent-table th:nth-child(4),
+.agent-table td:nth-child(4) {
+  width: 74px;
+  text-align: right;
+}
+
+.agent-table th:nth-child(5),
+.agent-table td:nth-child(5) {
+  width: 72px;
+  text-align: right;
+}
+
+.agent-table th:nth-child(6),
+.agent-table td:nth-child(6),
+.agent-table th:nth-child(7),
+.agent-table td:nth-child(7) {
+  width: 118px;
+}
+
+.agent-table th:nth-child(8),
+.agent-table td:nth-child(8) {
+  width: 96px;
+}
+
+.agent-table th:nth-child(9),
+.agent-table td:nth-child(9) {
+  width: 72px;
+  text-align: right;
+}
+
+.agent-table th:nth-child(10),
+.agent-table td:nth-child(10),
+.agent-table th:nth-child(11),
+.agent-table td:nth-child(11),
+.agent-table th:nth-child(12),
+.agent-table td:nth-child(12) {
+  width: 90px;
+  text-align: right;
+}
+
 .agent-origin-cell {
-  min-width: 150px;
+  min-width: 0;
 }
 
 .agent-origin-pill {
-  min-width: 134px;
+  width: 126px;
   height: 24px;
   font-size: 11px;
+}
+
+.agent-status-cell .pill {
+  width: 122px;
+  justify-content: center;
 }
 
 @media (max-width: 1180px) {
@@ -1832,8 +1893,8 @@ tbody tr:hover {
                 <tr>
                   <th title="Ticker e empresa da posição paper.">Ticker</th>
                   <th title="Origem da entrada: rompimento intraday da 52W ou gap acima da 52W confirmado pelo OR30.">Origem</th>
-                  <th title="Volume relativo de 10 dias do ticker no snapshot atual do radar.">RVOL(10)</th>
                   <th title="Status do setup no momento da entrada.">Status</th>
+                  <th title="Volume relativo de 10 dias do ticker no snapshot atual do radar.">RVOL(10)</th>
                   <th title="Ranking global do ticker no radar principal no momento da entrada.">Rank</th>
                   <th title="Preço, data e horário de entrada paper.">Entrada</th>
                   <th title="Preço gatilho usado pela regra de entrada.">Gatilho</th>
@@ -48313,7 +48374,7 @@ window.RADAR_DATA = {
 };
     </script>
     <script>
-const DATA = window.RADAR_DATA || {};
+﻿const DATA = window.RADAR_DATA || {};
 
 const WINDOWS = [
   { label: "1W", key: "1w", perf: "perf_1w_pct", flag: "top1_1w", rank: "rank_1w", rankPct: "rank_pct_1w" },
@@ -48335,7 +48396,7 @@ const BREAKOUT_TYPES = [
 const QUICK_FILTERS = [
   { key: "All", label: "Todos" },
   { key: "NewRadar", label: "Novos" },
-  { key: "Consolidating", label: "Consolidação" },
+  { key: "Consolidating", label: "ConsolidaÃ§Ã£o" },
 ];
 
 const state = {
@@ -48502,7 +48563,7 @@ function statusClass(status) {
 
 function statusLabel(status) {
   const normalized = String(status || "").toLowerCase();
-  if (normalized === "ready") return "Consolidação";
+  if (normalized === "ready") return "ConsolidaÃ§Ã£o";
   if (normalized === "leader trigger") return "Leader";
   return status || "Unknown";
 }
@@ -48556,14 +48617,14 @@ function signalText(row) {
 
 function baseStatusLabel(row) {
   const normalized = String(row.status || "").toLowerCase();
-  if (normalized === "ready") return "Consolidação";
+  if (normalized === "ready") return "ConsolidaÃ§Ã£o";
   if (normalized === "extended") return "Extended";
   return "Leader";
 }
 
 function baseStatusPill(row) {
   const label = baseStatusLabel(row);
-  const cssStatus = label === "Consolidação" ? "ready" : label.toLowerCase();
+  const cssStatus = label === "ConsolidaÃ§Ã£o" ? "ready" : label.toLowerCase();
   return `<span class="pill ${statusClass(cssStatus)}">${escapeHtml(label)}</span>`;
 }
 
@@ -49283,7 +49344,7 @@ function renderActiveTable() {
   el.activeCount.textContent = rows.length;
   if (!rows.length) {
     el.activeBody.innerHTML =
-      '<tr><td colspan="8"><div class="empty-state">Nenhum lider em consolidação para os filtros atuais.</div></td></tr>';
+      '<tr><td colspan="8"><div class="empty-state">Nenhum lider em consolidaÃ§Ã£o para os filtros atuais.</div></td></tr>';
     return;
   }
   el.activeBody.innerHTML = rows
@@ -49466,24 +49527,24 @@ function agentOriginMeta(row) {
   if (basis === "open_above_52w_or30") {
     return {
       label: "30m ORB",
-      detail: "abriu > 52W",
+      detail: "gap > 52W",
       className: "origin-open",
-      title: "A ação abriu acima da máxima de 52 semanas anterior; o agente só entrou depois de romper a máxima do opening range de 30 minutos.",
+      title: "A aÃ§Ã£o abriu acima da mÃ¡xima de 52 semanas anterior; o agente sÃ³ entrou depois de romper a mÃ¡xima do opening range de 30 minutos.",
     };
   }
   if (basis === "52w_intraday_break") {
     return {
-      label: "Rompimento Intraday",
-      detail: "52W no pregão",
+      label: "R. Intraday",
+      detail: "52W no pregÃ£o",
       className: "origin-intraday",
-      title: "A ação rompeu a máxima de 52 semanas durante o pregão; a entrada paper ocorreu no gatilho de rompimento.",
+      title: "A aÃ§Ã£o rompeu a mÃ¡xima de 52 semanas durante o pregÃ£o; a entrada paper ocorreu no gatilho de rompimento.",
     };
   }
   return {
     label: basis ? basis.replaceAll("_", " ") : "--",
-    detail: "origem não mapeada",
+    detail: "origem nÃ£o mapeada",
     className: "origin-unknown",
-    title: basis || "Origem de entrada não informada.",
+    title: basis || "Origem de entrada nÃ£o informada.",
   };
 }
 
@@ -49495,6 +49556,13 @@ function agentOriginCell(row) {
       <small>${escapeHtml(meta.detail)}</small>
     </td>
   `;
+}
+
+function agentEntryBasisLabel(value) {
+  const basis = String(value || "").toLowerCase();
+  if (basis === "open_above_52w_or30") return "OR30 apos gap";
+  if (basis === "52w_intraday_break") return "52W intraday";
+  return basis ? basis.replaceAll("_", " ") : "--";
 }
 
 function renderAgentTrades(agent) {
@@ -49529,11 +49597,11 @@ function renderAgentTrades(agent) {
                 <small>${escapeHtml(row.name || "")}</small>
               </td>
               ${agentOriginCell(row)}
+              <td class="agent-status-cell">${pill(row.entry_status || row.status || "--")}<small>${escapeHtml(exitInfo)}</small></td>
               ${rvolCell({ rvol_10d: rvol10 })}
-              <td>${pill(row.entry_status || row.status || "--")}<small>${escapeHtml(exitInfo)}</small></td>
               <td class="rank-cell"><span class="rank-badge">#${escapeHtml(row.entry_rank || "--")}</span></td>
               <td class="num">${formatNumber(row.entry_price, 2)}<small>${escapeHtml(row.entry_date || "")} ${escapeHtml(row.entry_time || "")}</small></td>
-              <td class="num">${formatNumber(row.entry_trigger || row.prior_52w_high, 2)}<small>${escapeHtml(row.entry_basis || "")}</small></td>
+              <td class="num">${formatNumber(row.entry_trigger || row.prior_52w_high, 2)}<small>${escapeHtml(agentEntryBasisLabel(row.entry_basis))}</small></td>
               <td class="num">${formatNumber(row.stop_price, 2)}<small>${escapeHtml(row.stop_basis || "")}</small></td>
               <td class="num">${formatNumber(row.shares, 0)}</td>
               <td class="num">${formatNumber(currentPrice, 2)}</td>
