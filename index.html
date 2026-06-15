@@ -1454,7 +1454,7 @@ tbody tr:hover {
 }
 
 .agent-table {
-  min-width: 1080px;
+  min-width: 1200px;
   table-layout: fixed;
 }
 
@@ -1470,6 +1470,16 @@ tbody tr:hover {
   color: var(--muted);
   font-size: 11px;
   text-overflow: ellipsis;
+}
+
+.agent-origin-cell {
+  min-width: 150px;
+}
+
+.agent-origin-pill {
+  min-width: 134px;
+  height: 24px;
+  font-size: 11px;
 }
 
 @media (max-width: 1180px) {
@@ -1806,6 +1816,37 @@ tbody tr:hover {
             <span class="row-count" id="agentMetricsCount">--</span>
           </div>
           <div id="agentSystemMetrics" class="agent-system-grid"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Paper atual</p>
+              <h2>Trades do agente</h2>
+            </div>
+            <span class="row-count" id="agentTradesCount">--</span>
+          </div>
+          <div class="table-wrap">
+            <table class="agent-table">
+              <thead>
+                <tr>
+                  <th title="Ticker e empresa da posição paper.">Ticker</th>
+                  <th title="Origem da entrada: rompimento intraday da 52W ou gap acima da 52W confirmado pelo OR30.">Origem</th>
+                  <th title="Volume relativo de 10 dias do ticker no snapshot atual do radar.">RVOL(10)</th>
+                  <th title="Status do setup no momento da entrada.">Status</th>
+                  <th title="Ranking global do ticker no radar principal no momento da entrada.">Rank</th>
+                  <th title="Preço, data e horário de entrada paper.">Entrada</th>
+                  <th title="Preço gatilho usado pela regra de entrada.">Gatilho</th>
+                  <th title="Stop inicial da posição paper.">Stop</th>
+                  <th title="Quantidade de ações calculada pelo risco fixo.">Qtd</th>
+                  <th title="Último preço marcado no painel.">Atual</th>
+                  <th title="Resultado aberto ou fechado em R.">R</th>
+                  <th title="Resultado aberto ou fechado em dólares.">P/L</th>
+                </tr>
+              </thead>
+              <tbody id="agentTradesBody"></tbody>
+            </table>
+          </div>
         </section>
 
       </section>
@@ -47931,6 +47972,8 @@ const el = {
   agentRuleText: document.querySelector("#agentRuleText"),
   agentMetricsCount: document.querySelector("#agentMetricsCount"),
   agentSystemMetrics: document.querySelector("#agentSystemMetrics"),
+  agentTradesCount: document.querySelector("#agentTradesCount"),
+  agentTradesBody: document.querySelector("#agentTradesBody"),
 };
 
 const perfMax = Object.fromEntries(
@@ -48984,6 +49027,91 @@ function agentMetricCard(label, value, title = "") {
   `;
 }
 
+function agentOriginMeta(row) {
+  const basis = String(row.entry_basis || "").toLowerCase();
+  if (basis === "open_above_52w_or30") {
+    return {
+      label: "30m ORB",
+      detail: "abriu > 52W",
+      className: "origin-open",
+      title: "A ação abriu acima da máxima de 52 semanas anterior; o agente só entrou depois de romper a máxima do opening range de 30 minutos.",
+    };
+  }
+  if (basis === "52w_intraday_break") {
+    return {
+      label: "Rompimento Intraday",
+      detail: "52W no pregão",
+      className: "origin-intraday",
+      title: "A ação rompeu a máxima de 52 semanas durante o pregão; a entrada paper ocorreu no gatilho de rompimento.",
+    };
+  }
+  return {
+    label: basis ? basis.replaceAll("_", " ") : "--",
+    detail: "origem não mapeada",
+    className: "origin-unknown",
+    title: basis || "Origem de entrada não informada.",
+  };
+}
+
+function agentOriginCell(row) {
+  const meta = agentOriginMeta(row);
+  return `
+    <td class="agent-origin-cell" title="${escapeHtml(meta.title)}">
+      <span class="origin-pill agent-origin-pill ${escapeHtml(meta.className)}">${escapeHtml(meta.label)}</span>
+      <small>${escapeHtml(meta.detail)}</small>
+    </td>
+  `;
+}
+
+function renderAgentTrades(agent) {
+  if (!el.agentTradesCount || !el.agentTradesBody) return;
+  const leaderRowsByTicker = new Map((DATA.all_leaders || []).map((row) => [String(row.ticker || "").toUpperCase(), row]));
+  const rows = (agent.positions || [])
+    .slice()
+    .sort((a, b) => {
+      const aOpen = String(a.status || "").toLowerCase() === "open" ? 1 : 0;
+      const bOpen = String(b.status || "").toLowerCase() === "open" ? 1 : 0;
+      if (aOpen !== bOpen) return bOpen - aOpen;
+      return String(`${b.entry_date || ""} ${b.entry_time || ""}`).localeCompare(
+        String(`${a.entry_date || ""} ${a.entry_time || ""}`),
+      );
+    });
+
+  el.agentTradesCount.textContent = `${rows.length} trades`;
+  el.agentTradesBody.innerHTML = rows.length
+    ? rows
+        .map((row) => {
+          const leaderRow = leaderRowsByTicker.get(String(row.ticker || "").toUpperCase()) || {};
+          const isOpen = String(row.status || "").toLowerCase() === "open";
+          const currentPrice = isOpen ? row.last_price : row.exit_price;
+          const currentR = isOpen ? row.last_r : row.r_multiple;
+          const pnl = isOpen ? row.open_pnl : row.pnl;
+          const exitInfo = isOpen ? "open" : row.exit_reason || "fechado";
+          const rvol10 = row.rvol_10d ?? leaderRow.rvol_10d;
+          return `
+            <tr>
+              <td>
+                <strong>${escapeHtml(row.ticker)}</strong>
+                <small>${escapeHtml(row.name || "")}</small>
+              </td>
+              ${agentOriginCell(row)}
+              ${rvolCell({ rvol_10d: rvol10 })}
+              <td>${pill(row.entry_status || row.status || "--")}<small>${escapeHtml(exitInfo)}</small></td>
+              <td class="rank-cell"><span class="rank-badge">#${escapeHtml(row.entry_rank || "--")}</span></td>
+              <td class="num">${formatNumber(row.entry_price, 2)}<small>${escapeHtml(row.entry_date || "")} ${escapeHtml(row.entry_time || "")}</small></td>
+              <td class="num">${formatNumber(row.entry_trigger || row.prior_52w_high, 2)}<small>${escapeHtml(row.entry_basis || "")}</small></td>
+              <td class="num">${formatNumber(row.stop_price, 2)}<small>${escapeHtml(row.stop_basis || "")}</small></td>
+              <td class="num">${formatNumber(row.shares, 0)}</td>
+              <td class="num">${formatNumber(currentPrice, 2)}</td>
+              <td class="num ${signedClass(currentR)}">${formatNumber(currentR, 2)}</td>
+              <td class="num ${signedClass(pnl)}">${formatSignedMoney(pnl || 0)}</td>
+            </tr>
+          `;
+        })
+        .join("")
+    : '<tr><td colspan="12"><div class="empty-state">Nenhum trade atual do agente.</div></td></tr>';
+}
+
 function renderAgent() {
   const agent = DATA.trade_agent || {};
   const metrics = agent.metrics || {};
@@ -49037,6 +49165,8 @@ function renderAgent() {
   if (el.agentSystemMetrics) {
     el.agentSystemMetrics.innerHTML = systemCards.map((item) => agentMetricCard(...item)).join("");
   }
+
+  renderAgentTrades(agent);
 }
 
 function renderAll() {
