@@ -1808,36 +1808,6 @@ tbody tr:hover {
           <div id="agentSystemMetrics" class="agent-system-grid"></div>
         </section>
 
-        <section class="section-block">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Teste real paper</p>
-              <h2>Trades do agente</h2>
-            </div>
-            <span class="row-count" id="agentReplayCount">--</span>
-          </div>
-          <div id="agentReplayMetrics" class="agent-system-grid"></div>
-          <div class="table-wrap">
-            <table class="agent-table">
-              <thead>
-                <tr>
-                  <th>Ticker</th>
-                  <th>Estado</th>
-                  <th>Origem</th>
-                  <th>Entrada</th>
-                  <th>Gatilho</th>
-                  <th>Stop</th>
-                  <th>Qtd</th>
-                  <th>Saida</th>
-                  <th>Motivo</th>
-                  <th>R</th>
-                  <th>P/L</th>
-                </tr>
-              </thead>
-              <tbody id="agentReplayBody"></tbody>
-            </table>
-          </div>
-        </section>
       </section>
     </main>
     <script>
@@ -47961,9 +47931,6 @@ const el = {
   agentRuleText: document.querySelector("#agentRuleText"),
   agentMetricsCount: document.querySelector("#agentMetricsCount"),
   agentSystemMetrics: document.querySelector("#agentSystemMetrics"),
-  agentReplayCount: document.querySelector("#agentReplayCount"),
-  agentReplayMetrics: document.querySelector("#agentReplayMetrics"),
-  agentReplayBody: document.querySelector("#agentReplayBody"),
 };
 
 const perfMax = Object.fromEntries(
@@ -49020,14 +48987,7 @@ function agentMetricCard(label, value, title = "") {
 function renderAgent() {
   const agent = DATA.trade_agent || {};
   const metrics = agent.metrics || {};
-  const replay = agent.replay || {};
-  const replayMetrics = replay.metrics || {};
-  const replayCoverage = replay.coverage || {};
-  const replayTrades = replay.trades || [];
-  const openPositions = agent.open_positions || [];
-  const currentPositions = agent.positions || [];
   const isLocked = agent.locked === true || agent.enabled === false;
-  const agentRestartDate = agent.restart_date || "2026-06-15";
 
   if (el.agentStatusPill) {
     el.agentStatusPill.textContent = agent.status_label || (isLocked ? "Pausado" : "Ativo");
@@ -49076,98 +49036,6 @@ function renderAgent() {
   if (el.agentMetricsCount) el.agentMetricsCount.textContent = `${systemCards.length} metricas`;
   if (el.agentSystemMetrics) {
     el.agentSystemMetrics.innerHTML = systemCards.map((item) => agentMetricCard(...item)).join("");
-  }
-
-  const replayCards = [
-    ["Status teste", escapeHtml(replay.assumptions?.test_status || "--"), "Completo somente quando nao ha falta de intraday nos sinais elegiveis."],
-    ["Auditoria", escapeHtml(replay.audit?.status || "--"), "Auditoria independente trade a trade: entrada, stop, sizing, saida, P/L e membership."],
-    ["Periodo", `${escapeHtml(replay.assumptions?.start_date || "--")} -> ${escapeHtml(replay.assumptions?.end_date || "--")}`, "Periodo do teste walk-forward dia a dia."],
-    ["Elegiveis", formatNumber(replayCoverage.eligible_signals, 0), "Sinais elegiveis no teste antes da regra intraday."],
-    ["Trades", formatNumber(replayMetrics.total_trades, 0), "Trades executados no teste paper walk-forward."],
-    ["Pulados", formatNumber(replayCoverage.skipped_signals, 0), "Sinais pulados porque nao acionaram a regra ou nao tinham dados suficientes."],
-    ["Cobertura dados", formatPercent((replayCoverage.intraday_coverage_pct ?? replayCoverage.coverage_pct ?? 0) * 100, 1), "Percentual dos sinais elegiveis com intraday suficiente. Abaixo de 100%, o teste nao deve ser tratado como completo."],
-    ["Conversao", formatPercent((replayCoverage.trade_conversion_pct || 0) * 100, 1), "Percentual dos sinais elegiveis que viraram trade pela regra."],
-    ["Fechados", formatNumber(replayMetrics.closed_trades, 0), "Trades fechados no teste."],
-    ["Abertos", formatNumber(replayMetrics.open_trades, 0), "Trades ainda marcados a mercado no fim do teste."],
-    ["Expectancy R", formatNumber(replayMetrics.expectancy_r, 2), "Media de R dos trades fechados do teste."],
-    ["Win rate", formatPercent((replayMetrics.win_rate || 0) * 100, 1), "Percentual de trades fechados positivos."],
-    ["Profit factor", formatNumber(replayMetrics.profit_factor, 2), "Lucro bruto dividido pela perda bruta."],
-    ["Retorno", formatPercent((replayMetrics.return_pct || 0) * 100, 2), "Retorno marcado a mercado no fim do teste."],
-  ];
-  if (el.agentReplayCount) el.agentReplayCount.textContent = replay.available ? `${replayTrades.length} trades` : "sem teste";
-  if (el.agentReplayMetrics) {
-    el.agentReplayMetrics.innerHTML = replay.available
-      ? replayCards.map((item) => agentMetricCard(...item)).join("")
-      : '<div class="empty-state">Teste walk-forward ainda nao gerado.</div>';
-  }
-  const currentRows = currentPositions
-    .filter((row) => String(row.entry_date || "") >= agentRestartDate)
-    .map((row) => ({
-    ticker: row.ticker,
-    name: row.name || "",
-    source: "Paper atual",
-    state: row.status || "--",
-    entry_date: row.entry_date || "",
-    entry_time: row.entry_time || "",
-    entry_price: row.entry_price,
-    entry_basis: row.entry_basis || "--",
-    trigger: row.entry_trigger || row.prior_52w_high || row.prior_5d_high || "",
-    stop_price: row.stop_price,
-    stop_basis: row.stop_basis || agent.initial_stop_rule || "",
-    shares: row.shares,
-    exit_date: row.exit_date || "",
-    exit_price: row.exit_price || row.last_price || "",
-    close_reason: row.exit_reason || (String(row.status || "").toLowerCase() === "open" ? "open" : "--"),
-    r_multiple: row.r_multiple || row.last_r || "",
-    pnl: row.pnl || row.open_pnl || 0,
-    sort_key: `${row.entry_date || ""} ${row.entry_time || ""}`,
-  }));
-  const testRows = replayTrades
-    .filter((row) => String(row.entry_date || "") >= agentRestartDate)
-    .map((row) => ({
-    ticker: row.ticker,
-    name: row.name || "",
-    source: "Walk-forward",
-    state: row.close_reason === "open_mark" ? "open_mark" : "closed",
-    entry_date: row.entry_date || "",
-    entry_time: row.entry_time || "",
-    entry_price: row.entry_price,
-    entry_basis: row.entry_basis || "--",
-    trigger: row.prior_52w_high || row.prior_5d_high || "",
-    stop_price: row.stop_price,
-    stop_basis: row.stop_basis || "",
-    shares: row.shares,
-    exit_date: row.exit_date || "",
-    exit_price: row.exit_price || "",
-    close_reason: row.close_reason || "--",
-    r_multiple: row.r_multiple,
-    pnl: row.pnl || 0,
-    sort_key: `${row.entry_date || ""} ${row.entry_time || ""}`,
-  }));
-  const agentRows = [...currentRows, ...testRows].sort((a, b) => String(b.sort_key).localeCompare(String(a.sort_key)));
-  if (el.agentReplayCount) el.agentReplayCount.textContent = `${agentRows.length} trades`;
-  if (el.agentReplayBody) {
-    el.agentReplayBody.innerHTML = agentRows.length
-      ? agentRows
-          .map(
-            (row) => `
-              <tr>
-                <td><strong>${escapeHtml(row.ticker)}</strong><small>${escapeHtml(row.name || "")}</small></td>
-                <td>${escapeHtml(row.state || "--")}</td>
-                <td>${escapeHtml(row.source || "--")}</td>
-                <td class="num">${formatNumber(row.entry_price, 2)}<small>${escapeHtml(row.entry_date || "")} ${escapeHtml(row.entry_time || "")}</small></td>
-                <td class="num">${formatNumber(row.trigger, 2)}<small>${escapeHtml(row.entry_basis || "")}</small></td>
-                <td class="num">${formatNumber(row.stop_price, 2)}<small>${escapeHtml(row.stop_basis || "")}</small></td>
-                <td class="num">${formatNumber(row.shares, 0)}</td>
-                <td class="num">${formatNumber(row.exit_price, 2)}<small>${escapeHtml(row.exit_date || "")}</small></td>
-                <td>${escapeHtml(row.close_reason || "--")}</td>
-                <td class="num ${signedClass(row.r_multiple)}">${formatNumber(row.r_multiple, 2)}</td>
-                <td class="num ${signedClass(row.pnl)}">${formatSignedMoney(row.pnl || 0)}</td>
-              </tr>
-            `,
-          )
-          .join("")
-      : '<tr><td colspan="11"><div class="empty-state">Nenhum trade do agente.</div></td></tr>';
   }
 }
 
