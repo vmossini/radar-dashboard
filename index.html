@@ -508,14 +508,40 @@ select:focus {
   background: var(--violet);
 }
 
-.breakout-types button.type-52w-plus.active {
-  border-color: var(--cyan);
-  background: var(--cyan);
+.signal-filters button.signal-baseline.active {
+  border-color: #d6a32f;
+  background: #fff1c8;
+  color: #5f3f00;
 }
 
-.breakout-types button.type-1m.active {
-  border-color: var(--blue);
-  background: var(--blue);
+.signal-filters button.signal-new.active {
+  border-color: #78bda9;
+  background: #ddf2eb;
+  color: #0f604d;
+}
+
+.signal-filters button.signal-chase.active {
+  border-color: #dfa753;
+  background: #fff0d8;
+  color: #71430a;
+}
+
+.signal-filters button.signal-intraday.active {
+  border-color: #69b9b4;
+  background: #ddf3f1;
+  color: #0d5e5a;
+}
+
+.signal-filters button.signal-open.active {
+  border-color: #c98d3e;
+  background: #fff0d7;
+  color: #704407;
+}
+
+.signal-filters button.signal-or30.active {
+  border-color: #8eaee0;
+  background: #e5eefc;
+  color: #294d88;
 }
 
 .section-block,
@@ -1713,12 +1739,12 @@ tbody tr:hover {
           <select id="themeFilter"></select>
         </label>
         <div class="filter-group">
-          <span>Filtro rapido</span>
+          <span>Lista</span>
           <div class="segmented" id="statusControls" aria-label="Status"></div>
         </div>
         <div class="filter-group">
-          <span>Tipo breakout</span>
-          <div class="segmented breakout-types" id="breakoutTypeControls" aria-label="Tipo de rompimento"></div>
+          <span>Acionamento</span>
+          <div class="segmented signal-filters" id="signalControls" aria-label="Acionamento"></div>
         </div>
         <div class="filter-group">
           <span>Janela lideranca</span>
@@ -47913,22 +47939,28 @@ const PERFORMANCE_WINDOWS = [
   { label: "1Y", key: "1y", perf: "perf_1y_pct", rank: "rank_1y", rankPct: "rank_pct_1y" },
 ];
 
-const BREAKOUT_TYPES = [
+const SIGNAL_FILTERS = [
   { key: "All", label: "Todos" },
-  { key: "52W_PLUS", label: "52W+" },
+  { key: "Baseline", label: "Baseline" },
+  { key: "New", label: "New" },
+  { key: "Chase", label: "Chase" },
+  { key: "Intraday", label: "R. Intraday" },
+  { key: "Open", label: "Abertura" },
+  { key: "OR30", label: "30m" },
 ];
 
 const QUICK_FILTERS = [
   { key: "All", label: "Todos" },
   { key: "NewRadar", label: "Novos" },
-  { key: "Consolidating", label: "ConsolidaÃ§Ã£o" },
+  { key: "Breakouts", label: "Rompidos" },
+  { key: "Consolidating", label: "Consolidacao" },
 ];
 
 const state = {
   search: "",
   quickFilter: "All",
   theme: "All",
-  breakoutType: "All",
+  signalFilter: "All",
   windows: new Set(),
   sort: {
     breakouts: { key: "leadership_score", dir: "desc" },
@@ -47965,7 +47997,7 @@ const el = {
   searchInput: document.querySelector("#searchInput"),
   themeFilter: document.querySelector("#themeFilter"),
   statusControls: document.querySelector("#statusControls"),
-  breakoutTypeControls: document.querySelector("#breakoutTypeControls"),
+  signalControls: document.querySelector("#signalControls"),
   windowControls: document.querySelector("#windowControls"),
   breakoutsBody: document.querySelector("#breakoutsBody"),
   momentumBurstBody: document.querySelector("#momentumBurstBody"),
@@ -48005,6 +48037,7 @@ const perfMax = Object.fromEntries(
 );
 
 const themeMap = new Map((DATA.themes || []).map((theme) => [theme.theme, theme]));
+const consolidatingTickers = new Set((DATA.leaders_consolidating || []).map((row) => String(row.ticker || "").toUpperCase()));
 const THEME_PALETTE = [
   { fg: "#174c6a", bg: "#e2f2f8", border: "#94cadd" },
   { fg: "#6f3f13", bg: "#f8ebda", border: "#d9ad76" },
@@ -48474,6 +48507,34 @@ function flagStack(row) {
   return flags || '<span class="flag">No top1 flag</span>';
 }
 
+function isConsolidatingRow(row) {
+  return (
+    String(row.status || "").toLowerCase() === "ready" ||
+    consolidatingTickers.has(String(row.ticker || "").toUpperCase())
+  );
+}
+
+function rowMatchesQuickFilter(row) {
+  if (state.quickFilter === "All") return true;
+  if (state.quickFilter === "NewRadar") return row.watchlist_change === "included";
+  if (state.quickFilter === "Breakouts") return isBreakoutStatus(row.status);
+  if (state.quickFilter === "Consolidating") return isConsolidatingRow(row);
+  return true;
+}
+
+function rowMatchesSignalFilter(row) {
+  const status = String(row.status || "").toLowerCase();
+  const origin = String(row.breakout_origin || "").toLowerCase();
+  if (state.signalFilter === "All") return true;
+  if (state.signalFilter === "Baseline") return status === "breakout baseline";
+  if (state.signalFilter === "New") return status === "new breakout";
+  if (state.signalFilter === "Chase") return status === "chase breakout";
+  if (state.signalFilter === "Intraday") return origin === "intraday_break";
+  if (state.signalFilter === "Open") return origin === "open_above";
+  if (state.signalFilter === "OR30") return row.or30_breakout === true;
+  return true;
+}
+
 function filterRows(rows, options = {}) {
   const query = state.search.trim().toLowerCase();
   return (rows || []).filter((row) => {
@@ -48491,17 +48552,13 @@ function filterRows(rows, options = {}) {
       .join(" ")
       .toLowerCase();
     const searchOk = !query || searchable.includes(query);
-    const quickFilterOk =
-      state.quickFilter === "All" ||
-      (state.quickFilter === "NewRadar" && row.watchlist_change === "included") ||
-      (state.quickFilter === "Consolidating" && String(row.status || "").toLowerCase() === "ready");
+    const quickFilterOk = rowMatchesQuickFilter(row);
     const themeOk = state.theme === "All" || row.theme === state.theme;
-    const breakoutTypeOk =
-      !options.breakoutType || state.breakoutType === "All" || breakoutTypeGroup(row) === state.breakoutType;
+    const signalFilterOk = rowMatchesSignalFilter(row);
     const windowsOk =
       state.windows.size === 0 ||
       WINDOWS.some((windowConfig) => state.windows.has(windowConfig.key) && row[windowConfig.flag]);
-    return searchOk && quickFilterOk && themeOk && breakoutTypeOk && windowsOk;
+    return searchOk && quickFilterOk && themeOk && signalFilterOk && windowsOk;
   });
 }
 
@@ -48848,12 +48905,12 @@ function renderFilters() {
     )
     .join("");
 
-  if (el.breakoutTypeControls) {
-    el.breakoutTypeControls.innerHTML = BREAKOUT_TYPES.map(
-      (type) =>
-        `<button type="button" data-breakout-type="${escapeHtml(type.key)}" class="${
-          state.breakoutType === type.key ? "active" : ""
-        } ${type.key !== "All" ? breakoutTypeClass(type.key) : ""}">${escapeHtml(type.label)}</button>`,
+  if (el.signalControls) {
+    el.signalControls.innerHTML = SIGNAL_FILTERS.map(
+      (filter) =>
+        `<button type="button" data-signal-filter="${escapeHtml(filter.key)}" class="${
+          state.signalFilter === filter.key ? "active" : ""
+        } signal-${escapeHtml(String(filter.key).toLowerCase())}">${escapeHtml(filter.label)}</button>`,
     ).join("");
   }
 
@@ -48891,7 +48948,7 @@ function renderActiveTable() {
 }
 
 function renderBreakoutsTable() {
-  const rows = sortRows(filterRows(DATA.breakouts_today || [], { breakoutType: true }), state.sort.breakouts);
+  const rows = sortRows(filterRows(DATA.breakouts_today || []), state.sort.breakouts);
   const ranks = leadershipRanks();
   el.breakoutsCount.textContent = rows.length;
   if (!rows.length) {
@@ -49235,12 +49292,12 @@ el.statusControls.addEventListener("click", (event) => {
   });
 });
 
-if (el.breakoutTypeControls) {
-  el.breakoutTypeControls.addEventListener("click", (event) => {
-    const button = event.target.closest("button[data-breakout-type]");
+if (el.signalControls) {
+  el.signalControls.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-signal-filter]");
     if (!button) return;
     updateAndRender(() => {
-      state.breakoutType = button.dataset.breakoutType;
+      state.signalFilter = button.dataset.signalFilter;
     });
   });
 }
