@@ -1,3 +1,4 @@
 asof,timestamp,open_positions,closed_trades,total_trades,trades_today,realized_pnl,open_pnl,equity_marked,return_pct,risk_open,notional_open,win_rate,loss_rate,scratch_rate,expectancy_r,expectancy_dollar,profit_factor,payoff_ratio,avg_r,median_r,best_r,worst_r,max_drawdown
 2026-06-15,2026-06-15T20:03:35+00:00,7,0,7,7,0,-64.71,9935.29,-0.006471,622.56,3700.12,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,-0.006471
 2026-06-16,2026-06-16T20:04:33+00:00,8,0,8,1,0,-182.77,9817.23,-0.018277,722.38,4528.18,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,-0.018277
+2026-06-17,2026-06-17T18:02:22+00:00,10,0,10,2,0,-17.15,9982.85,-0.001715,874.75,5317.35,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,-0.001715
