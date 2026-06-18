@@ -1651,8 +1651,7 @@ tbody tr:hover {
 
 .glb-only .legacy-radar,
 .glb-only .legacy-link,
-.glb-only #agentPage,
-.glb-only .page-tabs {
+.glb-only .legacy-page {
   display: none !important;
 }
 
@@ -1697,7 +1696,7 @@ tbody tr:hover {
         </div>
       </header>
 
-      <nav class="page-tabs legacy-radar" aria-label="Paginas do dashboard">
+      <nav class="page-tabs" aria-label="Paginas do dashboard">
         <button type="button" class="active" data-page="radarPage">Radar</button>
         <button type="button" data-page="agentPage">Agente</button>
       </nav>
@@ -1941,7 +1940,7 @@ tbody tr:hover {
       </section>
       </section>
 
-      <section id="agentPage" class="page-view legacy-radar" aria-label="Agente de trades paper">
+      <section id="agentPage" class="page-view" aria-label="Agente de trades paper">
         <section class="agent-hero">
           <div>
             <p class="eyebrow">Paper trading</p>
@@ -2014,11 +2013,12 @@ window.RADAR_DATA = {
   "breakouts_today": [],
   "daily_asof": "2026-06-18",
   "data_mode": "glb_ath",
-  "generated_at": "2026-06-18T17:54:45-03:00",
+  "generated_at": "2026-06-18T18:15:19-03:00",
   "glb_ath": [
     {
       "asof": "2026-06-18",
       "ath_trigger": 17.86,
+      "atr14": 0.8871908206081505,
       "avgvol10": 622990.0,
       "close": 17.77,
       "country": "United States",
@@ -2045,6 +2045,7 @@ window.RADAR_DATA = {
     {
       "asof": "2026-06-18",
       "ath_trigger": 104.82,
+      "atr14": 3.3920524335895768,
       "avgvol10": 328830.0,
       "close": 107.73,
       "country": "United States",
@@ -2071,6 +2072,7 @@ window.RADAR_DATA = {
     {
       "asof": "2026-06-18",
       "ath_trigger": 214.32,
+      "atr14": 6.0978350072219945,
       "avgvol10": 537830.0,
       "close": 214.9,
       "country": "United States",
@@ -2096,7 +2098,7 @@ window.RADAR_DATA = {
     }
   ],
   "intraday_asof": "2026-06-18",
-  "intraday_timestamp": "2026-06-18T17:54:45-03:00",
+  "intraday_timestamp": "2026-06-18T18:15:19-03:00",
   "leaders_consolidating": [],
   "momentum_burst": [],
   "momentum_burst_rules": {},
@@ -2165,10 +2167,219 @@ window.RADAR_DATA = {
   "ticker_history": [],
   "top_by_window": {},
   "trade_agent": {
-    "enabled": false,
-    "locked": true,
-    "status": "paused",
-    "status_label": "Pausado"
+    "capital_base": 10000.0,
+    "enabled": true,
+    "events_today": [
+      {
+        "atr14": 0.8871908206081505,
+        "entry_basis": "glb_ath_60d",
+        "entry_trigger": 17.86,
+        "event_at": "2026-06-18T18:15:19-03:00",
+        "event_type": "entry",
+        "exit_reason": "",
+        "initial_risk": 99.36537190811285,
+        "last_price": 17.77,
+        "message": "GLB ATH 60D paper entry",
+        "pnl": -5.039999999999992,
+        "position_id": "GLB-2026-06-18-MAMA",
+        "price": 17.86,
+        "r_multiple": -0.05072189539692643,
+        "reason": "glb_ath_60d",
+        "risk_budget": 100.0,
+        "risk_per_share": 1.774381641216301,
+        "shares": 56.0,
+        "stop_basis": "2atr14",
+        "stop_price": 16.09,
+        "ticker": "MAMA"
+      },
+      {
+        "atr14": 3.3920524335895768,
+        "entry_basis": "glb_ath_60d",
+        "entry_trigger": 104.82,
+        "event_at": "2026-06-18T18:15:19-03:00",
+        "event_type": "entry",
+        "exit_reason": "",
+        "initial_risk": 94.97746814050815,
+        "last_price": 107.73,
+        "message": "GLB ATH 60D paper entry",
+        "pnl": 40.74000000000015,
+        "position_id": "GLB-2026-06-18-GOLF",
+        "price": 104.82,
+        "r_multiple": 0.42894384107744427,
+        "reason": "glb_ath_60d",
+        "risk_budget": 100.0,
+        "risk_per_share": 6.7841048671791535,
+        "shares": 14.0,
+        "stop_basis": "2atr14",
+        "stop_price": 98.04,
+        "ticker": "GOLF"
+      },
+      {
+        "atr14": 6.0978350072219945,
+        "entry_basis": "glb_ath_60d",
+        "entry_trigger": 214.32,
+        "event_at": "2026-06-18T18:15:19-03:00",
+        "event_type": "entry",
+        "exit_reason": "",
+        "initial_risk": 97.56536011555191,
+        "last_price": 214.9,
+        "message": "GLB ATH 60D paper entry",
+        "pnl": 4.6400000000001,
+        "position_id": "GLB-2026-06-18-CR",
+        "price": 214.32,
+        "r_multiple": 0.04755786269332372,
+        "reason": "glb_ath_60d",
+        "risk_budget": 100.0,
+        "risk_per_share": 12.195670014443989,
+        "shares": 8.0,
+        "stop_basis": "2atr14",
+        "stop_price": 202.12,
+        "ticker": "CR"
+      }
+    ],
+    "locked": false,
+    "metrics": {
+      "asof": "2026-06-18",
+      "avg_r": 0,
+      "best_r": 0,
+      "capital_base": 10000.0,
+      "closed_trades": 0,
+      "expectancy_dollar": 0.0,
+      "expectancy_r": 0,
+      "generated_at": "2026-06-18T18:15:19-03:00",
+      "loss_rate": 0,
+      "max_drawdown": 0,
+      "median_r": 0,
+      "notional_open": 4182.2,
+      "open_pnl": 40.34000000000026,
+      "open_positions": 3,
+      "payoff_ratio": null,
+      "profit_factor": null,
+      "realized_pnl": 0,
+      "return_pct": 0.004034000000000026,
+      "risk_open": 291.9082001641729,
+      "risk_pct": 0.01,
+      "scratch_rate": 0,
+      "strategy": "glb_ath_60d",
+      "total_equity_marked": 10040.34,
+      "total_trades": 3,
+      "trades_today": 3,
+      "win_rate": 0,
+      "worst_r": 0
+    },
+    "positions": [
+      {
+        "atr14": 0.8871908206081505,
+        "entry_basis": "glb_ath_60d",
+        "entry_date": "2026-06-18",
+        "entry_detected_at": "2026-06-18T18:15:19-03:00",
+        "entry_price": 17.86,
+        "entry_rank": "",
+        "entry_status": "GLB ATH 60D",
+        "entry_time": "18:15",
+        "entry_trigger": 17.86,
+        "exit_date": "",
+        "exit_price": "",
+        "exit_reason": "",
+        "exit_time": "",
+        "initial_risk": 99.36537190811285,
+        "last_date": "2026-06-18",
+        "last_price": 17.77,
+        "last_r": -0.05072189539692643,
+        "name": "Mama's Creations Inc. Common Stock",
+        "notional": 1000.16,
+        "open_pnl": -5.039999999999992,
+        "pnl": "",
+        "position_id": "GLB-2026-06-18-MAMA",
+        "r_multiple": "",
+        "risk_budget": 100.0,
+        "risk_per_share": 1.774381641216301,
+        "rvol_10d": 1.479877686640235,
+        "shares": 56.0,
+        "sma20_at_entry": 14.81,
+        "status": "open",
+        "stop_basis": "2atr14",
+        "stop_price": 16.09,
+        "strategy": "glb_ath_60d",
+        "ticker": "MAMA"
+      },
+      {
+        "atr14": 3.3920524335895768,
+        "entry_basis": "glb_ath_60d",
+        "entry_date": "2026-06-18",
+        "entry_detected_at": "2026-06-18T18:15:19-03:00",
+        "entry_price": 104.82,
+        "entry_rank": "",
+        "entry_status": "GLB ATH 60D",
+        "entry_time": "18:15",
+        "entry_trigger": 104.82,
+        "exit_date": "",
+        "exit_price": "",
+        "exit_reason": "",
+        "exit_time": "",
+        "initial_risk": 94.97746814050815,
+        "last_date": "2026-06-18",
+        "last_price": 107.73,
+        "last_r": 0.42894384107744427,
+        "name": "Acushnet Holdings Corp. Common Stock",
+        "notional": 1467.48,
+        "open_pnl": 40.74000000000015,
+        "pnl": "",
+        "position_id": "GLB-2026-06-18-GOLF",
+        "r_multiple": "",
+        "risk_budget": 100.0,
+        "risk_per_share": 6.7841048671791535,
+        "rvol_10d": 0.9735182313049296,
+        "shares": 14.0,
+        "sma20_at_entry": 92.95,
+        "status": "open",
+        "stop_basis": "2atr14",
+        "stop_price": 98.04,
+        "strategy": "glb_ath_60d",
+        "ticker": "GOLF"
+      },
+      {
+        "atr14": 6.0978350072219945,
+        "entry_basis": "glb_ath_60d",
+        "entry_date": "2026-06-18",
+        "entry_detected_at": "2026-06-18T18:15:19-03:00",
+        "entry_price": 214.32,
+        "entry_rank": "",
+        "entry_status": "GLB ATH 60D",
+        "entry_time": "18:15",
+        "entry_trigger": 214.32,
+        "exit_date": "",
+        "exit_price": "",
+        "exit_reason": "",
+        "exit_time": "",
+        "initial_risk": 97.56536011555191,
+        "last_date": "2026-06-18",
+        "last_price": 214.9,
+        "last_r": 0.04755786269332372,
+        "name": "Crane Company Common Stock",
+        "notional": 1714.56,
+        "open_pnl": 4.6400000000001,
+        "pnl": "",
+        "position_id": "GLB-2026-06-18-CR",
+        "r_multiple": "",
+        "risk_budget": 100.0,
+        "risk_per_share": 12.195670014443989,
+        "rvol_10d": 0.5801331275681907,
+        "shares": 8.0,
+        "sma20_at_entry": 192.49,
+        "status": "open",
+        "stop_basis": "2atr14",
+        "stop_price": 202.12,
+        "strategy": "glb_ath_60d",
+        "ticker": "CR"
+      }
+    ],
+    "risk_budget": 100.0,
+    "risk_pct": 0.01,
+    "rule": "Compra GLB ATH 60D; risco 1%; stop inicial 2x ATR14; venda no fechamento abaixo da SMA20.",
+    "status": "active",
+    "status_label": "Ativo GLB",
+    "strategy": "glb_ath_60d"
   },
   "update_endpoints": [],
   "validation": {
@@ -3502,6 +3713,17 @@ function agentMetricCard(label, value, title = "") {
 
 function agentOriginMeta(row) {
   const basis = String(row.entry_basis || "").toLowerCase();
+  if (basis === "glb_ath_60d" || basis === "glb_ath_gap") {
+    return {
+      label: "GLB ATH",
+      detail: basis === "glb_ath_gap" ? "gap > ATH" : "ATH 60D",
+      className: "origin-intraday",
+      title:
+        basis === "glb_ath_gap"
+          ? "A acao abriu acima do trigger GLB ATH; a entrada paper foi registrada na abertura."
+          : "A acao rompeu o trigger GLB ATH depois de pelo menos 60 pregoes sem novo ATH.",
+    };
+  }
   if (basis === "open_above_52w_or30") {
     return {
       label: "30m ORB",
@@ -3538,6 +3760,8 @@ function agentOriginCell(row) {
 
 function agentEntryBasisLabel(value) {
   const basis = String(value || "").toLowerCase();
+  if (basis === "glb_ath_60d") return "GLB ATH 60D";
+  if (basis === "glb_ath_gap") return "Gap GLB ATH";
   if (basis === "open_above_52w_or30") return "OR30 apos gap";
   if (basis === "52w_intraday_break") return "52W intraday";
   return basis ? basis.replaceAll("_", " ") : "--";
@@ -3616,7 +3840,9 @@ function renderAgent() {
       : "";
     el.agentRuleText.textContent = isLocked
       ? (agent.lock_reason || "Agente pausado. Historico preservado em modo somente leitura.")
-      : `Paper: radar principal. Compra somente Breakout Baseline: R. Intraday no gatilho de 52W, ou 30m ORB quando abriu acima da 52W. Stop inicial 2x ATR14; saida por fechamento abaixo da EMA10; risco maximo de $100 por posicao. Usa acoes inteiras quando couber; fracao apenas quando 1 acao excede o risco.${baselineText}`;
+      : isGlbMode()
+        ? `Paper GLB: compra apenas sinais GLB ATH 60D. Entrada no trigger ATH + 0,01; se abriu acima do trigger, entrada na abertura. Stop inicial 2x ATR14; venda no fechamento abaixo da SMA20; risco de 1% sobre o capital base por posicao.${baselineText}`
+        : `Paper: radar principal. Compra somente Breakout Baseline: R. Intraday no gatilho de 52W, ou 30m ORB quando abriu acima da 52W. Stop inicial 2x ATR14; saida por fechamento abaixo da EMA10; risco maximo de $100 por posicao. Usa acoes inteiras quando couber; fracao apenas quando 1 acao excede o risco.${baselineText}`;
   }
 
   if (el.agentOpenPositions) el.agentOpenPositions.textContent = metrics.open_positions ?? 0;
@@ -3662,6 +3888,7 @@ function renderAll() {
   if (isGlbMode()) {
     renderFilters();
     renderGlbTable();
+    renderAgent();
     return;
   }
   renderFilterSummary();
