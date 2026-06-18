@@ -1,2 +1,2 @@
-﻿asof,generated_at,strategy,capital_base,risk_pct,open_positions,risk_open,notional_open,open_pnl,realized_pnl,total_equity_marked,return_pct,total_trades,closed_trades,trades_today,win_rate,loss_rate,scratch_rate,expectancy_r,expectancy_dollar,profit_factor,payoff_ratio,avg_r,median_r,best_r,worst_r,max_drawdown
-2026-06-18,2026-06-18T20:03:38-03:00,glb_ath_60d,10000.0,0.01,3,291.9082001641729,4222.54,40.34000000000026,0,10040.34,0.004034000000000026,3,0,3,0,0,0,0,0.0,,,0,0,0,0,0
+asof,timestamp,open_positions,closed_trades,total_trades,trades_today,realized_pnl,open_pnl,equity_marked,return_pct,risk_open,notional_open,win_rate,loss_rate,scratch_rate,expectancy_r,expectancy_dollar,profit_factor,payoff_ratio,avg_r,median_r,best_r,worst_r,max_drawdown
+2026-06-18,2026-06-18T20:05:26+00:00,3,0,3,3,0,-2.64,9997.36,-0.000264,213.7,1175.45,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,-0.000264

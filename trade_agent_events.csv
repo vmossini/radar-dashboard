@@ -1,4 +1,10 @@
-﻿event_at,event_type,position_id,ticker,price,shares,reason,entry_basis,entry_trigger,stop_price,stop_basis,atr14,risk_budget,risk_per_share,initial_risk,last_price,r_multiple,pnl,exit_reason,message
-2026-06-18T18:15:19-03:00,entry,GLB-2026-06-18-MAMA,MAMA,17.86,56.0,glb_ath_60d,glb_ath_60d,17.86,16.09,2atr14,0.8871908206081505,100.0,1.774381641216301,99.36537190811285,17.77,-0.05072189539692643,-5.039999999999992,,GLB ATH 60D paper entry
-2026-06-18T18:15:19-03:00,entry,GLB-2026-06-18-GOLF,GOLF,104.82,14.0,glb_ath_60d,glb_ath_60d,104.82,98.04,2atr14,3.3920524335895768,100.0,6.7841048671791535,94.97746814050815,107.73,0.42894384107744427,40.74000000000015,,GLB ATH 60D paper entry
-2026-06-18T18:15:19-03:00,entry,GLB-2026-06-18-CR,CR,214.32,8.0,glb_ath_60d,glb_ath_60d,214.32,202.12,2atr14,6.0978350072219945,100.0,12.195670014443989,97.56536011555191,214.9,0.04755786269332372,4.6400000000001,,GLB ATH 60D paper entry
+event_key,event_type,timestamp,asof,ticker,position_id,price,shares,risk_dollars,r_multiple,pnl,reason,note
+,entry,,,MAMA,GLB-2026-06-18-MAMA,17.86,56.0,,-0.05072189539692643,-5.039999999999992,glb_ath_60d,
+,entry,,,GOLF,GLB-2026-06-18-GOLF,104.82,14.0,,0.42894384107744427,40.74000000000015,glb_ath_60d,
+,entry,,,CR,GLB-2026-06-18-CR,214.32,8.0,,0.04755786269332372,4.6400000000001,glb_ath_60d,
+correction:GLB-2026-06-18-MAMA:invalid_entry_not_breakout_baseline,correction,2026-06-18T20:05:26+00:00,2026-06-18,MAMA,GLB-2026-06-18-MAMA,17.77,56.0,,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
+correction:GLB-2026-06-18-GOLF:invalid_entry_not_breakout_baseline,correction,2026-06-18T20:05:26+00:00,2026-06-18,GOLF,GLB-2026-06-18-GOLF,107.73,14.0,,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
+correction:GLB-2026-06-18-CR:invalid_entry_not_breakout_baseline,correction,2026-06-18T20:05:26+00:00,2026-06-18,CR,GLB-2026-06-18-CR,214.9,8.0,,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
+entry:2026-06-18:MRVL:2026-06-18T20:05:26+00:00,entry,2026-06-18T20:05:26+00:00,2026-06-18,MRVL,2026-06-18:MRVL,324.21,1.0,78.0,,,52w_intraday_break,paper trade entry; no real order sent
+entry:2026-06-18:INTC:2026-06-18T20:05:26+00:00,entry,2026-06-18T20:05:26+00:00,2026-06-18,INTC,2026-06-18:INTC,132.76,4.0,83.09,,,52w_intraday_break,paper trade entry; no real order sent
+entry:2026-06-18:BE:2026-06-18T20:05:26+00:00,entry,2026-06-18T20:05:26+00:00,2026-06-18,BE,2026-06-18:BE,322.84,1.0,52.61,,,52w_intraday_break,paper trade entry; no real order sent
