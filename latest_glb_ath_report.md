@@ -1,9 +1,9 @@
 # Radar GLB ATH 60D
 
-- Gerado: `2026-06-18T20:03:38-03:00`
+- Gerado: `2026-06-19T16:34:29-03:00`
 - Data dos candles: `2026-06-18`
 - GLBs encontrados: `3`
-- Universo limpo: `3942`
+- Universo limpo: `3955`
 - Pre-candidatos 1Y: `3`
 
 ## Regra
@@ -16,6 +16,6 @@
 
 | Ticker | Empresa | High | ATH trigger | Base | RVOL(10) | Market cap | Setor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| MAMA | Mama's Creations Inc. Common Stock | 17.93 | 17.86 | 77 | 1.48 | 640315872 | Consumer Staples |
-| GOLF | Acushnet Holdings Corp. Common Stock | 108.66 | 104.82 | 88 | 0.97 | 5884096786 | Consumer Discretionary |
-| CR | Crane Company Common Stock | 216.13 | 214.32 | 101 | 0.58 | 12077510227 | Industrials |
+| GOLF | Acushnet Holdings Corp. Common Stock | 108.66 | 104.82 | 88 | 2.07 | 6308028130 | Consumer Discretionary |
+| MAMA | Mama's Creations Inc. Common Stock | 17.93 | 17.86 | 77 | 1.49 | 723357473 | Consumer Staples |
+| CR | Crane Company Common Stock | 216.19 | 214.32 | 101 | 1.36 | 12409547921 | Industrials |
