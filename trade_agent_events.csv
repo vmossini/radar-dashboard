@@ -1,10 +1,16 @@
-event_key,event_type,timestamp,asof,ticker,position_id,price,shares,risk_dollars,r_multiple,pnl,reason,note
-,entry,,,MAMA,GLB-2026-06-18-MAMA,17.86,56.0,,-0.05072189539692643,-5.039999999999992,glb_ath_60d,
-,entry,,,GOLF,GLB-2026-06-18-GOLF,104.82,14.0,,0.42894384107744427,40.74000000000015,glb_ath_60d,
-,entry,,,CR,GLB-2026-06-18-CR,214.32,8.0,,0.04755786269332372,4.6400000000001,glb_ath_60d,
-correction:GLB-2026-06-18-MAMA:invalid_entry_not_breakout_baseline,correction,2026-06-18T20:05:26+00:00,2026-06-18,MAMA,GLB-2026-06-18-MAMA,17.77,56.0,,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
-correction:GLB-2026-06-18-GOLF:invalid_entry_not_breakout_baseline,correction,2026-06-18T20:05:26+00:00,2026-06-18,GOLF,GLB-2026-06-18-GOLF,107.73,14.0,,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
-correction:GLB-2026-06-18-CR:invalid_entry_not_breakout_baseline,correction,2026-06-18T20:05:26+00:00,2026-06-18,CR,GLB-2026-06-18-CR,214.9,8.0,,,,invalid_entry_not_breakout_baseline,"paper entry invalidated; agent rule now permits only Breakout Baseline entries, via 52W intraday break or open-above-52W confirmed by OR30"
-entry:2026-06-18:MRVL:2026-06-18T20:05:26+00:00,entry,2026-06-18T20:05:26+00:00,2026-06-18,MRVL,2026-06-18:MRVL,324.21,1.0,78.0,,,52w_intraday_break,paper trade entry; no real order sent
-entry:2026-06-18:INTC:2026-06-18T20:05:26+00:00,entry,2026-06-18T20:05:26+00:00,2026-06-18,INTC,2026-06-18:INTC,132.76,4.0,83.09,,,52w_intraday_break,paper trade entry; no real order sent
-entry:2026-06-18:BE:2026-06-18T20:05:26+00:00,entry,2026-06-18T20:05:26+00:00,2026-06-18,BE,2026-06-18:BE,322.84,1.0,52.61,,,52w_intraday_break,paper trade entry; no real order sent
+﻿event_at,event_type,position_id,ticker,price,shares,reason,entry_basis,entry_trigger,stop_price,stop_basis,atr14,risk_budget,risk_per_share,initial_risk,last_price,r_multiple,pnl,exit_reason,message
+,entry,GLB-2026-06-18-MAMA,MAMA,17.86,56.0,glb_ath_60d,,,,,,,,,,-0.05072189539692643,-5.039999999999992,,
+,entry,GLB-2026-06-18-GOLF,GOLF,104.82,14.0,glb_ath_60d,,,,,,,,,,0.42894384107744427,40.74000000000015,,
+,entry,GLB-2026-06-18-CR,CR,214.32,8.0,glb_ath_60d,,,,,,,,,,0.04755786269332372,4.6400000000001,,
+,correction,GLB-2026-06-18-MAMA,MAMA,17.77,56.0,invalid_entry_not_breakout_baseline,,,,,,,,,,,,,
+,correction,GLB-2026-06-18-GOLF,GOLF,107.73,14.0,invalid_entry_not_breakout_baseline,,,,,,,,,,,,,
+,correction,GLB-2026-06-18-CR,CR,214.9,8.0,invalid_entry_not_breakout_baseline,,,,,,,,,,,,,
+,entry,2026-06-18:MRVL,MRVL,324.21,1.0,52w_intraday_break,,,,,,,,,,,,,
+,entry,2026-06-18:INTC,INTC,132.76,4.0,52w_intraday_break,,,,,,,,,,,,,
+,entry,2026-06-18:BE,BE,322.84,1.0,52w_intraday_break,,,,,,,,,,,,,
+2026-06-22T16:34:59-03:00,entry,GLB-2026-06-22-KYMR,KYMR,103.01,10.0,glb_ath_60d,glb_ath_60d,103.01,93.9,2atr14,4.553915217376749,100.0,9.107830434753499,91.07830434753498,100.0,-0.33048485273885864,-30.10000000000005,,GLB ATH 60D paper entry
+2026-06-22T16:34:59-03:00,entry,GLB-2026-06-22-WYFI,WYFI,40.76,12.0,glb_ath_60d,glb_ath_60d,40.76,32.43,2atr14,4.165957045933153,100.0,8.331914091866306,99.98296910239567,44.9,0.4968846239115101,49.68000000000001,,GLB ATH 60D paper entry
+2026-06-22T16:34:59-03:00,entry,GLB-2026-06-22-TRV,TRV,313.13,7.0,glb_ath_60d,glb_ath_60d,313.13,300.42,2atr14,6.35414143971458,100.0,12.70828287942916,88.95798015600411,311.43,-0.13377102289340528,-11.89999999999992,,GLB ATH 60D paper entry
+2026-06-22T16:34:59-03:00,entry,GLB-2026-06-22-APH,APH,167.05,8.0,glb_ath_60d,glb_ath_60d,167.05,154.7,2atr14,6.173999597640525,100.0,12.34799919528105,98.7839935622484,165.26,-0.14496275645078535,-14.320000000000164,,GLB ATH 60D paper entry
+2026-06-22T16:34:59-03:00,entry,GLB-2026-06-22-SPXC,SPXC,246.69,4.0,glb_ath_60d,glb_ath_60d,246.69,225.84,2atr14,10.426860416901134,100.0,20.853720833802267,83.41488333520907,246.17,-0.0249355980232137,-2.080000000000041,,GLB ATH 60D paper entry
+2026-06-22T16:34:59-03:00,entry,GLB-2026-06-22-CINF,CINF,174.28,15.0,glb_ath_60d,glb_ath_60d,174.28,167.67,2atr14,3.3065997861822995,100.0,6.613199572364599,99.19799358546899,172.2,-0.3145224905493504,-31.200000000000188,,GLB ATH 60D paper entry
