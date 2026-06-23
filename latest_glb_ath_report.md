@@ -1,10 +1,10 @@
 # Radar GLB ATH 60D
 
-- Gerado: `2026-06-22T16:34:59-03:00`
-- Data dos candles: `2026-06-22`
-- GLBs encontrados: `6`
+- Gerado: `2026-06-23T16:34:44-03:00`
+- Data dos candles: `2026-06-23`
+- GLBs encontrados: `2`
 - Universo limpo: `3955`
-- Pre-candidatos 1Y: `11`
+- Pre-candidatos 1Y: `7`
 
 ## Regra
 
@@ -16,9 +16,5 @@
 
 | Ticker | Empresa | High | ATH trigger | Base | RVOL(10) | Market cap | Setor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| KYMR | Kymera Therapeutics Inc. Common Stock | 105.0 | 103.01 | 132 | 2.95 | 7438553683 | Health Care |
-| WYFI | WhiteFiber Inc. Ordinary Shares | 46.87 | 40.76 | 171 | 2.43 | 1486261174 | Finance |
-| TRV | The Travelers Companies Inc. Common Stock | 313.66 | 313.13 | 76 | 0.63 | 65454162952 | Finance |
-| APH | Amphenol Corporation Common Stock | 168.68 | 167.05 | 99 | 0.53 | 201709239602 | Technology |
-| SPXC | SPX Technologies Inc. Common Stock | 247.73 | 246.69 | 84 | 0.49 | 12191449807 | Industrials |
-| CINF | Cincinnati Financial Corporation Common Stock | 175.34 | 174.28 | 91 | 0.41 | 26327683488 | Finance |
+| BWB | Bridgewater Bancshares Inc. Common Stock | 20.42 | 20.31 | 92 | 1.71 | 550417665 | Finance |
+| CFG | Citizens Financial Group Inc. Common Stock | 68.99 | 68.8 | 89 | 0.50 | 28366920669 | Finance |
