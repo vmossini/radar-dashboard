@@ -1,10 +1,10 @@
 # Radar GLB ATH 60D
 
-- Gerado: `2026-06-23T16:34:44-03:00`
-- Data dos candles: `2026-06-23`
-- GLBs encontrados: `2`
+- Gerado: `2026-06-24T16:34:41-03:00`
+- Data dos candles: `2026-06-24`
+- GLBs encontrados: `5`
 - Universo limpo: `3955`
-- Pre-candidatos 1Y: `7`
+- Pre-candidatos 1Y: `20`
 
 ## Regra
 
@@ -16,5 +16,8 @@
 
 | Ticker | Empresa | High | ATH trigger | Base | RVOL(10) | Market cap | Setor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| BWB | Bridgewater Bancshares Inc. Common Stock | 20.42 | 20.31 | 92 | 1.71 | 550417665 | Finance |
-| CFG | Citizens Financial Group Inc. Common Stock | 68.99 | 68.8 | 89 | 0.50 | 28366920669 | Finance |
+| NTRA | Natera Inc. Common Stock | 263.98 | 256.37 | 114 | 1.50 | 33141471549 | Health Care |
+| BCAL | California BanCorp Common Stock | 20.76 | 20.48 | 134 | 0.93 | 634933626 | Finance |
+| FBNC | First Bancorp Common Stock | 63.03 | 62.65 | 92 | 0.50 | 2513970094 | Finance |
+| CAH | Cardinal Health Inc. Common Stock | 235.71 | 233.61 | 78 | 0.36 | 51939832463 | Health Care |
+| MBWM | Mercantile Bank Corporation Common Stock | 55.85 | 55.78 | 93 | 0.34 | 928497656 | Finance |
