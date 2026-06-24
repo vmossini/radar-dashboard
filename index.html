@@ -629,6 +629,11 @@ table {
   table-layout: fixed;
 }
 
+.glb-table {
+  min-width: 980px;
+  table-layout: fixed;
+}
+
 th,
 td {
   padding: 8px 10px;
@@ -1667,6 +1672,41 @@ tbody tr:hover {
   font-weight: 800;
 }
 
+.glb-status-cell {
+  display: grid;
+  gap: 3px;
+}
+
+.glb-status-pill {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.glb-status-pill.glb-above {
+  border: 1px solid #52b788;
+  background: #dff6ea;
+  color: #065f46;
+}
+
+.glb-status-pill.glb-below {
+  border: 1px solid #d6a73d;
+  background: #fff1c7;
+  color: #7a4d00;
+}
+
+.glb-status-cell small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+}
+
     </style>
   </head>
   <body>
@@ -1733,19 +1773,14 @@ tbody tr:hover {
             <thead>
               <tr>
                 <th data-sort="ticker" title="Ticker negociado.">Ticker</th>
-                <th data-sort="glb_base_days" title="Pregoes completos desde o ultimo ATH anterior. Regra: pelo menos 60.">Base ATH</th>
-                <th data-sort="prior_ath_high" title="Maxima historica anterior ajustada por split.">ATH anterior</th>
-                <th data-sort="ath_trigger" title="Preco minimo do rompimento: ATH anterior + 0,01.">Trigger</th>
-                <th data-sort="day_high" title="Maxima do dia atual.">High dia</th>
+                <th data-sort="close" title="Sinaliza se o preco/fechamento atual esta acima da GLB.">GLB</th>
                 <th data-sort="close" title="Ultimo preco/fechamento retornado pelo Yahoo.">Preco</th>
-                <th data-sort="sma20" title="Media movel simples de 20 candles diarios. Filtro: preco atual acima da SMA20.">SMA20</th>
+                <th data-sort="ath_trigger" title="Preco minimo do rompimento: ATH anterior + 0,01.">Linha GLB</th>
+                <th data-sort="day_change_pct" title="Distancia do preco atual contra a linha GLB.">Dist.</th>
+                <th data-sort="glb_base_days" title="Pregoes completos desde o ultimo ATH anterior. Regra: pelo menos 60.">Base</th>
                 <th data-sort="adr_pct" title="ADR14 percentual: media das highs dos ultimos 14 candles menos media das lows dos ultimos 14 candles, dividido pelo preco atual.">ADR</th>
-                <th data-sort="day_change_pct" title="Variacao contra o fechamento anterior.">Dia</th>
                 <th data-sort="rvol_10d" title="Volume atual dividido pela media dos 10 pregoes anteriores. Intraday ainda e volume parcial.">RVOL(10)</th>
-                <th data-sort="avgvol10" title="Media de volume dos 10 pregoes anteriores.">AvgVol10</th>
-                <th data-sort="dollar_volume10" title="Preco atual multiplicado pelo AvgVol10. Filtro: maior ou igual a 2M.">Px*AvgVol10</th>
-                <th data-sort="market_cap" title="Valor de mercado pelo Nasdaq screener.">Valor mercado</th>
-                <th data-sort="sector" title="Setor do Nasdaq screener.">Setor</th>
+                <th data-sort="sector" title="Setor do Nasdaq screener.">Tema</th>
               </tr>
             </thead>
             <tbody id="glbBody"></tbody>
@@ -28968,7 +29003,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-24",
   "data_mode": "intraday",
-  "generated_at": "2026-06-24T19:37:09-03:00",
+  "generated_at": "2026-06-24T20:07:44-03:00",
   "glb_ath": [
     {
       "adr_pct": 4.796293544490602,
@@ -41883,6 +41918,38 @@ function glbBaseCell(row) {
   return `<td class="num glb-base-cell" title="${escapeHtml(title)}">${formatNumber(days, 0)}d</td>`;
 }
 
+function glbDistancePct(row) {
+  const close = Number(row.close);
+  const trigger = Number(row.ath_trigger);
+  if (!Number.isFinite(close) || !Number.isFinite(trigger) || trigger <= 0) return null;
+  return ((close / trigger) - 1) * 100;
+}
+
+function glbStatusCell(row) {
+  const close = Number(row.close);
+  const trigger = Number(row.ath_trigger);
+  const high = Number(row.day_high);
+  const distance = glbDistancePct(row);
+  const confirmed = Number.isFinite(close) && Number.isFinite(trigger) && trigger > 0 && close >= trigger;
+  const touched = Number.isFinite(high) && Number.isFinite(trigger) && trigger > 0 && high >= trigger;
+  const label = confirmed ? "Acima" : "Abaixo";
+  const detail = confirmed ? "close > GLB" : touched ? "tocou GLB" : "sem toque";
+  const className = confirmed ? "glb-above" : "glb-below";
+  const title = `Preco ${formatNumber(close, 2)} | GLB ${formatNumber(trigger, 2)} | high ${formatNumber(high, 2)} | distancia ${formatPercent(distance, 2)}`;
+  return `
+    <td class="glb-status-cell" title="${escapeHtml(title)}">
+      <span class="glb-status-pill ${className}">${escapeHtml(label)}</span>
+      <small>${escapeHtml(detail)}</small>
+    </td>
+  `;
+}
+
+function glbDistanceCell(row) {
+  const distance = glbDistancePct(row);
+  const className = Number(distance) >= 0 ? "positive" : "negative";
+  return `<td class="num ${className}" title="Distancia do preco atual contra a linha GLB.">${formatPercent(distance, 2)}</td>`;
+}
+
 function glbThemeCell(row) {
   const sector = row.sector || "Unknown";
   const industry = row.industry || "";
@@ -41900,7 +41967,7 @@ function renderGlbTable() {
   el.glbCount.textContent = rows.length;
   if (!rows.length) {
     el.glbBody.innerHTML =
-      '<tr><td colspan="14"><div class="empty-state">Nenhum GLB ATH 60D encontrado no snapshot atual.</div></td></tr>';
+      '<tr><td colspan="9"><div class="empty-state">Nenhum GLB ATH 60D encontrado no snapshot atual.</div></td></tr>';
     return;
   }
   el.glbBody.innerHTML = rows
@@ -41908,18 +41975,13 @@ function renderGlbTable() {
       (row) => `
         <tr data-ticker="${escapeHtml(row.ticker)}">
           ${tickerCell(row)}
-          ${glbBaseCell(row)}
-          <td class="num" title="Maxima historica anterior ajustada por split.">${formatNumber(row.prior_ath_high, 2)}</td>
-          <td class="num" title="ATH anterior + 0,01.">${formatNumber(row.ath_trigger, 2)}</td>
-          <td class="num" title="Maxima do dia atual.">${formatNumber(row.day_high, 2)}</td>
+          ${glbStatusCell(row)}
           <td class="num">${formatNumber(row.close, 2)}</td>
-          <td class="num" title="SMA20 diaria. Filtro GLB: preco atual acima da SMA20.">${formatNumber(row.sma20, 2)}</td>
+          <td class="num" title="ATH anterior + 0,01.">${formatNumber(row.ath_trigger, 2)}</td>
+          ${glbDistanceCell(row)}
+          ${glbBaseCell(row)}
           <td class="num" title="ADR14: media das highs dos ultimos 14 candles menos media das lows dos ultimos 14 candles, dividido pelo preco atual.">${formatPercent(row.adr_pct)}</td>
-          ${dayChangeCell(row)}
           ${rvolCell(row)}
-          <td class="num" title="Media dos 10 pregoes anteriores.">${formatShares(row.avgvol10)}</td>
-          <td class="num" title="Media de close x volume dos 10 pregoes anteriores.">${formatMoney(row.dollar_volume10)}</td>
-          <td class="num">${formatMoney(row.market_cap)}</td>
           ${glbThemeCell(row)}
         </tr>
       `,
