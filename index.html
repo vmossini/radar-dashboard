@@ -1712,7 +1712,7 @@ tbody tr:hover {
 }
 
 .agent-reject-table {
-  min-width: 980px;
+  min-width: 1180px;
   table-layout: fixed;
 }
 
@@ -1723,34 +1723,67 @@ tbody tr:hover {
 
 .agent-reject-table th:nth-child(1),
 .agent-reject-table td:nth-child(1) {
-  width: 17%;
+  width: 18%;
 }
 
 .agent-reject-table th:nth-child(2),
 .agent-reject-table td:nth-child(2) {
-  width: 9%;
+  width: 8%;
 }
 
 .agent-reject-table th:nth-child(3),
-.agent-reject-table td:nth-child(3),
+.agent-reject-table td:nth-child(3) {
+  width: 13%;
+}
+
 .agent-reject-table th:nth-child(4),
-.agent-reject-table td:nth-child(4),
+.agent-reject-table td:nth-child(4) {
+  width: 8%;
+}
+
 .agent-reject-table th:nth-child(5),
-.agent-reject-table td:nth-child(5),
+.agent-reject-table td:nth-child(5) {
+  width: 8%;
+}
+
 .agent-reject-table th:nth-child(6),
-.agent-reject-table td:nth-child(6),
+.agent-reject-table td:nth-child(6) {
+  width: 7%;
+}
+
 .agent-reject-table th:nth-child(7),
-.agent-reject-table td:nth-child(7),
+.agent-reject-table td:nth-child(7) {
+  width: 7%;
+}
+
 .agent-reject-table th:nth-child(8),
-.agent-reject-table td:nth-child(8),
+.agent-reject-table td:nth-child(8) {
+  width: 7%;
+}
+
 .agent-reject-table th:nth-child(9),
 .agent-reject-table td:nth-child(9) {
-  width: 8%;
+  width: 7%;
 }
 
 .agent-reject-table th:nth-child(10),
 .agent-reject-table td:nth-child(10) {
-  width: 18%;
+  width: 17%;
+}
+
+.agent-reject-reason {
+  display: grid;
+  gap: 3px;
+  align-items: center;
+  min-width: 0;
+}
+
+.agent-reject-reason small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.1;
 }
 
 .glb-reject-pill {
@@ -26895,7 +26928,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-24",
   "data_mode": "intraday",
-  "generated_at": "2026-06-25T09:54:42-03:00",
+  "generated_at": "2026-06-25T10:05:21-03:00",
   "glb_ath": [
     {
       "adr_pct": 4.796293544490602,
@@ -39580,7 +39613,7 @@ function renderAgentGlbRejectedTable() {
         <tr data-ticker="${escapeHtml(row.ticker)}" title="${escapeHtml(title)}">
           ${tickerCell(row)}
           <td class="num">${escapeHtml(row.asof || "--")}</td>
-          <td><span class="glb-reject-pill">Close &lt; GLB</span><small>sem entrada</small></td>
+          <td class="agent-reject-reason"><span class="glb-reject-pill">Close &lt; GLB</span><small>sem entrada</small></td>
           <td class="num">${formatNumber(row.close, 2)}</td>
           <td class="num">${formatNumber(row.ath_trigger, 2)}</td>
           <td class="num negative">${formatPercent(distance, 2)}</td>
