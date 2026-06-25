@@ -27084,7 +27084,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-24",
   "data_mode": "intraday",
-  "generated_at": "2026-06-25T16:16:14-03:00",
+  "generated_at": "2026-06-25T16:23:04-03:00",
   "glb_ath": [
     {
       "adr_pct": 5.339386762177457,
@@ -39580,6 +39580,14 @@ function formatNumber(value, digits = 2) {
   });
 }
 
+function finiteNumberOrNull(value) {
+  if (value === null || value === undefined) return null;
+  const text = String(value).trim();
+  if (!text) return null;
+  const number = Number(text);
+  return Number.isFinite(number) ? number : null;
+}
+
 function formatPercent(value, digits = 2) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) return "--";
   const number = Number(value);
@@ -40650,33 +40658,35 @@ function glbDistanceCell(row) {
 }
 
 function glbBuyDecision(row) {
-  const close = Number(row.close);
-  const trigger = Number(row.ath_trigger);
-  const failed = Number(row.failed_shadows_before_breakout);
-  const dcl = Number(row.daily_close_location);
-  const rvol = Number(row.rvol_or30_projected);
+  const close = finiteNumberOrNull(row.close);
+  const trigger = finiteNumberOrNull(row.ath_trigger);
+  const failed = finiteNumberOrNull(row.failed_shadows_before_breakout);
+  const dcl = finiteNumberOrNull(row.daily_close_location);
+  const rvol = finiteNumberOrNull(row.rvol_or30_projected);
   const rvolStatus = String(row.rvol_or30_status || "");
   const checks = [
     {
-      ok: Number.isFinite(close) && Number.isFinite(trigger) && trigger > 0 && close >= trigger,
+      ok: close !== null && trigger !== null && trigger > 0 && close >= trigger,
       reason: `Close ${formatNumber(close, 2)} < GLB ${formatNumber(trigger, 2)}`,
+      dataRequired: close === null || trigger === null,
     },
     {
-      ok: Number.isFinite(failed) && failed <= 2,
-      reason: `Failed shadows ${formatNumber(failed, 0)} > 2`,
+      ok: failed !== null && failed <= 2,
+      reason: failed === null ? "Failed shadows indisponivel" : `Failed shadows ${formatNumber(failed, 0)} > 2`,
+      dataRequired: failed === null,
     },
     {
-      ok: Number.isFinite(dcl) && dcl >= 0.55,
-      reason: `DCL ${formatNumber(dcl, 2)} < 0,55`,
-      dataRequired: true,
+      ok: dcl !== null && dcl >= 0.55,
+      reason: dcl === null ? "DCL indisponivel" : `DCL ${formatNumber(dcl, 2)} < 0,55`,
+      dataRequired: dcl === null,
     },
     {
-      ok: rvolStatus === "ok" && Number.isFinite(rvol) && rvol >= 1,
+      ok: rvolStatus === "ok" && rvol !== null && rvol >= 1,
       reason:
-        rvolStatus !== "ok" || !Number.isFinite(rvol)
+        rvolStatus !== "ok" || rvol === null
           ? `RVOL30m indisponivel (${rvolStatus || "sem status"})`
           : `RVOL30m ${formatNumber(rvol, 2)} < 1,00`,
-      dataRequired: rvolStatus !== "ok" || !Number.isFinite(rvol),
+      dataRequired: rvolStatus !== "ok" || rvol === null,
     },
   ];
   const failedChecks = checks.filter((check) => !check.ok);
@@ -40708,26 +40718,26 @@ function glbBuyCell(row) {
 }
 
 function glbFailedShadowCell(row) {
-  const failed = Number(row.failed_shadows_before_breakout);
-  const className = Number.isFinite(failed) && failed <= 2 ? "positive" : "negative";
+  const failed = finiteNumberOrNull(row.failed_shadows_before_breakout);
+  const className = failed !== null && failed <= 2 ? "positive" : "negative";
   const title = "Failed shadow = high rompeu a GLB, mas o close nao confirmou acima da GLB. Regra V6: <= 2.";
-  return `<td class="num ${className}" title="${escapeHtml(title)}">${formatNumber(failed, 0)}</td>`;
+  return `<td class="num ${className}" title="${escapeHtml(title)}">${failed === null ? "--" : formatNumber(failed, 0)}</td>`;
 }
 
 function glbDailyCloseLocationCell(row) {
-  const dcl = Number(row.daily_close_location);
-  const className = Number.isFinite(dcl) && dcl >= 0.55 ? "positive" : "negative";
+  const dcl = finiteNumberOrNull(row.daily_close_location);
+  const className = dcl !== null && dcl >= 0.55 ? "positive" : "negative";
   const title = "Daily Close Location = (Close - Low) / (High - Low). Regra V6: >= 0,55.";
-  return `<td class="num ${className}" title="${escapeHtml(title)}">${formatNumber(dcl, 2)}</td>`;
+  return `<td class="num ${className}" title="${escapeHtml(title)}">${dcl === null ? "--" : formatNumber(dcl, 2)}</td>`;
 }
 
 function glbRvolOr30Cell(row) {
-  const rvol = Number(row.rvol_or30_projected);
-  const className = Number.isFinite(rvol) && rvol >= 1 ? "positive" : "negative";
+  const rvol = finiteNumberOrNull(row.rvol_or30_projected);
+  const className = rvol !== null && rvol >= 1 ? "positive" : "negative";
   const source = row.rvol_or30_source_interval ? ` Fonte: ${row.rvol_or30_source_interval}.` : "";
   const status = row.rvol_or30_status ? ` Status: ${row.rvol_or30_status}.` : "";
   const title = `RVOL OR30 projetado = volume dos primeiros 30 minutos x 13 / AvgVol10D. Regra V6: >= 1,00.${source}${status}`;
-  return `<td class="num ${className}" title="${escapeHtml(title)}">${formatNumber(rvol, 2)}</td>`;
+  return `<td class="num ${className}" title="${escapeHtml(title)}">${rvol === null ? "--" : formatNumber(rvol, 2)}</td>`;
 }
 
 function glbThemeCell(row) {
