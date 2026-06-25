@@ -1399,6 +1399,10 @@ tbody tr:hover {
   color: var(--muted);
 }
 
+.empty-state.compact {
+  padding: 10px 0;
+}
+
 .agent-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
@@ -1707,6 +1711,53 @@ tbody tr:hover {
   font-weight: 800;
 }
 
+.glb-below-panel {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #ead1a3;
+  border-radius: 8px;
+  background: #fffaf0;
+}
+
+.glb-below-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.glb-below-heading h3 {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.glb-below-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.glb-below-item {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #e0b66f;
+  border-radius: 7px;
+  background: #fff;
+  color: #4d3a15;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.glb-below-item strong {
+  color: #111827;
+}
+
     </style>
   </head>
   <body>
@@ -1785,6 +1836,16 @@ tbody tr:hover {
             </thead>
             <tbody id="glbBody"></tbody>
           </table>
+        </div>
+        <div class="glb-below-panel" aria-label="GLBs que fecharam abaixo da linha">
+          <div class="glb-below-heading">
+            <div>
+              <p class="eyebrow">Rejeicao GLB</p>
+              <h3>Fecharam abaixo</h3>
+            </div>
+            <span class="row-count" id="glbBelowCount">--</span>
+          </div>
+          <div id="glbBelowList" class="glb-below-list"></div>
         </div>
       </section>
 
@@ -26805,7 +26866,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-24",
   "data_mode": "intraday",
-  "generated_at": "2026-06-25T09:20:19-03:00",
+  "generated_at": "2026-06-25T09:29:56-03:00",
   "glb_ath": [
     {
       "adr_pct": 4.796293544490602,
@@ -26946,6 +27007,36 @@ window.RADAR_DATA = {
       "ticker": "MBWM",
       "volume": 91422,
       "yahoo_symbol": "MBWM"
+    }
+  ],
+  "glb_closed_below": [
+    {
+      "adr_pct": 2.5382117340929824,
+      "asof": "2026-06-24",
+      "ath_trigger": 233.61,
+      "atr14": "5.627143786695464",
+      "avgvol10": 2890990,
+      "close": 233.01,
+      "country": "United States",
+      "day_change_pct": 1.7910929094992811,
+      "day_high": 235.71,
+      "day_low": 229.84,
+      "day_open": 229.89,
+      "dollar_volume10": 673629564.0193176,
+      "glb_base_days": 78,
+      "history_days": 10806,
+      "industry": "Other Pharmaceuticals",
+      "market_cap": 54572306274,
+      "name": "Cardinal Health Inc. Common Stock",
+      "previous_close": 228.91,
+      "prior_ath_date": "2026-03-02",
+      "prior_ath_high": 233.6,
+      "rvol_10d": 0.726612336950318,
+      "sector": "Health Care",
+      "sma20": 212.76,
+      "ticker": "CAH",
+      "volume": 2100629,
+      "yahoo_symbol": "CAH"
     }
   ],
   "intraday_asof": "2026-06-24",
@@ -30639,6 +30730,7 @@ window.RADAR_DATA = {
       "min_price": 3.0,
       "top_pct": 0.03
     },
+    "glb_closed_below_count": 1,
     "glb_count": 5,
     "leaders_consolidating_count": 14,
     "momentum_burst_count": 0,
@@ -38122,11 +38214,13 @@ const el = {
   activeBody: document.querySelector("#activeBody"),
   leadersBody: document.querySelector("#leadersBody"),
   glbBody: document.querySelector("#glbBody"),
+  glbBelowList: document.querySelector("#glbBelowList"),
   breakoutsCount: document.querySelector("#breakoutsCount"),
   momentumBurstCount: document.querySelector("#momentumBurstCount"),
   activeCount: document.querySelector("#activeCount"),
   leadersCount: document.querySelector("#leadersCount"),
   glbCount: document.querySelector("#glbCount"),
+  glbBelowCount: document.querySelector("#glbBelowCount"),
   themeList: document.querySelector("#themeList"),
   windowLeaders: document.querySelector("#windowLeaders"),
   pageTabs: document.querySelectorAll(".page-tabs button"),
@@ -39279,6 +39373,7 @@ function renderGlbTable() {
   if (!rows.length) {
     el.glbBody.innerHTML =
       '<tr><td colspan="9"><div class="empty-state">Nenhum GLB ATH 60D encontrado no snapshot atual.</div></td></tr>';
+    renderGlbClosedBelowList();
     return;
   }
   el.glbBody.innerHTML = rows
@@ -39297,6 +39392,31 @@ function renderGlbTable() {
         </tr>
       `,
     )
+    .join("");
+  renderGlbClosedBelowList();
+}
+
+function renderGlbClosedBelowList() {
+  if (!el.glbBelowList || !el.glbBelowCount) return;
+  const rows = sortRows(filterGlbRows(DATA.glb_closed_below || []), { key: "day_change_pct", dir: "desc" });
+  el.glbBelowCount.textContent = rows.length;
+  if (!rows.length) {
+    el.glbBelowList.innerHTML = '<div class="empty-state compact">Nenhum GLB fechado abaixo para os filtros atuais.</div>';
+    return;
+  }
+  el.glbBelowList.innerHTML = rows
+    .map((row) => {
+      const distance = glbDistancePct(row);
+      const title = `Tocou ${formatNumber(row.day_high, 2)}, linha GLB ${formatNumber(row.ath_trigger, 2)}, fechou/preco atual ${formatNumber(row.close, 2)}.`;
+      return `
+        <div class="glb-below-item" title="${escapeHtml(title)}">
+          <strong>${escapeHtml(row.ticker)}</strong>
+          <span>${formatNumber(row.close, 2)}</span>
+          <span>GLB ${formatNumber(row.ath_trigger, 2)}</span>
+          <span class="negative">${formatPercent(distance, 2)}</span>
+        </div>
+      `;
+    })
     .join("");
 }
 
