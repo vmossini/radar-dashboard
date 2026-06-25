@@ -630,7 +630,7 @@ table {
 }
 
 .glb-table {
-  min-width: 1280px;
+  min-width: 1380px;
   table-layout: fixed;
 }
 
@@ -645,47 +645,52 @@ table {
 }
 
 .glb-table th:nth-child(3),
-.glb-table td:nth-child(3),
+.glb-table td:nth-child(3) {
+  width: 92px;
+}
+
 .glb-table th:nth-child(4),
-.glb-table td:nth-child(4) {
+.glb-table td:nth-child(4),
+.glb-table th:nth-child(5),
+.glb-table td:nth-child(5) {
   width: 86px;
   text-align: right;
 }
 
-.glb-table th:nth-child(5),
-.glb-table td:nth-child(5) {
+.glb-table th:nth-child(6),
+.glb-table td:nth-child(6) {
   width: 112px;
   text-align: right;
 }
 
-.glb-table th:nth-child(6),
-.glb-table td:nth-child(6),
 .glb-table th:nth-child(7),
-.glb-table td:nth-child(7) {
+.glb-table td:nth-child(7),
+.glb-table th:nth-child(8),
+.glb-table td:nth-child(8) {
   width: 62px;
   text-align: right;
 }
 
-.glb-table th:nth-child(8),
-.glb-table td:nth-child(8) {
+.glb-table th:nth-child(9),
+.glb-table td:nth-child(9) {
   width: 82px;
   text-align: right;
 }
 
-.glb-table th:nth-child(9),
-.glb-table td:nth-child(9),
 .glb-table th:nth-child(10),
 .glb-table td:nth-child(10),
 .glb-table th:nth-child(11),
 .glb-table td:nth-child(11),
 .glb-table th:nth-child(12),
-.glb-table td:nth-child(12) {
+.glb-table td:nth-child(12),
+.glb-table th:nth-child(13),
+.glb-table td:nth-child(13) {
   width: 70px;
   text-align: right;
 }
 
-.glb-table th:nth-child(13),
-.glb-table td:nth-child(13) {
+.glb-table th:nth-child(14),
+.glb-table td:nth-child(14) {
   width: 250px;
 }
 
@@ -1811,6 +1816,49 @@ tbody tr:hover {
   font-weight: 800;
 }
 
+.glb-buy-cell {
+  vertical-align: middle;
+}
+
+.glb-buy-pill {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  min-width: 66px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.glb-buy-pill.buy-yes {
+  border: 1px solid #0b7a5a;
+  background: #c8f3df;
+  color: #064e3b;
+}
+
+.glb-buy-pill.buy-no {
+  border: 1px solid #d16a5d;
+  background: #ffe4df;
+  color: #8f2d1f;
+}
+
+.glb-buy-pill.buy-data {
+  border: 1px solid #b78f2a;
+  background: #fff0c2;
+  color: #704800;
+}
+
+.glb-buy-cell small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+}
+
 .agent-reject-table {
   min-width: 1180px;
   table-layout: fixed;
@@ -1968,6 +2016,7 @@ tbody tr:hover {
               <tr>
                 <th data-sort="ticker" title="Ticker negociado.">Ticker</th>
                 <th data-sort="close" title="Sinaliza se o preco/fechamento atual esta acima da GLB.">GLB</th>
+                <th title="Decisao operacional do agente V6. Compra somente se close confirma acima da GLB, Failed <= 2, DCL >= 0,55 e RVOL30m >= 1,00.">Comprar</th>
                 <th data-sort="close" title="Ultimo preco/fechamento retornado pelo Yahoo.">Preco</th>
                 <th data-sort="ath_trigger" title="Preco minimo do rompimento: ATH anterior + 0,01.">Linha GLB</th>
                 <th data-sort="position_score" title="Score V6: RVOL OR30 projetado, performance 6M previa, fechamento no range, penalidade por failed shadows e extensao acima da GLB.">Score</th>
@@ -27035,7 +27084,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-24",
   "data_mode": "intraday",
-  "generated_at": "2026-06-25T16:07:48-03:00",
+  "generated_at": "2026-06-25T16:16:14-03:00",
   "glb_ath": [
     {
       "adr_pct": 5.339386762177457,
@@ -40600,6 +40649,64 @@ function glbDistanceCell(row) {
   return `<td class="num ${className}" title="Distancia do preco atual contra a linha GLB.">${formatPercent(distance, 2)}</td>`;
 }
 
+function glbBuyDecision(row) {
+  const close = Number(row.close);
+  const trigger = Number(row.ath_trigger);
+  const failed = Number(row.failed_shadows_before_breakout);
+  const dcl = Number(row.daily_close_location);
+  const rvol = Number(row.rvol_or30_projected);
+  const rvolStatus = String(row.rvol_or30_status || "");
+  const checks = [
+    {
+      ok: Number.isFinite(close) && Number.isFinite(trigger) && trigger > 0 && close >= trigger,
+      reason: `Close ${formatNumber(close, 2)} < GLB ${formatNumber(trigger, 2)}`,
+    },
+    {
+      ok: Number.isFinite(failed) && failed <= 2,
+      reason: `Failed shadows ${formatNumber(failed, 0)} > 2`,
+    },
+    {
+      ok: Number.isFinite(dcl) && dcl >= 0.55,
+      reason: `DCL ${formatNumber(dcl, 2)} < 0,55`,
+      dataRequired: true,
+    },
+    {
+      ok: rvolStatus === "ok" && Number.isFinite(rvol) && rvol >= 1,
+      reason:
+        rvolStatus !== "ok" || !Number.isFinite(rvol)
+          ? `RVOL30m indisponivel (${rvolStatus || "sem status"})`
+          : `RVOL30m ${formatNumber(rvol, 2)} < 1,00`,
+      dataRequired: rvolStatus !== "ok" || !Number.isFinite(rvol),
+    },
+  ];
+  const failedChecks = checks.filter((check) => !check.ok);
+  if (!failedChecks.length) {
+    return {
+      label: "Comprar",
+      className: "buy-yes",
+      detail: "V6 ok",
+      title: "Compra paper autorizada pela regra V6: close > GLB, Failed <= 2, DCL >= 0,55 e RVOL30m >= 1.",
+    };
+  }
+  const dataMissing = failedChecks.some((check) => check.dataRequired);
+  return {
+    label: dataMissing ? "Dados" : "Nao",
+    className: dataMissing ? "buy-data" : "buy-no",
+    detail: dataMissing ? "insuf." : "sem compra",
+    title: failedChecks.map((check) => check.reason).join(" | "),
+  };
+}
+
+function glbBuyCell(row) {
+  const decision = glbBuyDecision(row);
+  return `
+    <td class="glb-buy-cell" title="${escapeHtml(decision.title)}">
+      <span class="glb-buy-pill ${decision.className}">${escapeHtml(decision.label)}</span>
+      <small>${escapeHtml(decision.detail)}</small>
+    </td>
+  `;
+}
+
 function glbFailedShadowCell(row) {
   const failed = Number(row.failed_shadows_before_breakout);
   const className = Number.isFinite(failed) && failed <= 2 ? "positive" : "negative";
@@ -40640,7 +40747,7 @@ function renderGlbTable() {
   el.glbCount.textContent = rows.length;
   if (!rows.length) {
     el.glbBody.innerHTML =
-      '<tr><td colspan="13"><div class="empty-state">Nenhum GLB ATH 60D encontrado no snapshot atual.</div></td></tr>';
+      '<tr><td colspan="14"><div class="empty-state">Nenhum GLB ATH 60D encontrado no snapshot atual.</div></td></tr>';
     return;
   }
   el.glbBody.innerHTML = rows
@@ -40649,6 +40756,7 @@ function renderGlbTable() {
         <tr data-ticker="${escapeHtml(row.ticker)}">
           ${tickerCell(row)}
           ${glbStatusCell(row)}
+          ${glbBuyCell(row)}
           <td class="num">${formatNumber(row.close, 2)}</td>
           <td class="num" title="ATH anterior + 0,01.">${formatNumber(row.ath_trigger, 2)}</td>
           <td class="num agent-score-cell" title="Score V6: RVOL OR30 projetado, performance 6M previa, fechamento no range, penalidade por failed shadows e extensao acima da GLB.">${formatAgentScore(row.position_score)}</td>
