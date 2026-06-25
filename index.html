@@ -630,8 +630,63 @@ table {
 }
 
 .glb-table {
-  min-width: 1060px;
+  min-width: 1280px;
   table-layout: fixed;
+}
+
+.glb-table th:nth-child(1),
+.glb-table td:nth-child(1) {
+  width: 190px;
+}
+
+.glb-table th:nth-child(2),
+.glb-table td:nth-child(2) {
+  width: 88px;
+}
+
+.glb-table th:nth-child(3),
+.glb-table td:nth-child(3),
+.glb-table th:nth-child(4),
+.glb-table td:nth-child(4) {
+  width: 86px;
+  text-align: right;
+}
+
+.glb-table th:nth-child(5),
+.glb-table td:nth-child(5) {
+  width: 112px;
+  text-align: right;
+}
+
+.glb-table th:nth-child(6),
+.glb-table td:nth-child(6),
+.glb-table th:nth-child(7),
+.glb-table td:nth-child(7) {
+  width: 62px;
+  text-align: right;
+}
+
+.glb-table th:nth-child(8),
+.glb-table td:nth-child(8) {
+  width: 82px;
+  text-align: right;
+}
+
+.glb-table th:nth-child(9),
+.glb-table td:nth-child(9),
+.glb-table th:nth-child(10),
+.glb-table td:nth-child(10),
+.glb-table th:nth-child(11),
+.glb-table td:nth-child(11),
+.glb-table th:nth-child(12),
+.glb-table td:nth-child(12) {
+  width: 70px;
+  text-align: right;
+}
+
+.glb-table th:nth-child(13),
+.glb-table td:nth-child(13) {
+  width: 250px;
 }
 
 th,
@@ -1717,8 +1772,13 @@ tbody tr:hover {
 }
 
 .glb-status-cell {
+  vertical-align: middle;
+}
+
+.glb-status-stack {
   display: grid;
   gap: 3px;
+  justify-items: start;
 }
 
 .glb-status-pill {
@@ -1745,7 +1805,7 @@ tbody tr:hover {
   color: #7a4d00;
 }
 
-.glb-status-cell small {
+.glb-status-stack small {
   color: var(--muted);
   font-size: 10px;
   font-weight: 800;
@@ -1911,6 +1971,9 @@ tbody tr:hover {
                 <th data-sort="close" title="Ultimo preco/fechamento retornado pelo Yahoo.">Preco</th>
                 <th data-sort="ath_trigger" title="Preco minimo do rompimento: ATH anterior + 0,01.">Linha GLB</th>
                 <th data-sort="position_score" title="Score V6: RVOL OR30 projetado, performance 6M previa, fechamento no range, penalidade por failed shadows e extensao acima da GLB.">Score</th>
+                <th data-sort="failed_shadows_before_breakout" title="Failed shadow: high rompeu a GLB, mas o close nao confirmou acima da GLB. Regra V6: no maximo 2 antes do breakout.">Failed</th>
+                <th data-sort="daily_close_location" title="Daily Close Location = (Close - Low) / (High - Low). Regra V6: minimo 0,55.">DCL</th>
+                <th data-sort="rvol_or30_projected" title="RVOL OR30 projetado = volume dos primeiros 30 minutos x 13 / AvgVol10D. Regra V6: minimo 1,00.">RVOL30m</th>
                 <th data-sort="day_change_pct" title="Distancia do preco atual contra a linha GLB.">Dist.</th>
                 <th data-sort="glb_base_days" title="Pregoes completos desde o ultimo ATH anterior. Regra: pelo menos 60.">Base</th>
                 <th data-sort="adr_pct" title="ADR14 percentual: media das highs dos ultimos 14 candles menos media das lows dos ultimos 14 candles, dividido pelo preco atual.">ADR</th>
@@ -26972,7 +27035,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-24",
   "data_mode": "intraday",
-  "generated_at": "2026-06-25T16:04:24-03:00",
+  "generated_at": "2026-06-25T16:07:48-03:00",
   "glb_ath": [
     {
       "adr_pct": 5.339386762177457,
@@ -40523,8 +40586,10 @@ function glbStatusCell(row) {
   const title = `Preco ${formatNumber(close, 2)} | GLB ${formatNumber(trigger, 2)} | high ${formatNumber(high, 2)} | distancia ${formatPercent(distance, 2)}`;
   return `
     <td class="glb-status-cell" title="${escapeHtml(title)}">
-      <span class="glb-status-pill ${className}">${escapeHtml(label)}</span>
-      <small>${escapeHtml(detail)}</small>
+      <div class="glb-status-stack">
+        <span class="glb-status-pill ${className}">${escapeHtml(label)}</span>
+        <small>${escapeHtml(detail)}</small>
+      </div>
     </td>
   `;
 }
@@ -40533,6 +40598,29 @@ function glbDistanceCell(row) {
   const distance = glbDistancePct(row);
   const className = Number(distance) >= 0 ? "positive" : "negative";
   return `<td class="num ${className}" title="Distancia do preco atual contra a linha GLB.">${formatPercent(distance, 2)}</td>`;
+}
+
+function glbFailedShadowCell(row) {
+  const failed = Number(row.failed_shadows_before_breakout);
+  const className = Number.isFinite(failed) && failed <= 2 ? "positive" : "negative";
+  const title = "Failed shadow = high rompeu a GLB, mas o close nao confirmou acima da GLB. Regra V6: <= 2.";
+  return `<td class="num ${className}" title="${escapeHtml(title)}">${formatNumber(failed, 0)}</td>`;
+}
+
+function glbDailyCloseLocationCell(row) {
+  const dcl = Number(row.daily_close_location);
+  const className = Number.isFinite(dcl) && dcl >= 0.55 ? "positive" : "negative";
+  const title = "Daily Close Location = (Close - Low) / (High - Low). Regra V6: >= 0,55.";
+  return `<td class="num ${className}" title="${escapeHtml(title)}">${formatNumber(dcl, 2)}</td>`;
+}
+
+function glbRvolOr30Cell(row) {
+  const rvol = Number(row.rvol_or30_projected);
+  const className = Number.isFinite(rvol) && rvol >= 1 ? "positive" : "negative";
+  const source = row.rvol_or30_source_interval ? ` Fonte: ${row.rvol_or30_source_interval}.` : "";
+  const status = row.rvol_or30_status ? ` Status: ${row.rvol_or30_status}.` : "";
+  const title = `RVOL OR30 projetado = volume dos primeiros 30 minutos x 13 / AvgVol10D. Regra V6: >= 1,00.${source}${status}`;
+  return `<td class="num ${className}" title="${escapeHtml(title)}">${formatNumber(rvol, 2)}</td>`;
 }
 
 function glbThemeCell(row) {
@@ -40552,7 +40640,7 @@ function renderGlbTable() {
   el.glbCount.textContent = rows.length;
   if (!rows.length) {
     el.glbBody.innerHTML =
-      '<tr><td colspan="10"><div class="empty-state">Nenhum GLB ATH 60D encontrado no snapshot atual.</div></td></tr>';
+      '<tr><td colspan="13"><div class="empty-state">Nenhum GLB ATH 60D encontrado no snapshot atual.</div></td></tr>';
     return;
   }
   el.glbBody.innerHTML = rows
@@ -40564,6 +40652,9 @@ function renderGlbTable() {
           <td class="num">${formatNumber(row.close, 2)}</td>
           <td class="num" title="ATH anterior + 0,01.">${formatNumber(row.ath_trigger, 2)}</td>
           <td class="num agent-score-cell" title="Score V6: RVOL OR30 projetado, performance 6M previa, fechamento no range, penalidade por failed shadows e extensao acima da GLB.">${formatAgentScore(row.position_score)}</td>
+          ${glbFailedShadowCell(row)}
+          ${glbDailyCloseLocationCell(row)}
+          ${glbRvolOr30Cell(row)}
           ${glbDistanceCell(row)}
           ${glbBaseCell(row)}
           <td class="num" title="ADR14: media das highs dos ultimos 14 candles menos media das lows dos ultimos 14 candles, dividido pelo preco atual.">${formatPercent(row.adr_pct)}</td>
