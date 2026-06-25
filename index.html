@@ -1711,51 +1711,59 @@ tbody tr:hover {
   font-weight: 800;
 }
 
-.glb-below-panel {
-  margin-top: 10px;
-  padding: 12px;
-  border: 1px solid #ead1a3;
-  border-radius: 8px;
-  background: #fffaf0;
+.agent-reject-table {
+  min-width: 980px;
+  table-layout: fixed;
 }
 
-.glb-below-heading {
-  display: flex;
+.agent-reject-table th,
+.agent-reject-table td {
+  padding: 7px 10px;
+}
+
+.agent-reject-table th:nth-child(1),
+.agent-reject-table td:nth-child(1) {
+  width: 18%;
+}
+
+.agent-reject-table th:nth-child(2),
+.agent-reject-table td:nth-child(2) {
+  width: 13%;
+}
+
+.agent-reject-table th:nth-child(3),
+.agent-reject-table td:nth-child(3),
+.agent-reject-table th:nth-child(4),
+.agent-reject-table td:nth-child(4),
+.agent-reject-table th:nth-child(5),
+.agent-reject-table td:nth-child(5),
+.agent-reject-table th:nth-child(6),
+.agent-reject-table td:nth-child(6),
+.agent-reject-table th:nth-child(7),
+.agent-reject-table td:nth-child(7),
+.agent-reject-table th:nth-child(8),
+.agent-reject-table td:nth-child(8) {
+  width: 8%;
+}
+
+.agent-reject-table th:nth-child(9),
+.agent-reject-table td:nth-child(9) {
+  width: 21%;
+}
+
+.glb-reject-pill {
+  display: inline-flex;
+  width: fit-content;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 8px;
-}
-
-.glb-below-heading h3 {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.2;
-}
-
-.glb-below-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.glb-below-item {
-  display: inline-grid;
-  grid-template-columns: auto auto auto auto;
-  align-items: center;
-  gap: 8px;
-  max-width: 100%;
-  padding: 6px 8px;
-  border: 1px solid #e0b66f;
-  border-radius: 7px;
-  background: #fff;
-  color: #4d3a15;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.glb-below-item strong {
-  color: #111827;
+  justify-content: center;
+  border: 1px solid #d6a73d;
+  border-radius: 6px;
+  background: #fff1c7;
+  color: #7a4d00;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
 }
 
     </style>
@@ -1836,16 +1844,6 @@ tbody tr:hover {
             </thead>
             <tbody id="glbBody"></tbody>
           </table>
-        </div>
-        <div class="glb-below-panel" aria-label="GLBs que fecharam abaixo da linha">
-          <div class="glb-below-heading">
-            <div>
-              <p class="eyebrow">Rejeicao GLB</p>
-              <h3>Fecharam abaixo</h3>
-            </div>
-            <span class="row-count" id="glbBelowCount">--</span>
-          </div>
-          <div id="glbBelowList" class="glb-below-list"></div>
         </div>
       </section>
 
@@ -2091,6 +2089,34 @@ tbody tr:hover {
                 </tr>
               </thead>
               <tbody id="agentTradesBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Sem entrada</p>
+              <h2>GLBs que fecharam abaixo</h2>
+            </div>
+            <span class="row-count" id="agentGlbBelowCount">--</span>
+          </div>
+          <div class="table-wrap">
+            <table class="agent-reject-table">
+              <thead>
+                <tr>
+                  <th title="Ticker que tocou a GLB mas nao confirmou no fechamento.">Ticker</th>
+                  <th title="Motivo para o agente nao comprar.">Motivo</th>
+                  <th title="Preco/fechamento atual.">Close</th>
+                  <th title="Linha GLB: ATH anterior + 0,01.">Linha GLB</th>
+                  <th title="Distancia do close contra a linha GLB.">Dist.</th>
+                  <th title="Pregoes completos desde o ATH anterior.">Base</th>
+                  <th title="ADR14 percentual.">ADR</th>
+                  <th title="Volume relativo de 10 dias.">RVOL(10)</th>
+                  <th title="Tema principal.">Tema</th>
+                </tr>
+              </thead>
+              <tbody id="agentGlbBelowBody"></tbody>
             </table>
           </div>
         </section>
@@ -26866,7 +26892,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-24",
   "data_mode": "intraday",
-  "generated_at": "2026-06-25T09:29:56-03:00",
+  "generated_at": "2026-06-25T09:32:36-03:00",
   "glb_ath": [
     {
       "adr_pct": 4.796293544490602,
@@ -38214,13 +38240,13 @@ const el = {
   activeBody: document.querySelector("#activeBody"),
   leadersBody: document.querySelector("#leadersBody"),
   glbBody: document.querySelector("#glbBody"),
-  glbBelowList: document.querySelector("#glbBelowList"),
+  agentGlbBelowBody: document.querySelector("#agentGlbBelowBody"),
   breakoutsCount: document.querySelector("#breakoutsCount"),
   momentumBurstCount: document.querySelector("#momentumBurstCount"),
   activeCount: document.querySelector("#activeCount"),
   leadersCount: document.querySelector("#leadersCount"),
   glbCount: document.querySelector("#glbCount"),
-  glbBelowCount: document.querySelector("#glbBelowCount"),
+  agentGlbBelowCount: document.querySelector("#agentGlbBelowCount"),
   themeList: document.querySelector("#themeList"),
   windowLeaders: document.querySelector("#windowLeaders"),
   pageTabs: document.querySelectorAll(".page-tabs button"),
@@ -39373,7 +39399,6 @@ function renderGlbTable() {
   if (!rows.length) {
     el.glbBody.innerHTML =
       '<tr><td colspan="9"><div class="empty-state">Nenhum GLB ATH 60D encontrado no snapshot atual.</div></td></tr>';
-    renderGlbClosedBelowList();
     return;
   }
   el.glbBody.innerHTML = rows
@@ -39393,28 +39418,33 @@ function renderGlbTable() {
       `,
     )
     .join("");
-  renderGlbClosedBelowList();
 }
 
-function renderGlbClosedBelowList() {
-  if (!el.glbBelowList || !el.glbBelowCount) return;
+function renderAgentGlbRejectedTable() {
+  if (!el.agentGlbBelowBody || !el.agentGlbBelowCount) return;
   const rows = sortRows(filterGlbRows(DATA.glb_closed_below || []), { key: "day_change_pct", dir: "desc" });
-  el.glbBelowCount.textContent = rows.length;
+  el.agentGlbBelowCount.textContent = `${rows.length} sinais`;
   if (!rows.length) {
-    el.glbBelowList.innerHTML = '<div class="empty-state compact">Nenhum GLB fechado abaixo para os filtros atuais.</div>';
+    el.agentGlbBelowBody.innerHTML =
+      '<tr><td colspan="9"><div class="empty-state">Nenhum GLB fechado abaixo para os filtros atuais.</div></td></tr>';
     return;
   }
-  el.glbBelowList.innerHTML = rows
+  el.agentGlbBelowBody.innerHTML = rows
     .map((row) => {
       const distance = glbDistancePct(row);
       const title = `Tocou ${formatNumber(row.day_high, 2)}, linha GLB ${formatNumber(row.ath_trigger, 2)}, fechou/preco atual ${formatNumber(row.close, 2)}.`;
       return `
-        <div class="glb-below-item" title="${escapeHtml(title)}">
-          <strong>${escapeHtml(row.ticker)}</strong>
-          <span>${formatNumber(row.close, 2)}</span>
-          <span>GLB ${formatNumber(row.ath_trigger, 2)}</span>
-          <span class="negative">${formatPercent(distance, 2)}</span>
-        </div>
+        <tr data-ticker="${escapeHtml(row.ticker)}" title="${escapeHtml(title)}">
+          ${tickerCell(row)}
+          <td><span class="glb-reject-pill">Close &lt; GLB</span><small>sem entrada</small></td>
+          <td class="num">${formatNumber(row.close, 2)}</td>
+          <td class="num">${formatNumber(row.ath_trigger, 2)}</td>
+          <td class="num negative">${formatPercent(distance, 2)}</td>
+          ${glbBaseCell(row)}
+          <td class="num">${formatPercent(row.adr_pct)}</td>
+          ${rvolCell(row)}
+          ${glbThemeCell(row)}
+        </tr>
       `;
     })
     .join("");
@@ -39695,6 +39725,7 @@ function renderAgent() {
   }
 
   renderAgentTrades(agent);
+  renderAgentGlbRejectedTable();
 }
 
 function renderAll() {
