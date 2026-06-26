@@ -33215,7 +33215,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-25",
   "data_mode": "intraday",
-  "generated_at": "2026-06-26T16:55:48-03:00",
+  "generated_at": "2026-06-26T17:00:40-03:00",
   "glb_ath": [
     {
       "adr_pct": 2.294495587295547,
@@ -38726,6 +38726,15 @@ window.RADAR_DATA = {
     },
     "glb_closed_below_count": 11,
     "glb_count": 4,
+    "glb_filters": {
+      "min_adr_pct": 2.0,
+      "min_avgvol10": 100000.0,
+      "min_consolidation_days": 60,
+      "min_dollar_volume10": 2000000.0,
+      "min_price": 2.0,
+      "price_above_sma20": true,
+      "strategy": "GLB ATH 60D"
+    },
     "leaders_consolidating_count": 14,
     "momentum_burst_count": 0,
     "momentum_burst_disabled": true,
@@ -47678,6 +47687,7 @@ function renderTopThemesPanel() {
 function renderFilterSummary() {
   if (!el.filterSummary) return;
   const filters = DATA.summary?.filters || DATA.validation || {};
+  const glbFilters = DATA.summary?.glb_filters || {};
   const activeWindows = filters.active_windows || ["1M", "3M", "6M"];
   const items = [
     {
@@ -47711,6 +47721,13 @@ function renderFilterSummary() {
       title: "Entrada no radar exige estar no topo em pelo menos uma janela ativa: 1M, 3M ou 6M. 1W e apenas contexto de aceleracao curta.",
     },
   ];
+  if (glbFilters.min_adr_pct !== undefined) {
+    items.push({
+      label: "GLB",
+      value: `ADR > ${formatPercent(glbFilters.min_adr_pct, 1)} | ${glbFilters.min_consolidation_days ?? 60}d`,
+      title: "Filtro especifico do radar GLB ATH 60D: ATH depois de pelo menos 60 pregoes de base, preco acima da SMA20, liquidez minima e ADR14 maior que 2%.",
+    });
+  }
   if (el.filterSummaryCount) el.filterSummaryCount.textContent = `${items.length} filtros`;
   el.filterSummary.innerHTML = items
     .map(
