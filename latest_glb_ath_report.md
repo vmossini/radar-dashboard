@@ -1,10 +1,10 @@
 # Radar GLB ATH 60D
 
-- Gerado: `2026-06-25T16:59:42-03:00`
-- Data dos candles: `2026-06-25`
-- GLBs encontrados: `12`
-- Universo limpo: `3936`
-- Pre-candidatos 1Y: `40`
+- Gerado: `2026-06-26T16:36:26-03:00`
+- Data dos candles: `2026-06-26`
+- GLBs encontrados: `8`
+- Universo limpo: `3926`
+- Pre-candidatos 1Y: `25`
 
 ## Regra
 
@@ -16,15 +16,11 @@
 
 | Ticker | Empresa | High | ATH trigger | Base | RVOL(10) | Market cap | Setor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| KYMR | Kymera Therapeutics Inc. Common Stock | 130.05 | 103.01 | 132 | 3.15 | 8215065314 | Health Care |
-| AKTS | Aktis Oncology Inc. Common stock | 33.53 | 29.17 | 113 | 1.46 | 1586462729 | Health Care |
-| PNC | PNC Financial Services Group Inc. (The) Common Stock | 249.01 | 243.95 | 94 | 0.68 | 96343386509 | Finance |
-| EA | Electronic Arts Inc. Common Stock | 205.21 | 204.9 | 119 | 0.67 | 51283693508 | Consumer Discretionary |
-| TTAM | Titan America SA Common Shares | 19.57 | 19.43 | 92 | 0.65 | 3460483468 | Industrials |
-| TILE | Interface Inc. Common Stock | 35.6 | 35.12 | 93 | 0.61 | 1987844014 | Consumer Discretionary |
-| ACT | Enact Holdings Inc. Common Stock | 44.95 | 44.81 | 95 | 0.54 | 6177332966 | Finance |
-| BFST | Business First Bancshares Inc. Common Stock | 30.43 | 30.33 | 96 | 0.52 | 985240735 | Finance |
-| BYD | Boyd Gaming Corporation Common Stock | 90.13 | 89.97 | 109 | 0.51 | 6459290556 | Consumer Discretionary |
-| CAH | Cardinal Health Inc. Common Stock | 237.79 | 233.61 | 78 | 0.38 | 54572306274 | Health Care |
-| NDSN | Nordson Corporation Common Stock | 307.74 | 305.29 | 86 | 0.38 | 16498641582 | Industrials |
-| GFF | Griffon Corporation Common Stock | 97.67 | 97.59 | 93 | 0.37 | 4350908617 | Industrials |
+| ABBV | AbbVie Inc. Common Stock | 249.59 | 244.82 | 183 | 0.88 | 429578006498 | Health Care |
+| JNJ | Johnson & Johnson Common Stock | 254.32 | 251.72 | 80 | 0.79 | 589479291858 | Health Care |
+| PFGC | Performance Food Group Company Common Stock | 109.26 | 109.06 | 193 | 0.64 | 16851028317 | Consumer Discretionary |
+| LLYVK | Liberty Live Holdings Inc. Series C Liberty Live Group Common Stock | 105.32 | 102.63 | 186 | 0.57 | 9391812112 | Consumer Discretionary |
+| EA | Electronic Arts Inc. Common Stock | 205.69 | 204.9 | 119 | 0.48 | 51336351319 | Consumer Discretionary |
+| DTE | DTE Energy Company Common Stock | 154.9 | 154.64 | 89 | 0.42 | 31788806510 | Utilities |
+| AFL | AFLAC Incorporated Common Stock | 120.04 | 119.33 | 70 | 0.29 | 60177285200 | Finance |
+| ACT | Enact Holdings Inc. Common Stock | 45.21 | 44.81 | 95 | 0.29 | 6231777257 | Finance |
