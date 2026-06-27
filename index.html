@@ -630,7 +630,7 @@ table {
 }
 
 .glb-table {
-  min-width: 1080px;
+  min-width: 980px;
   table-layout: fixed;
 }
 
@@ -646,7 +646,8 @@ table {
 
 .glb-table th:nth-child(3),
 .glb-table td:nth-child(3) {
-  width: 104px;
+  width: 78px;
+  text-align: right;
 }
 
 .glb-table th:nth-child(4),
@@ -658,15 +659,13 @@ table {
 .glb-table th:nth-child(7),
 .glb-table td:nth-child(7),
 .glb-table th:nth-child(8),
-.glb-table td:nth-child(8),
-.glb-table th:nth-child(9),
-.glb-table td:nth-child(9) {
+.glb-table td:nth-child(8) {
   width: 78px;
   text-align: right;
 }
 
-.glb-table th:nth-child(10),
-.glb-table td:nth-child(10) {
+.glb-table th:nth-child(9),
+.glb-table td:nth-child(9) {
   width: 250px;
 }
 
@@ -1762,49 +1761,6 @@ tbody tr:hover {
   font-weight: 800;
 }
 
-.glb-buy-cell {
-  vertical-align: middle;
-}
-
-.glb-buy-pill {
-  display: inline-flex;
-  width: fit-content;
-  align-items: center;
-  justify-content: center;
-  min-width: 66px;
-  height: 22px;
-  padding: 0 8px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 900;
-}
-
-.glb-buy-pill.buy-yes {
-  border: 1px solid #0b7a5a;
-  background: #c8f3df;
-  color: #064e3b;
-}
-
-.glb-buy-pill.buy-no {
-  border: 1px solid #d16a5d;
-  background: #ffe4df;
-  color: #8f2d1f;
-}
-
-.glb-buy-pill.buy-data {
-  border: 1px solid #b78f2a;
-  background: #fff0c2;
-  color: #704800;
-}
-
-.glb-buy-cell small {
-  display: block;
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 800;
-}
-
 .agent-reject-table {
   min-width: 1180px;
   table-layout: fixed;
@@ -1962,7 +1918,6 @@ tbody tr:hover {
               <tr>
                 <th data-sort="ticker" title="Ticker negociado.">Ticker</th>
                 <th data-sort="close" title="Sinaliza se o preco/fechamento atual esta acima da GLB.">GLB</th>
-                <th title="Decisao operacional do agente. Compra paper somente se o fechamento confirma acima da GLB.">Comprar</th>
                 <th data-sort="close" title="Ultimo preco/fechamento retornado pelo Yahoo.">Preco</th>
                 <th data-sort="ath_trigger" title="Preco minimo do rompimento: ATH anterior + 0,01.">Linha GLB</th>
                 <th data-sort="day_change_pct" title="Distancia do preco atual contra a linha GLB.">Dist.</th>
@@ -33005,7 +32960,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-26",
   "data_mode": "intraday",
-  "generated_at": "2026-06-27T16:19:35-03:00",
+  "generated_at": "2026-06-27T19:12:34-03:00",
   "glb_ath": [
     {
       "adr_pct": 2.294495587295547,
@@ -48517,38 +48472,6 @@ function glbDistanceCell(row) {
   return `<td class="num ${className}" title="Distancia do preco atual contra a linha GLB.">${formatPercent(distance, 2)}</td>`;
 }
 
-function glbBuyDecision(row) {
-  const close = finiteNumberOrNull(row.close);
-  const trigger = finiteNumberOrNull(row.ath_trigger);
-  const dataMissing = close === null || trigger === null || trigger <= 0;
-  if (!dataMissing && close >= trigger) {
-    return {
-      label: "Comprar",
-      className: "buy-yes",
-      detail: "close > GLB",
-      title: "Compra paper autorizada: fechamento confirma acima da GLB.",
-    };
-  }
-  return {
-    label: dataMissing ? "Dados" : "Nao",
-    className: dataMissing ? "buy-data" : "buy-no",
-    detail: dataMissing ? "insuf." : "sem compra",
-    title: dataMissing
-      ? "Close ou linha GLB indisponivel."
-      : `Close ${formatNumber(close, 2)} < GLB ${formatNumber(trigger, 2)}`,
-  };
-}
-
-function glbBuyCell(row) {
-  const decision = glbBuyDecision(row);
-  return `
-    <td class="glb-buy-cell" title="${escapeHtml(decision.title)}">
-      <span class="glb-buy-pill ${decision.className}">${escapeHtml(decision.label)}</span>
-      <small>${escapeHtml(decision.detail)}</small>
-    </td>
-  `;
-}
-
 function glbThemeCell(row) {
   const sector = row.sector || "Unknown";
   const industry = row.industry || "";
@@ -48566,7 +48489,7 @@ function renderGlbTable() {
   el.glbCount.textContent = rows.length;
   if (!rows.length) {
     el.glbBody.innerHTML =
-      '<tr><td colspan="10"><div class="empty-state">Nenhum GLB ATH 60D encontrado no snapshot atual.</div></td></tr>';
+      '<tr><td colspan="9"><div class="empty-state">Nenhum GLB ATH 60D encontrado no snapshot atual.</div></td></tr>';
     return;
   }
   el.glbBody.innerHTML = rows
@@ -48575,7 +48498,6 @@ function renderGlbTable() {
         <tr data-ticker="${escapeHtml(row.ticker)}">
           ${tickerCell(row)}
           ${glbStatusCell(row)}
-          ${glbBuyCell(row)}
           <td class="num">${formatNumber(row.close, 2)}</td>
           <td class="num" title="ATH anterior + 0,01.">${formatNumber(row.ath_trigger, 2)}</td>
           ${glbDistanceCell(row)}
