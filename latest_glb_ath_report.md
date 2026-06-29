@@ -1,6 +1,6 @@
 # Radar GLB ATH 60D
 
-- Gerado: `2026-06-29T16:36:08-03:00`
+- Gerado: `2026-06-29T16:56:07-03:00`
 - Data dos candles: `2026-06-29`
 - GLBs encontrados: `1`
 - Universo limpo: `3940`
@@ -16,4 +16,4 @@
 
 | Ticker | Empresa | High | ATH trigger | Base | RVOL(10) | Market cap | Setor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| LLYVA | Liberty Live Holdings Inc. Series A Liberty Live Group Common Stock | 103.37 | 99.64 | 141 | 1.01 | 9159500929 | Consumer Discretionary |
+| LLYVA | Liberty Live Holdings Inc. Series A Liberty Live Group Common Stock | 103.37 | 99.64 | 141 | 1.05 | 9159500929 | Consumer Discretionary |
