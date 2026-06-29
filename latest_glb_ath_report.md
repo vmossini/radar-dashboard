@@ -1,10 +1,10 @@
 # Radar GLB ATH 60D
 
-- Gerado: `2026-06-26T16:55:47-03:00`
-- Data dos candles: `2026-06-26`
-- GLBs encontrados: `4`
-- Universo limpo: `3926`
-- Pre-candidatos 1Y: `21`
+- Gerado: `2026-06-29T16:36:08-03:00`
+- Data dos candles: `2026-06-29`
+- GLBs encontrados: `1`
+- Universo limpo: `3940`
+- Pre-candidatos 1Y: `13`
 
 ## Regra
 
@@ -16,7 +16,4 @@
 
 | Ticker | Empresa | High | ATH trigger | Base | RVOL(10) | Market cap | Setor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| ABBV | AbbVie Inc. Common Stock | 249.59 | 244.82 | 183 | 1.06 | 429578006498 | Health Care |
-| JNJ | Johnson & Johnson Common Stock | 255.08 | 251.72 | 80 | 0.89 | 589479291858 | Health Care |
-| PFGC | Performance Food Group Company Common Stock | 109.93 | 109.06 | 193 | 0.77 | 16851028317 | Consumer Discretionary |
-| LLYVK | Liberty Live Holdings Inc. Series C Liberty Live Group Common Stock | 105.32 | 102.63 | 186 | 0.62 | 9391812112 | Consumer Discretionary |
+| LLYVA | Liberty Live Holdings Inc. Series A Liberty Live Group Common Stock | 103.37 | 99.64 | 141 | 1.01 | 9159500929 | Consumer Discretionary |
