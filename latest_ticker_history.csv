@@ -1,88 +1,84 @@
 ﻿ticker,name,theme,status,first_seen,last_seen,list_entry_date,list_exit_date,days_in_watchlist_30d,consecutive_days,reentry_count,days_in_top2_30d,top2_days_detail,top2_new_window,global_rank,previous_global_rank,rank_delta,leadership_score
-SLS,"SELLAS Life Sciences Group, Inc. Common Stock",Biotech & health,Chase Breakout,2026-06-01,2026-06-29,2026-06-01,,18,18,0,2,1M 7d | 3M 2d | 6M 18d,False,1,4,3,99.829486
-ALAB,Astera Labs Inc. Common Stock,Semiconductors & AI compute,New Breakout,2026-06-01,2026-06-29,2026-06-01,,18,18,0,1,1M 11d | 3M 18d | 6M 1d,True,5,36,31,99.206368
-SNDK,Sandisk Corporation Common Stock,Semiconductors & AI compute,Ready,2026-06-01,2026-06-29,2026-06-01,,18,18,0,18,3M 18d | 6M 18d,False,13,9,-4,92.554359
-AGL,"agilon health, inc.",Biotech & health,Chase Breakout,2026-06-01,2026-06-29,2026-06-01,,18,18,0,18,3M 18d | 6M 18d,False,14,8,-6,92.520378
-PENG,"Penguin Solutions, Inc. Ordinary Shares",Semiconductors & AI compute,Ready,2026-06-01,2026-06-29,2026-06-01,,18,18,0,12,3M 18d | 6M 12d,False,18,21,3,92.242186
-VPG,"Vishay Precision Group, Inc.",Industrial components,Ready,2026-06-01,2026-06-29,2026-06-01,,18,18,0,12,3M 16d | 6M 12d,False,21,26,5,92.089231
-MXL,"MaxLinear, Inc. Common Stock",Semiconductors & AI compute,Breakout Baseline,2026-06-01,2026-06-29,2026-06-01,,18,18,0,18,3M 18d | 6M 18d,False,25,27,2,90.839873
-ERAS,"Erasca, Inc. Common Stock",Biotech & health,Chase Breakout,2026-06-01,2026-06-29,2026-06-01,,18,18,0,1,1M 1d | 6M 18d,True,26,49,23,90.780491
-RXT,"Rackspace Technology, Inc. Common Stock",Defense & space,Leader,2026-06-01,2026-06-29,2026-06-01,,18,18,0,13,3M 13d | 6M 18d,False,28,10,-18,90.118153
-BAND,Bandwidth Inc. Class A Common Stock,Optical & networking,Leader,2026-06-01,2026-06-29,2026-06-01,,18,18,0,18,3M 18d | 6M 18d,False,29,24,-5,90.083479
-AEHR,Aehr Test Systems,Semiconductors & AI compute,Leader,2026-06-01,2026-06-29,2026-06-01,,18,18,0,14,3M 14d | 6M 18d,False,30,28,-2,86.997406
-ICHR,Ichor Holdings,Semiconductors & AI compute,New Breakout,2026-06-01,2026-06-29,2026-06-01,,18,18,0,18,6M 18d,False,33,34,1,85.428399
-SHAZ,SharonAI Holdings Inc. Class A Common Stock,EDP Services,Leader,2026-06-01,2026-06-29,2026-06-01,,18,18,0,18,3M 18d,False,34,35,1,85.347252
-AMBQ,Ambiq Micro Inc. Common Stock,Semiconductors & AI compute,Ready,2026-06-01,2026-06-29,2026-06-01,,18,18,0,14,3M 14d,False,48,45,-3,83.696765
-DOCN,"DigitalOcean Holdings, Inc.",Software & data,Leader,2026-06-01,2026-06-29,2026-06-01,,18,18,0,15,6M 15d,False,61,67,6,78.069073
-AAOI,"Applied Optoelectronics, Inc.",Semiconductors & AI compute,Leader,2026-06-01,2026-06-29,2026-06-01,,18,18,0,18,6M 18d,False,62,70,8,77.738346
-AXTI,AXT Inc,Semiconductors & AI compute,Leader,2026-06-01,2026-06-29,2026-06-01,,18,18,0,18,6M 18d,False,66,75,9,76.853283
-WOLF,"Wolfspeed, Inc.",Semiconductors & AI compute,Leader,2026-06-02,2026-06-29,2026-06-02,,17,17,0,17,3M 17d,False,78,72,-6,73.70168
-MU,"Micron Technology, Inc.",Semiconductors & AI compute,Leader,2026-06-01,2026-06-29,2026-06-01,,16,15,1,8,3M 8d | 6M 16d,False,16,16,0,92.388527
-ABSI,Absci Corporation Common Stock,Power & electrification,Chase Breakout,2026-06-05,2026-06-29,2026-06-05,,14,14,0,3,1M 6d | 3M 13d | 6M 3d,False,4,1,-3,99.573762
-BB,BlackBerry Limited,Software & data,Chase Breakout,2026-06-05,2026-06-29,2026-06-05,,14,14,0,8,1M 8d | 3M 14d,False,12,31,19,92.723364
-ATOM,Atomera Incorporated Common Stock,Semiconductors & AI compute,Leader,2026-06-05,2026-06-29,2026-06-05,,14,14,0,14,6M 14d,False,76,82,6,75.058475
-EVC,Entravision Communication,Media & broadcasting,Chase Breakout,2026-06-01,2026-06-29,2026-06-01,,17,13,1,5,1M 5d | 3M 17d | 6M 12d,False,2,13,11,99.622422
-FCEL,FuelCell Energy Inc  NEW (DE),Power & electrification,Breakout Baseline,2026-06-02,2026-06-29,2026-06-02,,13,12,1,1,3M 13d | 6M 1d,True,19,42,23,92.231897
-INTC,Intel Corp,Semiconductors & AI compute,Ready,2026-06-09,2026-06-29,2026-06-09,,12,12,0,11,3M 12d | 6M 11d,False,27,23,-4,90.316464
-UCTT,"Ultra Clean Holdings, Inc.",Semiconductors & AI compute,New Breakout,2026-06-09,2026-06-29,2026-06-09,,12,12,0,12,6M 12d,False,32,33,1,85.557503
-AIP,"Arteris, Inc. Common Stock",Semiconductors & AI compute,New Breakout,2026-06-09,2026-06-29,2026-06-09,,12,12,0,12,3M 12d,False,36,37,1,84.834628
-TNGX,"Tango Therapeutics, Inc.",Biotech & health,Ready,2026-06-09,2026-06-29,2026-06-09,,12,12,0,12,6M 12d,False,38,18,-20,84.551648
-WDC,Western Digital Corp.,Semiconductors & AI compute,Leader,2026-06-09,2026-06-29,2026-06-09,,12,12,0,12,6M 12d,False,39,41,2,84.376671
-VICR,Vicor Corp,Power & electrification,New Breakout,2026-06-09,2026-06-29,2026-06-09,,12,12,0,12,6M 12d,False,41,55,14,84.155015
-OPTX,"Syntec Optics Holdings, Inc. Class A Common Stock",Defense & space,Leader,2026-06-09,2026-06-29,2026-06-09,,12,12,0,12,6M 12d,False,45,56,11,83.839768
-AMD,Advanced Micro Devices,Semiconductors & AI compute,Ready,2026-06-09,2026-06-29,2026-06-09,,12,12,0,12,3M 12d,False,46,50,4,83.748276
-STX,Seagate Technology Holdings PLC Ordinary Shares (Ireland),Semiconductors & AI compute,Ready,2026-06-09,2026-06-29,2026-06-09,,12,12,0,12,6M 12d,False,49,51,2,83.297307
-CLOV,Clover Health Investments Corp. Class A Common Stock,Biotech & health,Chase Breakout,2026-06-10,2026-06-29,2026-06-10,,11,11,0,11,3M 11d,False,44,17,-27,83.870976
-MRVL,"Marvell Technology, Inc. Common Stock",Semiconductors & AI compute,Ready,2026-06-01,2026-06-29,2026-06-01,,12,9,2,10,3M 12d | 6M 10d,False,22,15,-7,92.074296
-ATEX,Anterix Inc. Common Stock,Optical & networking,Chase Breakout,2026-06-09,2026-06-29,2026-06-09,,11,9,1,1,1M 3d | 3M 1d | 6M 11d,True,6,30,24,99.137994
-DELL,Dell Technologies Inc.,ELECTRONIC COMPUTERS,Ready,2026-06-09,2026-06-29,2026-06-09,,10,9,1,8,1M 8d | 3M 10d | 6M 9d,False,9,20,11,98.619275
-VSH,"Vishay Intertechnology, Inc.",Semiconductors & AI compute,Leader,2026-06-09,2026-06-29,2026-06-09,,10,9,1,10,3M 10d | 6M 10d,False,20,22,2,92.12069
-APPS,Digital Turbine Inc. Common Stock,Multi-Sector Companies,Chase Breakout,2026-06-12,2026-06-29,2026-06-12,,9,9,0,9,1M 9d | 3M 9d,False,11,12,1,92.904062
-TWST,Twist Bioscience Corporation Common Stock,Semiconductors & AI compute,Leader,2026-06-15,2026-06-29,2026-06-15,,8,8,0,4,1M 8d | 6M 4d,False,17,14,-3,92.261092
-HQ,Horizon Quantum Holdings Ltd. Class A Ordinary Shares,Quantum computing,Leader,2026-06-15,2026-06-29,2026-06-15,,8,8,0,8,1M 8d,False,37,32,-5,84.826955
-BFLY,"Butterfly Network, Inc.",Semiconductors & AI compute,New Breakout,2026-06-12,2026-06-29,2026-06-12,,8,7,1,8,1M 8d,False,31,29,-2,85.883827
-ARQQ,Arqit Quantum Inc. Ordinary Shares,Quantum computing,Leader,2026-06-16,2026-06-29,2026-06-16,,7,7,0,7,1M 7d,False,69,81,12,76.209054
-IBRX,ImmunityBio Inc. Common Stock,Biotech & health,Chase Breakout,2026-06-09,2026-06-29,2026-06-09,,11,6,1,11,6M 11d,False,68,62,-6,76.566727
-QURE,uniQure N.V. Ordinary Shares,Biotech & health,Leader,2026-06-01,2026-06-29,2026-06-01,,9,6,1,6,1M 6d | 3M 9d,False,23,11,-12,91.916064
-CDNL,Cardinal Infrastructure Group Inc. Class A Common Stock,Defense & space,Chase Breakout,2026-06-10,2026-06-29,2026-06-10,,8,6,2,6,1M 6d | 3M 6d | 6M 6d,False,7,3,-4,98.90601
-CBRL,Cracker Barrel Old Country Store Inc Common Stock,Unclassified,Chase Breakout,2026-06-12,2026-06-29,2026-06-12,,8,6,1,8,1M 8d,False,52,46,-6,81.450239
-WNC,Wabash National Corporation Common Stock,Construction/Ag Equipment/Trucks,Leader,2026-06-12,2026-06-29,2026-06-12,,7,6,1,7,1M 7d,False,59,57,-2,78.752083
-CLPT,ClearPoint Neuro Inc. Common Stock,Biotech & health,New Breakout,2026-06-17,2026-06-29,2026-06-17,,6,6,0,6,1M 6d,False,63,58,-5,77.703381
-HPP,Hudson Pacific Properties Inc. Common Stock,Real Estate,Ready,2026-06-09,2026-06-29,2026-06-09,,11,5,1,11,3M 11d,False,65,63,-2,77.201492
-SEZL,Sezzle Inc. Common Stock,Finance: Consumer Services,Chase Breakout,2026-06-15,2026-06-29,2026-06-15,,7,5,1,5,1M 6d | 3M 5d,False,24,19,-5,91.570644
-MEI,Methode Electronics,Power & electrification,Chase Breakout,2026-06-15,2026-06-29,2026-06-15,,6,5,1,3,1M 3d | 3M 6d,False,15,7,-8,92.437241
-STRO,"Sutro Biopharma, Inc.",Biotech & health,New Breakout,2026-06-09,2026-06-29,2026-06-09,,10,4,1,10,6M 10d,False,77,64,-13,74.582073
-MGNX,"MacroGenics, Inc.",Biotech & health,Leader,2026-06-09,2026-06-29,2026-06-09,,9,4,1,9,6M 9d,False,53,43,-10,80.875339
-BLZE,"Backblaze, Inc. Class A Common Stock",Software & data,Chase Breakout,2026-06-01,2026-06-29,2026-06-01,,7,4,2,3,1M 6d | 3M 5d | 6M 3d,False,3,2,-1,99.584092
-NAVN,Navan Inc. Class A Common Stock,Software & data,Ready,2026-06-10,2026-06-29,2026-06-10,,7,4,2,7,3M 7d,False,56,54,-2,79.552538
-CORT,Corcept Therapeutics Incorporated Common Stock,Biotech & health,Chase Breakout,2026-06-15,2026-06-29,2026-06-15,,5,4,1,5,3M 5d,False,67,69,2,76.829405
-DFTX,Definium Therapeutics Inc. Common Shares,Biotech & health,New Breakout,2026-06-24,2026-06-29,2026-06-24,,4,4,0,4,1M 4d | 3M 4d,False,10,6,-4,92.942308
-MBX,"MBX Biosciences, Inc. Common Stock",Biotech & health,Chase Breakout,2026-06-24,2026-06-29,2026-06-24,,4,4,0,4,1M 4d,False,57,47,-10,79.484936
-EPC,Edgewell Personal Care Company Common Stock,Package Goods/Cosmetics,Chase Breakout,2026-06-24,2026-06-29,2026-06-24,,4,4,0,4,1M 4d,False,70,71,1,76.067548
-NEO,NeoGenomics Inc. Common Stock,Precision Instruments,Chase Breakout,2026-06-24,2026-06-29,2026-06-24,,4,4,0,4,1M 4d,False,72,77,5,75.587019
-TDUP,ThredUp Inc. Class A Common Stock,Catalog/Specialty Distribution,Chase Breakout,2026-06-24,2026-06-29,2026-06-24,,4,4,0,4,1M 4d,False,79,80,1,72.965428
-RGNX,REGENXBIO Inc. Common Stock,Biotech & health,New Breakout,2026-06-24,2026-06-29,2026-06-24,,4,4,0,4,1M 4d,False,80,90,10,71.56631
-ADPT,Adaptive Biotechnologies Corporation Common Stock,Biotech & health,Chase Breakout,2026-06-11,2026-06-29,2026-06-11,,4,3,1,4,1M 4d,False,71,76,5,75.906384
-ORKA,"Oruka Therapeutics, Inc. Common Stock",Semiconductors & AI compute,Chase Breakout,2026-06-25,2026-06-29,2026-06-25,,3,3,0,3,6M 3d,False,40,5,-35,84.317065
-PAYS,Paysign Inc. Common Stock,EDP Services,Chase Breakout,2026-06-25,2026-06-29,2026-06-25,,3,3,0,3,3M 3d,False,58,52,-6,79.479546
-ALOY,REalloys Inc. Common Stock,EDP Services,Leader,2026-06-10,2026-06-29,2026-06-10,,10,2,1,10,1M 10d,False,81,84,3,70.309286
-WGS,GeneDx Holdings Corp. Class A Common Stock,Biotech & health,Leader,2026-06-09,2026-06-29,2026-06-09,,8,2,1,8,1M 8d,False,86,93,7,61.296215
-BBNX,Beta Bionics Inc. Common Stock,Biotech & health,Chase Breakout,2026-06-09,2026-06-29,2026-06-09,,7,2,3,7,1M 7d,False,83,91,8,68.793624
-SMWB,Similarweb Ltd. Ordinary Shares,Software & data,Chase Breakout,2026-06-10,2026-06-29,2026-06-10,,6,2,2,6,1M 6d,False,75,83,8,75.202325
-ZNTL,"Zentalis Pharmaceuticals, Inc. Common Stock",Biotech & health,New Breakout,2026-06-10,2026-06-29,2026-06-10,,3,2,1,3,6M 3d,False,54,66,12,80.726418
-HYLN,Hyliion Holdings Corp.,Power & electrification,Leader,2026-06-01,2026-06-29,2026-06-01,,17,1,1,17,3M 17d,False,60,,,78.696991
-PSNL,Personalis Inc. Common Stock,Biotech & health,Chase Breakout,2026-06-01,2026-06-29,2026-06-01,,15,1,3,15,1M 15d,False,51,,,81.607752
-CLYM,"Climb Bio, Inc. Common Stock",Biotech & health,New Breakout,2026-06-02,2026-06-29,2026-06-02,,14,1,2,14,6M 14d,False,47,,,83.722546
-TXG,"10x Genomics, Inc. Class A Common Stock",Semiconductors & AI compute,Chase Breakout,2026-06-09,2026-06-29,2026-06-09,,10,1,2,10,1M 10d,False,43,,,84.007054
-FWRD,Forward Air Corporation Common Stock,Integrated Freight & Logistics,Leader,2026-06-11,2026-06-29,2026-06-11,,9,1,1,9,1M 9d,False,87,,,61.040977
-ACMR,ACM Research Inc. Class A Common Stock,Industrial components,New Breakout,2026-06-11,2026-06-29,2026-06-11,,8,1,1,1,1M 8d | 3M 1d | 6M 1d,True,8,,,98.878434
-SVCO,"Silvaco Group, Inc. Common Stock",Semiconductors & AI compute,Ready,2026-06-09,2026-06-29,2026-06-09,,8,1,1,7,3M 7d,False,50,,,83.059911
-FLEX,Flex Ltd. Ordinary Shares,Software & data,Ready,2026-06-09,2026-06-29,2026-06-09,,7,1,2,7,3M 7d,False,55,,,80.21537
-BTQ,BTQ Technologies Corp. Common Stock,Unclassified,Ready,2026-06-11,2026-06-29,2026-06-11,,7,1,2,7,1M 7d,False,73,,,75.375652
-OUST,Ouster Inc. Common Stock,Industrial components,New Breakout,2026-06-08,2026-06-29,2026-06-08,,6,1,2,1,3M 1d,True,42,,,84.025808
-BHVN,Biohaven Ltd. Common Shares,Biotech & health,Leader,2026-06-17,2026-06-29,2026-06-17,,5,1,1,5,1M 5d,False,74,,,75.286639
-CTEV,Claritev Corporation Class A Common Stock,Business Services,Leader,2026-06-18,2026-06-29,2026-06-18,,4,1,1,4,1M 4d,False,64,,,77.423915
-W,Wayfair Inc. Class A Common Stock,Catalog/Specialty Distribution,Leader,2026-06-24,2026-06-29,2026-06-24,,2,1,1,2,1M 2d,False,82,,,68.81494
-QDEL,QuidelOrtho Corporation Common Stock,Biotech & health,New Breakout,2026-06-10,2026-06-29,2026-06-10,,2,1,1,2,1M 2d,False,84,,,63.015082
-ABCL,AbCellera Biologics Inc. Common Shares,Biotech & health,Chase Breakout,2026-06-29,2026-06-29,2026-06-29,,1,1,0,1,1M 1d,True,35,,,85.256295
-QTRX,Quanterix Corporation Common Stock,Biotech & health,Chase Breakout,2026-06-29,2026-06-29,2026-06-29,,1,1,0,1,1M 1d,True,85,,,62.261978
+SLS,"SELLAS Life Sciences Group, Inc. Common Stock",Biotech & health,Chase Breakout,2026-06-01,2026-06-30,2026-06-01,,19,19,0,3,1M 8d | 3M 3d | 6M 19d,False,4,1,-3,99.666286
+SNDK,Sandisk Corporation Common Stock,Semiconductors & AI compute,Ready,2026-06-01,2026-06-30,2026-06-01,,19,19,0,5,1M 5d | 3M 19d | 6M 19d,False,5,13,8,99.637422
+ALAB,Astera Labs Inc. Common Stock,Semiconductors & AI compute,Chase Breakout,2026-06-01,2026-06-30,2026-06-01,,19,19,0,2,1M 12d | 3M 19d | 6M 2d,False,6,5,-1,99.515877
+PENG,"Penguin Solutions, Inc. Ordinary Shares",Semiconductors & AI compute,Ready,2026-06-01,2026-06-30,2026-06-01,,19,19,0,13,3M 19d | 6M 13d,False,13,18,5,92.742645
+MXL,"MaxLinear, Inc. Common Stock",Semiconductors & AI compute,Chase Breakout,2026-06-01,2026-06-30,2026-06-01,,19,19,0,19,3M 19d | 6M 19d,False,15,25,10,92.62357
+VPG,"Vishay Precision Group, Inc.",Industrial components,Breakout Baseline,2026-06-01,2026-06-30,2026-06-01,,19,19,0,13,3M 17d | 6M 13d,False,22,21,-1,91.983479
+RXT,"Rackspace Technology, Inc. Common Stock",Defense & space,Leader,2026-06-01,2026-06-30,2026-06-01,,19,19,0,14,3M 14d | 6M 19d,False,24,28,4,91.841715
+AGL,"agilon health, inc.",Biotech & health,Leader,2026-06-01,2026-06-30,2026-06-01,,19,19,0,19,3M 19d | 6M 19d,False,27,14,-13,91.260697
+ERAS,"Erasca, Inc. Common Stock",Biotech & health,Chase Breakout,2026-06-01,2026-06-30,2026-06-01,,19,19,0,2,1M 2d | 6M 19d,False,30,26,-4,90.44225
+BAND,Bandwidth Inc. Class A Common Stock,Optical & networking,Leader,2026-06-01,2026-06-30,2026-06-01,,19,19,0,19,3M 19d | 6M 19d,False,31,29,-2,89.942786
+AEHR,Aehr Test Systems,Semiconductors & AI compute,Leader,2026-06-01,2026-06-30,2026-06-01,,19,19,0,15,3M 15d | 6M 19d,False,32,30,-2,89.680876
+ICHR,Ichor Holdings,Semiconductors & AI compute,Chase Breakout,2026-06-01,2026-06-30,2026-06-01,,19,19,0,19,6M 19d,False,35,33,-2,85.896371
+SHAZ,SharonAI Holdings Inc. Class A Common Stock,EDP Services,Ready,2026-06-01,2026-06-30,2026-06-01,,19,19,0,19,3M 19d,False,38,34,-4,84.983861
+AMBQ,Ambiq Micro Inc. Common Stock,Semiconductors & AI compute,Ready,2026-06-01,2026-06-30,2026-06-01,,19,19,0,15,3M 15d,False,50,48,-2,83.864057
+DOCN,"DigitalOcean Holdings, Inc.",Software & data,Ready,2026-06-01,2026-06-30,2026-06-01,,19,19,0,16,6M 16d,False,64,61,-3,80.630383
+AAOI,"Applied Optoelectronics, Inc.",Semiconductors & AI compute,Leader,2026-06-01,2026-06-30,2026-06-01,,19,19,0,19,6M 19d,False,70,62,-8,77.775738
+AXTI,AXT Inc,Semiconductors & AI compute,Leader,2026-06-01,2026-06-30,2026-06-01,,19,19,0,19,6M 19d,False,73,66,-7,76.306531
+WOLF,"Wolfspeed, Inc.",Semiconductors & AI compute,Leader,2026-06-02,2026-06-30,2026-06-02,,18,18,0,18,3M 18d,False,71,78,7,77.751078
+MU,"Micron Technology, Inc.",Semiconductors & AI compute,Leader,2026-06-01,2026-06-30,2026-06-01,,17,16,1,5,1M 5d | 6M 17d,False,19,16,-3,92.379428
+ABSI,Absci Corporation Common Stock,Power & electrification,Leader,2026-06-05,2026-06-30,2026-06-05,,15,15,0,4,1M 7d | 3M 14d | 6M 4d,False,2,4,2,99.690651
+BB,BlackBerry Limited,Software & data,Chase Breakout,2026-06-05,2026-06-30,2026-06-05,,15,15,0,9,1M 9d | 3M 15d,False,17,12,-5,92.559144
+ATOM,Atomera Incorporated Common Stock,Semiconductors & AI compute,Ready,2026-06-05,2026-06-30,2026-06-05,,15,15,0,15,6M 15d,False,60,76,16,81.558474
+EVC,Entravision Communication,Media & broadcasting,Chase Breakout,2026-06-01,2026-06-30,2026-06-01,,18,14,1,13,3M 18d | 6M 13d,False,14,2,-12,92.69346
+FCEL,FuelCell Energy Inc  NEW (DE),Power & electrification,Chase Breakout,2026-06-02,2026-06-30,2026-06-02,,14,13,1,1,1M 1d | 3M 14d | 6M 2d,True,1,19,18,99.771807
+UCTT,"Ultra Clean Holdings, Inc.",Semiconductors & AI compute,Chase Breakout,2026-06-09,2026-06-30,2026-06-09,,13,13,0,2,1M 2d | 6M 13d,False,16,32,16,92.608119
+OPTX,"Syntec Optics Holdings, Inc. Class A Common Stock",Defense & space,Ready,2026-06-09,2026-06-30,2026-06-09,,13,13,0,10,1M 10d | 6M 13d,False,21,45,24,92.184119
+INTC,Intel Corp,Semiconductors & AI compute,New Breakout,2026-06-09,2026-06-30,2026-06-09,,13,13,0,12,3M 13d | 6M 12d,False,28,27,-1,90.894632
+AIP,"Arteris, Inc. Common Stock",Semiconductors & AI compute,Chase Breakout,2026-06-09,2026-06-30,2026-06-09,,13,13,0,13,3M 13d,False,39,36,-3,84.955934
+VICR,Vicor Corp,Power & electrification,Chase Breakout,2026-06-09,2026-06-30,2026-06-09,,13,13,0,13,6M 13d,False,40,41,1,84.795537
+AMD,Advanced Micro Devices,Semiconductors & AI compute,New Breakout,2026-06-09,2026-06-30,2026-06-09,,13,13,0,13,3M 13d,False,46,46,0,84.30879
+WDC,Western Digital Corp.,Semiconductors & AI compute,Leader,2026-06-09,2026-06-30,2026-06-09,,13,13,0,13,6M 13d,False,47,39,-8,84.241058
+TNGX,"Tango Therapeutics, Inc.",Biotech & health,Ready,2026-06-09,2026-06-30,2026-06-09,,13,13,0,13,6M 13d,False,52,38,-14,83.738261
+STX,Seagate Technology Holdings PLC Ordinary Shares (Ireland),Semiconductors & AI compute,Ready,2026-06-09,2026-06-30,2026-06-09,,13,13,0,13,6M 13d,False,54,49,-5,83.541414
+CLOV,Clover Health Investments Corp. Class A Common Stock,Biotech & health,Leader,2026-06-10,2026-06-30,2026-06-10,,12,12,0,12,3M 12d,False,51,44,-7,83.844574
+MRVL,"Marvell Technology, Inc. Common Stock",Semiconductors & AI compute,Ready,2026-06-01,2026-06-30,2026-06-01,,13,10,2,9,1M 9d | 3M 13d | 6M 11d,False,8,22,14,99.07954
+ATEX,Anterix Inc. Common Stock,Optical & networking,Chase Breakout,2026-06-09,2026-06-30,2026-06-09,,12,10,1,2,1M 4d | 3M 2d | 6M 12d,False,7,6,-1,99.214856
+DELL,Dell Technologies Inc.,ELECTRONIC COMPUTERS,Ready,2026-06-09,2026-06-30,2026-06-09,,11,10,1,9,1M 9d | 3M 11d,False,23,9,-14,91.958718
+VSH,"Vishay Intertechnology, Inc.",Semiconductors & AI compute,Leader,2026-06-09,2026-06-30,2026-06-09,,11,10,1,11,3M 11d | 6M 11d,False,26,20,-6,91.677149
+APPS,Digital Turbine Inc. Common Stock,Multi-Sector Companies,Chase Breakout,2026-06-12,2026-06-30,2026-06-12,,10,10,0,10,1M 10d | 3M 10d,False,11,11,0,92.88962
+HQ,Horizon Quantum Holdings Ltd. Class A Ordinary Shares,Quantum computing,Leader,2026-06-15,2026-06-30,2026-06-15,,9,9,0,9,1M 9d,False,33,37,4,86.617021
+TWST,Twist Bioscience Corporation Common Stock,Semiconductors & AI compute,Leader,2026-06-15,2026-06-30,2026-06-15,,9,9,0,9,1M 9d,False,36,17,-19,85.692488
+BFLY,"Butterfly Network, Inc.",Semiconductors & AI compute,Leader,2026-06-12,2026-06-30,2026-06-12,,9,8,1,9,1M 9d,False,37,31,-6,85.495413
+ARQQ,Arqit Quantum Inc. Ordinary Shares,Quantum computing,New Breakout,2026-06-16,2026-06-30,2026-06-16,,8,8,0,8,1M 8d,False,63,69,6,80.630642
+IBRX,ImmunityBio Inc. Common Stock,Biotech & health,Leader,2026-06-09,2026-06-30,2026-06-09,,12,7,1,12,6M 12d,False,75,68,-7,76.124793
+QURE,uniQure N.V. Ordinary Shares,Biotech & health,Leader,2026-06-01,2026-06-30,2026-06-01,,10,7,1,7,1M 7d | 3M 10d,False,25,23,-2,91.838691
+CDNL,Cardinal Infrastructure Group Inc. Class A Common Stock,Defense & space,Chase Breakout,2026-06-10,2026-06-30,2026-06-10,,9,7,2,7,1M 7d | 3M 7d | 6M 7d,False,10,7,-3,98.726531
+CBRL,Cracker Barrel Old Country Store Inc Common Stock,Unclassified,Chase Breakout,2026-06-12,2026-06-30,2026-06-12,,9,7,1,9,1M 9d,False,59,52,-7,81.730168
+WNC,Wabash National Corporation Common Stock,Construction/Ag Equipment/Trucks,Leader,2026-06-12,2026-06-30,2026-06-12,,8,7,1,8,1M 8d,False,69,59,-10,78.059036
+SEZL,Sezzle Inc. Common Stock,Finance: Consumer Services,Leader,2026-06-15,2026-06-30,2026-06-15,,8,6,1,6,3M 6d,False,44,24,-20,84.5165
+MEI,Methode Electronics,Power & electrification,Leader,2026-06-15,2026-06-30,2026-06-15,,7,6,1,4,1M 4d | 3M 7d,False,20,15,-5,92.335501
+STRO,"Sutro Biopharma, Inc.",Biotech & health,Leader,2026-06-09,2026-06-30,2026-06-09,,11,5,1,11,6M 11d,False,77,77,0,75.789
+MGNX,"MacroGenics, Inc.",Biotech & health,Leader,2026-06-09,2026-06-30,2026-06-09,,10,5,1,10,6M 10d,False,68,53,-15,78.100225
+BLZE,"Backblaze, Inc. Class A Common Stock",Software & data,Chase Breakout,2026-06-01,2026-06-30,2026-06-01,,8,5,2,4,1M 7d | 3M 6d | 6M 4d,False,3,3,0,99.676358
+CORT,Corcept Therapeutics Incorporated Common Stock,Biotech & health,Leader,2026-06-15,2026-06-30,2026-06-15,,6,5,1,6,3M 6d,False,72,67,-5,76.316097
+DFTX,Definium Therapeutics Inc. Common Shares,Biotech & health,Chase Breakout,2026-06-24,2026-06-30,2026-06-24,,5,5,0,5,1M 5d | 3M 5d,False,12,10,-2,92.872808
+MBX,"MBX Biosciences, Inc. Common Stock",Biotech & health,Chase Breakout,2026-06-24,2026-06-30,2026-06-24,,5,5,0,5,1M 5d,False,62,57,-5,81.138125
+NEO,NeoGenomics Inc. Common Stock,Precision Instruments,Chase Breakout,2026-06-24,2026-06-30,2026-06-24,,5,5,0,5,1M 5d,False,76,72,-4,75.831568
+RGNX,REGENXBIO Inc. Common Stock,Biotech & health,Chase Breakout,2026-06-24,2026-06-30,2026-06-24,,5,5,0,5,1M 5d,False,82,80,-2,72.225148
+SMWB,Similarweb Ltd. Ordinary Shares,Software & data,Chase Breakout,2026-06-10,2026-06-30,2026-06-10,,7,3,2,7,1M 7d,False,80,75,-5,74.365187
+ZNTL,"Zentalis Pharmaceuticals, Inc. Common Stock",Biotech & health,Chase Breakout,2026-06-10,2026-06-30,2026-06-10,,4,3,1,4,6M 4d,False,53,54,1,83.5751
+HYLN,Hyliion Holdings Corp.,Power & electrification,Leader,2026-06-01,2026-06-30,2026-06-01,,18,2,1,18,3M 18d,False,56,60,4,83.127083
+PSNL,Personalis Inc. Common Stock,Biotech & health,Leader,2026-06-01,2026-06-30,2026-06-01,,16,2,3,16,1M 16d,False,65,51,-14,80.573337
+CLYM,"Climb Bio, Inc. Common Stock",Biotech & health,Chase Breakout,2026-06-02,2026-06-30,2026-06-02,,15,2,2,15,6M 15d,False,55,47,-8,83.219551
+TXG,"10x Genomics, Inc. Class A Common Stock",Semiconductors & AI compute,Chase Breakout,2026-06-09,2026-06-30,2026-06-09,,11,2,2,11,1M 11d,False,41,43,2,84.591919
+ACMR,ACM Research Inc. Class A Common Stock,Industrial components,Chase Breakout,2026-06-11,2026-06-30,2026-06-11,,9,2,1,2,1M 9d | 3M 2d | 6M 2d,False,9,8,-1,99.067478
+SVCO,"Silvaco Group, Inc. Common Stock",Semiconductors & AI compute,Ready,2026-06-09,2026-06-30,2026-06-09,,9,2,1,6,6M 6d,False,48,50,2,84.184641
+FLEX,Flex Ltd. Ordinary Shares,Software & data,Ready,2026-06-09,2026-06-30,2026-06-09,,8,2,2,8,3M 8d,False,58,55,-3,81.91452
+BTQ,BTQ Technologies Corp. Common Stock,Unclassified,Ready,2026-06-11,2026-06-30,2026-06-11,,8,2,2,8,1M 8d,False,81,73,-8,73.956127
+OUST,Ouster Inc. Common Stock,Industrial components,Chase Breakout,2026-06-08,2026-06-30,2026-06-08,,7,2,2,2,1M 6d | 3M 2d,False,18,42,24,92.426522
+BHVN,Biohaven Ltd. Common Shares,Biotech & health,Leader,2026-06-17,2026-06-30,2026-06-17,,6,2,1,6,1M 6d,False,78,74,-4,75.758406
+CTEV,Claritev Corporation Class A Common Stock,Business Services,New Breakout,2026-06-18,2026-06-30,2026-06-18,,5,2,1,5,1M 5d,False,74,64,-10,76.143412
+ABCL,AbCellera Biologics Inc. Common Shares,Biotech & health,Leader,2026-06-29,2026-06-30,2026-06-29,,2,2,0,2,1M 2d,False,42,35,-7,84.574214
+QTRX,Quanterix Corporation Common Stock,Biotech & health,Leader,2026-06-29,2026-06-30,2026-06-29,,2,2,0,2,1M 2d,False,83,85,2,61.8126
+MRAM,"Everspin Technologies, Inc",Semiconductors & AI compute,Leader,2026-06-04,2026-06-30,2026-06-04,,12,1,1,12,3M 12d,False,79,,,75.354194
+NBIS,Nebius Group N.V. Class A Ordinary Shares,Software & data,Ready,2026-06-01,2026-06-30,2026-06-01,,10,1,3,7,6M 7d,False,49,,,84.023947
+ALNT,Allient Inc. Common Stock,Semiconductors & AI compute,Leader,2026-06-10,2026-06-30,2026-06-10,,10,1,1,10,1M 10d,False,67,,,78.805216
+CEVA,CEVA Inc.,Semiconductors & AI compute,Ready,2026-06-10,2026-06-30,2026-06-10,,9,1,1,9,3M 9d,False,61,,,81.458323
+WYFI,WhiteFiber Inc. Ordinary Shares,Finance: Consumer Services,Leader,2026-06-01,2026-06-30,2026-06-01,,8,1,2,7,3M 7d,False,43,,,84.521667
+CRDO,Credo Technology Group Holding Ltd Ordinary Shares,Semiconductors & AI compute,Ready,2026-06-11,2026-06-30,2026-06-11,,7,1,2,4,1M 4d | 3M 7d,False,29,,,90.49074
+BE,Bloom Energy Corporation,Power & electrification,Leader,2026-06-16,2026-06-30,2026-06-16,,6,1,1,6,6M 6d,False,57,,,81.958443
+ULCC,Frontier Group Holdings Inc. Common Stock,Air Freight/Delivery Services,Leader,2026-06-18,2026-06-30,2026-06-18,,5,1,1,4,1M 4d | 3M 4d,False,34,,,86.590079
+AKTS,Aktis Oncology Inc. Common stock,Biotech & health,New Breakout,2026-06-24,2026-06-30,2026-06-24,,4,1,1,4,1M 4d,False,66,,,79.836662
+AMAT,Applied Materials Inc,Semiconductors & AI compute,Chase Breakout,2026-06-25,2026-06-30,2026-06-25,,2,1,1,2,1M 2d,False,45,,,84.408009
