@@ -668,6 +668,68 @@ table {
 .glb-table td:nth-child(9) {
   width: 250px;
 }
+.pullbacks-table {
+  min-width: 1240px;
+  table-layout: fixed;
+}
+
+.pullbacks-table th,
+.pullbacks-table td {
+  padding: 6px 9px;
+}
+
+.pullbacks-table th:nth-child(1),
+.pullbacks-table td:nth-child(1) {
+  width: 236px;
+}
+
+.pullbacks-table th:nth-child(2),
+.pullbacks-table td:nth-child(2) {
+  width: 68px;
+}
+
+.pullbacks-table th:nth-child(3),
+.pullbacks-table td:nth-child(3) {
+  width: 76px;
+}
+
+.pullbacks-table th:nth-child(4),
+.pullbacks-table td:nth-child(4) {
+  width: 110px;
+}
+
+.pullbacks-table th:nth-child(5),
+.pullbacks-table td:nth-child(5),
+.pullbacks-table th:nth-child(6),
+.pullbacks-table td:nth-child(6),
+.pullbacks-table th:nth-child(7),
+.pullbacks-table td:nth-child(7),
+.pullbacks-table th:nth-child(8),
+.pullbacks-table td:nth-child(8),
+.pullbacks-table th:nth-child(9),
+.pullbacks-table td:nth-child(9),
+.pullbacks-table th:nth-child(10),
+.pullbacks-table td:nth-child(10) {
+  width: 88px;
+  text-align: right;
+}
+
+.pullbacks-table th:nth-child(11),
+.pullbacks-table td:nth-child(11) {
+  width: 244px;
+}
+
+.pullbacks-table .ticker-cell span {
+  max-width: 196px;
+}
+
+.pullbacks-table .theme-cell {
+  max-width: none;
+}
+
+.pullbacks-table .flag-stack {
+  margin-top: 4px;
+}
 
 th,
 td {
@@ -1888,6 +1950,66 @@ tbody tr:hover {
   color: #b45309;
 }
 
+.sma-state-cell {
+  text-align: right;
+}
+
+.sma-state-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.sma-state-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  border-radius: 999px;
+}
+
+.sma-state-icon.above {
+  border: 1px solid #14966d;
+  background: #dff4eb;
+}
+
+.sma-state-icon.above::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid #0f7a58;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.sma-state-icon.below {
+  border: 1px solid #cb4b3f;
+  background: #fae5e2;
+}
+
+.sma-state-icon.below::before,
+.sma-state-icon.below::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 6px;
+  width: 8px;
+  height: 2px;
+  border-radius: 999px;
+  background: #a8322a;
+}
+
+.sma-state-icon.below::before {
+  transform: rotate(45deg);
+}
+
+.sma-state-icon.below::after {
+  transform: rotate(-45deg);
+}
     </style>
   </head>
   <body>
@@ -2069,7 +2191,6 @@ tbody tr:hover {
       <section class="section-block legacy-radar">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Charles Harris</p>
             <h2>Pullbacks nas medias</h2>
           </div>
           <span class="row-count" id="pullbacksCount">--</span>
@@ -2080,13 +2201,14 @@ tbody tr:hover {
               <tr>
                 <th data-sort="ticker">Ticker</th>
                 <th data-sort="leadership_score">Rank</th>
-                <th data-sort="pullback_sma">Media</th>
+                <th data-sort="pullback_sma">Setup</th>
                 <th data-sort="pullback_source">Reclaim</th>
                 <th data-sort="close">Preco</th>
-                <th data-sort="pullback_sma_value">SMA</th>
-                <th data-sort="pullback_distance_pct">Dist.</th>
-                <th data-sort="pullback_depth_pct">Toque</th>
-                <th data-sort="rvol_10d">RVOL(10)</th>
+                <th data-sort="sma10" title="SMA10 e estado do preco atual contra a media.">SMA10</th>
+                <th data-sort="sma20" title="SMA20 e estado do preco atual contra a media.">SMA20</th>
+                <th data-sort="sma50" title="SMA50 e estado do preco atual contra a media.">SMA50</th>
+                <th data-sort="pullback_below_sma_days" title="Pregoes consecutivos anteriores em que o ticker fechou abaixo ou igual a media do setup.">Dias <= Setup</th>
+                <th data-sort="rvol_10d" title="Volume atual dividido pela media dos 10 pregoes anteriores, igual ao RVOL(10) do TradingView.">RVOL(10)</th>
                 <th data-sort="theme">Tema</th>
               </tr>
             </thead>
@@ -8470,6 +8592,7 @@ window.RADAR_DATA = {
       "prior_day_range": 16.179993,
       "prior_day_volume": 10824500,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 7.912975782532862,
       "pullback_distance_pct": 0.7568135095832984,
       "pullback_label": "Abriu abaixo",
@@ -9276,6 +9399,7 @@ window.RADAR_DATA = {
       "prior_day_range": 77.349976,
       "prior_day_volume": 86115000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 1.9608311679229873,
       "pullback_distance_pct": 9.688173965712066,
       "pullback_label": "Tocou",
@@ -9443,6 +9567,7 @@ window.RADAR_DATA = {
       "prior_day_range": 3.674999,
       "prior_day_volume": 3858800,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 7.712284932523289,
       "pullback_distance_pct": 5.025583947811851,
       "pullback_label": "Abriu abaixo",
@@ -9769,6 +9894,7 @@ window.RADAR_DATA = {
       "prior_day_range": 8.679993,
       "prior_day_volume": 1008000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 4.992045600199044,
       "pullback_distance_pct": 7.139356560683385,
       "pullback_label": "Abriu abaixo",
@@ -10415,6 +10541,7 @@ window.RADAR_DATA = {
       "prior_day_range": 5.729996,
       "prior_day_volume": 99247000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 1.4741463171285294,
       "pullback_distance_pct": 9.517514321585052,
       "pullback_label": "Tocou",
@@ -10581,6 +10708,7 @@ window.RADAR_DATA = {
       "prior_day_range": 0.719,
       "prior_day_volume": 14663200,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 0.07137758743754234,
       "pullback_distance_pct": 10.425326447495497,
       "pullback_label": "Tocou",
@@ -10747,6 +10875,7 @@ window.RADAR_DATA = {
       "prior_day_range": 5.056,
       "prior_day_volume": 3034800,
       "prior_up_streak": 2,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 5.456207032629248,
       "pullback_distance_pct": 1.1734895216731989,
       "pullback_label": "Abriu abaixo",
@@ -12190,6 +12319,7 @@ window.RADAR_DATA = {
       "prior_day_range": 67.909973,
       "prior_day_volume": 23368900,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 3.052052672398178,
       "pullback_distance_pct": 7.1159794981645375,
       "pullback_label": "Abriu abaixo",
@@ -13158,6 +13288,7 @@ window.RADAR_DATA = {
       "prior_day_range": 22.5,
       "prior_day_volume": 52661800,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 3.546682062331009,
       "pullback_distance_pct": 5.048148771965355,
       "pullback_label": "Tocou",
@@ -13485,6 +13616,7 @@ window.RADAR_DATA = {
       "prior_day_range": 3.969994,
       "prior_day_volume": 1347900,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 5.777139954807745,
       "pullback_distance_pct": 3.856621851317832,
       "pullback_label": "Abriu abaixo",
@@ -13652,6 +13784,7 @@ window.RADAR_DATA = {
       "prior_day_range": 115.98999,
       "prior_day_volume": 9299000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 7.881437995656027,
       "pullback_distance_pct": 1.3847466029559552,
       "pullback_label": "Abriu abaixo",
@@ -13819,6 +13952,7 @@ window.RADAR_DATA = {
       "prior_day_range": 0.865001,
       "prior_day_volume": 1153800,
       "prior_up_streak": 2,
+      "pullback_below_sma_days": 2,
       "pullback_depth_pct": 6.907650408516972,
       "pullback_distance_pct": 2.335561607658665,
       "pullback_label": "Abriu abaixo",
@@ -14465,6 +14599,7 @@ window.RADAR_DATA = {
       "prior_day_range": 0.395,
       "prior_day_volume": 7490400,
       "prior_up_streak": 1,
+      "pullback_below_sma_days": 3,
       "pullback_depth_pct": 4.301594973417108,
       "pullback_distance_pct": 11.406476558724021,
       "pullback_label": "Abriu abaixo",
@@ -14632,6 +14767,7 @@ window.RADAR_DATA = {
       "prior_day_range": 15.059998,
       "prior_day_volume": 10060500,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 4.815602486110429,
       "pullback_distance_pct": 5.221161613663705,
       "pullback_label": "Abriu abaixo",
@@ -15596,6 +15732,7 @@ window.RADAR_DATA = {
       "prior_day_range": 13.82,
       "prior_day_volume": 20160300,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 4.940274855320101,
       "pullback_distance_pct": 9.513122605084456,
       "pullback_label": "Abriu abaixo",
@@ -20233,6 +20370,7 @@ window.RADAR_DATA = {
       "prior_day_range": 16.179993,
       "prior_day_volume": 10824500,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 7.912975782532862,
       "pullback_distance_pct": 0.7568135095832984,
       "pullback_label": "Abriu abaixo",
@@ -20880,6 +21018,7 @@ window.RADAR_DATA = {
       "prior_day_range": 193.071045,
       "prior_day_volume": 16799100,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 1.0250566423807845,
       "pullback_distance_pct": 7.090888712943988,
       "pullback_label": "Tocou",
@@ -21366,6 +21505,7 @@ window.RADAR_DATA = {
       "prior_day_range": 77.349976,
       "prior_day_volume": 86115000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 1.9608311679229873,
       "pullback_distance_pct": 9.688173965712066,
       "pullback_label": "Tocou",
@@ -21692,6 +21832,7 @@ window.RADAR_DATA = {
       "prior_day_range": 3.674999,
       "prior_day_volume": 3858800,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 7.712284932523289,
       "pullback_distance_pct": 5.025583947811851,
       "pullback_label": "Abriu abaixo",
@@ -22177,6 +22318,7 @@ window.RADAR_DATA = {
       "prior_day_range": 8.679993,
       "prior_day_volume": 1008000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 4.992045600199044,
       "pullback_distance_pct": 7.139356560683385,
       "pullback_label": "Abriu abaixo",
@@ -23141,6 +23283,7 @@ window.RADAR_DATA = {
       "prior_day_range": 5.729996,
       "prior_day_volume": 99247000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 1.4741463171285294,
       "pullback_distance_pct": 9.517514321585052,
       "pullback_label": "Tocou",
@@ -23307,6 +23450,7 @@ window.RADAR_DATA = {
       "prior_day_range": 0.719,
       "prior_day_volume": 14663200,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 0.07137758743754234,
       "pullback_distance_pct": 10.425326447495497,
       "pullback_label": "Tocou",
@@ -23473,6 +23617,7 @@ window.RADAR_DATA = {
       "prior_day_range": 5.056,
       "prior_day_volume": 3034800,
       "prior_up_streak": 2,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 5.456207032629248,
       "pullback_distance_pct": 1.1734895216731989,
       "pullback_label": "Abriu abaixo",
@@ -24278,6 +24423,7 @@ window.RADAR_DATA = {
       "prior_day_range": 8.68,
       "prior_day_volume": 1178000,
       "prior_up_streak": 1,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 0.4864959914553757,
       "pullback_distance_pct": 5.505154773456988,
       "pullback_label": "Tocou",
@@ -25082,6 +25228,7 @@ window.RADAR_DATA = {
       "prior_day_range": 67.909973,
       "prior_day_volume": 23368900,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 3.052052672398178,
       "pullback_distance_pct": 7.1159794981645375,
       "pullback_label": "Abriu abaixo",
@@ -26210,6 +26357,7 @@ window.RADAR_DATA = {
       "prior_day_range": 22.5,
       "prior_day_volume": 52661800,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 3.546682062331009,
       "pullback_distance_pct": 5.048148771965355,
       "pullback_label": "Tocou",
@@ -26537,6 +26685,7 @@ window.RADAR_DATA = {
       "prior_day_range": 3.969994,
       "prior_day_volume": 1347900,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 5.777139954807745,
       "pullback_distance_pct": 3.856621851317832,
       "pullback_label": "Abriu abaixo",
@@ -26704,6 +26853,7 @@ window.RADAR_DATA = {
       "prior_day_range": 115.98999,
       "prior_day_volume": 9299000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 7.881437995656027,
       "pullback_distance_pct": 1.3847466029559552,
       "pullback_label": "Abriu abaixo",
@@ -26871,6 +27021,7 @@ window.RADAR_DATA = {
       "prior_day_range": 0.865001,
       "prior_day_volume": 1153800,
       "prior_up_streak": 2,
+      "pullback_below_sma_days": 2,
       "pullback_depth_pct": 6.907650408516972,
       "pullback_distance_pct": 2.335561607658665,
       "pullback_label": "Abriu abaixo",
@@ -27517,6 +27668,7 @@ window.RADAR_DATA = {
       "prior_day_range": 0.395,
       "prior_day_volume": 7490400,
       "prior_up_streak": 1,
+      "pullback_below_sma_days": 3,
       "pullback_depth_pct": 4.301594973417108,
       "pullback_distance_pct": 11.406476558724021,
       "pullback_label": "Abriu abaixo",
@@ -27684,6 +27836,7 @@ window.RADAR_DATA = {
       "prior_day_range": 15.059998,
       "prior_day_volume": 10060500,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 4.815602486110429,
       "pullback_distance_pct": 5.221161613663705,
       "pullback_label": "Abriu abaixo",
@@ -28807,6 +28960,7 @@ window.RADAR_DATA = {
       "prior_day_range": 13.82,
       "prior_day_volume": 20160300,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 4.940274855320101,
       "pullback_distance_pct": 9.513122605084456,
       "pullback_label": "Abriu abaixo",
@@ -37667,7 +37821,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-06-29",
   "data_mode": "intraday",
-  "generated_at": "2026-06-30T12:54:48-03:00",
+  "generated_at": "2026-06-30T15:56:52-03:00",
   "glb_ath": [
     {
       "adr_pct": 3.35866770232496,
@@ -39865,6 +40019,7 @@ window.RADAR_DATA = {
       "prior_day_range": 16.179993,
       "prior_day_volume": 10824500,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 7.912975782532862,
       "pullback_distance_pct": 0.7568135095832984,
       "pullback_label": "Abriu abaixo",
@@ -40031,6 +40186,7 @@ window.RADAR_DATA = {
       "prior_day_range": 5.056,
       "prior_day_volume": 3034800,
       "prior_up_streak": 2,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 5.456207032629248,
       "pullback_distance_pct": 1.1734895216731989,
       "pullback_label": "Abriu abaixo",
@@ -40198,6 +40354,7 @@ window.RADAR_DATA = {
       "prior_day_range": 3.674999,
       "prior_day_volume": 3858800,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 7.712284932523289,
       "pullback_distance_pct": 5.025583947811851,
       "pullback_label": "Abriu abaixo",
@@ -40365,6 +40522,7 @@ window.RADAR_DATA = {
       "prior_day_range": 193.071045,
       "prior_day_volume": 16799100,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 1.0250566423807845,
       "pullback_distance_pct": 7.090888712943988,
       "pullback_label": "Tocou",
@@ -40531,6 +40689,7 @@ window.RADAR_DATA = {
       "prior_day_range": 8.679993,
       "prior_day_volume": 1008000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 4.992045600199044,
       "pullback_distance_pct": 7.139356560683385,
       "pullback_label": "Abriu abaixo",
@@ -40698,6 +40857,7 @@ window.RADAR_DATA = {
       "prior_day_range": 115.98999,
       "prior_day_volume": 9299000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 7.881437995656027,
       "pullback_distance_pct": 1.3847466029559552,
       "pullback_label": "Abriu abaixo",
@@ -40865,6 +41025,7 @@ window.RADAR_DATA = {
       "prior_day_range": 0.865001,
       "prior_day_volume": 1153800,
       "prior_up_streak": 2,
+      "pullback_below_sma_days": 2,
       "pullback_depth_pct": 6.907650408516972,
       "pullback_distance_pct": 2.335561607658665,
       "pullback_label": "Abriu abaixo",
@@ -41032,6 +41193,7 @@ window.RADAR_DATA = {
       "prior_day_range": 3.969994,
       "prior_day_volume": 1347900,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 5.777139954807745,
       "pullback_distance_pct": 3.856621851317832,
       "pullback_label": "Abriu abaixo",
@@ -41198,6 +41360,7 @@ window.RADAR_DATA = {
       "prior_day_range": 77.349976,
       "prior_day_volume": 86115000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 1.9608311679229873,
       "pullback_distance_pct": 9.688173965712066,
       "pullback_label": "Tocou",
@@ -41364,6 +41527,7 @@ window.RADAR_DATA = {
       "prior_day_range": 8.68,
       "prior_day_volume": 1178000,
       "prior_up_streak": 1,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 0.4864959914553757,
       "pullback_distance_pct": 5.505154773456988,
       "pullback_label": "Tocou",
@@ -41531,6 +41695,7 @@ window.RADAR_DATA = {
       "prior_day_range": 22.5,
       "prior_day_volume": 52661800,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 3.546682062331009,
       "pullback_distance_pct": 5.048148771965355,
       "pullback_label": "Tocou",
@@ -41698,6 +41863,7 @@ window.RADAR_DATA = {
       "prior_day_range": 5.729996,
       "prior_day_volume": 99247000,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 1.4741463171285294,
       "pullback_distance_pct": 9.517514321585052,
       "pullback_label": "Tocou",
@@ -41864,6 +42030,7 @@ window.RADAR_DATA = {
       "prior_day_range": 0.719,
       "prior_day_volume": 14663200,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 0.07137758743754234,
       "pullback_distance_pct": 10.425326447495497,
       "pullback_label": "Tocou",
@@ -42030,6 +42197,7 @@ window.RADAR_DATA = {
       "prior_day_range": 67.909973,
       "prior_day_volume": 23368900,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 3.052052672398178,
       "pullback_distance_pct": 7.1159794981645375,
       "pullback_label": "Abriu abaixo",
@@ -42197,6 +42365,7 @@ window.RADAR_DATA = {
       "prior_day_range": 15.059998,
       "prior_day_volume": 10060500,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 4.815602486110429,
       "pullback_distance_pct": 5.221161613663705,
       "pullback_label": "Abriu abaixo",
@@ -42364,6 +42533,7 @@ window.RADAR_DATA = {
       "prior_day_range": 0.395,
       "prior_day_volume": 7490400,
       "prior_up_streak": 1,
+      "pullback_below_sma_days": 3,
       "pullback_depth_pct": 4.301594973417108,
       "pullback_distance_pct": 11.406476558724021,
       "pullback_label": "Abriu abaixo",
@@ -42530,6 +42700,7 @@ window.RADAR_DATA = {
       "prior_day_range": 13.82,
       "prior_day_volume": 20160300,
       "prior_up_streak": 0,
+      "pullback_below_sma_days": 0,
       "pullback_depth_pct": 4.940274855320101,
       "pullback_distance_pct": 9.513122605084456,
       "pullback_label": "Abriu abaixo",
@@ -53251,7 +53422,7 @@ window.RADAR_DATA = {
 };
     </script>
     <script>
-﻿const DATA = window.RADAR_DATA || {};
+const DATA = window.RADAR_DATA || {};
 
 const WINDOWS = [
   { label: "1W", key: "1w", perf: "perf_1w_pct", flag: "top1_1w", rank: "rank_1w", rankPct: "rank_pct_1w" },
@@ -54421,19 +54592,34 @@ function pullbackSourceCell(row) {
   return `<td><span class="pullback-source-pill ${cls}">${escapeHtml(source)}</span></td>`;
 }
 
+function smaStateCell(row, period) {
+  const value = Number(row[`sma${period}`]);
+  const close = Number(row.close);
+  if (Number.isNaN(value) || value <= 0) {
+    return `<td class="num sma-state-cell"><span class="muted-dash">--</span></td>`;
+  }
+  const isAbove = !Number.isNaN(close) && close > value;
+  const label = isAbove ? "Acima" : "Abaixo";
+  const cls = isAbove ? "above" : "below";
+  return `<td class="num sma-state-cell ${cls}" title="${escapeHtml(label)} da SMA${period}">
+    <span class="sma-state-wrap">
+      <span class="sma-state-icon ${cls}" aria-label="${escapeHtml(label)} da SMA${period}"></span>
+      <span>${formatNumber(value, 2)}</span>
+    </span>
+  </td>`;
+}
+
 function renderPullbacksTable() {
   if (!el.pullbacksBody || !el.pullbacksCount) return;
   const rows = sortRows(filterRows(DATA.pullbacks || [], { ignoreSignalFilter: true }), state.sort.pullbacks);
   const ranks = leadershipRanks();
   el.pullbacksCount.textContent = rows.length;
   if (!rows.length) {
-    el.pullbacksBody.innerHTML = `<tr><td colspan="10" class="empty-state">Nenhum pullback em lideranca no snapshot atual.</td></tr>`;
+    el.pullbacksBody.innerHTML = `<tr><td colspan="11" class="empty-state">Nenhum pullback em lideranca no snapshot atual.</td></tr>`;
     return;
   }
   el.pullbacksBody.innerHTML = rows.map((row) => {
     const rankValue = ranks.get(row.ticker);
-    const distance = Number(row.pullback_distance_pct || 0);
-    const distanceClass = distance >= 0 ? "positive" : "negative";
     return `
       <tr data-ticker="${escapeHtml(row.ticker || "")}" data-status="${escapeHtml(row.status || "")}" data-signal="${escapeHtml(row.signal_type || "")}" data-rank="${rankValue || ""}">
         ${tickerCell(row)}
@@ -54441,9 +54627,10 @@ function renderPullbacksTable() {
         ${pullbackSmaCell(row)}
         ${pullbackSourceCell(row)}
         <td class="num">${formatNumber(row.close, 2)}</td>
-        <td class="num">${formatNumber(row.pullback_sma_value, 2)}</td>
-        <td class="num ${distanceClass}">${formatPercent(row.pullback_distance_pct, 2)}</td>
-        <td class="num">${formatPercent(row.pullback_depth_pct, 2)}</td>
+        ${smaStateCell(row, 10)}
+        ${smaStateCell(row, 20)}
+        ${smaStateCell(row, 50)}
+        <td class="num" title="Pregoes anteriores consecutivos sem fechar acima da ${escapeHtml("SMA" + (row.pullback_sma || ""))}">${formatNumber(row.pullback_below_sma_days, 0)}</td>
         ${rvolCell(row)}
         ${themeCell(row, { flags: true })}
       </tr>
