@@ -1540,7 +1540,7 @@ tbody tr:hover {
 
 .agent-hero {
   display: grid;
-  grid-template-columns: minmax(320px, 1fr) minmax(420px, 560px);
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
   align-items: start;
   margin-bottom: 14px;
@@ -1562,7 +1562,7 @@ tbody tr:hover {
 
 .agent-note {
   margin: 6px 0 0;
-  max-width: 520px;
+  max-width: 760px;
   color: var(--muted);
 }
 
@@ -1591,23 +1591,6 @@ tbody tr:hover {
   color: #1f5b4e;
 }
 
-.agent-rule {
-  display: grid;
-  align-content: center;
-  gap: 4px;
-  min-height: 84px;
-  padding: 13px 14px;
-  border: 1px solid #d7b46c;
-  border-radius: 7px;
-  background: #fff7df;
-  color: #60420d;
-  line-height: 1.45;
-}
-
-.agent-rule strong {
-  font-size: 12px;
-  text-transform: uppercase;
-}
 
 .agent-metrics {
   margin-bottom: 14px;
@@ -2385,10 +2368,6 @@ tbody tr:hover {
             <h2>Agente de Trades <span id="agentStatusPill" class="agent-status-pill">--</span></h2>
             <p class="agent-note">Registro simulado. Nenhuma ordem real e enviada para corretora.</p>
           </div>
-          <div class="agent-rule">
-            <strong>Estado</strong>
-            <span id="agentRuleText">Agente pausado. Historico preservado em modo somente leitura.</span>
-          </div>
         </section>
 
         <section class="metric-grid agent-metrics" aria-label="Resumo do agente">
@@ -2436,35 +2415,6 @@ tbody tr:hover {
                 </tr>
               </thead>
               <tbody id="agentTradesBody"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="section-block">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Sem entrada</p>
-              <h2>GLBs que fecharam abaixo</h2>
-            </div>
-            <span class="row-count" id="agentGlbBelowCount">--</span>
-          </div>
-          <div class="table-wrap">
-            <table class="agent-reject-table">
-              <thead>
-                <tr>
-                  <th title="Ticker que tocou a GLB mas nao confirmou no fechamento.">Ticker</th>
-                  <th title="Data do sinal GLB rejeitado.">Data</th>
-                  <th title="Motivo para o agente nao comprar.">Motivo</th>
-                  <th title="Preco/fechamento atual.">Close</th>
-                  <th title="Linha GLB: ATH anterior + 0,01.">Linha GLB</th>
-                  <th title="Distancia do close contra a linha GLB.">Dist.</th>
-                  <th title="Pregoes completos desde o ATH anterior.">Base</th>
-                  <th title="ADR14 percentual.">ADR</th>
-                  <th title="Volume relativo de 10 dias.">RVOL(10)</th>
-                  <th title="Tema principal.">Tema</th>
-                </tr>
-              </thead>
-              <tbody id="agentGlbBelowBody"></tbody>
             </table>
           </div>
         </section>
@@ -25928,7 +25878,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-02",
   "data_mode": "intraday",
-  "generated_at": "2026-07-02T17:49:34-03:00",
+  "generated_at": "2026-07-02T17:56:04-03:00",
   "glb_ath": [
     {
       "adr_pct": 3.7069094196124244,
