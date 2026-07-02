@@ -1634,7 +1634,7 @@ tbody tr:hover {
 }
 
 .agent-table {
-  min-width: 1180px;
+  min-width: 1060px;
   table-layout: fixed;
 }
 
@@ -1668,81 +1668,66 @@ tbody tr:hover {
 
 .agent-table th:nth-child(1),
 .agent-table td:nth-child(1) {
-  width: 180px;
+  width: 190px;
 }
 
 .agent-table th:nth-child(2),
 .agent-table td:nth-child(2) {
-  width: 126px;
+  width: 116px;
 }
 
 .agent-table th:nth-child(3),
 .agent-table td:nth-child(3) {
-  width: 126px;
+  width: 74px;
+  text-align: right;
 }
 
 .agent-table th:nth-child(4),
 .agent-table td:nth-child(4) {
-  width: 74px;
+  width: 70px;
   text-align: right;
 }
 
 .agent-table th:nth-child(5),
 .agent-table td:nth-child(5) {
-  width: 70px;
+  width: 118px;
   text-align: right;
 }
 
 .agent-table th:nth-child(6),
-.agent-table td:nth-child(6) {
-  width: 112px;
+.agent-table td:nth-child(6),
+.agent-table th:nth-child(7),
+.agent-table td:nth-child(7) {
+  width: 104px;
   text-align: right;
 }
 
-.agent-table th:nth-child(7),
-.agent-table td:nth-child(7),
 .agent-table th:nth-child(8),
 .agent-table td:nth-child(8) {
-  width: 104px;
+  width: 62px;
   text-align: right;
 }
 
 .agent-table th:nth-child(9),
 .agent-table td:nth-child(9) {
-  width: 62px;
+  width: 84px;
   text-align: right;
 }
 
 .agent-table th:nth-child(10),
 .agent-table td:nth-child(10) {
-  width: 80px;
+  width: 62px;
   text-align: right;
 }
 
 .agent-table th:nth-child(11),
 .agent-table td:nth-child(11) {
-  width: 62px;
-  text-align: right;
-}
-
-.agent-table th:nth-child(12),
-.agent-table td:nth-child(12) {
   width: 70px;
   text-align: right;
 }
 
-.agent-origin-cell {
-  min-width: 0;
-}
-
-.agent-origin-pill {
-  width: 126px;
-  height: 24px;
-  font-size: 11px;
-}
-
 .agent-status-cell .pill {
-  width: 122px;
+  width: 104px;
   justify-content: center;
 }
 
@@ -2401,8 +2386,7 @@ tbody tr:hover {
               <thead>
                 <tr>
                   <th title="Ticker e empresa da posição paper.">Ticker</th>
-                  <th title="Origem da entrada paper: GLB oficial EOD confirmado no fechamento; entradas antigas aparecem apenas como historico legado.">Origem</th>
-	                  <th title="Status do setup no momento da entrada.">Status</th>
+	                  <th title="Situa??o operacional da posi??o paper: aberta, fechada por falha GLB, stop ou trailing.">Situa??o</th>
 	                  <th title="Volume relativo de 10 dias do ticker no snapshot atual do radar.">RVOL(10)</th>
 	                  <th title="ADR14 percentual do ticker no sinal GLB.">ADR</th>
                   <th title="Preço, data e horário de entrada paper.">Entrada</th>
@@ -25878,7 +25862,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-02",
   "data_mode": "intraday",
-  "generated_at": "2026-07-02T17:56:04-03:00",
+  "generated_at": "2026-07-02T18:03:35-03:00",
   "glb_ath": [
     {
       "adr_pct": 3.7069094196124244,
@@ -34787,6 +34771,10 @@ function statusClass(status) {
   if (normalized === "extended") return "pill-extended";
   if (normalized === "leader") return "pill-leader";
   if (normalized === "leader trigger") return "pill-leader";
+  if (normalized === "aberto") return "pill-ready";
+  if (normalized === "falha glb" || normalized === "stop gap" || normalized === "stop 2atr") return "pill-extended";
+  if (normalized === "chandelier") return "pill-leader";
+  if (normalized === "fechado") return "pill-default";
   if (normalized === "triggered") return "pill-triggered";
   if (normalized === "breakout baseline") return "pill-breakout-baseline";
   if (normalized === "new breakout") return "pill-new-breakout";
@@ -36071,61 +36059,6 @@ function agentMetricCard(label, value, title = "") {
   `;
 }
 
-function agentOriginMeta(row) {
-  const basis = String(row.entry_basis || "").toLowerCase();
-  if (basis === "glb_close") {
-    return {
-      label: "GLB Close",
-      detail: "close > GLB",
-      className: "origin-intraday",
-      title: "A compra paper do agente oficial e registrada somente no fechamento, quando o close confirma acima do trigger GLB ATH 63D.",
-    };
-  }
-  if (basis === "glb_ath_60d" || basis === "glb_ath_gap") {
-    return {
-      label: "GLB ATH",
-      detail: basis === "glb_ath_gap" ? "gap > ATH" : "legado 60D",
-      className: "origin-intraday",
-      title:
-        basis === "glb_ath_gap"
-          ? "A acao abriu acima do trigger GLB ATH; a entrada paper foi registrada na abertura."
-          : "Entrada legada GLB 60D preservada apenas para historico; novas entradas usam GLB 63D EOD oficial.",
-    };
-  }
-  if (basis === "open_above_52w_or30") {
-    return {
-      label: "30m ORB",
-      detail: "gap > 52W",
-      className: "origin-open",
-      title: "A ação abriu acima da máxima de 52 semanas anterior; o agente só entrou depois de romper a máxima do opening range de 30 minutos.",
-    };
-  }
-  if (basis === "52w_intraday_break") {
-    return {
-      label: "R. Intraday",
-      detail: "52W no pregão",
-      className: "origin-intraday",
-      title: "A ação rompeu a máxima de 52 semanas durante o pregão; a entrada paper ocorreu no gatilho de rompimento.",
-    };
-  }
-  return {
-    label: basis ? basis.replaceAll("_", " ") : "--",
-    detail: "origem não mapeada",
-    className: "origin-unknown",
-    title: basis || "Origem de entrada não informada.",
-  };
-}
-
-function agentOriginCell(row) {
-  const meta = agentOriginMeta(row);
-  return `
-    <td class="agent-origin-cell" title="${escapeHtml(meta.title)}">
-      <span class="origin-pill agent-origin-pill ${escapeHtml(meta.className)}">${escapeHtml(meta.label)}</span>
-      <small>${escapeHtml(meta.detail)}</small>
-    </td>
-  `;
-}
-
 function agentEntryBasisLabel(value) {
   const basis = String(value || "").toLowerCase();
   if (basis === "glb_close") return "MOC GLB 63D";
@@ -36134,6 +36067,36 @@ function agentEntryBasisLabel(value) {
   if (basis === "open_above_52w_or30") return "OR30 apos gap";
   if (basis === "52w_intraday_break") return "52W intraday";
   return basis ? basis.replaceAll("_", " ") : "--";
+}
+
+
+function agentExitReasonLabel(value) {
+  const reason = String(value || "").toLowerCase();
+  if (!reason) return "";
+  if (reason === "early_glb_failure") return "close abaixo da GLB";
+  if (reason === "gap_initial_stop") return "stop inicial no gap";
+  if (reason === "initial_2atr14") return "stop inicial 2ATR";
+  if (reason === "chandelier3atr" || reason === "chandelier_3atr" || reason.includes("chandelier")) return "trailing stop";
+  return reason.replaceAll("_", " ");
+}
+
+function agentPositionStatusMeta(row, isOpen) {
+  if (isOpen) {
+    return { label: "Aberto", detail: "posi??o ativa" };
+  }
+  const reason = String(row.exit_reason || "").toLowerCase();
+  if (reason === "early_glb_failure") return { label: "Falha GLB", detail: "close < GLB" };
+  if (reason === "gap_initial_stop") return { label: "Stop gap", detail: "stop inicial" };
+  if (reason === "initial_2atr14") return { label: "Stop 2ATR", detail: "stop inicial" };
+  if (reason === "chandelier3atr" || reason === "chandelier_3atr" || reason.includes("chandelier")) {
+    return { label: "Chandelier", detail: "trailing stop" };
+  }
+  return { label: "Fechado", detail: agentExitReasonLabel(reason) || "encerrado" };
+}
+
+function agentPositionStatusCell(row, isOpen) {
+  const meta = agentPositionStatusMeta(row, isOpen);
+  return `${pill(meta.label)}<small>${escapeHtml(meta.detail)}</small>`;
 }
 
 function formatShareQty(value) {
@@ -36167,7 +36130,6 @@ function renderAgentTrades(agent) {
           const currentPrice = isOpen ? row.last_price : row.exit_price;
           const currentR = isOpen ? row.last_r : row.r_multiple;
           const pnl = isOpen ? row.open_pnl : row.pnl;
-          const exitInfo = isOpen ? "open" : row.exit_reason || "fechado";
           const rvol10 = row.rvol_10d ?? leaderRow.rvol_10d;
           const adrPct = row.adr_pct ?? leaderRow.adr_pct;
           return `
@@ -36176,8 +36138,7 @@ function renderAgentTrades(agent) {
                 <strong>${escapeHtml(row.ticker)}</strong>
                 <small>${escapeHtml(row.name || "")}</small>
               </td>
-              ${agentOriginCell(row)}
-              <td class="agent-status-cell">${pill(row.entry_status || row.status || "--")}<small>${escapeHtml(exitInfo)}</small></td>
+              <td class="agent-status-cell">${agentPositionStatusCell(row, isOpen)}</td>
               ${rvolCell({ rvol_10d: rvol10 })}
               <td class="num">${formatPercent(adrPct)}</td>
               <td class="num">${formatNumber(row.entry_price, 2)}<small>${escapeHtml(row.entry_date || "")} ${escapeHtml(row.entry_time || "")}</small></td>
@@ -36191,7 +36152,7 @@ function renderAgentTrades(agent) {
           `;
         })
         .join("")
-    : '<tr><td colspan="12"><div class="empty-state">Nenhum trade atual do agente.</div></td></tr>';
+    : '<tr><td colspan="11"><div class="empty-state">Nenhum trade atual do agente.</div></td></tr>';
 }
 
 function renderAgent() {
