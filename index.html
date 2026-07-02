@@ -2106,6 +2106,7 @@ tbody tr:hover {
               <tr>
                 <th data-sort="ticker" title="Ticker negociado.">Ticker</th>
                 <th data-sort="close" title="Sinaliza se o preco/fechamento atual esta acima da GLB.">GLB</th>
+                <th data-sort="official_glb_signal" title="Sim quando passa pela regra oficial baseline: close EOD acima da GLB, base 63D, QQQ regime ok e extensao dentro do limite.">Baseline</th>
                 <th data-sort="close" title="Ultimo preco/fechamento retornado pelo Yahoo.">Preco</th>
                 <th data-sort="ath_trigger" title="Preco minimo do rompimento: ATH anterior + 0,01.">Linha GLB</th>
                 <th data-sort="day_change_pct" title="Distancia do preco atual contra a linha GLB.">Dist.</th>
@@ -26864,7 +26865,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-01",
   "data_mode": "intraday",
-  "generated_at": "2026-07-02T11:19:54-03:00",
+  "generated_at": "2026-07-02T11:24:35-03:00",
   "glb_ath": [
     {
       "adr_pct": 1.9542182920456959,
@@ -37542,6 +37543,7 @@ function renderGlbTable() {
         <tr data-ticker="${escapeHtml(row.ticker)}">
           ${tickerCell(row)}
           ${glbStatusCell(row)}
+          ${glbBaselineCell(row)}
           <td class="num">${formatNumber(row.close, 2)}</td>
           <td class="num" title="ATH anterior + 0,01.">${formatNumber(row.ath_trigger, 2)}</td>
           ${glbDistanceCell(row)}
@@ -38006,8 +38008,10 @@ reloadIfPublishedSnapshotIsNewer();
 
 
 
+
     </script>
   </body>
 </html>
+
 
 
