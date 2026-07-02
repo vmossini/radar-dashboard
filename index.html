@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
@@ -2076,7 +2076,7 @@ tbody tr:hover {
           <span id="metricWindowLine">--</span>
         </div>
         <div class="metric">
-          <span class="metric-label">ConsolidaÃ§Ã£o</span>
+          <span class="metric-label">Consolidação</span>
           <strong id="metricActive">--</strong>
           <span id="metricActiveLine">--</span>
         </div>
@@ -2250,7 +2250,7 @@ tbody tr:hover {
         <div class="section-heading">
           <div>
             <p class="eyebrow">Stockbee / Pradeep</p>
-            <h2>Momentum Burst dos lÃ­deres</h2>
+            <h2>Momentum Burst dos líderes</h2>
           </div>
           <span class="row-count" id="momentumBurstCount">--</span>
         </div>
@@ -2258,17 +2258,17 @@ tbody tr:hover {
           <table class="momentum-burst-table">
             <thead>
               <tr>
-                <th data-sort="ticker" title="Ticker negociado. Apenas aÃ§Ãµes jÃ¡ presentes em Todos os lÃ­deres entram nesta tabela.">Ticker</th>
-                <th data-sort="leadership_score" title="PosiÃ§Ã£o do ticker no ranking geral de All leaders. Menor nÃºmero = melhor posiÃ§Ã£o.">Rank</th>
+                <th data-sort="ticker" title="Ticker negociado. Apenas ações já presentes em Todos os líderes entram nesta tabela.">Ticker</th>
+                <th data-sort="leadership_score" title="Posição do ticker no ranking geral de All leaders. Menor número = melhor posição.">Rank</th>
                 <th data-sort="day_change_pct" title="Preco atual mais de 4% acima do fechamento anterior e acima da abertura.">Dia</th>
-                <th data-sort="high_proximity_pct" title="DistÃ¢ncia do preÃ§o atual atÃ© a mÃ¡xima do dia como percentual do range. Leitura de qualidade; nÃ£o Ã© filtro duro.">Perto high</th>
+                <th data-sort="high_proximity_pct" title="Distância do preço atual até a máxima do dia como percentual do range. Leitura de qualidade; não é filtro duro.">Perto high</th>
                 <th data-sort="range_expansion_ratio" title="Range de hoje dividido pelo range de ontem. Regra: >= 1.">Range x</th>
                 <th data-sort="pre_breakout_tight_1d_ratio" title="Range do candle anterior dividido pela media de range dos 20 candles completos anteriores. Regra Momentum Burst: <= 0.80x.">Tight 1D</th>
-                <th data-sort="prior_day_move_pct" title="VariaÃ§Ã£o do fechamento de ontem contra o fechamento de dois pregÃµes atrÃ¡s. Contexto; nÃ£o filtra Momentum Burst.">Ontem</th>
-                <th data-sort="prior_3d_1m_high_count" title="Quantidade de novas mÃ¡ximas de 1 mÃªs nos 3 pregÃµes anteriores. Regra Momentum Burst: precisa ser 0.">1M prev</th>
+                <th data-sort="prior_day_move_pct" title="Variação do fechamento de ontem contra o fechamento de dois pregões atrás. Contexto; não filtra Momentum Burst.">Ontem</th>
+                <th data-sort="prior_3d_1m_high_count" title="Quantidade de novas máximas de 1 mês nos 3 pregões anteriores. Regra Momentum Burst: precisa ser 0.">1M prev</th>
                 <th data-sort="volume_projected_vs_prior_day" title="Volume usado na regra. Intraday: volume projetado dividido pelo volume de ontem. EOD: volume real dividido pelo volume de ontem. Regra: > 1x.">Vol x</th>
-                <th data-sort="rvol_10d" title="Volume relativo de 10 dias. NÃ£o Ã© filtro duro da tabela, mas ajuda a qualificar o sinal.">RVOL(10)</th>
-                <th data-sort="rmv15_tight_count" title="Quantidade dos Ãºltimos 15 candles cujo RMV ficou abaixo de 50. Maior nÃºmero = mais compressÃ£o prÃ©via.">RMV</th>
+                <th data-sort="rvol_10d" title="Volume relativo de 10 dias. Não é filtro duro da tabela, mas ajuda a qualificar o sinal.">RVOL(10)</th>
+                <th data-sort="rmv15_tight_count" title="Quantidade dos últimos 15 candles cujo RMV ficou abaixo de 50. Maior número = mais compressão prévia.">RMV</th>
                 <th data-sort="theme" title="Tema principal do ticker.">Tema</th>
               </tr>
             </thead>
@@ -2281,8 +2281,8 @@ tbody tr:hover {
         <div class="section-block">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Universo-mÃ£e estrutural</p>
-              <h2>Todos os lÃ­deres</h2>
+              <p class="eyebrow">Universo-mãe estrutural</p>
+              <h2>Todos os líderes</h2>
             </div>
             <span class="row-count" id="leadersCount">--</span>
           </div>
@@ -2375,18 +2375,18 @@ tbody tr:hover {
             <table class="agent-table">
               <thead>
                 <tr>
-                  <th title="Ticker e empresa da posiÃ§Ã£o paper.">Ticker</th>
+                  <th title="Ticker e empresa da posição paper.">Ticker</th>
                   <th title="Origem da entrada paper: GLB oficial EOD confirmado no fechamento; entradas antigas aparecem apenas como historico legado.">Origem</th>
 	                  <th title="Status do setup no momento da entrada.">Status</th>
 	                  <th title="Volume relativo de 10 dias do ticker no snapshot atual do radar.">RVOL(10)</th>
 	                  <th title="ADR14 percentual do ticker no sinal GLB.">ADR</th>
-                  <th title="PreÃ§o, data e horÃ¡rio de entrada paper.">Entrada</th>
-                  <th title="PreÃ§o gatilho usado pela regra de entrada.">Gatilho</th>
-                  <th title="Stop inicial da posiÃ§Ã£o paper.">Stop</th>
+                  <th title="Preço, data e horário de entrada paper.">Entrada</th>
+                  <th title="Preço gatilho usado pela regra de entrada.">Gatilho</th>
+                  <th title="Stop inicial da posição paper.">Stop</th>
                   <th title="Quantidade paper calculada por risco de 0,5% do capital base, aproximadamente US$50 por posicao.">Qtd</th>
-                  <th title="Ãšltimo preÃ§o marcado no painel.">Atual</th>
+                  <th title="Último preço marcado no painel.">Atual</th>
                   <th title="Resultado aberto ou fechado em R.">R</th>
-                  <th title="Resultado aberto ou fechado em dÃ³lares.">P/L</th>
+                  <th title="Resultado aberto ou fechado em dólares.">P/L</th>
                 </tr>
               </thead>
               <tbody id="agentTradesBody"></tbody>
@@ -26864,7 +26864,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-01",
   "data_mode": "intraday",
-  "generated_at": "2026-07-02T10:38:11-03:00",
+  "generated_at": "2026-07-02T11:19:54-03:00",
   "glb_ath": [
     {
       "adr_pct": 1.9542182920456959,
@@ -36174,7 +36174,7 @@ window.RADAR_DATA = {
 };
     </script>
     <script>
-﻿const DATA = window.RADAR_DATA || {};
+const DATA = window.RADAR_DATA || {};
 
 const WINDOWS = [
   { label: "1W", key: "1w", perf: "perf_1w_pct", flag: "top1_1w", rank: "rank_1w", rankPct: "rank_pct_1w" },
@@ -36407,7 +36407,7 @@ function statusClass(status) {
 
 function statusLabel(status) {
   const normalized = String(status || "").toLowerCase();
-  if (normalized === "ready") return "ConsolidaÃƒÂ§ÃƒÂ£o";
+  if (normalized === "ready") return "Consolidação";
   if (normalized === "leader trigger") return "Leader";
   return status || "Unknown";
 }
@@ -36461,14 +36461,14 @@ function signalText(row) {
 
 function baseStatusLabel(row) {
   const normalized = String(row.status || "").toLowerCase();
-  if (normalized === "ready") return "ConsolidaÃƒÂ§ÃƒÂ£o";
+  if (normalized === "ready") return "Consolidação";
   if (normalized === "extended") return "Extended";
   return "Leader";
 }
 
 function baseStatusPill(row) {
   const label = baseStatusLabel(row);
-  const cssStatus = label === "ConsolidaÃƒÂ§ÃƒÂ£o" ? "ready" : label.toLowerCase();
+  const cssStatus = label === "Consolidação" ? "ready" : label.toLowerCase();
   return `<span class="pill ${statusClass(cssStatus)}">${escapeHtml(label)}</span>`;
 }
 
@@ -37281,7 +37281,7 @@ function renderActiveTable() {
   el.activeCount.textContent = rows.length;
   if (!rows.length) {
     el.activeBody.innerHTML =
-      '<tr><td colspan="8"><div class="empty-state">Nenhum lider em consolidaÃƒÂ§ÃƒÂ£o para os filtros atuais.</div></td></tr>';
+      '<tr><td colspan="8"><div class="empty-state">Nenhum lider em consolidação para os filtros atuais.</div></td></tr>';
     return;
   }
   el.activeBody.innerHTML = rows
@@ -37706,22 +37706,22 @@ function agentOriginMeta(row) {
       label: "30m ORB",
       detail: "gap > 52W",
       className: "origin-open",
-      title: "A aÃƒÂ§ÃƒÂ£o abriu acima da mÃƒÂ¡xima de 52 semanas anterior; o agente sÃƒÂ³ entrou depois de romper a mÃƒÂ¡xima do opening range de 30 minutos.",
+      title: "A ação abriu acima da máxima de 52 semanas anterior; o agente só entrou depois de romper a máxima do opening range de 30 minutos.",
     };
   }
   if (basis === "52w_intraday_break") {
     return {
       label: "R. Intraday",
-      detail: "52W no pregÃƒÂ£o",
+      detail: "52W no pregão",
       className: "origin-intraday",
-      title: "A aÃƒÂ§ÃƒÂ£o rompeu a mÃƒÂ¡xima de 52 semanas durante o pregÃƒÂ£o; a entrada paper ocorreu no gatilho de rompimento.",
+      title: "A ação rompeu a máxima de 52 semanas durante o pregão; a entrada paper ocorreu no gatilho de rompimento.",
     };
   }
   return {
     label: basis ? basis.replaceAll("_", " ") : "--",
-    detail: "origem nÃƒÂ£o mapeada",
+    detail: "origem não mapeada",
     className: "origin-unknown",
-    title: basis || "Origem de entrada nÃƒÂ£o informada.",
+    title: basis || "Origem de entrada não informada.",
   };
 }
 
