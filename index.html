@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0" />
     <title>Radar de Lideranca</title>
     <style>
-:root {
+﻿:root {
   color-scheme: light;
   --bg: #f5f7f6;
   --panel: #ffffff;
@@ -636,18 +636,18 @@ table {
 
 .glb-table th:nth-child(1),
 .glb-table td:nth-child(1) {
-  width: 190px;
+  width: 180px;
 }
 
 .glb-table th:nth-child(2),
 .glb-table td:nth-child(2) {
-  width: 88px;
+  width: 86px;
 }
 
 .glb-table th:nth-child(3),
 .glb-table td:nth-child(3) {
-  width: 78px;
-  text-align: right;
+  width: 92px;
+  text-align: center;
 }
 
 .glb-table th:nth-child(4),
@@ -659,15 +659,43 @@ table {
 .glb-table th:nth-child(7),
 .glb-table td:nth-child(7),
 .glb-table th:nth-child(8),
-.glb-table td:nth-child(8) {
-  width: 78px;
+.glb-table td:nth-child(8),
+.glb-table th:nth-child(9),
+.glb-table td:nth-child(9) {
+  width: 76px;
   text-align: right;
 }
 
-.glb-table th:nth-child(9),
-.glb-table td:nth-child(9) {
-  width: 250px;
+.glb-table th:nth-child(10),
+.glb-table td:nth-child(10) {
+  width: 245px;
 }
+.glb-baseline-cell { text-align: center; }
+
+.glb-baseline-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.glb-baseline-pill.baseline-yes {
+  color: #075c4a;
+  background: #dff6ec;
+  border: 1px solid #8dd7bb;
+}
+
+.glb-baseline-pill.baseline-no {
+  color: #6d3a2d;
+  background: #f7e7df;
+  border: 1px solid #dfa990;
+}
+
 .pullbacks-table {
   min-width: 1240px;
   table-layout: fixed;
@@ -2010,6 +2038,7 @@ tbody tr:hover {
 .sma-state-icon.below::after {
   transform: rotate(-45deg);
 }
+
     </style>
   </head>
   <body>
@@ -2080,7 +2109,7 @@ tbody tr:hover {
                 <th data-sort="close" title="Ultimo preco/fechamento retornado pelo Yahoo.">Preco</th>
                 <th data-sort="ath_trigger" title="Preco minimo do rompimento: ATH anterior + 0,01.">Linha GLB</th>
                 <th data-sort="day_change_pct" title="Distancia do preco atual contra a linha GLB.">Dist.</th>
-                <th data-sort="glb_base_days" title="Pregoes completos desde o ultimo ATH anterior. Regra: pelo menos 60.">Base</th>
+                <th data-sort="glb_base_days" title="Pregoes completos desde o ultimo ATH anterior. Regra: pelo menos 63.">Base</th>
                 <th data-sort="adr_pct" title="ADR14 percentual: media das highs dos ultimos 14 candles menos media das lows dos ultimos 14 candles, dividido pelo preco atual.">ADR</th>
                 <th data-sort="rvol_10d" title="Volume atual dividido pela media dos 10 pregoes anteriores. O denominador exclui o candle atual, igual ao RVOL(10) do TradingView.">RVOL(10)</th>
                 <th data-sort="sector" title="Setor do Nasdaq screener.">Tema</th>
@@ -26835,7 +26864,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-01",
   "data_mode": "intraday",
-  "generated_at": "2026-07-01T19:06:16-03:00",
+  "generated_at": "2026-07-02T10:38:11-03:00",
   "glb_ath": [
     {
       "adr_pct": 1.9542182920456959,
@@ -26858,10 +26887,16 @@ window.RADAR_DATA = {
       "industry": "Property-Casualty Insurers",
       "market_cap": 136829288195,
       "name": "Chubb Limited  Common Stock",
+      "official_glb_signal": "True",
       "perf_6m_prev_pct": 8.360622358645253,
       "previous_close": 340.74,
       "prior_ath_date": "2026-03-02",
       "prior_ath_high": 345.67,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 1.3738657433131936,
       "sector": "Finance",
       "sma20": 329.74,
@@ -26890,10 +26925,16 @@ window.RADAR_DATA = {
       "industry": "Hospital/Nursing Management",
       "market_cap": 7019379876,
       "name": "PACS Group Inc. Common Stock",
+      "official_glb_signal": "True",
       "perf_6m_prev_pct": 9.27729084935085,
       "previous_close": 42.64,
       "prior_ath_date": "2024-11-01",
       "prior_ath_high": 43.92,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 1.162052048383004,
       "sector": "Health Care",
       "sma20": 37.7,
@@ -26922,10 +26963,16 @@ window.RADAR_DATA = {
       "industry": "Computer Software: Prepackaged Software",
       "market_cap": 921383086,
       "name": "Red Violet Inc. Common Stock",
+      "official_glb_signal": "True",
       "perf_6m_prev_pct": 10.759608157046973,
       "previous_close": 63.72,
       "prior_ath_date": "2025-11-06",
       "prior_ath_high": 64.14,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 1.0768704156479219,
       "sector": "Technology",
       "sma20": 56.34,
@@ -26954,10 +27001,16 @@ window.RADAR_DATA = {
       "industry": "Major Banks",
       "market_cap": 6132296062,
       "name": "Hancock Whitney Corporation Common Stock",
+      "official_glb_signal": "True",
       "perf_6m_prev_pct": 15.48686977601652,
       "previous_close": 74.72,
       "prior_ath_date": "2026-02-06",
       "prior_ath_high": 75.43,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 0.8532920076488767,
       "sector": "Finance",
       "sma20": 71.58,
@@ -26986,10 +27039,16 @@ window.RADAR_DATA = {
       "industry": "Specialty Insurers",
       "market_cap": 4699547017,
       "name": "Neptune Insurance Holdings Inc. Class A Common Stock",
+      "official_glb_signal": "True",
       "perf_6m_prev_pct": 4.201126288438317,
       "previous_close": 31.5,
       "prior_ath_date": "2025-10-03",
       "prior_ath_high": 33.24,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 0.8201530377062782,
       "sector": "Finance",
       "sma20": 27.98,
@@ -27018,10 +27077,16 @@ window.RADAR_DATA = {
       "industry": "Medical Specialities",
       "market_cap": 23998985807,
       "name": "Quest Diagnostics Incorporated Common Stock",
+      "official_glb_signal": "True",
       "perf_6m_prev_pct": 20.755464784077105,
       "previous_close": 211.95,
       "prior_ath_date": "2026-02-27",
       "prior_ath_high": 213.5,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 0.700021624293349,
       "sector": "Health Care",
       "sma20": 202.45,
@@ -27050,10 +27115,16 @@ window.RADAR_DATA = {
       "industry": "Major Banks",
       "market_cap": 368080356,
       "name": "BayCom Corp Common Stock",
+      "official_glb_signal": "True",
       "perf_6m_prev_pct": 9.849751879104552,
       "previous_close": 32.9,
       "prior_ath_date": "2025-12-18",
       "prior_ath_high": 33.15,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 0.38779342723004695,
       "sector": "Finance",
       "sma20": 32.07,
@@ -27082,10 +27153,16 @@ window.RADAR_DATA = {
       "industry": "Commercial Banks",
       "market_cap": 449905814,
       "name": "First Bank Common Stock",
+      "official_glb_signal": "False",
       "perf_6m_prev_pct": 7.259520905890171,
       "previous_close": 17.73,
       "prior_ath_date": "2025-12-18",
       "prior_ath_high": 18.11,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 1.098063253994131,
       "sector": "Finance",
       "sma20": 16.64,
@@ -27114,10 +27191,16 @@ window.RADAR_DATA = {
       "industry": "Major Banks",
       "market_cap": 1707295067,
       "name": "Bank First Corporation Common Stock",
+      "official_glb_signal": "False",
       "perf_6m_prev_pct": 18.216597839584516,
       "previous_close": 148.35,
       "prior_ath_date": "2026-02-09",
       "prior_ath_high": 153,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 1.0882283213276192,
       "sector": "Finance",
       "sma20": 144.13,
@@ -27146,10 +27229,16 @@ window.RADAR_DATA = {
       "industry": "Major Banks",
       "market_cap": 666737914,
       "name": "Northpointe Bancshares Inc. Common Stock",
+      "official_glb_signal": "False",
       "perf_6m_prev_pct": 12.88993857304499,
       "previous_close": 19.18,
       "prior_ath_date": "2026-01-22",
       "prior_ath_high": 19.48,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 0.9592179612747683,
       "sector": "Finance",
       "sma20": 18.13,
@@ -27178,10 +27267,16 @@ window.RADAR_DATA = {
       "industry": "Property-Casualty Insurers",
       "market_cap": 23508064896,
       "name": "Loews Corporation Common Stock",
+      "official_glb_signal": "False",
       "perf_6m_prev_pct": 6.56061875080296,
       "previous_close": 113.21,
       "prior_ath_date": "2026-02-09",
       "prior_ath_high": 114.9,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 0.48237662399466996,
       "sector": "Finance",
       "sma20": 109.06,
@@ -27244,10 +27339,16 @@ window.RADAR_DATA = {
       "industry": "Commercial Banks",
       "market_cap": 449905814,
       "name": "First Bank Common Stock",
+      "official_glb_signal": "False",
       "perf_6m_prev_pct": 7.259520905890171,
       "previous_close": 17.73,
       "prior_ath_date": "2025-12-18",
       "prior_ath_high": 18.11,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 1.098063253994131,
       "sector": "Finance",
       "sma20": 16.64,
@@ -27276,10 +27377,16 @@ window.RADAR_DATA = {
       "industry": "Major Banks",
       "market_cap": 1707295067,
       "name": "Bank First Corporation Common Stock",
+      "official_glb_signal": "False",
       "perf_6m_prev_pct": 18.216597839584516,
       "previous_close": 148.35,
       "prior_ath_date": "2026-02-09",
       "prior_ath_high": 153,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 1.0882283213276192,
       "sector": "Finance",
       "sma20": 144.13,
@@ -27308,10 +27415,16 @@ window.RADAR_DATA = {
       "industry": "Major Banks",
       "market_cap": 666737914,
       "name": "Northpointe Bancshares Inc. Common Stock",
+      "official_glb_signal": "False",
       "perf_6m_prev_pct": 12.88993857304499,
       "previous_close": 19.18,
       "prior_ath_date": "2026-01-22",
       "prior_ath_high": 19.48,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 0.9592179612747683,
       "sector": "Finance",
       "sma20": 18.13,
@@ -27340,10 +27453,16 @@ window.RADAR_DATA = {
       "industry": "Property-Casualty Insurers",
       "market_cap": 23508064896,
       "name": "Loews Corporation Common Stock",
+      "official_glb_signal": "False",
       "perf_6m_prev_pct": 6.56061875080296,
       "previous_close": 113.21,
       "prior_ath_date": "2026-02-09",
       "prior_ath_high": 114.9,
+      "regime_asof": null,
+      "regime_qqq_close": "736.4000244140625",
+      "regime_qqq_sma10": "723.8590087890625",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
       "rvol_10d": 0.48237662399466996,
       "sector": "Finance",
       "sma20": 109.06,
@@ -36222,6 +36341,11 @@ function finiteNumberOrNull(value) {
   return Number.isFinite(number) ? number : null;
 }
 
+function truthyFlag(value) {
+  if (value === true) return true;
+  return ["1", "true", "yes", "sim"].includes(String(value ?? "").trim().toLowerCase());
+}
+
 function formatPercent(value, digits = 2) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) return "--";
   const number = Number(value);
@@ -37361,6 +37485,31 @@ function glbStatusCell(row) {
   `;
 }
 
+function glbBaselineCell(row) {
+  const official = truthyFlag(row.official_glb_signal);
+  const close = Number(row.close);
+  const trigger = Number(row.ath_trigger);
+  const baseDays = Number(row.glb_base_days);
+  const extension = finiteNumberOrNull(row.entry_extension_pct);
+  const qqqOk = truthyFlag(row.regime_qqq_sma10_ok);
+  const closeOk = Number.isFinite(close) && Number.isFinite(trigger) && trigger > 0 && close >= trigger;
+  const baseOk = Number.isFinite(baseDays) && baseDays >= 63;
+  const extensionOk = extension === null || extension <= 50;
+  const checks = [
+    closeOk ? "close ok" : "close abaixo da GLB",
+    baseOk ? "base >=63" : "base <63",
+    qqqOk ? "QQQ ok" : "QQQ off/indisponivel",
+    extensionOk ? "extensao ok" : "extensao >50%",
+  ];
+  const label = official ? "Sim" : "Nao";
+  const className = official ? "baseline-yes" : "baseline-no";
+  const title = `Baseline oficial: ${label}. ${checks.join(" | ")}.`;
+  return `
+    <td class="glb-baseline-cell" title="${escapeHtml(title)}">
+      <span class="glb-baseline-pill ${className}">${escapeHtml(label)}</span>
+    </td>
+  `;
+}
 function glbDistanceCell(row) {
   const distance = glbDistancePct(row);
   const className = Number(distance) >= 0 ? "positive" : "negative";
@@ -37384,7 +37533,7 @@ function renderGlbTable() {
   el.glbCount.textContent = rows.length;
   if (!rows.length) {
     el.glbBody.innerHTML =
-      '<tr><td colspan="9"><div class="empty-state">Nenhum GLB ATH 63D encontrado no snapshot atual.</div></td></tr>';
+      '<tr><td colspan="10"><div class="empty-state">Nenhum GLB ATH 63D encontrado no snapshot atual.</div></td></tr>';
     return;
   }
   el.glbBody.innerHTML = rows
@@ -37856,7 +38005,9 @@ async function reloadIfPublishedSnapshotIsNewer() {
 reloadIfPublishedSnapshotIsNewer();
 
 
+
     </script>
   </body>
 </html>
+
 
