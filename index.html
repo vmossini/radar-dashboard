@@ -2386,7 +2386,7 @@ tbody tr:hover {
               <thead>
                 <tr>
                   <th title="Ticker e empresa da posição paper.">Ticker</th>
-	                  <th title="Situa??o operacional da posi??o paper: aberta, fechada por falha GLB, stop ou trailing.">Situa??o</th>
+	                  <th title="Situação operacional da posição paper: aberta, fechada por falha GLB, stop ou trailing.">Situação</th>
 	                  <th title="Volume relativo de 10 dias do ticker no snapshot atual do radar.">RVOL(10)</th>
 	                  <th title="ADR14 percentual do ticker no sinal GLB.">ADR</th>
                   <th title="Preço, data e horário de entrada paper.">Entrada</th>
@@ -25862,7 +25862,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-02",
   "data_mode": "intraday",
-  "generated_at": "2026-07-02T18:03:35-03:00",
+  "generated_at": "2026-07-02T18:15:15-03:00",
   "glb_ath": [
     {
       "adr_pct": 3.7069094196124244,
@@ -36059,16 +36059,6 @@ function agentMetricCard(label, value, title = "") {
   `;
 }
 
-function agentEntryBasisLabel(value) {
-  const basis = String(value || "").toLowerCase();
-  if (basis === "glb_close") return "MOC GLB 63D";
-  if (basis === "glb_ath_60d") return "GLB legado 60D";
-  if (basis === "glb_ath_gap") return "Gap GLB ATH";
-  if (basis === "open_above_52w_or30") return "OR30 apos gap";
-  if (basis === "52w_intraday_break") return "52W intraday";
-  return basis ? basis.replaceAll("_", " ") : "--";
-}
-
 
 function agentExitReasonLabel(value) {
   const reason = String(value || "").toLowerCase();
@@ -36082,7 +36072,7 @@ function agentExitReasonLabel(value) {
 
 function agentPositionStatusMeta(row, isOpen) {
   if (isOpen) {
-    return { label: "Aberto", detail: "posi??o ativa" };
+    return { label: "Aberto", detail: "posição ativa" };
   }
   const reason = String(row.exit_reason || "").toLowerCase();
   if (reason === "early_glb_failure") return { label: "Falha GLB", detail: "close < GLB" };
@@ -36141,8 +36131,8 @@ function renderAgentTrades(agent) {
               <td class="agent-status-cell">${agentPositionStatusCell(row, isOpen)}</td>
               ${rvolCell({ rvol_10d: rvol10 })}
               <td class="num">${formatPercent(adrPct)}</td>
-              <td class="num">${formatNumber(row.entry_price, 2)}<small>${escapeHtml(row.entry_date || "")} ${escapeHtml(row.entry_time || "")}</small></td>
-              <td class="num">${formatNumber(row.entry_trigger || row.prior_52w_high, 2)}<small>${escapeHtml(agentEntryBasisLabel(row.entry_basis))}</small></td>
+              <td class="num">${formatNumber(row.entry_price, 2)}</td>
+              <td class="num">${formatNumber(row.entry_trigger || row.prior_52w_high, 2)}</td>
               <td class="num">${formatNumber(row.stop_price, 2)}<small>${escapeHtml(row.stop_basis || "")}</small></td>
               <td class="num">${formatShareQty(row.shares)}</td>
               <td class="num">${formatNumber(currentPrice, 2)}</td>
