@@ -2134,6 +2134,103 @@ tbody tr:hover {
         </div>
       </section>
 
+      <section class="section-block primary-block" id="shortFadePanel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Day trade short — conta REAL · risco $40/trade</p>
+            <h2>Agente Short — Day-2 Fade v4</h2>
+          </div>
+          <span class="row-count" id="shortsCount">--</span>
+        </div>
+        <div class="metric-grid" id="shortsMetrics" aria-label="Placar do agente short"></div>
+        <div class="table-wrap">
+          <table class="shorts-table">
+            <thead>
+              <tr>
+                <th title="Dia do pump (D0).">Sinal</th>
+                <th title="Ticker negociado.">Ticker</th>
+                <th title="Extensao do pump: maxima de D0 vs abertura de D0.">Ext. D0</th>
+                <th title="Fechamento de D0 (base dos niveis).">Fech. D0</th>
+                <th title="Regra gap-U: so shorta se D+1 abrir NESTE nivel ou acima (+5%).">Abre &ge;</th>
+                <th title="...ou NESTE nivel ou abaixo (-10%). Entre os dois: nao opera.">Abre &le;</th>
+                <th title="Quantidade aproximada para notional $200 (risco $40 no stop +20%).">Qtd</th>
+                <th title="ADV20 em milhoes de dolares.">ADV $M</th>
+                <th title="pendente = ordem de amanha - executado / filtrado_gap / locate caro.">Status</th>
+                <th title="Resultado bruto do trade em %.">Result.</th>
+              </tr>
+            </thead>
+            <tbody id="shortsBody"></tbody>
+          </table>
+        </div>
+      </section>
+      <script>
+      (function () {
+        function rows(text) {
+          return text.replace(/\r/g, "").split("\n").filter(function (l) { return l.trim(); })
+            .map(function (l) { return l.split(","); });
+        }
+        function esc(s) {
+          return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+          });
+        }
+        async function loadShorts() {
+          var count = document.getElementById("shortsCount");
+          try {
+            var res = await Promise.all([
+              fetch("./latest_shorts.csv", { cache: "no-store" }),
+              fetch("./latest_shorts_metrics.csv", { cache: "no-store" })
+            ]);
+            if (!res[0].ok) throw new Error("sem csv");
+            var tab = rows(await res[0].text());
+            var head = tab.shift() || [];
+            var idx = {}; head.forEach(function (h, i) { idx[h] = i; });
+            var body = document.getElementById("shortsBody");
+            var pend = 0;
+            body.innerHTML = tab.map(function (r) {
+              function g(k) { return r[idx[k]] || ""; }
+              var st = g("status");
+              if (st === "pendente") pend++;
+              var stColor = st === "pendente" ? "#f59e0b" : (st === "executado" ? "#38bdf8" : "#94a3b8");
+              var rv = parseFloat(g("resultado_pct"));
+              var rvTxt = isNaN(rv) ? "--" : (rv > 0 ? "+" : "") + rv.toFixed(1) + "%";
+              var rvColor = isNaN(rv) ? "#94a3b8" : (rv > 0 ? "#34d399" : "#f87171");
+              return "<tr>" +
+                "<td>" + esc(g("data_sinal")) + "</td>" +
+                "<td><strong>" + esc(g("ticker")) + "</strong></td>" +
+                "<td>+" + esc(g("extensao_pct")) + "%</td>" +
+                "<td>$" + esc(g("fech_d0")) + "</td>" +
+                "<td>$" + esc(g("abre_acima")) + "</td>" +
+                "<td>$" + esc(g("abre_abaixo")) + "</td>" +
+                "<td>" + esc(g("qtd")) + "</td>" +
+                "<td>" + esc(g("adv_musd")) + "</td>" +
+                "<td style=\"color:" + stColor + "\" title=\"" + esc(g("obs")) + "\">" + esc(st) + "</td>" +
+                "<td style=\"color:" + rvColor + "\">" + rvTxt + "</td>" +
+                "</tr>";
+            }).join("");
+            count.textContent = tab.length + " sinais (" + pend + " p/ amanha)";
+            if (res[1].ok) {
+              var met = {}; rows(await res[1].text()).forEach(function (r) { met[r[0]] = r[1]; });
+              var cards = [
+                ["Agente", met.agente || "Day-2 Fade v4", "atualizado " + (met.atualizado_em || "--")],
+                ["Trades", met.trades || "0", "win " + (met.win_pct || "--") + "%"],
+                ["Exp/trade", (met.exp_bruto_pct || "--") + "%", "liq " + (met.exp_liq_pct || "--") + "%"],
+                ["P/L", "$" + (met.pnl_usd || "0"), "KILL: 20 trades bruto&lt;0"]
+              ];
+              document.getElementById("shortsMetrics").innerHTML = cards.map(function (c) {
+                return "<div class=\"metric\"><span class=\"metric-label\">" + esc(c[0]) +
+                  "</span><strong>" + esc(c[1]) + "</strong><span>" + c[2] + "</span></div>";
+              }).join("");
+            }
+          } catch (e) { if (count) count.textContent = "sem dados ainda"; }
+        }
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", loadShorts);
+        } else { loadShorts(); }
+      })();
+      </script>
+
+
       <section class="filter-summary-panel legacy-radar" aria-label="Filtros do radar">
         <div class="section-heading compact inline-heading">
           <h2>Filtros do radar</h2>
