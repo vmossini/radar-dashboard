@@ -1,10 +1,10 @@
 # Radar GLB ATH 63D
 
-- Gerado: `2026-07-02T17:17:07-03:00`
-- Data dos candles: `2026-07-02`
-- GLBs encontrados: `6`
-- Universo limpo: `3966`
-- Pre-candidatos 1Y: `19`
+- Gerado: `2026-07-03T16:36:16-03:00`
+- Data dos candles: `n/a`
+- GLBs encontrados: `0`
+- Universo limpo: `3958`
+- Pre-candidatos 1Y: `0`
 
 ## Regra
 
@@ -14,11 +14,4 @@
 
 ## Tickers
 
-| Ticker | Empresa | High | ATH trigger | Base | RVOL(10) | Market cap | Setor |
-|---|---:|---:|---:|---:|---:|---:|---|
-| SGHC | Super Group (SGHC) Limited Ordinary Shares | 14.7 | 14.39 | 184 | 1.52 | 7077509657 | Consumer Discretionary |
-| AXS | Axis Capital Holdings Limited Common Stock | 113.5 | 110.35 | 128 | 0.74 | 8052789068 | Finance |
-| VRTX | Vertex Pharmaceuticals Incorporated Common Stock | 529.14 | 519.89 | 409 | 0.72 | 126562609241 | Health Care |
-| GD | General Dynamics Corporation Common Stock | 373.6 | 369.71 | 113 | 0.54 | 98032294938 | Industrials |
-| EXPD | Expeditors International of Washington Inc. Common Stock | 168.12 | 167.2 | 88 | 0.49 | 21824462408 | Industrials |
-| L | Loews Corporation Common Stock | 116.58 | 114.91 | 97 | 0.39 | 23508064896 | Finance |
+Nenhum GLB ATH 63D encontrado.
