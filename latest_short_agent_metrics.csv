@@ -1,14 +1,17 @@
 chave,valor
 agente,Fade Day-2 (FadeD2R)
-iniciado_em,2026-07-07
-status,paper — aguardando 1o sinal
+atualizado_em,2026-07-07
+status,sem sinal amanha
 capital_base,40000
 risco_pct,0.5
+pos_abertas,0
+risco_aberto,$0
+pnl_aberto,$0
+exposicao,$0
+watchlist_amanha,0
+trades_hoje,0
 trades,0
 fechados,0
 win_pct,--
-pnl_usd,0
-bench_edge,+2.1% /trade (liq. um pouco menor)
-bench_car,~8.9% periodo / ~40-53% recente
-bench_dd,-6 a -8%
-bench_win,~60%
+pnl_usd,+0.00
+retorno_pct,0

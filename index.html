@@ -1571,6 +1571,14 @@ tbody tr:hover {
   gap: 8px;
 }
 
+.short-agent-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .agent-note {
   margin: 6px 0 0;
   max-width: 760px;
@@ -2441,16 +2449,19 @@ tbody tr:hover {
           <div class="metric"><span class="metric-label">Posicoes abertas</span><strong id="shortAgOpen">--</strong><span id="shortAgRisk">--</span></div>
           <div class="metric"><span class="metric-label">P/L aberto</span><strong id="shortAgOpenPnl">--</strong><span id="shortAgNotional">--</span></div>
           <div class="metric"><span class="metric-label">P/L realizado</span><strong id="shortAgRealized">--</strong><span id="shortAgReturn">--</span></div>
-          <div class="metric"><span class="metric-label">Trades do dia</span><strong id="shortAgToday">--</strong><span>paper</span></div>
+          <div class="metric"><span class="metric-label">Watchlist amanha</span><strong id="shortAgToday">--</strong><span>paper</span></div>
         </section>
 
         <section class="section-block">
           <div class="section-heading">
             <div>
               <p class="eyebrow">FadeD2R</p>
-              <h2>Trades</h2>
+              <h2>Watchlist / trades</h2>
             </div>
-            <span class="row-count" id="shortAgCount">--</span>
+            <div class="short-agent-actions">
+              <a class="action-link" href="./latest_short_watchlist_next.csv" download>Watchlist CSV</a>
+              <span class="row-count" id="shortAgCount">--</span>
+            </div>
           </div>
           <div class="table-wrap">
             <table class="agent-table">
@@ -2459,9 +2470,9 @@ tbody tr:hover {
                   <th title="Dia do pump (D0).">Sinal D0</th>
                   <th title="Ticker negociado.">Ticker</th>
                   <th title="Extensao do pump D0 (max/abertura).">Ext. D0</th>
-                  <th title="Preco de entrada = abertura de D+1.">Entrada</th>
-                  <th title="Stop inicial = entrada x 1,20 (+20%).">Stop</th>
-                  <th title="Situacao: aberta / cobriu MOC / stop.">Situacao</th>
+                  <th title="Entrada real ou regra planejada para D+1.">Entrada</th>
+                  <th title="Stop real ou regra planejada.">Stop</th>
+                  <th title="Watchlist, executado, MOC, stop ou filtro.">Situacao</th>
                   <th title="Quantidade paper por risco 0,5%.">Qtd</th>
                   <th title="ADV20 em milhoes.">ADV $M</th>
                   <th title="Resultado em R (1R = risco).">R</th>
@@ -2501,7 +2512,7 @@ tbody tr:hover {
             document.getElementById("shortAgNotional").textContent = "exp " + (met.exposicao || "$0");
             document.getElementById("shortAgRealized").textContent = "$" + (met.pnl_usd || "0");
             document.getElementById("shortAgReturn").textContent = "ret " + (met.retorno_pct || "0") + "%";
-            document.getElementById("shortAgToday").textContent = met.trades_hoje || "0";
+            document.getElementById("shortAgToday").textContent = met.watchlist_amanha || met.trades_hoje || "0";
             // trades
             try {
               var res = await fetch("./latest_short_agent.csv", { cache: "no-store" });
@@ -2510,12 +2521,13 @@ tbody tr:hover {
               var head = tab.shift() || [];
               var idx = {}; head.forEach(function (h, i) { idx[h] = i; });
               if (!tab.length) {
-                if (count) count.textContent = "0 trades";
-                if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum trade paper.</td></tr>";
+                if (count) count.textContent = "0 itens";
+                if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
                 return;
               }
               body.innerHTML = tab.map(function (r) {
                 function g(k) { return r[idx[k]] || ""; }
+                function money(v) { return /^-?\d+(\.\d+)?$/.test(v) ? "$" + esc(v) : esc(v || "--"); }
                 var sit = g("situacao");
                 var rr = parseFloat(g("r"));
                 var rColor = isNaN(rr) ? "#94a3b8" : (rr >= 0 ? "#34d399" : "#f87171");
@@ -2523,19 +2535,19 @@ tbody tr:hover {
                   "<td>" + esc(g("data_sinal")) + "</td>" +
                   "<td><strong>" + esc(g("ticker")) + "</strong></td>" +
                   "<td>+" + esc(g("ext_d0_pct")) + "%</td>" +
-                  "<td>$" + esc(g("entrada")) + "</td>" +
-                  "<td>$" + esc(g("stop")) + "</td>" +
+                  "<td>" + money(g("entrada")) + "</td>" +
+                  "<td>" + money(g("stop")) + "</td>" +
                   "<td title=\"" + esc(g("obs")) + "\">" + esc(sit) + "</td>" +
                   "<td>" + esc(g("qtd")) + "</td>" +
                   "<td>" + esc(g("adv_musd")) + "</td>" +
                   "<td style=\"color:" + rColor + "\">" + (isNaN(rr) ? "--" : rr.toFixed(2) + "R") + "</td>" +
-                  "<td>$" + esc(g("pnl")) + "</td>" +
+                  "<td>" + (g("pnl") ? "$" + esc(g("pnl")) : "--") + "</td>" +
                   "</tr>";
               }).join("");
-              count.textContent = tab.length + " trades";
+              count.textContent = tab.length + " itens";
             } catch (e) {
-              if (count) count.textContent = "0 trades";
-              if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum trade paper.</td></tr>";
+              if (count) count.textContent = "0 itens";
+              if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
             }
           }
           if (document.readyState === "loading") {
@@ -22363,22 +22375,22 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-06",
   "data_mode": "daily",
-  "generated_at": "2026-07-07T16:47:10-03:00",
+  "generated_at": "2026-07-07T17:13:35-03:00",
   "glb_ath": [
     {
-      "adr_pct": 3.6741680158754875,
+      "adr_pct": 3.670467533316973,
       "asof": "2026-07-07",
       "ath_trigger": 87.51,
       "atr14": "3.2744237161438225",
       "avgvol10": 3240750,
-      "close": 89.27,
+      "close": 89.36,
       "country": "United States",
-      "day_change_pct": 4.482674917080343,
+      "day_change_pct": 4.588011992722074,
       "day_high": 89.76,
       "day_low": 84.81,
       "day_open": 86.05,
-      "dollar_volume10": 289301752.5,
-      "entry_extension_pct": 2.0111987201462567,
+      "dollar_volume10": 289593420,
+      "entry_extension_pct": 2.1140441092446505,
       "glb_base_days": 149,
       "glb_confirmation_type": "same_day_close_confirmation",
       "glb_signal_date": "2026-07-07",
@@ -22396,27 +22408,27 @@ window.RADAR_DATA = {
       "regime_qqq_sma10": "720.6190063476563",
       "regime_qqq_sma10_ok": "True",
       "regime_rule": null,
-      "rvol_10d": 0.020873563218390803,
+      "rvol_10d": 0.024122502507135695,
       "sector": "Health Care",
-      "sma20": 79.71,
+      "sma20": 79.72,
       "ticker": "PTCT",
-      "volume": 67646,
+      "volume": 78175,
       "yahoo_symbol": "PTCT"
     },
     {
-      "adr_pct": 1.9860668192914903,
+      "adr_pct": 1.980096536919653,
       "asof": "2026-07-07",
       "ath_trigger": 169.4,
       "atr14": "3.4574104226149567",
       "avgvol10": 2359890,
-      "close": 166.72,
+      "close": 167.38,
       "country": "United States",
-      "day_change_pct": 0.43676997580786026,
+      "day_change_pct": 0.8373965063174671,
       "day_high": 170.13,
-      "day_low": 166.7,
+      "day_low": 166.65,
       "day_open": 168.57,
-      "dollar_volume10": 393429061.35,
-      "entry_extension_pct": -1.5850059031877195,
+      "dollar_volume10": 394998388.2,
+      "entry_extension_pct": -1.192443919716657,
       "glb_base_days": 90,
       "glb_confirmation_type": "intraday_touch_close_below",
       "glb_signal_date": "2026-07-07",
@@ -22434,27 +22446,27 @@ window.RADAR_DATA = {
       "regime_qqq_sma10": "720.6190063476563",
       "regime_qqq_sma10_ok": "True",
       "regime_rule": null,
-      "rvol_10d": 0.056156007271525366,
+      "rvol_10d": 0.06127616117700401,
       "sector": "Consumer Discretionary",
-      "sma20": 155.8,
+      "sma20": 155.84,
       "ticker": "YUM",
-      "volume": 132522,
+      "volume": 144605,
       "yahoo_symbol": "YUM"
     },
     {
-      "adr_pct": 3.65194276799999,
+      "adr_pct": 3.6398361762949762,
       "asof": "2026-07-07",
       "ath_trigger": 264.8,
       "atr14": "8.617080930989243",
       "avgvol10": 3416090,
-      "close": 257.06,
+      "close": 257.91,
       "country": "United States",
-      "day_change_pct": -0.5243619221031115,
+      "day_change_pct": -0.19349237840000644,
       "day_high": 265.49,
       "day_low": 257.06,
       "day_open": 263.37,
-      "dollar_volume10": 878123014.95,
-      "entry_extension_pct": -2.9248489425981905,
+      "dollar_volume10": 881043771.9000001,
+      "entry_extension_pct": -2.6019637462235568,
       "glb_base_days": 179,
       "glb_confirmation_type": "intraday_touch_close_below",
       "glb_signal_date": "2026-07-07",
@@ -22472,11 +22484,11 @@ window.RADAR_DATA = {
       "regime_qqq_sma10": "720.6190063476563",
       "regime_qqq_sma10_ok": "True",
       "regime_rule": null,
-      "rvol_10d": 0.022838098527849092,
+      "rvol_10d": 0.023862661698023178,
       "sector": "Consumer Discretionary",
-      "sma20": 234.28,
+      "sma20": 234.32,
       "ticker": "TTWO",
-      "volume": 78017,
+      "volume": 81517,
       "yahoo_symbol": "TTWO"
     }
   ],
