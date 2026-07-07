@@ -2,8 +2,11 @@ chave,valor
 agente,Fade Day-2 (FadeD2R)
 atualizado_em,2026-07-07
 status,1 sinal(is) amanha
-capital_base,40000
+capital_base,8000
 risco_pct,0.5
+risco_por_trade_usd,40.00
+notional_por_trade_usd,200.00
+max_posicoes,6
 pos_abertas,0
 risco_aberto,$0
 pnl_aberto,$0
