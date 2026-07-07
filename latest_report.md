@@ -4,13 +4,13 @@
 - Ativos no dia: `44` tickers.
 - Leaders consolidating: `9` tickers.
 - Acionados hoje: `12` tickers.
-- Fonte de preco/volume: `intraday`; base diaria `2026-07-06`; intraday atualizados `66`.
+- Fonte de preco/volume: `daily`; base diaria `2026-07-06`; intraday atualizados `0`.
 - CSV all leaders: `C:\Users\vitor\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-07-06\all_leaders_2026-07-06.csv`
 - CSV consolidating: `C:\Users\vitor\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-07-06\leaders_consolidating_2026-07-06.csv`
 
 ## Market regime
 - SPY close 738.65, vs SMA20 +1.8%, vs SMA50 +6.8%; QQQ close 705.88, vs SMA20 +3.3%, vs SMA50 +11.4%
-- Universo final pos-filtros: `1130`.
+- Universo final pos-filtros: `1128`.
 - 52W highs no universo final: `32`.
 
 ## Temas fortes
@@ -52,13 +52,13 @@ _Mostrando 12 de 20._
 | TNGX | Tango Therapeutics, Inc. | Biotech & health | 91.8 | -4.7 | 39.8 | 55.5 | 244.3 | 508.7 | 6.1 | Ready |
 | PTRN | Pattern Group Inc. Series A Common Stock | Catalog/Specialty Distribution | 91.6 | 24.8 | 43.1 | 145.0 | 147.7 |  | 4.8 | Chase Breakout |
 | ALAB | Astera Labs Inc. Common Stock | Semiconductors & AI compute | 91.6 | 10.8 | 19.0 | 284.5 | 154.4 | 341.4 | 9.0 | Leader |
-| BB | BlackBerry Limited | Software & data | 90.7 | -0.5 | 11.5 | 259.2 | 184.5 | 140.5 | 8.1 | Leader |
+| BB | BlackBerry Limited | Software & data | 90.8 | -0.5 | 11.5 | 259.2 | 184.5 | 140.5 | 8.1 | Leader |
 | ERAS | Erasca, Inc. Common Stock | Biotech & health | 90.6 | 18.1 | 43.2 | 26.1 | 450.1 | 1397.6 | 5.8 | Chase Breakout |
 | INTC | Intel Corp | Semiconductors & AI compute | 90.2 | -4.3 | 8.4 | 183.4 | 238.1 | 443.3 | 7.4 | Leader |
 | ORKA | Oruka Therapeutics, Inc. Common Stock | Semiconductors & AI compute | 90.2 | -8.1 | 45.4 | 87.1 | 159.1 | 615.6 | 5.2 | Leader |
 | MRNA | Moderna Inc. Common Stock | Biotech & health | 90.1 | 21.6 | 66.7 | 65.0 | 149.7 | 196.9 | 6.9 | Chase Breakout |
 | MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | 90.0 | -0.9 | 4.6 | 462.4 | 445.0 | 567.6 | 10.8 | Leader |
-| LQDA | Liquidia Corporation Common Stock | Biotech & health | 90.0 | 1.5 | 42.4 | 126.2 | 121.4 | 517.7 | 4.8 | New Breakout |
+| LQDA | Liquidia Corporation Common Stock | Biotech & health | 89.9 | 1.5 | 42.4 | 126.2 | 121.4 | 517.7 | 4.8 | New Breakout |
 | HNGE | Hinge Health Inc. Class A Common Stock | EDP Services | 89.9 | 12.2 | 50.9 | 144.1 | 83.6 | 96.8 | 4.1 | New Breakout |
 | QURE | uniQure N.V. Ordinary Shares | Biotech & health | 89.5 | -13.1 | 38.7 | 179.8 | 64.1 | 190.4 | 7.5 | Leader |
 | TENB | Tenable Holdings Inc. Common Stock | Software & data | 88.6 | 36.8 | 39.2 | 149.9 | 71.0 | 24.3 | 4.9 | New Breakout |
@@ -86,31 +86,31 @@ _Mostrando 40 de 66._
 ## Acionados hoje
 | Ticker | Name | Theme | Status | Tipo | Base | Chase | Country | MktCap | Close | RVOL10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| PTRN | Pattern Group Inc. Series A Common Stock | Catalog/Specialty Distribution | Chase Breakout |  |  | 5 | United States | 5.0B | 28.44 | 0.90 |
+| PTRN | Pattern Group Inc. Series A Common Stock | Catalog/Specialty Distribution | Chase Breakout |  |  | 5 | United States | 5.1B | 28.44 | 1.17 |
 | ERAS | Erasca, Inc. Common Stock | Biotech & health | Chase Breakout |  |  | 1 | United States | 3.2B | 18.87 | 0.98 |
-| MRNA | Moderna Inc. Common Stock | Biotech & health | Chase Breakout |  |  | 5 | United States | 32.5B | 81.77 | 1.16 |
-| LQDA | Liquidia Corporation Common Stock | Biotech & health | New Breakout |  | 2 |  | United States | 5.1B | 79.25 | 0.76 |
-| HNGE | Hinge Health Inc. Class A Common Stock | EDP Services | New Breakout |  | 1 |  | United States | 6.9B | 88.50 | 0.70 |
-| TENB | Tenable Holdings Inc. Common Stock | Software & data | New Breakout |  | 1 |  | United States | 4.5B | 41.34 | 1.17 |
-| PSNL | Personalis Inc. Common Stock | Medical Specialities | Chase Breakout |  |  | 2 | United States | 1.5B | 14.38 | 1.04 |
-| COMP | Compass Inc. Class A Common Stock | EDP Services | Chase Breakout |  |  | 7 | United States | 9.7B | 12.98 | 1.10 |
-| FROG | JFrog Ltd. Ordinary Shares | Power & electrification | Chase Breakout |  |  | 1 | United States | 8.2B | 98.09 | 1.00 |
-| MGNI | Magnite Inc. Common Stock | Software & data | Chase Breakout |  |  | 2 | United States | 3.0B | 20.85 | 0.66 |
-| STUB | StubHub Holdings Inc. Class A Common Stock | Services-Misc. Amusement & Recreation | New Breakout |  | 2 |  | United States | 5.1B | 13.69 | 1.05 |
-| HIMS | Hims & Hers Health Inc. Class A Common Stock | Medical/Nursing Services | New Breakout |  | 1 |  | United States | 8.9B | 38.29 | 0.77 |
+| MRNA | Moderna Inc. Common Stock | Biotech & health | Chase Breakout |  |  | 5 | United States | 31.5B | 81.77 | 1.07 |
+| LQDA | Liquidia Corporation Common Stock | Biotech & health | New Breakout |  | 2 |  | United States | 5.1B | 79.25 | 0.60 |
+| HNGE | Hinge Health Inc. Class A Common Stock | EDP Services | New Breakout |  | 1 |  | United States | 7.0B | 88.50 | 0.94 |
+| TENB | Tenable Holdings Inc. Common Stock | Software & data | New Breakout |  | 1 |  | United States | 4.7B | 41.34 | 1.60 |
+| PSNL | Personalis Inc. Common Stock | Medical Specialities | Chase Breakout |  |  | 2 | United States | 1.5B | 14.38 | 1.08 |
+| COMP | Compass Inc. Class A Common Stock | EDP Services | Chase Breakout |  |  | 7 | United States | 9.3B | 12.98 | 1.08 |
+| FROG | JFrog Ltd. Ordinary Shares | Power & electrification | Chase Breakout |  |  | 1 | United States | 8.2B | 98.09 | 1.03 |
+| MGNI | Magnite Inc. Common Stock | Software & data | Chase Breakout |  |  | 2 | United States | 2.9B | 20.85 | 0.62 |
+| STUB | StubHub Holdings Inc. Class A Common Stock | Services-Misc. Amusement & Recreation | New Breakout |  | 2 |  | United States | 5.1B | 13.69 | 1.06 |
+| HIMS | Hims & Hers Health Inc. Class A Common Stock | Medical/Nursing Services | New Breakout |  | 1 |  | United States | 8.7B | 38.29 | 0.73 |
 
 ## Leaders consolidating
 | Ticker | Name | Theme | Country | MktCap | Score | Close | Pivot | Dist% | Base | RVOL10 | Catalyst |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| TGTX | TG Therapeutics, Inc. | Biotech & health | United States | 6.0B | 83.1 | 55.52 | 57.12 | 2.9 | 9 | 0.79 | nao verificado |
-| BHVN | Biohaven Ltd. Common Shares | Biotech & health | United States | 2.4B | 81.3 | 16.06 | 16.72 | 4.1 | 5 | 0.43 | nao verificado |
-| TNGX | Tango Therapeutics, Inc. | Biotech & health | United States | 3.0B | 73.0 | 29.95 | 34.35 | 14.7 | 11 | 0.52 | nao verificado |
-| DELL | Dell Technologies Inc. | ELECTRONIC COMPUTERS | United States | 154.6B | 72.9 | 410.88 | 443.45 | 7.9 | 9 | 1.09 | nao verificado |
-| SYRE | Spyre Therapeutics, Inc. Common Stock | Biotech & health | United States | 6.1B | 66.6 | 88.71 | 102.00 | 15.0 | 8 | 0.39 | nao verificado |
-| KYMR | Kymera Therapeutics Inc. Common Stock | Biotech & health | United States | 9.5B | 66.5 | 114.84 | 129.83 | 13.1 | 6 | 0.37 | nao verificado |
-| STM | STMicroelectronics N.V. | Semiconductors & AI compute | Switzerland | 54.2B | 65.8 | 71.36 | 81.16 | 13.7 | 9 | 0.67 | nao verificado |
-| CRDO | Credo Technology Group Holding Ltd Ordinary Shares | Semiconductors & AI compute | United States | 49.6B | 65.2 | 265.33 | 308.38 | 16.2 | 9 | 0.97 | nao verificado |
-| BE | Bloom Energy Corporation | Power & electrification | United States | 73.6B | 60.8 | 294.97 | 350.90 | 19.0 | 6 | 0.42 | nao verificado |
+| TGTX | TG Therapeutics, Inc. | Biotech & health | United States | 6.0B | 83.1 | 55.52 | 57.12 | 2.9 | 9 | 0.64 | nao verificado |
+| BHVN | Biohaven Ltd. Common Shares | Biotech & health | United States | 2.3B | 81.3 | 16.06 | 16.72 | 4.1 | 5 | 0.42 | nao verificado |
+| TNGX | Tango Therapeutics, Inc. | Biotech & health | United States | 3.0B | 73.0 | 29.95 | 34.35 | 14.7 | 11 | 0.47 | nao verificado |
+| DELL | Dell Technologies Inc. | ELECTRONIC COMPUTERS | United States | 154.6B | 72.9 | 410.88 | 443.45 | 7.9 | 9 | 0.98 | nao verificado |
+| SYRE | Spyre Therapeutics, Inc. Common Stock | Biotech & health | United States | 6.1B | 66.6 | 88.71 | 102.00 | 15.0 | 8 | 0.48 | nao verificado |
+| KYMR | Kymera Therapeutics Inc. Common Stock | Biotech & health | United States | 9.9B | 66.5 | 114.84 | 129.83 | 13.1 | 6 | 0.24 | nao verificado |
+| STM | STMicroelectronics N.V. | Semiconductors & AI compute | Switzerland | 54.2B | 65.8 | 71.36 | 81.16 | 13.7 | 9 | 0.64 | nao verificado |
+| CRDO | Credo Technology Group Holding Ltd Ordinary Shares | Semiconductors & AI compute | United States | 45.6B | 65.2 | 265.33 | 308.38 | 16.2 | 9 | 1.12 | nao verificado |
+| BE | Bloom Energy Corporation | Power & electrification | United States | 73.6B | 60.8 | 294.97 | 350.90 | 19.0 | 6 | 0.44 | nao verificado |
 
 ## Mudancas do dia
 - Novos leaders: `BRBR, BWIN, COMP, DDOG, DOCN, ELF, FROG, HIMS, HNGE, HOOD, KYMR, LQDA, MGNI, NRIX, NWL, ORKA, PRCH, PURR, RARE, STM, STUB, STX, SYRE, TGTX`
@@ -127,5 +127,5 @@ _Mostrando 40 de 66._
 - Todos com AvgVol(10) > 100.0K acoes: `True`
 - Todos com ADR14 > 4.0: `True`
 - Ativos no dia com performance >= 0.1%: `44`
-- Intraday timestamp: `2026-07-06T19:55:00+00:00`
+- Intraday timestamp: `n/a`
 - Noticias/catalysts: `sem API`
