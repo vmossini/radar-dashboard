@@ -1560,6 +1560,17 @@ tbody tr:hover {
   gap: 8px;
 }
 
+.short-agent-heading {
+  margin-bottom: 12px;
+}
+
+.short-agent-heading h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
 .agent-note {
   margin: 6px 0 0;
   max-width: 760px;
@@ -2419,13 +2430,12 @@ tbody tr:hover {
       </section>
 
       <section id="agentShortPage" class="page-view" aria-label="Agente short paper (FadeD2R)">
-        <section class="agent-hero">
+        <div class="section-heading short-agent-heading">
           <div>
-            <p class="eyebrow">Paper trading — short intraday · risco 0,5%/trade · margem 4x</p>
-            <h2>Agente Short — Fade Day-2 (FadeD2R) <span id="shortAgStatus" class="agent-status-pill">paper</span></h2>
-            <p class="agent-note">Registro simulado. Nenhuma ordem real e enviada para corretora. Sistema validado 2007-2026 (SEC 8-K + AmiBroker + Python).</p>
+            <p class="eyebrow">Paper short</p>
+            <h2>Agente Short <span id="shortAgStatus" class="agent-status-pill">paper</span></h2>
           </div>
-        </section>
+        </div>
 
         <section class="metric-grid agent-metrics" aria-label="Resumo do agente short">
           <div class="metric"><span class="metric-label">Posicoes abertas</span><strong id="shortAgOpen">--</strong><span id="shortAgRisk">--</span></div>
@@ -2437,34 +2447,11 @@ tbody tr:hover {
         <section class="section-block">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Sistema — benchmark do backtest (o que o paper deve reproduzir)</p>
-              <h2>Regras & numeros validados</h2>
-            </div>
-            <span class="row-count" id="shortAgBenchTag">FadeD2R</span>
-          </div>
-          <div class="agent-system-grid">
-            <div class="agent-system-card" title="Edge medio por trade (bruto; liquido de borrow ~0,4%/tr um pouco menor)."><span>EDGE/TRADE</span><strong>+2,1%</strong></div>
-            <div class="agent-system-card" title="CAR na sizing de producao (0,5% risco). Recente = janela ~3,5 anos, planejar pelo conservador."><span>CAR</span><strong>~8,9% / ~40-53% rec.</strong></div>
-            <div class="agent-system-card" title="Max drawdown de portfolio."><span>MAX DD</span><strong>-6 a -8%</strong></div>
-            <div class="agent-system-card" title="Taxa de acerto historica."><span>WIN RATE</span><strong>~60%</strong></div>
-            <div class="agent-system-card" title="Validacao formal."><span>OOS>IS</span><strong>t=6,7</strong></div>
-            <div class="agent-system-card" title="Custo real ja no edge liquido."><span>BORROW</span><strong>~0,4%/tr</strong></div>
-          </div>
-          <p class="agent-note" style="margin-top:10px">
-            <strong>Regra:</strong> pump D0 &ge; +30% (max/abertura) &rarr; <strong>SHORT na abertura de D+1</strong> &rarr; stop entrada &times;1,20 (+20%) &rarr; <strong>cobre no fechamento (MOC)</strong>, zera no dia. Universo: abertura &ge; $5, ADV20 &ge; $10M, sem teto de preco. Sizing 0,5% risco (2,5% equity/pos), max 6 posicoes, rank pelo maior pump.
-            <br><strong>Checklist pre-trade:</strong> pular earnings (validado SEC: earnings-pump fadeia +1,47% vs +2,30%); biotech NAO precisa pular (o ADV ja filtra); confirmar locate/borrow; daily max-loss.
-          </p>
-        </section>
-
-        <section class="section-block">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Paper atual</p>
-              <h2>Trades do agente short</h2>
+              <p class="eyebrow">FadeD2R</p>
+              <h2>Trades</h2>
             </div>
             <span class="row-count" id="shortAgCount">--</span>
           </div>
-          <div id="shortAgMetrics" class="metric-grid" aria-label="Placar paper do agente short"></div>
           <div class="table-wrap">
             <table class="agent-table">
               <thead>
@@ -2515,18 +2502,6 @@ tbody tr:hover {
             document.getElementById("shortAgRealized").textContent = "$" + (met.pnl_usd || "0");
             document.getElementById("shortAgReturn").textContent = "ret " + (met.retorno_pct || "0") + "%";
             document.getElementById("shortAgToday").textContent = met.trades_hoje || "0";
-            // placar
-            var cards = [
-              ["Trades", met.trades || "0", "fechados " + (met.fechados || "0")],
-              ["Win rate", (met.win_pct || "--") + "%", "iniciado " + (met.iniciado_em || "--")],
-              ["Bench edge", met.bench_edge || "+2,1%/tr", "bench CAR " + (met.bench_car || "~8,9%")],
-              ["P/L paper", "$" + (met.pnl_usd || "0"), met.status || "paper"]
-            ];
-            var mg = document.getElementById("shortAgMetrics");
-            if (mg) mg.innerHTML = cards.map(function (c) {
-              return "<div class=\"metric\"><span class=\"metric-label\">" + esc(c[0]) +
-                "</span><strong>" + esc(c[1]) + "</strong><span>" + esc(c[2]) + "</span></div>";
-            }).join("");
             // trades
             try {
               var res = await fetch("./latest_short_agent.csv", { cache: "no-store" });
@@ -2535,8 +2510,8 @@ tbody tr:hover {
               var head = tab.shift() || [];
               var idx = {}; head.forEach(function (h, i) { idx[h] = i; });
               if (!tab.length) {
-                if (count) count.textContent = "0 trades — paper iniciado, aguardando 1o sinal";
-                if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum trade paper ainda. Rode o scanner (FadeD2R MODO=1) e registre os sinais; a tabela e o placar preenchem aqui.</td></tr>";
+                if (count) count.textContent = "0 trades";
+                if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum trade paper.</td></tr>";
                 return;
               }
               body.innerHTML = tab.map(function (r) {
@@ -2559,8 +2534,8 @@ tbody tr:hover {
               }).join("");
               count.textContent = tab.length + " trades";
             } catch (e) {
-              if (count) count.textContent = "paper iniciado, aguardando 1o sinal";
-              if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Paper test iniciado. Aguardando os primeiros sinais do scanner FadeD2R.</td></tr>";
+              if (count) count.textContent = "0 trades";
+              if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum trade paper.</td></tr>";
             }
           }
           if (document.readyState === "loading") {
@@ -22388,7 +22363,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-06",
   "data_mode": "daily",
-  "generated_at": "2026-07-07T16:39:10-03:00",
+  "generated_at": "2026-07-07T16:47:10-03:00",
   "glb_ath": [
     {
       "adr_pct": 3.6741680158754875,
