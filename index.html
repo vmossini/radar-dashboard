@@ -2089,6 +2089,7 @@ tbody tr:hover {
       <nav class="page-tabs" aria-label="Paginas do dashboard">
         <button type="button" class="active" data-page="radarPage">Radar</button>
         <button type="button" data-page="agentPage">Agente GLB</button>
+        <button type="button" data-page="agentShortPage">Agente Short</button>
       </nav>
 
       <section id="radarPage" class="page-view active">
@@ -2143,103 +2144,6 @@ tbody tr:hover {
           </table>
         </div>
       </section>
-
-      <section class="section-block primary-block" id="shortFadePanel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Day trade short — conta REAL · risco $40/trade</p>
-            <h2>Agente Short — Day-2 Fade v4</h2>
-          </div>
-          <span class="row-count" id="shortsCount">--</span>
-        </div>
-        <div class="metric-grid" id="shortsMetrics" aria-label="Placar do agente short"></div>
-        <div class="table-wrap">
-          <table class="shorts-table">
-            <thead>
-              <tr>
-                <th title="Dia do pump (D0).">Sinal</th>
-                <th title="Ticker negociado.">Ticker</th>
-                <th title="Extensao do pump: maxima de D0 vs abertura de D0.">Ext. D0</th>
-                <th title="Fechamento de D0 (base dos niveis).">Fech. D0</th>
-                <th title="Regra gap-U: so shorta se D+1 abrir NESTE nivel ou acima (+5%).">Abre &ge;</th>
-                <th title="...ou NESTE nivel ou abaixo (-10%). Entre os dois: nao opera.">Abre &le;</th>
-                <th title="Quantidade aproximada para notional $200 (risco $40 no stop +20%).">Qtd</th>
-                <th title="ADV20 em milhoes de dolares.">ADV $M</th>
-                <th title="pendente = ordem de amanha - executado / filtrado_gap / locate caro.">Status</th>
-                <th title="Resultado bruto do trade em %.">Result.</th>
-              </tr>
-            </thead>
-            <tbody id="shortsBody"></tbody>
-          </table>
-        </div>
-      </section>
-      <script>
-      (function () {
-        function rows(text) {
-          return text.replace(/\r/g, "").split("\n").filter(function (l) { return l.trim(); })
-            .map(function (l) { return l.split(","); });
-        }
-        function esc(s) {
-          return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
-            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
-          });
-        }
-        async function loadShorts() {
-          var count = document.getElementById("shortsCount");
-          try {
-            var res = await Promise.all([
-              fetch("./latest_shorts.csv", { cache: "no-store" }),
-              fetch("./latest_shorts_metrics.csv", { cache: "no-store" })
-            ]);
-            if (!res[0].ok) throw new Error("sem csv");
-            var tab = rows(await res[0].text());
-            var head = tab.shift() || [];
-            var idx = {}; head.forEach(function (h, i) { idx[h] = i; });
-            var body = document.getElementById("shortsBody");
-            var pend = 0;
-            body.innerHTML = tab.map(function (r) {
-              function g(k) { return r[idx[k]] || ""; }
-              var st = g("status");
-              if (st === "pendente") pend++;
-              var stColor = st === "pendente" ? "#f59e0b" : (st === "executado" ? "#38bdf8" : "#94a3b8");
-              var rv = parseFloat(g("resultado_pct"));
-              var rvTxt = isNaN(rv) ? "--" : (rv > 0 ? "+" : "") + rv.toFixed(1) + "%";
-              var rvColor = isNaN(rv) ? "#94a3b8" : (rv > 0 ? "#34d399" : "#f87171");
-              return "<tr>" +
-                "<td>" + esc(g("data_sinal")) + "</td>" +
-                "<td><strong>" + esc(g("ticker")) + "</strong></td>" +
-                "<td>+" + esc(g("extensao_pct")) + "%</td>" +
-                "<td>$" + esc(g("fech_d0")) + "</td>" +
-                "<td>$" + esc(g("abre_acima")) + "</td>" +
-                "<td>$" + esc(g("abre_abaixo")) + "</td>" +
-                "<td>" + esc(g("qtd")) + "</td>" +
-                "<td>" + esc(g("adv_musd")) + "</td>" +
-                "<td style=\"color:" + stColor + "\" title=\"" + esc(g("obs")) + "\">" + esc(st) + "</td>" +
-                "<td style=\"color:" + rvColor + "\">" + rvTxt + "</td>" +
-                "</tr>";
-            }).join("");
-            count.textContent = tab.length + " sinais (" + pend + " p/ amanha)";
-            if (res[1].ok) {
-              var met = {}; rows(await res[1].text()).forEach(function (r) { met[r[0]] = r[1]; });
-              var cards = [
-                ["Agente", met.agente || "Day-2 Fade v4", "atualizado " + (met.atualizado_em || "--")],
-                ["Trades", met.trades || "0", "win " + (met.win_pct || "--") + "%"],
-                ["Exp/trade", (met.exp_bruto_pct || "--") + "%", "liq " + (met.exp_liq_pct || "--") + "%"],
-                ["P/L", "$" + (met.pnl_usd || "0"), "KILL: 20 trades bruto&lt;0"]
-              ];
-              document.getElementById("shortsMetrics").innerHTML = cards.map(function (c) {
-                return "<div class=\"metric\"><span class=\"metric-label\">" + esc(c[0]) +
-                  "</span><strong>" + esc(c[1]) + "</strong><span>" + c[2] + "</span></div>";
-              }).join("");
-            }
-          } catch (e) { if (count) count.textContent = "sem dados ainda"; }
-        }
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", loadShorts);
-        } else { loadShorts(); }
-      })();
-      </script>
-
 
       <section class="filter-summary-panel legacy-radar" aria-label="Filtros do radar">
         <div class="section-heading compact inline-heading">
@@ -2512,6 +2416,158 @@ tbody tr:hover {
           </div>
         </section>
 
+      </section>
+
+      <section id="agentShortPage" class="page-view" aria-label="Agente short paper (FadeD2R)">
+        <section class="agent-hero">
+          <div>
+            <p class="eyebrow">Paper trading — short intraday · risco 0,5%/trade · margem 4x</p>
+            <h2>Agente Short — Fade Day-2 (FadeD2R) <span id="shortAgStatus" class="agent-status-pill">paper</span></h2>
+            <p class="agent-note">Registro simulado. Nenhuma ordem real e enviada para corretora. Sistema validado 2007-2026 (SEC 8-K + AmiBroker + Python).</p>
+          </div>
+        </section>
+
+        <section class="metric-grid agent-metrics" aria-label="Resumo do agente short">
+          <div class="metric"><span class="metric-label">Posicoes abertas</span><strong id="shortAgOpen">--</strong><span id="shortAgRisk">--</span></div>
+          <div class="metric"><span class="metric-label">P/L aberto</span><strong id="shortAgOpenPnl">--</strong><span id="shortAgNotional">--</span></div>
+          <div class="metric"><span class="metric-label">P/L realizado</span><strong id="shortAgRealized">--</strong><span id="shortAgReturn">--</span></div>
+          <div class="metric"><span class="metric-label">Trades do dia</span><strong id="shortAgToday">--</strong><span>paper</span></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Sistema — benchmark do backtest (o que o paper deve reproduzir)</p>
+              <h2>Regras & numeros validados</h2>
+            </div>
+            <span class="row-count" id="shortAgBenchTag">FadeD2R</span>
+          </div>
+          <div class="agent-system-grid">
+            <div class="agent-system-card" title="Edge medio por trade (bruto; liquido de borrow ~0,4%/tr um pouco menor)."><span>EDGE/TRADE</span><strong>+2,1%</strong></div>
+            <div class="agent-system-card" title="CAR na sizing de producao (0,5% risco). Recente = janela ~3,5 anos, planejar pelo conservador."><span>CAR</span><strong>~8,9% / ~40-53% rec.</strong></div>
+            <div class="agent-system-card" title="Max drawdown de portfolio."><span>MAX DD</span><strong>-6 a -8%</strong></div>
+            <div class="agent-system-card" title="Taxa de acerto historica."><span>WIN RATE</span><strong>~60%</strong></div>
+            <div class="agent-system-card" title="Validacao formal."><span>OOS>IS</span><strong>t=6,7</strong></div>
+            <div class="agent-system-card" title="Custo real ja no edge liquido."><span>BORROW</span><strong>~0,4%/tr</strong></div>
+          </div>
+          <p class="agent-note" style="margin-top:10px">
+            <strong>Regra:</strong> pump D0 &ge; +30% (max/abertura) &rarr; <strong>SHORT na abertura de D+1</strong> &rarr; stop entrada &times;1,20 (+20%) &rarr; <strong>cobre no fechamento (MOC)</strong>, zera no dia. Universo: abertura &ge; $5, ADV20 &ge; $10M, sem teto de preco. Sizing 0,5% risco (2,5% equity/pos), max 6 posicoes, rank pelo maior pump.
+            <br><strong>Checklist pre-trade:</strong> pular earnings (validado SEC: earnings-pump fadeia +1,47% vs +2,30%); biotech NAO precisa pular (o ADV ja filtra); confirmar locate/borrow; daily max-loss.
+          </p>
+        </section>
+
+        <section class="section-block">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Paper atual</p>
+              <h2>Trades do agente short</h2>
+            </div>
+            <span class="row-count" id="shortAgCount">--</span>
+          </div>
+          <div id="shortAgMetrics" class="metric-grid" aria-label="Placar paper do agente short"></div>
+          <div class="table-wrap">
+            <table class="agent-table">
+              <thead>
+                <tr>
+                  <th title="Dia do pump (D0).">Sinal D0</th>
+                  <th title="Ticker negociado.">Ticker</th>
+                  <th title="Extensao do pump D0 (max/abertura).">Ext. D0</th>
+                  <th title="Preco de entrada = abertura de D+1.">Entrada</th>
+                  <th title="Stop inicial = entrada x 1,20 (+20%).">Stop</th>
+                  <th title="Situacao: aberta / cobriu MOC / stop.">Situacao</th>
+                  <th title="Quantidade paper por risco 0,5%.">Qtd</th>
+                  <th title="ADV20 em milhoes.">ADV $M</th>
+                  <th title="Resultado em R (1R = risco).">R</th>
+                  <th title="Resultado em dolares.">P/L</th>
+                </tr>
+              </thead>
+              <tbody id="shortAgBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <script>
+        (function () {
+          function rows(text) {
+            return text.replace(/\r/g, "").split("\n").filter(function (l) { return l.trim(); })
+              .map(function (l) { return l.split(","); });
+          }
+          function esc(s) {
+            return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+              return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+            });
+          }
+          async function loadShortAgent() {
+            var count = document.getElementById("shortAgCount");
+            var body = document.getElementById("shortAgBody");
+            var met = {};
+            try {
+              var m = await fetch("./latest_short_agent_metrics.csv", { cache: "no-store" });
+              if (m.ok) rows(await m.text()).forEach(function (r) { if (r[0] !== "chave") met[r[0]] = r.slice(1).join(","); });
+            } catch (e) {}
+            // cabecalho / status
+            var pill = document.getElementById("shortAgStatus");
+            if (pill && met.status) pill.textContent = met.status;
+            document.getElementById("shortAgOpen").textContent = met.pos_abertas || "0";
+            document.getElementById("shortAgRisk").textContent = "risco " + (met.risco_aberto || "$0");
+            document.getElementById("shortAgOpenPnl").textContent = met.pnl_aberto || "$0";
+            document.getElementById("shortAgNotional").textContent = "exp " + (met.exposicao || "$0");
+            document.getElementById("shortAgRealized").textContent = "$" + (met.pnl_usd || "0");
+            document.getElementById("shortAgReturn").textContent = "ret " + (met.retorno_pct || "0") + "%";
+            document.getElementById("shortAgToday").textContent = met.trades_hoje || "0";
+            // placar
+            var cards = [
+              ["Trades", met.trades || "0", "fechados " + (met.fechados || "0")],
+              ["Win rate", (met.win_pct || "--") + "%", "iniciado " + (met.iniciado_em || "--")],
+              ["Bench edge", met.bench_edge || "+2,1%/tr", "bench CAR " + (met.bench_car || "~8,9%")],
+              ["P/L paper", "$" + (met.pnl_usd || "0"), met.status || "paper"]
+            ];
+            var mg = document.getElementById("shortAgMetrics");
+            if (mg) mg.innerHTML = cards.map(function (c) {
+              return "<div class=\"metric\"><span class=\"metric-label\">" + esc(c[0]) +
+                "</span><strong>" + esc(c[1]) + "</strong><span>" + esc(c[2]) + "</span></div>";
+            }).join("");
+            // trades
+            try {
+              var res = await fetch("./latest_short_agent.csv", { cache: "no-store" });
+              if (!res.ok) throw new Error("sem csv");
+              var tab = rows(await res.text());
+              var head = tab.shift() || [];
+              var idx = {}; head.forEach(function (h, i) { idx[h] = i; });
+              if (!tab.length) {
+                if (count) count.textContent = "0 trades — paper iniciado, aguardando 1o sinal";
+                if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum trade paper ainda. Rode o scanner (FadeD2R MODO=1) e registre os sinais; a tabela e o placar preenchem aqui.</td></tr>";
+                return;
+              }
+              body.innerHTML = tab.map(function (r) {
+                function g(k) { return r[idx[k]] || ""; }
+                var sit = g("situacao");
+                var rr = parseFloat(g("r"));
+                var rColor = isNaN(rr) ? "#94a3b8" : (rr >= 0 ? "#34d399" : "#f87171");
+                return "<tr>" +
+                  "<td>" + esc(g("data_sinal")) + "</td>" +
+                  "<td><strong>" + esc(g("ticker")) + "</strong></td>" +
+                  "<td>+" + esc(g("ext_d0_pct")) + "%</td>" +
+                  "<td>$" + esc(g("entrada")) + "</td>" +
+                  "<td>$" + esc(g("stop")) + "</td>" +
+                  "<td title=\"" + esc(g("obs")) + "\">" + esc(sit) + "</td>" +
+                  "<td>" + esc(g("qtd")) + "</td>" +
+                  "<td>" + esc(g("adv_musd")) + "</td>" +
+                  "<td style=\"color:" + rColor + "\">" + (isNaN(rr) ? "--" : rr.toFixed(2) + "R") + "</td>" +
+                  "<td>$" + esc(g("pnl")) + "</td>" +
+                  "</tr>";
+              }).join("");
+              count.textContent = tab.length + " trades";
+            } catch (e) {
+              if (count) count.textContent = "paper iniciado, aguardando 1o sinal";
+              if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Paper test iniciado. Aguardando os primeiros sinais do scanner FadeD2R.</td></tr>";
+            }
+          }
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", loadShortAgent);
+          } else { loadShortAgent(); }
+        })();
+        </script>
       </section>
     </main>
     <script>
@@ -22332,45 +22388,121 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-06",
   "data_mode": "daily",
-  "generated_at": "2026-07-07T15:56:37-03:00",
+  "generated_at": "2026-07-07T16:39:10-03:00",
   "glb_ath": [
     {
-      "adr_pct": 2.2064552243896816,
-      "asof": "2026-07-06",
-      "ath_trigger": 337.26,
-      "atr14": "7.2678334149712045",
-      "avgvol10": 11315310,
-      "close": 337.84,
+      "adr_pct": 3.6741680158754875,
+      "asof": "2026-07-07",
+      "ath_trigger": 87.51,
+      "atr14": "3.2744237161438225",
+      "avgvol10": 3240750,
+      "close": 89.27,
       "country": "United States",
-      "day_change_pct": 1.007563837413672,
-      "day_high": 339.72,
-      "day_low": 334.71,
-      "day_open": 335.77,
-      "dollar_volume10": 3822764330.3999996,
-      "entry_extension_pct": 0.17197414457688076,
-      "glb_base_days": 112,
-      "glb_confirmation_type": "delayed_close_confirmation",
-      "glb_signal_date": "2026-06-17",
-      "history_days": 11669,
-      "industry": "Major Banks",
-      "market_cap": 895774064594,
-      "name": "JP Morgan Chase & Co. Common Stock",
-      "official_glb_signal": "False",
-      "perf_6m_prev_pct": 3.8017503424964127,
-      "previous_close": 334.47,
-      "prior_ath_date": "2026-01-05",
-      "prior_ath_high": 337.25,
+      "day_change_pct": 4.482674917080343,
+      "day_high": 89.76,
+      "day_low": 84.81,
+      "day_open": 86.05,
+      "dollar_volume10": 289301752.5,
+      "entry_extension_pct": 2.0111987201462567,
+      "glb_base_days": 149,
+      "glb_confirmation_type": "same_day_close_confirmation",
+      "glb_signal_date": "2026-07-07",
+      "history_days": 3280,
+      "industry": "Biotechnology: Pharmaceutical Preparations",
+      "market_cap": 7381661589,
+      "name": "PTC Therapeutics Inc. Common Stock",
+      "official_glb_signal": "True",
+      "perf_6m_prev_pct": 11.336988297916228,
+      "previous_close": 85.44,
+      "prior_ath_date": "2025-11-26",
+      "prior_ath_high": 87.5,
       "regime_asof": null,
-      "regime_qqq_close": "712.5999755859375",
-      "regime_qqq_sma10": "722.3990051269532",
-      "regime_qqq_sma10_ok": "False",
+      "regime_qqq_close": "722.8200073242188",
+      "regime_qqq_sma10": "720.6190063476563",
+      "regime_qqq_sma10_ok": "True",
       "regime_rule": null,
-      "rvol_10d": 0.01702171659459617,
-      "sector": "Finance",
-      "sma20": 325.75,
-      "ticker": "JPM",
-      "volume": 192606,
-      "yahoo_symbol": "JPM"
+      "rvol_10d": 0.020873563218390803,
+      "sector": "Health Care",
+      "sma20": 79.71,
+      "ticker": "PTCT",
+      "volume": 67646,
+      "yahoo_symbol": "PTCT"
+    },
+    {
+      "adr_pct": 1.9860668192914903,
+      "asof": "2026-07-07",
+      "ath_trigger": 169.4,
+      "atr14": "3.4574104226149567",
+      "avgvol10": 2359890,
+      "close": 166.72,
+      "country": "United States",
+      "day_change_pct": 0.43676997580786026,
+      "day_high": 170.13,
+      "day_low": 166.7,
+      "day_open": 168.57,
+      "dollar_volume10": 393429061.35,
+      "entry_extension_pct": -1.5850059031877195,
+      "glb_base_days": 90,
+      "glb_confirmation_type": "intraday_touch_close_below",
+      "glb_signal_date": "2026-07-07",
+      "history_days": 7244,
+      "industry": "Restaurants",
+      "market_cap": 46213406939,
+      "name": "Yum! Brands Inc.",
+      "official_glb_signal": "False",
+      "perf_6m_prev_pct": 10.299687310931805,
+      "previous_close": 165.99,
+      "prior_ath_date": "2026-02-24",
+      "prior_ath_high": 169.39,
+      "regime_asof": null,
+      "regime_qqq_close": "722.8200073242188",
+      "regime_qqq_sma10": "720.6190063476563",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
+      "rvol_10d": 0.056156007271525366,
+      "sector": "Consumer Discretionary",
+      "sma20": 155.8,
+      "ticker": "YUM",
+      "volume": 132522,
+      "yahoo_symbol": "YUM"
+    },
+    {
+      "adr_pct": 3.65194276799999,
+      "asof": "2026-07-07",
+      "ath_trigger": 264.8,
+      "atr14": "8.617080930989243",
+      "avgvol10": 3416090,
+      "close": 257.06,
+      "country": "United States",
+      "day_change_pct": -0.5243619221031115,
+      "day_high": 265.49,
+      "day_low": 257.06,
+      "day_open": 263.37,
+      "dollar_volume10": 878123014.95,
+      "entry_extension_pct": -2.9248489425981905,
+      "glb_base_days": 179,
+      "glb_confirmation_type": "intraday_touch_close_below",
+      "glb_signal_date": "2026-07-07",
+      "history_days": 7352,
+      "industry": "Services-Misc. Amusement & Recreation",
+      "market_cap": 48173072382,
+      "name": "Take-Two Interactive Software Inc. Common Stock",
+      "official_glb_signal": "False",
+      "perf_6m_prev_pct": 2.7066762294878144,
+      "previous_close": 258.41,
+      "prior_ath_date": "2025-10-15",
+      "prior_ath_high": 264.79,
+      "regime_asof": null,
+      "regime_qqq_close": "722.8200073242188",
+      "regime_qqq_sma10": "720.6190063476563",
+      "regime_qqq_sma10_ok": "True",
+      "regime_rule": null,
+      "rvol_10d": 0.022838098527849092,
+      "sector": "Consumer Discretionary",
+      "sma20": 234.28,
+      "ticker": "TTWO",
+      "volume": 78017,
+      "yahoo_symbol": "TTWO"
     }
   ],
   "glb_closed_below": [],
@@ -24799,7 +24931,7 @@ window.RADAR_DATA = {
       "top_pct": 0.03
     },
     "glb_closed_below_count": 0,
-    "glb_count": 1,
+    "glb_count": 3,
     "glb_filters": {
       "adr_filter_enabled": false,
       "max_entry_extension_pct": 50.0,
@@ -32238,4 +32370,3 @@ reloadIfPublishedSnapshotIsNewer();
     </script>
   </body>
 </html>
-
