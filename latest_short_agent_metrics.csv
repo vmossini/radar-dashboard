@@ -1,14 +1,14 @@
 chave,valor
 agente,Fade Day-2 (FadeD2R)
 atualizado_em,2026-07-07
-status,sem sinal amanha
+status,1 sinal(is) amanha
 capital_base,40000
 risco_pct,0.5
 pos_abertas,0
 risco_aberto,$0
 pnl_aberto,$0
 exposicao,$0
-watchlist_amanha,0
+watchlist_amanha,1
 trades_hoje,0
 trades,0
 fechados,0

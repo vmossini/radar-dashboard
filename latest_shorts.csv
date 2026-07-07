@@ -1,2 +1,3 @@
 data_sinal,ticker,extensao_pct,fech_d0,abre_acima,abre_abaixo,qtd,adv_musd,status,resultado_pct,obs
-2026-07-02,SLBT,42,5.99,6.29,5.39,33,27.5,pendente,,
+2026-07-07,CLRO,72,13.84,14.53,12.46,14,28.8,pendente,,ATENCAO: se abrir >= $30 nao opera (mega R8); confira earnings/locate
+2026-07-02,SLBT,42,5.99,6.29,5.39,33,27.5,invalido,,abertura D+1 $4.71 < $5 (R1)

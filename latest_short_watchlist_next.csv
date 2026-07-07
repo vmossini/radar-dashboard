@@ -1,1 +1,2 @@
 data_sinal,ticker,acao,entrada_regra,qtd_estim,stop_regra,ext_d0_pct,fech_d0,adv_musd,locate_check,veto_custo,obs
+2026-07-07,CLRO,SHORT,abertura D+1; nao operar se abrir >= $30,14,fill x 1.20; cobrir no MOC,72,13.84,28.8,9:25 NY no ZeroPro,locate total > $1.00,ATENCAO: se abrir >= $30 nao opera (mega R8); confira earnings/locate
