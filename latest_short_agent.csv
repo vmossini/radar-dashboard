@@ -1,3 +1,2 @@
 data_sinal,ticker,ext_d0_pct,entrada,stop,situacao,qtd,adv_musd,r,pnl,obs
 2026-07-07,CLRO,72,abertura D+1,entrada x1.20,watchlist amanha,14,28.8,,,ATENCAO: se abrir >= $30 nao opera (mega R8); confira earnings/locate
-2026-07-02,SLBT,42,,,invalido,33,27.5,,,abertura D+1 $4.71 < $5 (R1)
