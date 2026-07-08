@@ -1,2 +1,2 @@
 data_sinal,sistema,ticker,acao,entrada_regra,qtd_estim,stop_regra,ext_d0_pct,fech_d0,adv_musd,obs
-2026-07-07,FadeD2R,CLRO,SHORT,abertura D+1,14,fill x 1.20; cobrir no MOC,72,13.84,62.6,checar disponibilidade de short no broker antes de executar real
+2026-07-08,FadeD2R,TVRD,SHORT,abertura D+1,40,fill x 1.20; cobrir no MOC,76,5.00,22.1,checar disponibilidade de short no broker antes de executar real

@@ -1,3 +1,4 @@
 data_sinal,sistema,ticker,ext_d0_pct,entrada,stop,situacao,qtd,adv_musd,r,pnl,obs
+2026-07-08,FadeD2R,TVRD,76,abertura D+1,entrada x1.20,watchlist amanha,40,22.1,,,checar disponibilidade de short no broker antes de executar real
 2026-07-07,GapCrap,CRNX,99,83.58,100.30,MOC,2,60.7,0.0,+0.12,GapCrap: open +99% vs prev close $42.03; short open; cover MOC
-2026-07-07,FadeD2R,CLRO,72,abertura D+1,entrada x1.20,watchlist amanha,14,62.6,,,checar disponibilidade de short no broker antes de executar real
+2026-07-07,FadeD2R,CLRO,72,11.87,14.24,STOP,14,62.6,-1.0,-40.00,checar disponibilidade de short no broker antes de executar real
