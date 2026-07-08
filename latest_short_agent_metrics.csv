@@ -6,17 +6,17 @@ capital_base,8000
 risco_pct,0.5
 risco_por_trade_usd,40.00
 notional_por_trade_usd,200.00
-max_posicoes,6
+max_posicoes,sem limite
 pos_abertas,0
 risco_aberto,$0
 pnl_aberto,$0
 exposicao,$0
 watchlist_amanha,1
-trades_hoje,2
-trades,2
+trades_hoje,1
+trades,1
 trades_faded2r,0
-trades_gapcrap,2
-fechados,2
+trades_gapcrap,1
+fechados,1
 win_pct,100
-pnl_usd,+2.17
-retorno_pct,+0.38
+pnl_usd,+0.12
+retorno_pct,-0.00

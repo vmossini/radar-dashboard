@@ -3,10 +3,10 @@ agente,Day-2 Fade v5.1 - REAL - risco $40/trade
 atualizado_em,2026-07-07
 capital_base,8000
 risco_pct,0.5
-max_posicoes,6
+max_posicoes,sem limite
 sinais_amanha,1
-trades,2
-exp_bruto_pct,+0.54
-exp_liq_pct,+0.38
+trades,1
+exp_bruto_pct,+0.06
+exp_liq_pct,-0.00
 win_pct,100
-pnl_usd,+2.17
+pnl_usd,+0.12
