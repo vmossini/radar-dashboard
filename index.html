@@ -2491,6 +2491,22 @@ tbody tr:hover {
             return text.replace(/\r/g, "").split("\n").filter(function (l) { return l.trim(); })
               .map(function (l) { return l.split(","); });
           }
+          function tableObjects(text) {
+            var tab = rows(text);
+            var head = tab.shift() || [];
+            return tab.map(function (r) {
+              var row = {};
+              head.forEach(function (h, i) { row[h] = r[i] || ""; });
+              return row;
+            });
+          }
+          function metricObject(text) {
+            var met = {};
+            rows(text).forEach(function (r) {
+              if (r[0] !== "chave") met[r[0]] = r.slice(1).join(",");
+            });
+            return met;
+          }
           function esc(s) {
             return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
               return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
@@ -2499,10 +2515,11 @@ tbody tr:hover {
           async function loadShortAgent() {
             var count = document.getElementById("shortAgCount");
             var body = document.getElementById("shortAgBody");
-            var met = {};
+            var embedded = window.RADAR_DATA || {};
+            var met = Object.assign({}, embedded.short_agent_metrics || {});
             try {
               var m = await fetch("./latest_short_agent_metrics.csv", { cache: "no-store" });
-              if (m.ok) rows(await m.text()).forEach(function (r) { if (r[0] !== "chave") met[r[0]] = r.slice(1).join(","); });
+              if (m.ok) met = metricObject(await m.text());
             } catch (e) {}
             // cabecalho / status
             var pill = document.getElementById("shortAgStatus");
@@ -2514,42 +2531,44 @@ tbody tr:hover {
             document.getElementById("shortAgMaxPos").textContent = met.max_posicoes || "--";
             document.getElementById("shortAgToday").textContent = met.watchlist_amanha || met.trades_hoje || "0";
             // trades
+            var tab = Array.isArray(embedded.short_agent) ? embedded.short_agent : [];
             try {
               var res = await fetch("./latest_short_agent.csv", { cache: "no-store" });
               if (!res.ok) throw new Error("sem csv");
-              var tab = rows(await res.text());
-              var head = tab.shift() || [];
-              var idx = {}; head.forEach(function (h, i) { idx[h] = i; });
+              tab = tableObjects(await res.text());
               if (!tab.length) {
                 if (count) count.textContent = "0 itens";
                 if (body) body.innerHTML = "<tr><td colspan=\"11\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
                 return;
               }
-              body.innerHTML = tab.map(function (r) {
-                function g(k) { return r[idx[k]] || ""; }
-                function money(v) { return /^-?\d+(\.\d+)?$/.test(v) ? "$" + esc(v) : esc(v || "--"); }
-                var sit = g("situacao");
-                var rr = parseFloat(g("r"));
-                var rColor = isNaN(rr) ? "#94a3b8" : (rr >= 0 ? "#34d399" : "#f87171");
-                return "<tr>" +
-                  "<td>" + esc(g("data_sinal")) + "</td>" +
-                  "<td>" + esc(g("sistema") || "FadeD2R") + "</td>" +
-                  "<td><strong>" + esc(g("ticker")) + "</strong></td>" +
-                  "<td>+" + esc(g("ext_d0_pct")) + "%</td>" +
-                  "<td>" + money(g("entrada")) + "</td>" +
-                  "<td>" + money(g("stop")) + "</td>" +
-                  "<td title=\"" + esc(g("obs")) + "\">" + esc(sit) + "</td>" +
-                  "<td>" + esc(g("qtd")) + "</td>" +
-                  "<td>" + esc(g("adv_musd")) + "</td>" +
-                  "<td style=\"color:" + rColor + "\">" + (isNaN(rr) ? "--" : rr.toFixed(2) + "R") + "</td>" +
-                  "<td>" + (g("pnl") ? "$" + esc(g("pnl")) : "--") + "</td>" +
-                  "</tr>";
-              }).join("");
-              count.textContent = tab.length + " itens";
             } catch (e) {
+            }
+            if (!tab.length) {
               if (count) count.textContent = "0 itens";
               if (body) body.innerHTML = "<tr><td colspan=\"11\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
+              return;
             }
+            body.innerHTML = tab.map(function (r) {
+              function g(k) { return r[k] || ""; }
+              function money(v) { return /^-?\d+(\.\d+)?$/.test(v) ? "$" + esc(v) : esc(v || "--"); }
+              var sit = g("situacao");
+              var rr = parseFloat(g("r"));
+              var rColor = isNaN(rr) ? "#94a3b8" : (rr >= 0 ? "#34d399" : "#f87171");
+              return "<tr>" +
+                "<td>" + esc(g("data_sinal")) + "</td>" +
+                "<td>" + esc(g("sistema") || "FadeD2R") + "</td>" +
+                "<td><strong>" + esc(g("ticker")) + "</strong></td>" +
+                "<td>+" + esc(g("ext_d0_pct")) + "%</td>" +
+                "<td>" + money(g("entrada")) + "</td>" +
+                "<td>" + money(g("stop")) + "</td>" +
+                "<td title=\"" + esc(g("obs")) + "\">" + esc(sit) + "</td>" +
+                "<td>" + esc(g("qtd")) + "</td>" +
+                "<td>" + esc(g("adv_musd")) + "</td>" +
+                "<td style=\"color:" + rColor + "\">" + (isNaN(rr) ? "--" : rr.toFixed(2) + "R") + "</td>" +
+                "<td>" + (g("pnl") ? "$" + esc(g("pnl")) : "--") + "</td>" +
+                "</tr>";
+            }).join("");
+            count.textContent = tab.length + " itens";
           }
           if (document.readyState === "loading") {
             document.addEventListener("DOMContentLoaded", loadShortAgent);
@@ -20112,7 +20131,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-07",
   "data_mode": "intraday",
-  "generated_at": "2026-07-07T21:07:29-03:00",
+  "generated_at": "2026-07-07T21:15:41-03:00",
   "glb_ath": [
     {
       "adr_pct": 3.670467533316973,
@@ -21431,12 +21450,113 @@ window.RADAR_DATA = {
   },
   "pullbacks": [],
   "pullbacks_disabled": true,
+  "short_agent": [
+    {
+      "adv_musd": "13.8",
+      "data_sinal": "2026-07-07",
+      "entrada": "8.80",
+      "ext_d0_pct": "409",
+      "obs": "GapCrap: open +409% vs prev close $1.73; short open; cover MOC",
+      "pnl": "+2.05",
+      "qtd": "22",
+      "r": "0.05",
+      "sistema": "GapCrap",
+      "situacao": "MOC",
+      "stop": "10.56",
+      "ticker": "SVC"
+    },
+    {
+      "adv_musd": "40.9",
+      "data_sinal": "2026-07-07",
+      "entrada": "83.58",
+      "ext_d0_pct": "98",
+      "obs": "GapCrap: open +98% vs prev close $42.23; short open; cover MOC",
+      "pnl": "+0.12",
+      "qtd": "2",
+      "r": "0.0",
+      "sistema": "GapCrap",
+      "situacao": "MOC",
+      "stop": "100.30",
+      "ticker": "CRNX"
+    },
+    {
+      "adv_musd": "13.4",
+      "data_sinal": "2026-07-07",
+      "entrada": "8.41",
+      "ext_d0_pct": "1397",
+      "obs": "GapCrap: open +1397% vs prev close $0.56; short open; cover MOC",
+      "pnl": "+44.95",
+      "qtd": "23",
+      "r": "1.12",
+      "sistema": "GapCrap",
+      "situacao": "MOC",
+      "stop": "10.09",
+      "ticker": "ABTC"
+    },
+    {
+      "adv_musd": "28.8",
+      "data_sinal": "2026-07-07",
+      "entrada": "abertura D+1",
+      "ext_d0_pct": "72",
+      "obs": "ATENCAO: se abrir >= $30 nao opera (mega R8); confira earnings/locate",
+      "pnl": "",
+      "qtd": "14",
+      "r": "",
+      "sistema": "FadeD2R",
+      "situacao": "watchlist amanha",
+      "stop": "entrada x1.20",
+      "ticker": "CLRO"
+    }
+  ],
+  "short_agent_metrics": {
+    "agente": "Short: FadeD2R + GapCrap",
+    "atualizado_em": "2026-07-07",
+    "capital_base": "8000",
+    "exposicao": "$0",
+    "fechados": "3",
+    "max_posicoes": "6",
+    "notional_por_trade_usd": "200.00",
+    "pnl_aberto": "$0",
+    "pnl_usd": "+47.12",
+    "pos_abertas": "0",
+    "retorno_pct": "+7.35",
+    "risco_aberto": "$0",
+    "risco_pct": "0.5",
+    "risco_por_trade_usd": "40.00",
+    "status": "1 sinal(is) amanha",
+    "trades": "3",
+    "trades_faded2r": "0",
+    "trades_gapcrap": "3",
+    "trades_hoje": "3",
+    "watchlist_amanha": "1",
+    "win_pct": "100"
+  },
+  "short_watchlist_next": [
+    {
+      "acao": "SHORT",
+      "adv_musd": "28.8",
+      "data_sinal": "2026-07-07",
+      "entrada_regra": "abertura D+1; nao operar se abrir >= $30",
+      "ext_d0_pct": "72",
+      "fech_d0": "13.84",
+      "locate_check": "9:25 NY no ZeroPro",
+      "obs": "ATENCAO: se abrir >= $30 nao opera (mega R8); confira earnings/locate",
+      "qtd_estim": "14",
+      "sistema": "FadeD2R",
+      "stop_regra": "fill x 1.20; cobrir no MOC",
+      "ticker": "CLRO",
+      "veto_custo": "locate total > $1.00"
+    }
+  ],
   "source_files": {
     "all_leaders": "outputs\\latest_all_leaders.csv",
     "glb_ath": "outputs\\latest_glb_ath.csv",
     "glb_report": "outputs\\latest_glb_ath_report.md",
     "latest_report": "outputs\\latest_report.md",
-    "leaders_consolidating": "outputs\\latest_leaders_consolidating.csv"
+    "leaders_consolidating": "outputs\\latest_leaders_consolidating.csv",
+    "short_agent": "outputs\\latest_short_agent.csv",
+    "short_agent_metrics": "outputs\\latest_short_agent_metrics.csv",
+    "short_watchlist_next": "outputs\\latest_short_watchlist_next.csv"
   },
   "structural_breakouts_today": [
     {
