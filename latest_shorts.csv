@@ -1,3 +1,6 @@
 data_sinal,ticker,extensao_pct,fech_d0,abre_acima,abre_abaixo,qtd,adv_musd,status,resultado_pct,obs
+2026-07-07,SVC,409,8.80,9.24,7.92,22,13.8,executado,1.023,GapCrap: open +409% vs prev close $1.73; short open; cover MOC
+2026-07-07,CRNX,98,83.58,87.76,75.22,2,40.9,executado,0.06,GapCrap: open +98% vs prev close $42.23; short open; cover MOC
+2026-07-07,ABTC,1397,8.41,8.83,7.57,23,13.4,executado,22.473,GapCrap: open +1397% vs prev close $0.56; short open; cover MOC
 2026-07-07,CLRO,72,13.84,14.53,12.46,14,28.8,pendente,,ATENCAO: se abrir >= $30 nao opera (mega R8); confira earnings/locate
 2026-07-02,SLBT,42,5.99,6.29,5.39,33,27.5,invalido,,abertura D+1 $4.71 < $5 (R1)

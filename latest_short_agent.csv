@@ -1,2 +1,5 @@
-data_sinal,ticker,ext_d0_pct,entrada,stop,situacao,qtd,adv_musd,r,pnl,obs
-2026-07-07,CLRO,72,abertura D+1,entrada x1.20,watchlist amanha,14,28.8,,,ATENCAO: se abrir >= $30 nao opera (mega R8); confira earnings/locate
+data_sinal,sistema,ticker,ext_d0_pct,entrada,stop,situacao,qtd,adv_musd,r,pnl,obs
+2026-07-07,GapCrap,SVC,409,8.80,10.56,MOC,22,13.8,0.05,+2.05,GapCrap: open +409% vs prev close $1.73; short open; cover MOC
+2026-07-07,GapCrap,CRNX,98,83.58,100.30,MOC,2,40.9,0.0,+0.12,GapCrap: open +98% vs prev close $42.23; short open; cover MOC
+2026-07-07,GapCrap,ABTC,1397,8.41,10.09,MOC,23,13.4,1.12,+44.95,GapCrap: open +1397% vs prev close $0.56; short open; cover MOC
+2026-07-07,FadeD2R,CLRO,72,abertura D+1,entrada x1.20,watchlist amanha,14,28.8,,,ATENCAO: se abrir >= $30 nao opera (mega R8); confira earnings/locate

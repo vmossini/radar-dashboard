@@ -1,5 +1,5 @@
 chave,valor
-agente,Fade Day-2 (FadeD2R)
+agente,Short: FadeD2R + GapCrap
 atualizado_em,2026-07-07
 status,1 sinal(is) amanha
 capital_base,8000
@@ -12,9 +12,11 @@ risco_aberto,$0
 pnl_aberto,$0
 exposicao,$0
 watchlist_amanha,1
-trades_hoje,0
-trades,0
-fechados,0
-win_pct,--
-pnl_usd,+0.00
-retorno_pct,0
+trades_hoje,3
+trades,3
+trades_faded2r,0
+trades_gapcrap,3
+fechados,3
+win_pct,100
+pnl_usd,+47.12
+retorno_pct,+7.35

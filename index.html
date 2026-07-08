@@ -2468,8 +2468,9 @@ tbody tr:hover {
               <thead>
                 <tr>
                   <th title="Dia do pump (D0).">Sinal D0</th>
+                  <th title="Sistema short: FadeD2R ou GapCrap.">Sistema</th>
                   <th title="Ticker negociado.">Ticker</th>
-                  <th title="Extensao do pump D0 (max/abertura).">Ext. D0</th>
+                  <th title="Extensao do pump ou gap.">Ext./gap</th>
                   <th title="Entrada real ou regra planejada para D+1.">Entrada</th>
                   <th title="Stop real ou regra planejada.">Stop</th>
                   <th title="Watchlist, executado, MOC, stop ou filtro.">Situacao</th>
@@ -2521,7 +2522,7 @@ tbody tr:hover {
               var idx = {}; head.forEach(function (h, i) { idx[h] = i; });
               if (!tab.length) {
                 if (count) count.textContent = "0 itens";
-                if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
+                if (body) body.innerHTML = "<tr><td colspan=\"11\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
                 return;
               }
               body.innerHTML = tab.map(function (r) {
@@ -2532,6 +2533,7 @@ tbody tr:hover {
                 var rColor = isNaN(rr) ? "#94a3b8" : (rr >= 0 ? "#34d399" : "#f87171");
                 return "<tr>" +
                   "<td>" + esc(g("data_sinal")) + "</td>" +
+                  "<td>" + esc(g("sistema") || "FadeD2R") + "</td>" +
                   "<td><strong>" + esc(g("ticker")) + "</strong></td>" +
                   "<td>+" + esc(g("ext_d0_pct")) + "%</td>" +
                   "<td>" + money(g("entrada")) + "</td>" +
@@ -2546,7 +2548,7 @@ tbody tr:hover {
               count.textContent = tab.length + " itens";
             } catch (e) {
               if (count) count.textContent = "0 itens";
-              if (body) body.innerHTML = "<tr><td colspan=\"10\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
+              if (body) body.innerHTML = "<tr><td colspan=\"11\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
             }
           }
           if (document.readyState === "loading") {
@@ -20110,7 +20112,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-07",
   "data_mode": "intraday",
-  "generated_at": "2026-07-07T19:39:25-03:00",
+  "generated_at": "2026-07-07T21:07:29-03:00",
   "glb_ath": [
     {
       "adr_pct": 3.670467533316973,
