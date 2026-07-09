@@ -1,119 +1,130 @@
-# Radar Diario de Lideranca e Consolidacao - 2026-07-08
+# Radar Diario de Lideranca e Consolidacao - 2026-07-09
 
-- All leaders: `72` tickers.
-- Ativos no dia: `34` tickers.
-- Leaders consolidating: `13` tickers.
-- Acionados hoje: `6` tickers.
-- Fonte de preco/volume: `intraday`; base diaria `2026-07-08`; intraday atualizados `72`.
-- CSV all leaders: `C:\Users\vitor\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-07-08\all_leaders_2026-07-08.csv`
-- CSV consolidating: `C:\Users\vitor\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-07-08\leaders_consolidating_2026-07-08.csv`
+- All leaders: `67` tickers.
+- Ativos no dia: `58` tickers.
+- Leaders consolidating: `18` tickers.
+- Acionados hoje: `12` tickers.
+- Fonte de preco/volume: `intraday`; base diaria `2026-07-09`; intraday atualizados `67`.
+- CSV all leaders: `C:\Users\vitor\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-07-09\all_leaders_2026-07-09.csv`
+- CSV consolidating: `C:\Users\vitor\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-07-09\leaders_consolidating_2026-07-09.csv`
 
 ## Market regime
 - SPY close 738.65, vs SMA20 +1.8%, vs SMA50 +6.8%; QQQ close 705.88, vs SMA20 +3.3%, vs SMA50 +11.4%
-- Universo final pos-filtros: `1158`.
-- 52W highs no universo final: `30`.
+- Universo final pos-filtros: `1122`.
+- 52W highs no universo final: `31`.
 
 ## Temas fortes
 | Tema | Leaders | Ready | Score | Top tickers |
 | --- | --- | --- | --- | --- |
-| Biotech & health | 23 | 8 | 352.1 | SLS, DFTX, TNGX, QURE, ERAS, ELVN, ALMS, SYRE |
-| Semiconductors & AI compute | 20 | 4 | 303.6 | PENG, SNDK, MU, MXL, INTC, ORKA, AMD, STX |
-| Software & data | 10 |  | 183.0 | BLZE, BB, TENB, NBIS, PRCH, RPD, DDOG, VRNS |
-| Power & electrification | 4 | 1 | 133.5 | ABSI, FCEL, OSCR, BE |
-| Defense & space | 3 |  | 111.0 | RXT, IRDM, SATL |
-| Medical Specialities | 2 |  | 101.5 | CLOV, PSNL |
-| EDP Services | 2 |  | 101.3 | HNGE, COMP |
-| ELECTRONIC COMPUTERS | 1 |  | 100.4 | DELL |
-| Catalog/Specialty Distribution | 1 |  | 99.8 | PTRN |
-| Multi-Sector Companies | 1 |  | 94.7 | APPS |
-| Industrial components | 1 |  | 89.8 | OUST |
-| SERVICES-HEALTH SERVICES | 1 |  | 87.4 | LFST |
+| Biotech & health | 21 | 9 | 337.1 | SLS, DFTX, SYRE, QURE, ELVN, ERAS, ALMS, RLAY |
+| Semiconductors & AI compute | 21 | 5 | 319.4 | PENG, MXL, SNDK, ORKA, TXG, AMD, MU, INTC |
+| Software & data | 9 | 1 | 179.8 | BLZE, BB, TENB, VRNS, NBIS, DDOG, PANW, RPD |
+| Power & electrification | 4 | 1 | 135.2 | ABSI, FCEL, OSCR, BE |
+| Medical Specialities | 2 | 1 | 110.6 | PSNL, CLOV |
+| Defense & space | 2 |  | 104.0 | RXT, IRDM |
+| Catalog/Specialty Distribution | 1 |  | 101.8 | PTRN |
+| ELECTRONIC COMPUTERS | 1 |  | 100.8 | DELL |
+| Multi-Sector Companies | 1 |  | 95.0 | APPS |
+| Industrial components | 1 |  | 92.3 | OUST |
+| EDP Services | 1 |  | 85.9 | COMP |
+| Package Goods/Cosmetics | 1 | 1 | 84.8 | ELF |
 
-_Mostrando 12 de 15._
+_Mostrando 12 de 14._
 
 ## All leaders - resumo
 - Janela de entrada: `1M/3M/6M`. `1W` fica apenas como contexto/aceleracao.
-- Top 3% 1W contexto: `1`
-- Top 3% 1M: `35`
-- Top 3% 3M: `35`
-- Top 3% 6M: `34`
+- Top 3% 1W contexto: `10`
+- Top 3% 1M: `34`
+- Top 3% 3M: `34`
+- Top 3% 6M: `33`
 
 | Ticker | Name | Theme | Score | 1W | 1M | 3M | 6M | 1Y | ADR | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| BLZE | Backblaze, Inc. Class A Common Stock | Software & data | 99.9 | 3.8 | 112.1 | 376.8 | 244.1 | 199.1 | 8.1 | Leader |
-| ABSI | Absci Corporation Common Stock | Power & electrification | 99.8 | -4.1 | 74.3 | 270.3 | 222.0 | 332.3 | 9.1 | Ready |
-| RXT | Rackspace Technology, Inc. Common Stock | Defense & space | 99.8 | 0.6 | 39.9 | 571.1 | 565.2 | 413.7 | 15.5 | Leader |
-| SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | 99.8 | -6.8 | 67.4 | 225.3 | 310.7 | 528.3 | 11.0 | Ready |
-| DFTX | Definium Therapeutics Inc. Common Shares | Biotech & health | 93.1 | -3.7 | 92.1 | 139.5 |  |  | 6.4 | Ready |
-| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | 92.8 | 3.6 | 31.6 | 347.4 | 293.8 | 297.5 | 9.8 | New Breakout |
-| FCEL | FuelCell Energy Inc  NEW (DE) | Power & electrification | 92.5 | -37.4 | 30.4 | 245.5 | 176.5 | 302.1 | 20.2 | Leader |
-| TNGX | Tango Therapeutics, Inc. | Biotech & health | 91.9 | -2.0 | 51.6 | 46.4 | 250.1 | 498.2 | 6.1 | Ready |
-| BB | BlackBerry Limited | Software & data | 91.6 | -12.1 | 18.1 | 242.7 | 186.2 | 142.5 | 8.5 | Leader |
-| QURE | uniQure N.V. Ordinary Shares | Biotech & health | 91.2 | -5.6 | 64.0 | 165.9 | 77.0 | 211.8 | 7.5 | Ready |
-| SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | 91.1 | -24.0 | 10.9 | 171.9 | 607.3 | 3709.6 | 9.9 | Leader |
-| MU | Micron Technology, Inc. | Semiconductors & AI compute | 90.5 | -17.6 | 9.7 | 180.9 | 222.4 | 670.1 | 7.8 | Leader |
-| MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | 90.4 | -32.9 | 6.4 | 394.5 | 389.1 | 505.1 | 12.1 | Leader |
-| ERAS | Erasca, Inc. Common Stock | Biotech & health | 90.4 | 2.9 | 57.9 | 16.7 | 445.8 | 1387.0 | 6.1 | Chase Breakout |
-| DELL | Dell Technologies Inc. | ELECTRONIC COMPUTERS | 90.4 | 0.2 | 9.6 | 163.4 | 239.1 | 252.6 | 6.9 | New Breakout |
-| INTC | Intel Corp | Semiconductors & AI compute | 90.3 | -21.0 | 11.4 | 149.9 | 200.6 | 392.3 | 8.0 | Leader |
-| PTRN | Pattern Group Inc. Series A Common Stock | Catalog/Specialty Distribution | 89.8 | 9.6 | 41.2 | 122.1 | 123.0 |  | 4.5 | Leader |
-| ORKA | Oruka Therapeutics, Inc. Common Stock | Semiconductors & AI compute | 89.5 | -11.3 | 40.4 | 72.1 | 173.2 | 652.9 | 5.7 | Ready |
-| ELVN | Enliven Therapeutics, Inc. Common Stock | Biotech & health | 89.2 | 0.2 | 46.5 | 29.7 | 219.0 | 153.5 | 4.8 | Ready |
-| ALMS | Alumis Inc. Common Stock | Biotech & health | 89.0 | 5.8 | 56.1 | 35.0 | 184.6 | 891.5 | 5.0 | Breakout Baseline |
-| AMD | Advanced Micro Devices | Semiconductors & AI compute | 88.9 | -10.9 | 10.9 | 154.4 | 140.0 | 264.7 | 5.7 | Ready |
-| HNGE | Hinge Health Inc. Class A Common Stock | EDP Services | 88.6 | 6.5 | 39.4 | 129.6 | 88.0 | 71.1 | 4.0 | Leader |
-| STX | Seagate Technology Holdings PLC Ordinary Shares (Ireland) | Semiconductors & AI compute | 88.0 | -10.9 | 1.4 | 119.4 | 205.6 | 495.6 | 8.4 | Leader |
-| TENB | Tenable Holdings Inc. Common Stock | Software & data | 87.9 | 7.2 | 41.9 | 133.8 | 65.1 | 17.1 | 5.3 | Leader |
-| ALAB | Astera Labs Inc. Common Stock | Semiconductors & AI compute | 85.4 | -18.4 | 24.2 | 259.2 | 131.4 | 335.4 | 9.9 | Leader |
-| APPS | Digital Turbine Inc. Common Stock | Multi-Sector Companies | 84.7 | -18.6 | 16.5 | 264.4 | 103.4 | 77.9 | 9.7 | Leader |
-| OSCR | Oscar Health, Inc. | Power & electrification | 84.0 | 8.0 | 25.8 | 168.8 | 112.2 | 43.8 | 5.2 | Leader |
-| SYRE | Spyre Therapeutics, Inc. Common Stock | Biotech & health | 84.0 | 7.5 | 29.4 | 89.1 | 193.0 | 537.2 | 4.9 | Ready |
-| MRVL | Marvell Technology, Inc. Common Stock | Semiconductors & AI compute | 83.8 | -22.2 | -12.1 | 133.8 | 170.1 | 199.2 | 8.8 | Leader |
-| NBIS | Nebius Group N.V. Class A Ordinary Shares | Software & data | 83.4 | -21.6 | -5.0 | 108.6 | 151.5 | 291.1 | 11.4 | Leader |
-| IBRX | ImmunityBio Inc. Common Stock | Biotech & health | 83.0 | 0.6 | 27.3 | 14.9 | 331.9 | 233.7 | 7.1 | Leader |
-| TWST | Twist Bioscience Corporation Common Stock | Semiconductors & AI compute | 82.9 | -13.3 | 29.4 | 88.1 | 172.1 | 143.0 | 7.1 | Leader |
-| CRDO | Credo Technology Group Holding Ltd Ordinary Shares | Semiconductors & AI compute | 82.9 | -4.8 | 24.9 | 175.4 | 78.7 | 179.2 | 9.4 | Ready |
-| RLAY | Relay Therapeutics, Inc. Common Stock | Biotech & health | 82.9 | 4.9 | 45.2 | 97.2 | 133.4 | 467.2 | 5.7 | Leader |
-| VSH | Vishay Intertechnology, Inc. | Semiconductors & AI compute | 82.5 | -21.7 | -26.3 | 134.2 | 183.0 | 165.5 | 11.3 | Leader |
-| CLOV | Clover Health Investments Corp. Class A Common Stock | Medical Specialities | 82.2 | -11.1 | 21.4 | 164.2 | 87.5 | 66.7 | 5.6 | Leader |
-| WDC | Western Digital Corp. | Semiconductors & AI compute | 82.2 | -13.8 | 7.6 | 103.5 | 206.4 | 760.3 | 9.0 | Leader |
-| LQDA | Liquidia Corporation Common Stock | Biotech & health | 82.0 | -0.3 | 28.6 | 110.6 | 128.7 | 538.0 | 4.4 | Chase Breakout |
-| BFLY | Butterfly Network, Inc. | Semiconductors & AI compute | 82.0 | -12.9 | 60.7 | 81.4 | 92.9 | 266.5 | 12.3 | Leader |
-| PRCH | Porch Group Inc. Common Stock | Software & data | 81.5 | -1.3 | 60.6 | 107.1 | 62.8 | 26.0 | 5.6 | Leader |
+| BLZE | Backblaze, Inc. Class A Common Stock | Software & data | 99.9 | 8.9 | 134.0 | 398.9 | 274.9 | 232.3 | 8.0 | New Breakout |
+| ABSI | Absci Corporation Common Stock | Power & electrification | 99.8 | 3.2 | 75.3 | 264.0 | 228.5 | 342.7 | 8.9 | Ready |
+| SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | 99.8 | 2.0 | 69.0 | 220.8 | 308.0 | 549.3 | 11.7 | Ready |
+| FCEL | FuelCell Energy Inc  NEW (DE) | Power & electrification | 99.3 | -27.9 | 48.3 | 255.9 | 189.5 | 340.4 | 19.6 | Leader |
+| DFTX | Definium Therapeutics Inc. Common Shares | Biotech & health | 93.0 | 11.6 | 110.4 | 135.1 |  |  | 6.4 | Ready |
+| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | 92.6 | 18.1 | 25.9 | 345.5 | 305.9 | 303.1 | 9.9 | Chase Breakout |
+| MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | 92.4 | -14.8 | 20.9 | 441.6 | 441.3 | 574.7 | 11.0 | Leader |
+| BB | BlackBerry Limited | Software & data | 92.0 | -10.8 | 23.2 | 240.5 | 201.8 | 163.6 | 8.2 | Ready |
+| SYRE | Spyre Therapeutics, Inc. Common Stock | Biotech & health | 91.9 | 11.1 | 37.2 | 102.0 | 209.8 | 537.6 | 4.6 | Ready |
+| PTRN | Pattern Group Inc. Series A Common Stock | Catalog/Specialty Distribution | 91.8 | 11.0 | 48.9 | 140.3 | 148.4 |  | 4.3 | New Breakout |
+| QURE | uniQure N.V. Ordinary Shares | Biotech & health | 91.5 | -1.5 | 64.6 | 163.3 | 87.0 | 217.8 | 6.4 | Ready |
+| SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | 91.4 | -8.7 | 13.1 | 168.1 | 673.0 | 4030.4 | 9.3 | Leader |
+| ORKA | Oruka Therapeutics, Inc. Common Stock | Semiconductors & AI compute | 90.9 | -5.4 | 37.9 | 75.1 | 203.2 | 648.2 | 5.5 | Ready |
+| ELVN | Enliven Therapeutics, Inc. Common Stock | Biotech & health | 90.8 | 7.1 | 55.2 | 38.2 | 235.8 | 165.8 | 4.6 | Ready |
+| DELL | Dell Technologies Inc. | ELECTRONIC COMPUTERS | 90.8 | 5.9 | 12.5 | 165.8 | 252.0 | 269.9 | 6.4 | Chase Breakout |
+| TXG | 10x Genomics, Inc. Class A Common Stock | Semiconductors & AI compute | 90.6 | 10.3 | 47.8 | 95.3 | 164.4 | 257.1 | 5.8 | New Breakout |
+| ERAS | Erasca, Inc. Common Stock | Biotech & health | 90.2 | 7.0 | 49.1 | 15.5 | 441.8 | 1310.3 | 6.1 | Chase Breakout |
+| ALMS | Alumis Inc. Common Stock | Biotech & health | 89.8 | 13.8 | 59.6 | 33.4 | 206.9 | 904.0 | 4.8 | Leader |
+| AMD | Advanced Micro Devices | Semiconductors & AI compute | 89.7 | 1.0 | 11.5 | 160.0 | 153.8 | 301.5 | 5.4 | Ready |
+| MU | Micron Technology, Inc. | Semiconductors & AI compute | 89.4 | -4.0 | 4.4 | 169.4 | 238.7 | 719.8 | 7.3 | Leader |
+| TENB | Tenable Holdings Inc. Common Stock | Software & data | 89.1 | 9.1 | 50.0 | 142.5 | 73.6 | 23.1 | 5.4 | Leader |
+| PSNL | Personalis Inc. Common Stock | Medical Specialities | 88.4 | 6.1 | 46.0 | 123.2 | 83.8 | 122.9 | 6.9 | New Breakout |
+| RXT | Rackspace Technology, Inc. Common Stock | Defense & space | 88.3 | -32.7 | -3.2 | 349.0 | 342.0 | 241.0 | 22.5 | Leader |
+| INTC | Intel Corp | Semiconductors & AI compute | 88.2 | -11.4 | 2.1 | 134.3 | 201.7 | 392.5 | 7.7 | Leader |
+| STX | Seagate Technology Holdings PLC Ordinary Shares (Ireland) | Semiconductors & AI compute | 88.0 | -2.8 | 1.4 | 110.3 | 217.6 | 513.4 | 8.1 | Leader |
+| ALAB | Astera Labs Inc. Common Stock | Semiconductors & AI compute | 85.2 | -3.1 | 20.6 | 292.6 | 144.4 | 370.9 | 9.3 | Ready |
+| APPS | Digital Turbine Inc. Common Stock | Multi-Sector Companies | 85.1 | -15.8 | 20.1 | 277.8 | 122.6 | 92.5 | 9.1 | Leader |
+| VRNS | Varonis Systems Inc. Common Stock | Software & data | 84.9 | 9.2 | 38.6 | 110.6 | 38.3 | -8.5 | 5.4 | Leader |
+| NBIS | Nebius Group N.V. Class A Ordinary Shares | Software & data | 84.7 | -5.7 | -0.9 | 112.0 | 153.8 | 329.7 | 10.9 | Leader |
+| TWST | Twist Bioscience Corporation Common Stock | Semiconductors & AI compute | 83.9 | -8.4 | 33.6 | 88.9 | 191.1 | 154.7 | 6.5 | Leader |
+| RLAY | Relay Therapeutics, Inc. Common Stock | Biotech & health | 83.6 | 16.7 | 51.7 | 92.6 | 148.4 | 489.2 | 5.5 | New Breakout |
+| IBRX | ImmunityBio Inc. Common Stock | Biotech & health | 83.6 | -3.6 | 23.6 | 24.2 | 347.7 | 244.9 | 7.0 | Leader |
+| BFLY | Butterfly Network, Inc. | Semiconductors & AI compute | 83.5 | 1.0 | 67.9 | 96.0 | 109.8 | 313.1 | 11.5 | Leader |
+| VSH | Vishay Intertechnology, Inc. | Semiconductors & AI compute | 83.4 | -13.9 | -23.0 | 139.3 | 198.1 | 174.5 | 10.4 | Leader |
+| MRVL | Marvell Technology, Inc. Common Stock | Semiconductors & AI compute | 83.2 | -10.7 | -15.8 | 127.9 | 180.4 | 219.0 | 8.0 | Leader |
+| WDC | Western Digital Corp. | Semiconductors & AI compute | 83.0 | -3.4 | 9.8 | 94.2 | 228.4 | 805.7 | 8.3 | Leader |
+| CLOV | Clover Health Investments Corp. Class A Common Stock | Medical Specialities | 82.8 | -13.5 | 19.2 | 175.3 | 95.8 | 70.2 | 5.6 | Ready |
+| MRNA | Moderna Inc. Common Stock | Biotech & health | 82.7 | 5.6 | 60.8 | 53.0 | 151.7 | 166.7 | 7.2 | Leader |
+| CRDO | Credo Technology Group Holding Ltd Ordinary Shares | Semiconductors & AI compute | 82.4 | 2.6 | 19.5 | 177.0 | 83.3 | 203.4 | 9.2 | Ready |
+| OUST | Ouster Inc. Common Stock | Industrial components | 82.3 | -20.9 | 16.2 | 155.1 | 121.0 | 119.5 | 13.3 | Leader |
 
-_Mostrando 40 de 72._
+_Mostrando 40 de 67._
 
 ## Acionados hoje
 | Ticker | Name | Theme | Status | Tipo | Base | Chase | Country | MktCap | Close | RVOL10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | New Breakout |  | 4 |  | United States | 2.3B | 78.75 | 2.60 |
-| ERAS | Erasca, Inc. Common Stock | Biotech & health | Chase Breakout |  |  | 3 | United States | 3.2B | 18.89 | 1.78 |
-| DELL | Dell Technologies Inc. | ELECTRONIC COMPUTERS | New Breakout |  | 10 |  | United States | 154.6B | 432.28 | 0.72 |
-| ALMS | Alumis Inc. Common Stock | Biotech & health | Breakout Baseline |  |  | 1 | United States | 3.8B | 29.75 | 0.58 |
-| BHVN | Biohaven Ltd. Common Shares | Biotech & health | New Breakout |  | 6 |  | United States | 2.5B | 16.65 | 0.85 |
-| SNDX | Syndax Pharmaceuticals Inc. Common Stock | Biotech & health | Chase Breakout |  |  | 1 | United States | 2.2B | 24.55 | 1.44 |
+| BLZE | Backblaze, Inc. Class A Common Stock | Software & data | New Breakout |  | 4 |  | United States | 444.7M | 17.81 | 0.30 |
+| PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | Chase Breakout |  |  | 1 | United States | 2.3B | 81.30 | 1.30 |
+| PTRN | Pattern Group Inc. Series A Common Stock | Catalog/Specialty Distribution | New Breakout |  | 1 |  | United States | 5.2B | 29.41 | 0.68 |
+| DELL | Dell Technologies Inc. | ELECTRONIC COMPUTERS | Chase Breakout |  |  | 1 | United States | 154.6B | 450.24 | 0.72 |
+| TXG | 10x Genomics, Inc. Class A Common Stock | Semiconductors & AI compute | New Breakout |  | 2 |  | United States | 2.7B | 43.07 | 1.04 |
+| ERAS | Erasca, Inc. Common Stock | Biotech & health | Chase Breakout |  |  | 4 | United States | 3.2B | 19.18 | 0.79 |
+| PSNL | Personalis Inc. Common Stock | Medical Specialities | New Breakout |  | 2 |  | United States | 1.5B | 14.64 | 1.36 |
+| RLAY | Relay Therapeutics, Inc. Common Stock | Biotech & health | New Breakout |  | 1 |  | United States | 2.3B | 20.74 | 0.67 |
+| DDOG | Datadog, Inc. Class A Common Stock | Software & data | New Breakout |  | 10 |  | United States | 74.3B | 268.96 | 0.61 |
+| BHVN | Biohaven Ltd. Common Shares | Biotech & health | Chase Breakout |  |  | 1 | United States | 2.5B | 16.77 | 0.65 |
+| NRIX | Nurix Therapeutics Inc. Common stock | Biotech & health | New Breakout |  | 5 |  | United States | 2.6B | 24.70 | 0.58 |
+| DYN | Dyne Therapeutics Inc. Common Stock | Biotech & health | New Breakout |  | 1 |  | United States | 4.0B | 24.25 | 0.90 |
 
 ## Leaders consolidating
 | Ticker | Name | Theme | Country | MktCap | Score | Close | Pivot | Dist% | Base | RVOL10 | Catalyst |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| ELVN | Enliven Therapeutics, Inc. Common Stock | Biotech & health | United States | 2.4B | 89.0 | 50.85 | 52.38 | 3.0 | 5 | 0.81 | nao verificado |
-| ABSI | Absci Corporation Common Stock | Power & electrification | United States | 771.0M | 85.7 | 11.11 | 12.01 | 8.1 | 6 | 0.66 | nao verificado |
-| DFTX | Definium Therapeutics Inc. Common Shares | Biotech & health | United States | 4.9B | 83.0 | 45.27 | 49.16 | 8.6 | 5 | 0.47 | nao verificado |
-| NRIX | Nurix Therapeutics Inc. Common stock | Biotech & health | United States | 2.5B | 82.8 | 24.30 | 24.88 | 2.4 | 5 | 0.83 | nao verificado |
-| SYRE | Spyre Therapeutics, Inc. Common Stock | Biotech & health | United States | 6.1B | 80.0 | 95.39 | 102.00 | 6.9 | 10 | 0.60 | nao verificado |
-| SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | United States | 1.4B | 77.0 | 13.76 | 15.86 | 15.3 | 5 | 1.01 | nao verificado |
-| TNGX | Tango Therapeutics, Inc. | Biotech & health | United States | 3.0B | 76.9 | 30.63 | 34.35 | 12.1 | 13 | 1.15 | nao verificado |
-| AMD | Advanced Micro Devices | Semiconductors & AI compute | United States | 686.5B | 73.9 | 517.50 | 584.62 | 13.0 | 5 | 0.58 | nao verificado |
-| QURE | uniQure N.V. Ordinary Shares | Biotech & health | Netherlands | 2.7B | 71.2 | 43.47 | 50.30 | 15.7 | 8 | 0.78 | nao verificado |
-| ORKA | Oruka Therapeutics, Inc. Common Stock | Semiconductors & AI compute | United States | 3.5B | 70.0 | 84.41 | 97.73 | 15.8 | 5 | 0.65 | nao verificado |
-| KYMR | Kymera Therapeutics Inc. Common Stock | Biotech & health | United States | 9.4B | 65.4 | 114.29 | 129.83 | 13.6 | 8 | 0.67 | nao verificado |
-| CRDO | Credo Technology Group Holding Ltd Ordinary Shares | Semiconductors & AI compute | United States | 48.2B | 60.8 | 258.52 | 308.38 | 19.3 | 11 | 0.41 | nao verificado |
-| STM | STMicroelectronics N.V. | Semiconductors & AI compute | Switzerland | 54.2B | 58.8 | 68.58 | 81.16 | 18.4 | 11 | 0.74 | nao verificado |
+| ELVN | Enliven Therapeutics, Inc. Common Stock | Biotech & health | United States | 2.4B | 94.0 | 52.22 | 52.38 | 0.3 | 6 | 0.76 | nao verificado |
+| DFTX | Definium Therapeutics Inc. Common Shares | Biotech & health | United States | 5.3B | 93.6 | 48.42 | 49.16 | 1.5 | 6 | 0.34 | nao verificado |
+| ABSI | Absci Corporation Common Stock | Power & electrification | United States | 771.0M | 90.7 | 11.46 | 12.01 | 4.8 | 7 | 0.76 | nao verificado |
+| SYRE | Spyre Therapeutics, Inc. Common Stock | Biotech & health | United States | 6.1B | 90.3 | 98.77 | 102.00 | 3.3 | 11 | 0.90 | nao verificado |
+| AMD | Advanced Micro Devices | Semiconductors & AI compute | United States | 686.5B | 83.3 | 546.51 | 584.62 | 7.0 | 6 | 0.94 | nao verificado |
+| ATAI | AtaiBeckley Inc. Common Stock | Biotech & health | Germany | 1.5B | 79.3 | 5.32 | 5.52 | 3.8 | 6 | 0.92 | nao verificado |
+| AMLX | Amylyx Pharmaceuticals, Inc. Common Stock | Biotech & health | United States | 1.4B | 78.9 | 18.38 | 19.12 | 4.1 | 6 | 0.43 | nao verificado |
+| ORKA | Oruka Therapeutics, Inc. Common Stock | Semiconductors & AI compute | United States | 3.5B | 78.5 | 88.29 | 97.73 | 10.7 | 6 | 0.60 | nao verificado |
+| QURE | uniQure N.V. Ordinary Shares | Biotech & health | Netherlands | 2.8B | 75.2 | 44.47 | 50.30 | 13.1 | 9 | 0.69 | nao verificado |
+| SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | United States | 1.4B | 73.7 | 13.51 | 15.86 | 17.4 | 6 | 0.74 | nao verificado |
+| KYMR | Kymera Therapeutics Inc. Common Stock | Biotech & health | United States | 9.8B | 72.7 | 118.87 | 129.83 | 9.2 | 9 | 0.41 | nao verificado |
+| TNGX | Tango Therapeutics, Inc. | Biotech & health | United States | 3.0B | 68.7 | 30.53 | 34.35 | 12.5 | 14 | 0.77 | nao verificado |
+| BB | BlackBerry Limited | Software & data | Canada | 3.7B | 67.0 | 11.44 | 13.59 | 18.8 | 5 | 0.68 | nao verificado |
+| STM | STMicroelectronics N.V. | Semiconductors & AI compute | Switzerland | 54.2B | 66.0 | 71.38 | 81.16 | 13.7 | 12 | 0.74 | nao verificado |
+| CRDO | Credo Technology Group Holding Ltd Ordinary Shares | Semiconductors & AI compute | United States | 49.5B | 65.4 | 265.71 | 308.38 | 16.1 | 12 | 0.57 | nao verificado |
+| ELF | e.l.f. Beauty Inc. Common Stock | Package Goods/Cosmetics | United States | 4.5B | 65.2 | 75.86 | 80.24 | 5.8 | 5 | 0.94 | nao verificado |
+| ALAB | Astera Labs Inc. Common Stock | Semiconductors & AI compute | United States | 71.6B | 61.9 | 417.50 | 498.84 | 19.5 | 6 | 0.81 | nao verificado |
+| CLOV | Clover Health Investments Corp. Class A Common Stock | Medical Specialities | United States | 2.5B | 54.6 | 4.68 | 5.58 | 19.3 | 7 | 0.69 | nao verificado |
 
 ## Mudancas do dia
-- Novos leaders: `DDOG, DYN, LFST, NBIS, PSNL, RPD, SNDX`
-- Sairam de leaders: `ABCL, BWIN, FROG, NAVN, NWL, STUB`
-- Novos em consolidacao: `AMD, CRDO, DFTX, ELVN, NRIX, ORKA, QURE, SLS, STM`
+- Novos leaders: `AMLX, ATAI, BWIN, PANW, TXG`
+- Sairam de leaders: `GLUE, HNGE, LFST, LQDA, MGNI, PRCH, PURR, SATL, TGTX, TRVI`
+- Novos em consolidacao: `ALAB, AMLX, ATAI, BB, CLOV, ELF`
 
 ## Validacao
 - Duplicatas em all_leaders: `0`
@@ -124,6 +135,6 @@ _Mostrando 40 de 72._
 - Todos com DollarVol(10) >= 2.0M: `True`
 - Todos com AvgVol(10) > 100.0K acoes: `True`
 - Todos com ADR14 > 4.0: `True`
-- Ativos no dia com performance >= 0.1%: `34`
-- Intraday timestamp: `2026-07-08T19:55:00+00:00`
+- Ativos no dia com performance >= 0.1%: `58`
+- Intraday timestamp: `2026-07-09T19:55:00+00:00`
 - Noticias/catalysts: `sem API`
