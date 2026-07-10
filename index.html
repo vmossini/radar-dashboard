@@ -2084,6 +2084,292 @@ tbody tr:hover {
   transform: rotate(-45deg);
 }
 
+#tradingDiaryPage,
+#agentShortPage {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.diary-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.diary-heading h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.diary-source-line {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.diary-metric-grid {
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+}
+
+.diary-metric-grid .metric {
+  min-height: 82px;
+  background: var(--panel);
+}
+
+.diary-metric-grid .metric strong {
+  font-size: 23px;
+}
+
+.diary-overview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.diary-overview-grid .section-block,
+.diary-section,
+.agent-glb-watchlist {
+  margin-bottom: 12px;
+}
+
+.diary-equity-chart {
+  min-height: 240px;
+  padding: 8px 12px 10px 4px;
+  border-top: 1px solid var(--border);
+}
+
+.diary-equity-chart svg {
+  display: block;
+  width: 100%;
+  height: 240px;
+}
+
+.diary-chart-grid {
+  stroke: #e4e9e7;
+  stroke-width: 1;
+}
+
+.diary-chart-zero {
+  stroke: #9ca8a4;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.diary-chart-line {
+  fill: none;
+  stroke: #1f6b5a;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.diary-chart-point {
+  fill: #fff;
+  stroke: #1f6b5a;
+  stroke-width: 2;
+}
+
+.diary-chart-label {
+  fill: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.diary-system-panel .table-wrap,
+.diary-chart-panel {
+  min-height: 316px;
+}
+
+.diary-system-table {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+}
+
+.diary-system-table th,
+.diary-system-table td {
+  padding: 11px 7px;
+  font-size: 11px;
+}
+
+.diary-system-table th:first-child,
+.diary-system-table td:first-child {
+  width: 27%;
+}
+
+.diary-system-table td small,
+.diary-open-table td small,
+.diary-history-table td small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 10.5px;
+  line-height: 1.2;
+}
+
+.diary-open-table {
+  min-width: 1120px;
+  table-layout: fixed;
+}
+
+.diary-open-table th,
+.diary-open-table td {
+  padding: 9px 10px;
+  vertical-align: top;
+}
+
+.diary-open-table th:nth-child(1),
+.diary-open-table td:nth-child(1),
+.diary-open-table th:nth-child(2),
+.diary-open-table td:nth-child(2) {
+  width: 145px;
+}
+
+.diary-open-table th:nth-child(n+3):nth-child(-n+10),
+.diary-open-table td:nth-child(n+3):nth-child(-n+10) {
+  width: 88px;
+  text-align: right;
+}
+
+.diary-open-table th:nth-child(11),
+.diary-open-table td:nth-child(11) {
+  width: 130px;
+}
+
+.diary-history-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.segmented-control {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel-2);
+}
+
+.segmented-control button {
+  min-height: 26px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.segmented-control button.active {
+  background: #22313f;
+  color: #fff;
+}
+
+.diary-history-wrap {
+  max-height: 620px;
+}
+
+.diary-history-table {
+  min-width: 1440px;
+  table-layout: fixed;
+}
+
+.diary-history-table th,
+.diary-history-table td {
+  padding: 9px 10px;
+  vertical-align: top;
+}
+
+.diary-history-table th:nth-child(1),
+.diary-history-table td:nth-child(1) {
+  width: 92px;
+}
+
+.diary-history-table th:nth-child(2),
+.diary-history-table td:nth-child(2),
+.diary-history-table th:nth-child(3),
+.diary-history-table td:nth-child(3) {
+  width: 130px;
+}
+
+.diary-history-table th:nth-child(4),
+.diary-history-table td:nth-child(4) {
+  width: 120px;
+}
+
+.diary-history-table th:nth-child(n+5):nth-child(-n+11),
+.diary-history-table td:nth-child(n+5):nth-child(-n+11) {
+  width: 82px;
+  text-align: right;
+}
+
+.diary-history-table th:nth-child(12),
+.diary-history-table td:nth-child(12) {
+  width: 260px;
+}
+
+.diary-note-cell {
+  overflow: hidden;
+  color: var(--muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.diary-risk-warn {
+  color: #9a4b0f;
+  background: #fff3d6;
+  font-weight: 900;
+}
+
+@media (max-width: 1180px) {
+  .diary-metric-grid {
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+  }
+
+  .diary-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-tabs {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .page-tabs button {
+    flex: 0 0 auto;
+  }
+
+  .diary-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .diary-metric-grid .metric:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .diary-heading,
+  .diary-history-actions {
+    align-items: flex-start;
+  }
+
+  .diary-history-actions {
+    justify-content: flex-start;
+  }
+}
+
     </style>
   </head>
   <body class="glb-only">
@@ -2109,12 +2395,12 @@ tbody tr:hover {
       </header>
 
       <nav class="page-tabs" aria-label="Paginas do dashboard">
-        <button type="button" class="active" data-page="radarPage">GLB</button>
+        <button type="button" class="active" data-page="tradingDiaryPage">Diário de Trading</button>
         <button type="button" data-page="agentPage">Agente GLB</button>
         <button type="button" data-page="agentShortPage">Agente Short</button>
       </nav>
 
-      <section id="radarPage" class="page-view active">
+      <section id="radarPage" class="page-view">
       <section class="metric-grid" aria-label="Resumo">
         <div class="metric">
           <span class="metric-label">All leaders</span>
@@ -2135,35 +2421,6 @@ tbody tr:hover {
           <span class="metric-label">Temas</span>
           <strong id="metricThemes">--</strong>
           <span id="metricTopTheme">--</span>
-        </div>
-      </section>
-
-      <section class="section-block primary-block glb-only-panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Green Line Breakout</p>
-            <h2>GLB Watchlist 63D</h2>
-          </div>
-          <span class="row-count" id="glbCount">--</span>
-        </div>
-        <div class="table-wrap">
-          <table class="glb-table">
-            <thead>
-              <tr>
-                <th data-sort="ticker" title="Ticker negociado.">Ticker</th>
-                <th data-sort="close" title="Sinaliza se o preco/fechamento atual esta acima da GLB.">GLB</th>
-                <th data-sort="official_glb_signal" title="Sim quando passa pela regra oficial baseline: close EOD acima da GLB, base 63D, QQQ regime ok e extensao dentro do limite.">Baseline</th>
-                <th data-sort="close" title="Ultimo preco/fechamento retornado pelo Yahoo.">Preco</th>
-                <th data-sort="ath_trigger" title="Preco minimo do rompimento: ATH anterior + 0,01.">Linha GLB</th>
-                <th data-sort="day_change_pct" title="Distancia do preco atual contra a linha GLB.">Dist.</th>
-                <th data-sort="glb_base_days" title="Pregoes completos desde o ultimo ATH anterior. Regra: pelo menos 63.">Base</th>
-                <th data-sort="adr_pct" title="ADR14 percentual: media das highs dos ultimos 14 candles menos media das lows dos ultimos 14 candles, dividido pelo preco atual.">ADR</th>
-                <th data-sort="rvol_10d" title="Volume atual dividido pela media dos 10 pregoes anteriores. O denominador exclui o candle atual, igual ao RVOL(10) do TradingView.">RVOL(10)</th>
-                <th data-sort="sector" title="Setor do Nasdaq screener.">Tema</th>
-              </tr>
-            </thead>
-            <tbody id="glbBody"></tbody>
-          </table>
         </div>
       </section>
 
@@ -2388,6 +2645,35 @@ tbody tr:hover {
           </div>
         </section>
 
+        <section class="section-block primary-block glb-only-panel agent-glb-watchlist">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Green Line Breakout</p>
+              <h2>GLB Watchlist 63D</h2>
+            </div>
+            <span class="row-count" id="glbCount">--</span>
+          </div>
+          <div class="table-wrap">
+            <table class="glb-table">
+              <thead>
+                <tr>
+                  <th data-sort="ticker" title="Ticker negociado.">Ticker</th>
+                  <th data-sort="close" title="Sinaliza se o preco/fechamento atual esta acima da GLB.">GLB</th>
+                  <th data-sort="official_glb_signal" title="Sim quando passa pela regra oficial baseline: close EOD acima da GLB, base 63D, QQQ regime ok e extensao dentro do limite.">Baseline</th>
+                  <th data-sort="close" title="Ultimo preco/fechamento retornado pelo Yahoo.">Preco</th>
+                  <th data-sort="ath_trigger" title="Preco minimo do rompimento: ATH anterior + 0,01.">Linha GLB</th>
+                  <th data-sort="day_change_pct" title="Distancia do preco atual contra a linha GLB.">Dist.</th>
+                  <th data-sort="glb_base_days" title="Pregoes completos desde o ultimo ATH anterior. Regra: pelo menos 63.">Base</th>
+                  <th data-sort="adr_pct" title="ADR14 percentual: media das highs dos ultimos 14 candles menos media das lows dos ultimos 14 candles, dividido pelo preco atual.">ADR</th>
+                  <th data-sort="rvol_10d" title="Volume atual dividido pela media dos 10 pregoes anteriores. O denominador exclui o candle atual, igual ao RVOL(10) do TradingView.">RVOL(10)</th>
+                  <th data-sort="sector" title="Setor do Nasdaq screener.">Tema</th>
+                </tr>
+              </thead>
+              <tbody id="glbBody"></tbody>
+            </table>
+          </div>
+        </section>
+
         <section class="metric-grid agent-metrics" aria-label="Resumo do agente">
           <div class="metric"><span class="metric-label">Posicoes abertas</span><strong id="agentOpenPositions">--</strong><span id="agentRiskOpen">--</span></div>
           <div class="metric"><span class="metric-label">P/L aberto</span><strong id="agentOpenPnl">--</strong><span id="agentNotionalOpen">--</span></div>
@@ -2578,6 +2864,129 @@ tbody tr:hover {
           } else { loadShortAgent(); }
         })();
         </script>
+      </section>
+
+      <section id="tradingDiaryPage" class="page-view active" aria-label="Diário de Trading">
+        <div class="diary-heading">
+          <div>
+            <p class="eyebrow">GLB + Short Day</p>
+            <h2>Diário de Trading <span id="diarySampleStatus" class="agent-status-pill">--</span></h2>
+            <p id="diarySourceLine" class="diary-source-line">Carregando operações...</p>
+          </div>
+        </div>
+
+        <section class="metric-grid diary-metric-grid" aria-label="Resumo do diário">
+          <div class="metric"><span class="metric-label">P/L fechado</span><strong id="diaryClosedPnl">--</strong><span id="diaryReturn">--</span></div>
+          <div class="metric"><span class="metric-label">P/L aberto MTM</span><strong id="diaryOpenPnl">--</strong><span id="diaryOpenCoverage">--</span></div>
+          <div class="metric"><span class="metric-label">Trades fechados</span><strong id="diaryClosedTrades">--</strong><span id="diaryWinRate">--</span></div>
+          <div class="metric"><span class="metric-label">Expectancy</span><strong id="diaryExpectancy">--</strong><span id="diaryProfitFactor">--</span></div>
+          <div class="metric"><span class="metric-label">Risco aberto</span><strong id="diaryRiskOpen">--</strong><span id="diaryExposureOpen">--</span></div>
+        </section>
+
+        <div class="diary-overview-grid">
+          <section class="section-block diary-chart-panel">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Realizado</p>
+                <h2>Curva de P/L</h2>
+              </div>
+              <span class="row-count" id="diaryEquityMeta">--</span>
+            </div>
+            <div id="diaryEquityChart" class="diary-equity-chart"></div>
+          </section>
+
+          <section class="section-block diary-system-panel">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Comparativo</p>
+                <h2>Sistemas</h2>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="diary-system-table">
+                <thead>
+                  <tr>
+                    <th>Sistema</th>
+                    <th>Fechados</th>
+                    <th>Win</th>
+                    <th>Expect. R</th>
+                    <th>PF</th>
+                    <th>P/L</th>
+                  </tr>
+                </thead>
+                <tbody id="diarySystemsBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <section class="section-block diary-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Em risco</p>
+              <h2>Posições abertas</h2>
+            </div>
+            <span class="row-count" id="diaryOpenCount">--</span>
+          </div>
+          <div class="table-wrap">
+            <table class="diary-open-table">
+              <thead>
+                <tr>
+                  <th>Sistema</th>
+                  <th>Ticker</th>
+                  <th>Entrada</th>
+                  <th>Stop</th>
+                  <th>Qtd</th>
+                  <th>Risco</th>
+                  <th>Último</th>
+                  <th>R aberto</th>
+                  <th>P/L aberto</th>
+                  <th>Exposição</th>
+                  <th>Fonte</th>
+                </tr>
+              </thead>
+              <tbody id="diaryOpenBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section-block diary-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Livro consolidado</p>
+              <h2>Operações</h2>
+            </div>
+            <div class="diary-history-actions">
+              <div class="segmented-control" id="diaryFilter" aria-label="Filtrar operações por sistema">
+                <button type="button" class="active" data-diary-filter="All">Todos</button>
+                <button type="button" data-diary-filter="GLB">GLB</button>
+                <button type="button" data-diary-filter="Short Day">Short</button>
+              </div>
+              <span class="row-count" id="diaryTradesCount">--</span>
+            </div>
+          </div>
+          <div class="table-wrap diary-history-wrap">
+            <table class="diary-history-table">
+              <thead>
+                <tr>
+                  <th>Entrada</th>
+                  <th>Sistema</th>
+                  <th>Ticker</th>
+                  <th>Situação</th>
+                  <th>Preço</th>
+                  <th>Stop</th>
+                  <th>Saída</th>
+                  <th>Qtd</th>
+                  <th>Risco</th>
+                  <th>R</th>
+                  <th>P/L</th>
+                  <th>Observação</th>
+                </tr>
+              </thead>
+              <tbody id="diaryTradesBody"></tbody>
+            </table>
+          </div>
+        </section>
       </section>
     </main>
     <script>
@@ -24424,7 +24833,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-09",
   "data_mode": "intraday",
-  "generated_at": "2026-07-09T21:06:50-03:00",
+  "generated_at": "2026-07-10T13:23:21-03:00",
   "glb_ath": [
     {
       "adr_pct": 2.5079990633234304,
@@ -33055,6 +33464,363 @@ window.RADAR_DATA = {
     "strategy": "glb_ath_63d_eod",
     "trend_exit_rule": "Chandelier Exit 3.0"
   },
+  "trading_diary": {
+    "broker_file": "IndividualXXXXX947_Order_Status_20260710-104046.csv",
+    "broker_status": "Execucoes reais importadas",
+    "broker_updated_at": "2026-07-10T11:40:46-03:00",
+    "equity_curve": [
+      {
+        "date": "2026-06-25",
+        "equity": -76.9248,
+        "pnl": -76.9248,
+        "system": "GLB",
+        "ticker": "WYFI"
+      },
+      {
+        "date": "2026-07-08",
+        "equity": -116.5348,
+        "pnl": -39.61,
+        "system": "Short Day",
+        "ticker": "CLRO"
+      },
+      {
+        "date": "2026-07-09",
+        "equity": -90.4498,
+        "pnl": 26.085,
+        "system": "Short Day",
+        "ticker": "TVRD"
+      }
+    ],
+    "generated_at": "2026-07-10T13:23:21-03:00",
+    "glb_start_date": "2026-06-22",
+    "glb_start_ticker": "WYFI",
+    "overall": {
+      "capital": 18000.0,
+      "closed_pnl": -90.4498,
+      "closed_trades": 3,
+      "expectancy_r": -0.4552,
+      "exposure_open": 4769.3474,
+      "max_drawdown": 116.5348,
+      "open_pnl": 0,
+      "open_pnl_missing": 6,
+      "open_positions": 6,
+      "profit_factor": 0.2238,
+      "return_pct": -0.5025,
+      "risk_open": 323.4874,
+      "trades": 9,
+      "win_rate": 0.3333
+    },
+    "sample_status": "anecdotal",
+    "short_start_date": "2026-07-08",
+    "system_metrics": [
+      {
+        "capital": 10000.0,
+        "closed_pnl": -76.9248,
+        "closed_trades": 1,
+        "expectancy_r": -1.0035,
+        "exposure_open": 4370.4074,
+        "max_drawdown": 76.9248,
+        "open_pnl": 0,
+        "open_pnl_missing": 4,
+        "open_positions": 4,
+        "profit_factor": 0.0,
+        "return_pct": -0.7692,
+        "risk_open": 232.7674,
+        "system": "GLB",
+        "trades": 5,
+        "win_rate": 0.0
+      },
+      {
+        "capital": 8000.0,
+        "closed_pnl": -13.525,
+        "closed_trades": 2,
+        "expectancy_r": -0.181,
+        "exposure_open": 398.94,
+        "max_drawdown": 39.61,
+        "open_pnl": 0,
+        "open_pnl_missing": 2,
+        "open_positions": 2,
+        "profit_factor": 0.6585,
+        "return_pct": -0.1691,
+        "risk_open": 90.72,
+        "system": "Short Day",
+        "trades": 4,
+        "win_rate": 0.5
+      }
+    ],
+    "trades": [
+      {
+        "direction": "Long",
+        "entry_date": "2026-06-22",
+        "entry_notional": 404.0748,
+        "entry_price": 44.8972,
+        "entry_time": "15:57",
+        "exit_date": "2026-06-25",
+        "exit_price": 36.35,
+        "exit_reason": "Stop",
+        "exit_time": "09:46",
+        "initial_risk": 76.6548,
+        "last_date": "2026-06-25",
+        "last_price": 36.35,
+        "name": "WHITEFIBER INC",
+        "notes": "Execucao real importada da corretora. Primeira operacao GLB em 22/06/2026. Risco inicial calculado pelo primeiro stop registrado. Risco inicial $76.65, acima do budget de $50.00.",
+        "open_pnl": null,
+        "open_r": null,
+        "pnl": -76.9248,
+        "quantity": 9.0,
+        "r_multiple": -1.0035,
+        "risk_budget": 50.0,
+        "risk_status": "warn",
+        "setup": "GLB",
+        "source": "Corretora (real)",
+        "status": "closed",
+        "stop_price": 36.38,
+        "system": "GLB",
+        "ticker": "WYFI",
+        "trade_id": "GLB-2026-06-22-WYFI"
+      },
+      {
+        "direction": "Long",
+        "entry_date": "2026-06-23",
+        "entry_notional": 1368.6693,
+        "entry_price": 20.4279,
+        "entry_time": "15:59",
+        "exit_date": null,
+        "exit_price": null,
+        "exit_reason": null,
+        "exit_time": null,
+        "initial_risk": 68.8693,
+        "last_date": "2026-06-23",
+        "last_price": null,
+        "name": "BRIDGEWATER BANCSHAR",
+        "notes": "Execucao real importada da corretora. Risco inicial calculado pelo primeiro stop registrado. Risco inicial $68.87, acima do budget de $50.00.",
+        "open_pnl": null,
+        "open_r": null,
+        "pnl": null,
+        "quantity": 67.0,
+        "r_multiple": null,
+        "risk_budget": 50.0,
+        "risk_status": "warn",
+        "setup": "GLB",
+        "source": "Corretora (real)",
+        "status": "open",
+        "stop_price": 19.4,
+        "system": "GLB",
+        "ticker": "BWB",
+        "trade_id": "GLB-2026-06-23-BWB"
+      },
+      {
+        "direction": "Long",
+        "entry_date": "2026-06-24",
+        "entry_notional": 1462.6781,
+        "entry_price": 20.6011,
+        "entry_time": "15:58",
+        "exit_date": null,
+        "exit_price": null,
+        "exit_reason": null,
+        "exit_time": null,
+        "initial_risk": 69.6581,
+        "last_date": "2026-06-24",
+        "last_price": null,
+        "name": "CALIFORNIA BANCORP",
+        "notes": "Execucao real importada da corretora. Risco inicial calculado pelo primeiro stop registrado. Risco inicial $69.66, acima do budget de $50.00.",
+        "open_pnl": null,
+        "open_r": null,
+        "pnl": null,
+        "quantity": 71.0,
+        "r_multiple": null,
+        "risk_budget": 50.0,
+        "risk_status": "warn",
+        "setup": "GLB",
+        "source": "Corretora (real)",
+        "status": "open",
+        "stop_price": 19.62,
+        "system": "GLB",
+        "ticker": "BCAL",
+        "trade_id": "GLB-2026-06-24-BCAL"
+      },
+      {
+        "direction": "Long",
+        "entry_date": "2026-06-24",
+        "entry_notional": 520.32,
+        "entry_price": 260.16,
+        "entry_time": "15:58",
+        "exit_date": null,
+        "exit_price": null,
+        "exit_reason": null,
+        "exit_time": null,
+        "initial_risk": 50.78,
+        "last_date": "2026-06-24",
+        "last_price": null,
+        "name": "NATERA INC",
+        "notes": "Execucao real importada da corretora. Risco inicial calculado pelo primeiro stop registrado.",
+        "open_pnl": null,
+        "open_r": null,
+        "pnl": null,
+        "quantity": 2.0,
+        "r_multiple": null,
+        "risk_budget": 50.0,
+        "risk_status": "ok",
+        "setup": "GLB",
+        "source": "Corretora (real)",
+        "status": "open",
+        "stop_price": 234.77,
+        "system": "GLB",
+        "ticker": "NTRA",
+        "trade_id": "GLB-2026-06-24-NTRA"
+      },
+      {
+        "direction": "Long",
+        "entry_date": "2026-06-26",
+        "entry_notional": 1018.74,
+        "entry_price": 254.685,
+        "entry_time": "15:56",
+        "exit_date": null,
+        "exit_price": null,
+        "exit_reason": null,
+        "exit_time": null,
+        "initial_risk": 43.46,
+        "last_date": "2026-06-26",
+        "last_price": null,
+        "name": "JOHNSON & JOHNSON",
+        "notes": "Execucao real importada da corretora. Risco inicial calculado pelo primeiro stop registrado.",
+        "open_pnl": null,
+        "open_r": null,
+        "pnl": null,
+        "quantity": 4.0,
+        "r_multiple": null,
+        "risk_budget": 50.0,
+        "risk_status": "ok",
+        "setup": "GLB",
+        "source": "Corretora (real)",
+        "status": "open",
+        "stop_price": 243.82,
+        "system": "GLB",
+        "ticker": "JNJ",
+        "trade_id": "GLB-2026-06-26-JNJ"
+      },
+      {
+        "direction": "Short",
+        "entry_date": "2026-07-08",
+        "entry_notional": 201.11,
+        "entry_price": 11.83,
+        "entry_time": "09:30",
+        "exit_date": "2026-07-08",
+        "exit_price": 14.16,
+        "exit_reason": "Stop",
+        "exit_time": "14:01",
+        "initial_risk": 39.61,
+        "last_date": "2026-07-08",
+        "last_price": 14.16,
+        "name": "CLEARONE INC",
+        "notes": "Execucao real importada da corretora. checar disponibilidade de short no broker antes de executar real",
+        "open_pnl": null,
+        "open_r": null,
+        "pnl": -39.61,
+        "quantity": 17.0,
+        "r_multiple": -1.0,
+        "risk_budget": 40.0,
+        "risk_status": "ok",
+        "setup": "FadeD2R",
+        "source": "Corretora (real)",
+        "status": "closed",
+        "stop_price": 14.16,
+        "system": "Short Day",
+        "ticker": "CLRO",
+        "trade_id": "SHORT-2026-07-08-CLRO"
+      },
+      {
+        "direction": "Short",
+        "entry_date": "2026-07-09",
+        "entry_notional": 205.39,
+        "entry_price": 4.37,
+        "entry_time": "09:30",
+        "exit_date": "2026-07-09",
+        "exit_price": 3.815,
+        "exit_reason": "MOC",
+        "exit_time": "15:59",
+        "initial_risk": 40.89,
+        "last_date": "2026-07-09",
+        "last_price": 3.815,
+        "name": "TVARDI THERAPEUTICS",
+        "notes": "Execucao real importada da corretora. entrada D+1 sub-$5 ($4.33); filtro $5 aplicado no D0",
+        "open_pnl": null,
+        "open_r": null,
+        "pnl": 26.085,
+        "quantity": 47.0,
+        "r_multiple": 0.6379,
+        "risk_budget": 40.0,
+        "risk_status": "ok",
+        "setup": "FadeD2R",
+        "source": "Corretora (real)",
+        "status": "closed",
+        "stop_price": 5.24,
+        "system": "Short Day",
+        "ticker": "TVRD",
+        "trade_id": "SHORT-2026-07-09-TVRD"
+      },
+      {
+        "direction": "Short",
+        "entry_date": "2026-07-10",
+        "entry_notional": 202.86,
+        "entry_price": 22.54,
+        "entry_time": "09:30",
+        "exit_date": null,
+        "exit_price": null,
+        "exit_reason": null,
+        "exit_time": null,
+        "initial_risk": 51.48,
+        "last_date": "2026-07-10",
+        "last_price": null,
+        "name": "SADOT GROUP INC",
+        "notes": "Execucao real importada da corretora. checar disponibilidade de short no broker antes de executar real Risco inicial $51.48, acima do budget de $40.00.",
+        "open_pnl": null,
+        "open_r": null,
+        "pnl": null,
+        "quantity": 9.0,
+        "r_multiple": null,
+        "risk_budget": 40.0,
+        "risk_status": "warn",
+        "setup": "FadeD2R",
+        "source": "Corretora (real)",
+        "status": "open",
+        "stop_price": 28.26,
+        "system": "Short Day",
+        "ticker": "SDOT",
+        "trade_id": "SHORT-2026-07-10-SDOT"
+      },
+      {
+        "direction": "Short",
+        "entry_date": "2026-07-10",
+        "entry_notional": 196.08,
+        "entry_price": 32.68,
+        "entry_time": "09:30",
+        "exit_date": null,
+        "exit_price": null,
+        "exit_reason": null,
+        "exit_time": null,
+        "initial_risk": 39.24,
+        "last_date": "2026-07-10",
+        "last_price": null,
+        "name": "FIRST TRACKS BIOTHER",
+        "notes": "Execucao real importada da corretora. checar disponibilidade de short no broker antes de executar real",
+        "open_pnl": null,
+        "open_r": null,
+        "pnl": null,
+        "quantity": 6.0,
+        "r_multiple": null,
+        "risk_budget": 40.0,
+        "risk_status": "ok",
+        "setup": "FadeD2R",
+        "source": "Corretora (real)",
+        "status": "open",
+        "stop_price": 39.22,
+        "system": "Short Day",
+        "ticker": "TRAX",
+        "trade_id": "SHORT-2026-07-10-TRAX"
+      }
+    ]
+  },
   "update_endpoints": [
     "https://desktop-5jgdist.tail6d7a72.ts.net"
   ],
@@ -33346,6 +34112,7 @@ const state = {
   quickFilter: "All",
   theme: "All",
   signalFilter: "All",
+  diaryFilter: "All",
   windows: new Set(),
   sort: {
     glb: { key: "rvol_10d", dir: "desc" },
@@ -33419,6 +34186,26 @@ const el = {
   agentSystemMetrics: document.querySelector("#agentSystemMetrics"),
   agentTradesCount: document.querySelector("#agentTradesCount"),
   agentTradesBody: document.querySelector("#agentTradesBody"),
+  diarySampleStatus: document.querySelector("#diarySampleStatus"),
+  diarySourceLine: document.querySelector("#diarySourceLine"),
+  diaryClosedPnl: document.querySelector("#diaryClosedPnl"),
+  diaryReturn: document.querySelector("#diaryReturn"),
+  diaryOpenPnl: document.querySelector("#diaryOpenPnl"),
+  diaryOpenCoverage: document.querySelector("#diaryOpenCoverage"),
+  diaryClosedTrades: document.querySelector("#diaryClosedTrades"),
+  diaryWinRate: document.querySelector("#diaryWinRate"),
+  diaryExpectancy: document.querySelector("#diaryExpectancy"),
+  diaryProfitFactor: document.querySelector("#diaryProfitFactor"),
+  diaryRiskOpen: document.querySelector("#diaryRiskOpen"),
+  diaryExposureOpen: document.querySelector("#diaryExposureOpen"),
+  diaryEquityMeta: document.querySelector("#diaryEquityMeta"),
+  diaryEquityChart: document.querySelector("#diaryEquityChart"),
+  diarySystemsBody: document.querySelector("#diarySystemsBody"),
+  diaryOpenCount: document.querySelector("#diaryOpenCount"),
+  diaryOpenBody: document.querySelector("#diaryOpenBody"),
+  diaryFilter: document.querySelector("#diaryFilter"),
+  diaryTradesCount: document.querySelector("#diaryTradesCount"),
+  diaryTradesBody: document.querySelector("#diaryTradesBody"),
 };
 
 const perfMax = Object.fromEntries(
@@ -34096,7 +34883,7 @@ function renderMetrics() {
   const summary = DATA.summary || {};
   document.body.classList.add("glb-only");
   if (isGlbMode()) {
-    if (el.dashboardTitle) el.dashboardTitle.textContent = "GLB e Agente Short";
+    if (el.dashboardTitle) el.dashboardTitle.textContent = "GLB e Short Day";
     if (el.sourceLine) {
       el.sourceLine.textContent = `Ultima atualizacao: ${formatDateTime(
         DATA.generated_at || DATA.intraday_timestamp,
@@ -34979,12 +35766,200 @@ function renderAgent() {
   renderAgentGlbRejectedTable();
 }
 
+function diaryHasValue(value) {
+  return value !== null && value !== undefined && value !== "" && !Number.isNaN(Number(value));
+}
+
+function diaryMoney(value, signed = false) {
+  if (!diaryHasValue(value)) return "--";
+  return signed ? formatSignedMoney(Number(value)) : formatMoney(Number(value));
+}
+
+function diaryNumber(value, digits = 2, suffix = "") {
+  if (!diaryHasValue(value)) return "--";
+  return `${formatNumber(Number(value), digits)}${suffix}`;
+}
+
+function renderDiaryEquityCurve(diary) {
+  if (!el.diaryEquityChart || !el.diaryEquityMeta) return;
+  const points = Array.isArray(diary.equity_curve) ? diary.equity_curve : [];
+  el.diaryEquityMeta.textContent = `${points.length} saídas`;
+  if (!points.length) {
+    el.diaryEquityChart.innerHTML = '<div class="empty-state">Sem trades fechados.</div>';
+    return;
+  }
+
+  const width = 900;
+  const height = 220;
+  const margin = { top: 18, right: 18, bottom: 34, left: 66 };
+  const values = [0, ...points.map((point) => Number(point.equity) || 0)];
+  const rawMin = Math.min(...values);
+  const rawMax = Math.max(...values);
+  const span = Math.max(20, rawMax - rawMin);
+  const minValue = rawMin - span * 0.12;
+  const maxValue = rawMax + span * 0.12;
+  const plotWidth = width - margin.left - margin.right;
+  const plotHeight = height - margin.top - margin.bottom;
+  const xFor = (index) =>
+    points.length === 1 ? margin.left + plotWidth / 2 : margin.left + (index / (points.length - 1)) * plotWidth;
+  const yFor = (value) => margin.top + ((maxValue - value) / (maxValue - minValue || 1)) * plotHeight;
+  const linePoints = points.map((point, index) => `${xFor(index).toFixed(1)},${yFor(Number(point.equity) || 0).toFixed(1)}`).join(" ");
+  const grid = Array.from({ length: 5 }, (_, index) => {
+    const ratio = index / 4;
+    const value = maxValue - ratio * (maxValue - minValue);
+    const y = margin.top + ratio * plotHeight;
+    return `
+      <line x1="${margin.left}" y1="${y.toFixed(1)}" x2="${width - margin.right}" y2="${y.toFixed(1)}" class="diary-chart-grid" />
+      <text x="${margin.left - 10}" y="${(y + 4).toFixed(1)}" text-anchor="end" class="diary-chart-label">${escapeHtml(formatMoney(value))}</text>
+    `;
+  }).join("");
+  const markers = points.map((point, index) => `
+    <circle cx="${xFor(index).toFixed(1)}" cy="${yFor(Number(point.equity) || 0).toFixed(1)}" r="3.5" class="diary-chart-point">
+      <title>${escapeHtml(`${formatDateOnly(point.date)} · ${point.ticker} · ${formatSignedMoney(point.pnl)} · acumulado ${formatSignedMoney(point.equity)}`)}</title>
+    </circle>
+  `).join("");
+  const first = points[0];
+  const last = points[points.length - 1];
+  el.diaryEquityChart.innerHTML = `
+    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Curva de resultado realizado">
+      ${grid}
+      <line x1="${margin.left}" y1="${yFor(0).toFixed(1)}" x2="${width - margin.right}" y2="${yFor(0).toFixed(1)}" class="diary-chart-zero" />
+      <polyline points="${linePoints}" class="diary-chart-line" />
+      ${markers}
+      <text x="${margin.left}" y="${height - 10}" class="diary-chart-label">${escapeHtml(formatDateOnly(first.date))}</text>
+      <text x="${width - margin.right}" y="${height - 10}" text-anchor="end" class="diary-chart-label">${escapeHtml(formatDateOnly(last.date))}</text>
+    </svg>
+  `;
+}
+
+function renderDiarySystems(diary) {
+  if (!el.diarySystemsBody) return;
+  const rows = Array.isArray(diary.system_metrics) ? diary.system_metrics : [];
+  el.diarySystemsBody.innerHTML = rows.length
+    ? rows.map((row) => `
+        <tr>
+          <td><strong>${escapeHtml(row.system)}</strong><small>real · ${diaryMoney(row.capital)}</small></td>
+          <td class="num">${diaryNumber(row.closed_trades, 0)}</td>
+          <td class="num">${diaryHasValue(row.win_rate) ? formatPercent(Number(row.win_rate) * 100, 1) : "--"}</td>
+          <td class="num ${signedClass(row.expectancy_r)}">${diaryNumber(row.expectancy_r, 2, "R")}</td>
+          <td class="num">${diaryNumber(row.profit_factor, 2)}</td>
+          <td class="num ${signedClass(row.closed_pnl)}">${diaryMoney(row.closed_pnl, true)}</td>
+        </tr>
+      `).join("")
+    : '<tr><td colspan="6"><div class="empty-state">Sem métricas.</div></td></tr>';
+}
+
+function renderDiaryOpenTrades(diary) {
+  if (!el.diaryOpenBody || !el.diaryOpenCount) return;
+  const rows = (diary.trades || [])
+    .filter((row) => row.status === "open")
+    .sort((a, b) => String(b.entry_date || "").localeCompare(String(a.entry_date || "")));
+  el.diaryOpenCount.textContent = `${rows.length} posições`;
+  el.diaryOpenBody.innerHTML = rows.length
+    ? rows.map((row) => {
+        const riskClass = row.risk_status === "warn" ? "diary-risk-warn" : "";
+        return `
+          <tr>
+            <td><strong>${escapeHtml(row.system)}</strong><small>${escapeHtml(row.setup || "")}</small></td>
+            <td><strong>${escapeHtml(row.ticker)}</strong><small>${escapeHtml(row.name || "")}</small></td>
+            <td class="num">${diaryMoney(row.entry_price)}<small>${escapeHtml(formatDateOnly(row.entry_date))}</small></td>
+            <td class="num">${diaryMoney(row.stop_price)}</td>
+            <td class="num">${formatShareQty(row.quantity)}</td>
+            <td class="num ${riskClass}" title="${escapeHtml(row.notes || "")}">${diaryMoney(row.initial_risk)}</td>
+            <td class="num">${diaryMoney(row.last_price)}</td>
+            <td class="num ${signedClass(row.open_r)}">${diaryNumber(row.open_r, 2, "R")}</td>
+            <td class="num ${signedClass(row.open_pnl)}">${diaryMoney(row.open_pnl, true)}</td>
+            <td class="num">${diaryMoney(row.entry_notional)}</td>
+            <td>${escapeHtml(row.source || "--")}</td>
+          </tr>
+        `;
+      }).join("")
+    : '<tr><td colspan="11"><div class="empty-state">Nenhuma posição aberta.</div></td></tr>';
+}
+
+function renderDiaryTradeHistory(diary) {
+  if (!el.diaryTradesBody || !el.diaryTradesCount) return;
+  const rows = (diary.trades || [])
+    .filter((row) => state.diaryFilter === "All" || row.system === state.diaryFilter)
+    .slice()
+    .sort((a, b) => String(`${b.entry_date || ""} ${b.entry_time || ""}`).localeCompare(String(`${a.entry_date || ""} ${a.entry_time || ""}`)));
+  el.diaryTradesCount.textContent = `${rows.length} operações`;
+  if (el.diaryFilter) {
+    el.diaryFilter.querySelectorAll("button[data-diary-filter]").forEach((button) => {
+      button.classList.toggle("active", button.dataset.diaryFilter === state.diaryFilter);
+    });
+  }
+  el.diaryTradesBody.innerHTML = rows.length
+    ? rows.map((row) => {
+        const isOpen = row.status === "open";
+        const resultR = isOpen ? row.open_r : row.r_multiple;
+        const resultPnl = isOpen ? row.open_pnl : row.pnl;
+        const statusLabel = isOpen ? "Aberta" : (row.exit_reason || "Fechada");
+        const statusClass = isOpen ? "pill-leader" : "pill-default";
+        return `
+          <tr>
+            <td class="date-cell">${escapeHtml(formatDateOnly(row.entry_date))}<small>${escapeHtml(row.entry_time || "")}</small></td>
+            <td><strong>${escapeHtml(row.system)}</strong><small>${escapeHtml(row.setup || "")}</small></td>
+            <td><strong>${escapeHtml(row.ticker)}</strong><small>${escapeHtml(row.direction || "")}</small></td>
+            <td><span class="pill ${statusClass}">${escapeHtml(statusLabel)}</span><small>${escapeHtml(row.source || "")}</small></td>
+            <td class="num">${diaryMoney(row.entry_price)}</td>
+            <td class="num ${row.risk_status === "warn" ? "diary-risk-warn" : ""}">${diaryMoney(row.stop_price)}</td>
+            <td class="num">${diaryMoney(row.exit_price)}<small>${row.exit_date ? escapeHtml(formatDateOnly(row.exit_date)) : "--"}</small></td>
+            <td class="num">${formatShareQty(row.quantity)}</td>
+            <td class="num">${diaryMoney(row.initial_risk)}</td>
+            <td class="num ${signedClass(resultR)}">${diaryNumber(resultR, 2, "R")}</td>
+            <td class="num ${signedClass(resultPnl)}">${diaryMoney(resultPnl, true)}</td>
+            <td class="diary-note-cell" title="${escapeHtml(row.notes || "")}">${escapeHtml(row.notes || "--")}</td>
+          </tr>
+        `;
+      }).join("")
+    : '<tr><td colspan="12"><div class="empty-state">Nenhuma operação neste filtro.</div></td></tr>';
+}
+
+function renderTradingDiary() {
+  const diary = DATA.trading_diary || {};
+  const metrics = diary.overall || {};
+  if (!el.diaryClosedPnl) return;
+  if (el.diarySampleStatus) {
+    el.diarySampleStatus.textContent = metrics.closed_trades < 30 ? "amostra inicial" : "em acompanhamento";
+    el.diarySampleStatus.className = "agent-status-pill";
+  }
+  if (el.diarySourceLine) {
+    const brokerLine = diary.broker_updated_at
+      ? `Short real atualizado ${formatDateTime(diary.broker_updated_at)}`
+      : "Short real sem arquivo da corretora";
+    el.diarySourceLine.textContent = `GLB real desde ${formatDateOnly(diary.glb_start_date || "2026-06-22")} (${diary.glb_start_ticker || "WYFI"}) · ${brokerLine}`;
+  }
+  el.diaryClosedPnl.textContent = diaryMoney(metrics.closed_pnl, true);
+  el.diaryClosedPnl.className = signedClass(metrics.closed_pnl);
+  el.diaryReturn.textContent = `Retorno ${diaryHasValue(metrics.return_pct) ? formatPercent(metrics.return_pct, 2) : "--"}`;
+  const allOpenPnlMissing = Number(metrics.open_positions || 0) > 0
+    && Number(metrics.open_pnl_missing || 0) >= Number(metrics.open_positions || 0);
+  el.diaryOpenPnl.textContent = allOpenPnlMissing ? "--" : diaryMoney(metrics.open_pnl, true);
+  el.diaryOpenPnl.className = allOpenPnlMissing ? "" : signedClass(metrics.open_pnl);
+  el.diaryOpenCoverage.textContent = metrics.open_pnl_missing
+    ? `${metrics.open_pnl_missing} posição(ões) sem MTM`
+    : "Todas as posições marcadas";
+  el.diaryClosedTrades.textContent = diaryNumber(metrics.closed_trades, 0);
+  el.diaryWinRate.textContent = diaryHasValue(metrics.win_rate) ? `Win ${formatPercent(metrics.win_rate * 100, 1)}` : "Win --";
+  el.diaryExpectancy.textContent = diaryNumber(metrics.expectancy_r, 2, "R");
+  el.diaryExpectancy.className = signedClass(metrics.expectancy_r);
+  el.diaryProfitFactor.textContent = `PF ${diaryNumber(metrics.profit_factor, 2)}`;
+  el.diaryRiskOpen.textContent = diaryMoney(metrics.risk_open);
+  el.diaryExposureOpen.textContent = `Exposição ${diaryMoney(metrics.exposure_open)}`;
+  renderDiaryEquityCurve(diary);
+  renderDiarySystems(diary);
+  renderDiaryOpenTrades(diary);
+  renderDiaryTradeHistory(diary);
+}
+
 function renderAll() {
   renderMetrics();
   renderGlbTable();
   if (isGlbMode()) {
     renderFilters();
     renderAgent();
+    renderTradingDiary();
     return;
   }
   renderFilterSummary();
@@ -34998,6 +35973,7 @@ function renderAll() {
   renderThemes();
   renderWindowLeaders();
   renderAgent();
+  renderTradingDiary();
 }
 
 function updateAndRender(callback) {
@@ -35049,6 +36025,15 @@ el.windowControls.addEventListener("click", (event) => {
 
 if (el.refreshButton) {
   el.refreshButton.addEventListener("click", refreshSnapshot);
+}
+
+if (el.diaryFilter) {
+  el.diaryFilter.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-diary-filter]");
+    if (!button) return;
+    state.diaryFilter = button.dataset.diaryFilter || "All";
+    renderDiaryTradeHistory(DATA.trading_diary || {});
+  });
 }
 
 el.pageTabs.forEach((button) => {
