@@ -1,7 +1,7 @@
 chave,valor
 agente,Short: FadeD2R + GapCrap
-atualizado_em,2026-07-09
-status,2 sinal(is) amanha
+atualizado_em,2026-07-10
+status,1 sinal(is) amanha
 capital_base,8000
 risco_pct,0.5
 risco_por_trade_usd,40.00
@@ -11,12 +11,12 @@ pos_abertas,0
 risco_aberto,$0
 pnl_aberto,$0
 exposicao,$0
-watchlist_amanha,2
-trades_hoje,1
-trades,3
-trades_faded2r,2
-trades_gapcrap,1
-fechados,3
-win_pct,67
-pnl_usd,-16.09
-retorno_pct,-2.94
+watchlist_amanha,1
+trades_hoje,3
+trades,6
+trades_faded2r,4
+trades_gapcrap,2
+fechados,6
+win_pct,50
+pnl_usd,-3.30
+retorno_pct,-0.51
