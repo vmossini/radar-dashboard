@@ -1,2 +1,1 @@
-data_sinal,sistema,ticker,acao,entrada_regra,qtd_estim,stop_regra,ext_d0_pct,fech_d0,adv_musd,obs
-2026-07-10,FadeD2R,NVVE,SHORT,abertura D+1,14,fill x 1.20; cobrir no MOC,117,13.67,33.3,checar disponibilidade de short no broker antes de executar real
+data_sinal,sistema,ticker,acao,entrada_regra,qtd_estim,stop_regra,ext_d0_pct,fech_d0,adv_musd,obs,market_cap,market_cap_musd,market_cap_filter
