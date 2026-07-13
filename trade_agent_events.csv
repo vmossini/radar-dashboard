@@ -73,3 +73,4 @@
 2026-07-09T20:54:16-03:00,skip,GLB-2026-07-09-PSX,PSX,189.75,,close_below_glb,glb_close,190.62,,2atr14,5.468816529858094,50.0,,,189.75,,,,Close abaixo da GLB; sem entrada paper.
 2026-07-10T16:00:00-04:00,exit,GLB-2026-07-07-PTCT,PTCT,84.83,7.0,early_glb_failure,glb_close,87.51,82.81,initial_2atr14,3.0679142198850777,50.0,6.548847432287645,45.84193202601352,84.83,-0.6917247724639052,-31.710000000000008,early_glb_failure,GLB official paper exit
 2026-07-13T17:44:07-03:00,correction,GLB-2026-07-07-PTCT,PTCT,89.36,7.0,missed_entry_backfill,glb_close,87.51,82.81,initial_2atr14,3.2744237161438225,50.0,6.548847432287645,45.84193202601352,89.36,,,,Ledger repair: PTCT passed official GLB gates on 2026-07-07 but no paper-agent entry existed.
+2026-07-13T17:56:49-03:00,entry,GLB-2026-07-13-PSX,PSX,198.26,4.0,glb_close,glb_close,190.62,186.43,initial_2atr14,5.917148195041208,50.0,11.834296390082416,47.337185560329665,198.26,0.0,0.0,,Official GLB ATH 63D EOD paper entry
