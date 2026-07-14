@@ -23,7 +23,7 @@ retorno_pct,-0.04
 market_cap_filter,ativo
 min_market_cap_usd,40000000
 min_market_cap_musd,40
-market_cap_filter_source,2026-07-10
+market_cap_filter_source,2026-07-14
 market_cap_filter_removed_agent,0
 market_cap_filter_removed_watchlist_next,0
 market_cap_filter_removed_latest_shorts,0

@@ -1,7 +1,7 @@
 data_sinal,sistema,ticker,ext_d0_pct,entrada,stop,situacao,qtd,adv_musd,r,pnl,obs,market_cap,market_cap_musd,market_cap_filter
-2026-07-10,GapCrap,GMM,208,5.69,6.83,MOC,35,16.2,0.98,+39.33,GapCrap: open +208% vs prev close $1.85; short open; cover MOC,8927038,8.93,legacy_below_40m
-2026-07-09,FadeD2R,TRAX,60,33.05,39.66,MOC,6,10.6,-0.47,-18.82,checar disponibilidade de short no broker antes de executar real,1264499887,1264.50,pass
-2026-07-09,FadeD2R,SDOT,41,22.54,27.05,MOC,8,91.4,-0.19,-7.72,checar disponibilidade de short no broker antes de executar real,17367800,17.37,legacy_below_40m
-2026-07-08,FadeD2R,TVRD,76,4.33,5.20,MOC,46,22.1,0.59,+23.79,entrada D+1 sub-$5 ($4.33); filtro $5 aplicado no D0,30770808,30.77,legacy_below_40m
-2026-07-07,GapCrap,CRNX,99,83.58,100.30,MOC,2,60.7,0.0,+0.12,GapCrap: open +99% vs prev close $42.03; short open; cover MOC,8812692585,8812.69,pass
-2026-07-07,FadeD2R,CLRO,72,11.87,14.24,STOP,16,62.6,-1.0,-40.00,checar disponibilidade de short no broker antes de executar real,22446707,22.45,legacy_below_40m
+2026-07-10,GapCrap,GMM,208,5.69,6.83,MOC,35,16.2,0.98,+39.33,GapCrap: open +208% vs prev close $1.85; short open; cover MOC,6739230,6.74,legacy_below_40m
+2026-07-09,FadeD2R,TRAX,60,33.05,39.66,MOC,6,10.6,-0.47,-18.82,checar disponibilidade de short no broker antes de executar real,1221582259,1221.58,pass
+2026-07-09,FadeD2R,SDOT,41,22.54,27.05,MOC,8,91.4,-0.19,-7.72,checar disponibilidade de short no broker antes de executar real,13334800,13.33,legacy_below_40m
+2026-07-08,FadeD2R,TVRD,76,4.33,5.20,MOC,46,22.1,0.59,+23.79,entrada D+1 sub-$5 ($4.33); filtro $5 aplicado no D0,31052249,31.05,legacy_below_40m
+2026-07-07,GapCrap,CRNX,99,83.58,100.30,MOC,2,60.7,0.0,+0.12,GapCrap: open +99% vs prev close $42.03; short open; cover MOC,8822182203,8822.18,pass
+2026-07-07,FadeD2R,CLRO,72,11.87,14.24,STOP,16,62.6,-1.0,-40.00,checar disponibilidade de short no broker antes de executar real,17657719,17.66,legacy_below_40m
