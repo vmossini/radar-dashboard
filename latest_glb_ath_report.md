@@ -1,10 +1,10 @@
 # Radar GLB ATH 63D
 
-- Gerado: `2026-07-13T17:56:49-03:00`
-- Data dos candles: `2026-07-13`
-- GLBs encontrados: `1`
-- Universo limpo: `3970`
-- Pre-candidatos 1Y: `1`
+- Gerado: `2026-07-14T16:34:48-03:00`
+- Data dos candles: `n/a`
+- GLBs encontrados: `0`
+- Universo limpo: `3955`
+- Pre-candidatos 1Y: `0`
 
 ## Regra
 
@@ -14,6 +14,4 @@
 
 ## Tickers
 
-| Ticker | Empresa | High | ATH trigger | Base | RVOL(10) | Market cap | Setor |
-|---|---:|---:|---:|---:|---:|---:|---|
-| PSX | Phillips 66 Common Stock | 198.36 | 190.62 | 68 | 0.04 | 75520120367 | Energy |
+Nenhum GLB ATH 63D encontrado.
