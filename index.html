@@ -960,7 +960,7 @@ tbody tr:hover {
 }
 
 .short-agent-table {
-  min-width: 1480px;
+  min-width: 1640px;
 }
 
 .short-mcap-cell {
@@ -989,6 +989,14 @@ tbody tr:hover {
 
 .short-mcap-exempt small {
   color: var(--green);
+}
+
+.short-mcap-low.short-mcap-exempt {
+  color: var(--red);
+}
+
+.short-mcap-low.short-mcap-exempt small {
+  color: var(--red);
 }
 
 .short-borrow-cell {
@@ -1038,6 +1046,60 @@ tbody tr:hover {
 }
 
 .short-borrow-legacy {
+  border-color: #c8d3dc;
+  background: #eef0f2;
+  color: #52606b;
+}
+
+.short-earnings-cell,
+.short-stop-cell {
+  min-width: 88px;
+  font-weight: 900;
+}
+
+.short-earnings-cell small,
+.short-stop-cell small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.short-earnings-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 62px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.short-earnings-ok {
+  border-color: #8fcbb6;
+  background: #dff1ea;
+  color: var(--green);
+}
+
+.short-earnings-no {
+  border-color: #dfa9a2;
+  background: #f6e3e1;
+  color: var(--red);
+}
+
+.short-earnings-required {
+  border-color: #dfbc72;
+  background: #fff1cf;
+  color: #7a4d0f;
+}
+
+.short-earnings-legacy {
   border-color: #c8d3dc;
   background: #eef0f2;
   color: #52606b;
@@ -2841,7 +2903,7 @@ tbody tr:hover {
 
       </section>
 
-      <section id="agentShortPage" class="page-view" aria-label="Agente short paper (FadeD2R + GapCrap v2)">
+      <section id="agentShortPage" class="page-view" aria-label="Agente short paper (Day2Fade v2 + GapCrap v2)">
         <div class="section-heading short-agent-heading">
           <div>
             <p class="eyebrow">Paper short</p>
@@ -2859,7 +2921,7 @@ tbody tr:hover {
         <section class="section-block">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">FadeD2R + GapCrap v2</p>
+              <p class="eyebrow">Day2Fade v2 + GapCrap v2</p>
               <h2>Watchlist / trades</h2>
             </div>
             <div class="short-agent-actions">
@@ -2872,13 +2934,14 @@ tbody tr:hover {
               <thead>
                 <tr>
                   <th title="Dia do pump (D0).">Sinal D0</th>
-                  <th title="Sistema short: FadeD2R ou GapCrap.">Sistema</th>
+                  <th title="Sistema short: Day2Fade v2 ou GapCrap v2.">Sistema</th>
                   <th title="Ticker negociado.">Ticker</th>
                   <th title="Gate manual de aluguel/locate para GapCrap v2.">Aluguel</th>
-                  <th title="Market cap do Nasdaq screener. FadeD2R abaixo de US$40M fica em vermelho; GapCrap v2 nao usa filtro de market cap.">Market cap</th>
-                  <th title="Extensao do pump ou gap.">Ext./gap</th>
+                  <th title="Earnings: Day2Fade v2 pula se divulgou resultado nos ultimos 3 dias.">Earnings</th>
+                  <th title="Market cap do Nasdaq screener. Day2Fade v2 e GapCrap v2 nao usam filtro de market cap; abaixo de US$40M fica apenas como alerta visual.">Market cap</th>
+                  <th title="Day2Fade: maxima de D0 >= +30% sobre abertura. GapCrap: gap de abertura >= +80% vs fechamento anterior.">Ext./gap</th>
                   <th title="Entrada real ou regra planejada para D+1.">Entrada</th>
-                  <th title="Stop real ou regra planejada.">Stop</th>
+                  <th title="Stop real ou regra planejada. Daqui para frente ambos os shorts usam stop +50% sobre a entrada.">Stop</th>
                   <th title="Watchlist, executado, MOC, stop ou filtro.">Situacao</th>
                   <th title="Quantidade paper por risco 0,5%.">Qtd</th>
                   <th title="ADV20 em milhoes.">ADV $M</th>
@@ -2936,10 +2999,12 @@ tbody tr:hover {
             }
             var filter = String(row.market_cap_filter || "");
             var gapExempt = filter === "gapcrap_v2_no_market_cap_filter";
+            var day2Exempt = filter === "day2fade_v2_no_market_cap_filter";
+            var noFilter = gapExempt || day2Exempt;
             var low = cap != null && cap < 40000000 && !gapExempt;
-            var detail = gapExempt ? "sem filtro" : (cap == null ? "sem dado" : (low ? (filter.indexOf("legacy") === 0 ? "legado <40M" : "<40M") : ">=40M"));
-            var cls = "num short-mcap-cell" + (low ? " short-mcap-low" : "") + (gapExempt ? " short-mcap-exempt" : "");
-            var title = gapExempt ? "GapCrap v2 nao usa market cap como filtro" : (cap == null ? "Market cap indisponivel" : "Market cap " + marketCapLabel(cap) + " / filtro " + (filter || "n/a"));
+            var detail = noFilter ? (low ? "sem filtro <40M" : "sem filtro") : (cap == null ? "sem dado" : (low ? (filter.indexOf("legacy") === 0 ? "legado <40M" : "<40M") : ">=40M"));
+            var cls = "num short-mcap-cell" + (low ? " short-mcap-low" : "") + (noFilter ? " short-mcap-exempt" : "");
+            var title = noFilter ? "Market cap informativo: este setup nao usa market cap como filtro" : (cap == null ? "Market cap indisponivel" : "Market cap " + marketCapLabel(cap) + " / filtro " + (filter || "n/a"));
             return '<td class="' + cls + '" title="' + esc(title) + '">' + esc(marketCapLabel(cap)) + '<small>' + esc(detail) + '</small></td>';
           }
           function borrowCell(row) {
@@ -2954,6 +3019,27 @@ tbody tr:hover {
             else if (filter === "legacy_unchecked") { label = "Legado"; detail = "nao checado"; cls = "short-borrow-legacy"; }
             var title = filter ? ("Aluguel/locate: " + filter + (status ? " (" + status + ")" : "")) : "Gate de aluguel nao aplicado a este setup.";
             return '<td class="short-borrow-cell" title="' + esc(title) + '"><span class="short-borrow-pill ' + cls + '">' + esc(label) + '</span><small>' + esc(detail) + '</small></td>';
+          }
+          function earningsCell(row) {
+            var filter = String(row.day2fade_earnings_filter || row.earnings_filter || "");
+            var status = String(row.earnings_status || "");
+            var label = "--";
+            var detail = "n/a";
+            var cls = "short-earnings-na";
+            if (filter === "no_recent_earnings") { label = "OK"; detail = status || ">3d"; cls = "short-earnings-ok"; }
+            else if (filter === "recent_earnings_skip") { label = "Pula"; detail = status || "<=3d"; cls = "short-earnings-no"; }
+            else if (filter === "earnings_unknown") { label = "Checar"; detail = "sem feed"; cls = "short-earnings-required"; }
+            else if (filter === "legacy_unchecked") { label = "Legado"; detail = "nao checado"; cls = "short-earnings-legacy"; }
+            var title = filter ? ("Earnings: " + filter + (status ? " (" + status + ")" : "")) : "Gate de earnings nao aplicado a este setup.";
+            return '<td class="short-earnings-cell" title="' + esc(title) + '"><span class="short-earnings-pill ' + cls + '">' + esc(label) + '</span><small>' + esc(detail) + '</small></td>';
+          }
+          function stopCell(row) {
+            var stop = row.stop || "";
+            var pct = String(row.short_stop_rule_pct || "");
+            var status = String(row.short_stop_rule_status || "");
+            var detail = pct ? (status === "legacy_preserved" ? "legado" : "regra " + pct + "%") : "--";
+            var title = pct ? ("Stop short: entrada +" + pct + "% (" + (status || "regra") + ")") : "Stop real ou planejado";
+            return '<td class="short-stop-cell" title="' + esc(title) + '">' + money(stop) + '<small>' + esc(detail) + '</small></td>';
           }
           async function loadShortAgent() {
             var count = document.getElementById("shortAgCount");
@@ -2981,14 +3067,14 @@ tbody tr:hover {
               tab = tableObjects(await res.text());
               if (!tab.length) {
                 if (count) count.textContent = "0 itens";
-                if (body) body.innerHTML = "<tr><td colspan=\"13\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
+                if (body) body.innerHTML = "<tr><td colspan=\"14\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
                 return;
               }
             } catch (e) {
             }
             if (!tab.length) {
               if (count) count.textContent = "0 itens";
-              if (body) body.innerHTML = "<tr><td colspan=\"13\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
+              if (body) body.innerHTML = "<tr><td colspan=\"14\" style=\"text-align:center;color:#94a3b8;padding:18px\">Nenhum sinal ou trade paper.</td></tr>";
               return;
             }
             body.innerHTML = tab.map(function (r) {
@@ -2999,13 +3085,14 @@ tbody tr:hover {
               var rColor = isNaN(rr) ? "#94a3b8" : (rr >= 0 ? "#34d399" : "#f87171");
               return "<tr>" +
                 "<td>" + esc(g("data_sinal")) + "</td>" +
-                "<td>" + esc(g("sistema") || "FadeD2R") + "</td>" +
+                "<td>" + esc(g("sistema") || "Day2Fade") + "</td>" +
                 "<td><strong>" + esc(g("ticker")) + "</strong></td>" +
                 borrowCell(r) +
+                earningsCell(r) +
                 marketCapCell(r) +
                 "<td>+" + esc(g("ext_d0_pct")) + "%</td>" +
                 "<td>" + money(g("entrada")) + "</td>" +
-                "<td>" + money(g("stop")) + "</td>" +
+                stopCell(r) +
                 "<td title=\"" + esc(g("obs")) + "\">" + esc(sit) + "</td>" +
                 "<td>" + esc(g("qtd")) + "</td>" +
                 "<td>" + esc(g("adv_musd")) + "</td>" +
@@ -17033,7 +17120,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-13",
   "data_mode": "intraday",
-  "generated_at": "2026-07-14T17:18:57-03:00",
+  "generated_at": "2026-07-14T18:29:40-03:00",
   "glb_ath": [],
   "glb_closed_below": [],
   "intraday_asof": "2026-07-13",
@@ -18989,6 +19076,17 @@ window.RADAR_DATA = {
       "borrow_filter": "legacy_unchecked",
       "borrow_status": "legado",
       "data_sinal": "2026-07-10",
+      "day2fade_earnings_filter": "",
+      "day2fade_max_earnings_age_days": "",
+      "day2fade_min_adv_musd": "",
+      "day2fade_min_market_cap_musd": "",
+      "day2fade_min_price": "",
+      "day2fade_min_trigger_pct": "",
+      "day2fade_rule": "",
+      "day2fade_signal_timing": "",
+      "day2fade_version": "",
+      "earnings_filter": "",
+      "earnings_status": "",
       "entrada": "5.69",
       "ext_d0_pct": "208",
       "gapcrap_filters": "gap>=80; borrow_required; no_price_volume_market_cap",
@@ -19002,6 +19100,9 @@ window.RADAR_DATA = {
       "pnl": "+39.33",
       "qtd": "35",
       "r": "0.98",
+      "short_stop_rule": "entry_plus_50_pct",
+      "short_stop_rule_pct": "50",
+      "short_stop_rule_status": "legacy_preserved",
       "sistema": "GapCrap",
       "situacao": "MOC",
       "stop": "6.83",
@@ -19012,6 +19113,18 @@ window.RADAR_DATA = {
       "borrow_filter": "",
       "borrow_status": "",
       "data_sinal": "2026-07-09",
+      "day2fade_earnings_filter": "legacy_unchecked",
+      "day2fade_market_cap_filter": "off",
+      "day2fade_market_cap_warning_musd": "40",
+      "day2fade_max_earnings_age_days": "3",
+      "day2fade_min_adv_musd": "10",
+      "day2fade_min_price": "2",
+      "day2fade_min_trigger_pct": "30",
+      "day2fade_rule": "pass_legacy_earnings_unchecked",
+      "day2fade_signal_timing": "signal_today_trade_tomorrow",
+      "day2fade_version": "v2",
+      "earnings_filter": "legacy_unchecked",
+      "earnings_status": "legado",
       "entrada": "33.05",
       "ext_d0_pct": "60",
       "gapcrap_filters": "",
@@ -19019,13 +19132,16 @@ window.RADAR_DATA = {
       "gapcrap_rule": "",
       "gapcrap_version": "",
       "market_cap": "1221582259",
-      "market_cap_filter": "pass",
+      "market_cap_filter": "day2fade_v2_no_market_cap_filter",
       "market_cap_musd": "1221.58",
       "obs": "checar disponibilidade de short no broker antes de executar real",
       "pnl": "-18.82",
       "qtd": "6",
       "r": "-0.47",
-      "sistema": "FadeD2R",
+      "short_stop_rule": "entry_plus_50_pct",
+      "short_stop_rule_pct": "50",
+      "short_stop_rule_status": "legacy_preserved",
+      "sistema": "Day2Fade",
       "situacao": "MOC",
       "stop": "39.66",
       "ticker": "TRAX"
@@ -19035,6 +19151,18 @@ window.RADAR_DATA = {
       "borrow_filter": "",
       "borrow_status": "",
       "data_sinal": "2026-07-09",
+      "day2fade_earnings_filter": "legacy_unchecked",
+      "day2fade_market_cap_filter": "off",
+      "day2fade_market_cap_warning_musd": "40",
+      "day2fade_max_earnings_age_days": "3",
+      "day2fade_min_adv_musd": "10",
+      "day2fade_min_price": "2",
+      "day2fade_min_trigger_pct": "30",
+      "day2fade_rule": "pass_legacy_earnings_unchecked",
+      "day2fade_signal_timing": "signal_today_trade_tomorrow",
+      "day2fade_version": "v2",
+      "earnings_filter": "legacy_unchecked",
+      "earnings_status": "legado",
       "entrada": "22.54",
       "ext_d0_pct": "41",
       "gapcrap_filters": "",
@@ -19042,13 +19170,16 @@ window.RADAR_DATA = {
       "gapcrap_rule": "",
       "gapcrap_version": "",
       "market_cap": "13334800",
-      "market_cap_filter": "legacy_below_40m",
+      "market_cap_filter": "day2fade_v2_no_market_cap_filter",
       "market_cap_musd": "13.33",
       "obs": "checar disponibilidade de short no broker antes de executar real",
       "pnl": "-7.72",
       "qtd": "8",
       "r": "-0.19",
-      "sistema": "FadeD2R",
+      "short_stop_rule": "entry_plus_50_pct",
+      "short_stop_rule_pct": "50",
+      "short_stop_rule_status": "legacy_preserved",
+      "sistema": "Day2Fade",
       "situacao": "MOC",
       "stop": "27.05",
       "ticker": "SDOT"
@@ -19058,6 +19189,18 @@ window.RADAR_DATA = {
       "borrow_filter": "",
       "borrow_status": "",
       "data_sinal": "2026-07-08",
+      "day2fade_earnings_filter": "legacy_unchecked",
+      "day2fade_market_cap_filter": "off",
+      "day2fade_market_cap_warning_musd": "40",
+      "day2fade_max_earnings_age_days": "3",
+      "day2fade_min_adv_musd": "10",
+      "day2fade_min_price": "2",
+      "day2fade_min_trigger_pct": "30",
+      "day2fade_rule": "pass_legacy_earnings_unchecked",
+      "day2fade_signal_timing": "signal_today_trade_tomorrow",
+      "day2fade_version": "v2",
+      "earnings_filter": "legacy_unchecked",
+      "earnings_status": "legado",
       "entrada": "4.33",
       "ext_d0_pct": "76",
       "gapcrap_filters": "",
@@ -19065,13 +19208,16 @@ window.RADAR_DATA = {
       "gapcrap_rule": "",
       "gapcrap_version": "",
       "market_cap": "31052249",
-      "market_cap_filter": "legacy_below_40m",
+      "market_cap_filter": "day2fade_v2_no_market_cap_filter",
       "market_cap_musd": "31.05",
       "obs": "entrada D+1 sub-$5 ($4.33); filtro $5 aplicado no D0",
       "pnl": "+23.79",
       "qtd": "46",
       "r": "0.59",
-      "sistema": "FadeD2R",
+      "short_stop_rule": "entry_plus_50_pct",
+      "short_stop_rule_pct": "50",
+      "short_stop_rule_status": "legacy_preserved",
+      "sistema": "Day2Fade",
       "situacao": "MOC",
       "stop": "5.20",
       "ticker": "TVRD"
@@ -19081,6 +19227,17 @@ window.RADAR_DATA = {
       "borrow_filter": "legacy_unchecked",
       "borrow_status": "legado",
       "data_sinal": "2026-07-07",
+      "day2fade_earnings_filter": "",
+      "day2fade_max_earnings_age_days": "",
+      "day2fade_min_adv_musd": "",
+      "day2fade_min_market_cap_musd": "",
+      "day2fade_min_price": "",
+      "day2fade_min_trigger_pct": "",
+      "day2fade_rule": "",
+      "day2fade_signal_timing": "",
+      "day2fade_version": "",
+      "earnings_filter": "",
+      "earnings_status": "",
       "entrada": "83.58",
       "ext_d0_pct": "99",
       "gapcrap_filters": "gap>=80; borrow_required; no_price_volume_market_cap",
@@ -19094,6 +19251,9 @@ window.RADAR_DATA = {
       "pnl": "+0.12",
       "qtd": "2",
       "r": "0.0",
+      "short_stop_rule": "entry_plus_50_pct",
+      "short_stop_rule_pct": "50",
+      "short_stop_rule_status": "legacy_preserved",
       "sistema": "GapCrap",
       "situacao": "MOC",
       "stop": "100.30",
@@ -19104,6 +19264,18 @@ window.RADAR_DATA = {
       "borrow_filter": "",
       "borrow_status": "",
       "data_sinal": "2026-07-07",
+      "day2fade_earnings_filter": "legacy_unchecked",
+      "day2fade_market_cap_filter": "off",
+      "day2fade_market_cap_warning_musd": "40",
+      "day2fade_max_earnings_age_days": "3",
+      "day2fade_min_adv_musd": "10",
+      "day2fade_min_price": "2",
+      "day2fade_min_trigger_pct": "30",
+      "day2fade_rule": "pass_legacy_earnings_unchecked",
+      "day2fade_signal_timing": "signal_today_trade_tomorrow",
+      "day2fade_version": "v2",
+      "earnings_filter": "legacy_unchecked",
+      "earnings_status": "legado",
       "entrada": "11.87",
       "ext_d0_pct": "72",
       "gapcrap_filters": "",
@@ -19111,22 +19283,35 @@ window.RADAR_DATA = {
       "gapcrap_rule": "",
       "gapcrap_version": "",
       "market_cap": "17657719",
-      "market_cap_filter": "legacy_below_40m",
+      "market_cap_filter": "day2fade_v2_no_market_cap_filter",
       "market_cap_musd": "17.66",
       "obs": "checar disponibilidade de short no broker antes de executar real",
       "pnl": "-40.00",
       "qtd": "16",
       "r": "-1.0",
-      "sistema": "FadeD2R",
+      "short_stop_rule": "entry_plus_50_pct",
+      "short_stop_rule_pct": "50",
+      "short_stop_rule_status": "legacy_preserved",
+      "sistema": "Day2Fade",
       "situacao": "STOP",
       "stop": "14.24",
       "ticker": "CLRO"
     }
   ],
   "short_agent_metrics": {
-    "agente": "Short: FadeD2R + GapCrap v2",
+    "agente": "Short: Day2Fade v2 + GapCrap v2",
     "atualizado_em": "2026-07-10",
     "capital_base": "8000",
+    "day2fade_earnings_skip": "0",
+    "day2fade_earnings_unknown": "0",
+    "day2fade_market_cap_filter": "off",
+    "day2fade_market_cap_warning_musd": "40",
+    "day2fade_max_earnings_age_days": "3",
+    "day2fade_min_adv_musd": "10",
+    "day2fade_min_price": "2",
+    "day2fade_min_trigger_pct": "30",
+    "day2fade_signal_timing": "signal_today_trade_tomorrow",
+    "day2fade_version": "v2",
     "exposicao": "$0",
     "fechados": "6",
     "gapcrap_locate_required": "0",
@@ -19137,9 +19322,9 @@ window.RADAR_DATA = {
     "gapcrap_requires_borrow": "true",
     "gapcrap_version": "v2",
     "gapcrap_volume_filter": "off",
-    "market_cap_filter": "ativo_exceto_gapcrap_v2",
-    "market_cap_filter_legacy_agent": "3",
-    "market_cap_filter_legacy_below_40m_agent": "3",
+    "market_cap_filter": "ativo_exceto_day2fade_gapcrap_v2",
+    "market_cap_filter_legacy_agent": "0",
+    "market_cap_filter_legacy_below_40m_agent": "0",
     "market_cap_filter_removed_agent": "0",
     "market_cap_filter_removed_latest_shorts": "0",
     "market_cap_filter_removed_watchlist_next": "0",
@@ -19155,8 +19340,11 @@ window.RADAR_DATA = {
     "risco_aberto": "$0",
     "risco_pct": "0.5",
     "risco_por_trade_usd": "40.00",
+    "short_stop_rule": "entry_plus_50_pct",
+    "short_stop_rule_pct": "50",
     "status": "0 sinal(is) amanha",
     "trades": "6",
+    "trades_day2fade_v2": "4",
     "trades_faded2r": "4",
     "trades_gapcrap": "2",
     "trades_gapcrap_v2": "2",
@@ -19165,22 +19353,36 @@ window.RADAR_DATA = {
     "win_pct": "33"
   },
   "short_filters": {
+    "day2fade_v2": {
+      "market_cap_filter": false,
+      "market_cap_warning_musd": 40.0,
+      "max_earnings_age_days": 3,
+      "min_adv_musd": 10.0,
+      "min_price": 2.0,
+      "min_trigger_pct": 30.0,
+      "signal_timing": "signal_today_trade_tomorrow",
+      "stop_pct": 50.0
+    },
     "enabled": true,
+    "exempt_day2fade_agent": 4,
+    "exempt_day2fade_latest_shorts": 2,
+    "exempt_day2fade_watchlist_next": 0,
     "exempt_gapcrap_agent": 2,
-    "exempt_gapcrap_latest_shorts": 2,
+    "exempt_gapcrap_latest_shorts": 3,
     "exempt_gapcrap_watchlist_next": 0,
     "gapcrap_v2": {
       "market_cap_filter": false,
       "min_gap_pct": 80.0,
       "price_filter": false,
       "requires_borrow": true,
+      "stop_pct": 50.0,
       "volume_filter": false
     },
     "kept_agent": 6,
     "kept_latest_shorts": 5,
     "kept_watchlist_next": 0,
-    "legacy_agent": 3,
-    "legacy_below_40m_agent": 3,
+    "legacy_agent": 0,
+    "legacy_below_40m_agent": 0,
     "market_cap_source": "2026-07-14",
     "min_market_cap": 40000000.0,
     "min_market_cap_musd": 40.0,
@@ -19189,7 +19391,11 @@ window.RADAR_DATA = {
     "raw_watchlist_next": 0,
     "removed_agent": 0,
     "removed_latest_shorts": 0,
-    "removed_watchlist_next": 0
+    "removed_watchlist_next": 0,
+    "short_stop_rule": {
+      "rule": "entry_plus_50_pct",
+      "stop_pct": 50.0
+    }
   },
   "short_watchlist_next": [],
   "source_files": {
@@ -19744,22 +19950,36 @@ window.RADAR_DATA = {
       "Telecommunications": 2
     },
     "short_filters": {
+      "day2fade_v2": {
+        "market_cap_filter": false,
+        "market_cap_warning_musd": 40.0,
+        "max_earnings_age_days": 3,
+        "min_adv_musd": 10.0,
+        "min_price": 2.0,
+        "min_trigger_pct": 30.0,
+        "signal_timing": "signal_today_trade_tomorrow",
+        "stop_pct": 50.0
+      },
       "enabled": true,
+      "exempt_day2fade_agent": 4,
+      "exempt_day2fade_latest_shorts": 2,
+      "exempt_day2fade_watchlist_next": 0,
       "exempt_gapcrap_agent": 2,
-      "exempt_gapcrap_latest_shorts": 2,
+      "exempt_gapcrap_latest_shorts": 3,
       "exempt_gapcrap_watchlist_next": 0,
       "gapcrap_v2": {
         "market_cap_filter": false,
         "min_gap_pct": 80.0,
         "price_filter": false,
         "requires_borrow": true,
+        "stop_pct": 50.0,
         "volume_filter": false
       },
       "kept_agent": 6,
       "kept_latest_shorts": 5,
       "kept_watchlist_next": 0,
-      "legacy_agent": 3,
-      "legacy_below_40m_agent": 3,
+      "legacy_agent": 0,
+      "legacy_below_40m_agent": 0,
       "market_cap_source": "2026-07-14",
       "min_market_cap": 40000000.0,
       "min_market_cap_musd": 40.0,
@@ -19768,7 +19988,11 @@ window.RADAR_DATA = {
       "raw_watchlist_next": 0,
       "removed_agent": 0,
       "removed_latest_shorts": 0,
-      "removed_watchlist_next": 0
+      "removed_watchlist_next": 0,
+      "short_stop_rule": {
+        "rule": "entry_plus_50_pct",
+        "stop_pct": 50.0
+      }
     },
     "status_counts": {
       "Chase Breakout": 4,
@@ -26743,7 +26967,7 @@ window.RADAR_DATA = {
         "ticker": "SDOT"
       }
     ],
-    "generated_at": "2026-07-14T17:18:58-03:00",
+    "generated_at": "2026-07-14T18:29:41-03:00",
     "metadata_file": "schwab_trade_metadata.csv",
     "metadata_rows": 268,
     "overall": {
