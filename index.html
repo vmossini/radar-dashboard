@@ -963,6 +963,30 @@ tbody tr:hover {
   min-width: 1640px;
 }
 
+.short-next-notice {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.short-next-notice.is-empty {
+  border-color: #dfbc72;
+  background: #fff1cf;
+  color: #7a4d0f;
+}
+
+.short-next-notice.has-trades {
+  border-color: #8fcbb6;
+  background: #dff1ea;
+  color: var(--green);
+}
+
 .short-mcap-cell {
   font-weight: 900;
 }
@@ -2925,6 +2949,7 @@ tbody tr:hover {
               <h2>Watchlist / trades</h2>
             </div>
             <div class="short-agent-actions">
+              <button type="button" class="short-next-notice" id="shortAgNextNotice" disabled>Checando amanha</button>
               <a class="action-link" href="./latest_short_watchlist_next.csv" download>Watchlist CSV</a>
               <span class="row-count" id="shortAgCount">--</span>
             </div>
@@ -3039,7 +3064,8 @@ tbody tr:hover {
             var status = String(row.short_stop_rule_status || "");
             var detail = pct ? (status === "legacy_preserved" ? "legado" : "regra " + pct + "%") : "--";
             var title = pct ? ("Stop short: entrada +" + pct + "% (" + (status || "regra") + ")") : "Stop real ou planejado";
-            return '<td class="short-stop-cell" title="' + esc(title) + '">' + money(stop) + '<small>' + esc(detail) + '</small></td>';
+            var formattedStop = /^-?\d+(\.\d+)?$/.test(String(stop)) ? "$" + esc(stop) : esc(stop || "--");
+            return '<td class="short-stop-cell" title="' + esc(title) + '">' + formattedStop + '<small>' + esc(detail) + '</small></td>';
           }
           async function loadShortAgent() {
             var count = document.getElementById("shortAgCount");
@@ -3058,7 +3084,16 @@ tbody tr:hover {
             document.getElementById("shortAgRiskTrade").textContent = "$" + (met.risco_por_trade_usd || "0");
             document.getElementById("shortAgNotional").textContent = "notional $" + (met.notional_por_trade_usd || "0");
             document.getElementById("shortAgMaxPos").textContent = met.max_posicoes || "--";
-            document.getElementById("shortAgToday").textContent = met.watchlist_amanha || met.trades_hoje || "0";
+            var nextCount = parseInt(met.watchlist_amanha || "0", 10);
+            if (isNaN(nextCount)) nextCount = 0;
+            document.getElementById("shortAgToday").textContent = String(nextCount);
+            var nextNotice = document.getElementById("shortAgNextNotice");
+            if (nextNotice) {
+              nextNotice.textContent = nextCount > 0 ? (nextCount + " trade" + (nextCount === 1 ? "" : "s") + " amanha") : "Sem trades amanha";
+              nextNotice.title = nextCount > 0 ? "Ha sinais short para operar no proximo pregao." : "Nao ha sinais short para operar no proximo pregao; historico preservado abaixo.";
+              nextNotice.classList.toggle("has-trades", nextCount > 0);
+              nextNotice.classList.toggle("is-empty", nextCount === 0);
+            }
             // trades
             var tab = Array.isArray(embedded.short_agent) ? embedded.short_agent : [];
             try {
@@ -17120,7 +17155,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-13",
   "data_mode": "intraday",
-  "generated_at": "2026-07-14T18:29:40-03:00",
+  "generated_at": "2026-07-14T18:36:41-03:00",
   "glb_ath": [],
   "glb_closed_below": [],
   "intraday_asof": "2026-07-13",
@@ -19077,6 +19112,8 @@ window.RADAR_DATA = {
       "borrow_status": "legado",
       "data_sinal": "2026-07-10",
       "day2fade_earnings_filter": "",
+      "day2fade_market_cap_filter": "",
+      "day2fade_market_cap_warning_musd": "",
       "day2fade_max_earnings_age_days": "",
       "day2fade_min_adv_musd": "",
       "day2fade_min_market_cap_musd": "",
@@ -19228,6 +19265,8 @@ window.RADAR_DATA = {
       "borrow_status": "legado",
       "data_sinal": "2026-07-07",
       "day2fade_earnings_filter": "",
+      "day2fade_market_cap_filter": "",
+      "day2fade_market_cap_warning_musd": "",
       "day2fade_max_earnings_age_days": "",
       "day2fade_min_adv_musd": "",
       "day2fade_min_market_cap_musd": "",
@@ -26967,7 +27006,7 @@ window.RADAR_DATA = {
         "ticker": "SDOT"
       }
     ],
-    "generated_at": "2026-07-14T18:29:41-03:00",
+    "generated_at": "2026-07-14T18:36:42-03:00",
     "metadata_file": "schwab_trade_metadata.csv",
     "metadata_rows": 268,
     "overall": {
