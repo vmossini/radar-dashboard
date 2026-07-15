@@ -2583,6 +2583,19 @@ tbody tr:hover {
   }
 }
 
+.short-blocked-row {
+  opacity: 0.72;
+}
+.short-blocked-row td {
+  background: rgba(148, 163, 184, 0.08);
+}
+.short-blocked-cell span {
+  color: #94a3b8;
+}
+.short-blocked-cell small {
+  color: #f59e0b;
+}
+
     </style>
   </head>
   <body class="glb-only">
@@ -2613,7 +2626,7 @@ tbody tr:hover {
         <button type="button" data-page="agentShortPage">Agente Short</button>
       </nav>
 
-      <section id="radarPage" class="page-view">
+      <section id="radarPage" class="page-view active">
       <section class="metric-grid" aria-label="Resumo">
         <div class="metric">
           <span class="metric-label">All leaders</span>
@@ -3194,7 +3207,14 @@ tbody tr:hover {
             var title = filter ? ("Earnings: " + filter + (status ? " (" + status + ")" : "")) : "Gate de earnings nao aplicado a este setup.";
             return '<td class="short-earnings-cell" title="' + esc(title) + '"><span class="short-earnings-pill ' + cls + '">' + esc(label) + '</span><small>' + esc(detail) + '</small></td>';
           }
+          function isBlockedShort(row) {
+            var state = String(row.situacao || row.status || "").toLowerCase();
+            return state.indexOf("skip") >= 0 || state.indexOf("fora_regra") >= 0 || String(row.acao || "").toUpperCase() === "BLOQUEADO";
+          }
           function stopCell(row) {
+            if (isBlockedShort(row)) {
+              return '<td class="short-stop-cell short-blocked-cell" title="Sem trade acionavel"><span>--</span><small>bloqueado</small></td>';
+            }
             var stop = row.stop || "";
             var pct = String(row.short_stop_rule_pct || "");
             var status = String(row.short_stop_rule_status || "");
@@ -3202,6 +3222,16 @@ tbody tr:hover {
             var title = pct ? ("Stop short: entrada +" + pct + "% (" + (status || "regra") + ")") : "Stop real ou planejado";
             var formattedStop = /^-?\d+(\.\d+)?$/.test(String(stop)) ? "$" + esc(stop) : esc(stop || "--");
             return '<td class="short-stop-cell" title="' + esc(title) + '">' + formattedStop + '<small>' + esc(detail) + '</small></td>';
+          }
+          function shortSituationLabel(row) {
+            var state = String(row.situacao || row.status || "");
+            var rule = String(row.day2fade_rule || row.gapcrap_rule || "");
+            if (rule === "skip:earnings_unchecked") return "BLOQUEADO: earnings nao checado";
+            if (state === "skip_locate_unchecked") return "BLOQUEADO: locate nao checado";
+            if (state === "skip_no_locate") return "BLOQUEADO: sem locate";
+            if (state === "fora_regra_gap") return "BLOQUEADO: gap < 80%";
+            if (state.indexOf("skip") === 0) return "BLOQUEADO";
+            return state || "--";
           }
           async function loadShortAgent() {
             var count = document.getElementById("shortAgCount");
@@ -3236,10 +3266,11 @@ tbody tr:hover {
             body.innerHTML = tab.map(function (r) {
               function g(k) { return r[k] || ""; }
               function money(v) { return /^-?\d+(\.\d+)?$/.test(v) ? "$" + esc(v) : esc(v || "--"); }
-              var sit = g("situacao");
+              var sit = shortSituationLabel(r);
+              var blocked = isBlockedShort(r);
               var rr = parseFloat(g("r"));
               var rColor = isNaN(rr) ? "#94a3b8" : (rr >= 0 ? "#34d399" : "#f87171");
-              return "<tr>" +
+              return "<tr" + (blocked ? " class=\"short-blocked-row\"" : "") + ">" +
                 "<td>" + esc(g("data_sinal")) + "</td>" +
                 "<td>" + esc(g("sistema") || "Day2Fade") + "</td>" +
                 "<td><strong>" + esc(g("ticker")) + "</strong></td>" +
@@ -3258,9 +3289,14 @@ tbody tr:hover {
             }).join("");
             count.textContent = tab.length + " itens";
           }
-          if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", loadShortAgent);
-          } else { loadShortAgent(); }
+          var shortAgentLoaded = false;
+          window.loadShortAgent = loadShortAgent;
+          window.maybeLoadShortAgent = function () {
+            if (shortAgentLoaded) return;
+            shortAgentLoaded = true;
+            loadShortAgent().catch(function () { shortAgentLoaded = false; });
+          };
+          if (document.querySelector("#agentShortPage.page-view.active")) window.maybeLoadShortAgent();
         })();
         </script>
       </section>
@@ -23188,7 +23224,7 @@ window.RADAR_DATA = {
   ],
   "daily_asof": "2026-07-14",
   "data_mode": "intraday",
-  "generated_at": "2026-07-14T21:22:30-03:00",
+  "generated_at": "2026-07-14T21:39:19-03:00",
   "glb_ath": [],
   "glb_closed_below": [],
   "intraday_asof": "2026-07-14",
@@ -25694,7 +25730,7 @@ window.RADAR_DATA = {
   "pullbacks_disabled": true,
   "short_agent": [
     {
-      "acao": "SHORT",
+      "acao": "BLOQUEADO",
       "adv_musd": "130.8",
       "borrow_filter": "",
       "borrow_status": "",
@@ -25711,8 +25747,8 @@ window.RADAR_DATA = {
       "day2fade_version": "v2",
       "earnings_filter": "earnings_unknown",
       "earnings_status": "checar",
-      "entrada": "abertura D+1",
-      "entrada_regra": "abertura D+1",
+      "entrada": "",
+      "entrada_regra": "nao operar",
       "ext_d0_pct": "33",
       "fech_d0": "7.90",
       "gapcrap_filters": "",
@@ -25724,17 +25760,17 @@ window.RADAR_DATA = {
       "market_cap_musd": "177.81",
       "obs": "checar disponibilidade de short no broker antes de executar real; Day2Fade v2 skip: earnings <=3 dias nao checado",
       "pnl": "",
-      "qtd": "10",
-      "qtd_estim": "10",
+      "qtd": "",
+      "qtd_estim": "",
       "r": "",
       "short_stop_rule": "entry_plus_50_pct",
       "short_stop_rule_pct": "50",
-      "short_stop_rule_status": "missing_entry",
+      "short_stop_rule_status": "blocked_no_trade",
       "sistema": "Day2Fade",
       "situacao": "skip_earnings_unchecked",
       "status": "skip_earnings_unchecked",
-      "stop": "entrada x1.50",
-      "stop_regra": "fill x 1.50; cobrir no MOC",
+      "stop": "",
+      "stop_regra": "",
       "ticker": "JLHL"
     },
     {
@@ -26127,7 +26163,7 @@ window.RADAR_DATA = {
   },
   "short_watchlist_next": [
     {
-      "acao": "SHORT",
+      "acao": "BLOQUEADO",
       "adv_musd": "130.8",
       "borrow_filter": "",
       "borrow_status": "",
@@ -26144,7 +26180,8 @@ window.RADAR_DATA = {
       "day2fade_version": "v2",
       "earnings_filter": "earnings_unknown",
       "earnings_status": "legado",
-      "entrada_regra": "abertura D+1",
+      "entrada": "",
+      "entrada_regra": "nao operar",
       "ext_d0_pct": "33",
       "fech_d0": "7.90",
       "gapcrap_filters": "",
@@ -26155,14 +26192,16 @@ window.RADAR_DATA = {
       "market_cap_filter": "day2fade_v2_no_market_cap_filter",
       "market_cap_musd": "177.81",
       "obs": "checar disponibilidade de short no broker antes de executar real; Day2Fade v2 skip: earnings <=3 dias nao checado",
-      "qtd_estim": "10",
+      "qtd": "",
+      "qtd_estim": "",
       "short_stop_rule": "entry_plus_50_pct",
       "short_stop_rule_pct": "50",
-      "short_stop_rule_status": "missing_entry",
+      "short_stop_rule_status": "blocked_no_trade",
       "sistema": "Day2Fade",
       "situacao": "skip_earnings_unchecked",
       "status": "skip_earnings_unchecked",
-      "stop_regra": "fill x 1.50; cobrir no MOC",
+      "stop": "",
+      "stop_regra": "",
       "ticker": "JLHL"
     }
   ],
@@ -33791,7 +33830,7 @@ window.RADAR_DATA = {
         "ticker": "SDOT"
       }
     ],
-    "generated_at": "2026-07-14T21:22:31-03:00",
+    "generated_at": "2026-07-14T21:39:20-03:00",
     "metadata_file": "schwab_trade_metadata.csv",
     "metadata_rows": 268,
     "overall": {
@@ -48160,13 +48199,22 @@ function renderTradingDiary() {
   renderProfessionalDiaryHistory(diary);
 }
 
+function activePageId() {
+  return document.querySelector(".page-view.active")?.id || "radarPage";
+}
+
+function renderActivePageDetails(pageId = activePageId()) {
+  if (pageId === "agentPage") renderAgent();
+  if (pageId === "tradingDiaryPage") renderTradingDiary();
+  if (pageId === "agentShortPage" && window.maybeLoadShortAgent) window.maybeLoadShortAgent();
+}
+
 function renderAll() {
   renderMetrics();
   renderGlbTable();
   if (isGlbMode()) {
     renderFilters();
-    renderAgent();
-    renderTradingDiary();
+    renderActivePageDetails();
     return;
   }
   renderFilterSummary();
@@ -48179,8 +48227,7 @@ function renderAll() {
   renderLeadersTable();
   renderThemes();
   renderWindowLeaders();
-  renderAgent();
-  renderTradingDiary();
+  renderActivePageDetails();
 }
 
 function updateAndRender(callback) {
@@ -48248,6 +48295,7 @@ el.pageTabs.forEach((button) => {
     const target = button.dataset.page;
     el.pageTabs.forEach((item) => item.classList.toggle("active", item === button));
     el.pageViews.forEach((view) => view.classList.toggle("active", view.id === target));
+    renderActivePageDetails(target);
   });
 });
 
