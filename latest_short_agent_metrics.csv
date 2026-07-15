@@ -86,3 +86,5 @@ gapcrap_scan_added_agent,1
 gapcrap_scan_added_latest_shorts,1
 gapcrap_scan_errors,83
 day2fade_trigger_basis,high_vs_open
+resultados_hipoteticos_excluidos,1
+resultado_hipotetico_sem_locate,1
