@@ -2979,7 +2979,7 @@ tbody tr:hover {
             </div>
             <div class="short-agent-actions">
               <button type="button" class="short-next-notice" id="shortAgNextNotice" disabled>Checando amanha</button>
-              <a class="action-link" href="./latest_short_watchlist_next.csv" download>Watchlist CSV</a>
+              <a class="action-link" id="shortWatchlistLink" href="./latest_short_watchlist_next.csv" download>Watchlist CSV</a>
               <span class="row-count" id="shortAgCount">--</span>
             </div>
           </div>
@@ -3238,14 +3238,19 @@ tbody tr:hover {
             var body = document.getElementById("shortAgBody");
             var embedded = window.RADAR_DATA || {};
             var met = Object.assign({}, embedded.short_agent_metrics || {});
+            var shortCsvVersion = encodeURIComponent(embedded.generated_at || Date.now());
+            var shortWatchlistLink = document.getElementById("shortWatchlistLink");
+            if (shortWatchlistLink) {
+              shortWatchlistLink.href = "./latest_short_watchlist_next.csv?v=" + shortCsvVersion;
+            }
             try {
-              var m = await fetch("./latest_short_agent_metrics.csv", { cache: "no-store" });
+              var m = await fetch("./latest_short_agent_metrics.csv?v=" + shortCsvVersion, { cache: "no-store" });
               if (m.ok) met = metricObject(await m.text());
             } catch (e) {}
             // trades
             var tab = Array.isArray(embedded.short_agent) ? embedded.short_agent : [];
             try {
-              var res = await fetch("./latest_short_agent.csv", { cache: "no-store" });
+              var res = await fetch("./latest_short_agent.csv?v=" + shortCsvVersion, { cache: "no-store" });
               if (!res.ok) throw new Error("sem csv");
               tab = tableObjects(await res.text());
               if (!tab.length) {
