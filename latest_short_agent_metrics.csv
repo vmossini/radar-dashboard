@@ -54,7 +54,7 @@ day2fade_min_adv_musd,10
 day2fade_market_cap_filter,off
 day2fade_market_cap_warning_musd,40
 day2fade_max_earnings_age_days,3
-day2fade_earnings_unknown,1
+day2fade_earnings_unknown,0
 day2fade_earnings_skip,0
 gapcrap_version,v2
 gapcrap_min_gap_pct,80
@@ -68,13 +68,13 @@ market_cap_filter,ativo_exceto_day2fade_gapcrap_v2
 min_market_cap_usd,40000000
 min_market_cap_musd,40
 market_cap_filter_source,2026-07-14
-market_cap_filter_removed_agent,0
-market_cap_filter_removed_watchlist_next,0
-market_cap_filter_removed_latest_shorts,0
+market_cap_filter_removed_agent,1
+market_cap_filter_removed_watchlist_next,1
+market_cap_filter_removed_latest_shorts,1
 market_cap_filter_legacy_agent,0
 market_cap_filter_legacy_below_40m_agent,0
-watchlist_total,1
-watchlist_bloqueados,1
+watchlist_total,0
+watchlist_bloqueados,0
 gapcrap_scan_enabled,true
 gapcrap_scan_status,ok
 gapcrap_scan_cache_hit,true
@@ -85,3 +85,4 @@ gapcrap_scan_confirmed,14
 gapcrap_scan_added_agent,0
 gapcrap_scan_added_latest_shorts,0
 gapcrap_scan_errors,0
+day2fade_trigger_basis,close_vs_open
