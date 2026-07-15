@@ -1,12 +1,12 @@
 chave,valor
 agente,Day-2 Fade v5.1 - REAL - risco $40/trade
-atualizado_em,2026-07-14
+atualizado_em,2026-07-15
 capital_base,8000
 risco_pct,0.5
 max_posicoes,sem limite
-sinais_amanha,1
-trades,6
-exp_bruto_pct,-0.27
-exp_liq_pct,-0.51
-win_pct,50
-pnl_usd,-3.30
+sinais_amanha,4
+trades,7
+exp_bruto_pct,-3.79
+exp_liq_pct,-4.03
+win_pct,43
+pnl_usd,-23.23
