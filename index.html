@@ -3258,16 +3258,16 @@ tbody tr:hover {
           <div class="metric"><span class="metric-label">Max DD</span><strong id="shortAgMaxDd">--</strong><span id="shortAgWatchlistMeta">--</span></div>
         </section>
 
-        <section class="short-decision-panel" aria-label="Decis?o operacional short">
+        <section class="short-decision-panel" aria-label="Decisão operacional short">
           <div class="short-decision-card is-loading" id="shortAgDecisionCard">
-            <span class="short-decision-label">Pr?ximo preg?o</span>
-            <strong id="shortAgNextNotice">Checando amanh?</strong>
+            <span class="short-decision-label">Próximo pregão</span>
+            <strong id="shortAgNextNotice">Checando amanhã</strong>
             <small id="shortAgNextDetail">Aguardando leitura da watchlist.</small>
           </div>
-          <div class="short-decision-stats" aria-label="Resumo da decis?o short">
+          <div class="short-decision-stats" aria-label="Resumo da decisão short">
             <div class="short-decision-stat is-actionable"><span>Liberados</span><strong id="shortAgNextCount">--</strong></div>
             <div class="short-decision-stat is-blocked"><span>Bloqueados</span><strong id="shortAgBlockedCount">--</strong></div>
-            <div class="short-decision-stat"><span>Hist?rico</span><strong id="shortAgHistoryCount">--</strong></div>
+            <div class="short-decision-stat"><span>Histórico</span><strong id="shortAgHistoryCount">--</strong></div>
           </div>
           <div class="short-agent-actions">
             <a class="action-link" id="shortWatchlistLink" href="./latest_short_watchlist_next.csv" download>Watchlist CSV</a>
@@ -3295,11 +3295,11 @@ tbody tr:hover {
                   <th title="Day2Fade: maxima de D0 >= +30% sobre abertura. GapCrap: gap de abertura >= +80% vs fechamento anterior.">Ext./gap</th>
                   <th title="Entrada real ou regra planejada para D+1.">Entrada</th>
                   <th title="Stop real ou regra planejada. Daqui para frente ambos os shorts usam stop +50% sobre a entrada.">Stop</th>
-                  <th title="Watchlist, executado, MOC, stop ou filtro.">Situacao</th>
+                  <th title="Watchlist, executado, MOC, stop ou filtro.">Situação</th>
                   <th title="Quantidade paper por risco 0,5%.">Qtd</th>
-                  <th title="ADV20 em milhoes.">ADV $M</th>
+                  <th title="ADV20 em milhóes.">ADV $M</th>
                   <th title="Resultado em R (1R = risco).">R</th>
-                  <th title="Resultado em dolares.">P/L</th>
+                  <th title="Resultado em dólares.">P/L</th>
                 </tr>
               </thead>
               <tbody id="shortAgBody"></tbody>
@@ -3371,9 +3371,10 @@ tbody tr:hover {
           }
           function humanShortStatus(value) {
             return String(value || "")
-              .replace(/amanha/gi, "amanh?")
-              .replace(/nao/gi, "n?o")
-              .replace(/Ha/g, "H?");
+              .replace(/_/g, " ")
+              .replace(/\bamanha\b/gi, "amanhã")
+              .replace(/\bnao\b/gi, "não")
+              .replace(/\bHa\b/g, "Há");
           }
           function deriveShortMetrics(met, tab) {
             var out = Object.assign({}, met || {});
@@ -3471,16 +3472,16 @@ tbody tr:hover {
             var decisionCard = document.getElementById("shortAgDecisionCard");
             if (nextNotice) {
               nextNotice.textContent = nextCount > 0
-                ? (nextCount + " trade" + (nextCount === 1 ? "" : "s") + " liberado" + (nextCount === 1 ? "" : "s") + " para amanh?")
-                : "Sem trades liberados para amanh?";
-              nextNotice.title = nextCount > 0 ? "H? sinais short liberados para o pr?ximo preg?o." : "N?o h? sinais short liberados para o pr?ximo preg?o.";
+                ? (nextCount + " trade" + (nextCount === 1 ? "" : "s") + " liberado" + (nextCount === 1 ? "" : "s") + " para amanhã")
+                : "Sem trades liberados para amanhã";
+              nextNotice.title = nextCount > 0 ? "Há sinais short liberados para o próximo pregão." : "Não há sinais short liberados para o próximo pregão.";
             }
             if (nextDetail) {
               nextDetail.textContent = nextCount > 0
-                ? "Revisar execu??o e tamanho antes da ordem."
+                ? "Revisar execução e tamanho antes da ordem."
                 : (blockedCount > 0
-                  ? blockedCount + " candidato" + (blockedCount === 1 ? "" : "s") + " bloqueado" + (blockedCount === 1 ? "" : "s") + "; hist?rico abaixo."
-                  : "Nenhum setup acion?vel no snapshot atual.");
+                  ? blockedCount + " candidato" + (blockedCount === 1 ? "" : "s") + " bloqueado" + (blockedCount === 1 ? "" : "s") + "; histórico abaixo."
+                  : "Nenhum setup acionável no snapshot atual.");
             }
             if (decisionCard) {
               decisionCard.classList.toggle("has-trades", nextCount > 0);
@@ -3506,7 +3507,7 @@ tbody tr:hover {
             var low = cap != null && cap < 40000000 && !gapExempt;
             var detail = noFilter ? (low ? "sem filtro <40M" : "sem filtro") : (cap == null ? "sem dado" : (low ? (filter.indexOf("legacy") === 0 ? "legado <40M" : "<40M") : ">=40M"));
             var cls = "num short-mcap-cell" + (low ? " short-mcap-low" : "") + (noFilter ? " short-mcap-exempt" : "");
-            var title = noFilter ? "Market cap informativo: este setup nao usa market cap como filtro" : (cap == null ? "Market cap indisponivel" : "Market cap " + marketCapLabel(cap) + " / filtro " + (filter || "n/a"));
+            var title = noFilter ? "Market cap informativo: este setup não usa market cap como filtro" : (cap == null ? "Market cap indisponível" : "Market cap " + marketCapLabel(cap) + " / filtro " + (filter || "n/a"));
             return '<td class="' + cls + '" title="' + esc(title) + '">' + esc(marketCapLabel(cap)) + '<small>' + esc(detail) + '</small></td>';
           }
           function borrowCell(row) {
@@ -3518,8 +3519,8 @@ tbody tr:hover {
             if (filter === "borrow_ok") { label = "OK"; detail = status || "locate"; cls = "short-borrow-ok"; }
             else if (filter === "no_locate") { label = "Sem"; detail = status || "no locate"; cls = "short-borrow-no"; }
             else if (filter === "locate_required") { label = "Checar"; detail = "manual"; cls = "short-borrow-required"; }
-            else if (filter === "legacy_unchecked") { label = "Legado"; detail = "nao checado"; cls = "short-borrow-legacy"; }
-            var title = filter ? ("Aluguel/locate: " + filter + (status ? " (" + status + ")" : "")) : "Gate de aluguel nao aplicado a este setup.";
+            else if (filter === "legacy_unchecked") { label = "Legado"; detail = "não checado"; cls = "short-borrow-legacy"; }
+            var title = filter ? ("Aluguel/locate: " + filter + (status ? " (" + status + ")" : "")) : "Gate de aluguel não aplicado a este setup.";
             return '<td class="short-borrow-cell" title="' + esc(title) + '"><span class="short-borrow-pill ' + cls + '">' + esc(label) + '</span><small>' + esc(detail) + '</small></td>';
           }
           function earningsCell(row) {
@@ -3531,8 +3532,8 @@ tbody tr:hover {
             if (filter === "no_recent_earnings") { label = "OK"; detail = status || ">3d"; cls = "short-earnings-ok"; }
             else if (filter === "recent_earnings_skip") { label = "Pula"; detail = status || "<=3d"; cls = "short-earnings-no"; }
             else if (filter === "earnings_unknown") { label = "Checar"; detail = "sem feed"; cls = "short-earnings-required"; }
-            else if (filter === "legacy_unchecked") { label = "Legado"; detail = "nao checado"; cls = "short-earnings-legacy"; }
-            var title = filter ? ("Earnings: " + filter + (status ? " (" + status + ")" : "")) : "Gate de earnings nao aplicado a este setup.";
+            else if (filter === "legacy_unchecked") { label = "Legado"; detail = "não checado"; cls = "short-earnings-legacy"; }
+            var title = filter ? ("Earnings: " + filter + (status ? " (" + status + ")" : "")) : "Gate de earnings não aplicado a este setup.";
             return '<td class="short-earnings-cell" title="' + esc(title) + '"><span class="short-earnings-pill ' + cls + '">' + esc(label) + '</span><small>' + esc(detail) + '</small></td>';
           }
           function pctDisplay(value) {
@@ -3555,7 +3556,7 @@ tbody tr:hover {
             var sys = String(row.sistema || "").toLowerCase();
             var isGap = sys.indexOf("gap") >= 0;
             var value = isGap ? (row.gap_pct || row.ext_d0_pct) : (row.ext_d0_pct || row.day2fade_high_vs_open_pct || row.gap_pct);
-            var label = isGap ? "gap" : "m?x/abertura";
+            var label = isGap ? "gap" : "máx/abertura";
             return '<td class="num short-move-cell"><strong>' + esc(pctDisplay(value)) + '</strong><small>' + esc(label) + '</small></td>';
           }
           function isBlockedShort(row) {
@@ -3586,7 +3587,7 @@ tbody tr:hover {
           }
           function stopCell(row) {
             if (isBlockedShort(row)) {
-              return '<td class="short-stop-cell short-blocked-cell" title="Sem trade acionavel"><span>--</span><small>bloqueado</small></td>';
+              return '<td class="short-stop-cell short-blocked-cell" title="Sem trade acionável"><span>--</span><small>bloqueado</small></td>';
             }
             var stop = row.stop || "";
             var pct = String(row.short_stop_rule_pct || "");
@@ -3600,15 +3601,15 @@ tbody tr:hover {
             var state = String(row.situacao || row.status || "");
             var lower = state.toLowerCase();
             var rule = String(row.day2fade_rule || row.gapcrap_rule || "");
-            if (rule === "skip:earnings_unchecked") return { label: "Bloqueado", detail: "earnings n?o checado", cls: "short-situation-blocked" };
-            if (lower === "skip_locate_unchecked") return { label: "Bloqueado", detail: "locate n?o checado", cls: "short-situation-blocked" };
+            if (rule === "skip:earnings_unchecked") return { label: "Bloqueado", detail: "earnings não checado", cls: "short-situation-blocked" };
+            if (lower === "skip_locate_unchecked") return { label: "Bloqueado", detail: "locate não checado", cls: "short-situation-blocked" };
             if (lower === "skip_no_locate") return { label: "Bloqueado", detail: "sem locate", cls: "short-situation-blocked" };
             if (lower === "fora_regra_gap") return { label: "Fora da regra", detail: "gap < 80%", cls: "short-situation-neutral" };
             if (lower.indexOf("skip") === 0) return { label: "Bloqueado", detail: state || "filtro", cls: "short-situation-blocked" };
             if (lower.indexOf("watchlist") >= 0 || String(row.acao || "").toUpperCase() === "SHORT") return { label: "Watchlist", detail: "liberado D+1", cls: "short-situation-action" };
             if (lower.indexOf("open") >= 0 || lower.indexOf("execut") >= 0) return { label: "Em trade", detail: state, cls: "short-situation-action" };
             if (lower.indexOf("checar") >= 0 || lower.indexOf("locate_required") >= 0) return { label: "Checar", detail: state, cls: "short-situation-review" };
-            return { label: state || "Hist?rico", detail: row.acao || "preservado", cls: "short-situation-neutral" };
+            return { label: state || "Histórico", detail: row.acao || "preservado", cls: "short-situation-neutral" };
           }
           function shortSituationCell(row) {
             var meta = shortSituationMeta(row);
@@ -23615,7 +23616,7 @@ window.RADAR_DATA = {
     {
       "acao": "BLOQUEADO",
       "asof": "2026-07-14",
-      "borrow_checked_at": "2026-07-14T23:56:12-03:00",
+      "borrow_checked_at": "2026-07-15T07:51:30-03:00",
       "borrow_filter": "no_locate",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "no_locate_alpaca",
@@ -23663,7 +23664,7 @@ window.RADAR_DATA = {
       "yahoo_symbol": "NXTC"
     }
   ],
-  "generated_at": "2026-07-14T23:56:11-03:00",
+  "generated_at": "2026-07-15T07:51:29-03:00",
   "glb_ath": [],
   "glb_closed_below": [],
   "intraday_asof": "2026-07-14",
@@ -26242,7 +26243,7 @@ window.RADAR_DATA = {
     {
       "acao": "BLOQUEADO",
       "asof": "2026-07-14",
-      "borrow_checked_at": "2026-07-14T23:56:12-03:00",
+      "borrow_checked_at": "2026-07-15T07:51:30-03:00",
       "borrow_filter": "no_locate",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "no_locate_alpaca",
@@ -34590,7 +34591,7 @@ window.RADAR_DATA = {
         "ticker": "SDOT"
       }
     ],
-    "generated_at": "2026-07-14T23:56:13-03:00",
+    "generated_at": "2026-07-15T07:51:31-03:00",
     "metadata_file": "schwab_trade_metadata.csv",
     "metadata_rows": 268,
     "overall": {
