@@ -3386,8 +3386,8 @@ tbody tr:hover {
               if (!isWatchlist || state.indexOf("skip") >= 0 || state.indexOf("fora_regra") >= 0) return false;
               var day2Rule = String(row.day2fade_rule || "").trim();
               var earnings = String(row.earnings_filter || "").trim();
-              if (day2Rule && (day2Rule.indexOf("skip:") === 0 || day2Rule !== "pass")) return false;
-              if (earnings === "earnings_unknown" || earnings === "recent_earnings_skip") return false;
+              if (day2Rule && (day2Rule.indexOf("skip:") === 0 || ["pass", "pass_earnings_unverified"].indexOf(day2Rule) < 0)) return false;
+              if (earnings === "recent_earnings_skip") return false;
               var gapRule = String(row.gapcrap_rule || "").trim();
               var borrow = String(row.borrow_filter || "").trim();
               if (gapRule && gapRule !== "pass") return false;
@@ -3583,7 +3583,7 @@ tbody tr:hover {
             if (lower === "skip_no_locate") return { label: "Bloqueado", detail: "sem locate", cls: "short-situation-blocked" };
             if (lower === "fora_regra_gap") return { label: "Fora da regra", detail: "gap < 80%", cls: "short-situation-neutral" };
             if (lower.indexOf("skip") === 0) return { label: "Bloqueado", detail: state || "filtro", cls: "short-situation-blocked" };
-            if (lower.indexOf("watchlist") >= 0) return { label: "Watchlist", detail: "liberado D+1", cls: "short-situation-action" };
+            if (lower.indexOf("watchlist") >= 0 || String(row.acao || "").toUpperCase() === "SHORT") return { label: "Watchlist", detail: "liberado D+1", cls: "short-situation-action" };
             if (lower.indexOf("open") >= 0 || lower.indexOf("execut") >= 0) return { label: "Em trade", detail: state, cls: "short-situation-action" };
             if (lower.indexOf("checar") >= 0 || lower.indexOf("locate_required") >= 0) return { label: "Checar", detail: state, cls: "short-situation-review" };
             return { label: state || "Hist?rico", detail: row.acao || "preservado", cls: "short-situation-neutral" };
@@ -23592,7 +23592,7 @@ window.RADAR_DATA = {
     {
       "acao": "BLOQUEADO",
       "asof": "2026-07-14",
-      "borrow_checked_at": "2026-07-14T23:33:20-03:00",
+      "borrow_checked_at": "2026-07-14T23:47:53-03:00",
       "borrow_filter": "no_locate",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "no_locate_alpaca",
@@ -23640,7 +23640,7 @@ window.RADAR_DATA = {
       "yahoo_symbol": "NXTC"
     }
   ],
-  "generated_at": "2026-07-14T23:31:32-03:00",
+  "generated_at": "2026-07-14T23:47:53-03:00",
   "glb_ath": [],
   "glb_closed_below": [],
   "intraday_asof": "2026-07-14",
@@ -26572,7 +26572,7 @@ window.RADAR_DATA = {
       "yahoo_symbol": ""
     },
     {
-      "acao": "BLOQUEADO",
+      "acao": "SHORT",
       "adv_musd": "130.8",
       "borrow_checked_at": "",
       "borrow_filter": "",
@@ -26596,7 +26596,7 @@ window.RADAR_DATA = {
       "day2fade_min_price": "2",
       "day2fade_min_trigger_pct": "30",
       "day2fade_open_price": "7.7300",
-      "day2fade_rule": "skip:earnings_unchecked",
+      "day2fade_rule": "pass_earnings_unverified",
       "day2fade_signal_timing": "signal_today_trade_tomorrow",
       "day2fade_trigger_basis": "high_vs_open",
       "day2fade_version": "v2",
@@ -26607,7 +26607,7 @@ window.RADAR_DATA = {
       "earnings_filter": "earnings_unknown",
       "earnings_status": "checar",
       "entrada": "",
-      "entrada_regra": "nao operar",
+      "entrada_regra": "abertura D+1",
       "exchange": "",
       "ext_d0_pct": "33",
       "fech_d0": "7.90",
@@ -26620,7 +26620,7 @@ window.RADAR_DATA = {
       "market_cap": "177809159",
       "market_cap_filter": "day2fade_v2_no_market_cap_filter",
       "market_cap_musd": "177.81",
-      "obs": "checar disponibilidade de short no broker antes de executar real; Day2Fade v2 skip: earnings <=3 dias nao checado",
+      "obs": "checar disponibilidade de short no broker antes de executar real; Day2Fade v2: earnings nao verificado; nao bloqueia sem confirmacao",
       "open_price": "7.7300",
       "pnl": "",
       "prev_close": "",
@@ -26632,10 +26632,10 @@ window.RADAR_DATA = {
       "scan_status": "",
       "short_stop_rule": "entry_plus_50_pct",
       "short_stop_rule_pct": "50",
-      "short_stop_rule_status": "blocked_no_trade",
+      "short_stop_rule_status": "missing_entry",
       "sistema": "Day2Fade",
-      "situacao": "skip_earnings_unchecked",
-      "status": "skip_earnings_unchecked",
+      "situacao": "watchlist_amanha",
+      "status": "watchlist_amanha",
       "stop": "",
       "stop_regra": "",
       "ticker": "JLHL",
@@ -26645,7 +26645,7 @@ window.RADAR_DATA = {
     {
       "acao": "BLOQUEADO",
       "asof": "2026-07-14",
-      "borrow_checked_at": "2026-07-14T23:33:20-03:00",
+      "borrow_checked_at": "2026-07-14T23:47:53-03:00",
       "borrow_filter": "no_locate",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "no_locate_alpaca",
@@ -26727,7 +26727,7 @@ window.RADAR_DATA = {
     "gapcrap_requires_borrow": "true",
     "gapcrap_scan_added_agent": "1",
     "gapcrap_scan_added_latest_shorts": "1",
-    "gapcrap_scan_cache_hit": "false",
+    "gapcrap_scan_cache_hit": "true",
     "gapcrap_scan_chart_checked": "5810",
     "gapcrap_scan_confirmed": "1",
     "gapcrap_scan_enabled": "true",
@@ -26768,15 +26768,15 @@ window.RADAR_DATA = {
     "scratches": "1",
     "short_stop_rule": "entry_plus_50_pct",
     "short_stop_rule_pct": "50",
-    "status": "Sem trades amanha",
+    "status": "1 sinal(is) amanha",
     "trades": "6",
     "trades_day2fade_v2": "4",
     "trades_faded2r": "4",
     "trades_gapcrap": "2",
     "trades_gapcrap_v2": "2",
     "trades_hoje": "0",
-    "watchlist_amanha": "0",
-    "watchlist_bloqueados": "1",
+    "watchlist_amanha": "1",
+    "watchlist_bloqueados": "0",
     "watchlist_total": "1",
     "win_pct": "33",
     "wins": "2",
@@ -26805,7 +26805,7 @@ window.RADAR_DATA = {
     "gapcrap_scan_added_latest_shorts": 1,
     "gapcrap_scan_alpaca_feed": "sip",
     "gapcrap_scan_bad_ohlc_rejected": 0,
-    "gapcrap_scan_cache_hit": false,
+    "gapcrap_scan_cache_hit": true,
     "gapcrap_scan_chart_checked": 5810,
     "gapcrap_scan_confirmed": 1,
     "gapcrap_scan_enabled": true,
@@ -26852,7 +26852,7 @@ window.RADAR_DATA = {
   },
   "short_watchlist_next": [
     {
-      "acao": "BLOQUEADO",
+      "acao": "SHORT",
       "adv_musd": "130.8",
       "borrow_checked_at": "",
       "borrow_filter": "",
@@ -26876,7 +26876,7 @@ window.RADAR_DATA = {
       "day2fade_min_price": "2",
       "day2fade_min_trigger_pct": "30",
       "day2fade_open_price": "7.7300",
-      "day2fade_rule": "skip:earnings_unchecked",
+      "day2fade_rule": "pass_earnings_unverified",
       "day2fade_signal_timing": "signal_today_trade_tomorrow",
       "day2fade_trigger_basis": "high_vs_open",
       "day2fade_version": "v2",
@@ -26885,9 +26885,8 @@ window.RADAR_DATA = {
       "day_high": "10.4300",
       "day_low": "",
       "earnings_filter": "earnings_unknown",
-      "earnings_status": "legado",
-      "entrada": "",
-      "entrada_regra": "nao operar",
+      "earnings_status": "checar",
+      "entrada_regra": "abertura D+1",
       "exchange": "",
       "ext_d0_pct": "33",
       "fech_d0": "7.90",
@@ -26900,21 +26899,19 @@ window.RADAR_DATA = {
       "market_cap": "177809159",
       "market_cap_filter": "day2fade_v2_no_market_cap_filter",
       "market_cap_musd": "177.81",
-      "obs": "checar disponibilidade de short no broker antes de executar real; Day2Fade v2 skip: earnings <=3 dias nao checado",
+      "obs": "checar disponibilidade de short no broker antes de executar real; Day2Fade v2: earnings nao verificado; nao bloqueia sem confirmacao",
       "open_price": "7.7300",
       "prev_close": "",
-      "qtd": "",
       "qtd_estim": "",
       "scan_checked_at": "",
       "scan_source": "",
       "scan_status": "",
       "short_stop_rule": "entry_plus_50_pct",
       "short_stop_rule_pct": "50",
-      "short_stop_rule_status": "blocked_no_trade",
+      "short_stop_rule_status": "missing_entry",
       "sistema": "Day2Fade",
-      "situacao": "skip_earnings_unchecked",
-      "status": "skip_earnings_unchecked",
-      "stop": "",
+      "situacao": "watchlist_amanha",
+      "status": "watchlist_amanha",
       "stop_regra": "",
       "ticker": "JLHL",
       "volume": "2005992",
@@ -27497,7 +27494,7 @@ window.RADAR_DATA = {
       "gapcrap_scan_added_latest_shorts": 1,
       "gapcrap_scan_alpaca_feed": "sip",
       "gapcrap_scan_bad_ohlc_rejected": 0,
-      "gapcrap_scan_cache_hit": false,
+      "gapcrap_scan_cache_hit": true,
       "gapcrap_scan_chart_checked": 5810,
       "gapcrap_scan_confirmed": 1,
       "gapcrap_scan_enabled": true,
@@ -34570,7 +34567,7 @@ window.RADAR_DATA = {
         "ticker": "SDOT"
       }
     ],
-    "generated_at": "2026-07-14T23:33:23-03:00",
+    "generated_at": "2026-07-14T23:47:55-03:00",
     "metadata_file": "schwab_trade_metadata.csv",
     "metadata_rows": 268,
     "overall": {
