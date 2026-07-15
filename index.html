@@ -976,9 +976,9 @@ tbody tr:hover {
 }
 
 .short-next-notice.is-empty {
-  border-color: #dfbc72;
-  background: #fff1cf;
-  color: #7a4d0f;
+  border-color: #b8cbd1;
+  background: #eef5f6;
+  color: #214f5b;
 }
 
 .short-next-notice.has-trades {
@@ -2596,6 +2596,293 @@ tbody tr:hover {
   color: #f59e0b;
 }
 
+
+/* Short agent layout polish */
+.short-decision-panel {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.1fr) minmax(300px, 0.9fr) auto;
+  gap: 10px;
+  align-items: stretch;
+  margin: 0 0 12px;
+}
+
+.short-decision-card,
+.short-decision-stat {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.short-decision-card {
+  display: grid;
+  gap: 3px;
+  padding: 12px 14px;
+  border-color: #b8cbd1;
+  background: #eef5f6;
+  color: #214f5b;
+}
+
+.short-decision-card.has-trades {
+  border-color: #8fcbb6;
+  background: #e5f4ee;
+  color: var(--green);
+}
+
+.short-decision-card.is-empty {
+  border-color: #b8cbd1;
+  background: #eef5f6;
+  color: #214f5b;
+}
+
+.short-decision-card.is-loading {
+  color: var(--muted);
+}
+
+.short-decision-label,
+.short-decision-stat span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.short-decision-card strong {
+  font-size: 20px;
+  line-height: 1.1;
+}
+
+.short-decision-card small {
+  color: #476170;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.short-decision-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.short-decision-stat {
+  display: grid;
+  align-content: center;
+  gap: 3px;
+  min-height: 74px;
+  padding: 10px 12px;
+}
+
+.short-decision-stat strong {
+  color: var(--text);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.short-decision-stat.is-actionable strong {
+  color: var(--green);
+}
+
+.short-decision-stat.is-blocked strong {
+  color: var(--red);
+}
+
+.short-agent-actions {
+  min-width: 170px;
+  align-self: center;
+}
+
+.short-table-heading {
+  padding-bottom: 8px;
+}
+
+.short-agent-metrics {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.short-agent-metrics .metric {
+  min-width: 0;
+}
+
+.short-agent-metrics .metric span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.agent-status-pill.clear {
+  border-color: #b8cbd1;
+  background: #eef5f6;
+  color: #214f5b;
+}
+
+.short-next-notice.is-empty {
+  border-color: #b8cbd1;
+  background: #eef5f6;
+  color: #214f5b;
+}
+
+.short-agent-table {
+  min-width: 1320px;
+  table-layout: fixed;
+}
+
+.short-agent-table th,
+.short-agent-table td {
+  padding: 7px 8px;
+  vertical-align: top;
+}
+
+.short-agent-table th:nth-child(1),
+.short-agent-table td:nth-child(1) { width: 90px; }
+.short-agent-table th:nth-child(2),
+.short-agent-table td:nth-child(2) { width: 92px; }
+.short-agent-table th:nth-child(3),
+.short-agent-table td:nth-child(3) { width: 86px; }
+.short-agent-table th:nth-child(4),
+.short-agent-table td:nth-child(4) { width: 92px; }
+.short-agent-table th:nth-child(5),
+.short-agent-table td:nth-child(5) { width: 96px; }
+.short-agent-table th:nth-child(6),
+.short-agent-table td:nth-child(6) { width: 112px; }
+.short-agent-table th:nth-child(7),
+.short-agent-table td:nth-child(7) { width: 94px; }
+.short-agent-table th:nth-child(8),
+.short-agent-table td:nth-child(8) { width: 78px; }
+.short-agent-table th:nth-child(9),
+.short-agent-table td:nth-child(9) { width: 88px; }
+.short-agent-table th:nth-child(10),
+.short-agent-table td:nth-child(10) { width: 150px; }
+.short-agent-table th:nth-child(11),
+.short-agent-table td:nth-child(11) { width: 64px; }
+.short-agent-table th:nth-child(12),
+.short-agent-table td:nth-child(12) { width: 74px; }
+.short-agent-table th:nth-child(13),
+.short-agent-table td:nth-child(13) { width: 70px; }
+.short-agent-table th:nth-child(14),
+.short-agent-table td:nth-child(14) { width: 78px; }
+
+.short-agent-table .num {
+  text-align: right;
+}
+
+.short-system-cell,
+.short-ticker-cell,
+.short-move-cell,
+.short-borrow-cell,
+.short-earnings-cell,
+.short-stop-cell,
+.short-situation-cell {
+  white-space: normal;
+}
+
+.short-system-cell strong,
+.short-ticker-cell strong,
+.short-move-cell strong {
+  display: block;
+  line-height: 1.15;
+}
+
+.short-system-cell small,
+.short-ticker-cell small,
+.short-move-cell small,
+.short-situation-cell small {
+  display: block;
+  margin-top: 2px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+}
+
+.short-situation-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  min-height: 22px;
+  padding: 2px 7px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 950;
+  line-height: 1.1;
+}
+
+.short-situation-action {
+  border-color: #8fcbb6;
+  background: #dff1ea;
+  color: var(--green);
+}
+
+.short-situation-blocked {
+  border-color: #dfa9a2;
+  background: #f6e3e1;
+  color: var(--red);
+}
+
+.short-situation-review,
+.short-borrow-required,
+.short-earnings-required {
+  border-color: #9bbbd0;
+  background: #e7f1f6;
+  color: #235a72;
+}
+
+.short-situation-neutral {
+  border-color: #c8d3dc;
+  background: #eef0f2;
+  color: #52606b;
+}
+
+.short-blocked-row {
+  opacity: 1;
+}
+
+.short-blocked-row td {
+  background: #fbf5f4;
+}
+
+.short-blocked-cell span {
+  color: var(--muted);
+}
+
+.short-blocked-cell small {
+  color: var(--red);
+}
+
+.short-empty-row td {
+  padding: 20px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 1180px) {
+  .short-decision-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .short-agent-actions {
+    justify-content: flex-start;
+  }
+
+  .short-agent-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .short-decision-stats {
+    grid-template-columns: repeat(3, minmax(72px, 1fr));
+  }
+
+  .short-decision-card strong {
+    font-size: 17px;
+  }
+}
+
     </style>
   </head>
   <body class="glb-only">
@@ -2971,16 +3258,28 @@ tbody tr:hover {
           <div class="metric"><span class="metric-label">Max DD</span><strong id="shortAgMaxDd">--</strong><span id="shortAgWatchlistMeta">--</span></div>
         </section>
 
+        <section class="short-decision-panel" aria-label="Decis?o operacional short">
+          <div class="short-decision-card is-loading" id="shortAgDecisionCard">
+            <span class="short-decision-label">Pr?ximo preg?o</span>
+            <strong id="shortAgNextNotice">Checando amanh?</strong>
+            <small id="shortAgNextDetail">Aguardando leitura da watchlist.</small>
+          </div>
+          <div class="short-decision-stats" aria-label="Resumo da decis?o short">
+            <div class="short-decision-stat is-actionable"><span>Liberados</span><strong id="shortAgNextCount">--</strong></div>
+            <div class="short-decision-stat is-blocked"><span>Bloqueados</span><strong id="shortAgBlockedCount">--</strong></div>
+            <div class="short-decision-stat"><span>Hist?rico</span><strong id="shortAgHistoryCount">--</strong></div>
+          </div>
+          <div class="short-agent-actions">
+            <a class="action-link" id="shortWatchlistLink" href="./latest_short_watchlist_next.csv" download>Watchlist CSV</a>
+            <span class="row-count" id="shortAgCount">--</span>
+          </div>
+        </section>
+
         <section class="section-block">
-          <div class="section-heading">
+          <div class="section-heading short-table-heading">
             <div>
               <p class="eyebrow">Day2Fade v2 + GapCrap v2</p>
               <h2>Watchlist / trades</h2>
-            </div>
-            <div class="short-agent-actions">
-              <button type="button" class="short-next-notice" id="shortAgNextNotice" disabled>Checando amanha</button>
-              <a class="action-link" id="shortWatchlistLink" href="./latest_short_watchlist_next.csv" download>Watchlist CSV</a>
-              <span class="row-count" id="shortAgCount">--</span>
             </div>
           </div>
           <div class="table-wrap">
@@ -3070,6 +3369,12 @@ tbody tr:hover {
             var n = numberValue(value);
             return n == null ? "--" : n.toFixed(2);
           }
+          function humanShortStatus(value) {
+            return String(value || "")
+              .replace(/amanha/gi, "amanh?")
+              .replace(/nao/gi, "n?o")
+              .replace(/Ha/g, "H?");
+          }
           function deriveShortMetrics(met, tab) {
             var out = Object.assign({}, met || {});
             var rowsForMetrics = (tab || []).filter(function (row) { return numberValue(row.r) != null; });
@@ -3131,7 +3436,10 @@ tbody tr:hover {
           function renderShortMetrics(met, tab) {
             var m = deriveShortMetrics(met, tab);
             var pill = document.getElementById("shortAgStatus");
-            if (pill && m.status) pill.textContent = m.status;
+            if (pill && m.status) {
+              pill.textContent = humanShortStatus(m.status);
+              pill.classList.toggle("clear", String(m.status || "").toLowerCase().indexOf("sem trades") >= 0);
+            }
             setText("shortAgCapital", "$" + (m.capital_base || "0"));
             setText("shortAgRiskPct", "risco " + (m.risco_pct || "0") + "% / trade $" + (m.risco_por_trade_usd || "0"));
             setText("shortAgClosedTrades", m.fechados || m.trades || "0");
@@ -3151,13 +3459,33 @@ tbody tr:hover {
             setText("shortAgMaxDd", fmtMoney(m.max_drawdown_usd));
             var nextCount = parseInt(m.watchlist_amanha || "0", 10);
             if (isNaN(nextCount)) nextCount = 0;
-            setText("shortAgWatchlistMeta", nextCount + " watchlist amanha / DD " + fmtR(m.max_drawdown_r, false));
+            var blockedCount = parseInt(m.watchlist_bloqueados || "", 10);
+            if (isNaN(blockedCount)) blockedCount = (tab || []).filter(isBlockedShort).length;
+            var historyCount = Array.isArray(tab) ? tab.length : (parseInt(m.trades || "0", 10) || 0);
+            setText("shortAgWatchlistMeta", nextCount + " liberados / " + blockedCount + " bloqueados");
+            setText("shortAgNextCount", String(nextCount));
+            setText("shortAgBlockedCount", String(blockedCount));
+            setText("shortAgHistoryCount", String(historyCount));
             var nextNotice = document.getElementById("shortAgNextNotice");
+            var nextDetail = document.getElementById("shortAgNextDetail");
+            var decisionCard = document.getElementById("shortAgDecisionCard");
             if (nextNotice) {
-              nextNotice.textContent = nextCount > 0 ? (nextCount + " trade" + (nextCount === 1 ? "" : "s") + " amanha") : "Sem trades amanha";
-              nextNotice.title = nextCount > 0 ? "Ha sinais short para operar no proximo pregao." : "Nao ha sinais short para operar no proximo pregao; historico preservado abaixo.";
-              nextNotice.classList.toggle("has-trades", nextCount > 0);
-              nextNotice.classList.toggle("is-empty", nextCount === 0);
+              nextNotice.textContent = nextCount > 0
+                ? (nextCount + " trade" + (nextCount === 1 ? "" : "s") + " liberado" + (nextCount === 1 ? "" : "s") + " para amanh?")
+                : "Sem trades liberados para amanh?";
+              nextNotice.title = nextCount > 0 ? "H? sinais short liberados para o pr?ximo preg?o." : "N?o h? sinais short liberados para o pr?ximo preg?o.";
+            }
+            if (nextDetail) {
+              nextDetail.textContent = nextCount > 0
+                ? "Revisar execu??o e tamanho antes da ordem."
+                : (blockedCount > 0
+                  ? blockedCount + " candidato" + (blockedCount === 1 ? "" : "s") + " bloqueado" + (blockedCount === 1 ? "" : "s") + "; hist?rico abaixo."
+                  : "Nenhum setup acion?vel no snapshot atual.");
+            }
+            if (decisionCard) {
+              decisionCard.classList.toggle("has-trades", nextCount > 0);
+              decisionCard.classList.toggle("is-empty", nextCount === 0);
+              decisionCard.classList.toggle("is-loading", false);
             }
           }
           function marketCapLabel(value) {
@@ -3207,6 +3535,29 @@ tbody tr:hover {
             var title = filter ? ("Earnings: " + filter + (status ? " (" + status + ")" : "")) : "Gate de earnings nao aplicado a este setup.";
             return '<td class="short-earnings-cell" title="' + esc(title) + '"><span class="short-earnings-pill ' + cls + '">' + esc(label) + '</span><small>' + esc(detail) + '</small></td>';
           }
+          function pctDisplay(value) {
+            var n = numberValue(value);
+            if (n == null) return "--";
+            var decimals = Math.abs(n) >= 100 ? 0 : 1;
+            return (n > 0 ? "+" : "") + n.toFixed(decimals) + "%";
+          }
+          function systemCell(row) {
+            var sys = String(row.sistema || (row.gapcrap_version ? "GapCrap" : "Day2Fade"));
+            var version = sys.toLowerCase().indexOf("gap") >= 0 ? (row.gapcrap_version || "v2") : (row.day2fade_version || "v2");
+            return '<td class="short-system-cell"><strong>' + esc(sys) + '</strong><small>' + esc(version) + '</small></td>';
+          }
+          function tickerCell(row) {
+            var ticker = row.ticker || "--";
+            var venue = row.exchange || row.yahoo_symbol || "";
+            return '<td class="short-ticker-cell"><strong>' + esc(ticker) + '</strong><small>' + esc(venue) + '</small></td>';
+          }
+          function shortMoveCell(row) {
+            var sys = String(row.sistema || "").toLowerCase();
+            var isGap = sys.indexOf("gap") >= 0;
+            var value = isGap ? (row.gap_pct || row.ext_d0_pct) : (row.ext_d0_pct || row.day2fade_high_vs_open_pct || row.gap_pct);
+            var label = isGap ? "gap" : "m?x/abertura";
+            return '<td class="num short-move-cell"><strong>' + esc(pctDisplay(value)) + '</strong><small>' + esc(label) + '</small></td>';
+          }
           function isBlockedShort(row) {
             var state = String(row.situacao || row.status || "").toLowerCase();
             return state.indexOf("skip") >= 0 || state.indexOf("fora_regra") >= 0 || String(row.acao || "").toUpperCase() === "BLOQUEADO";
@@ -3223,15 +3574,24 @@ tbody tr:hover {
             var formattedStop = /^-?\d+(\.\d+)?$/.test(String(stop)) ? "$" + esc(stop) : esc(stop || "--");
             return '<td class="short-stop-cell" title="' + esc(title) + '">' + formattedStop + '<small>' + esc(detail) + '</small></td>';
           }
-          function shortSituationLabel(row) {
+          function shortSituationMeta(row) {
             var state = String(row.situacao || row.status || "");
+            var lower = state.toLowerCase();
             var rule = String(row.day2fade_rule || row.gapcrap_rule || "");
-            if (rule === "skip:earnings_unchecked") return "BLOQUEADO: earnings nao checado";
-            if (state === "skip_locate_unchecked") return "BLOQUEADO: locate nao checado";
-            if (state === "skip_no_locate") return "BLOQUEADO: sem locate";
-            if (state === "fora_regra_gap") return "BLOQUEADO: gap < 80%";
-            if (state.indexOf("skip") === 0) return "BLOQUEADO";
-            return state || "--";
+            if (rule === "skip:earnings_unchecked") return { label: "Bloqueado", detail: "earnings n?o checado", cls: "short-situation-blocked" };
+            if (lower === "skip_locate_unchecked") return { label: "Bloqueado", detail: "locate n?o checado", cls: "short-situation-blocked" };
+            if (lower === "skip_no_locate") return { label: "Bloqueado", detail: "sem locate", cls: "short-situation-blocked" };
+            if (lower === "fora_regra_gap") return { label: "Fora da regra", detail: "gap < 80%", cls: "short-situation-neutral" };
+            if (lower.indexOf("skip") === 0) return { label: "Bloqueado", detail: state || "filtro", cls: "short-situation-blocked" };
+            if (lower.indexOf("watchlist") >= 0) return { label: "Watchlist", detail: "liberado D+1", cls: "short-situation-action" };
+            if (lower.indexOf("open") >= 0 || lower.indexOf("execut") >= 0) return { label: "Em trade", detail: state, cls: "short-situation-action" };
+            if (lower.indexOf("checar") >= 0 || lower.indexOf("locate_required") >= 0) return { label: "Checar", detail: state, cls: "short-situation-review" };
+            return { label: state || "Hist?rico", detail: row.acao || "preservado", cls: "short-situation-neutral" };
+          }
+          function shortSituationCell(row) {
+            var meta = shortSituationMeta(row);
+            var title = row.obs || meta.detail || meta.label;
+            return '<td class="short-situation-cell" title="' + esc(title) + '"><span class="short-situation-pill ' + meta.cls + '">' + esc(meta.label) + '</span><small>' + esc(meta.detail || "--") + '</small></td>';
           }
           async function loadShortAgent() {
             var count = document.getElementById("shortAgCount");
@@ -3271,26 +3631,25 @@ tbody tr:hover {
             body.innerHTML = tab.map(function (r) {
               function g(k) { return r[k] || ""; }
               function money(v) { return /^-?\d+(\.\d+)?$/.test(v) ? "$" + esc(v) : esc(v || "--"); }
-              var sit = shortSituationLabel(r);
               var blocked = isBlockedShort(r);
               var rr = parseFloat(g("r"));
-              var rColor = isNaN(rr) ? "#94a3b8" : (rr >= 0 ? "#34d399" : "#f87171");
-              return "<tr" + (blocked ? " class=\"short-blocked-row\"" : "") + ">" +
-                "<td>" + esc(g("data_sinal")) + "</td>" +
-                "<td>" + esc(g("sistema") || "Day2Fade") + "</td>" +
-                "<td><strong>" + esc(g("ticker")) + "</strong></td>" +
+              var rClass = isNaN(rr) ? "" : (rr >= 0 ? " positive" : " negative");
+              return '<tr' + (blocked ? ' class="short-blocked-row"' : '') + '>' +
+                '<td class="short-date-cell">' + esc(g("data_sinal")) + '</td>' +
+                systemCell(r) +
+                tickerCell(r) +
                 borrowCell(r) +
                 earningsCell(r) +
                 marketCapCell(r) +
-                "<td>+" + esc(g("ext_d0_pct")) + "%</td>" +
-                "<td>" + money(g("entrada")) + "</td>" +
+                shortMoveCell(r) +
+                '<td class="num">' + money(g("entrada")) + '</td>' +
                 stopCell(r) +
-                "<td title=\"" + esc(g("obs")) + "\">" + esc(sit) + "</td>" +
-                "<td>" + esc(g("qtd")) + "</td>" +
-                "<td>" + esc(g("adv_musd")) + "</td>" +
-                "<td style=\"color:" + rColor + "\">" + (isNaN(rr) ? "--" : rr.toFixed(2) + "R") + "</td>" +
-                "<td>" + (g("pnl") ? "$" + esc(g("pnl")) : "--") + "</td>" +
-                "</tr>";
+                shortSituationCell(r) +
+                '<td class="num">' + esc(g("qtd_estim") || g("qtd") || "--") + '</td>' +
+                '<td class="num">' + esc(g("adv_musd") || "--") + '</td>' +
+                '<td class="num' + rClass + '">' + (isNaN(rr) ? "--" : rr.toFixed(2) + "R") + '</td>' +
+                '<td class="num">' + money(g("pnl_usd") || g("pnl")) + '</td>' +
+                '</tr>';
             }).join("");
             count.textContent = tab.length + " itens";
           }
@@ -23233,7 +23592,7 @@ window.RADAR_DATA = {
     {
       "acao": "BLOQUEADO",
       "asof": "2026-07-14",
-      "borrow_checked_at": "2026-07-14T23:04:18-03:00",
+      "borrow_checked_at": "2026-07-14T23:33:20-03:00",
       "borrow_filter": "no_locate",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "no_locate_alpaca",
@@ -23265,7 +23624,7 @@ window.RADAR_DATA = {
       "prev_close": "2.1800",
       "qtd": "",
       "qtd_estim": "",
-      "scan_checked_at": "2026-07-14T22:51:15-03:00",
+      "scan_checked_at": "2026-07-14T23:33:19-03:00",
       "scan_source": "alpaca_raw_bars_corporate_actions",
       "scan_status": "auto_detected",
       "short_stop_rule": "entry_plus_50_pct",
@@ -23281,7 +23640,7 @@ window.RADAR_DATA = {
       "yahoo_symbol": "NXTC"
     }
   ],
-  "generated_at": "2026-07-14T23:04:18-03:00",
+  "generated_at": "2026-07-14T23:31:32-03:00",
   "glb_ath": [],
   "glb_closed_below": [],
   "intraday_asof": "2026-07-14",
@@ -26286,7 +26645,7 @@ window.RADAR_DATA = {
     {
       "acao": "BLOQUEADO",
       "asof": "2026-07-14",
-      "borrow_checked_at": "2026-07-14T23:04:18-03:00",
+      "borrow_checked_at": "2026-07-14T23:33:20-03:00",
       "borrow_filter": "no_locate",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "no_locate_alpaca",
@@ -26318,7 +26677,7 @@ window.RADAR_DATA = {
       "prev_close": "2.1800",
       "qtd": "",
       "qtd_estim": "",
-      "scan_checked_at": "2026-07-14T22:51:15-03:00",
+      "scan_checked_at": "2026-07-14T23:33:19-03:00",
       "scan_source": "alpaca_raw_bars_corporate_actions",
       "scan_status": "auto_detected",
       "short_stop_rule": "entry_plus_50_pct",
@@ -26368,7 +26727,7 @@ window.RADAR_DATA = {
     "gapcrap_requires_borrow": "true",
     "gapcrap_scan_added_agent": "1",
     "gapcrap_scan_added_latest_shorts": "1",
-    "gapcrap_scan_cache_hit": "true",
+    "gapcrap_scan_cache_hit": "false",
     "gapcrap_scan_chart_checked": "5810",
     "gapcrap_scan_confirmed": "1",
     "gapcrap_scan_enabled": "true",
@@ -26446,7 +26805,7 @@ window.RADAR_DATA = {
     "gapcrap_scan_added_latest_shorts": 1,
     "gapcrap_scan_alpaca_feed": "sip",
     "gapcrap_scan_bad_ohlc_rejected": 0,
-    "gapcrap_scan_cache_hit": true,
+    "gapcrap_scan_cache_hit": false,
     "gapcrap_scan_chart_checked": 5810,
     "gapcrap_scan_confirmed": 1,
     "gapcrap_scan_enabled": true,
@@ -27138,7 +27497,7 @@ window.RADAR_DATA = {
       "gapcrap_scan_added_latest_shorts": 1,
       "gapcrap_scan_alpaca_feed": "sip",
       "gapcrap_scan_bad_ohlc_rejected": 0,
-      "gapcrap_scan_cache_hit": true,
+      "gapcrap_scan_cache_hit": false,
       "gapcrap_scan_chart_checked": 5810,
       "gapcrap_scan_confirmed": 1,
       "gapcrap_scan_enabled": true,
@@ -34211,7 +34570,7 @@ window.RADAR_DATA = {
         "ticker": "SDOT"
       }
     ],
-    "generated_at": "2026-07-14T23:04:19-03:00",
+    "generated_at": "2026-07-14T23:33:23-03:00",
     "metadata_file": "schwab_trade_metadata.csv",
     "metadata_rows": 268,
     "overall": {

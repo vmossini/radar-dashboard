@@ -77,7 +77,7 @@ watchlist_total,1
 watchlist_bloqueados,1
 gapcrap_scan_enabled,true
 gapcrap_scan_status,ok
-gapcrap_scan_cache_hit,true
+gapcrap_scan_cache_hit,false
 gapcrap_scan_universe,5823
 gapcrap_scan_prefiltered,5810
 gapcrap_scan_chart_checked,5810
