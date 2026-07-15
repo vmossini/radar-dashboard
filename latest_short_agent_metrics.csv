@@ -42,7 +42,7 @@ gross_loss_usd,-66.54
 avg_win_usd,21.08
 avg_loss_usd,-22.18
 max_drawdown_r,-0.43
-max_drawdown_usd,-42.75
+max_drawdown_usd,-42.63
 sample_note,amostra_pequena
 short_stop_rule_pct,50
 short_stop_rule,entry_plus_50_pct
