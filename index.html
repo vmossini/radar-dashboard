@@ -3310,8 +3310,41 @@ tbody tr:hover {
         <script>
         (function () {
           function rows(text) {
-            return text.replace(/\r/g, "").split("\n").filter(function (l) { return l.trim(); })
-              .map(function (l) { return l.split(","); });
+            var source = String(text == null ? "" : text).replace(/^\uFEFF/, "");
+            var parsed = [];
+            var row = [];
+            var field = "";
+            var quoted = false;
+            for (var i = 0; i < source.length; i += 1) {
+              var char = source[i];
+              if (quoted) {
+                if (char === '"' && source[i + 1] === '"') {
+                  field += '"';
+                  i += 1;
+                } else if (char === '"') {
+                  quoted = false;
+                } else {
+                  field += char;
+                }
+                continue;
+              }
+              if (char === '"') {
+                quoted = true;
+              } else if (char === ",") {
+                row.push(field);
+                field = "";
+              } else if (char === "\n") {
+                row.push(field);
+                if (row.some(function (cell) { return cell.trim(); })) parsed.push(row);
+                row = [];
+                field = "";
+              } else if (char !== "\r") {
+                field += char;
+              }
+            }
+            row.push(field);
+            if (row.some(function (cell) { return cell.trim(); })) parsed.push(row);
+            return parsed;
           }
           function tableObjects(text) {
             var tab = rows(text);
@@ -17887,7 +17920,7 @@ window.RADAR_DATA = {
   "daily_asof": "2026-07-16",
   "data_mode": "intraday",
   "gapcrap_scan": [],
-  "generated_at": "2026-07-16T23:33:04-03:00",
+  "generated_at": "2026-07-16T23:42:47-03:00",
   "glb_ath": [],
   "glb_closed_below": [],
   "intraday_asof": "2026-07-16",
@@ -28860,7 +28893,7 @@ window.RADAR_DATA = {
         "ticker": "SDOT"
       }
     ],
-    "generated_at": "2026-07-16T23:33:05-03:00",
+    "generated_at": "2026-07-16T23:42:48-03:00",
     "metadata_file": "schwab_trade_metadata.csv",
     "metadata_rows": 268,
     "overall": {
