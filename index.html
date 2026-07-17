@@ -2913,7 +2913,7 @@ tbody tr:hover {
         <button type="button" data-page="agentShortPage">Agente Short</button>
       </nav>
 
-      <section id="radarPage" class="page-view active">
+      <section id="radarPage" class="page-view">
       <section class="metric-grid" aria-label="Resumo">
         <div class="metric">
           <span class="metric-label">All leaders</span>
@@ -17887,7 +17887,7 @@ window.RADAR_DATA = {
   "daily_asof": "2026-07-16",
   "data_mode": "intraday",
   "gapcrap_scan": [],
-  "generated_at": "2026-07-16T23:18:52-03:00",
+  "generated_at": "2026-07-16T23:33:04-03:00",
   "glb_ath": [],
   "glb_closed_below": [],
   "intraday_asof": "2026-07-16",
@@ -20816,7 +20816,7 @@ window.RADAR_DATA = {
     "gapcrap_requires_borrow": "false",
     "gapcrap_scan_added_agent": "0",
     "gapcrap_scan_added_latest_shorts": "0",
-    "gapcrap_scan_cache_hit": "false",
+    "gapcrap_scan_cache_hit": "true",
     "gapcrap_scan_chart_checked": "5805",
     "gapcrap_scan_confirmed": "0",
     "gapcrap_scan_enabled": "true",
@@ -20900,7 +20900,7 @@ window.RADAR_DATA = {
     "gapcrap_scan_added_latest_shorts": 0,
     "gapcrap_scan_alpaca_feed": "sip",
     "gapcrap_scan_bad_ohlc_rejected": 0,
-    "gapcrap_scan_cache_hit": false,
+    "gapcrap_scan_cache_hit": true,
     "gapcrap_scan_chart_checked": 5805,
     "gapcrap_scan_confirmed": 0,
     "gapcrap_scan_enabled": true,
@@ -21841,7 +21841,7 @@ window.RADAR_DATA = {
       "gapcrap_scan_added_latest_shorts": 0,
       "gapcrap_scan_alpaca_feed": "sip",
       "gapcrap_scan_bad_ohlc_rejected": 0,
-      "gapcrap_scan_cache_hit": false,
+      "gapcrap_scan_cache_hit": true,
       "gapcrap_scan_chart_checked": 5805,
       "gapcrap_scan_confirmed": 0,
       "gapcrap_scan_enabled": true,
@@ -28860,7 +28860,7 @@ window.RADAR_DATA = {
         "ticker": "SDOT"
       }
     ],
-    "generated_at": "2026-07-16T23:20:43-03:00",
+    "generated_at": "2026-07-16T23:33:05-03:00",
     "metadata_file": "schwab_trade_metadata.csv",
     "metadata_rows": 268,
     "overall": {
@@ -43293,14 +43293,21 @@ if (el.diaryFilter) {
   });
 }
 
+function activatePage(target, renderDetails = true) {
+  const fallback = el.pageTabs[0]?.dataset.page || "radarPage";
+  const pageExists = Array.from(el.pageViews).some((view) => view.id === target);
+  const selected = pageExists ? target : fallback;
+  el.pageTabs.forEach((item) => item.classList.toggle("active", item.dataset.page === selected));
+  el.pageViews.forEach((view) => view.classList.toggle("active", view.id === selected));
+  if (renderDetails) renderActivePageDetails(selected);
+}
+
 el.pageTabs.forEach((button) => {
-  button.addEventListener("click", () => {
-    const target = button.dataset.page;
-    el.pageTabs.forEach((item) => item.classList.toggle("active", item === button));
-    el.pageViews.forEach((view) => view.classList.toggle("active", view.id === target));
-    renderActivePageDetails(target);
-  });
+  button.addEventListener("click", () => activatePage(button.dataset.page));
 });
+
+const initialPage = Array.from(el.pageTabs).find((item) => item.classList.contains("active"))?.dataset.page;
+activatePage(initialPage, false);
 
 document.addEventListener("click", (event) => {
   const sortable = event.target.closest("th[data-sort]");

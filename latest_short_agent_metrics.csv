@@ -69,7 +69,7 @@ gapcrap_locate_required,0
 gapcrap_no_locate,0
 gapcrap_scan_enabled,true
 gapcrap_scan_status,ok
-gapcrap_scan_cache_hit,false
+gapcrap_scan_cache_hit,true
 gapcrap_scan_universe,5817
 gapcrap_scan_prefiltered,5805
 gapcrap_scan_chart_checked,5805
