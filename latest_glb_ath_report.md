@@ -1,10 +1,10 @@
 # Radar GLB ATH 63D
 
-- Gerado: `2026-07-16T16:54:46-03:00`
+- Gerado: `2026-07-17T16:34:34-03:00`
 - Data dos candles: `n/a`
 - GLBs encontrados: `0`
-- Universo limpo: `3957`
-- Pre-candidatos 1Y: `4`
+- Universo limpo: `3945`
+- Pre-candidatos 1Y: `1`
 
 ## Regra
 
