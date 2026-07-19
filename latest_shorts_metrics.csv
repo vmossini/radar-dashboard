@@ -5,8 +5,8 @@ capital_base,8000
 risco_pct,1
 max_posicoes,sem limite
 sinais_amanha,0
-trades,7
-exp_bruto_pct,-3.79
-exp_liq_pct,-4.03
-win_pct,43
-pnl_usd,-23.23
+trades,8
+exp_bruto_pct,-3.57
+exp_liq_pct,-3.79
+win_pct,38
+pnl_usd,-26.37

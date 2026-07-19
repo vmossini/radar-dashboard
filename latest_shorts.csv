@@ -1,4 +1,5 @@
 data_sinal,ticker,extensao_pct,fech_d0,abre_acima,abre_abaixo,qtd,adv_musd,status,resultado_pct,obs
+2026-07-17,ZVZZT,120,27.00,28.35,24.30,5,69.6,executado,-1.963,GapCrap: open +120% vs prev close $12.25; short open; cover MOC
 2026-07-15,TZA,894,40.15,42.16,36.13,3,1172.4,filtrado_split,,split 10->1 em 2026-07-15; GapCrap ignorado
 2026-07-15,TECS,874,65.92,69.22,59.33,2,84.6,filtrado_split,,split 10->1 em 2026-07-15; GapCrap ignorado
 2026-07-15,SOXS,863,41.23,43.29,37.11,3,3621.8,filtrado_split,,split 10->1 em 2026-07-15; GapCrap ignorado
