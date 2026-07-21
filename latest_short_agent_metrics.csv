@@ -74,7 +74,7 @@ gapcrap_locate_required,1
 gapcrap_no_locate,1
 gapcrap_scan_enabled,true
 gapcrap_scan_status,ok
-gapcrap_scan_cache_hit,false
+gapcrap_scan_cache_hit,true
 gapcrap_scan_universe,5812
 gapcrap_scan_prefiltered,5800
 gapcrap_scan_chart_checked,5800
@@ -86,9 +86,9 @@ market_cap_filter,legacy_only_day2fade_gapcrap_exempt
 min_market_cap_usd,40000000
 min_market_cap_musd,40
 market_cap_filter_source,2026-07-20
-market_cap_filter_removed_agent,1
+market_cap_filter_removed_agent,0
 market_cap_filter_removed_watchlist_next,0
-market_cap_filter_removed_latest_shorts,1
+market_cap_filter_removed_latest_shorts,0
 market_cap_filter_legacy_agent,0
 market_cap_filter_legacy_below_40m_agent,0
 resultados_hipoteticos_excluidos,4
