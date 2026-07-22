@@ -1,5 +1,5 @@
 chave,valor
-agente,Short: Day2Fade v2 + GapCrap v2
+agente,Short: Day2Fade v2 (GapCrap retired 2026-07-21)
 atualizado_em,2026-07-20
 status,Sem trades amanha
 capital_base,8000
@@ -70,18 +70,18 @@ gapcrap_requires_borrow,false
 gapcrap_price_filter,anti_dust_0_10
 gapcrap_volume_filter,off
 gapcrap_market_cap_filter,off
-gapcrap_locate_required,2
-gapcrap_no_locate,4
-gapcrap_scan_enabled,true
-gapcrap_scan_status,ok
-gapcrap_scan_cache_hit,true
-gapcrap_scan_universe,5816
-gapcrap_scan_prefiltered,5803
-gapcrap_scan_chart_checked,5803
-gapcrap_scan_confirmed,4
-gapcrap_scan_added_agent,4
-gapcrap_scan_added_latest_shorts,4
-gapcrap_scan_errors,81
+gapcrap_locate_required,1
+gapcrap_no_locate,1
+gapcrap_scan_enabled,false
+gapcrap_scan_status,retired_no_borrow_2026-07-21
+gapcrap_scan_cache_hit,false
+gapcrap_scan_universe,0
+gapcrap_scan_prefiltered,0
+gapcrap_scan_chart_checked,0
+gapcrap_scan_confirmed,0
+gapcrap_scan_added_agent,0
+gapcrap_scan_added_latest_shorts,0
+gapcrap_scan_errors,0
 market_cap_filter,legacy_only_day2fade_gapcrap_exempt
 min_market_cap_usd,40000000
 min_market_cap_musd,40
@@ -93,3 +93,4 @@ market_cap_filter_legacy_agent,0
 market_cap_filter_legacy_below_40m_agent,0
 resultados_hipoteticos_excluidos,4
 resultado_hipotetico_sem_locate,0
+gapcrap_operational_status,retired_no_borrow_2026-07-21
