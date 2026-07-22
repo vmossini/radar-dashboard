@@ -87,36 +87,36 @@ _Mostrando 40 de 71._
 | Ticker | Name | Theme | Status | Tipo | Base | Chase | Country | MktCap | Close | RVOL10 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | VG | Venture Global Inc. Class A common stock | Power & electrification | New Breakout |  | 1 |  | United States | 34.9B | 14.82 | 1.18 |
-| GT | The Goodyear Tire & Rubber Company Common Stock | Auto & autonomy | Chase Breakout |  |  | 4 | United States | 2.1B | 7.46 | 0.96 |
-| SBET | Sharplink Inc. Common Stock | Software & data | Chase Breakout |  |  | 1 | United States | 1.3B | 6.33 | 0.55 |
+| GT | The Goodyear Tire & Rubber Company Common Stock | Auto & autonomy | Chase Breakout |  |  | 4 | United States | 2.1B | 7.46 | 0.80 |
+| SBET | Sharplink Inc. Common Stock | Software & data | Chase Breakout |  |  | 1 | United States | 1.3B | 6.33 | 0.53 |
 
 ## Leaders consolidating
 | Ticker | Name | Theme | Country | MktCap | Score | Close | Pivot | Dist% | Base | RVOL10 | Catalyst |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| AMD | Advanced Micro Devices | Semiconductors & AI compute | United States | 686.5B | 84.3 | 552.21 | 584.62 | 5.9 | 15 | 1.11 | nao verificado |
-| DELL | Dell Technologies Inc. | ELECTRONIC COMPUTERS | United States | 154.6B | 79.1 | 441.84 | 463.48 | 4.9 | 6 | 0.93 | nao verificado |
-| ERAS | Erasca, Inc. Common Stock | Biotech & health | United States | 3.2B | 78.3 | 19.50 | 21.60 | 10.8 | 5 | 0.45 | nao verificado |
-| RLAY | Relay Therapeutics, Inc. Common Stock | Biotech & health | United States | 2.3B | 75.9 | 19.27 | 20.79 | 7.9 | 9 | 0.81 | nao verificado |
-| NET | Cloudflare Inc. Class A Common Stock | Software & data | United States | 96.3B | 72.4 | 269.32 | 290.99 | 8.0 | 5 | 1.11 | nao verificado |
-| FTNT | Fortinet, Inc. | Software & data | United States | 92.7B | 72.0 | 154.98 | 170.11 | 9.8 | 5 | 1.19 | nao verificado |
-| OSCR | Oscar Health, Inc. | Power & electrification | United States | 7.6B | 69.8 | 29.49 | 33.10 | 12.2 | 13 | 0.93 | nao verificado |
-| DDOG | Datadog, Inc. Class A Common Stock | Software & data | United States | 74.3B | 69.5 | 245.65 | 275.01 | 12.0 | 5 | 0.91 | nao verificado |
+| AMD | Advanced Micro Devices | Semiconductors & AI compute | United States | 686.5B | 84.3 | 552.21 | 584.62 | 5.9 | 15 | 1.10 | nao verificado |
+| DELL | Dell Technologies Inc. | ELECTRONIC COMPUTERS | United States | 154.6B | 79.1 | 441.84 | 463.48 | 4.9 | 6 | 0.92 | nao verificado |
+| ERAS | Erasca, Inc. Common Stock | Biotech & health | United States | 3.2B | 78.3 | 19.50 | 21.60 | 10.8 | 5 | 0.33 | nao verificado |
+| RLAY | Relay Therapeutics, Inc. Common Stock | Biotech & health | United States | 2.3B | 75.9 | 19.27 | 20.79 | 7.9 | 9 | 0.52 | nao verificado |
+| NET | Cloudflare Inc. Class A Common Stock | Software & data | United States | 96.3B | 72.4 | 269.32 | 290.99 | 8.0 | 5 | 0.75 | nao verificado |
+| FTNT | Fortinet, Inc. | Software & data | United States | 92.7B | 72.0 | 154.98 | 170.11 | 9.8 | 5 | 1.13 | nao verificado |
+| OSCR | Oscar Health, Inc. | Power & electrification | United States | 7.6B | 69.8 | 29.49 | 33.10 | 12.2 | 13 | 0.92 | nao verificado |
+| DDOG | Datadog, Inc. Class A Common Stock | Software & data | United States | 74.3B | 69.5 | 245.65 | 275.01 | 12.0 | 5 | 0.72 | nao verificado |
 | HPE | Hewlett Packard Enterprise Company | Optical & networking | United States | 43.8B | 69.0 | 48.18 | 51.07 | 6.0 | 8 | 0.59 | nao verificado |
-| CHYM | Chime Financial Inc. Class A Common Stock | Finance: Consumer Services | United States | 8.5B | 68.5 | 21.82 | 22.77 | 4.3 | 5 | 0.75 | nao verificado |
-| HUT | Hut 8 Corp. Common Stock | Semiconductors & AI compute | United States | 10.8B | 68.2 | 109.94 | 126.26 | 14.8 | 16 | 0.76 | nao verificado |
-| EXTR | Extreme Networks | Power & electrification | United States | 3.2B | 67.8 | 30.30 | 33.73 | 11.3 | 8 | 0.79 | nao verificado |
-| DOCN | DigitalOcean Holdings, Inc. | Software & data | United States | 15.4B | 66.8 | 142.71 | 160.35 | 12.4 | 20 | 0.84 | nao verificado |
+| CHYM | Chime Financial Inc. Class A Common Stock | Finance: Consumer Services | United States | 8.5B | 68.5 | 21.82 | 22.77 | 4.3 | 5 | 0.78 | nao verificado |
+| HUT | Hut 8 Corp. Common Stock | Semiconductors & AI compute | United States | 10.8B | 68.2 | 109.94 | 126.26 | 14.8 | 16 | 0.63 | nao verificado |
+| EXTR | Extreme Networks | Power & electrification | United States | 3.2B | 67.8 | 30.30 | 33.73 | 11.3 | 8 | 0.70 | nao verificado |
+| DOCN | DigitalOcean Holdings, Inc. | Software & data | United States | 15.4B | 66.8 | 142.71 | 160.35 | 12.4 | 20 | 1.67 | nao verificado |
 | STM | STMicroelectronics N.V. | Semiconductors & AI compute | Switzerland | 54.2B | 65.7 | 65.81 | 75.86 | 15.3 | 18 | 0.79 | nao verificado |
-| AEHR | Aehr Test Systems | Semiconductors & AI compute | United States | 2.6B | 65.2 | 93.42 | 109.88 | 17.6 | 5 | 0.56 | nao verificado |
-| GTLB | GitLab Inc. Class A Common Stock | Software & data | United States | 5.5B | 63.4 | 31.33 | 35.12 | 12.1 | 8 | 0.65 | nao verificado |
+| AEHR | Aehr Test Systems | Semiconductors & AI compute | United States | 2.6B | 65.2 | 93.42 | 109.88 | 17.6 | 5 | 0.76 | nao verificado |
+| GTLB | GitLab Inc. Class A Common Stock | Software & data | United States | 5.5B | 63.4 | 31.33 | 35.12 | 12.1 | 8 | 0.66 | nao verificado |
 | S | SentinelOne Inc. Class A Common Stock | Software & data | United States | 6.4B | 63.4 | 18.21 | 20.71 | 13.7 | 5 | 0.57 | nao verificado |
-| AVPT | AvePoint Inc. Class A Common Stock | Software & data | United States | 2.8B | 62.4 | 11.99 | 13.48 | 12.4 | 5 | 0.76 | nao verificado |
-| CCC | CCC Intelligent Solutions Holdings Inc. Common Stock | Software & data | United States | 3.6B | 60.9 | 5.73 | 6.42 | 12.0 | 7 | 0.98 | nao verificado |
-| NEO | NeoGenomics Inc. Common Stock | Precision Instruments | United States | 1.9B | 60.3 | 14.00 | 15.57 | 11.2 | 12 | 0.84 | nao verificado |
-| TNGX | Tango Therapeutics, Inc. | Biotech & health | United States | 3.0B | 57.9 | 28.09 | 33.52 | 19.3 | 15 | 0.36 | nao verificado |
-| BRBR | BellRing Brands Inc. Common Stock | Packaged Foods | United States | 1.5B | 50.5 | 12.75 | 14.29 | 12.1 | 11 | 0.87 | nao verificado |
+| AVPT | AvePoint Inc. Class A Common Stock | Software & data | United States | 2.8B | 62.4 | 11.99 | 13.48 | 12.4 | 5 | 0.69 | nao verificado |
+| CCC | CCC Intelligent Solutions Holdings Inc. Common Stock | Software & data | United States | 3.6B | 60.9 | 5.73 | 6.42 | 12.0 | 7 | 1.03 | nao verificado |
+| NEO | NeoGenomics Inc. Common Stock | Precision Instruments | United States | 1.9B | 60.3 | 14.00 | 15.57 | 11.2 | 12 | 0.62 | nao verificado |
+| TNGX | Tango Therapeutics, Inc. | Biotech & health | United States | 3.0B | 57.9 | 28.09 | 33.52 | 19.3 | 15 | 0.24 | nao verificado |
+| BRBR | BellRing Brands Inc. Common Stock | Packaged Foods | United States | 1.5B | 50.5 | 12.75 | 14.29 | 12.1 | 11 | 0.98 | nao verificado |
 | CIFR | Cipher Digital Inc. Common Stock | Finance: Consumer Services | United States | 9.4B | 49.4 | 24.43 | 28.95 | 18.5 | 20 | 0.89 | nao verificado |
-| WAY | Waystar Holding Corp. Common Stock | EDP Services | United States | 4.1B | 43.0 | 20.79 | 24.70 | 18.8 | 11 | 0.68 | nao verificado |
+| WAY | Waystar Holding Corp. Common Stock | EDP Services | United States | 4.1B | 43.0 | 20.79 | 24.70 | 18.8 | 11 | 0.49 | nao verificado |
 
 ## Mudancas do dia
 - Novos leaders: `AVPT, CIFR, FSLY, FTNT, GT, HPE, PBF, SBET, WAY, WEN`
