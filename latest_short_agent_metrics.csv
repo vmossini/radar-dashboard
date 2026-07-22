@@ -70,8 +70,8 @@ gapcrap_requires_borrow,false
 gapcrap_price_filter,anti_dust_0_10
 gapcrap_volume_filter,off
 gapcrap_market_cap_filter,off
-gapcrap_locate_required,1
-gapcrap_no_locate,1
+gapcrap_locate_required,0
+gapcrap_no_locate,2
 gapcrap_scan_enabled,false
 gapcrap_scan_status,retired_no_borrow_2026-07-21
 gapcrap_scan_cache_hit,false
