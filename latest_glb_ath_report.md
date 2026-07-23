@@ -1,6 +1,6 @@
 # Radar GLB de fechamentos 63D
 
-- Gerado: `2026-07-23T16:36:40-03:00`
+- Gerado: `2026-07-23T16:56:03-03:00`
 - Data dos candles: `2026-07-23`
 - Breakouts intradiarios capturados: `3`
 - Confirmados no fechamento: `0`
@@ -19,6 +19,6 @@
 
 | Ticker | Evento | AFL | Motivos | Close | High | Linha | Trigger | Base | RVOL(10) | Market cap | Pais |
 |---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| MEDP | breakout_intraday | Nao | awaiting_eod_close | 607.385 | 677.9 | 620.59 | 620.6 | 125 | 0.24 | 15082942955 | United States |
-| LH | breakout_intraday | Nao | awaiting_eod_close | 290.3 | 298.27 | 290.93 | 290.94 | 188 | 0.12 | 23079720000 | United States |
-| SMJF | breakout_intraday | Nao | awaiting_eod_close | 5.65 | 5.69 | 5.55 | 5.56 | 118 | 0.02 | 138750000 |  |
+| MEDP | breakout_intraday | Nao | awaiting_eod_close | 605.21 | 677.9 | 620.59 | 620.6 | 125 | 0.26 | 15082942955 | United States |
+| LH | breakout_intraday | Nao | awaiting_eod_close | 292.13 | 298.27 | 290.93 | 290.94 | 188 | 0.14 | 23079720000 | United States |
+| SMJF | breakout_intraday | Nao | awaiting_eod_close | 5.63 | 5.69 | 5.55 | 5.56 | 118 | 0.02 | 138750000 |  |
