@@ -1,7 +1,7 @@
 chave,valor
 agente,Short: Day2Fade v2 (GapCrap retired 2026-07-21)
 atualizado_em,2026-07-22
-status,Sem trades amanha
+status,2 sinal(is) amanha
 capital_base,8000
 risco_pct,1
 risco_por_trade_usd,80.00
@@ -11,7 +11,7 @@ pos_abertas,0
 risco_aberto,$0
 pnl_aberto,$0
 exposicao,$0
-watchlist_amanha,0
+watchlist_amanha,2
 trades_hoje,0
 trades,8
 trades_faded2r,5
@@ -20,7 +20,7 @@ fechados,8
 win_pct,50
 pnl_usd,64.58
 retorno_pct,0.81
-watchlist_total,0
+watchlist_total,2
 watchlist_bloqueados,0
 trades_day2fade_v2,5
 trades_gapcrap_v2,3
