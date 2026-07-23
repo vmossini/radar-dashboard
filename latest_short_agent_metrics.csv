@@ -57,7 +57,7 @@ day2fade_signal_timing,pump_yesterday_short_today_open
 day2fade_trigger_basis,high_vs_open
 day2fade_min_trigger_pct,70
 day2fade_min_price,1
-day2fade_min_adv_musd,10
+day2fade_min_adv_musd,20
 day2fade_market_cap_filter,off
 day2fade_market_cap_warning_musd,off
 day2fade_max_earnings_age_days,3
