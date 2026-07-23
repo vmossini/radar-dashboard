@@ -2895,6 +2895,107 @@ tbody tr:hover {
   }
 }
 
+
+/* Active short-agent filter contract */
+.short-filter-panel {
+  margin: 0 0 12px;
+  padding: 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffffff, #f7faf9);
+}
+
+.short-filter-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.short-filter-heading h2 {
+  margin: 2px 0 0;
+  font-size: 20px;
+}
+
+.short-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.short-filter-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--panel);
+}
+
+.short-filter-card.is-active { border-color: #8fcbb6; }
+.short-filter-card.is-disabled { background: #f3f5f5; opacity: 0.82; }
+
+.short-filter-card header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.short-filter-card header > div { display: grid; gap: 2px; }
+.short-filter-card header strong { color: var(--text); font-size: 16px; }
+.short-filter-card.is-active header strong { color: var(--green); }
+
+.short-filter-kicker,
+.short-filter-state {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.short-filter-state {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.short-filter-card ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.short-filter-card li {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.short-filter-card li:nth-child(odd) { border-right: 1px solid var(--border); }
+.short-filter-card li span { color: var(--muted); font-size: 10px; font-weight: 800; text-transform: uppercase; }
+.short-filter-card li strong { color: var(--text); font-size: 12px; line-height: 1.3; }
+.short-filter-card footer { padding: 9px 12px; color: var(--muted); font-size: 11px; font-weight: 700; }
+
+@media (max-width: 900px) {
+  .short-filter-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .short-filter-card ul { grid-template-columns: 1fr; }
+  .short-filter-card li:nth-child(odd) { border-right: 0; }
+  .short-filter-heading { align-items: start; flex-direction: column; }
+}
+
     </style>
   </head>
   <body class="glb-only">
@@ -3268,6 +3369,19 @@ tbody tr:hover {
           <div class="metric"><span class="metric-label">Profit factor</span><strong id="shortAgProfitFactor">--</strong><span id="shortAgPayoff">--</span></div>
           <div class="metric"><span class="metric-label">Avg win/loss</span><strong id="shortAgAvgWinLoss">--</strong><span id="shortAgBestWorst">--</span></div>
           <div class="metric"><span class="metric-label">Max DD</span><strong id="shortAgMaxDd">--</strong><span id="shortAgWatchlistMeta">--</span></div>
+        </section>
+
+        <section class="short-filter-panel" id="shortAgFilterPanel" aria-label="Filtros ativos do agente short">
+          <div class="short-filter-heading">
+            <div>
+              <p class="eyebrow">Contrato quantitativo</p>
+              <h2>Filtros ativos</h2>
+            </div>
+            <span class="row-count" id="shortAgFilterUpdated">payload atual</span>
+          </div>
+          <div class="short-filter-grid" id="shortAgFilters">
+            <div class="short-filter-card is-loading">Carregando filtros...</div>
+          </div>
         </section>
 
         <section class="short-decision-panel" aria-label="Decisão operacional short">
@@ -3671,10 +3785,61 @@ tbody tr:hover {
             var title = row.obs || meta.detail || meta.label;
             return '<td class="short-situation-cell" title="' + esc(title) + '"><span class="short-situation-pill ' + meta.cls + '">' + esc(meta.label) + '</span><small>' + esc(meta.detail || "--") + '</small></td>';
           }
+          function shortFilterItem(label, value) {
+            return '<li><span>' + esc(label) + '</span><strong>' + esc(value) + '</strong></li>';
+          }
+          function renderShortFilters(filters, generatedAt) {
+            var host = document.getElementById("shortAgFilters");
+            if (!host) return;
+            var source = filters || {};
+            var d2f = source.day2fade_v2 || {};
+            var gap = source.gapcrap_v2 || {};
+            var d2fEnabled = d2f.enabled === true && source.day2fade_scan_enabled !== false;
+            var gapEnabled = gap.enabled === true && source.gapcrap_scan_enabled === true;
+            var d2Status = d2fEnabled ? "Ativo" : "Desativado";
+            var gapStatus = gapEnabled ? "Ativo" : "Desativado / historico";
+            var d2Items = [
+              shortFilterItem("Entrada", "pump D0 / short D+1 na abertura"),
+              shortFilterItem("Maxima / abertura", ">= +" + (d2f.min_trigger_pct == null ? "--" : d2f.min_trigger_pct) + "%"),
+              shortFilterItem("Preco", ">= $" + (d2f.min_price == null ? "--" : Number(d2f.min_price).toFixed(2))),
+              shortFilterItem("ADV20", ">= $" + (d2f.min_adv_musd == null ? "--" : d2f.min_adv_musd) + "M"),
+              shortFilterItem("Earnings", "<= " + (d2f.max_earnings_age_days == null ? "--" : d2f.max_earnings_age_days) + " dias exclui; nao verificado bloqueia"),
+              shortFilterItem("Market cap", d2f.market_cap_filter === false ? "sem filtro" : "ativo"),
+              shortFilterItem("Locate", "negativo confirmado bloqueia; desconhecido avisa"),
+              shortFilterItem("Stop", "+" + (d2f.stop_pct == null ? "--" : d2f.stop_pct) + "% sobre a entrada")
+            ].join("");
+            var gapItems = [
+              shortFilterItem("Novos sinais", gapEnabled ? "habilitados" : "desabilitados"),
+              shortFilterItem("Gap", ">= +" + (gap.min_gap_pct == null ? "--" : gap.min_gap_pct) + "%"),
+              shortFilterItem("Preco", ">= $" + (gap.min_price == null ? "--" : Number(gap.min_price).toFixed(2))),
+              shortFilterItem("Volume", gap.volume_filter === false ? "sem filtro" : "ativo"),
+              shortFilterItem("Market cap", gap.market_cap_filter === false ? "sem filtro" : "ativo"),
+              shortFilterItem("Borrow", gap.requires_borrow === false ? "nao e filtro quantitativo" : "obrigatorio"),
+              shortFilterItem("Earnings", "release / 8-K 2.02 <= 3 dias exclui"),
+              shortFilterItem("Stop", "+" + (gap.stop_pct == null ? "--" : gap.stop_pct) + "% sobre a entrada")
+            ].join("");
+            host.innerHTML =
+              '<article class="short-filter-card ' + (d2fEnabled ? 'is-active' : 'is-disabled') + '">' +
+                '<header><div><span class="short-filter-kicker">Day2Fade v2</span><strong>' + esc(d2Status) + '</strong></div>' +
+                '<span class="short-filter-state">' + esc(d2f.status || source.day2fade_scan_status || "--") + '</span></header>' +
+                '<ul>' + d2Items + '</ul>' +
+                '<footer>Fonte: ' + esc(source.day2fade_scan_market_data_source || source.day2fade_scan_source || "--") +
+                ' | universo ' + esc(source.day2fade_scan_universe == null ? "--" : source.day2fade_scan_universe) + '</footer>' +
+              '</article>' +
+              '<article class="short-filter-card ' + (gapEnabled ? 'is-active' : 'is-disabled') + '">' +
+                '<header><div><span class="short-filter-kicker">GapCrap v2</span><strong>' + esc(gapStatus) + '</strong></div>' +
+                '<span class="short-filter-state">' + esc(gap.status || source.gapcrap_scan_status || "--") + '</span></header>' +
+                '<ul>' + gapItems + '</ul>' +
+                '<footer>' + (gapEnabled ? 'Scanner em operacao.' : 'Sem novos sinais; mantido apenas para historico.') + '</footer>' +
+              '</article>';
+            var updated = document.getElementById("shortAgFilterUpdated");
+            if (updated) updated.textContent = generatedAt ? ("snapshot " + String(generatedAt).replace("T", " ").slice(0, 19)) : "payload atual";
+          }
           async function loadShortAgent() {
             var count = document.getElementById("shortAgCount");
             var body = document.getElementById("shortAgBody");
             var embedded = window.RADAR_DATA || {};
+            renderShortFilters(embedded.short_filters || {}, embedded.short_generated_at || embedded.generated_at || "");
             var met = Object.assign({}, embedded.short_agent_metrics || {});
             var shortCsvVersion = encodeURIComponent(embedded.short_generated_at || embedded.generated_at || Date.now());
             var shortWatchlistLink = document.getElementById("shortWatchlistLink");
@@ -19779,7 +19944,7 @@ window.RADAR_DATA = {
   "daily_asof": "2026-07-22",
   "data_mode": "daily",
   "gapcrap_scan": [],
-  "generated_at": "2026-07-23T16:22:33-03:00",
+  "generated_at": "2026-07-23T16:31:40-03:00",
   "glb_ath": [
     {
       "adr_pct": 3.4786244550147414,
@@ -23193,7 +23358,7 @@ window.RADAR_DATA = {
       "adv20_usd": "43051507.61",
       "adv_musd": "43.05",
       "asof": "2026-07-22",
-      "borrow_checked_at": "2026-07-23T16:22:34-03:00",
+      "borrow_checked_at": "2026-07-23T16:31:42-03:00",
       "borrow_filter": "locate_required",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "checar_schwab",
@@ -23269,7 +23434,7 @@ window.RADAR_DATA = {
       "adv20_usd": "36081650.50",
       "adv_musd": "36.08",
       "asof": "2026-07-22",
-      "borrow_checked_at": "2026-07-23T16:22:34-03:00",
+      "borrow_checked_at": "2026-07-23T16:31:41-03:00",
       "borrow_filter": "locate_required",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "checar_schwab",
@@ -23457,7 +23622,7 @@ window.RADAR_DATA = {
       "adv20_usd": "66532036.68",
       "adv_musd": "66.53",
       "asof": "2026-07-20",
-      "borrow_checked_at": "2026-07-23T16:22:33-03:00",
+      "borrow_checked_at": "2026-07-23T16:31:41-03:00",
       "borrow_filter": "locate_required",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "checar_schwab",
@@ -24749,6 +24914,9 @@ window.RADAR_DATA = {
     "worst_r": "-0.50"
   },
   "short_filters": {
+    "active_systems": [
+      "day2fade_v2"
+    ],
     "day2fade_scan_added_agent": 2,
     "day2fade_scan_added_latest_shorts": 2,
     "day2fade_scan_added_watchlist": 2,
@@ -24776,6 +24944,9 @@ window.RADAR_DATA = {
     "day2fade_v2": {
       "adv20_basis": "mean(close*volume,last_20_sessions_including_signal_day)",
       "auto_scan": true,
+      "borrow_policy": "confirmed_no_locate_blocks; unknown_warns",
+      "earnings_unknown_policy": "block_watchlist",
+      "enabled": true,
       "market_cap_filter": false,
       "market_cap_warning_musd": "off",
       "max_earnings_age_days": 3,
@@ -24783,6 +24954,7 @@ window.RADAR_DATA = {
       "min_price": 1.0,
       "min_trigger_pct": 70.0,
       "signal_timing": "pump_yesterday_short_today_open",
+      "status": "ok",
       "stop_pct": 50.0,
       "trigger_basis": "high_vs_open"
     },
@@ -24815,12 +24987,16 @@ window.RADAR_DATA = {
     "gapcrap_scan_status": "retired_no_borrow_2026-07-21",
     "gapcrap_scan_universe": 0,
     "gapcrap_v2": {
-      "auto_scan": true,
+      "auto_scan": false,
+      "borrow_policy": "not_a_quantitative_filter",
+      "earnings_policy": "exclude_release_or_8k_item_2_02_within_3_days; unknown_warns",
+      "enabled": false,
       "market_cap_filter": false,
       "min_gap_pct": 80.0,
       "min_price": 0.1,
       "price_filter": "anti_dust_0_10",
       "requires_borrow": false,
+      "status": "retired_no_borrow_2026-07-21",
       "stop_pct": 50.0,
       "volume_filter": false
     },
@@ -24857,7 +25033,7 @@ window.RADAR_DATA = {
       "adv20_usd": "43051507.61",
       "adv_musd": "43.05",
       "asof": "2026-07-22",
-      "borrow_checked_at": "2026-07-23T16:22:34-03:00",
+      "borrow_checked_at": "2026-07-23T16:31:42-03:00",
       "borrow_filter": "locate_required",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "checar_schwab",
@@ -24933,7 +25109,7 @@ window.RADAR_DATA = {
       "adv20_usd": "36081650.50",
       "adv_musd": "36.08",
       "asof": "2026-07-22",
-      "borrow_checked_at": "2026-07-23T16:22:34-03:00",
+      "borrow_checked_at": "2026-07-23T16:31:41-03:00",
       "borrow_filter": "locate_required",
       "borrow_source": "alpaca_paper_assets",
       "borrow_status": "checar_schwab",
@@ -25573,6 +25749,9 @@ window.RADAR_DATA = {
       "Utilities": 1
     },
     "short_filters": {
+      "active_systems": [
+        "day2fade_v2"
+      ],
       "day2fade_scan_added_agent": 2,
       "day2fade_scan_added_latest_shorts": 2,
       "day2fade_scan_added_watchlist": 2,
@@ -25600,6 +25779,9 @@ window.RADAR_DATA = {
       "day2fade_v2": {
         "adv20_basis": "mean(close*volume,last_20_sessions_including_signal_day)",
         "auto_scan": true,
+        "borrow_policy": "confirmed_no_locate_blocks; unknown_warns",
+        "earnings_unknown_policy": "block_watchlist",
+        "enabled": true,
         "market_cap_filter": false,
         "market_cap_warning_musd": "off",
         "max_earnings_age_days": 3,
@@ -25607,6 +25789,7 @@ window.RADAR_DATA = {
         "min_price": 1.0,
         "min_trigger_pct": 70.0,
         "signal_timing": "pump_yesterday_short_today_open",
+        "status": "ok",
         "stop_pct": 50.0,
         "trigger_basis": "high_vs_open"
       },
@@ -25639,12 +25822,16 @@ window.RADAR_DATA = {
       "gapcrap_scan_status": "retired_no_borrow_2026-07-21",
       "gapcrap_scan_universe": 0,
       "gapcrap_v2": {
-        "auto_scan": true,
+        "auto_scan": false,
+        "borrow_policy": "not_a_quantitative_filter",
+        "earnings_policy": "exclude_release_or_8k_item_2_02_within_3_days; unknown_warns",
+        "enabled": false,
         "market_cap_filter": false,
         "min_gap_pct": 80.0,
         "min_price": 0.1,
         "price_filter": "anti_dust_0_10",
         "requires_borrow": false,
+        "status": "retired_no_borrow_2026-07-21",
         "stop_pct": 50.0,
         "volume_filter": false
       },
@@ -29983,7 +30170,7 @@ window.RADAR_DATA = {
         "ticker": "SDOT"
       }
     ],
-    "generated_at": "2026-07-23T16:22:35-03:00",
+    "generated_at": "2026-07-23T16:31:43-03:00",
     "metadata_file": "schwab_trade_metadata.csv",
     "metadata_rows": 268,
     "overall": {
@@ -29995,14 +30182,14 @@ window.RADAR_DATA = {
       "expectancy_r": 0.0509,
       "exposure_open": 6614.28,
       "max_drawdown": 2501.76,
-      "open_pnl": 642.78,
+      "open_pnl": 649.02,
       "open_pnl_missing": 0,
       "open_positions": 6,
       "payoff_ratio": 3.0749,
       "profit_factor": 0.9367,
       "r_coverage": 265,
       "risk_open": 372.06,
-      "total_pnl": 169.88,
+      "total_pnl": 176.12,
       "trades": 275,
       "win_rate": 0.171,
       "worst_trade": -379.96
@@ -30017,7 +30204,7 @@ window.RADAR_DATA = {
         "expectancy_r": 0.0157,
         "exposure_open": 2243.87,
         "max_drawdown": 1748.46,
-        "open_pnl": 596.01,
+        "open_pnl": 596.68,
         "open_pnl_missing": 0,
         "open_positions": 2,
         "payoff_ratio": 2.3026,
@@ -30025,7 +30212,7 @@ window.RADAR_DATA = {
         "r_coverage": 168,
         "risk_open": 139.29,
         "system": "Breakout",
-        "total_pnl": -473.49,
+        "total_pnl": -472.82,
         "trades": 172,
         "win_rate": 0.1824,
         "worst_trade": -379.96
@@ -30083,7 +30270,7 @@ window.RADAR_DATA = {
         "expectancy_r": -0.3345,
         "exposure_open": 4370.41,
         "max_drawdown": 76.92,
-        "open_pnl": 46.77,
+        "open_pnl": 52.34,
         "open_pnl_missing": 0,
         "open_positions": 4,
         "payoff_ratio": null,
@@ -30091,7 +30278,7 @@ window.RADAR_DATA = {
         "r_coverage": 3,
         "risk_open": 232.77,
         "system": "GLB",
-        "total_pnl": -30.15,
+        "total_pnl": -24.58,
         "trades": 7,
         "win_rate": 0.0,
         "worst_trade": -76.92
@@ -40317,12 +40504,12 @@ window.RADAR_DATA = {
         "grade": "",
         "initial_risk": 54.01,
         "last_date": "2026-07-23",
-        "last_price": 149.8,
+        "last_price": 149.88,
         "mark_source": "Yahoo",
         "name": "GUARDANT HEALTH INC",
         "notes": "Setup 1m",
-        "open_pnl": 489.61,
-        "open_r": 9.0652,
+        "open_pnl": 490.49,
+        "open_r": 9.0815,
         "pnl": null,
         "quantity": 11.0,
         "r_multiple": null,
@@ -40833,12 +41020,12 @@ window.RADAR_DATA = {
         "grade": "",
         "initial_risk": 85.28,
         "last_date": "2026-07-23",
-        "last_price": 29.075,
+        "last_price": 29.07,
         "mark_source": "Yahoo",
         "name": "OSCAR HEALTH INC A",
         "notes": "fora do radar",
-        "open_pnl": 106.4,
-        "open_r": 1.2476,
+        "open_pnl": 106.19,
+        "open_r": 1.2452,
         "pnl": null,
         "quantity": 41.0,
         "r_multiple": null,
@@ -41478,12 +41665,12 @@ window.RADAR_DATA = {
         "grade": "",
         "initial_risk": 68.87,
         "last_date": "2026-07-23",
-        "last_price": 20.56,
+        "last_price": 20.615,
         "mark_source": "Yahoo",
         "name": "BRIDGEWATER BANCSHAR",
         "notes": "",
-        "open_pnl": 8.85,
-        "open_r": 0.1285,
+        "open_pnl": 12.54,
+        "open_r": 0.182,
         "pnl": null,
         "quantity": 67.0,
         "r_multiple": null,
@@ -41564,12 +41751,12 @@ window.RADAR_DATA = {
         "grade": "",
         "initial_risk": 69.66,
         "last_date": "2026-07-23",
-        "last_price": 20.76,
+        "last_price": 20.79,
         "mark_source": "Yahoo",
         "name": "CALIFORNIA BANCORP",
         "notes": "",
-        "open_pnl": 11.28,
-        "open_r": 0.162,
+        "open_pnl": 13.41,
+        "open_r": 0.1925,
         "pnl": null,
         "quantity": 71.0,
         "r_multiple": null,
@@ -41607,12 +41794,12 @@ window.RADAR_DATA = {
         "grade": "",
         "initial_risk": 50.78,
         "last_date": "2026-07-23",
-        "last_price": 264.275,
+        "last_price": 264.505,
         "mark_source": "Yahoo",
         "name": "NATERA INC",
         "notes": "",
-        "open_pnl": 8.23,
-        "open_r": 0.1621,
+        "open_pnl": 8.69,
+        "open_r": 0.1711,
         "pnl": null,
         "quantity": 2.0,
         "r_multiple": null,
@@ -41693,12 +41880,12 @@ window.RADAR_DATA = {
         "grade": "",
         "initial_risk": 43.46,
         "last_date": "2026-07-23",
-        "last_price": 259.288,
+        "last_price": 259.11,
         "mark_source": "Yahoo",
         "name": "JOHNSON & JOHNSON",
         "notes": "",
-        "open_pnl": 18.41,
-        "open_r": 0.4237,
+        "open_pnl": 17.7,
+        "open_r": 0.4073,
         "pnl": null,
         "quantity": 4.0,
         "r_multiple": null,
