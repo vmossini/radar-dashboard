@@ -1,17 +1,24 @@
-# Radar GLB ATH 63D
+# Radar GLB de fechamentos 63D
 
-- Gerado: `2026-07-22T16:54:39-03:00`
-- Data dos candles: `n/a`
-- GLBs encontrados: `0`
-- Universo limpo: `3950`
-- Pre-candidatos 1Y: `0`
+- Gerado: `2026-07-23T16:36:40-03:00`
+- Data dos candles: `2026-07-23`
+- Breakouts intradiarios capturados: `3`
+- Confirmados no fechamento: `0`
+- Elegiveis pelo AFL: `0`
+- Universo operacional: `4718`
 
 ## Regra
 
-- Nova maxima historica pelo OHLC do Yahoo sem ajuste de dividendos: high atual >= ATH anterior + 0,01.
-- Consolidacao: pelo menos 63 pregoes completos desde o ATH anterior.
-- Filtros: common stocks operacionais, preco > 2, AvgVol10 > 100k e preco atual * AvgVol10 >= 2M. SMA20 e ADR14 ficam apenas como contexto, nao como filtros.
+- Linha GLB: maxima de fechamento mantida por pelo menos 63 pregoes completos; trigger = linha + 0,01.
+- Captura: a maxima do dia alcancou o trigger. O evento permanece no radar mesmo sem confirmacao ou com filtro reprovado.
+- Confirmacao AFL: fechamento no trigger ou acima, QQQ D-1 acima da SMA20 e da SMA10 mensal intrames (9 fechamentos mensais completos + QQQ D-1 como fechamento provisorio do mes corrente), preco > 2, AvgVol10 anterior > 100k, media anterior de close*volume >= 2M, ATR14 anterior valido, extensao <= 50% e preco acima da SMA20 dinamica.
+- RVOL(10): volume atual / SMA de volume dos 10 pregoes anteriores.
+- Nao existem filtros de capital, margem, ranking ou limite de posicoes na captura.
 
-## Tickers
+## Eventos
 
-Nenhum GLB ATH 63D encontrado.
+| Ticker | Evento | AFL | Motivos | Close | High | Linha | Trigger | Base | RVOL(10) | Market cap | Pais |
+|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| MEDP | breakout_intraday | Nao | awaiting_eod_close | 607.385 | 677.9 | 620.59 | 620.6 | 125 | 0.24 | 15082942955 | United States |
+| LH | breakout_intraday | Nao | awaiting_eod_close | 290.3 | 298.27 | 290.93 | 290.94 | 188 | 0.12 | 23079720000 | United States |
+| SMJF | breakout_intraday | Nao | awaiting_eod_close | 5.65 | 5.69 | 5.55 | 5.56 | 118 | 0.02 | 138750000 |  |
