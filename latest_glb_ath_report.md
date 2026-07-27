@@ -1,8 +1,8 @@
 # Radar GLB de fechamentos 63D
 
-- Gerado: `2026-07-27T16:34:33-03:00`
+- Gerado: `2026-07-27T16:53:28-03:00`
 - Data dos candles: `2026-07-27`
-- Breakouts intradiarios capturados: `2`
+- Breakouts intradiarios capturados: `3`
 - Confirmados no fechamento: `0`
 - Elegiveis pelo AFL: `0`
 - Universo operacional: `4716`
@@ -19,5 +19,6 @@
 
 | Ticker | Evento | AFL | Motivos | Close | High | Linha | Trigger | Base | RVOL(10) | Market cap | Pais |
 |---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| TOWN | breakout_intraday | Nao | awaiting_eod_close | 37.83 | 37.89 | 37.65 | 37.66 | 115 | 0.07 | 2734725145 | United States |
-| THC | breakout_intraday | Nao | awaiting_eod_close | 244.46 | 248.38 | 244.8 | 244.81 | 98 | 0.06 | 20087148400 | United States |
+| TOWN | breakout_intraday | Nao | awaiting_eod_close | 37.88 | 37.89 | 37.65 | 37.66 | 115 | 0.08 | 2734725145 | United States |
+| THC | breakout_intraday | Nao | awaiting_eod_close | 244.61 | 248.38 | 244.8 | 244.81 | 98 | 0.07 | 20087148400 | United States |
+| GM | breakout_intraday | Nao | awaiting_eod_close | 86.6 | 86.695 | 86.38 | 86.39 | 123 | 0.05 | 72512595348 | United States |
