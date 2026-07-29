@@ -1,8 +1,8 @@
 # Radar GLB de fechamentos 63D
 
-- Gerado: `2026-07-28T16:54:49-03:00`
-- Data dos candles: `2026-07-28`
-- Breakouts intradiarios capturados: `13`
+- Gerado: `2026-07-29T16:35:37-03:00`
+- Data dos candles: `2026-07-29`
+- Breakouts intradiarios capturados: `9`
 - Confirmados no fechamento: `0`
 - Elegiveis pelo AFL: `0`
 - Universo operacional: `4720`
@@ -19,16 +19,12 @@
 
 | Ticker | Evento | AFL | Motivos | Close | High | Linha | Trigger | Base | RVOL(10) | Market cap | Pais |
 |---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| NBBK | breakout_intraday | Nao | awaiting_eod_close | 22.985 | 23.24 | 22.64 | 22.65 | 74 | 0.27 | 1002759236 | United States |
-| SOLV | breakout_intraday | Nao | awaiting_eod_close | 85.905 | 87.14 | 86.14 | 86.15 | 135 | 0.17 | 13935369075 | United States |
-| FELE | breakout_intraday | Nao | awaiting_eod_close | 111.14 | 115.63 | 110.4 | 110.41 | 415 | 0.12 | 4658132720 | United States |
-| ITW | breakout_intraday | Nao | awaiting_eod_close | 296.945 | 300.47 | 299.6 | 299.61 | 111 | 0.10 | 81942714000 | United States |
-| HIG | breakout_intraday | Nao | awaiting_eod_close | 143.14 | 143.6 | 143.53 | 143.54 | 110 | 0.07 | 37960002360 | United States |
-| TCBX | breakout_intraday | Nao | awaiting_eod_close | 43.545 | 43.565 | 43.46 | 43.47 | 116 | 0.07 | 700019475 | United States |
-| THC | breakout_intraday | Nao | awaiting_eod_close | 260.23 | 260.23 | 244.8 | 244.81 | 99 | 0.06 | 20962300320 | United States |
-| CCEP | breakout_intraday | Nao | awaiting_eod_close | 111.12 | 113.595 | 110.43 | 110.44 | 102 | 0.06 | 49347890467 | United Kingdom |
-| SYBT | breakout_intraday | Nao | awaiting_eod_close | 84.87 | 84.88 | 83.01 | 83.02 | 266 | 0.05 | 2433527251 | United States |
-| ALH | breakout_intraday | Nao | awaiting_eod_close | 26.965 | 26.965 | 26.93 | 26.94 | 185 | 0.05 | 5185671904 | United States |
-| AMGN | breakout_intraday | Nao | awaiting_eod_close | 392.645 | 397.74 | 388.16 | 388.17 | 102 | 0.05 | 203070635175 | United States |
-| RJF | breakout_intraday | Nao | awaiting_eod_close | 176.67 | 178.12 | 176.43 | 176.44 | 206 | 0.04 | 33831694702 | United States |
-| ESNT | breakout_intraday | Nao | awaiting_eod_close | 67.415 | 67.64 | 66.82 | 66.83 | 149 | 0.04 | 6116185318 | Bermuda |
+| CABR | breakout_intraday | Nao | awaiting_eod_close | 1.5700000524520874 | 1.6200000047683716 | 1.52 | 1.53 | 158 | 0.73 | 13182684 | United States |
+| GRMN | breakout_intraday | Nao | awaiting_eod_close | 298.83 | 303.64 | 267.52 | 267.53 | 68 | 0.13 | 46761844269 | Switzerland |
+| AN | breakout_intraday | Nao | awaiting_eod_close | 232.2 | 235.57 | 227.18 | 227.19 | 222 | 0.12 | 7100529239 | United States |
+| ZWS | breakout_intraday | Nao | awaiting_eod_close | 52.24 | 53.805 | 52.8 | 52.81 | 63 | 0.10 | 8138343197 | United States |
+| AER | breakout_intraday | Nao | awaiting_eod_close | 150.87 | 155.255 | 154.83 | 154.84 | 110 | 0.09 | 27107222085 | Netherlands |
+| EXPE | breakout_intraday | Nao | awaiting_eod_close | 306.705 | 312.18 | 301.31 | 301.32 | 137 | 0.08 | 33410545574 | United States |
+| MMED | breakout_intraday | Nao | awaiting_eod_close | 18.49 | 18.64 | 18.49 | 18.5 | 98 | 0.07 | 4962493071 | United States |
+| HIG | breakout_intraday | Nao | awaiting_eod_close | 144.835 | 145.62 | 143.53 | 143.54 | 111 | 0.03 | 37960002360 | United States |
+| CMTV | breakout_intraday | Nao | awaiting_eod_close | 40.51 | 42.495 | 42.39 | 42.4 | 88 | 0.03 | 227060784 | United States |
