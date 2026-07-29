@@ -1,16 +1,16 @@
 # Radar Diario de Lideranca e Consolidacao - 2026-07-29
 
-- All leaders: `74` tickers.
+- All leaders: `75` tickers.
 - Ativos no dia: `31` tickers.
-- Leaders consolidating: `15` tickers.
+- Leaders consolidating: `16` tickers.
 - Acionados hoje: `20` tickers.
-- Fonte de preco/volume: `intraday`; base diaria `2026-07-29`; intraday atualizados `74`.
+- Fonte de preco/volume: `intraday`; base diaria `2026-07-29`; intraday atualizados `75`.
 - CSV all leaders: `C:\Users\vitor\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-07-29\all_leaders_2026-07-29.csv`
 - CSV consolidating: `C:\Users\vitor\OneDrive\Documentos\Trading\radar_lideranca\outputs\2026-07-29\leaders_consolidating_2026-07-29.csv`
 
 ## Market regime
 - SPY close 738.65, vs SMA20 +1.8%, vs SMA50 +6.8%; QQQ close 705.88, vs SMA20 +3.3%, vs SMA50 +11.4%
-- Universo final pos-filtros: `1113`.
+- Universo final pos-filtros: `1114`.
 - 52W highs no universo final: `22`.
 
 ## Temas fortes
@@ -18,18 +18,18 @@
 | --- | --- | --- | --- | --- |
 | Software & data | 24 | 7 | 346.3 | RNG, DDOG, BB, NAVN, OKTA, SNOW, PANW, RPD |
 | Semiconductors & AI compute | 18 |  | 255.8 | TXG, MXL, STX, PENG, AMD, MU, HUT, INTC |
-| Biotech & health | 7 | 1 | 156.0 | FBRX, SLS, RLAY, ERAS, DYN, TNGX, IBRX |
+| Biotech & health | 7 | 1 | 155.0 | FBRX, SLS, ERAS, RLAY, DYN, TNGX, IBRX |
 | EDP Services | 6 | 1 | 137.8 | FA, FIVN, IOT, WDAY, KD, GLOB |
 | Power & electrification | 4 | 1 | 126.9 | MAN, OSCR, FCEL, BE |
 | Energy / oil & gas | 1 | 1 | 103.0 | PBF |
 | ELECTRONIC COMPUTERS | 1 |  | 96.5 | DELL |
 | Professional Services | 1 | 1 | 92.7 | RHI |
-| Optical & networking | 1 | 1 | 92.3 | HPE |
+| Optical & networking | 1 | 1 | 92.2 | HPE |
 | Medical/Nursing Services | 1 | 1 | 89.7 | TDOC |
+| Home Furnishings | 1 | 1 | 89.1 | HELE |
 | Precision Instruments | 1 |  | 85.8 | NEO |
-| Medical/Dental Instruments | 1 |  | 83.9 | XRAY |
 
-_Mostrando 12 de 20._
+_Mostrando 12 de 21._
 
 ## All leaders - resumo
 - Janela de entrada: `1M/3M/6M`. `1W` fica apenas como contexto/aceleracao.
@@ -44,15 +44,14 @@ _Mostrando 12 de 20._
 | TXG | 10x Genomics, Inc. Class A Common Stock | Semiconductors & AI compute | 98.6 | -1.6 | 24.8 | 110.2 | 184.5 | 284.3 | 5.3 | Leader |
 | MAN | ManpowerGroup Common Stock | Power & electrification | 89.3 | 8.1 | 55.6 | 94.5 | 84.6 | 31.9 | 4.2 | Chase Breakout |
 | OSCR | Oscar Health, Inc. | Power & electrification | 89.1 | 3.7 | 3.9 | 160.7 | 110.8 | 49.6 | 5.5 | Ready |
-| PBF | PBF Energy Inc. Class A Common Stock | Energy / oil & gas | 88.1 | -1.5 | 36.2 | 37.4 | 143.3 | 184.5 | 4.8 | Ready |
+| PBF | PBF Energy Inc. Class A Common Stock | Energy / oil & gas | 88.0 | -1.5 | 36.2 | 37.4 | 143.3 | 184.5 | 4.8 | Ready |
 | RNG | RINGCENTRAL, INC. | Software & data | 87.7 | 52.7 | 47.5 | 50.9 | 96.1 | 96.8 | 4.7 | Chase Breakout |
 | DDOG | Datadog, Inc. Class A Common Stock | Software & data | 87.3 | 7.6 | 6.4 | 122.8 | 92.3 | 99.8 | 4.7 | Ready |
 | DELL | Dell Technologies Inc. | ELECTRONIC COMPUTERS | 86.5 | -16.3 | -10.8 | 118.2 | 189.0 | 203.7 | 7.6 | Leader |
 | MXL | MaxLinear, Inc. Common Stock | Semiconductors & AI compute | 85.1 | -34.1 | -47.3 | 223.1 | 223.0 | 302.6 | 15.1 | Leader |
-| FA | First Advantage Corporation Common Stock | EDP Services | 85.1 | 7.7 | 18.5 | 92.2 | 44.0 | 25.7 | 4.2 | Ready |
+| FA | First Advantage Corporation Common Stock | EDP Services | 85.0 | 7.7 | 18.5 | 92.2 | 44.0 | 25.7 | 4.2 | Ready |
 | FIVN | Five9 Inc. Common Stock | EDP Services | 84.6 | 18.3 | 27.6 | 80.4 | 35.8 | 2.1 | 5.3 | Chase Breakout |
-| SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | 84.4 | -16.7 | -34.7 | 139.1 | 204.1 | 383.9 | 11.5 | Leader |
-| RLAY | Relay Therapeutics, Inc. Common Stock | Biotech & health | 83.0 | -4.7 | -6.9 | 70.5 | 119.9 | 421.6 | 5.2 | Ready |
+| SLS | SELLAS Life Sciences Group, Inc. Common Stock | Biotech & health | 84.3 | -16.7 | -34.7 | 139.1 | 204.1 | 383.9 | 11.5 | Leader |
 | FCEL | FuelCell Energy Inc  NEW (DE) | Power & electrification | 82.7 | -19.5 | -39.3 | 179.6 | 127.5 | 246.1 | 12.5 | Leader |
 | STX | Seagate Technology Holdings PLC Ordinary Shares (Ireland) | Semiconductors & AI compute | 82.6 | -15.8 | -21.1 | 80.6 | 172.9 | 426.9 | 8.1 | Leader |
 | PENG | Penguin Solutions, Inc. Ordinary Shares | Semiconductors & AI compute | 81.3 | -26.3 | -35.9 | 139.1 | 117.8 | 116.3 | 14.5 | Leader |
@@ -61,27 +60,28 @@ _Mostrando 12 de 20._
 | BB | BlackBerry Limited | Software & data | 80.4 | -12.6 | -37.3 | 132.7 | 106.3 | 80.2 | 7.5 | Leader |
 | ERAS | Erasca, Inc. Common Stock | Biotech & health | 80.3 | -9.2 | -3.1 | 6.6 | 400.0 | 1201.5 | 6.7 | Leader |
 | NAVN | Navan Inc. Class A Common Stock | Software & data | 79.2 | 12.7 | 12.0 | 110.1 | 52.7 |  | 5.4 | Ready |
-| HUT | Hut 8 Corp. Common Stock | Semiconductors & AI compute | 79.0 | -19.8 | -25.4 | 86.2 | 90.5 | 377.1 | 10.2 | Leader |
+| HUT | Hut 8 Corp. Common Stock | Semiconductors & AI compute | 78.9 | -19.8 | -25.4 | 86.2 | 90.5 | 377.1 | 10.2 | Leader |
 | INTC | Intel Corp | Semiconductors & AI compute | 78.1 | -20.2 | -37.8 | 70.5 | 119.6 | 258.5 | 7.6 | Leader |
 | RHI | Robert Half Inc. Common Stock | Professional Services | 77.7 | -1.2 | 24.4 | 63.2 | 46.4 | -6.0 | 5.0 | Ready |
-| HPE | Hewlett Packard Enterprise Company | Optical & networking | 77.3 | -7.8 | 0.0 | 85.3 | 84.6 | 116.9 | 5.5 | Ready |
+| HPE | Hewlett Packard Enterprise Company | Optical & networking | 77.2 | -7.8 | 0.0 | 85.3 | 84.6 | 116.9 | 5.5 | Ready |
 | SNDK | Sandisk Corporation Common Stock | Semiconductors & AI compute | 77.1 | -36.5 | -50.5 | 46.5 | 322.6 | 2157.9 | 14.7 | Leader |
-| OKTA | Okta Inc. Class A Common Stock | Software & data | 76.2 | 0.3 | 4.3 | 73.1 | 56.7 | 39.0 | 5.4 | Ready |
+| RLAY | Relay Therapeutics, Inc. Common Stock | Biotech & health | 76.3 | -4.7 | -6.9 | 70.5 | 119.9 | 421.6 | 5.2 | Ready |
+| OKTA | Okta Inc. Class A Common Stock | Software & data | 76.1 | 0.3 | 4.3 | 73.1 | 56.7 | 39.0 | 5.4 | Ready |
 | AEHR | Aehr Test Systems | Semiconductors & AI compute | 76.0 | -30.0 | -30.9 | 65.2 | 221.6 | 363.6 | 14.3 | Leader |
-| SNOW | Snowflake Inc. Common Stock | Software & data | 76.0 | 5.6 | 12.5 | 84.8 | 27.5 | 31.1 | 4.7 | Breakout Baseline |
+| SNOW | Snowflake Inc. Common Stock | Software & data | 75.9 | 5.6 | 12.5 | 84.8 | 27.5 | 31.1 | 4.7 | Breakout Baseline |
 | NEO | NeoGenomics Inc. Common Stock | Precision Instruments | 75.8 | 9.1 | 7.3 | 97.2 | 24.9 | 106.2 | 4.1 | Breakout Baseline |
 | PANW | Palo Alto Networks, Inc. Common Stock | Software & data | 75.8 | -6.4 | -5.3 | 95.6 | 68.2 | 59.1 | 4.8 | Ready |
-| TDOC | Teladoc Health Inc. Common Stock | Medical/Nursing Services | 74.7 | 3.1 | 6.0 | 74.2 | 31.4 | 7.2 | 4.6 | Ready |
 | RPD | Rapid7 Inc. Common Stock | Software & data | 74.7 | -5.3 | 20.0 | 72.4 | -39.9 | -61.0 | 9.2 | Leader |
-| DYN | Dyne Therapeutics Inc. Common Stock | Biotech & health | 74.4 | 8.2 | 18.0 | 38.7 | 30.7 | 189.2 | 4.9 | Leader |
+| TDOC | Teladoc Health Inc. Common Stock | Medical/Nursing Services | 74.7 | 3.1 | 6.0 | 74.2 | 31.4 | 7.2 | 4.6 | Ready |
+| DYN | Dyne Therapeutics Inc. Common Stock | Biotech & health | 74.3 | 8.2 | 18.0 | 38.7 | 30.7 | 189.2 | 4.9 | Leader |
+| HELE | Helen of Troy Limited Common Stock | Home Furnishings | 74.1 | -0.3 | -2.0 | 94.1 | 32.2 | -9.5 | 5.0 | Ready |
 | XRAY | DENTSPLY SIRONA Inc. Common Stock | Medical/Dental Instruments | 73.9 | 7.1 | 31.3 | 21.9 | 24.6 | -14.1 | 4.2 | New Breakout |
 | VRNS | Varonis Systems Inc. Common Stock | Software & data | 73.8 | -10.4 | 1.0 | 86.8 | 22.7 | -18.8 | 4.9 | Leader |
 | TNGX | Tango Therapeutics, Inc. | Biotech & health | 73.6 | -7.9 | -20.6 | 21.9 | 199.7 | 375.4 | 6.3 | Leader |
 | WDC | Western Digital Corp. | Semiconductors & AI compute | 73.5 | -17.0 | -29.2 | 55.1 | 162.3 | 623.3 | 8.6 | Leader |
-| TENB | Tenable Holdings Inc. Common Stock | Software & data | 72.6 | -4.0 | -5.8 | 84.7 | 32.2 | -6.2 | 7.5 | Leader |
-| ACHC | Acadia Healthcare Company, Inc. | SERVICES-SPECIALTY OUTPATIENT FACILITIES, NEC | 72.0 | -21.4 | -1.4 | 15.4 | 87.0 | 16.3 | 6.4 | Leader |
+| TENB | Tenable Holdings Inc. Common Stock | Software & data | 72.5 | -4.0 | -5.8 | 84.7 | 32.2 | -6.2 | 7.5 | Leader |
 
-_Mostrando 40 de 74._
+_Mostrando 40 de 75._
 
 ## Acionados hoje
 | Ticker | Name | Theme | Status | Tipo | Base | Chase | Country | MktCap | Close | RVOL10 |
@@ -119,17 +119,18 @@ _Mostrando 40 de 74._
 | FSLY | Fastly, Inc. Class A Common Stock | Software & data | United States | 2.6B | 72.4 | 20.69 | 21.90 | 5.8 | 8 | 1.27 | nao verificado |
 | RHI | Robert Half Inc. Common Stock | Professional Services | United States | 4.1B | 71.7 | 40.27 | 42.13 | 4.6 | 7 | 0.84 | nao verificado |
 | CCC | CCC Intelligent Solutions Holdings Inc. Common Stock | Software & data | United States | 3.6B | 70.6 | 6.06 | 6.42 | 5.9 | 12 | 1.62 | nao verificado |
-| RLAY | Relay Therapeutics, Inc. Common Stock | Biotech & health | United States | 2.3B | 69.9 | 18.36 | 20.79 | 13.2 | 14 | 1.22 | nao verificado |
+| RLAY | Relay Therapeutics, Inc. Common Stock | Biotech & health | United States | 2.3B | 65.9 | 18.36 | 20.79 | 13.2 | 14 | 1.22 | nao verificado |
 | TDOC | Teladoc Health Inc. Common Stock | Medical/Nursing Services | United States | 1.7B | 65.7 | 9.20 | 9.88 | 7.4 | 9 | 1.98 | nao verificado |
+| HELE | Helen of Troy Limited Common Stock | Home Furnishings | Bermuda | 655.7M | 64.6 | 28.12 | 30.34 | 7.9 | 19 | 0.02 | nao verificado |
 | OKTA | Okta Inc. Class A Common Stock | Software & data | United States | 23.8B | 64.3 | 136.97 | 156.50 | 14.3 | 10 | 1.03 | nao verificado |
 | REZI | Resideo Technologies Inc. Common Stock | Wholesale Distributors | United States | 5.4B | 62.1 | 35.59 | 38.12 | 7.1 | 8 | 1.68 | nao verificado |
 | PANW | Palo Alto Networks, Inc. Common Stock | Software & data | United States | 200.8B | 59.5 | 314.33 | 368.67 | 17.3 | 8 | 0.88 | nao verificado |
 | HPE | Hewlett Packard Enterprise Company | Optical & networking | United States | 43.8B | 55.9 | 44.43 | 51.07 | 14.9 | 13 | 0.76 | nao verificado |
 
 ## Mudancas do dia
-- Novos leaders: `ASAN, BE, BFLY, FA, GLOB, INTU, KD, OKTA, PATH, PCOR, REZI, SNOW, TDOC`
+- Novos leaders: `ASAN, BE, BFLY, FA, GLOB, HELE, INTU, KD, OKTA, PATH, PCOR, REZI, SNOW, TDOC`
 - Sairam de leaders: `AVTR, BRBR, CERT, DOCU, ELF, EXTR, FTNT, MRVI, NBIS, NUVB, OUST, PTRN, PURR, SAIL`
-- Novos em consolidacao: `FA, OKTA, PBF, REZI, TDOC`
+- Novos em consolidacao: `FA, HELE, OKTA, PBF, REZI, TDOC`
 
 ## Validacao
 - Duplicatas em all_leaders: `0`
