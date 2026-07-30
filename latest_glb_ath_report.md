@@ -1,11 +1,11 @@
 # Radar GLB de fechamentos 63D
 
-- Gerado: `2026-07-29T16:54:48-03:00`
-- Data dos candles: `2026-07-29`
-- Breakouts intradiarios capturados: `9`
+- Gerado: `2026-07-30T16:36:05-03:00`
+- Data dos candles: `2026-07-30`
+- Breakouts intradiarios capturados: `2`
 - Confirmados no fechamento: `0`
 - Elegiveis pelo AFL: `0`
-- Universo operacional: `4720`
+- Universo operacional: `4718`
 
 ## Regra
 
@@ -19,12 +19,5 @@
 
 | Ticker | Evento | AFL | Motivos | Close | High | Linha | Trigger | Base | RVOL(10) | Market cap | Pais |
 |---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| CABR | breakout_intraday | Nao | awaiting_eod_close | 1.5607999563217163 | 1.6200000047683716 | 1.52 | 1.53 | 158 | 0.74 | 13182684 | United States |
-| GRMN | breakout_intraday | Nao | awaiting_eod_close | 297.59 | 303.64 | 267.52 | 267.53 | 68 | 0.15 | 46761844269 | Switzerland |
-| AN | breakout_intraday | Nao | awaiting_eod_close | 231.19 | 235.57 | 227.18 | 227.19 | 222 | 0.13 | 7100529239 | United States |
-| ZWS | breakout_intraday | Nao | awaiting_eod_close | 51.93 | 53.805 | 52.8 | 52.81 | 63 | 0.12 | 8138343197 | United States |
-| AER | breakout_intraday | Nao | awaiting_eod_close | 150.14 | 155.255 | 154.83 | 154.84 | 110 | 0.09 | 27107222085 | Netherlands |
-| EXPE | breakout_intraday | Nao | awaiting_eod_close | 304.17 | 312.18 | 301.31 | 301.32 | 137 | 0.09 | 33410545574 | United States |
-| MMED | breakout_intraday | Nao | awaiting_eod_close | 18.33 | 18.64 | 18.49 | 18.5 | 98 | 0.07 | 4962493071 | United States |
-| HIG | breakout_intraday | Nao | awaiting_eod_close | 145.185 | 145.62 | 143.53 | 143.54 | 111 | 0.04 | 37960002360 | United States |
-| CMTV | breakout_intraday | Nao | awaiting_eod_close | 40.51 | 42.495 | 42.39 | 42.4 | 88 | 0.03 | 227060784 | United States |
+| JLL | breakout_intraday | Nao | awaiting_eod_close | 361.41 | 362.68 | 358.66 | 358.67 | 124 | 0.11 | 15773815500 | United States |
+| SCI | breakout_intraday | Nao | awaiting_eod_close | 85.745 | 90.895 | 88.6 | 88.61 | 415 | 0.05 | 11821355109 | United States |
