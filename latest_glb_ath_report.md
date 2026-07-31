@@ -1,8 +1,8 @@
 # Radar GLB de fechamentos 63D
 
-- Gerado: `2026-07-30T16:54:19-03:00`
-- Data dos candles: `2026-07-30`
-- Breakouts intradiarios capturados: `2`
+- Gerado: `2026-07-31T16:37:46-03:00`
+- Data dos candles: `2026-07-31`
+- Breakouts intradiarios capturados: `1`
 - Confirmados no fechamento: `0`
 - Elegiveis pelo AFL: `0`
 - Universo operacional: `4718`
@@ -19,5 +19,4 @@
 
 | Ticker | Evento | AFL | Motivos | Close | High | Linha | Trigger | Base | RVOL(10) | Market cap | Pais |
 |---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| JLL | breakout_intraday | Nao | awaiting_eod_close | 361.83 | 362.68 | 358.66 | 358.67 | 124 | 0.13 | 15773815500 | United States |
-| SCI | breakout_intraday | Nao | awaiting_eod_close | 85.865 | 90.895 | 88.6 | 88.61 | 415 | 0.06 | 11821355109 | United States |
+| ZTG | breakout_intraday | Nao | awaiting_eod_close | 4.26 | 4.52 | 4.17 | 4.18 | 206 | 0.01 | 32120042 | Macau |
