@@ -1,6 +1,6 @@
 # Radar GLB de fechamentos 63D
 
-- Gerado: `2026-07-31T16:37:46-03:00`
+- Gerado: `2026-07-31T16:55:57-03:00`
 - Data dos candles: `2026-07-31`
 - Breakouts intradiarios capturados: `1`
 - Confirmados no fechamento: `0`
@@ -19,4 +19,4 @@
 
 | Ticker | Evento | AFL | Motivos | Close | High | Linha | Trigger | Base | RVOL(10) | Market cap | Pais |
 |---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| ZTG | breakout_intraday | Nao | awaiting_eod_close | 4.26 | 4.52 | 4.17 | 4.18 | 206 | 0.01 | 32120042 | Macau |
+| ZTG | breakout_intraday | Nao | awaiting_eod_close | 4.45 | 4.52 | 4.17 | 4.18 | 206 | 0.02 | 32120042 | Macau |
