@@ -1,8 +1,8 @@
 # Radar GLB de fechamentos 63D
 
-- Gerado: `2026-08-03T16:54:35-03:00`
-- Data dos candles: `2026-08-03`
-- Breakouts intradiarios capturados: `3`
+- Gerado: `2026-08-04T16:36:39-03:00`
+- Data dos candles: `2026-08-04`
+- Breakouts intradiarios capturados: `8`
 - Confirmados no fechamento: `0`
 - Elegiveis pelo AFL: `0`
 - Universo operacional: `4718`
@@ -19,6 +19,11 @@
 
 | Ticker | Evento | AFL | Motivos | Close | High | Linha | Trigger | Base | RVOL(10) | Market cap | Pais |
 |---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| PFAI | breakout_intraday | Nao | awaiting_eod_close | 2.84 | 4.705 | 4.57 | 4.58 | 198 | 1.86 | 36500764 | Canada |
-| GAM | breakout_intraday | Nao | awaiting_eod_close | 65.835 | 65.835 | 65.22 | 65.23 | 68 | 0.06 | 1536596845 | United States |
-| ALH | breakout_intraday | Nao | awaiting_eod_close | 26.795 | 27.01 | 26.93 | 26.94 | 189 | 0.02 | 5157866692 | United States |
+| PAY | breakout_intraday | Nao | awaiting_eod_close | 43.85 | 45.3 | 39.84 | 39.85 | 302 | 0.25 | 4616468668 | United States |
+| CUBI | breakout_intraday | Nao | awaiting_eod_close | 83.435 | 83.585 | 81.21 | 81.22 | 132 | 0.07 | 2660681422 | United States |
+| NEU | breakout_intraday | Nao | awaiting_eod_close | 886.07 | 888.355 | 873.09 | 873.1 | 204 | 0.05 | 7244543725 | United States |
+| FBK | breakout_intraday | Nao | awaiting_eod_close | 61.835 | 62.125 | 61.62 | 61.63 | 133 | 0.04 | 3075435447 | United States |
+| AER | breakout_intraday | Nao | awaiting_eod_close | 155.1 | 155.47 | 154.83 | 154.84 | 114 | 0.03 | 26611270928 | Netherlands |
+| HTH | breakout_intraday | Nao | awaiting_eod_close | 40.08 | 40.315 | 40.02 | 40.03 | 120 | 0.03 | 2264532064 | United States |
+| ALH | breakout_intraday | Nao | awaiting_eod_close | 28.05 | 28.11 | 26.93 | 26.94 | 190 | 0.03 | 5157866692 | United States |
+| ZWS | breakout_intraday | Nao | awaiting_eod_close | 53.02 | 53.02 | 52.8 | 52.81 | 67 | 0.02 | 8602247115 | United States |
