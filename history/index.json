@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-08T14:32:39-03:00",
+  "generated_at": "2026-08-08T15:00:52-03:00",
   "snapshots": [
     {
       "snapshot_id": "2026-08-07",
@@ -15,16 +15,28 @@
       "script_file": "history/radar_2026-08-07.js"
     },
     {
-      "snapshot_id": "2026-08-02",
-      "requested_date": "2026-08-02",
-      "market_asof": "2026-07-31",
+      "snapshot_id": "2026-08-04",
+      "requested_date": "2026-08-04",
+      "market_asof": "2026-08-04",
       "snapshot_kind": "reconstructed",
-      "captured_at": "2026-08-08T14:32:39-03:00",
-      "note": "Snapshot reconstruido ex post com retornos split-adjusted, reranking final e ADR14 > 3%.",
-      "leaders_count": 103,
-      "breakouts_count": 6,
-      "file": "history/radar_2026-08-02.json",
-      "script_file": "history/radar_2026-08-02.js"
+      "captured_at": "2026-08-08T15:00:52-03:00",
+      "note": "Snapshot reconstruido ex post com regras atuais, retornos split-adjusted e ADR14 > 3%.",
+      "leaders_count": 101,
+      "breakouts_count": 11,
+      "file": "history/radar_2026-08-04.json",
+      "script_file": "history/radar_2026-08-04.js"
+    },
+    {
+      "snapshot_id": "2026-04-08",
+      "requested_date": "2026-04-08",
+      "market_asof": "2026-04-08",
+      "snapshot_kind": "reconstructed",
+      "captured_at": "2026-08-08T14:59:48-03:00",
+      "note": "Snapshot reconstruido ex post com regras atuais, retornos split-adjusted e ADR14 > 3%.",
+      "leaders_count": 87,
+      "breakouts_count": 26,
+      "file": "history/radar_2026-04-08.json",
+      "script_file": "history/radar_2026-04-08.js"
     }
   ]
 }
