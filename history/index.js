@@ -1,4 +1,4 @@
-{
+window.RADAR_HISTORY_INDEX = {
   "schema_version": 1,
   "generated_at": "2026-08-08T12:01:36-03:00",
   "snapshots": [
@@ -27,4 +27,4 @@
       "script_file": "history/radar_2026-08-02.js"
     }
   ]
-}
+};

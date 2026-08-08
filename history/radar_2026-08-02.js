@@ -1,4 +1,5 @@
-{
+window.RADAR_HISTORY_SNAPSHOTS = window.RADAR_HISTORY_SNAPSHOTS || {};
+window.RADAR_HISTORY_SNAPSHOTS["2026-08-02"] = {
   "schema_version": 1,
   "snapshot_id": "2026-08-02",
   "requested_date": "2026-08-02",
@@ -6600,4 +6601,4 @@
     "missing_active_top_flag": [],
     "status_consistency_errors": []
   }
-}
+};

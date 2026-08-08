@@ -4315,6 +4315,7 @@ tbody tr:hover {
         </section>
       </section>
     </main>
+    <script src="./history/index.js"></script>
     <script>
 window.RADAR_DATA = {
   "actioned_today": [
@@ -69657,15 +69658,41 @@ async function fetchHistoryJson(path) {
   return response.json();
 }
 
+function loadHistoryScript(path) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    const url = new URL(path, document.baseURI);
+    if (url.protocol !== "file:") url.searchParams.set("v", String(Date.now()));
+    script.src = url.href;
+    script.onload = () => {
+      script.remove();
+      resolve();
+    };
+    script.onerror = () => {
+      script.remove();
+      reject(new Error(`Falha ao carregar ${path}`));
+    };
+    document.head.appendChild(script);
+  });
+}
+
 async function selectHistorySnapshot(snapshotId) {
   const entry = historyState.index?.snapshots?.find((item) => item.snapshot_id === snapshotId);
   if (!entry) throw new Error(`Snapshot histórico não encontrado: ${snapshotId}`);
   if (el.historyStatus) el.historyStatus.textContent = `Carregando ${historyEntryLabel(entry)}...`;
-  let snapshot = historyState.cache.get(snapshotId);
+  let snapshot = historyState.cache.get(snapshotId) || window.RADAR_HISTORY_SNAPSHOTS?.[snapshotId];
+  if (!snapshot && entry.script_file) {
+    try {
+      await loadHistoryScript(entry.script_file);
+      snapshot = window.RADAR_HISTORY_SNAPSHOTS?.[snapshotId];
+    } catch (_error) {
+      // JSON remains the HTTP fallback when the script asset is unavailable.
+    }
+  }
   if (!snapshot) {
     snapshot = await fetchHistoryJson(entry.file);
-    historyState.cache.set(snapshotId, snapshot);
   }
+  historyState.cache.set(snapshotId, snapshot);
   renderHistorySnapshot(snapshot);
 }
 
@@ -69674,7 +69701,7 @@ async function loadHistoryPage() {
   if (historyState.loadingPromise) return historyState.loadingPromise;
   historyState.loadingPromise = (async () => {
     try {
-      const index = await fetchHistoryJson("history/index.json");
+      const index = window.RADAR_HISTORY_INDEX || await fetchHistoryJson("history/index.json");
       const entries = index.snapshots || [];
       if (!entries.length) throw new Error("Ainda não há snapshots históricos disponíveis.");
       historyState.index = index;
