@@ -1,7 +1,19 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-08T15:00:52-03:00",
+  "generated_at": "2026-08-10T19:22:14-03:00",
   "snapshots": [
+    {
+      "snapshot_id": "2026-08-10",
+      "requested_date": "2026-08-10",
+      "market_asof": "2026-08-10",
+      "snapshot_kind": "captured",
+      "captured_at": "2026-08-10T19:22:14-03:00",
+      "note": "Snapshot imutável capturado pela rotina EOD.",
+      "leaders_count": 102,
+      "breakouts_count": 19,
+      "file": "history/radar_2026-08-10.json",
+      "script_file": "history/radar_2026-08-10.js"
+    },
     {
       "snapshot_id": "2026-08-07",
       "requested_date": "2026-08-07",
