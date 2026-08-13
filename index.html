@@ -45,6 +45,11 @@
         <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Status</th><th>Último</th><th>Gatilho</th><th>Distância</th><th>Score</th><th>Dia</th><th>RVOL TV</th><th>AvgVol10</th><th>SMA20</th><th>SMA50</th><th>Motivo</th></tr></thead><tbody id="watchBody"></tbody></table></div>
       </section>
 
+      <section class=panel>
+        <div class=panel-head><div><h2>Posicoes em aberto</h2><p>Entradas oficiais de pregoes anteriores que continuam abertas. Esta lista nao e substituida pelo pre-fechamento de hoje.</p></div></div>
+        <div class=table-wrap><table><thead><tr><th>Ticker</th><th>Data de entrada</th><th>Entrada</th><th>Stop inicial</th><th>Qtd.</th><th>Risco</th><th>Valor de entrada</th></tr></thead><tbody id=positionsBody></tbody></table></div>
+      </section>
+
     </main>
     <script>window.RADAR_DATA = {
   "config": {
@@ -90,6 +95,38 @@
     }
   },
   "generated_at": "2026-08-13T15:38:24-04:00",
+  "open_positions": [
+    {
+      "entry_asof": "2026-08-12",
+      "entry_notional": 1550.5,
+      "entry_price": 31.01,
+      "initial_stop": 29.6299991607666,
+      "planned_risk_dollars": 69.0,
+      "risk_per_share": 1.3800008392334,
+      "shares": 50,
+      "ticker": "BWIN"
+    },
+    {
+      "entry_asof": "2026-08-12",
+      "entry_notional": 3231.9,
+      "entry_price": 107.73,
+      "initial_stop": 105.44000244140625,
+      "planned_risk_dollars": 68.7,
+      "risk_per_share": 2.289997558593754,
+      "shares": 30,
+      "ticker": "CRWV"
+    },
+    {
+      "entry_asof": "2026-08-12",
+      "entry_notional": 259.2,
+      "entry_price": 259.2,
+      "initial_stop": 216.11000061035156,
+      "planned_risk_dollars": 43.09,
+      "risk_per_share": 43.089999389648426,
+      "shares": 1,
+      "ticker": "NBIS"
+    }
+  ],
   "operations": [
     {
       "asof": "2026-08-12",
@@ -480,6 +517,7 @@
     <script>(() => {
   const data = window.RADAR_DATA || {};
   const rows = Array.isArray(data.watchlist) ? data.watchlist : [];
+  const positions = Array.isArray(data.open_positions) ? data.open_positions : [];
   const $ = (id) => document.querySelector(id);
   const text = (v, fallback = "—") => v === null || v === undefined || v === "" ? fallback : String(v);
   const n = (v, digits = 2) => Number.isFinite(Number(v)) ? Number(v).toLocaleString("pt-BR", { maximumFractionDigits: digits, minimumFractionDigits: digits }) : "—";
@@ -502,8 +540,15 @@
       <td>${money(r.last_price)}</td><td>${money(r.trigger_price)}</td><td>${pct(r.distance_to_trigger_pct)}</td><td>${n(r.position_score, 2)}</td><td class="${Number(r.day_change_pct) >= 0 ? "positive" : "negative"}">${pct(r.day_change_pct)}</td>
       <td>${n(r.rvol_tv, 2)}x</td><td>${n(r.avgvol10, 0)}</td><td class="${Number(r.last_price) > Number(r.sma20) ? "positive" : "negative"}">${money(r.sma20)}</td><td class="${Number(r.last_price) > Number(r.sma50) ? "positive" : "negative"}">${money(r.sma50)}</td><td class="reason">${esc(r.reason)}</td></tr>`).join("") : '<tr><td colspan="12" class="empty">Nenhuma compra válida neste ciclo.</td></tr>';
   }
+  function positionsTable() {
+    $("#positionsBody").innerHTML = positions.length ? positions.map(p => `<tr>
+      <td class="ticker">${esc(p.ticker)}</td><td>${esc(p.entry_asof)}</td><td>${money(p.entry_price)}</td>
+      <td>${money(p.initial_stop)}</td><td>${n(p.shares, 0)}</td><td>${money(p.planned_risk_dollars)}</td><td>${money(p.entry_notional)}</td>
+    </tr>`).join("") : '<tr><td colspan="7" class="empty">Nenhuma posicao oficial em aberto.</td></tr>';
+  }
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
+  positionsTable();
 })();
 </script>
   </body>
