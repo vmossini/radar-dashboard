@@ -3,9 +3,9 @@ capital_base,8000
 risco_pct,1
 risco_por_trade_usd,80.00
 notional_por_trade_usd,160.00
-status,Sem trades amanha
-watchlist_amanha,0
-watchlist_total,0
+status,2 sinal(is) amanha
+watchlist_amanha,2
+watchlist_total,2
 watchlist_bloqueados,0
 trades,0
 fechados,0
@@ -54,7 +54,7 @@ day2fade_min_adv_musd,20
 day2fade_market_cap_filter,off
 day2fade_market_cap_warning_musd,off
 day2fade_max_earnings_age_days,3
-day2fade_earnings_unknown,0
+day2fade_earnings_unknown,2
 day2fade_earnings_skip,0
 gapcrap_version,v2
 gapcrap_min_gap_pct,80
@@ -79,7 +79,7 @@ gapcrap_scan_errors,0
 market_cap_filter,legacy_only_day2fade_gapcrap_exempt
 min_market_cap_usd,40000000
 min_market_cap_musd,40
-market_cap_filter_source,
+market_cap_filter_source,2026-08-13
 market_cap_filter_removed_agent,0
 market_cap_filter_removed_watchlist_next,0
 market_cap_filter_removed_latest_shorts,0

@@ -23,8 +23,8 @@
       </header>
 
       <section class="rule-strip" aria-label="Regras congeladas">
-        <span>Compra no fechamento: 5DH + US$0,01</span>
-        <span>Alta diária ≥ 4%</span>
+        <span>Gatilho: máxima no 5DH + US$0,01</span>
+        <span>Fechamento &gt; 4% vs. ontem</span>
         <span>RVOL TV &gt; 1</span>
         <span>Preço &gt; US$1</span>
         <span>AvgVol10 ≥ 1M</span>
@@ -57,7 +57,7 @@
     <script>window.RADAR_DATA = {
   "config": {
     "description": "5-day high closing breakout. The dashboard is a signal and paper-operation ledger; it never sends broker orders.",
-    "entry_rule": "Close >= highest high of prior 5 sessions + 0.01 and close >= 4% above prior close",
+    "entry_rule": "Day high >= highest high of prior 5 completed sessions + 0.01 and close > 4% above prior close",
     "exit_rule": "Close below SMA20; an initial-stop breach has priority",
     "filters": {
       "base_days_without_5dh": 3,
@@ -506,7 +506,7 @@
       "timestamp_et": "2026-08-12T22:59:13-04:00"
     }
   ],
-  "phase": "PRÉ-FECHAMENTO 10 MIN",
+  "phase": "PR?-FECHAMENTO 10 MIN",
   "preclose_audit": {
     "batches_failed": 0,
     "batches_requested": 57,
