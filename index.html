@@ -94,7 +94,7 @@
       "never_use_live_universe_retroactively": true
     }
   },
-  "generated_at": "2026-08-13T15:38:24-04:00",
+  "generated_at": "2026-08-13T16:00:33-04:00",
   "open_positions": [
     {
       "entry_asof": "2026-08-12",
@@ -503,7 +503,18 @@
       "timestamp_et": "2026-08-12T22:59:13-04:00"
     }
   ],
-  "phase": "PRÉ-FECHAMENTO 30 MIN",
+  "phase": "PRÉ-FECHAMENTO 10 MIN",
+  "preclose_audit": {
+    "candidate_count": 0,
+    "candidate_date": "2026-08-13",
+    "data_status": "FAILED",
+    "evaluated": 0,
+    "failure_reason": "Scheduled PreClose10 ended with exit code 1 before a scan artifact was written.",
+    "mode": "PreClose10",
+    "scan_outcome": "DATA_FAILURE",
+    "symbols_requested": 0,
+    "task_last_result": 1
+  },
   "schema_version": "5dh_dashboard_v1",
   "summary": {
     "candidate_count": 0,
@@ -518,6 +529,7 @@
   const data = window.RADAR_DATA || {};
   const rows = Array.isArray(data.watchlist) ? data.watchlist : [];
   const positions = Array.isArray(data.open_positions) ? data.open_positions : [];
+  const precloseAudit = data.preclose_audit && typeof data.preclose_audit === "object" ? data.preclose_audit : null;
   const $ = (id) => document.querySelector(id);
   const text = (v, fallback = "—") => v === null || v === undefined || v === "" ? fallback : String(v);
   const n = (v, digits = 2) => Number.isFinite(Number(v)) ? Number(v).toLocaleString("pt-BR", { maximumFractionDigits: digits, minimumFractionDigits: digits }) : "—";
@@ -531,6 +543,14 @@
   $("#readyCount").textContent = text(data.summary?.candidate_count, "0");
   $("#entryCount").textContent = text(data.summary?.official_entries, "0");
   $("#positionCount").textContent = text(data.summary?.open_positions, "0");
+  if (precloseAudit) {
+    const auditMessage = precloseAudit.scan_outcome === "NO_CANDIDATES"
+      ? ` Scan concluido: nenhum candidato entre ${text(precloseAudit.evaluated, "0")} papeis avaliados.`
+      : precloseAudit.scan_outcome === "CANDIDATES_FOUND"
+        ? ` Scan concluido: ${text(precloseAudit.candidate_count, "0")} candidato(s) entre ${text(precloseAudit.evaluated, "0")} papeis avaliados.`
+        : ` Dados insuficientes: resultado ${text(precloseAudit.scan_outcome)}; nao interpretar zero como ausencia de candidatos.`;
+    $("#subtitle").textContent += auditMessage;
+  }
 
   function watchTable(filter = "") {
     const wanted = filter.trim().toUpperCase();
