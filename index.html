@@ -81,9 +81,15 @@
       "promotion_gate": "Point-in-time IPO-cohort Individual and Portfolio backtests before inclusion in official signals"
     },
     "strategy": "5DH_EOD_v1",
-    "universe": "Union of the current Nasdaq textual screener and the current Massive security master restricted to active US-listed CS/ADRC on XNYS/XNAS/XASE/BATS. Yahoo fresh bars validate tradability; ETFs, ETNs, funds, warrants, units, rights, preferreds, notes and bonds are excluded with an audit ledger."
+    "universe": "Union of the current Nasdaq screener, the current Massive security master restricted to active US-listed CS/ADRC on XNYS/XNAS/XASE/BATS, and the official Nasdaq Trader symbol directories as a completeness gate. Yahoo fresh bars validate tradability; ETFs, ETNs, funds, warrants, units, rights, preferreds, notes and bonds are excluded with an audit ledger.",
+    "universe_contract": {
+      "backtest": "AmiBroker Tiingo EOD List 60: 11,528 historical CS/ADRC proxy symbols, including active and delisted issues",
+      "list26_role": "Survivor-conditioned diagnostic and legacy reproduction; usable prospectively only from a dated live start, never as an ex-ante 2010 universe",
+      "live": "Current active exchange-listed common/ordinary shares and ADR/ADS from the audited Nasdaq + Massive + Nasdaq Trader union; require fresh Yahoo/Alpaca data at scan time",
+      "never_use_live_universe_retroactively": true
+    }
   },
-  "generated_at": "2026-08-13T08:57:28-04:00",
+  "generated_at": "2026-08-13T15:38:24-04:00",
   "operations": [
     {
       "asof": "2026-08-12",
@@ -460,116 +466,16 @@
       "timestamp_et": "2026-08-12T22:59:13-04:00"
     }
   ],
-  "phase": "PÓS-FECHAMENTO",
+  "phase": "PRÉ-FECHAMENTO 30 MIN",
   "schema_version": "5dh_dashboard_v1",
   "summary": {
     "candidate_count": 0,
-    "official_entries": 3,
+    "official_entries": 0,
     "open_positions": 3,
-    "watchlist_count": 3
+    "watchlist_count": 0
   },
   "system": "5DH_EOD_v1",
-  "watchlist": [
-    {
-      "above_sma20": true,
-      "above_sma50": true,
-      "asof": "2026-08-12",
-      "avg_dollarvol10": 2533634948.0,
-      "avgvol10": 30919490.0,
-      "base3": true,
-      "data_quality": "daily_official",
-      "day_change_pct": 19.2759,
-      "day_low": 105.44000244140625,
-      "day_open": 108.69999694824219,
-      "distance_to_trigger_pct": -12.5963,
-      "history_class": "FULL_252",
-      "history_sessions": 320,
-      "last_price": 107.73,
-      "low_252": 60.55,
-      "name": "CRWV",
-      "official": true,
-      "phase": "PÓS-FECHAMENTO",
-      "position_score": 144.2379,
-      "prior_5d_high": 94.15,
-      "prior_close": 90.32,
-      "qqq_regime": true,
-      "ready": false,
-      "reason": "5DH fechado; todos os filtros passaram",
-      "rvol_tv": 2.8179,
-      "sma20": 80.4375,
-      "sma50": 91.0328,
-      "status": "ENTRADA OFICIAL",
-      "ticker": "CRWV",
-      "trigger_price": 94.16,
-      "updated_at_et": "2026-08-13T08:57:27-04:00"
-    },
-    {
-      "above_sma20": true,
-      "above_sma50": true,
-      "asof": "2026-08-12",
-      "avg_dollarvol10": 4981508496.0,
-      "avgvol10": 26177830.0,
-      "base3": true,
-      "data_quality": "daily_official",
-      "day_change_pct": 34.1407,
-      "day_low": 216.11000061035156,
-      "day_open": 226.0,
-      "distance_to_trigger_pct": -12.0255,
-      "history_class": "FULL_252",
-      "history_sessions": 320,
-      "last_price": 259.2,
-      "low_252": 62.01,
-      "name": "NBIS",
-      "official": true,
-      "phase": "PÓS-FECHAMENTO",
-      "position_score": 136.7424,
-      "prior_5d_high": 228.02,
-      "prior_close": 193.23,
-      "qqq_regime": true,
-      "ready": false,
-      "reason": "5DH fechado; todos os filtros passaram",
-      "rvol_tv": 2.4147,
-      "sma20": 196.6125,
-      "sma50": 221.8278,
-      "status": "ENTRADA OFICIAL",
-      "ticker": "NBIS",
-      "trigger_price": 228.03,
-      "updated_at_et": "2026-08-13T08:57:27-04:00"
-    },
-    {
-      "above_sma20": true,
-      "above_sma50": true,
-      "asof": "2026-08-12",
-      "avg_dollarvol10": 32430818.0,
-      "avgvol10": 1131060.0,
-      "base3": true,
-      "data_quality": "daily_official",
-      "day_change_pct": 4.2003,
-      "day_low": 29.6299991607666,
-      "day_open": 29.760000228881836,
-      "distance_to_trigger_pct": -3.2893,
-      "history_class": "FULL_252",
-      "history_sessions": 320,
-      "last_price": 31.01,
-      "low_252": 15.88,
-      "name": "BWIN",
-      "official": true,
-      "phase": "PÓS-FECHAMENTO",
-      "position_score": 34.3563,
-      "prior_5d_high": 29.98,
-      "prior_close": 29.76,
-      "qqq_regime": true,
-      "ready": false,
-      "reason": "5DH fechado; todos os filtros passaram",
-      "rvol_tv": 1.6126,
-      "sma20": 27.948,
-      "sma50": 25.0028,
-      "status": "ENTRADA OFICIAL",
-      "ticker": "BWIN",
-      "trigger_price": 29.99,
-      "updated_at_et": "2026-08-13T08:57:27-04:00"
-    }
-  ]
+  "watchlist": []
 };</script>
     <script>(() => {
   const data = window.RADAR_DATA || {};
