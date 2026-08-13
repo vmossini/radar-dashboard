@@ -74,13 +74,20 @@
       "risk_per_position_pct": 1.0
     },
     "ranking": {
-      "official_signals": "PositionScore descending = 1000 * (Close / prior 5-session high - 1)",
-      "ready_watchlist": "Distance to 5DH trigger ascending; AvgDollarVol10 descending as tie-break"
+      "display_policy": "Only provisionally valid pre-close candidates or official post-close buys; near-trigger names are hidden",
+      "official_signals": "PositionScore descending = 1000 * (Close / prior 5-session high - 1)"
+    },
+    "short_history_policy": {
+      "challenger_low_rule": "Close >= 1.70 * lowest adjusted low since listing",
+      "challenger_min_sessions": 50,
+      "full_history_sessions": 252,
+      "operational_status": "challenger_only_not_operational",
+      "promotion_gate": "Point-in-time IPO-cohort Individual and Portfolio backtests before inclusion in official signals"
     },
     "strategy": "5DH_EOD_v1",
-    "universe": "Current Nasdaq stock screener: common stock, ordinary shares and US-listed ADR/ADS; ETFs, ETNs, funds, warrants, units, rights, preferreds, notes and bonds excluded."
+    "universe": "Union of the current Nasdaq textual screener and the current Massive security master restricted to active US-listed CS/ADRC on XNYS/XNAS/XASE/BATS. Yahoo fresh bars validate tradability; ETFs, ETNs, funds, warrants, units, rights, preferreds, notes and bonds are excluded with an audit ledger."
   },
-  "generated_at": "2026-08-12T23:47:26-04:00",
+  "generated_at": "2026-08-13T08:57:28-04:00",
   "operations": [
     {
       "asof": "2026-08-12",
@@ -479,6 +486,8 @@
       "day_low": 105.44000244140625,
       "day_open": 108.69999694824219,
       "distance_to_trigger_pct": -12.5963,
+      "history_class": "FULL_252",
+      "history_sessions": 320,
       "last_price": 107.73,
       "low_252": 60.55,
       "name": "CRWV",
@@ -496,7 +505,7 @@
       "status": "ENTRADA OFICIAL",
       "ticker": "CRWV",
       "trigger_price": 94.16,
-      "updated_at_et": "2026-08-13T00:11:47-04:00"
+      "updated_at_et": "2026-08-13T08:57:27-04:00"
     },
     {
       "above_sma20": true,
@@ -510,6 +519,8 @@
       "day_low": 216.11000061035156,
       "day_open": 226.0,
       "distance_to_trigger_pct": -12.0255,
+      "history_class": "FULL_252",
+      "history_sessions": 320,
       "last_price": 259.2,
       "low_252": 62.01,
       "name": "NBIS",
@@ -527,7 +538,7 @@
       "status": "ENTRADA OFICIAL",
       "ticker": "NBIS",
       "trigger_price": 228.03,
-      "updated_at_et": "2026-08-13T00:11:47-04:00"
+      "updated_at_et": "2026-08-13T08:57:27-04:00"
     },
     {
       "above_sma20": true,
@@ -541,6 +552,8 @@
       "day_low": 29.6299991607666,
       "day_open": 29.760000228881836,
       "distance_to_trigger_pct": -3.2893,
+      "history_class": "FULL_252",
+      "history_sessions": 320,
       "last_price": 31.01,
       "low_252": 15.88,
       "name": "BWIN",
@@ -558,7 +571,7 @@
       "status": "ENTRADA OFICIAL",
       "ticker": "BWIN",
       "trigger_price": 29.99,
-      "updated_at_et": "2026-08-13T00:11:47-04:00"
+      "updated_at_et": "2026-08-13T08:57:27-04:00"
     }
   ]
 };</script>
