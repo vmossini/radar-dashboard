@@ -97,7 +97,7 @@
       "never_use_live_universe_retroactively": true
     }
   },
-  "generated_at": "2026-08-13T16:00:33-04:00",
+  "generated_at": "2026-08-13T16:15:00-04:00",
   "open_positions": [
     {
       "entry_asof": "2026-08-12",
@@ -508,15 +508,38 @@
   ],
   "phase": "PRÉ-FECHAMENTO 10 MIN",
   "preclose_audit": {
+    "batches_failed": 0,
+    "batches_requested": 57,
+    "batches_succeeded": 57,
     "candidate_count": 0,
     "candidate_date": "2026-08-13",
-    "data_status": "FAILED",
-    "evaluated": 0,
-    "failure_reason": "Scheduled PreClose10 ended with exit code 1 before a scan artifact was written.",
+    "daily_histories_loaded": 5165,
+    "data_status": "OK",
+    "errors": [],
+    "evaluated": 5164,
+    "filter_failures": {
+      "52w_low_multiple": 629,
+      "5dh_breakout": 110,
+      "avg_dollarvol10": 2,
+      "avgvol10": 2919,
+      "base3": 276,
+      "day_gain": 12,
+      "price": 374,
+      "rvol_tv": 12,
+      "sma20": 616,
+      "sma50": 214
+    },
+    "insufficient_history": 0,
+    "missing_daily_history": 464,
+    "missing_live_quote": 1,
     "mode": "PreClose10",
-    "scan_outcome": "DATA_FAILURE",
-    "symbols_requested": 0,
-    "task_last_result": 1
+    "qqq_history_loaded": true,
+    "qqq_regime": true,
+    "quote_coverage_pct": 99.93,
+    "quotes_received": 5625,
+    "scan_outcome": "NO_CANDIDATES",
+    "source": "alpaca",
+    "symbols_requested": 5629
   },
   "schema_version": "5dh_dashboard_v1",
   "summary": {
