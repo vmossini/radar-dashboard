@@ -7,7 +7,7 @@
     <style>
 .scan-status{display:none;margin:0 0 18px;padding:13px 16px;border:1px solid var(--line);border-radius:10px;font-weight:800;letter-spacing:.02em}.scan-status.ok,.scan-status.candidates{display:block;color:#052218;background:var(--green)}.scan-status.warning{display:block;color:#2d2100;background:var(--yellow)}.scan-status.failure{display:block;color:#330610;background:var(--red)}
 :root { color-scheme: dark; --bg:#080c11; --panel:#121923; --line:#283445; --ink:#eef4ff; --muted:#9bacbf; --green:#2fe6a6; --yellow:#ffc857; --red:#ff667d; --blue:#87aefe; }
-* { box-sizing:border-box; } body { margin:0; background:radial-gradient(circle at top right,#172238 0,var(--bg) 42%); color:var(--ink); font:14px Inter,Segoe UI,Arial,sans-serif; } .shell{max-width:1500px;margin:0 auto;padding:34px 28px 60px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:24px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.15em;margin:0 0 8px}h1{font-size:38px;margin:0}h2{font-size:18px;margin:0}p{color:var(--muted);line-height:1.5;margin:8px 0 0}.stamp{min-width:205px;text-align:right}.stamp span{color:var(--muted);display:block;font-size:12px}.stamp strong{display:block;margin-top:4px}.rule-strip{display:flex;gap:8px;flex-wrap:wrap;padding:20px 0}.rule-strip span{background:#182231;border:1px solid #2a3a4e;border-radius:100px;padding:8px 11px;color:#cbd8e9;font-size:12px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.metrics article,.panel{background:rgba(18,25,35,.93);border:1px solid var(--line);border-radius:14px}.metrics article{padding:18px}.metrics span,.metrics small{display:block;color:var(--muted)}.metrics strong{font-size:30px;display:block;margin:8px 0}.panel{margin-top:18px;overflow:hidden}.panel-head{padding:19px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}.position-metrics{display:grid;grid-template-columns:repeat(5,minmax(130px,1fr));gap:1px;background:var(--line);border-bottom:1px solid var(--line)}.position-metric{background:rgba(18,25,35,.93);padding:15px 18px;min-width:0}.position-metric strong{display:block;font-size:20px;margin-top:7px;white-space:nowrap}.metric-label{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:12px;cursor:help;text-decoration:underline dotted #60718a;text-underline-offset:3px;position:relative}.metric-label::after{content:"?";display:inline-grid;place-items:center;width:14px;height:14px;border:1px solid #53647c;border-radius:50%;color:#aebdd0;font-size:10px;font-weight:800;text-decoration:none}.metric-label::before{content:attr(data-tooltip);position:absolute;z-index:10;left:0;bottom:calc(100% + 9px);width:225px;padding:9px 10px;border:1px solid #40516a;border-radius:8px;background:#0a1019;color:#d9e4f2;font-size:12px;font-weight:400;line-height:1.4;white-space:normal;box-shadow:0 10px 22px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(3px);transition:opacity .12s ease,transform .12s ease}.metric-label:hover::before,.metric-label:focus::before{opacity:1;transform:translateY(0)}input{background:#0a1019;border:1px solid #34435a;color:var(--ink);border-radius:8px;padding:10px 12px;min-width:200px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{font-size:11px;color:#9fb1c8;text-transform:uppercase;letter-spacing:.05em;background:#151e2a;text-align:left}th,td{padding:12px 14px;border-bottom:1px solid #202b3b}tr:last-child td{border-bottom:0}.ticker{font-weight:800}.badge{font-size:11px;font-weight:800;border-radius:100px;padding:5px 8px;display:inline-block}.badge.entry{color:#052218;background:var(--green)}.badge.ready{color:#2d2100;background:var(--yellow)}.badge.exit{color:#330610;background:var(--red)}.badge.neutral{color:#b8c6d6;background:#283548}.positive{color:var(--green)}.negative{color:var(--red)}.reason{white-space:normal;min-width:240px;color:#b5c4d7}.empty{text-align:center;color:var(--muted);padding:35px}@media(max-width:1050px){.position-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.shell{padding:20px 12px}.hero{align-items:flex-start;flex-direction:column}h1{font-size:30px}.stamp{text-align:left}.metrics,.position-metrics{grid-template-columns:repeat(2,1fr)}.panel-head{align-items:flex-start;flex-direction:column}}
+* { box-sizing:border-box; } body { margin:0; background:radial-gradient(circle at top right,#172238 0,var(--bg) 42%); color:var(--ink); font:14px Inter,Segoe UI,Arial,sans-serif; } .shell{max-width:1500px;margin:0 auto;padding:34px 28px 60px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:24px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.15em;margin:0 0 8px}h1{font-size:38px;margin:0}h2{font-size:18px;margin:0}h3{font-size:13px;margin:0;color:#d8e4f3}p{color:var(--muted);line-height:1.5;margin:8px 0 0}.stamp{min-width:205px;text-align:right}.stamp span{color:var(--muted);display:block;font-size:12px}.stamp strong{display:block;margin-top:4px}.rule-strip{display:flex;gap:8px;flex-wrap:wrap;padding:20px 0}.rule-strip span{background:#182231;border:1px solid #2a3a4e;border-radius:100px;padding:8px 11px;color:#cbd8e9;font-size:12px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.metrics article,.panel{background:rgba(18,25,35,.93);border:1px solid var(--line);border-radius:14px}.metrics article{padding:18px}.metrics span,.metrics small{display:block;color:var(--muted)}.metrics strong{font-size:30px;display:block;margin:8px 0}.panel{margin-top:18px;overflow:hidden}.panel-head{padding:19px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}.position-metrics-head{padding:13px 18px 11px;background:#121923;border-bottom:1px solid var(--line)}.position-metrics-head p{margin-top:3px;font-size:12px}.position-metrics{display:grid;grid-template-columns:repeat(5,minmax(130px,1fr));gap:1px;background:var(--line);border-bottom:1px solid var(--line)}.closed-metrics{grid-template-columns:repeat(6,minmax(130px,1fr))}.position-metric{background:rgba(18,25,35,.93);padding:15px 18px;min-width:0}.position-metric strong{display:block;font-size:20px;margin-top:7px;white-space:nowrap}.metric-label{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:12px;cursor:help;text-decoration:underline dotted #60718a;text-underline-offset:3px;position:relative}.metric-label::after{content:"?";display:inline-grid;place-items:center;width:14px;height:14px;border:1px solid #53647c;border-radius:50%;color:#aebdd0;font-size:10px;font-weight:800;text-decoration:none}.metric-label::before{content:attr(data-tooltip);position:absolute;z-index:10;left:0;bottom:calc(100% + 9px);width:225px;padding:9px 10px;border:1px solid #40516a;border-radius:8px;background:#0a1019;color:#d9e4f2;font-size:12px;font-weight:400;line-height:1.4;white-space:normal;box-shadow:0 10px 22px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(3px);transition:opacity .12s ease,transform .12s ease}.metric-label:hover::before,.metric-label:focus::before{opacity:1;transform:translateY(0)}input{background:#0a1019;border:1px solid #34435a;color:var(--ink);border-radius:8px;padding:10px 12px;min-width:200px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{font-size:11px;color:#9fb1c8;text-transform:uppercase;letter-spacing:.05em;background:#151e2a;text-align:left}th,td{padding:12px 14px;border-bottom:1px solid #202b3b}tr:last-child td{border-bottom:0}.ticker{font-weight:800}.badge{font-size:11px;font-weight:800;border-radius:100px;padding:5px 8px;display:inline-block}.badge.entry{color:#052218;background:var(--green)}.badge.ready{color:#2d2100;background:var(--yellow)}.badge.exit{color:#330610;background:var(--red)}.badge.neutral{color:#b8c6d6;background:#283548}.positive{color:var(--green)}.negative{color:var(--red)}.reason{white-space:normal;min-width:240px;color:#b5c4d7}.empty{text-align:center;color:var(--muted);padding:35px}@media(max-width:1200px){.closed-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:1050px){.position-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.shell{padding:20px 12px}.hero{align-items:flex-start;flex-direction:column}h1{font-size:30px}.stamp{text-align:left}.metrics,.position-metrics,.closed-metrics{grid-template-columns:repeat(2,1fr)}.panel-head{align-items:flex-start;flex-direction:column}}
 
 </style>
   </head>
@@ -51,7 +51,10 @@
 
       <section class=panel>
         <div class=panel-head><div><h2>Posicoes em aberto</h2><p>Entradas oficiais de pregoes anteriores que continuam abertas. Esta lista nao e substituida pelo pre-fechamento de hoje.</p></div></div>
+        <div class="position-metrics-head"><h3>Carteira em aberto</h3><p>Marcação pelo último preço disponível.</p></div>
         <div id="openPositionMetrics" class="position-metrics" aria-label="Indicadores das posições em aberto"></div>
+        <div class="position-metrics-head"><h3>Operações encerradas</h3><p id="closedMetricsNote">Calculadas exclusivamente a partir do ledger de saídas.</p></div>
+        <div id="closedTradeMetrics" class="position-metrics closed-metrics" aria-label="Indicadores das operações encerradas"></div>
         <div class=table-wrap><table><thead><tr><th>Ticker</th><th>Data de entrada</th><th>Entrada</th><th>Stop inicial</th><th>Qtd.</th><th>Risco</th><th>Valor de entrada</th><th>Preço atual</th><th>R aberto</th><th>P&amp;L aberto</th></tr></thead><tbody id=positionsBody></tbody></table></div>
       </section>
 
@@ -986,6 +989,7 @@
   const data = window.RADAR_DATA || {};
   const rows = Array.isArray(data.watchlist) ? data.watchlist : [];
   const positions = Array.isArray(data.open_positions) ? data.open_positions : [];
+  const operations = Array.isArray(data.operations) ? data.operations : [];
   const precloseAudit = data.preclose_audit && typeof data.preclose_audit === "object" ? data.preclose_audit : null;
   const $ = (id) => document.querySelector(id);
   const text = (v, fallback = "—") => v === null || v === undefined || v === "" ? fallback : String(v);
@@ -1058,10 +1062,43 @@
     ];
     $("#openPositionMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${index === 1 || index === 2 ? valueClass(index === 1 ? pnl : totalR ?? 0) : ""}">${value}</strong></article>`).join("");
   }
+  function closedTradeMetrics() {
+    const finite = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
+    const closed = operations.filter(op => String(op.event_type || "").toLowerCase() === "exit").map(op => {
+      const entry = finite(op.entry_price), stop = finite(op.initial_stop), exit = finite(op.exit_price);
+      const riskPerShare = entry !== null && stop !== null ? entry - stop : null;
+      if (entry === null || exit === null || riskPerShare === null || riskPerShare <= 0) return null;
+      return (exit - entry) / riskPerShare;
+    }).filter(value => value !== null);
+    const wins = closed.filter(r => r > 0), losses = closed.filter(r => r < 0);
+    const totalR = closed.reduce((sum, r) => sum + r, 0);
+    const grossWin = wins.reduce((sum, r) => sum + r, 0);
+    const grossLoss = losses.reduce((sum, r) => sum + r, 0);
+    const avgWin = wins.length ? grossWin / wins.length : null;
+    const avgLoss = losses.length ? grossLoss / losses.length : null;
+    const pf = grossLoss < 0 ? grossWin / Math.abs(grossLoss) : grossWin > 0 ? Infinity : null;
+    const payoff = avgWin !== null && avgLoss !== null ? avgWin / Math.abs(avgLoss) : null;
+    const winRate = closed.length ? 100 * wins.length / closed.length : null;
+    const expectancy = closed.length ? totalR / closed.length : null;
+    const valueClass = (value) => value > 0 ? "positive" : value < 0 ? "negative" : "";
+    const metrics = [
+      ["Operações fechadas", String(closed.length), "Saídas com entrada, stop e preço de saída válidos no ledger 5DH."],
+      ["Win rate", winRate === null ? "—" : pct(winRate), "Percentual das operações encerradas com resultado acima de 0R. Nunca deve ser lido isoladamente."],
+      ["Expectancy", expectancy === null ? "—" : `${n(expectancy, 2)}R`, "Média de R por operação encerrada. É a métrica central da qualidade do sistema."],
+      ["Profit factor", pf === null ? "—" : pf === Infinity ? "∞" : n(pf, 2), "Soma dos ganhos em R dividida pelo valor absoluto da soma das perdas em R."],
+      ["Payoff", payoff === null ? "—" : n(payoff, 2), "Ganho médio em R dividido pela perda média em R. Complementa o win rate."],
+      ["R realizado", closed.length ? `${n(totalR, 2)}R` : "—", "Soma dos R das operações encerradas; exclui posições abertas e não equivale a retorno percentual da conta."],
+    ];
+    $("#closedTradeMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${index === 2 || index === 5 ? valueClass(index === 2 ? expectancy ?? 0 : totalR) : ""}">${value}</strong></article>`).join("");
+    $("#closedMetricsNote").textContent = closed.length < 30
+      ? `Amostra inicial: ${closed.length} operações fechadas. Métricas são acompanhamento, não evidência conclusiva.`
+      : `${closed.length} operações fechadas. Métricas calculadas em R; posições abertas ficam fora.`;
+  }
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
   positionsTable();
   openPositionMetrics();
+  closedTradeMetrics();
 })();
 </script>
   </body>
