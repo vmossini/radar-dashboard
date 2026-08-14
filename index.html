@@ -27,6 +27,7 @@
         <span>Fechamento &gt; 4% vs. ontem</span>
         <span>RVOL TV &gt; 1</span>
         <span>Preço &gt; US$1</span>
+        <span>Market Cap Yahoo ≥ US$50M</span>
         <span>AvgVol10 ≥ 1M</span>
         <span>Preço &gt; SMA20 e SMA50</span>
         <span>Base3 + 1,7× mínima 52s</span>
@@ -50,21 +51,23 @@
 
       <section class=panel>
         <div class=panel-head><div><h2>Posicoes em aberto</h2><p>Entradas oficiais de pregoes anteriores que continuam abertas. Esta lista nao e substituida pelo pre-fechamento de hoje.</p></div></div>
-        <div class=table-wrap><table><thead><tr><th>Ticker</th><th>Data de entrada</th><th>Entrada</th><th>Stop inicial</th><th>Qtd.</th><th>Risco</th><th>Valor de entrada</th></tr></thead><tbody id=positionsBody></tbody></table></div>
+        <div class=table-wrap><table><thead><tr><th>Ticker</th><th>Data de entrada</th><th>Entrada</th><th>Stop inicial</th><th>Qtd.</th><th>Risco</th><th>Valor de entrada</th><th>Preço atual</th><th>R aberto</th><th>P&amp;L aberto</th></tr></thead><tbody id=positionsBody></tbody></table></div>
       </section>
 
     </main>
     <script>window.RADAR_DATA = {
   "config": {
-    "description": "S470 5-day high closing breakout with prior AvgDollarVol10 >= USD 2M. The dashboard is a signal and paper-operation ledger; it never sends broker orders.",
+    "description": "S470 5-day high closing breakout with prior AvgDollarVol10 >= USD 2M and a live-only Yahoo market-cap gate of USD 50M. The dashboard is a signal and paper-operation ledger; it never sends broker orders.",
     "entry_rule": "Day high >= highest high of prior 5 completed sessions + 0.01 and close > 4% above prior close",
     "exit_rule": "Close below SMA20; an initial-stop breach has priority",
     "filters": {
       "base_days_without_5dh": 3,
+      "market_cap_contract": "Yahoo FastInfo marketCap captured at the decision run. Missing or non-positive market cap fails closed; it is a live risk overlay, not a historical point-in-time backtest claim.",
       "min_52w_low_multiple": 1.7,
       "min_avg_dollar_volume10": 2000000,
       "min_avg_volume10": 1000000,
       "min_day_gain_pct": 4.0,
+      "min_market_cap": 50000000,
       "min_price": 1.0,
       "min_rvol_tv": 1.0,
       "qqq_prior_close_above_sma20": true,
@@ -97,83 +100,143 @@
       "never_use_live_universe_retroactively": true
     }
   },
-  "generated_at": "2026-08-14T10:04:10-04:00",
+  "generated_at": "2026-08-14T14:20:56-04:00",
+  "open_position_marks_audit": {
+    "checked_at_et": "2026-08-14T14:20:54-04:00",
+    "failed": [],
+    "received": 7,
+    "requested": 7,
+    "source": "Yahoo FastInfo"
+  },
   "open_positions": [
     {
+      "current_price": 30.13,
       "entry_asof": "2026-08-12",
       "entry_notional": 1550.5,
       "entry_price": 31.01,
       "initial_stop": 29.6299991607666,
+      "mark_source": "Yahoo FastInfo",
+      "mark_timestamp_et": "2026-08-14T14:20:54-04:00",
+      "market_cap": 4272833970.0,
+      "market_cap_checked_at": "2026-08-13 close snapshot",
+      "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
+      "open_pnl": -44.0,
+      "open_r": -0.6377,
+      "open_return_pct": -2.8378,
       "planned_risk_dollars": 69.0,
       "risk_per_share": 1.3800008392334,
       "shares": 50,
       "ticker": "BWIN"
     },
     {
+      "current_price": 105.11,
       "entry_asof": "2026-08-12",
       "entry_notional": 3231.9,
       "entry_price": 107.73,
       "initial_stop": 105.44000244140625,
+      "mark_source": "Yahoo FastInfo",
+      "mark_timestamp_et": "2026-08-14T14:20:54-04:00",
+      "market_cap": 58703369230.0,
+      "market_cap_checked_at": "2026-08-13 close snapshot",
+      "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
+      "open_pnl": -78.6,
+      "open_r": -1.1441,
+      "open_return_pct": -2.432,
       "planned_risk_dollars": 68.7,
       "risk_per_share": 2.289997558593754,
       "shares": 30,
       "ticker": "CRWV"
     },
     {
+      "current_price": 5.46,
       "entry_asof": "2026-08-13",
       "entry_notional": 926.28,
       "entry_price": 5.58,
       "initial_stop": 5.159999847412109,
+      "mark_source": "Yahoo FastInfo",
+      "mark_timestamp_et": "2026-08-14T14:20:54-04:00",
+      "market_cap": 335106061.0,
+      "market_cap_checked_at": "2026-08-13 close snapshot",
+      "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
+      "open_pnl": -19.92,
+      "open_r": -0.2857,
+      "open_return_pct": -2.1505,
       "planned_risk_dollars": 69.72,
       "risk_per_share": 0.4200001525878907,
       "shares": 166,
       "ticker": "FOSL"
     },
     {
+      "current_price": 12.535,
       "entry_asof": "2026-08-13",
       "entry_notional": 849.56,
       "entry_price": 12.68,
       "initial_stop": 11.637100219726562,
+      "mark_source": "Yahoo FastInfo",
+      "mark_timestamp_et": "2026-08-14T14:20:54-04:00",
+      "market_cap": 3166273568.0,
+      "market_cap_checked_at": "2026-08-13 close snapshot",
+      "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
+      "open_pnl": -9.72,
+      "open_r": -0.139,
+      "open_return_pct": -1.1435,
       "planned_risk_dollars": 69.87,
       "risk_per_share": 1.0428997802734372,
       "shares": 67,
       "ticker": "FRSH"
     },
     {
-      "entry_asof": "2026-08-13",
-      "entry_notional": 677.88,
-      "entry_price": 1.26,
-      "initial_stop": 1.1299999952316284,
-      "planned_risk_dollars": 69.94,
-      "risk_per_share": 0.1300000047683716,
-      "shares": 538,
-      "ticker": "GXAI"
-    },
-    {
+      "current_price": 271.94,
       "entry_asof": "2026-08-12",
       "entry_notional": 259.2,
       "entry_price": 259.2,
       "initial_stop": 216.11000061035156,
+      "mark_source": "Yahoo FastInfo",
+      "mark_timestamp_et": "2026-08-14T14:20:54-04:00",
+      "market_cap": 63502477301.0,
+      "market_cap_checked_at": "2026-08-13 close snapshot",
+      "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
+      "open_pnl": 12.74,
+      "open_r": 0.2957,
+      "open_return_pct": 4.9151,
       "planned_risk_dollars": 43.09,
       "risk_per_share": 43.089999389648426,
       "shares": 1,
       "ticker": "NBIS"
     },
     {
+      "current_price": 2.795,
       "entry_asof": "2026-08-13",
       "entry_notional": 1086.4,
       "entry_price": 2.8,
       "initial_stop": 2.619999885559082,
+      "mark_source": "Yahoo FastInfo",
+      "mark_timestamp_et": "2026-08-14T14:20:54-04:00",
+      "market_cap": 512327080.0,
+      "market_cap_checked_at": "2026-08-13 close snapshot",
+      "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
+      "open_pnl": -1.94,
+      "open_r": -0.0278,
+      "open_return_pct": -0.1786,
       "planned_risk_dollars": 69.84,
       "risk_per_share": 0.1800001144409178,
       "shares": 388,
       "ticker": "OVID"
     },
     {
+      "current_price": 28.125,
       "entry_asof": "2026-08-13",
       "entry_notional": 3486.6,
       "entry_price": 26.82,
       "initial_stop": 26.34000015258789,
+      "mark_source": "Yahoo FastInfo",
+      "mark_timestamp_et": "2026-08-14T14:20:54-04:00",
+      "market_cap": 3262216789.0,
+      "market_cap_checked_at": "2026-08-13 close snapshot",
+      "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
+      "open_pnl": 169.65,
+      "open_r": 2.7188,
+      "open_return_pct": 4.8658,
       "planned_risk_dollars": 62.4,
       "risk_per_share": 0.47999984741210966,
       "shares": 130,
@@ -664,6 +727,31 @@
       "source": "5DH pós-fechamento",
       "ticker": "FOSL",
       "timestamp_et": "2026-08-13T21:42:36-04:00"
+    },
+    {
+      "asof": "2026-08-14",
+      "breakout_level": "",
+      "day_gain_pct": "",
+      "decision": "BLOQUEADO",
+      "entry_notional": "",
+      "entry_price": "",
+      "event_id": "2026-08-14:GXAI:CORRECTION_MARKET_CAP_50M",
+      "event_type": "correction",
+      "exit_price": "",
+      "exit_reason": "",
+      "initial_stop": "",
+      "market_cap": 13592512.0,
+      "market_cap_checked_at": "2026-08-13 close snapshot",
+      "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
+      "notes": "Entrada de 2026-08-13 removida das posições abertas: market cap abaixo de US$ 50M no snapshot contemporâneo.",
+      "planned_risk_dollars": "",
+      "risk_per_share": "",
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": "",
+      "signal_rvol_tv": "",
+      "source": "correção ledger 5DH",
+      "ticker": "GXAI",
+      "timestamp_et": "2026-08-14T14:20:54-04:00"
     }
   ],
   "phase": "PÓS-FECHAMENTO",
@@ -672,7 +760,7 @@
   "summary": {
     "candidate_count": 0,
     "official_entries": 5,
-    "open_positions": 8,
+    "open_positions": 7,
     "watchlist_count": 5
   },
   "system": "5DH_EOD_S470_DOL2M",
@@ -905,7 +993,8 @@
     $("#positionsBody").innerHTML = positions.length ? positions.map(p => `<tr>
       <td class="ticker">${esc(p.ticker)}</td><td>${esc(p.entry_asof)}</td><td>${money(p.entry_price)}</td>
       <td>${money(p.initial_stop)}</td><td>${n(p.shares, 0)}</td><td>${money(p.planned_risk_dollars)}</td><td>${money(p.entry_notional)}</td>
-    </tr>`).join("") : '<tr><td colspan="7" class="empty">Nenhuma posicao oficial em aberto.</td></tr>';
+      <td>${money(p.current_price)}</td><td class="${Number(p.open_r) >= 0 ? "positive" : "negative"}">${Number.isFinite(Number(p.open_r)) ? `${n(p.open_r, 2)}R` : "—"}</td><td class="${Number(p.open_pnl) >= 0 ? "positive" : "negative"}">${money(p.open_pnl)}</td>
+    </tr>`).join("") : '<tr><td colspan="10" class="empty">Nenhuma posicao oficial em aberto.</td></tr>';
   }
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
