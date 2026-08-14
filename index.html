@@ -45,7 +45,7 @@
       </section>
 
       <section class="panel">
-        <div class="panel-head"><div><h2>Compras válidas 5DH</h2><p>Mostra somente papéis que passam todos os filtros e já romperam. Pré-fechamento é provisório; pós-fechamento é oficial.</p></div><input id="search" type="search" placeholder="Filtrar ticker" /></div>
+        <div class="panel-head"><div><h2>Compras válidas 5DH</h2></div><input id="search" type="search" placeholder="Filtrar ticker" /></div>
         <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Status</th><th>Último</th><th>Gatilho</th><th>Distância</th><th>Score</th><th>Dia</th><th>RVOL TV</th><th>AvgVol10</th><th>SMA20</th><th>SMA50</th><th>Motivo</th></tr></thead><tbody id="watchBody"></tbody></table></div>
       </section>
 
@@ -53,7 +53,7 @@
         <div class=panel-head><div><h2>Posicoes em aberto</h2><p>Entradas oficiais de pregoes anteriores que continuam abertas. Esta lista nao e substituida pelo pre-fechamento de hoje.</p></div></div>
         <div class="position-metrics-head"><h3>Carteira em aberto</h3><p>Marcação pelo último preço disponível.</p></div>
         <div id="openPositionMetrics" class="position-metrics" aria-label="Indicadores das posições em aberto"></div>
-        <div class="position-metrics-head"><h3>Operações encerradas</h3><p id="closedMetricsNote">Calculadas exclusivamente a partir do ledger de saídas.</p></div>
+        <div class="position-metrics-head"><h3>Operações encerradas</h3></div>
         <div id="closedTradeMetrics" class="position-metrics closed-metrics" aria-label="Indicadores das operações encerradas"></div>
         <div class=table-wrap><table><thead><tr><th>Ticker</th><th>Data de entrada</th><th>Entrada</th><th>Stop inicial</th><th>Qtd.</th><th>Risco</th><th>Valor de entrada</th><th>Preço atual</th><th>R aberto</th><th>P&amp;L aberto</th></tr></thead><tbody id=positionsBody></tbody></table></div>
       </section>
@@ -1090,9 +1090,6 @@
       ["R realizado", closed.length ? `${n(totalR, 2)}R` : "—", "Soma dos R das operações encerradas; exclui posições abertas e não equivale a retorno percentual da conta."],
     ];
     $("#closedTradeMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${index === 2 || index === 5 ? valueClass(index === 2 ? expectancy ?? 0 : totalR) : ""}">${value}</strong></article>`).join("");
-    $("#closedMetricsNote").textContent = closed.length < 30
-      ? `Amostra inicial: ${closed.length} operações fechadas. Métricas são acompanhamento, não evidência conclusiva.`
-      : `${closed.length} operações fechadas. Métricas calculadas em R; posições abertas ficam fora.`;
   }
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
