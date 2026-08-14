@@ -1064,7 +1064,12 @@
   }
   function closedTradeMetrics() {
     const finite = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
-    const closed = operations.filter(op => String(op.event_type || "").toLowerCase() === "exit").map(op => {
+    const belongsToOpenCycle = (op) => positions.some(position =>
+      String(position.ticker || "").toUpperCase() === String(op.ticker || "").toUpperCase()
+      && String(position.entry_asof || "") === String(op.asof || "")
+      && Math.abs((finite(position.entry_price) ?? NaN) - (finite(op.entry_price) ?? NaN)) < 0.000001
+    );
+    const closed = operations.filter(op => String(op.event_type || "").toLowerCase() === "exit" && !belongsToOpenCycle(op)).map(op => {
       const entry = finite(op.entry_price), stop = finite(op.initial_stop), exit = finite(op.exit_price);
       const riskPerShare = entry !== null && stop !== null ? entry - stop : null;
       if (entry === null || exit === null || riskPerShare === null || riskPerShare <= 0) return null;
