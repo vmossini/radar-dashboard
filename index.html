@@ -61,12 +61,12 @@
     </main>
     <script>window.RADAR_DATA = {
   "config": {
-    "description": "S470 5-day high closing breakout with prior AvgDollarVol10 >= USD 2M and a live-only Yahoo market-cap gate of USD 50M. The dashboard is a signal and paper-operation ledger; it never sends broker orders.",
-    "entry_rule": "Day high >= highest high of prior 5 completed sessions + 0.01 and close > 4% above prior close",
+    "description": "S470 5-day high closing breakout with prior AvgDollarVol10 >= USD 2M. The USD 50M market-cap rule below is a separately labelled live NanocapGuard50 risk overlay, not part of the historical S470 baseline. The dashboard is a signal and paper-operation ledger; it never sends broker orders.",
+    "entry_rule": "Close >= highest high of the prior 5 completed sessions + USD 0.01, and close >= 4% above prior close",
     "exit_rule": "Close below SMA20; an initial-stop breach has priority",
     "filters": {
       "base_days_without_5dh": 3,
-      "market_cap_contract": "Yahoo FastInfo marketCap captured at the decision run, with same-run Nasdaq screener fallback only if Yahoo is unavailable. Both sources missing or non-positive fails closed. This is a live risk overlay, not a historical point-in-time backtest claim.",
+      "market_cap_contract": "LIVE NanocapGuard50 only: Yahoo FastInfo marketCap captured at the decision run, with same-run Nasdaq screener fallback only if Yahoo is unavailable. Both sources missing or non-positive fail closed. It is an execution-risk guard, not a historical S470 alpha filter.",
       "min_52w_low_multiple": 1.7,
       "min_avg_dollar_volume10": 2000000,
       "min_avg_volume10": 1000000,
@@ -78,6 +78,14 @@
       "qqq_prior_completed_month_close_above_sma10": true
     },
     "initial_stop_rule": "Low of the breakout candle",
+    "market_cap_research_status": {
+      "evidence": "S479 PIT Individual study: known <USD50M cohort had materially worse ordinary-trade distribution and home-run dependence. The guard is justified by downside/executability risk, not by a proven increase in alpha.",
+      "historical_baseline_filter": false,
+      "limitation": "S480: no valid full-universe Portfolio comparison was run because point-in-time daily market cap is incomplete and ADR ratios are unavailable.",
+      "live_overlay_enabled": true,
+      "source_records": "Baseline V4/03_RELATORIO_MASTER/5DH_RESEARCH_MASTER.md sections S477-S480",
+      "threshold_usd": 50000000
+    },
     "portfolio_reference": {
       "max_notional_per_ticker_pct": 50.0,
       "max_open_positions": 20,
@@ -104,7 +112,7 @@
       "never_use_live_universe_retroactively": true
     }
   },
-  "generated_at": "2026-08-15T15:29:45-04:00",
+  "generated_at": "2026-08-15T16:18:22-04:00",
   "open_position_marks_audit": {
     "asof": "2026-08-14",
     "source": "regular_session_daily_close",
@@ -121,7 +129,7 @@
       "initial_stop": 130.38999938964844,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 12709064833.13,
       "market_cap_checked_at": "2026-08-14T18:02:23-04:00",
       "market_cap_source": "Yahoo FastInfo",
@@ -141,7 +149,7 @@
       "initial_stop": 13.119999885559082,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 1004360897.58,
       "market_cap_checked_at": "2026-08-14T18:02:23-04:00",
       "market_cap_source": "Yahoo FastInfo",
@@ -161,7 +169,7 @@
       "initial_stop": 29.6299991607666,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 4272833970.0,
       "market_cap_checked_at": "2026-08-13 close snapshot",
       "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
@@ -181,7 +189,7 @@
       "initial_stop": 20.049999237060547,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 1788575431.62,
       "market_cap_checked_at": "2026-08-14T18:02:23-04:00",
       "market_cap_source": "Yahoo FastInfo",
@@ -201,7 +209,7 @@
       "initial_stop": 5.159999847412109,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 335106061.0,
       "market_cap_checked_at": "2026-08-13 close snapshot",
       "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
@@ -221,7 +229,7 @@
       "initial_stop": 11.637100219726562,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 3166273568.0,
       "market_cap_checked_at": "2026-08-13 close snapshot",
       "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
@@ -241,7 +249,7 @@
       "initial_stop": 216.11000061035156,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 63502477301.0,
       "market_cap_checked_at": "2026-08-13 close snapshot",
       "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
@@ -261,7 +269,7 @@
       "initial_stop": 45.689998626708984,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 3512591674.41,
       "market_cap_checked_at": "2026-08-14T18:02:23-04:00",
       "market_cap_source": "Yahoo FastInfo",
@@ -281,7 +289,7 @@
       "initial_stop": 2.619999885559082,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 512327080.0,
       "market_cap_checked_at": "2026-08-13 close snapshot",
       "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
@@ -301,7 +309,7 @@
       "initial_stop": 1.059999942779541,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 366770891.64,
       "market_cap_checked_at": "2026-08-14T18:02:23-04:00",
       "market_cap_source": "Yahoo FastInfo",
@@ -321,7 +329,7 @@
       "initial_stop": 18.559999465942383,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 4894401980.0,
       "market_cap_checked_at": "2026-08-14T18:02:23-04:00",
       "market_cap_source": "Yahoo FastInfo",
@@ -341,7 +349,7 @@
       "initial_stop": 56.630001068115234,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 5299806733.98,
       "market_cap_checked_at": "2026-08-14T18:02:23-04:00",
       "market_cap_source": "Yahoo FastInfo",
@@ -361,7 +369,7 @@
       "initial_stop": 26.34000015258789,
       "mark_asof": "2026-08-14",
       "mark_source": "fechamento regular diário",
-      "mark_timestamp_et": "2026-08-15T15:29:45-04:00",
+      "mark_timestamp_et": "2026-08-15T16:18:22-04:00",
       "market_cap": 3262216789.0,
       "market_cap_checked_at": "2026-08-13 close snapshot",
       "market_cap_source": "Nasdaq screener snapshot 2026-08-13",
@@ -1177,11 +1185,10 @@
       "failure_reason": "",
       "history_class": "FULL_252",
       "history_sessions": 320,
-      "ipo_monitor": false,
       "last_price": 14.72,
       "low_252": 5.64,
       "market_cap": 1015498108.66,
-      "market_cap_checked_at": "2026-08-15T15:29:44-04:00",
+      "market_cap_checked_at": "2026-08-15T16:18:20-04:00",
       "market_cap_source": "Yahoo FastInfo",
       "name": "ALOY",
       "official": true,
@@ -1198,7 +1205,7 @@
       "status": "ENTRADA OFICIAL",
       "ticker": "ALOY",
       "trigger_price": 13.465,
-      "updated_at_et": "2026-08-15T15:29:43-04:00"
+      "updated_at_et": "2026-08-15T16:18:19-04:00"
     },
     {
       "above_sma20": true,
@@ -1215,11 +1222,10 @@
       "failure_reason": "",
       "history_class": "FULL_252",
       "history_sessions": 320,
-      "ipo_monitor": false,
       "last_price": 60.02,
       "low_252": 31.2185,
       "market_cap": 5299806733.98,
-      "market_cap_checked_at": "2026-08-15T15:29:44-04:00",
+      "market_cap_checked_at": "2026-08-15T16:18:20-04:00",
       "market_cap_source": "Yahoo FastInfo",
       "name": "VIRT",
       "official": true,
@@ -1236,7 +1242,7 @@
       "status": "ENTRADA OFICIAL",
       "ticker": "VIRT",
       "trigger_price": 57.99,
-      "updated_at_et": "2026-08-15T15:29:43-04:00"
+      "updated_at_et": "2026-08-15T16:18:20-04:00"
     },
     {
       "above_sma20": true,
@@ -1253,11 +1259,10 @@
       "failure_reason": "",
       "history_class": "FULL_252",
       "history_sessions": 320,
-      "ipo_monitor": false,
       "last_price": 20.0,
       "low_252": 11.45,
       "market_cap": 4894401980.0,
-      "market_cap_checked_at": "2026-08-15T15:29:44-04:00",
+      "market_cap_checked_at": "2026-08-15T16:18:20-04:00",
       "market_cap_source": "Yahoo FastInfo",
       "name": "USAR",
       "official": true,
@@ -1274,7 +1279,7 @@
       "status": "ENTRADA OFICIAL",
       "ticker": "USAR",
       "trigger_price": 19.778,
-      "updated_at_et": "2026-08-15T15:29:43-04:00"
+      "updated_at_et": "2026-08-15T16:18:20-04:00"
     },
     {
       "above_sma20": true,
@@ -1291,11 +1296,10 @@
       "failure_reason": "",
       "history_class": "FULL_252",
       "history_sessions": 320,
-      "ipo_monitor": false,
       "last_price": 150.28,
       "low_252": 18.5,
       "market_cap": 12709064833.13,
-      "market_cap_checked_at": "2026-08-15T15:29:44-04:00",
+      "market_cap_checked_at": "2026-08-15T16:18:20-04:00",
       "market_cap_source": "Yahoo FastInfo",
       "name": "AAOI",
       "official": true,
@@ -1312,7 +1316,7 @@
       "status": "ENTRADA OFICIAL",
       "ticker": "AAOI",
       "trigger_price": 149.36,
-      "updated_at_et": "2026-08-15T15:29:43-04:00"
+      "updated_at_et": "2026-08-15T16:18:19-04:00"
     }
   ]
 };</script>
