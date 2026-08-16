@@ -1379,7 +1379,7 @@
     const wanted = filter.trim().toUpperCase();
     const filtered = rows.filter(r => !wanted || text(r.ticker).includes(wanted));
     $("#watchBody").innerHTML = filtered.length ? filtered.map(r => `<tr>
-      <td class="ticker">${esc(r.ticker)}</td><td><span class="badge ${r.status === "ENTRADA OFICIAL" ? "entry" : r.status === "PRONTO" ? "ready" : r.preclose_candidate ? "ready" : "neutral"}">${esc(r.status)}</span></td>
+      <td class="ticker">${esc(r.ticker)}</td><td><span class="badge ${r.status === "ENTRADA OFICIAL" ? "entry" : r.status === "PRONTO" ? "ready" : r.intraday_touch ? "provisional" : r.preclose_candidate ? "ready" : "neutral"}"${r.intraday_touch ? ' style="color:#fff0f3;background:#7d2134;border:1px solid #ff667d"' : ''}>${esc(r.status)}</span></td>
       <td>${money(r.last_price)}</td><td>${money(r.trigger_price)}</td><td>${pct(r.distance_to_trigger_pct)}</td><td>${n(r.position_score, 2)}</td><td class="${Number(r.day_change_pct) >= 0 ? "positive" : "negative"}">${pct(r.day_change_pct)}</td>
       <td>${n(r.rvol_tv, 2)}x</td><td>${n(r.avgvol10, 0)}</td><td class="${Number(r.last_price) > Number(r.sma20) ? "positive" : "negative"}">${money(r.sma20)}</td><td class="${Number(r.last_price) > Number(r.sma50) ? "positive" : "negative"}">${money(r.sma50)}</td><td class="reason">${esc(r.reason)}</td></tr>`).join("") : '<tr><td colspan="12" class="empty">Nenhuma compra válida neste ciclo.</td></tr>';
   }
