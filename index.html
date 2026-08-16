@@ -39,7 +39,7 @@
 
       <section class="metrics" aria-label="Resumo">
         <article><span id="watchMetricLabel">Compras válidas</span><strong id="watchCount">—</strong><small id="watchMetricHelp">confirmadas no fechamento</small></article>
-        <article><span>Pré-fechamento</span><strong id="readyCount">—</strong><small>candidatos ainda provisórios</small></article>
+        <article><span>Passam filtros</span><strong id="readyCount">—</strong><small>toques aptos, aguardando fechamento</small></article>
         <article><span>Entradas oficiais</span><strong id="entryCount">—</strong><small>no pós-fechamento</small></article>
         <article><span>Posições paper</span><strong id="positionCount">—</strong><small>ledger 5DH</small></article>
       </section>
@@ -1341,9 +1341,9 @@
   $("#entryCount").textContent = text(data.summary?.official_entries, "0");
   $("#positionCount").textContent = text(data.summary?.open_positions, "0");
   if (isPreclose) {
-    $("#watchMetricLabel").textContent = "Toques provisórios";
-    $("#watchMetricHelp").textContent = "não são compra até o fechamento";
-    $("#watchHeading").textContent = "Toques 5DH provisórios — não comprar";
+    $("#watchMetricLabel").textContent = "Toques 5DH";
+    $("#watchMetricHelp").textContent = "vermelho: High tocou o gatilho; compare Último com Gatilho";
+    $("#watchHeading").textContent = "Toques 5DH — preço atual versus gatilho";
   } else {
     $("#watchMetricLabel").textContent = "Compras válidas";
     $("#watchMetricHelp").textContent = "confirmadas no fechamento";
@@ -1352,12 +1352,12 @@
   if (precloseAudit) {
     const statusEl = $("#scanStatus");
     const outcome = text(precloseAudit.scan_outcome, "DATA_FAILURE");
-    if (outcome === "NO_CANDIDATES") {
+    if (outcome === "NO_CANDIDATES" || outcome === "NO_TOUCHES") {
       statusEl.className = "scan-status ok";
-      statusEl.textContent = `SEM CANDIDATOS - DADOS VALIDOS (${text(precloseAudit.evaluated, "0")} papeis avaliados)`;
-    } else if (outcome === "CANDIDATES_FOUND") {
+      statusEl.textContent = `SEM TOQUES - DADOS VÁLIDOS (${text(precloseAudit.evaluated, "0")} papéis avaliados)`;
+    } else if (outcome === "CANDIDATES_FOUND" || outcome === "TOUCHES_FOUND") {
       statusEl.className = "scan-status candidates";
-      statusEl.textContent = `CANDIDATOS ENCONTRADOS - DADOS VALIDOS (${text(precloseAudit.candidate_count, "0")})`;
+      statusEl.textContent = `TOQUES ENCONTRADOS - DADOS VÁLIDOS (${text(precloseAudit.touch_count ?? precloseAudit.candidate_count, "0")})`;
     } else if (outcome === "INCONCLUSIVE_PARTIAL_DATA") {
       statusEl.className = "scan-status warning";
       statusEl.textContent = "DADOS PARCIAIS - RESULTADO INCONCLUSIVO";
@@ -1367,10 +1367,10 @@
     }
   }
   if (precloseAudit) {
-    const auditMessage = precloseAudit.scan_outcome === "NO_CANDIDATES"
-      ? ` Scan concluido: nenhum candidato entre ${text(precloseAudit.evaluated, "0")} papeis avaliados.`
-      : precloseAudit.scan_outcome === "CANDIDATES_FOUND"
-        ? ` Scan concluido: ${text(precloseAudit.candidate_count, "0")} candidato(s) entre ${text(precloseAudit.evaluated, "0")} papeis avaliados.`
+    const auditMessage = ["NO_CANDIDATES", "NO_TOUCHES"].includes(precloseAudit.scan_outcome)
+      ? ` Scan concluído: nenhum toque entre ${text(precloseAudit.evaluated, "0")} papéis avaliados.`
+      : ["CANDIDATES_FOUND", "TOUCHES_FOUND"].includes(precloseAudit.scan_outcome)
+        ? ` Scan concluído: ${text(precloseAudit.touch_count ?? precloseAudit.candidate_count, "0")} toque(s) entre ${text(precloseAudit.evaluated, "0")} papéis avaliados.`
         : ` Dados insuficientes: resultado ${text(precloseAudit.scan_outcome)}; nao interpretar zero como ausencia de candidatos.`;
     $("#subtitle").textContent += auditMessage;
   }
