@@ -57,8 +57,6 @@
         <div id="closedTradeMetrics" class="position-metrics closed-metrics" aria-label="Indicadores das operações encerradas"></div>
         <div class="position-metrics-head"><h3>Todas as operações</h3><p>Ordenadas da data de entrada mais antiga para a mais recente.</p></div>
         <div class=table-wrap><table><thead><tr><th>Data de entrada</th><th>Ticker</th><th>Status</th><th>Entrada</th><th>Stop inicial</th><th>Saída / atual</th><th>Data de saída</th><th>R</th><th>P&amp;L</th><th>Motivo</th></tr></thead><tbody id=allOperationsBody></tbody></table></div>
-        <div class="position-metrics-head"><h3>Posições em aberto</h3><p>Somente operações com status OPEN.</p></div>
-        <div class=table-wrap><table><thead><tr><th>Ticker</th><th>Data de entrada</th><th>Entrada</th><th>Stop inicial</th><th>Qtd.</th><th>Risco</th><th>Valor de entrada</th><th>Preço atual</th><th>R aberto</th><th>P&amp;L aberto</th></tr></thead><tbody id=positionsBody></tbody></table></div>
       </section>
 
     </main>
@@ -1430,13 +1428,6 @@
       <td>${money(r.last_price)}</td><td>${money(r.trigger_price)}</td><td>${pct(r.distance_to_trigger_pct)}</td><td>${n(r.position_score, 2)}</td><td class="${Number(r.day_change_pct) >= 0 ? "positive" : "negative"}">${pct(r.day_change_pct)}</td>
       <td>${n(r.rvol_tv, 2)}x</td><td>${n(r.avgvol10, 0)}</td></tr>`).join("") : '<tr><td colspan="10" class="empty">Nenhuma compra válida neste ciclo.</td></tr>';
   }
-  function positionsTable() {
-    $("#positionsBody").innerHTML = positions.length ? positions.map(p => `<tr>
-      <td class="ticker">${esc(p.ticker)}</td><td>${esc(p.entry_asof)}</td><td>${money(p.entry_price)}</td>
-      <td>${money(p.initial_stop)}</td><td>${n(p.shares, 0)}</td><td>${money(p.planned_risk_dollars)}</td><td>${money(p.entry_notional)}</td>
-      <td>${money(p.current_price)}</td><td class="${Number(p.open_r) >= 0 ? "positive" : "negative"}">${Number.isFinite(Number(p.open_r)) ? `${n(p.open_r, 2)}R` : "—"}</td><td class="${Number(p.open_pnl) >= 0 ? "positive" : "negative"}">${money(p.open_pnl)}</td>
-    </tr>`).join("") : '<tr><td colspan="10" class="empty">Nenhuma posicao oficial em aberto.</td></tr>';
-  }
   function allOperationsTable() {
     const finite = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
     const eventTime = (event) => `${text(event.asof)}|${text(event.timestamp_et)}|${text(event.event_id)}`;
@@ -1565,7 +1556,6 @@
   }
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
-  positionsTable();
   allOperationsTable();
   openPositionMetrics();
   closedTradeMetrics();
