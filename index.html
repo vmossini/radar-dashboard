@@ -1514,28 +1514,41 @@
     ];
     $("#openPositionMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${index === 1 || index === 2 ? valueClass(index === 1 ? pnl : totalR ?? 0) : ""}">${value}</strong></article>`).join("");
   }
-  function closedTradeMetrics() {
+  function closedOperationResults() {
     const finite = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
-    const belongsToOpenCycle = (op) => positions.some(position =>
-      String(position.ticker || "").toUpperCase() === String(op.ticker || "").toUpperCase()
-      && String(position.entry_asof || "") === String(op.asof || "")
-      && Math.abs((finite(position.entry_price) ?? NaN) - (finite(op.entry_price) ?? NaN)) < 0.000001
-    );
-    const hasSameSessionEntry = (op) => operations.some(event =>
-      String(event.event_type || "").toLowerCase() === "entry"
-      && String(event.ticker || "").toUpperCase() === String(op.ticker || "").toUpperCase()
-      && String(event.asof || "") === String(op.asof || "")
-    );
-    const closed = operations.filter(op =>
-      String(op.event_type || "").toLowerCase() === "exit"
-      && !belongsToOpenCycle(op)
-      && !hasSameSessionEntry(op)
-    ).map(op => {
-      const entry = finite(op.entry_price), stop = finite(op.initial_stop), exit = finite(op.exit_price);
-      const riskPerShare = entry !== null && stop !== null ? entry - stop : null;
-      if (entry === null || exit === null || riskPerShare === null || riskPerShare <= 0) return null;
-      return (exit - entry) / riskPerShare;
-    }).filter(value => value !== null);
+    const eventTime = (event) => `${text(event.asof)}|${text(event.timestamp_et)}|${text(event.event_id)}`;
+    const uniqueOperations = [...new Map(operations.map(event => [text(event.event_id), event])).values()];
+    const openKeys = new Set(positions.map(position =>
+      `${text(position.ticker).toUpperCase()}|${text(position.entry_asof)}|${finite(position.entry_price)}`
+    ));
+    const tradeKey = (trade) => `${trade.ticker.toUpperCase()}|${trade.entry_asof}|${trade.entry_price}`;
+    const trades = uniqueOperations.filter(event => String(event.event_type || "").toLowerCase() === "entry")
+      .sort((a, b) => eventTime(a).localeCompare(eventTime(b)))
+      .map(event => ({
+        ticker: text(event.ticker), entry_asof: text(event.asof), entry_price: finite(event.entry_price),
+        initial_stop: finite(event.initial_stop), shares: finite(event.shares), status: "OPEN", exit_price: null,
+      }));
+    uniqueOperations.filter(event => String(event.event_type || "").toLowerCase() === "exit")
+      .sort((a, b) => eventTime(a).localeCompare(eventTime(b))).forEach(event => {
+        const ticker = text(event.ticker).toUpperCase();
+        const entry = finite(event.entry_price);
+        const trade = [...trades].reverse().find(candidate =>
+          candidate.status === "OPEN" && candidate.ticker.toUpperCase() === ticker
+          && (entry === null || candidate.entry_price === null || Math.abs(candidate.entry_price - entry) < 0.000001)
+          && candidate.entry_asof <= text(event.asof)
+          && !openKeys.has(tradeKey(candidate))
+        );
+        if (!trade) return;
+        trade.status = "CLOSED";
+        trade.exit_price = finite(event.exit_price);
+      });
+    return trades.filter(trade => {
+      const riskPerShare = trade.entry_price !== null && trade.initial_stop !== null ? trade.entry_price - trade.initial_stop : null;
+      return trade.status === "CLOSED" && trade.exit_price !== null && riskPerShare !== null && riskPerShare > 0;
+    }).map(trade => (trade.exit_price - trade.entry_price) / (trade.entry_price - trade.initial_stop));
+  }
+  function closedTradeMetrics() {
+    const closed = closedOperationResults();
     const wins = closed.filter(r => r > 0), losses = closed.filter(r => r < 0);
     const totalR = closed.reduce((sum, r) => sum + r, 0);
     const grossWin = wins.reduce((sum, r) => sum + r, 0);
