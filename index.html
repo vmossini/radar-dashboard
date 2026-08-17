@@ -1560,12 +1560,13 @@
   function closedTradeMetrics() {
     const metric = data.trade_metrics;
     if (metric && typeof metric === "object") {
+      const finiteMetric = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
       const closedCount = Number(metric.closed_count || 0);
-      const winRate = Number.isFinite(Number(metric.win_rate_pct)) ? Number(metric.win_rate_pct) : null;
-      const expectancy = Number.isFinite(Number(metric.expectancy_r)) ? Number(metric.expectancy_r) : null;
-      const totalR = Number.isFinite(Number(metric.realized_r)) ? Number(metric.realized_r) : null;
-      const pf = metric.profit_factor === "infinity" ? Infinity : (Number.isFinite(Number(metric.profit_factor)) ? Number(metric.profit_factor) : null);
-      const payoff = Number.isFinite(Number(metric.payoff)) ? Number(metric.payoff) : null;
+      const winRate = finiteMetric(metric.win_rate_pct);
+      const expectancy = finiteMetric(metric.expectancy_r);
+      const totalR = finiteMetric(metric.realized_r);
+      const pf = metric.profit_factor === "infinity" ? Infinity : finiteMetric(metric.profit_factor);
+      const payoff = finiteMetric(metric.payoff);
       const valueClass = (value) => value > 0 ? "positive" : value < 0 ? "negative" : "";
       const metrics = [
         ["Operações fechadas", String(closedCount), "Saídas conciliadas diariamente a partir do ledger 5DH."],
