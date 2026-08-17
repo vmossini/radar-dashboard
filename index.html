@@ -56,6 +56,8 @@
         <div class="position-metrics-head"><h3>Operações encerradas</h3></div>
         <div id="closedTradeMetrics" class="position-metrics closed-metrics" aria-label="Indicadores das operações encerradas"></div>
         <div class=table-wrap><table><thead><tr><th>Ticker</th><th>Data de entrada</th><th>Entrada</th><th>Stop inicial</th><th>Qtd.</th><th>Risco</th><th>Valor de entrada</th><th>Preço atual</th><th>R aberto</th><th>P&amp;L aberto</th></tr></thead><tbody id=positionsBody></tbody></table></div>
+        <div class="position-metrics-head"><h3>Todas as operações</h3><p>Ordenadas da data de entrada mais antiga para a mais recente.</p></div>
+        <div class=table-wrap><table><thead><tr><th>Data de entrada</th><th>Ticker</th><th>Status</th><th>Entrada</th><th>Stop inicial</th><th>Saída / atual</th><th>Data de saída</th><th>R</th><th>P&amp;L</th><th>Motivo</th></tr></thead><tbody id=allOperationsBody></tbody></table></div>
       </section>
 
     </main>
@@ -1659,6 +1661,66 @@
       <td>${money(p.current_price)}</td><td class="${Number(p.open_r) >= 0 ? "positive" : "negative"}">${Number.isFinite(Number(p.open_r)) ? `${n(p.open_r, 2)}R` : "—"}</td><td class="${Number(p.open_pnl) >= 0 ? "positive" : "negative"}">${money(p.open_pnl)}</td>
     </tr>`).join("") : '<tr><td colspan="10" class="empty">Nenhuma posicao oficial em aberto.</td></tr>';
   }
+  function allOperationsTable() {
+    const finite = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
+    const eventTime = (event) => `${text(event.asof)}|${text(event.timestamp_et)}|${text(event.event_id)}`;
+    const entries = operations.filter(event => String(event.event_type || "").toLowerCase() === "entry")
+      .sort((a, b) => eventTime(a).localeCompare(eventTime(b)));
+    const exits = operations.filter(event => String(event.event_type || "").toLowerCase() === "exit")
+      .sort((a, b) => eventTime(a).localeCompare(eventTime(b)));
+    const trades = entries.map(event => ({
+      ticker: text(event.ticker), entry_asof: text(event.asof), entry_timestamp: text(event.timestamp_et),
+      entry_price: finite(event.entry_price), initial_stop: finite(event.initial_stop), shares: finite(event.shares),
+      planned_risk_dollars: finite(event.planned_risk_dollars), status: "OPEN", exit_asof: "", exit_price: null,
+      exit_reason: "", open_r: null, open_pnl: null,
+    }));
+    exits.forEach(event => {
+      const ticker = text(event.ticker).toUpperCase();
+      const entry = finite(event.entry_price);
+      const trade = [...trades].reverse().find(candidate =>
+        candidate.status === "OPEN" && candidate.ticker.toUpperCase() === ticker
+        && (entry === null || candidate.entry_price === null || Math.abs(candidate.entry_price - entry) < 0.000001)
+        && candidate.entry_asof <= text(event.asof)
+      );
+      if (!trade) return;
+      trade.status = "CLOSED";
+      trade.exit_asof = text(event.asof);
+      trade.exit_price = finite(event.exit_price);
+      trade.exit_reason = text(event.exit_reason, "Saída registrada");
+    });
+    positions.forEach(position => {
+      const ticker = text(position.ticker).toUpperCase();
+      const entry = finite(position.entry_price);
+      const trade = [...trades].reverse().find(candidate =>
+        candidate.status === "OPEN" && candidate.ticker.toUpperCase() === ticker
+        && candidate.entry_asof === text(position.entry_asof)
+        && (entry === null || candidate.entry_price === null || Math.abs(candidate.entry_price - entry) < 0.000001)
+      );
+      if (!trade) return;
+      trade.current_price = finite(position.current_price);
+      trade.open_r = finite(position.open_r);
+      trade.open_pnl = finite(position.open_pnl);
+    });
+    const ordered = trades.sort((a, b) =>
+      a.entry_asof.localeCompare(b.entry_asof) || a.entry_timestamp.localeCompare(b.entry_timestamp) || a.ticker.localeCompare(b.ticker)
+    );
+    $("#allOperationsBody").innerHTML = ordered.length ? ordered.map(trade => {
+      const perShareRisk = trade.entry_price !== null && trade.initial_stop !== null ? trade.entry_price - trade.initial_stop : null;
+      const closedR = trade.status === "CLOSED" && trade.exit_price !== null && perShareRisk !== null && perShareRisk > 0
+        ? (trade.exit_price - trade.entry_price) / perShareRisk : null;
+      const closedPnl = trade.status === "CLOSED" && trade.exit_price !== null && trade.entry_price !== null && trade.shares !== null
+        ? (trade.exit_price - trade.entry_price) * trade.shares : null;
+      const resultR = trade.status === "CLOSED" ? closedR : trade.open_r;
+      const resultPnl = trade.status === "CLOSED" ? closedPnl : trade.open_pnl;
+      const markedPrice = trade.status === "CLOSED" ? trade.exit_price : trade.current_price;
+      const reason = trade.status === "CLOSED" ? trade.exit_reason : "Posição em aberto";
+      const valueClass = (value) => Number(value) > 0 ? "positive" : Number(value) < 0 ? "negative" : "";
+      return `<tr><td>${esc(trade.entry_asof)}</td><td class="ticker">${esc(trade.ticker)}</td>
+        <td><span class="badge ${trade.status === "OPEN" ? "entry" : "neutral"}">${trade.status}</span></td>
+        <td>${money(trade.entry_price)}</td><td>${money(trade.initial_stop)}</td><td>${money(markedPrice)}</td><td>${esc(trade.exit_asof || "—")}</td>
+        <td class="${valueClass(resultR)}">${resultR === null ? "—" : `${n(resultR, 2)}R`}</td><td class="${valueClass(resultPnl)}">${money(resultPnl)}</td><td>${esc(reason)}</td></tr>`;
+    }).join("") : '<tr><td colspan="10" class="empty">Nenhuma operação registrada.</td></tr>';
+  }
   function openPositionMetrics() {
     const numeric = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
     const count = positions.length;
@@ -1722,6 +1784,7 @@
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
   positionsTable();
+  allOperationsTable();
   openPositionMetrics();
   closedTradeMetrics();
 })();
