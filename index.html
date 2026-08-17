@@ -1175,6 +1175,16 @@
     "watchlist_count": 5
   },
   "system": "5DH_EOD_S470_DOL2M",
+  "trade_metrics": {
+    "asof": "2026-08-17",
+    "closed_count": 3,
+    "expectancy_r": -1.0,
+    "payoff": null,
+    "profit_factor": 0.0,
+    "realized_r": -3.0,
+    "source": "5dh_operations_ledger",
+    "win_rate_pct": 0.0
+  },
   "watchlist": [
     {
       "above_sma20": true,
@@ -1548,6 +1558,26 @@
     }).map(trade => (trade.exit_price - trade.entry_price) / (trade.entry_price - trade.initial_stop));
   }
   function closedTradeMetrics() {
+    const metric = data.trade_metrics;
+    if (metric && typeof metric === "object") {
+      const closedCount = Number(metric.closed_count || 0);
+      const winRate = Number.isFinite(Number(metric.win_rate_pct)) ? Number(metric.win_rate_pct) : null;
+      const expectancy = Number.isFinite(Number(metric.expectancy_r)) ? Number(metric.expectancy_r) : null;
+      const totalR = Number.isFinite(Number(metric.realized_r)) ? Number(metric.realized_r) : null;
+      const pf = metric.profit_factor === "infinity" ? Infinity : (Number.isFinite(Number(metric.profit_factor)) ? Number(metric.profit_factor) : null);
+      const payoff = Number.isFinite(Number(metric.payoff)) ? Number(metric.payoff) : null;
+      const valueClass = (value) => value > 0 ? "positive" : value < 0 ? "negative" : "";
+      const metrics = [
+        ["Operações fechadas", String(closedCount), "Saídas conciliadas diariamente a partir do ledger 5DH."],
+        ["Win rate", winRate === null ? "—" : pct(winRate), "Percentual das operações encerradas com resultado acima de 0R."],
+        ["Expectancy", expectancy === null ? "—" : `${n(expectancy, 2)}R`, "Média de R por operação encerrada."],
+        ["Profit factor", pf === null ? "—" : pf === Infinity ? "∞" : n(pf, 2), "Soma dos ganhos em R dividida pelo valor absoluto das perdas em R."],
+        ["Payoff", payoff === null ? "—" : n(payoff, 2), "Ganho médio em R dividido pela perda média em R."],
+        ["R realizado", totalR === null ? "—" : `${n(totalR, 2)}R`, "Soma dos R das operações encerradas."],
+      ];
+      $("#closedTradeMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${index === 2 || index === 5 ? valueClass(index === 2 ? expectancy ?? 0 : totalR ?? 0) : ""}">${value}</strong></article>`).join("");
+      return;
+    }
     const closed = closedOperationResults();
     const wins = closed.filter(r => r > 0), losses = closed.filter(r => r < 0);
     const totalR = closed.reduce((sum, r) => sum + r, 0);
