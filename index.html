@@ -8,7 +8,7 @@
 .scan-status{display:none;margin:0 0 18px;padding:13px 16px;border:1px solid var(--line);border-radius:10px;font-weight:800;letter-spacing:.02em}.scan-status.ok,.scan-status.candidates{display:block;color:#052218;background:var(--green)}.scan-status.warning{display:block;color:#2d2100;background:var(--yellow)}.scan-status.failure{display:block;color:#330610;background:var(--red)}
 .position-metrics.performance-metrics{grid-template-columns:repeat(6,minmax(130px,1fr))}.sample-warning{display:none;margin:0;padding:10px 18px;border-bottom:1px solid #5a4824;background:#2d2615;color:#ffd771;font-size:12px;font-weight:700}.sample-warning.visible{display:block}@media(max-width:1200px){.position-metrics.performance-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.position-metrics.performance-metrics{grid-template-columns:repeat(2,1fr)}}
 :root { color-scheme: dark; --bg:#080c11; --panel:#121923; --line:#283445; --ink:#eef4ff; --muted:#9bacbf; --green:#2fe6a6; --yellow:#ffc857; --red:#ff667d; --blue:#87aefe; }
-.metric-label{display:inline-block!important;cursor:default!important;text-decoration:none!important;position:static!important}.metric-label::before,.metric-label::after{content:none!important;display:none!important}
+.metric-label{display:inline-flex!important;align-items:center;cursor:help!important;text-decoration:underline dotted #60718a!important;text-underline-offset:3px;position:relative!important}.metric-label::after{content:none!important;display:none!important}.metric-label::before{content:attr(data-tooltip)!important;display:block!important}
 * { box-sizing:border-box; } body { margin:0; background:radial-gradient(circle at top right,#172238 0,var(--bg) 42%); color:var(--ink); font:14px Inter,Segoe UI,Arial,sans-serif; } .shell{max-width:1500px;margin:0 auto;padding:34px 28px 60px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:24px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.15em;margin:0 0 8px}h1{font-size:38px;margin:0}h2{font-size:18px;margin:0}h3{font-size:13px;margin:0;color:#d8e4f3}p{color:var(--muted);line-height:1.5;margin:8px 0 0}.stamp{min-width:205px;text-align:right}.stamp span{color:var(--muted);display:block;font-size:12px}.stamp strong{display:block;margin-top:4px}.rule-strip{display:flex;gap:8px;flex-wrap:wrap;padding:20px 0}.rule-strip span{background:#182231;border:1px solid #2a3a4e;border-radius:100px;padding:8px 11px;color:#cbd8e9;font-size:12px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.metrics article,.panel{background:rgba(18,25,35,.93);border:1px solid var(--line);border-radius:14px}.metrics article{padding:18px}.metrics span,.metrics small{display:block;color:var(--muted)}.metrics strong{font-size:30px;display:block;margin:8px 0}.panel{margin-top:18px;overflow:hidden}.panel-head{padding:19px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}.position-metrics-head{padding:13px 18px 11px;background:#121923;border-bottom:1px solid var(--line)}.position-metrics-head p{margin-top:3px;font-size:12px}.position-metrics{display:grid;grid-template-columns:repeat(5,minmax(130px,1fr));gap:1px;background:var(--line);border-bottom:1px solid var(--line)}.closed-metrics{grid-template-columns:repeat(6,minmax(130px,1fr))}.position-metric{background:rgba(18,25,35,.93);padding:15px 18px;min-width:0}.position-metric strong{display:block;font-size:20px;margin-top:7px;white-space:nowrap}.metric-label{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:12px;cursor:help;text-decoration:underline dotted #60718a;text-underline-offset:3px;position:relative}.metric-label::after{content:"?";display:inline-grid;place-items:center;width:14px;height:14px;border:1px solid #53647c;border-radius:50%;color:#aebdd0;font-size:10px;font-weight:800;text-decoration:none}.metric-label::before{content:attr(data-tooltip);position:absolute;z-index:10;left:0;bottom:calc(100% + 9px);width:225px;padding:9px 10px;border:1px solid #40516a;border-radius:8px;background:#0a1019;color:#d9e4f2;font-size:12px;font-weight:400;line-height:1.4;white-space:normal;box-shadow:0 10px 22px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(3px);transition:opacity .12s ease,transform .12s ease}.metric-label:hover::before,.metric-label:focus::before{opacity:1;transform:translateY(0)}input{background:#0a1019;border:1px solid #34435a;color:var(--ink);border-radius:8px;padding:10px 12px;min-width:200px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{font-size:11px;color:#9fb1c8;text-transform:uppercase;letter-spacing:.05em;background:#151e2a;text-align:left}th,td{padding:12px 14px;border-bottom:1px solid #202b3b}tr:last-child td{border-bottom:0}.ticker{font-weight:800}.badge{font-size:11px;font-weight:800;border-radius:100px;padding:5px 8px;display:inline-block}.badge.entry{color:#052218;background:var(--green)}.badge.ready{color:#2d2100;background:var(--yellow)}.badge.exit{color:#330610;background:var(--red)}.badge.neutral{color:#b8c6d6;background:#283548}.positive{color:var(--green)}.negative{color:var(--red)}.reason{white-space:normal;min-width:240px;color:#b5c4d7}.empty{text-align:center;color:var(--muted);padding:35px}@media(max-width:1200px){.closed-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:1050px){.position-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.shell{padding:20px 12px}.hero{align-items:flex-start;flex-direction:column}h1{font-size:30px}.stamp{text-align:left}.metrics,.position-metrics,.closed-metrics{grid-template-columns:repeat(2,1fr)}.panel-head{align-items:flex-start;flex-direction:column}}
 
 </style>
@@ -1519,13 +1519,13 @@
     const markedExposure = positions.reduce((sum, position) => sum + numeric(position.current_price) * numeric(position.shares), 0);
     const totalR = initialRisk > 0 ? pnl / initialRisk : null;
     const metrics = [
-      ["Posições", String(count), null],
-      ["P&L aberto", money(pnl), pnl],
-      ["R aberto", totalR === null ? "—" : `${n(totalR, 2)}R`, totalR],
-      ["Risco inicial", money(initialRisk), null],
-      ["Capital alocado", money(markedExposure), null],
+      ["Posições", String(count), null, "Quantidade de posições do sistema atual ainda abertas."],
+      ["P&L aberto", money(pnl), pnl, "Soma de (preço marcado − entrada) × quantidade nas posições abertas."],
+      ["R aberto", totalR === null ? "—" : `${n(totalR, 2)}R`, totalR, "P&L aberto dividido pela soma do risco inicial das posições abertas."],
+      ["Risco inicial", money(initialRisk), null, "Soma do risco planejado se todas as posições voltassem ao stop inicial."],
+      ["Capital alocado", money(markedExposure), null, "Valor marcado das posições abertas: preço de referência × quantidade."],
     ];
-    $("#openPositionMetrics").innerHTML = metrics.map(([label, value, result]) => `<article class="position-metric"><span class="metric-label">${esc(label)}</span><strong class="${result === null ? "" : valueClass(result)}">${value}</strong></article>`).join("");
+    $("#openPositionMetrics").innerHTML = metrics.map(([label, value, result, tooltip]) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${result === null ? "" : valueClass(result)}">${value}</strong></article>`).join("");
   }
 
   function closedTradeMetrics() {
@@ -1536,14 +1536,14 @@
     const expectancy = finite(tradeMetrics.expectancy_r);
     const pf = tradeMetrics.profit_factor === "infinity" ? Infinity : finite(tradeMetrics.profit_factor);
     const metrics = [
-      ["Trades fechados", String(closedCount), null],
-      ["Win rate", winRate === null ? "—" : `${n(winRate, 2)}%`, null],
-      ["P&L da amostra", money(totalPnl), totalPnl],
-      ["R da amostra", totalR === null ? "—" : `${n(totalR, 2)}R`, totalR],
-      ["Expectancy", expectancy === null ? "—" : `${n(expectancy, 2)}R`, expectancy],
-      ["Profit factor", pf === null ? "—" : pf === Infinity ? "∞" : n(pf, 2), null],
+      ["Trades fechados", String(closedCount), null, "Quantidade de operações encerradas do sistema atual."],
+      ["Win rate", winRate === null ? "—" : `${n(winRate, 2)}%`, null, "Percentual de trades fechados com R positivo."],
+      ["P&L da amostra", money(totalPnl), totalPnl, "Soma de (saída − entrada) × quantidade dos trades fechados."],
+      ["R da amostra", totalR === null ? "—" : `${n(totalR, 2)}R`, totalR, "Soma dos múltiplos R realizados nos trades fechados."],
+      ["Expectancy", expectancy === null ? "—" : `${n(expectancy, 2)}R`, expectancy, "Média de R por trade fechado."],
+      ["Profit factor", pf === null ? "—" : pf === Infinity ? "∞" : n(pf, 2), null, "Ganhos brutos em R divididos pelo valor absoluto das perdas brutas em R."],
     ];
-    $("#closedTradeMetrics").innerHTML = metrics.map(([label, value, result]) => `<article class="position-metric"><span class="metric-label">${esc(label)}</span><strong class="${result === null ? "" : valueClass(result)}">${value}</strong></article>`).join("");
+    $("#closedTradeMetrics").innerHTML = metrics.map(([label, value, result, tooltip]) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${result === null ? "" : valueClass(result)}">${value}</strong></article>`).join("");
   }
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
