@@ -51,7 +51,7 @@
 
       <section class="panel">
         <div class="panel-head"><div><h2>Climax top</h2></div></div>
-        <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Abertura</th><th>Entrada</th><th>Fech. D-1</th><th>Fech. D-11</th><th>Alta desde entrada</th><th>Alta em 10 pregões</th><th>Gap</th><th>Saída</th></tr></thead><tbody id="climaxTopBody"></tbody></table></div>
+        <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Abertura</th><th>Entrada</th><th>Fech. D-1</th><th>Fech. D-11</th><th>+50% entrada</th><th>+25% em 10 pregões</th><th>Gap +3%</th><th>Saída</th></tr></thead><tbody id="climaxTopBody"></tbody></table></div>
       </section>
 
       <section class=panel>
@@ -1524,8 +1524,10 @@
     $("#climaxTopBody").innerHTML = eligible.length ? eligible.map(decision => `<tr>
       <td class="ticker">${esc(decision.ticker)}</td><td>${money(decision.today_open)}</td><td>${money(decision.entry_price)}</td>
       <td>${money(decision.prior_close)}</td><td>${money(decision.close_10_sessions_ago)}</td>
-      <td class="positive">${pct(decision.gain_since_entry_pct)}</td><td class="positive">${pct(decision.prior_10_session_gain_pct)}</td>
-      <td class="positive">${pct(decision.opening_gap_pct)}</td><td><span class="badge exit">MOC NO FECHAMENTO</span></td></tr>`).join("")
+      <td><span class="badge entry">SIM ${pct(decision.gain_since_entry_pct)}</span></td>
+      <td><span class="badge entry">SIM ${pct(decision.prior_10_session_gain_pct)}</span></td>
+      <td><span class="badge entry">SIM ${pct(decision.opening_gap_pct)}</span></td>
+      <td><span class="badge exit">VENDER NO FECHAMENTO</span></td></tr>`).join("")
       : '<tr><td colspan="9" class="empty">Nenhum Climax top neste pregão.</td></tr>';
   }
 
