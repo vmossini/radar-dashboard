@@ -49,6 +49,11 @@
         <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Setor</th><th>Market Cap</th><th>Status</th><th>Último</th><th>Gatilho</th><th>Distância</th><th>Score</th><th>Dia</th><th>RVOL TV</th><th>AvgVol10</th></tr></thead><tbody id="watchBody"></tbody></table></div>
       </section>
 
+      <section class="panel">
+        <div class="panel-head"><div><h2>Climax top</h2></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Abertura</th><th>Entrada</th><th>Fech. D-1</th><th>Fech. D-11</th><th>Alta desde entrada</th><th>Alta em 10 pregões</th><th>Gap</th><th>Saída</th></tr></thead><tbody id="climaxTopBody"></tbody></table></div>
+      </section>
+
       <section class=panel>
         <div class=panel-head><div><h2>Performance e carteira</h2></div></div>
         <div class="position-metrics-head"><h3>Performance</h3></div>
@@ -1426,6 +1431,7 @@
   const currentSetup = String(data.current_setup || data.config?.strategy || "");
   const tradeMetrics = data.trade_metrics && typeof data.trade_metrics === "object" ? data.trade_metrics : {};
   const precloseAudit = data.preclose_audit && typeof data.preclose_audit === "object" ? data.preclose_audit : null;
+  const mocExitAudit = data.moc_exit_audit && typeof data.moc_exit_audit === "object" ? data.moc_exit_audit : null;
   const isPreclose = String(data.phase || "").startsWith("PRÉ-FECHAMENTO");
   const $ = (id) => document.querySelector(id);
   const text = (v, fallback = "—") => v === null || v === undefined || v === "" ? fallback : String(v);
@@ -1511,6 +1517,18 @@
     }).join("") : '<tr><td colspan="10" class="empty">Nenhuma operação registrada para o sistema atual.</td></tr>';
   }
 
+  function climaxTopTable() {
+    const decisions = Array.isArray(mocExitAudit?.decisions) ? mocExitAudit.decisions : [];
+    const eligible = decisions.filter(decision => text(decision.decision) === "MOC PROGRAMADA")
+      .sort((a, b) => text(a.ticker).localeCompare(text(b.ticker)));
+    $("#climaxTopBody").innerHTML = eligible.length ? eligible.map(decision => `<tr>
+      <td class="ticker">${esc(decision.ticker)}</td><td>${money(decision.today_open)}</td><td>${money(decision.entry_price)}</td>
+      <td>${money(decision.prior_close)}</td><td>${money(decision.close_10_sessions_ago)}</td>
+      <td class="positive">${pct(decision.gain_since_entry_pct)}</td><td class="positive">${pct(decision.prior_10_session_gain_pct)}</td>
+      <td class="positive">${pct(decision.opening_gap_pct)}</td><td><span class="badge exit">MOC NO FECHAMENTO</span></td></tr>`).join("")
+      : '<tr><td colspan="9" class="empty">Nenhum Climax top neste pregão.</td></tr>';
+  }
+
   function openPositionMetrics() {
     const numeric = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
     const count = positions.length;
@@ -1547,6 +1565,7 @@
   }
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
+  climaxTopTable();
   allOperationsTable();
   openPositionMetrics();
   closedTradeMetrics();
