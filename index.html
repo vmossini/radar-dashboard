@@ -8,6 +8,7 @@
 .scan-status{display:none;margin:0 0 18px;padding:13px 16px;border:1px solid var(--line);border-radius:10px;font-weight:800;letter-spacing:.02em}.scan-status.ok,.scan-status.candidates{display:block;color:#052218;background:var(--green)}.scan-status.warning{display:block;color:#2d2100;background:var(--yellow)}.scan-status.failure{display:block;color:#330610;background:var(--red)}
 .performance-metrics{grid-template-columns:repeat(5,minmax(130px,1fr))}.sample-warning{display:none;margin:0;padding:10px 18px;border-bottom:1px solid #5a4824;background:#2d2615;color:#ffd771;font-size:12px;font-weight:700}.sample-warning.visible{display:block}@media(max-width:1200px){.performance-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.performance-metrics{grid-template-columns:repeat(2,1fr)}}
 :root { color-scheme: dark; --bg:#080c11; --panel:#121923; --line:#283445; --ink:#eef4ff; --muted:#9bacbf; --green:#2fe6a6; --yellow:#ffc857; --red:#ff667d; --blue:#87aefe; }
+.metric-label{display:inline-block!important;cursor:default!important;text-decoration:none!important;position:static!important}.metric-label::before,.metric-label::after{content:none!important;display:none!important}
 * { box-sizing:border-box; } body { margin:0; background:radial-gradient(circle at top right,#172238 0,var(--bg) 42%); color:var(--ink); font:14px Inter,Segoe UI,Arial,sans-serif; } .shell{max-width:1500px;margin:0 auto;padding:34px 28px 60px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:24px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.15em;margin:0 0 8px}h1{font-size:38px;margin:0}h2{font-size:18px;margin:0}h3{font-size:13px;margin:0;color:#d8e4f3}p{color:var(--muted);line-height:1.5;margin:8px 0 0}.stamp{min-width:205px;text-align:right}.stamp span{color:var(--muted);display:block;font-size:12px}.stamp strong{display:block;margin-top:4px}.rule-strip{display:flex;gap:8px;flex-wrap:wrap;padding:20px 0}.rule-strip span{background:#182231;border:1px solid #2a3a4e;border-radius:100px;padding:8px 11px;color:#cbd8e9;font-size:12px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.metrics article,.panel{background:rgba(18,25,35,.93);border:1px solid var(--line);border-radius:14px}.metrics article{padding:18px}.metrics span,.metrics small{display:block;color:var(--muted)}.metrics strong{font-size:30px;display:block;margin:8px 0}.panel{margin-top:18px;overflow:hidden}.panel-head{padding:19px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}.position-metrics-head{padding:13px 18px 11px;background:#121923;border-bottom:1px solid var(--line)}.position-metrics-head p{margin-top:3px;font-size:12px}.position-metrics{display:grid;grid-template-columns:repeat(5,minmax(130px,1fr));gap:1px;background:var(--line);border-bottom:1px solid var(--line)}.closed-metrics{grid-template-columns:repeat(6,minmax(130px,1fr))}.position-metric{background:rgba(18,25,35,.93);padding:15px 18px;min-width:0}.position-metric strong{display:block;font-size:20px;margin-top:7px;white-space:nowrap}.metric-label{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:12px;cursor:help;text-decoration:underline dotted #60718a;text-underline-offset:3px;position:relative}.metric-label::after{content:"?";display:inline-grid;place-items:center;width:14px;height:14px;border:1px solid #53647c;border-radius:50%;color:#aebdd0;font-size:10px;font-weight:800;text-decoration:none}.metric-label::before{content:attr(data-tooltip);position:absolute;z-index:10;left:0;bottom:calc(100% + 9px);width:225px;padding:9px 10px;border:1px solid #40516a;border-radius:8px;background:#0a1019;color:#d9e4f2;font-size:12px;font-weight:400;line-height:1.4;white-space:normal;box-shadow:0 10px 22px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(3px);transition:opacity .12s ease,transform .12s ease}.metric-label:hover::before,.metric-label:focus::before{opacity:1;transform:translateY(0)}input{background:#0a1019;border:1px solid #34435a;color:var(--ink);border-radius:8px;padding:10px 12px;min-width:200px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{font-size:11px;color:#9fb1c8;text-transform:uppercase;letter-spacing:.05em;background:#151e2a;text-align:left}th,td{padding:12px 14px;border-bottom:1px solid #202b3b}tr:last-child td{border-bottom:0}.ticker{font-weight:800}.badge{font-size:11px;font-weight:800;border-radius:100px;padding:5px 8px;display:inline-block}.badge.entry{color:#052218;background:var(--green)}.badge.ready{color:#2d2100;background:var(--yellow)}.badge.exit{color:#330610;background:var(--red)}.badge.neutral{color:#b8c6d6;background:#283548}.positive{color:var(--green)}.negative{color:var(--red)}.reason{white-space:normal;min-width:240px;color:#b5c4d7}.empty{text-align:center;color:var(--muted);padding:35px}@media(max-width:1200px){.closed-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:1050px){.position-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.shell{padding:20px 12px}.hero{align-items:flex-start;flex-direction:column}h1{font-size:30px}.stamp{text-align:left}.metrics,.position-metrics,.closed-metrics{grid-template-columns:repeat(2,1fr)}.panel-head{align-items:flex-start;flex-direction:column}}
 
 </style>
@@ -16,9 +17,7 @@
     <main class="shell">
       <header class="hero">
         <div>
-          <p class="eyebrow">SISTEMA OPERACIONAL</p>
           <h1>Radar 5DH</h1>
-          <p id="subtitle">Carregando watchlist operacional...</p>
         </div>
         <div class="stamp"><span>Atualizado</span><strong id="generatedAt">—</strong></div>
       </header>
@@ -42,7 +41,7 @@
         <article><span id="watchMetricLabel">Compras válidas</span><strong id="watchCount">—</strong><small id="watchMetricHelp">confirmadas no fechamento</small></article>
         <article><span>Passam filtros</span><strong id="readyCount">—</strong><small>toques aptos, aguardando fechamento</small></article>
         <article><span>Entradas oficiais</span><strong id="entryCount">—</strong><small>no pós-fechamento</small></article>
-        <article><span>R realizado S470</span><strong id="currentRealizedR">—</strong><small>somente operações fechadas da regra atual</small></article>
+        <article><span>R da amostra</span><strong id="currentRealizedR">—</strong><small>trades fechados</small></article>
       </section>
 
       <section class="panel">
@@ -51,13 +50,12 @@
       </section>
 
       <section class=panel>
-        <div class=panel-head><div><h2>Performance 5DH e carteira</h2><p>Indicadores, carteira e operações exibem exclusivamente o sistema operacional atual.</p></div></div>
-        <div class="position-metrics-head"><h3>Performance da regra atual</h3><p id="performanceCaption">Operações fechadas e conciliadas no ledger 5DH.</p></div>
+        <div class=panel-head><div><h2>Performance e carteira</h2></div></div>
+        <div class="position-metrics-head"><h3>Performance</h3></div>
         <div id="closedTradeMetrics" class="position-metrics performance-metrics" aria-label="Indicadores de performance da regra atual"></div>
-        <div id="performanceWarning" class="sample-warning" role="status"></div>
-        <div class="position-metrics-head"><h3>Carteira em aberto</h3><p id="openMarksCaption">Exposição agregada, marcada pelo último fechamento regular disponível.</p></div>
+        <div class="position-metrics-head"><h3>Carteira em aberto</h3></div>
         <div id="openPositionMetrics" class="position-metrics" aria-label="Indicadores das posições em aberto"></div>
-        <div class="position-metrics-head"><h3>Todas as operações</h3><p>Somente operações do sistema atual, ordenadas da data de entrada mais antiga para a mais recente.</p></div>
+        <div class="position-metrics-head"><h3>Operações</h3></div>
         <div class=table-wrap><table><thead><tr><th>Data de entrada</th><th>Ticker</th><th>Status</th><th>Entrada</th><th>Stop inicial</th><th>Preço ref.</th><th>Data ref.</th><th>R</th><th>P&amp;L</th><th>Motivo</th></tr></thead><tbody id=allOperationsBody></tbody></table></div>
       </section>
 
@@ -1445,7 +1443,6 @@
   const esc = (v) => text(v).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]));
 
   $("#generatedAt").textContent = text(data.generated_at);
-  $("#subtitle").textContent = `Fase atual: ${text(data.phase)}. Pré-fechamento atualiza a mesma lista; pós-fechamento confirma o ledger.`;
   $("#watchCount").textContent = text(data.summary?.watchlist_count, "0");
   $("#readyCount").textContent = text(data.summary?.candidate_count, "0");
   $("#entryCount").textContent = text(data.summary?.official_entries, "0");
@@ -1476,15 +1473,6 @@
       statusEl.textContent = "FALHA DE DADOS - RESULTADO INCONCLUSIVO";
     }
   }
-  if (precloseAudit) {
-    const auditMessage = ["NO_CANDIDATES", "NO_TOUCHES"].includes(precloseAudit.scan_outcome)
-      ? ` Scan concluído: nenhum toque entre ${text(precloseAudit.evaluated, "0")} papéis avaliados.`
-      : ["CANDIDATES_FOUND", "TOUCHES_FOUND"].includes(precloseAudit.scan_outcome)
-        ? ` Scan concluído: ${text(precloseAudit.touch_count ?? precloseAudit.candidate_count, "0")} toque(s) entre ${text(precloseAudit.evaluated, "0")} papéis avaliados.`
-        : ` Dados insuficientes: resultado ${text(precloseAudit.scan_outcome)}; nao interpretar zero como ausencia de candidatos.`;
-    $("#subtitle").textContent += auditMessage;
-  }
-
   function watchTable(filter = "") {
     const wanted = filter.trim().toUpperCase();
     const filtered = rows.filter(r => !wanted || text(r.ticker).includes(wanted));
@@ -1530,17 +1518,14 @@
     const initialRisk = positions.reduce((sum, position) => sum + numeric(position.planned_risk_dollars), 0);
     const markedExposure = positions.reduce((sum, position) => sum + numeric(position.current_price) * numeric(position.shares), 0);
     const totalR = initialRisk > 0 ? pnl / initialRisk : null;
-    const markedAsOf = [...new Set(positions.map(position => text(position.mark_asof, "")).filter(Boolean))];
-    $("#openMarksCaption").textContent = markedAsOf.length
-      ? `Exposição agregada: ${count} posições, marcada no fechamento regular de ${markedAsOf.join(", ")}.`
-      : `Exposição agregada: ${count} posições; marcação de preço indisponível.`;
     const metrics = [
-      ["Posições abertas", String(count), "Entradas oficiais ainda abertas do sistema atual."],
-      ["R aberto", totalR === null ? "—" : `${n(totalR, 2)}R`, "P&L marcado total dividido pelo risco inicial total das posições abertas do sistema atual. Não é resultado realizado."],
-      ["Risco inicial", money(initialRisk), "Soma do risco planejado até o stop inicial; é a referência de risco da carteira, não o risco após ajustes futuros de stop."],
-      ["Exposição marcada", money(markedExposure), "Valor bruto atual das posições pelo fechamento regular marcado. P&L individual permanece na tabela abaixo."],
+      ["Posições", String(count), null],
+      ["P&L aberto", money(pnl), pnl],
+      ["R aberto", totalR === null ? "—" : `${n(totalR, 2)}R`, totalR],
+      ["Risco inicial", money(initialRisk), null],
+      ["Capital alocado", money(markedExposure), null],
     ];
-    $("#openPositionMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${index === 1 ? valueClass(totalR ?? 0) : ""}">${value}</strong></article>`).join("");
+    $("#openPositionMetrics").innerHTML = metrics.map(([label, value, result]) => `<article class="position-metric"><span class="metric-label">${esc(label)}</span><strong class="${result === null ? "" : valueClass(result)}">${value}</strong></article>`).join("");
   }
 
   function closedTradeMetrics() {
@@ -1549,23 +1534,14 @@
     const totalPnl = finite(tradeMetrics.realized_pnl);
     const expectancy = finite(tradeMetrics.expectancy_r);
     const pf = tradeMetrics.profit_factor === "infinity" ? Infinity : finite(tradeMetrics.profit_factor);
-    $("#performanceCaption").textContent = `Regra atual: ${currentSetup || "não informada"}. Os indicadores usam somente operações deste sistema.`;
-    const warning = $("#performanceWarning");
-    if (tradeMetrics.sample_status === "INSUFFICIENT") {
-      warning.className = "sample-warning visible";
-      warning.textContent = `AMOSTRA INSUFICIENTE — ${closedCount} operação(ões) fechada(s); são necessárias pelo menos 30 para inferência inicial.`;
-    } else {
-      warning.className = "sample-warning";
-      warning.textContent = "";
-    }
     const metrics = [
-      ["Amostra fechada", String(closedCount), "Número de ciclos fechados da regra atual."],
-      ["R realizado", totalR === null ? "—" : `${n(totalR, 2)}R`, "Soma dos R das operações fechadas da regra atual; posições abertas são excluídas."],
-      ["P&L realizado", money(totalPnl), "Soma de (saída − entrada) × quantidade nos trades fechados da regra atual."],
-      ["Expectancy", expectancy === null ? "—" : `${n(expectancy, 2)}R`, "Média de R por operação fechada da regra atual."],
-      ["Profit factor", pf === null ? "—" : pf === Infinity ? "∞" : n(pf, 2), "Ganhos brutos em R divididos pelo valor absoluto das perdas em R da regra atual."],
+      ["Trades fechados", String(closedCount), null],
+      ["P&L da amostra", money(totalPnl), totalPnl],
+      ["R da amostra", totalR === null ? "—" : `${n(totalR, 2)}R`, totalR],
+      ["Expectancy", expectancy === null ? "—" : `${n(expectancy, 2)}R`, expectancy],
+      ["Profit factor", pf === null ? "—" : pf === Infinity ? "∞" : n(pf, 2), null],
     ];
-    $("#closedTradeMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${[1, 2, 3].includes(index) ? valueClass(index === 1 ? totalR ?? 0 : index === 2 ? totalPnl ?? 0 : expectancy ?? 0) : ""}">${value}</strong></article>`).join("");
+    $("#closedTradeMetrics").innerHTML = metrics.map(([label, value, result]) => `<article class="position-metric"><span class="metric-label">${esc(label)}</span><strong class="${result === null ? "" : valueClass(result)}">${value}</strong></article>`).join("");
   }
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
