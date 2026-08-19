@@ -6,6 +6,7 @@
     <title>Radar 5DH</title>
     <style>
 .scan-status{display:none;margin:0 0 18px;padding:13px 16px;border:1px solid var(--line);border-radius:10px;font-weight:800;letter-spacing:.02em}.scan-status.ok,.scan-status.candidates{display:block;color:#052218;background:var(--green)}.scan-status.warning{display:block;color:#2d2100;background:var(--yellow)}.scan-status.failure{display:block;color:#330610;background:var(--red)}
+.performance-metrics{grid-template-columns:repeat(5,minmax(130px,1fr))}.sample-warning{display:none;margin:0;padding:10px 18px;border-bottom:1px solid #5a4824;background:#2d2615;color:#ffd771;font-size:12px;font-weight:700}.sample-warning.visible{display:block}@media(max-width:1200px){.performance-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.performance-metrics{grid-template-columns:repeat(2,1fr)}}
 :root { color-scheme: dark; --bg:#080c11; --panel:#121923; --line:#283445; --ink:#eef4ff; --muted:#9bacbf; --green:#2fe6a6; --yellow:#ffc857; --red:#ff667d; --blue:#87aefe; }
 * { box-sizing:border-box; } body { margin:0; background:radial-gradient(circle at top right,#172238 0,var(--bg) 42%); color:var(--ink); font:14px Inter,Segoe UI,Arial,sans-serif; } .shell{max-width:1500px;margin:0 auto;padding:34px 28px 60px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:24px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.15em;margin:0 0 8px}h1{font-size:38px;margin:0}h2{font-size:18px;margin:0}h3{font-size:13px;margin:0;color:#d8e4f3}p{color:var(--muted);line-height:1.5;margin:8px 0 0}.stamp{min-width:205px;text-align:right}.stamp span{color:var(--muted);display:block;font-size:12px}.stamp strong{display:block;margin-top:4px}.rule-strip{display:flex;gap:8px;flex-wrap:wrap;padding:20px 0}.rule-strip span{background:#182231;border:1px solid #2a3a4e;border-radius:100px;padding:8px 11px;color:#cbd8e9;font-size:12px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.metrics article,.panel{background:rgba(18,25,35,.93);border:1px solid var(--line);border-radius:14px}.metrics article{padding:18px}.metrics span,.metrics small{display:block;color:var(--muted)}.metrics strong{font-size:30px;display:block;margin:8px 0}.panel{margin-top:18px;overflow:hidden}.panel-head{padding:19px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}.position-metrics-head{padding:13px 18px 11px;background:#121923;border-bottom:1px solid var(--line)}.position-metrics-head p{margin-top:3px;font-size:12px}.position-metrics{display:grid;grid-template-columns:repeat(5,minmax(130px,1fr));gap:1px;background:var(--line);border-bottom:1px solid var(--line)}.closed-metrics{grid-template-columns:repeat(6,minmax(130px,1fr))}.position-metric{background:rgba(18,25,35,.93);padding:15px 18px;min-width:0}.position-metric strong{display:block;font-size:20px;margin-top:7px;white-space:nowrap}.metric-label{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:12px;cursor:help;text-decoration:underline dotted #60718a;text-underline-offset:3px;position:relative}.metric-label::after{content:"?";display:inline-grid;place-items:center;width:14px;height:14px;border:1px solid #53647c;border-radius:50%;color:#aebdd0;font-size:10px;font-weight:800;text-decoration:none}.metric-label::before{content:attr(data-tooltip);position:absolute;z-index:10;left:0;bottom:calc(100% + 9px);width:225px;padding:9px 10px;border:1px solid #40516a;border-radius:8px;background:#0a1019;color:#d9e4f2;font-size:12px;font-weight:400;line-height:1.4;white-space:normal;box-shadow:0 10px 22px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(3px);transition:opacity .12s ease,transform .12s ease}.metric-label:hover::before,.metric-label:focus::before{opacity:1;transform:translateY(0)}input{background:#0a1019;border:1px solid #34435a;color:var(--ink);border-radius:8px;padding:10px 12px;min-width:200px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{font-size:11px;color:#9fb1c8;text-transform:uppercase;letter-spacing:.05em;background:#151e2a;text-align:left}th,td{padding:12px 14px;border-bottom:1px solid #202b3b}tr:last-child td{border-bottom:0}.ticker{font-weight:800}.badge{font-size:11px;font-weight:800;border-radius:100px;padding:5px 8px;display:inline-block}.badge.entry{color:#052218;background:var(--green)}.badge.ready{color:#2d2100;background:var(--yellow)}.badge.exit{color:#330610;background:var(--red)}.badge.neutral{color:#b8c6d6;background:#283548}.positive{color:var(--green)}.negative{color:var(--red)}.reason{white-space:normal;min-width:240px;color:#b5c4d7}.empty{text-align:center;color:var(--muted);padding:35px}@media(max-width:1200px){.closed-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:1050px){.position-metrics{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.shell{padding:20px 12px}.hero{align-items:flex-start;flex-direction:column}h1{font-size:30px}.stamp{text-align:left}.metrics,.position-metrics,.closed-metrics{grid-template-columns:repeat(2,1fr)}.panel-head{align-items:flex-start;flex-direction:column}}
 
@@ -41,7 +42,7 @@
         <article><span id="watchMetricLabel">Compras válidas</span><strong id="watchCount">—</strong><small id="watchMetricHelp">confirmadas no fechamento</small></article>
         <article><span>Passam filtros</span><strong id="readyCount">—</strong><small>toques aptos, aguardando fechamento</small></article>
         <article><span>Entradas oficiais</span><strong id="entryCount">—</strong><small>no pós-fechamento</small></article>
-        <article><span>Posições paper</span><strong id="positionCount">—</strong><small>ledger 5DH</small></article>
+        <article><span>R realizado S470</span><strong id="currentRealizedR">—</strong><small>somente operações fechadas da regra atual</small></article>
       </section>
 
       <section class="panel">
@@ -50,13 +51,14 @@
       </section>
 
       <section class=panel>
-        <div class=panel-head><div><h2>Posicoes em aberto</h2><p>Entradas oficiais de pregoes anteriores que continuam abertas. Esta lista nao e substituida pelo pre-fechamento de hoje.</p></div></div>
-        <div class="position-metrics-head"><h3>Carteira em aberto</h3><p>Marcação pelo último preço disponível.</p></div>
+        <div class=panel-head><div><h2>Performance S470 e carteira</h2><p>Performance usa apenas a regra atual. O histórico v1 segue visível e auditável, mas não altera os indicadores S470.</p></div></div>
+        <div class="position-metrics-head"><h3>Performance da regra atual</h3><p id="performanceCaption">Operações fechadas e conciliadas no ledger 5DH.</p></div>
+        <div id="closedTradeMetrics" class="position-metrics performance-metrics" aria-label="Indicadores de performance da regra atual"></div>
+        <div id="performanceWarning" class="sample-warning" role="status"></div>
+        <div class="position-metrics-head"><h3>Carteira em aberto</h3><p id="openMarksCaption">Exposição agregada, marcada pelo último fechamento regular disponível.</p></div>
         <div id="openPositionMetrics" class="position-metrics" aria-label="Indicadores das posições em aberto"></div>
-        <div class="position-metrics-head"><h3>Operações encerradas</h3></div>
-        <div id="closedTradeMetrics" class="position-metrics closed-metrics" aria-label="Indicadores das operações encerradas"></div>
-        <div class="position-metrics-head"><h3>Todas as operações</h3><p>Ordenadas da data de entrada mais antiga para a mais recente.</p></div>
-        <div class=table-wrap><table><thead><tr><th>Data de entrada</th><th>Ticker</th><th>Status</th><th>Entrada</th><th>Stop inicial</th><th>Saída / atual</th><th>Data de saída</th><th>R</th><th>P&amp;L</th><th>Motivo</th></tr></thead><tbody id=allOperationsBody></tbody></table></div>
+        <div class="position-metrics-head"><h3>Todas as operações</h3><p>Ordenadas da data de entrada mais antiga para a mais recente; cada linha mostra sua regra de origem.</p></div>
+        <div class=table-wrap><table><thead><tr><th>Data de entrada</th><th>Ticker</th><th>Regra</th><th>Status</th><th>Entrada</th><th>Stop inicial</th><th>Preço ref.</th><th>Data ref.</th><th>R</th><th>P&amp;L</th><th>Motivo</th></tr></thead><tbody id=allOperationsBody></tbody></table></div>
       </section>
 
     </main>
@@ -113,6 +115,7 @@
       "never_use_live_universe_retroactively": true
     }
   },
+  "current_setup": "5DH_EOD_S470_DOL2M",
   "generated_at": "2026-08-18T17:10:18-04:00",
   "open_position_marks_audit": {
     "asof": "2026-08-18",
@@ -139,6 +142,7 @@
       "open_return_pct": -12.5566,
       "planned_risk_dollars": 59.67,
       "risk_per_share": 19.890000610351564,
+      "setup_name": "5DH_EOD_S470_DOL2M",
       "shares": 3,
       "ticker": "AAOI"
     },
@@ -159,6 +163,7 @@
       "open_return_pct": 0.0,
       "planned_risk_dollars": 69.87,
       "risk_per_share": 0.17000003814697262,
+      "setup_name": "5DH_EOD_S470_DOL2M",
       "shares": 411,
       "ticker": "ALEC"
     },
@@ -179,6 +184,7 @@
       "open_return_pct": 0.0,
       "planned_risk_dollars": 63.99,
       "risk_per_share": 7.109999999999999,
+      "setup_name": "5DH_EOD_S470_DOL2M",
       "shares": 9,
       "ticker": "AMLX"
     },
@@ -199,6 +205,7 @@
       "open_return_pct": -3.0303,
       "planned_risk_dollars": 69.75,
       "risk_per_share": 0.9299995422363274,
+      "setup_name": "5DH_EOD_S470_DOL2M",
       "shares": 75,
       "ticker": "ASST"
     },
@@ -219,6 +226,7 @@
       "open_return_pct": -2.6121,
       "planned_risk_dollars": 69.0,
       "risk_per_share": 1.3800008392334,
+      "setup_name": "5DH_EOD_v1",
       "shares": 50,
       "ticker": "BWIN"
     },
@@ -239,6 +247,7 @@
       "open_return_pct": -2.9951,
       "planned_risk_dollars": 69.6,
       "risk_per_share": 2.320000762939454,
+      "setup_name": "5DH_EOD_S470_DOL2M",
       "shares": 30,
       "ticker": "FCEL"
     },
@@ -259,6 +268,7 @@
       "open_return_pct": -1.4337,
       "planned_risk_dollars": 69.72,
       "risk_per_share": 0.4200001525878907,
+      "setup_name": "5DH_EOD_v1",
       "shares": 166,
       "ticker": "FOSL"
     },
@@ -279,6 +289,7 @@
       "open_return_pct": 0.3943,
       "planned_risk_dollars": 69.87,
       "risk_per_share": 1.0428997802734372,
+      "setup_name": "5DH_EOD_v1",
       "shares": 67,
       "ticker": "FRSH"
     },
@@ -299,6 +310,7 @@
       "open_return_pct": -4.1551,
       "planned_risk_dollars": 43.09,
       "risk_per_share": 43.089999389648426,
+      "setup_name": "5DH_EOD_v1",
       "shares": 1,
       "ticker": "NBIS"
     },
@@ -319,6 +331,7 @@
       "open_return_pct": 0.0,
       "planned_risk_dollars": 69.68,
       "risk_per_share": 0.519999942779541,
+      "setup_name": "5DH_EOD_S470_DOL2M",
       "shares": 134,
       "ticker": "NUVB"
     },
@@ -339,6 +352,7 @@
       "open_return_pct": 1.4286,
       "planned_risk_dollars": 69.84,
       "risk_per_share": 0.1800001144409178,
+      "setup_name": "5DH_EOD_v1",
       "shares": 388,
       "ticker": "OVID"
     },
@@ -359,6 +373,7 @@
       "open_return_pct": 1.8868,
       "planned_risk_dollars": 61.74,
       "risk_per_share": 8.819900512695312,
+      "setup_name": "5DH_EOD_S470_DOL2M",
       "shares": 7,
       "ticker": "RVMD"
     },
@@ -379,6 +394,7 @@
       "open_return_pct": -2.1638,
       "planned_risk_dollars": 69.8,
       "risk_per_share": 0.20000001907348608,
+      "setup_name": "5DH_EOD_S470_DOL2M",
       "shares": 349,
       "ticker": "UGP"
     },
@@ -399,6 +415,7 @@
       "open_return_pct": 1.7161,
       "planned_risk_dollars": 67.8,
       "risk_per_share": 3.3899989318847688,
+      "setup_name": "5DH_EOD_S470_DOL2M",
       "shares": 20,
       "ticker": "VIRT"
     },
@@ -419,6 +436,7 @@
       "open_return_pct": 0.0,
       "planned_risk_dollars": 69.66,
       "risk_per_share": 0.42999977111816445,
+      "setup_name": "5DH_EOD_S470_DOL2M",
       "shares": 162,
       "ticker": "XOS"
     },
@@ -439,6 +457,7 @@
       "open_return_pct": 6.2267,
       "planned_risk_dollars": 62.4,
       "risk_per_share": 0.47999984741210966,
+      "setup_name": "5DH_EOD_v1",
       "shares": 130,
       "ticker": "ZIM"
     }
@@ -1365,13 +1384,543 @@
     "watchlist_count": 4
   },
   "system": "5DH_EOD_S470_DOL2M",
+  "trade_cycles": [
+    {
+      "current_price": 30.2,
+      "entry_asof": "2026-08-12",
+      "entry_price": 31.01,
+      "entry_timestamp": "2026-08-12T22:56:47-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 29.6299991607666,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": -40.5,
+      "open_r": -0.587,
+      "planned_risk_dollars": 69.0,
+      "setup_name": "5DH_EOD_v1",
+      "shares": 50.0,
+      "status": "OPEN",
+      "ticker": "BWIN"
+    },
+    {
+      "current_price": null,
+      "entry_asof": "2026-08-12",
+      "entry_price": 107.73,
+      "entry_timestamp": "2026-08-12T22:56:47-04:00",
+      "exit_asof": "2026-08-12",
+      "exit_price": 105.44000244140625,
+      "exit_reason": "stop inicial",
+      "exit_timestamp": "2026-08-12T22:58:28-04:00",
+      "initial_stop": 105.44000244140625,
+      "mark_asof": "",
+      "mark_source": "",
+      "mark_timestamp_et": "",
+      "open_pnl": null,
+      "open_r": null,
+      "planned_risk_dollars": 68.7,
+      "setup_name": "5DH_EOD_v1",
+      "shares": 30.0,
+      "status": "CLOSED",
+      "ticker": "CRWV"
+    },
+    {
+      "current_price": 248.43,
+      "entry_asof": "2026-08-12",
+      "entry_price": 259.2,
+      "entry_timestamp": "2026-08-12T22:56:47-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 216.11000061035156,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": -10.77,
+      "open_r": -0.2499,
+      "planned_risk_dollars": 43.09,
+      "setup_name": "5DH_EOD_v1",
+      "shares": 1.0,
+      "status": "OPEN",
+      "ticker": "NBIS"
+    },
+    {
+      "current_price": null,
+      "entry_asof": "2026-08-12",
+      "entry_price": 56.14,
+      "entry_timestamp": "2026-08-12T22:58:28-04:00",
+      "exit_asof": "2026-08-12",
+      "exit_price": 54.4900016784668,
+      "exit_reason": "stop inicial",
+      "exit_timestamp": "2026-08-12T22:59:13-04:00",
+      "initial_stop": 54.4900016784668,
+      "mark_asof": "",
+      "mark_source": "",
+      "mark_timestamp_et": "",
+      "open_pnl": null,
+      "open_r": null,
+      "planned_risk_dollars": 69.3,
+      "setup_name": "5DH_EOD_v1",
+      "shares": 42.0,
+      "status": "CLOSED",
+      "ticker": "COHU"
+    },
+    {
+      "current_price": 5.5,
+      "entry_asof": "2026-08-13",
+      "entry_price": 5.58,
+      "entry_timestamp": "2026-08-13T21:42:36-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 5.159999847412109,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": -13.28,
+      "open_r": -0.1905,
+      "planned_risk_dollars": 69.72,
+      "setup_name": "5DH_EOD_v1",
+      "shares": 166.0,
+      "status": "OPEN",
+      "ticker": "FOSL"
+    },
+    {
+      "current_price": 12.73,
+      "entry_asof": "2026-08-13",
+      "entry_price": 12.68,
+      "entry_timestamp": "2026-08-13T21:42:36-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 11.637100219726562,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": 3.35,
+      "open_r": 0.0479,
+      "planned_risk_dollars": 69.87,
+      "setup_name": "5DH_EOD_v1",
+      "shares": 67.0,
+      "status": "OPEN",
+      "ticker": "FRSH"
+    },
+    {
+      "current_price": null,
+      "entry_asof": "2026-08-13",
+      "entry_price": 1.26,
+      "entry_timestamp": "2026-08-13T21:42:36-04:00",
+      "exit_asof": "2026-08-14",
+      "exit_price": null,
+      "exit_reason": "Entrada de 2026-08-13 removida das posições abertas: market cap abaixo de US$ 50M no snapshot contemporâneo.",
+      "exit_timestamp": "2026-08-14T14:20:54-04:00",
+      "initial_stop": 1.1299999952316284,
+      "mark_asof": "",
+      "mark_source": "",
+      "mark_timestamp_et": "",
+      "open_pnl": null,
+      "open_r": null,
+      "planned_risk_dollars": 69.94,
+      "setup_name": "5DH_EOD_v1",
+      "shares": 538.0,
+      "status": "CORRECTED",
+      "ticker": "GXAI"
+    },
+    {
+      "current_price": 2.84,
+      "entry_asof": "2026-08-13",
+      "entry_price": 2.8,
+      "entry_timestamp": "2026-08-13T21:42:36-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 2.619999885559082,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": 15.52,
+      "open_r": 0.2222,
+      "planned_risk_dollars": 69.84,
+      "setup_name": "5DH_EOD_v1",
+      "shares": 388.0,
+      "status": "OPEN",
+      "ticker": "OVID"
+    },
+    {
+      "current_price": 28.49,
+      "entry_asof": "2026-08-13",
+      "entry_price": 26.82,
+      "entry_timestamp": "2026-08-13T21:42:36-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 26.34000015258789,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": 217.1,
+      "open_r": 3.4792,
+      "planned_risk_dollars": 62.4,
+      "setup_name": "5DH_EOD_v1",
+      "shares": 130.0,
+      "status": "OPEN",
+      "ticker": "ZIM"
+    },
+    {
+      "current_price": 131.41,
+      "entry_asof": "2026-08-14",
+      "entry_price": 150.28,
+      "entry_timestamp": "2026-08-14T18:02:24-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 130.38999938964844,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": -56.61,
+      "open_r": -0.9487,
+      "planned_risk_dollars": 59.67,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 3.0,
+      "status": "OPEN",
+      "ticker": "AAOI"
+    },
+    {
+      "current_price": null,
+      "entry_asof": "2026-08-14",
+      "entry_price": 14.72,
+      "entry_timestamp": "2026-08-14T18:02:24-04:00",
+      "exit_asof": "2026-08-17",
+      "exit_price": 13.119999885559082,
+      "exit_reason": "stop inicial",
+      "exit_timestamp": "2026-08-17T16:12:51-04:00",
+      "initial_stop": 13.119999885559082,
+      "mark_asof": "",
+      "mark_source": "",
+      "mark_timestamp_et": "",
+      "open_pnl": null,
+      "open_r": null,
+      "planned_risk_dollars": 68.8,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 43.0,
+      "status": "CLOSED",
+      "ticker": "ALOY"
+    },
+    {
+      "current_price": 21.7,
+      "entry_asof": "2026-08-14",
+      "entry_price": 22.37,
+      "entry_timestamp": "2026-08-14T18:02:24-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 20.049999237060547,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": -20.1,
+      "open_r": -0.2888,
+      "planned_risk_dollars": 69.6,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 30.0,
+      "status": "OPEN",
+      "ticker": "FCEL"
+    },
+    {
+      "current_price": null,
+      "entry_asof": "2026-08-14",
+      "entry_price": 48.71,
+      "entry_timestamp": "2026-08-14T18:02:24-04:00",
+      "exit_asof": "2026-08-18",
+      "exit_price": 44.939998626708984,
+      "exit_reason": "gap abaixo do stop inicial",
+      "exit_timestamp": "2026-08-18T17:10:17-04:00",
+      "initial_stop": 45.689998626708984,
+      "mark_asof": "",
+      "mark_source": "",
+      "mark_timestamp_et": "",
+      "open_pnl": null,
+      "open_r": null,
+      "planned_risk_dollars": 69.46,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 23.0,
+      "status": "CLOSED",
+      "ticker": "OUST"
+    },
+    {
+      "current_price": null,
+      "entry_asof": "2026-08-14",
+      "entry_price": 1.12,
+      "entry_timestamp": "2026-08-14T18:02:24-04:00",
+      "exit_asof": "2026-08-18",
+      "exit_price": 1.059999942779541,
+      "exit_reason": "stop inicial",
+      "exit_timestamp": "2026-08-18T17:10:17-04:00",
+      "initial_stop": 1.059999942779541,
+      "mark_asof": "",
+      "mark_source": "",
+      "mark_timestamp_et": "",
+      "open_pnl": null,
+      "open_r": null,
+      "planned_risk_dollars": 69.96,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 1166.0,
+      "status": "CLOSED",
+      "ticker": "TRX"
+    },
+    {
+      "current_price": null,
+      "entry_asof": "2026-08-14",
+      "entry_price": 20.0,
+      "entry_timestamp": "2026-08-14T18:02:24-04:00",
+      "exit_asof": "2026-08-18",
+      "exit_price": 18.385000228881836,
+      "exit_reason": "gap abaixo do stop inicial",
+      "exit_timestamp": "2026-08-18T17:10:17-04:00",
+      "initial_stop": 18.559999465942383,
+      "mark_asof": "",
+      "mark_source": "",
+      "mark_timestamp_et": "",
+      "open_pnl": null,
+      "open_r": null,
+      "planned_risk_dollars": 69.12,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 48.0,
+      "status": "CLOSED",
+      "ticker": "USAR"
+    },
+    {
+      "current_price": 61.05,
+      "entry_asof": "2026-08-14",
+      "entry_price": 60.02,
+      "entry_timestamp": "2026-08-14T18:02:24-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 56.630001068115234,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": 20.6,
+      "open_r": 0.3038,
+      "planned_risk_dollars": 67.8,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 20.0,
+      "status": "OPEN",
+      "ticker": "VIRT"
+    },
+    {
+      "current_price": 12.8,
+      "entry_asof": "2026-08-17",
+      "entry_price": 13.2,
+      "entry_timestamp": "2026-08-17T16:12:51-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 12.270000457763672,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": -30.0,
+      "open_r": -0.4301,
+      "planned_risk_dollars": 69.75,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 75.0,
+      "status": "OPEN",
+      "ticker": "ASST"
+    },
+    {
+      "current_price": null,
+      "entry_asof": "2026-08-17",
+      "entry_price": 95.97,
+      "entry_timestamp": "2026-08-17T16:12:51-04:00",
+      "exit_asof": "2026-08-18",
+      "exit_price": 84.58999633789062,
+      "exit_reason": "stop inicial",
+      "exit_timestamp": "2026-08-18T17:10:17-04:00",
+      "initial_stop": 84.58999633789062,
+      "mark_asof": "",
+      "mark_source": "",
+      "mark_timestamp_et": "",
+      "open_pnl": null,
+      "open_r": null,
+      "planned_risk_dollars": 68.28,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 6.0,
+      "status": "CLOSED",
+      "ticker": "AXTI"
+    },
+    {
+      "current_price": 216.0,
+      "entry_asof": "2026-08-17",
+      "entry_price": 212.0,
+      "entry_timestamp": "2026-08-17T16:12:51-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 203.1800994873047,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": 28.0,
+      "open_r": 0.4535,
+      "planned_risk_dollars": 61.74,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 7.0,
+      "status": "OPEN",
+      "ticker": "RVMD"
+    },
+    {
+      "current_price": null,
+      "entry_asof": "2026-08-17",
+      "entry_price": 154.22,
+      "entry_timestamp": "2026-08-17T16:12:51-04:00",
+      "exit_asof": "2026-08-18",
+      "exit_price": 143.99000549316406,
+      "exit_reason": "stop inicial",
+      "exit_timestamp": "2026-08-18T17:10:17-04:00",
+      "initial_stop": 143.99000549316406,
+      "mark_asof": "",
+      "mark_source": "",
+      "mark_timestamp_et": "",
+      "open_pnl": null,
+      "open_r": null,
+      "planned_risk_dollars": 61.38,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 6.0,
+      "status": "CLOSED",
+      "ticker": "SMTC"
+    },
+    {
+      "current_price": 6.33,
+      "entry_asof": "2026-08-17",
+      "entry_price": 6.47,
+      "entry_timestamp": "2026-08-17T16:12:51-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 6.269999980926514,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": -48.86,
+      "open_r": -0.7,
+      "planned_risk_dollars": 69.8,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 349.0,
+      "status": "OPEN",
+      "ticker": "UGP"
+    },
+    {
+      "current_price": 2.21,
+      "entry_asof": "2026-08-18",
+      "entry_price": 2.21,
+      "entry_timestamp": "2026-08-18T17:10:17-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 2.0399999618530273,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": 0.0,
+      "open_r": 0.0,
+      "planned_risk_dollars": 69.87,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 411.0,
+      "status": "OPEN",
+      "ticker": "ALEC"
+    },
+    {
+      "current_price": 35.11,
+      "entry_asof": "2026-08-18",
+      "entry_price": 35.11,
+      "entry_timestamp": "2026-08-18T17:10:17-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 28.0,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": 0.0,
+      "open_r": 0.0,
+      "planned_risk_dollars": 63.99,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 9.0,
+      "status": "OPEN",
+      "ticker": "AMLX"
+    },
+    {
+      "current_price": 6.96,
+      "entry_asof": "2026-08-18",
+      "entry_price": 6.96,
+      "entry_timestamp": "2026-08-18T17:10:17-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 6.440000057220459,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": 0.0,
+      "open_r": 0.0,
+      "planned_risk_dollars": 69.68,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 134.0,
+      "status": "OPEN",
+      "ticker": "NUVB"
+    },
+    {
+      "current_price": 4.44,
+      "entry_asof": "2026-08-18",
+      "entry_price": 4.44,
+      "entry_timestamp": "2026-08-18T17:10:17-04:00",
+      "exit_asof": "",
+      "exit_price": null,
+      "exit_reason": "",
+      "exit_timestamp": "",
+      "initial_stop": 4.010000228881836,
+      "mark_asof": "2026-08-18",
+      "mark_source": "fechamento regular diário",
+      "mark_timestamp_et": "2026-08-18T17:10:17-04:00",
+      "open_pnl": 0.0,
+      "open_r": 0.0,
+      "planned_risk_dollars": 69.66,
+      "setup_name": "5DH_EOD_S470_DOL2M",
+      "shares": 162.0,
+      "status": "OPEN",
+      "ticker": "XOS"
+    }
+  ],
   "trade_metrics": {
-    "asof": "2026-08-18",
-    "closed_count": 8,
-    "expectancy_r": -1.046233932602291,
+    "active_setup": "5DH_EOD_S470_DOL2M",
+    "closed_count": 6,
+    "expectancy_r": -1.0616452434697212,
+    "legacy_closed_count": 2,
     "payoff": null,
     "profit_factor": 0.0,
-    "realized_r": -8.369871460818327,
+    "realized_pnl": -432.6500812530519,
+    "realized_r": -6.369871460818327,
+    "sample_status": "INSUFFICIENT",
     "source": "5dh_operations_ledger",
     "win_rate_pct": 0.0
   },
@@ -1535,6 +2084,9 @@
   const rows = Array.isArray(data.watchlist) ? data.watchlist : [];
   const positions = Array.isArray(data.open_positions) ? data.open_positions : [];
   const operations = Array.isArray(data.operations) ? data.operations : [];
+  const tradeCycles = Array.isArray(data.trade_cycles) ? data.trade_cycles : [];
+  const currentSetup = String(data.current_setup || data.config?.strategy || "");
+  const tradeMetrics = data.trade_metrics && typeof data.trade_metrics === "object" ? data.trade_metrics : {};
   const precloseAudit = data.preclose_audit && typeof data.preclose_audit === "object" ? data.preclose_audit : null;
   const isPreclose = String(data.phase || "").startsWith("PRÉ-FECHAMENTO");
   const $ = (id) => document.querySelector(id);
@@ -1556,7 +2108,7 @@
   $("#watchCount").textContent = text(data.summary?.watchlist_count, "0");
   $("#readyCount").textContent = text(data.summary?.candidate_count, "0");
   $("#entryCount").textContent = text(data.summary?.official_entries, "0");
-  $("#positionCount").textContent = text(data.summary?.open_positions, "0");
+  $("#currentRealizedR").textContent = Number.isFinite(Number(tradeMetrics.realized_r)) ? `${n(tradeMetrics.realized_r, 2)}R` : "—";
   if (isPreclose) {
     $("#watchMetricLabel").textContent = "Toques 5DH";
     $("#watchMetricHelp").textContent = "verde: todos os filtros passaram; compra no fechamento regular";
@@ -1604,165 +2156,79 @@
       <td>${n(r.rvol_tv, 2)}x</td><td>${n(r.avgvol10, 0)}</td></tr>`;
     }).join("") : '<tr><td colspan="11" class="empty">Nenhuma compra válida neste ciclo.</td></tr>';
   }
+  const finite = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
+  const valueClass = (value) => Number(value) > 0 ? "positive" : Number(value) < 0 ? "negative" : "";
+  const setupLabel = (setup) => setup === currentSetup ? "S470 atual" : setup === "UNKNOWN_LEGACY" ? "Sem versão" : "v1 legado";
+
   function allOperationsTable() {
-    const finite = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
-    const eventTime = (event) => `${text(event.asof)}|${text(event.timestamp_et)}|${text(event.event_id)}`;
-    const uniqueOperations = [...new Map(operations.map(event => [text(event.event_id), event])).values()];
-    const openKeys = new Set(positions.map(position =>
-      `${text(position.ticker).toUpperCase()}|${text(position.entry_asof)}|${finite(position.entry_price)}`
-    ));
-    const tradeKey = (trade) => `${trade.ticker.toUpperCase()}|${trade.entry_asof}|${trade.entry_price}`;
-    const entries = uniqueOperations.filter(event => String(event.event_type || "").toLowerCase() === "entry")
-      .sort((a, b) => eventTime(a).localeCompare(eventTime(b)));
-    const exits = uniqueOperations.filter(event => String(event.event_type || "").toLowerCase() === "exit")
-      .sort((a, b) => eventTime(a).localeCompare(eventTime(b)));
-    const trades = entries.map(event => ({
-      ticker: text(event.ticker), entry_asof: text(event.asof), entry_timestamp: text(event.timestamp_et),
-      entry_price: finite(event.entry_price), initial_stop: finite(event.initial_stop), shares: finite(event.shares),
-      planned_risk_dollars: finite(event.planned_risk_dollars), status: "OPEN", exit_asof: "", exit_price: null,
-      exit_reason: "", open_r: null, open_pnl: null,
-    }));
-    exits.forEach(event => {
-      const ticker = text(event.ticker).toUpperCase();
-      const entry = finite(event.entry_price);
-      const trade = [...trades].reverse().find(candidate =>
-        candidate.status === "OPEN" && candidate.ticker.toUpperCase() === ticker
-        && (entry === null || candidate.entry_price === null || Math.abs(candidate.entry_price - entry) < 0.000001)
-        && candidate.entry_asof <= text(event.asof)
-        && !openKeys.has(tradeKey(candidate))
-      );
-      if (!trade) return;
-      trade.status = "CLOSED";
-      trade.exit_asof = text(event.asof);
-      trade.exit_price = finite(event.exit_price);
-      trade.exit_reason = text(event.exit_reason, "Saída registrada");
-    });
-    positions.forEach(position => {
-      const ticker = text(position.ticker).toUpperCase();
-      const entry = finite(position.entry_price);
-      const trade = [...trades].reverse().find(candidate =>
-        candidate.status === "OPEN" && candidate.ticker.toUpperCase() === ticker
-        && candidate.entry_asof === text(position.entry_asof)
-        && (entry === null || candidate.entry_price === null || Math.abs(candidate.entry_price - entry) < 0.000001)
-      );
-      if (!trade) return;
-      trade.current_price = finite(position.current_price);
-      trade.open_r = finite(position.open_r);
-      trade.open_pnl = finite(position.open_pnl);
-    });
-    const ordered = trades.sort((a, b) =>
-      a.entry_asof.localeCompare(b.entry_asof) || a.entry_timestamp.localeCompare(b.entry_timestamp) || a.ticker.localeCompare(b.ticker)
+    const ordered = [...tradeCycles].sort((a, b) =>
+      text(a.entry_asof).localeCompare(text(b.entry_asof)) || text(a.entry_timestamp).localeCompare(text(b.entry_timestamp)) || text(a.ticker).localeCompare(text(b.ticker))
     );
     $("#allOperationsBody").innerHTML = ordered.length ? ordered.map(trade => {
-      const perShareRisk = trade.entry_price !== null && trade.initial_stop !== null ? trade.entry_price - trade.initial_stop : null;
-      const closedR = trade.status === "CLOSED" && trade.exit_price !== null && perShareRisk !== null && perShareRisk > 0
-        ? (trade.exit_price - trade.entry_price) / perShareRisk : null;
-      const closedPnl = trade.status === "CLOSED" && trade.exit_price !== null && trade.entry_price !== null && trade.shares !== null
-        ? (trade.exit_price - trade.entry_price) * trade.shares : null;
-      const resultR = trade.status === "CLOSED" ? closedR : trade.open_r;
-      const resultPnl = trade.status === "CLOSED" ? closedPnl : trade.open_pnl;
-      const markedPrice = trade.status === "CLOSED" ? trade.exit_price : trade.current_price;
-      const reason = trade.status === "CLOSED" ? trade.exit_reason : "Posição em aberto";
-      const valueClass = (value) => Number(value) > 0 ? "positive" : Number(value) < 0 ? "negative" : "";
+      const perShareRisk = finite(trade.entry_price) !== null && finite(trade.initial_stop) !== null ? finite(trade.entry_price) - finite(trade.initial_stop) : null;
+      const closedR = trade.status === "CLOSED" && finite(trade.exit_price) !== null && perShareRisk !== null && perShareRisk > 0
+        ? (finite(trade.exit_price) - finite(trade.entry_price)) / perShareRisk : null;
+      const closedPnl = trade.status === "CLOSED" && finite(trade.exit_price) !== null && finite(trade.entry_price) !== null && finite(trade.shares) !== null
+        ? (finite(trade.exit_price) - finite(trade.entry_price)) * finite(trade.shares) : null;
+      const isClosed = trade.status === "CLOSED";
+      const resultR = isClosed ? closedR : finite(trade.open_r);
+      const resultPnl = isClosed ? closedPnl : finite(trade.open_pnl);
+      const referencePrice = isClosed ? finite(trade.exit_price) : finite(trade.current_price);
+      const referenceDate = isClosed ? text(trade.exit_asof) : text(trade.mark_asof);
+      const reason = isClosed ? text(trade.exit_reason) : trade.status === "CORRECTED" ? text(trade.exit_reason) : "Posição em aberto";
+      const statusClass = trade.status === "OPEN" ? "entry" : trade.status === "CORRECTED" ? "exit" : "neutral";
+      const setupClass = trade.setup_name === currentSetup ? "entry" : "neutral";
       return `<tr><td>${esc(trade.entry_asof)}</td><td class="ticker">${esc(trade.ticker)}</td>
-        <td><span class="badge ${trade.status === "OPEN" ? "entry" : "neutral"}">${trade.status}</span></td>
-        <td>${money(trade.entry_price)}</td><td>${money(trade.initial_stop)}</td><td>${money(markedPrice)}</td><td>${esc(trade.exit_asof || "—")}</td>
-        <td class="${valueClass(resultR)}">${resultR === null ? "—" : `${n(resultR, 2)}R`}</td><td class="${valueClass(resultPnl)}">${money(resultPnl)}</td><td>${esc(reason)}</td></tr>`;
-    }).join("") : '<tr><td colspan="10" class="empty">Nenhuma operação registrada.</td></tr>';
+        <td><span class="badge ${setupClass}">${esc(setupLabel(trade.setup_name))}</span></td><td><span class="badge ${statusClass}">${esc(trade.status)}</span></td>
+        <td>${money(trade.entry_price)}</td><td>${money(trade.initial_stop)}</td><td>${money(referencePrice)}</td><td>${esc(referenceDate)}</td>
+        <td class="${valueClass(resultR)}">${resultR === null ? "—" : `${n(resultR, 2)}R`}</td><td class="${valueClass(resultPnl)}">${money(resultPnl)}</td><td class="reason">${esc(reason)}</td></tr>`;
+    }).join("") : '<tr><td colspan="11" class="empty">Nenhuma operação registrada.</td></tr>';
   }
+
   function openPositionMetrics() {
     const numeric = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
     const count = positions.length;
-    const pnl = positions.reduce((sum, p) => sum + numeric(p.open_pnl), 0);
-    const initialRisk = positions.reduce((sum, p) => sum + numeric(p.planned_risk_dollars), 0);
-    const markedExposure = positions.reduce((sum, p) => sum + numeric(p.current_price) * numeric(p.shares), 0);
+    const legacyCount = positions.filter(position => position.setup_name !== currentSetup).length;
+    const pnl = positions.reduce((sum, position) => sum + numeric(position.open_pnl), 0);
+    const initialRisk = positions.reduce((sum, position) => sum + numeric(position.planned_risk_dollars), 0);
+    const markedExposure = positions.reduce((sum, position) => sum + numeric(position.current_price) * numeric(position.shares), 0);
     const totalR = initialRisk > 0 ? pnl / initialRisk : null;
-    const valueClass = (value) => value > 0 ? "positive" : value < 0 ? "negative" : "";
+    const markedAsOf = [...new Set(positions.map(position => text(position.mark_asof, "")).filter(Boolean))];
+    $("#openMarksCaption").textContent = markedAsOf.length
+      ? `Exposição agregada: ${count} posições (${legacyCount} legado), marcada no fechamento regular de ${markedAsOf.join(", ")}.`
+      : `Exposição agregada: ${count} posições; marcação de preço indisponível.`;
     const metrics = [
-      ["Posições abertas", String(count), "Número de entradas oficiais ainda abertas no ledger paper."],
-      ["P&L aberto", money(pnl), "Lucro ou prejuízo não realizado, marcado pelo último preço disponível."],
-      ["R agregado", totalR === null ? "—" : `${n(totalR, 2)}R`, "P&L aberto total dividido pelo risco planejado inicial total. Não é expectativa nem resultado fechado."],
-      ["Risco inicial aberto", money(initialRisk), "Soma do risco planejado na entrada até o stop inicial. Não representa o risco atual após uma eventual mudança de stop."],
-      ["Exposição marcada", money(markedExposure), "Valor bruto atual das posições pelo último preço disponível; não desconta caixa, margem ou posições vendidas."],
+      ["Posições abertas", `${count} (${legacyCount} legado)`, "Entradas oficiais ainda abertas. Legado continua exposto na carteira, embora não entre na performance S470."],
+      ["R aberto", totalR === null ? "—" : `${n(totalR, 2)}R`, "P&L marcado total dividido pelo risco inicial total de todas as posições abertas. Não é resultado realizado."],
+      ["Risco inicial", money(initialRisk), "Soma do risco planejado até o stop inicial; é a referência de risco da carteira, não o risco após ajustes futuros de stop."],
+      ["Exposição marcada", money(markedExposure), "Valor bruto atual das posições pelo fechamento regular marcado. P&L individual permanece na tabela abaixo."],
     ];
-    $("#openPositionMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${index === 1 || index === 2 ? valueClass(index === 1 ? pnl : totalR ?? 0) : ""}">${value}</strong></article>`).join("");
+    $("#openPositionMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${index === 1 ? valueClass(totalR ?? 0) : ""}">${value}</strong></article>`).join("");
   }
-  function closedOperationResults() {
-    const finite = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
-    const eventTime = (event) => `${text(event.asof)}|${text(event.timestamp_et)}|${text(event.event_id)}`;
-    const uniqueOperations = [...new Map(operations.map(event => [text(event.event_id), event])).values()];
-    const openKeys = new Set(positions.map(position =>
-      `${text(position.ticker).toUpperCase()}|${text(position.entry_asof)}|${finite(position.entry_price)}`
-    ));
-    const tradeKey = (trade) => `${trade.ticker.toUpperCase()}|${trade.entry_asof}|${trade.entry_price}`;
-    const trades = uniqueOperations.filter(event => String(event.event_type || "").toLowerCase() === "entry")
-      .sort((a, b) => eventTime(a).localeCompare(eventTime(b)))
-      .map(event => ({
-        ticker: text(event.ticker), entry_asof: text(event.asof), entry_price: finite(event.entry_price),
-        initial_stop: finite(event.initial_stop), shares: finite(event.shares), status: "OPEN", exit_price: null,
-      }));
-    uniqueOperations.filter(event => String(event.event_type || "").toLowerCase() === "exit")
-      .sort((a, b) => eventTime(a).localeCompare(eventTime(b))).forEach(event => {
-        const ticker = text(event.ticker).toUpperCase();
-        const entry = finite(event.entry_price);
-        const trade = [...trades].reverse().find(candidate =>
-          candidate.status === "OPEN" && candidate.ticker.toUpperCase() === ticker
-          && (entry === null || candidate.entry_price === null || Math.abs(candidate.entry_price - entry) < 0.000001)
-          && candidate.entry_asof <= text(event.asof)
-          && !openKeys.has(tradeKey(candidate))
-        );
-        if (!trade) return;
-        trade.status = "CLOSED";
-        trade.exit_price = finite(event.exit_price);
-      });
-    return trades.filter(trade => {
-      const riskPerShare = trade.entry_price !== null && trade.initial_stop !== null ? trade.entry_price - trade.initial_stop : null;
-      return trade.status === "CLOSED" && trade.exit_price !== null && riskPerShare !== null && riskPerShare > 0;
-    }).map(trade => (trade.exit_price - trade.entry_price) / (trade.entry_price - trade.initial_stop));
-  }
+
   function closedTradeMetrics() {
-    const metric = data.trade_metrics;
-    if (metric && typeof metric === "object") {
-      const finiteMetric = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
-      const closedCount = Number(metric.closed_count || 0);
-      const winRate = finiteMetric(metric.win_rate_pct);
-      const expectancy = finiteMetric(metric.expectancy_r);
-      const totalR = finiteMetric(metric.realized_r);
-      const pf = metric.profit_factor === "infinity" ? Infinity : finiteMetric(metric.profit_factor);
-      const payoff = finiteMetric(metric.payoff);
-      const valueClass = (value) => value > 0 ? "positive" : value < 0 ? "negative" : "";
-      const metrics = [
-        ["Operações fechadas", String(closedCount), "Saídas conciliadas diariamente a partir do ledger 5DH."],
-        ["Win rate", winRate === null ? "—" : pct(winRate), "Percentual das operações encerradas com resultado acima de 0R."],
-        ["Expectancy", expectancy === null ? "—" : `${n(expectancy, 2)}R`, "Média de R por operação encerrada."],
-        ["Profit factor", pf === null ? "—" : pf === Infinity ? "∞" : n(pf, 2), "Soma dos ganhos em R dividida pelo valor absoluto das perdas em R."],
-        ["Payoff", payoff === null ? "—" : n(payoff, 2), "Ganho médio em R dividido pela perda média em R."],
-        ["R realizado", totalR === null ? "—" : `${n(totalR, 2)}R`, "Soma dos R das operações encerradas."],
-      ];
-      $("#closedTradeMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${index === 2 || index === 5 ? valueClass(index === 2 ? expectancy ?? 0 : totalR ?? 0) : ""}">${value}</strong></article>`).join("");
-      return;
+    const closedCount = Number(tradeMetrics.closed_count || 0);
+    const totalR = finite(tradeMetrics.realized_r);
+    const totalPnl = finite(tradeMetrics.realized_pnl);
+    const expectancy = finite(tradeMetrics.expectancy_r);
+    const pf = tradeMetrics.profit_factor === "infinity" ? Infinity : finite(tradeMetrics.profit_factor);
+    $("#performanceCaption").textContent = `Regra: ${setupLabel(currentSetup)} (${currentSetup || "não informada"}). Histórico v1: ${Number(tradeMetrics.legacy_closed_count || 0)} operações fechadas, excluídas destes cards.`;
+    const warning = $("#performanceWarning");
+    if (tradeMetrics.sample_status === "INSUFFICIENT") {
+      warning.className = "sample-warning visible";
+      warning.textContent = `AMOSTRA INSUFICIENTE — ${closedCount} operação(ões) fechada(s); são necessárias pelo menos 30 para inferência inicial.`;
+    } else {
+      warning.className = "sample-warning";
+      warning.textContent = "";
     }
-    const closed = closedOperationResults();
-    const wins = closed.filter(r => r > 0), losses = closed.filter(r => r < 0);
-    const totalR = closed.reduce((sum, r) => sum + r, 0);
-    const grossWin = wins.reduce((sum, r) => sum + r, 0);
-    const grossLoss = losses.reduce((sum, r) => sum + r, 0);
-    const avgWin = wins.length ? grossWin / wins.length : null;
-    const avgLoss = losses.length ? grossLoss / losses.length : null;
-    const pf = grossLoss < 0 ? grossWin / Math.abs(grossLoss) : grossWin > 0 ? Infinity : null;
-    const payoff = avgWin !== null && avgLoss !== null ? avgWin / Math.abs(avgLoss) : null;
-    const winRate = closed.length ? 100 * wins.length / closed.length : null;
-    const expectancy = closed.length ? totalR / closed.length : null;
-    const valueClass = (value) => value > 0 ? "positive" : value < 0 ? "negative" : "";
     const metrics = [
-      ["Operações fechadas", String(closed.length), "Saídas com entrada, stop e preço de saída válidos no ledger 5DH."],
-      ["Win rate", winRate === null ? "—" : pct(winRate), "Percentual das operações encerradas com resultado acima de 0R. Nunca deve ser lido isoladamente."],
-      ["Expectancy", expectancy === null ? "—" : `${n(expectancy, 2)}R`, "Média de R por operação encerrada. É a métrica central da qualidade do sistema."],
-      ["Profit factor", pf === null ? "—" : pf === Infinity ? "∞" : n(pf, 2), "Soma dos ganhos em R dividida pelo valor absoluto da soma das perdas em R."],
-      ["Payoff", payoff === null ? "—" : n(payoff, 2), "Ganho médio em R dividido pela perda média em R. Complementa o win rate."],
-      ["R realizado", closed.length ? `${n(totalR, 2)}R` : "—", "Soma dos R das operações encerradas; exclui posições abertas e não equivale a retorno percentual da conta."],
+      ["Amostra fechada", String(closedCount), "Número de ciclos fechados da regra S470 atual. Operações v1 não entram nesta amostra."],
+      ["R realizado", totalR === null ? "—" : `${n(totalR, 2)}R`, "Soma dos R das operações fechadas da regra atual; posições abertas são excluídas."],
+      ["P&L realizado", money(totalPnl), "Soma de (saída − entrada) × quantidade nos trades fechados da regra atual."],
+      ["Expectancy", expectancy === null ? "—" : `${n(expectancy, 2)}R`, "Média de R por operação fechada da regra atual."],
+      ["Profit factor", pf === null ? "—" : pf === Infinity ? "∞" : n(pf, 2), "Ganhos brutos em R divididos pelo valor absoluto das perdas em R da regra atual."],
     ];
-    $("#closedTradeMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${index === 2 || index === 5 ? valueClass(index === 2 ? expectancy ?? 0 : totalR) : ""}">${value}</strong></article>`).join("");
+    $("#closedTradeMetrics").innerHTML = metrics.map(([label, value, tooltip], index) => `<article class="position-metric"><span class="metric-label" tabindex="0" data-tooltip="${esc(tooltip)}">${esc(label)}</span><strong class="${[1, 2, 3].includes(index) ? valueClass(index === 1 ? totalR ?? 0 : index === 2 ? totalPnl ?? 0 : expectancy ?? 0) : ""}">${value}</strong></article>`).join("");
   }
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
