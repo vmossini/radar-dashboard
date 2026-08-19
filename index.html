@@ -46,7 +46,7 @@
 
       <section class="panel">
         <div class="panel-head"><div><h2 id="watchHeading">Compras válidas 5DH</h2></div><input id="search" type="search" placeholder="Filtrar ticker" /></div>
-        <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Setor</th><th>Market Cap</th><th>Status</th><th>Último</th><th>Gatilho</th><th>Distância</th><th>Score</th><th>Dia</th><th>RVOL TV</th><th>AvgVol10</th></tr></thead><tbody id="watchBody"></tbody></table></div>
+        <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Setor</th><th>Market Cap</th><th>Status</th><th>Último</th><th>Valor posição</th><th>Gatilho</th><th>Distância</th><th>Score</th><th>Dia</th><th>RVOL TV</th><th>AvgVol10</th></tr></thead><tbody id="watchBody"></tbody></table></div>
       </section>
 
       <section class="panel">
@@ -61,7 +61,7 @@
         <div class="position-metrics-head"><h3>Carteira em aberto</h3></div>
         <div id="openPositionMetrics" class="position-metrics" aria-label="Indicadores das posições em aberto"></div>
         <div class="position-metrics-head"><h3>Operações</h3></div>
-        <div class=table-wrap><table><thead><tr><th>Data de entrada</th><th>Ticker</th><th>Status</th><th>Entrada</th><th>Stop inicial</th><th>Preço ref.</th><th>Data ref.</th><th>R</th><th>P&amp;L</th><th>Motivo</th></tr></thead><tbody id=allOperationsBody></tbody></table></div>
+        <div class=table-wrap><table><thead><tr><th>Data de entrada</th><th>Ticker</th><th>Status</th><th>Entrada</th><th>Stop inicial</th><th>Valor posição</th><th>Preço ref.</th><th>Data ref.</th><th>R</th><th>P&amp;L</th><th>Motivo</th></tr></thead><tbody id=allOperationsBody></tbody></table></div>
       </section>
 
     </main>
@@ -2190,12 +2190,23 @@
       const statusLabel = buyAtClose ? "PRONTO P/ FECHAMENTO" : r.status;
       const statusClass = buyAtClose || r.status === "ENTRADA OFICIAL" ? "entry" : r.status === "PRONTO" ? "ready" : "neutral";
       return `<tr><td class="ticker">${esc(r.ticker)}</td><td>${esc(r.sector || "Não informado")}</td><td>${marketCap(r.market_cap)}</td><td><span class="badge ${statusClass}">${esc(statusLabel)}</span></td>
-      <td>${money(r.last_price)}</td><td>${money(r.trigger_price)}</td><td>${pct(r.distance_to_trigger_pct)}</td><td>${n(r.position_score, 2)}</td><td class="${Number(r.day_change_pct) >= 0 ? "positive" : "negative"}">${pct(r.day_change_pct)}</td>
+      <td>${money(r.last_price)}</td><td>${money(projectedPositionValue(r))}</td><td>${money(r.trigger_price)}</td><td>${pct(r.distance_to_trigger_pct)}</td><td>${n(r.position_score, 2)}</td><td class="${Number(r.day_change_pct) >= 0 ? "positive" : "negative"}">${pct(r.day_change_pct)}</td>
       <td>${n(r.rvol_tv, 2)}x</td><td>${n(r.avgvol10, 0)}</td></tr>`;
-    }).join("") : '<tr><td colspan="11" class="empty">Nenhuma compra válida neste ciclo.</td></tr>';
+    }).join("") : '<tr><td colspan="12" class="empty">Nenhuma compra válida neste ciclo.</td></tr>';
   }
   const finite = (value) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? Number(value) : null;
   const valueClass = (value) => Number(value) > 0 ? "positive" : Number(value) < 0 ? "negative" : "";
+  function projectedPositionValue(row) {
+    const price = finite(row.last_price);
+    const stop = finite(row.day_low);
+    const reference = data.config?.portfolio_reference || {};
+    const equity = finite(reference.reference_equity);
+    const riskPct = finite(reference.risk_per_position_pct);
+    const capPct = finite(reference.max_notional_per_ticker_pct);
+    if (price === null || stop === null || equity === null || riskPct === null || capPct === null || price <= stop) return null;
+    const shares = Math.floor(Math.min((equity * riskPct / 100) / (price - stop), (equity * capPct / 100) / price));
+    return shares >= 1 ? shares * price : null;
+  }
   function allOperationsTable() {
     const ordered = [...tradeCycles].sort((a, b) =>
       text(a.entry_asof).localeCompare(text(b.entry_asof)) || text(a.entry_timestamp).localeCompare(text(b.entry_timestamp)) || text(a.ticker).localeCompare(text(b.ticker))
@@ -2211,13 +2222,15 @@
       const resultPnl = isClosed ? closedPnl : finite(trade.open_pnl);
       const referencePrice = isClosed ? finite(trade.exit_price) : finite(trade.current_price);
       const referenceDate = isClosed ? text(trade.exit_asof) : text(trade.mark_asof);
+      const positionValue = finite(trade.entry_price) !== null && finite(trade.shares) !== null
+        ? finite(trade.entry_price) * finite(trade.shares) : null;
       const reason = isClosed ? text(trade.exit_reason) : trade.status === "CORRECTED" ? text(trade.exit_reason) : "Posição em aberto";
       const statusClass = trade.status === "OPEN" ? "entry" : trade.status === "CORRECTED" ? "exit" : "neutral";
       return `<tr><td>${esc(trade.entry_asof)}</td><td class="ticker">${esc(trade.ticker)}</td>
         <td><span class="badge ${statusClass}">${esc(trade.status)}</span></td>
-        <td>${money(trade.entry_price)}</td><td>${money(trade.initial_stop)}</td><td>${money(referencePrice)}</td><td>${esc(referenceDate)}</td>
+        <td>${money(trade.entry_price)}</td><td>${money(trade.initial_stop)}</td><td>${money(positionValue)}</td><td>${money(referencePrice)}</td><td>${esc(referenceDate)}</td>
         <td class="${valueClass(resultR)}">${resultR === null ? "—" : `${n(resultR, 2)}R`}</td><td class="${valueClass(resultPnl)}">${money(resultPnl)}</td><td class="reason">${esc(reason)}</td></tr>`;
-    }).join("") : '<tr><td colspan="10" class="empty">Nenhuma operação registrada para o sistema atual.</td></tr>';
+    }).join("") : '<tr><td colspan="11" class="empty">Nenhuma operação registrada para o sistema atual.</td></tr>';
   }
 
   function climaxTopTable() {
