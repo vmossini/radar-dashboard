@@ -2091,16 +2091,17 @@
   const isPreclose = String(data.phase || "").startsWith("PRÉ-FECHAMENTO");
   const $ = (id) => document.querySelector(id);
   const text = (v, fallback = "—") => v === null || v === undefined || v === "" ? fallback : String(v);
-  const n = (v, digits = 2) => Number.isFinite(Number(v)) ? Number(v).toLocaleString("pt-BR", { maximumFractionDigits: digits, minimumFractionDigits: digits }) : "—";
-  const money = (v) => Number.isFinite(Number(v)) ? `US$ ${n(v, 2)}` : "—";
+  const hasNumber = (v) => v !== null && v !== undefined && v !== "" && Number.isFinite(Number(v));
+  const n = (v, digits = 2) => hasNumber(v) ? Number(v).toLocaleString("pt-BR", { maximumFractionDigits: digits, minimumFractionDigits: digits }) : "—";
+  const money = (v) => hasNumber(v) ? `US$ ${n(v, 2)}` : "—";
   const marketCap = (v) => {
+    if (!hasNumber(v)) return "—";
     const value = Number(v);
-    if (!Number.isFinite(value)) return "—";
     if (value >= 1e9) return `US$ ${n(value / 1e9, 2)} bi`;
     if (value >= 1e6) return `US$ ${n(value / 1e6, 1)} mi`;
     return money(value);
   };
-  const pct = (v) => Number.isFinite(Number(v)) ? `${n(v, 2)}%` : "—";
+  const pct = (v) => hasNumber(v) ? `${n(v, 2)}%` : "—";
   const esc = (v) => text(v).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]));
 
   $("#generatedAt").textContent = text(data.generated_at);
