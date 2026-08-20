@@ -49,6 +49,11 @@
         <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Setor</th><th>Market Cap</th><th>Status</th><th>Último</th><th>Valor posição</th><th>Gatilho</th><th>Distância</th><th>Score</th><th>Dia</th><th>RVOL TV</th><th>AvgVol10</th></tr></thead><tbody id="watchBody"></tbody></table></div>
       </section>
 
+      <section id="blockedTouchesPanel" class="panel" hidden>
+        <div class="panel-head"><div><h2>Toques bloqueados</h2></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Setor</th><th>Market Cap</th><th>Último</th><th>Gatilho</th><th>Motivo do bloqueio</th></tr></thead><tbody id="blockedTouchesBody"></tbody></table></div>
+      </section>
+
       <section class="panel">
         <div class="panel-head"><div><h2>Climax top</h2></div></div>
         <div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Abertura</th><th>Entrada</th><th>Fech. D-1</th><th>Fech. D-11</th><th>+50% entrada</th><th>+25% em 10 pregões</th><th>Gap +3%</th><th>Saída</th></tr></thead><tbody id="climaxTopBody"></tbody></table></div>
@@ -66,6 +71,94 @@
 
     </main>
     <script>window.RADAR_DATA = {
+  "blocked_touches": [
+    {
+      "above_sma20": true,
+      "above_sma50": true,
+      "asof": "2026-08-20",
+      "avg_dollarvol10": 5108394.0,
+      "avgvol10": 3121420.0,
+      "base3": true,
+      "close_confirmed": false,
+      "data_quality": "alpaca_iex_live+nasdaq_consolidated",
+      "day_change_pct": 26.7123,
+      "day_high": 3.04,
+      "day_low": 1.65,
+      "day_open": 3.04,
+      "distance_to_trigger_pct": -15.1351,
+      "failure_reason": "market_cap_below_50m",
+      "history_class": "FULL_252",
+      "history_sessions": 319,
+      "intraday_touch": true,
+      "last_price": 1.85,
+      "low_252": 1.04,
+      "market_cap": 14754870.96,
+      "market_cap_checked_at": "2026-08-19 regular close; reconstructed 2026-08-20T16:00:12-04:00",
+      "market_cap_source": "Yahoo FastInfo implied shares × fechamento D-1",
+      "name": "HUIZ",
+      "official": false,
+      "phase": "FECHAMENTO REGULAR — LEITURA FINAL",
+      "position_score": 185.8975,
+      "preclose_candidate": false,
+      "prior_5d_high": 1.56,
+      "prior_asof": "2026-08-19",
+      "prior_close": 1.46,
+      "qqq_regime": true,
+      "ready": false,
+      "reason": "Market cap no fechamento de 2026-08-19: US$ 14.8M, abaixo do mínimo de US$ 50M.",
+      "rvol_tv": 25.623,
+      "sector": "Financial Services",
+      "sma20": 1.3038,
+      "sma50": 1.2661,
+      "status": "TOQUE BLOQUEADO — NÃO OPERAR",
+      "ticker": "HUIZ",
+      "trigger_price": 1.57,
+      "updated_at_et": "2026-08-20T16:00:12-04:00"
+    },
+    {
+      "above_sma20": true,
+      "above_sma50": true,
+      "asof": "2026-08-20",
+      "avg_dollarvol10": 29819213.0,
+      "avgvol10": 20537030.0,
+      "base3": true,
+      "close_confirmed": false,
+      "data_quality": "alpaca_iex_live+nasdaq_consolidated",
+      "day_change_pct": 38.806,
+      "day_high": 2.36,
+      "day_low": 1.5,
+      "day_open": 1.535,
+      "distance_to_trigger_pct": -8.0645,
+      "failure_reason": "market_cap_below_50m",
+      "history_class": "FULL_252",
+      "history_sessions": 319,
+      "intraday_touch": true,
+      "last_price": 1.86,
+      "low_252": 0.82,
+      "market_cap": 10107134.92,
+      "market_cap_checked_at": "2026-08-19 regular close; reconstructed 2026-08-20T16:00:12-04:00",
+      "market_cap_source": "Yahoo FastInfo implied shares × fechamento D-1",
+      "name": "BIVI",
+      "official": false,
+      "phase": "FECHAMENTO REGULAR — LEITURA FINAL",
+      "position_score": 94.1176,
+      "preclose_candidate": false,
+      "prior_5d_high": 1.7,
+      "prior_asof": "2026-08-19",
+      "prior_close": 1.34,
+      "qqq_regime": true,
+      "ready": false,
+      "reason": "Market cap no fechamento de 2026-08-19: US$ 10.1M, abaixo do mínimo de US$ 50M.",
+      "rvol_tv": 2.2902,
+      "sector": "Healthcare",
+      "sma20": 1.4131,
+      "sma50": 1.672,
+      "status": "TOQUE BLOQUEADO — NÃO OPERAR",
+      "ticker": "BIVI",
+      "trigger_price": 1.71,
+      "updated_at_et": "2026-08-20T16:00:12-04:00"
+    }
+  ],
   "config": {
     "description": "S470 5-day high closing breakout with prior AvgDollarVol10 >= USD 2M. The USD 50M market-cap rule below is a separately labelled live NanocapGuard50 risk overlay, not part of the historical S470 baseline. The dashboard is a signal and paper-operation ledger; it never sends broker orders.",
     "entry_rule": "Close >= highest high of the prior 5 completed sessions + USD 0.01, and close >= 4% above prior close",
@@ -1118,7 +1211,7 @@
     "candidate_count": 0,
     "official_entries": 0,
     "open_positions": 10,
-    "watchlist_count": 2
+    "watchlist_count": 0
   },
   "system": "5DH_EOD_S470_DOL2M",
   "trade_cycles": [
@@ -1503,98 +1596,12 @@
     "source": "5dh_operations_ledger",
     "win_rate_pct": 0.0
   },
-  "watchlist": [
-    {
-      "above_sma20": true,
-      "above_sma50": true,
-      "asof": "2026-08-20",
-      "avg_dollarvol10": 5108394.0,
-      "avgvol10": 3121420.0,
-      "base3": true,
-      "close_confirmed": false,
-      "data_quality": "alpaca_iex_live+nasdaq_consolidated",
-      "day_change_pct": 26.7123,
-      "day_high": 3.04,
-      "day_low": 1.65,
-      "day_open": 3.04,
-      "distance_to_trigger_pct": -15.1351,
-      "failure_reason": "market_cap_below_50m",
-      "history_class": "FULL_252",
-      "history_sessions": 319,
-      "intraday_touch": true,
-      "last_price": 1.85,
-      "low_252": 1.04,
-      "market_cap": 14754870.96,
-      "market_cap_checked_at": "2026-08-19 regular close; reconstructed 2026-08-20T16:00:12-04:00",
-      "market_cap_source": "Yahoo FastInfo implied shares × fechamento D-1",
-      "name": "HUIZ",
-      "official": false,
-      "phase": "FECHAMENTO REGULAR — LEITURA FINAL",
-      "position_score": 185.8975,
-      "preclose_candidate": false,
-      "prior_5d_high": 1.56,
-      "prior_asof": "2026-08-19",
-      "prior_close": 1.46,
-      "qqq_regime": true,
-      "ready": false,
-      "reason": "Market cap no fechamento de 2026-08-19: US$ 14.8M, abaixo do mínimo de US$ 50M.",
-      "rvol_tv": 25.623,
-      "sector": "Financial Services",
-      "sma20": 1.3038,
-      "sma50": 1.2661,
-      "status": "TOQUE BLOQUEADO — NÃO OPERAR",
-      "ticker": "HUIZ",
-      "trigger_price": 1.57,
-      "updated_at_et": "2026-08-20T16:00:12-04:00"
-    },
-    {
-      "above_sma20": true,
-      "above_sma50": true,
-      "asof": "2026-08-20",
-      "avg_dollarvol10": 29819213.0,
-      "avgvol10": 20537030.0,
-      "base3": true,
-      "close_confirmed": false,
-      "data_quality": "alpaca_iex_live+nasdaq_consolidated",
-      "day_change_pct": 38.806,
-      "day_high": 2.36,
-      "day_low": 1.5,
-      "day_open": 1.535,
-      "distance_to_trigger_pct": -8.0645,
-      "failure_reason": "market_cap_below_50m",
-      "history_class": "FULL_252",
-      "history_sessions": 319,
-      "intraday_touch": true,
-      "last_price": 1.86,
-      "low_252": 0.82,
-      "market_cap": 10107134.92,
-      "market_cap_checked_at": "2026-08-19 regular close; reconstructed 2026-08-20T16:00:12-04:00",
-      "market_cap_source": "Yahoo FastInfo implied shares × fechamento D-1",
-      "name": "BIVI",
-      "official": false,
-      "phase": "FECHAMENTO REGULAR — LEITURA FINAL",
-      "position_score": 94.1176,
-      "preclose_candidate": false,
-      "prior_5d_high": 1.7,
-      "prior_asof": "2026-08-19",
-      "prior_close": 1.34,
-      "qqq_regime": true,
-      "ready": false,
-      "reason": "Market cap no fechamento de 2026-08-19: US$ 10.1M, abaixo do mínimo de US$ 50M.",
-      "rvol_tv": 2.2902,
-      "sector": "Healthcare",
-      "sma20": 1.4131,
-      "sma50": 1.672,
-      "status": "TOQUE BLOQUEADO — NÃO OPERAR",
-      "ticker": "BIVI",
-      "trigger_price": 1.71,
-      "updated_at_et": "2026-08-20T16:00:12-04:00"
-    }
-  ]
+  "watchlist": []
 };</script>
     <script>(() => {
   const data = window.RADAR_DATA || {};
   const rows = Array.isArray(data.watchlist) ? data.watchlist : [];
+  const blockedTouches = Array.isArray(data.blocked_touches) ? data.blocked_touches : [];
   const positions = Array.isArray(data.open_positions) ? data.open_positions : [];
   const tradeCycles = Array.isArray(data.trade_cycles) ? data.trade_cycles : [];
   const currentSetup = String(data.current_setup || data.config?.strategy || "");
@@ -1638,8 +1645,15 @@
       statusEl.className = "scan-status ok";
       statusEl.textContent = `SEM TOQUES - DADOS VÁLIDOS (${text(precloseAudit.evaluated, "0")} papéis avaliados)`;
     } else if (outcome === "CANDIDATES_FOUND" || outcome === "TOUCHES_FOUND") {
-      statusEl.className = "scan-status candidates";
-      statusEl.textContent = `TOQUES ENCONTRADOS - DADOS VÁLIDOS (${text(precloseAudit.touch_count ?? precloseAudit.candidate_count, "0")})`;
+      const candidateCount = Number(precloseAudit.candidate_count || 0);
+      const touchCount = text(precloseAudit.touch_count ?? precloseAudit.candidate_count, "0");
+      if (candidateCount > 0) {
+        statusEl.className = "scan-status candidates";
+        statusEl.textContent = `CANDIDATOS VÁLIDOS (${candidateCount}) — ${touchCount} toques no total`;
+      } else {
+        statusEl.className = "scan-status warning";
+        statusEl.textContent = `TOQUES BLOQUEADOS — NENHUMA COMPRA VÁLIDA (${touchCount})`;
+      }
     } else if (outcome === "INCONCLUSIVE_PARTIAL_DATA") {
       statusEl.className = "scan-status warning";
       statusEl.textContent = "DADOS PARCIAIS - RESULTADO INCONCLUSIVO";
@@ -1672,6 +1686,14 @@
     if (price === null || stop === null || equity === null || riskPct === null || capPct === null || price <= stop) return null;
     const shares = Math.floor(Math.min((equity * riskPct / 100) / (price - stop), (equity * capPct / 100) / price));
     return shares >= 1 ? shares * price : null;
+  }
+  function blockedTouchesTable() {
+    const panel = $("#blockedTouchesPanel");
+    panel.hidden = blockedTouches.length === 0;
+    $("#blockedTouchesBody").innerHTML = blockedTouches.map(row => `<tr>
+      <td class="ticker">${esc(row.ticker)}</td><td>${esc(row.sector || "Não informado")}</td><td>${marketCap(row.market_cap)}</td>
+      <td>${money(row.last_price)}</td><td>${money(row.trigger_price)}</td><td class="reason">${esc(row.reason || row.failure_reason)}</td>
+    </tr>`).join("");
   }
   function allOperationsTable() {
     const ordered = [...tradeCycles].sort((a, b) =>
@@ -1749,6 +1771,7 @@
   }
   $("#search").addEventListener("input", e => watchTable(e.target.value));
   watchTable();
+  blockedTouchesTable();
   climaxTopTable();
   allOperationsTable();
   openPositionMetrics();
