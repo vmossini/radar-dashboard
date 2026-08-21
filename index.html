@@ -3565,7 +3565,7 @@
   }
   function allOperationsTable() {
     const ordered = [...tradeCycles].sort((a, b) =>
-      text(a.entry_asof).localeCompare(text(b.entry_asof)) || text(a.entry_timestamp).localeCompare(text(b.entry_timestamp)) || text(a.ticker).localeCompare(text(b.ticker))
+      text(b.entry_asof).localeCompare(text(a.entry_asof)) || text(b.entry_timestamp).localeCompare(text(a.entry_timestamp)) || text(a.ticker).localeCompare(text(b.ticker))
     );
     $("#allOperationsBody").innerHTML = ordered.length ? ordered.map(trade => {
       const perShareRisk = finite(trade.entry_price) !== null && finite(trade.initial_stop) !== null ? finite(trade.entry_price) - finite(trade.initial_stop) : null;
