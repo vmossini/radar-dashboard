@@ -79,13 +79,14 @@
     <script>window.RADAR_DATA = {
   "blocked_touches": [],
   "config": {
-    "description": "S470 5-day high closing breakout. The historical strategy identifier is retained for ledger continuity, but AvgDollarVol10 is no longer an eligibility filter. The USD 50M market-cap rule below is a separately labelled live NanocapGuard50 risk overlay, not part of the historical S470 baseline. The dashboard is a signal and paper-operation ledger; it never sends broker orders.",
+    "description": "S470 5-day high closing breakout with AvgDollarVol10 >= USD 2M. The USD 50M market-cap rule below is a separately labelled live NanocapGuard50 risk overlay, not part of the historical S470 baseline. The dashboard is a signal and paper-operation ledger; it never sends broker orders.",
     "entry_rule": "Close >= highest high of the prior 5 completed sessions + USD 0.01, and close >= 4% above prior close",
     "exit_rule": "Initial-stop breach has priority; otherwise close below SMA20. Additional climax exit: at the regular-session open, schedule a market-on-close exit only if open >= 1.50 × entry, prior regular close >= 1.25 × the close ten completed sessions earlier, and open >= 1.03 × prior regular close.",
     "filters": {
       "base_days_without_5dh": 3,
       "market_cap_contract": "Prior-close NanocapGuard50 only: the source's implied shares are repriced at the D-1 regular close (Yahoo FastInfo primary; same-run Nasdaq screener fallback). Current-session gaps and intraday moves never alter this gate. Both source market cap and source price must be positive or the gate fails closed. It is an execution-risk guard, not a historical S470 alpha filter.",
       "min_52w_low_multiple": 1.7,
+      "min_avg_dollar_volume10": 2000000,
       "min_avg_volume10": 1000000,
       "min_day_gain_pct": 4.0,
       "min_market_cap": 50000000,
@@ -112,7 +113,7 @@
       "display_policy": "Only provisionally valid pre-close candidates or official post-close buys; near-trigger names are hidden",
       "official_signals": "PositionScore descending = 1000 * (Close / prior 5-session high - 1)"
     },
-    "rule_revision": "2026-08-27_remove_dollarvol10",
+    "rule_revision": "2026-08-27_restore_dollarvol10",
     "short_history_policy": {
       "challenger_low_rule": "Close >= 1.70 * lowest adjusted low since listing",
       "challenger_min_sessions": 50,
