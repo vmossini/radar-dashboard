@@ -4964,7 +4964,12 @@
   if (precloseAudit) {
     const statusEl = $("#scanStatus");
     const outcome = text(precloseAudit.scan_outcome, "DATA_FAILURE");
-    if (outcome === "NO_CANDIDATES" || outcome === "NO_TOUCHES") {
+    // Render the current payload correctly as well: older pre-close payloads
+    // may still carry PARTIAL from an irrelevant volume recheck.
+    if (outcome === "REGIME_BLOCKED" || precloseAudit.qqq_regime === false) {
+      statusEl.className = "scan-status warning";
+      statusEl.textContent = "REGIME QQQ BLOQUEADO — SEM NOVAS ENTRADAS";
+    } else if (outcome === "NO_CANDIDATES" || outcome === "NO_TOUCHES") {
       statusEl.className = "scan-status ok";
       statusEl.textContent = `SEM TOQUES - DADOS VÁLIDOS (${text(precloseAudit.evaluated, "0")} papéis avaliados)`;
     } else if (outcome === "CANDIDATES_FOUND" || outcome === "TOUCHES_FOUND") {
