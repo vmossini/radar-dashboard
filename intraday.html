@@ -54,8 +54,8 @@
       if(actual && Number(price)<5) failures.push('Preço < US$5');
       if(r.adv20!=null && Number(r.adv20)<500000) failures.push('ADV20 < US$500 mil');
       const indicative=!actual && price!=null && Number(price)<5;
-      const status=failures.length?failures.join(' · '):indicative?'D-1 < US$5 · indicativo':r.adv20==null?'Filtros pendentes':r.filters_pass?'Filtros OK':r.status_label;
-      const statusColor=failures.length?'red':r.filters_pass?'green':'amber';
+      const status=failures.length?failures.join(' · '):indicative?'ALERTA: D-1 < US$5 · abertura pendente':r.adv20==null?'Filtros pendentes':r.filters_pass?'Filtros OK':r.status_label;
+      const statusColor=failures.length||indicative?'red':r.filters_pass?'green':'amber';
       return `<tr><td><a class="ticker" target="_blank" rel="noopener noreferrer" href="https://www.tradingview.com/chart/?symbol=${encodeURIComponent(r.ticker)}">${esc(r.ticker)}</a></td><td>${esc(r.company)}</td><td title="${esc(priceBasis)}">${money(price)}</td><td><span class="badge ${statusColor}">${esc(status)}</span></td><td><span class="badge ${color}">${esc(r.status_label)}</span></td><td title="${esc(r.accession)}">${esc(eventWhen(r.event_at_et))}</td></tr>`;
     }).join('') : '<tr><td class="empty" colspan="6">Nenhum evento nesta visualização.</td></tr>';
   }
