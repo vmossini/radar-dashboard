@@ -1,0 +1,13 @@
+{
+  "schema_version": "ep_premarket_health_v1",
+  "status": "SUCCESS",
+  "mode": "INTRADAY_MANUAL_RECOVERY",
+  "session": "2026-09-28",
+  "updated_at": "2026-09-28T10:16:36.910897-04:00",
+  "message": "Eventos de hoje recuperados e auditados manualmente; rotina independente antes da abertura instalada.",
+  "quality": {
+    "event_count": 8,
+    "visible_count": 2
+  },
+  "retry_interval_minutes": 5
+}
