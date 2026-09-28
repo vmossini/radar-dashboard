@@ -1,13 +1,45 @@
 {
   "schema_version": "ep_premarket_health_v1",
   "status": "SUCCESS",
-  "mode": "INTRADAY_MANUAL_RECOVERY",
+  "mode": "INTRADAY_COVERAGE_REVALIDATION",
   "session": "2026-09-28",
-  "updated_at": "2026-09-28T10:16:36.910897-04:00",
-  "message": "Eventos de hoje recuperados e auditados manualmente; rotina independente antes da abertura instalada.",
+  "updated_at": "2026-09-28T13:41:24.582895-04:00",
+  "message": "Coleta manual validada nas fontes declaradas; cotacoes ausentes permanecem sinalizadas.",
   "quality": {
-    "event_count": 8,
-    "visible_count": 2
+    "event_count": 24,
+    "visible_count": 24,
+    "collection_status": "COMPLETE",
+    "quote_pending_count": 4,
+    "source_status": [
+      {
+        "source": "NASDAQ_EARNINGS_CALENDAR",
+        "status": "SUCCESS"
+      },
+      {
+        "source": "SEC_EXCHANGE_DIRECTORY",
+        "status": "SUCCESS"
+      },
+      {
+        "source": "TRADINGVIEW_REPORTED_EARNINGS",
+        "status": "SUCCESS"
+      },
+      {
+        "source": "SEC_EFTS",
+        "status": "SUCCESS"
+      },
+      {
+        "source": "SEC_EFTS",
+        "status": "SUCCESS"
+      },
+      {
+        "source": "SEC_EFTS",
+        "status": "SUCCESS"
+      },
+      {
+        "source": "SEC_FILINGS_VALIDATION",
+        "status": "SUCCESS"
+      }
+    ]
   },
   "retry_interval_minutes": null,
   "schedule_policy": "OPEN_MINUS_30_AND_5_MINUTES",
