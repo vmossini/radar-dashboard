@@ -9374,7 +9374,7 @@
   if (isPreMarket) {
     $("#watchMetricLabel").textContent = "Sinais de hoje";
     $("#watchMetricHelp").textContent = "aguardando primeira leitura";
-    $("#watchHeading").textContent = "Radar 5DH de hoje — aguardando pregão";
+    $("#watchHeading").textContent = "Radar 5DH de hoje — aguardando primeira leitura";
   } else if (isPreclose) {
     $("#watchMetricLabel").textContent = "Toques 5DH";
     $("#watchMetricHelp").textContent = regimeBlocked
@@ -9414,7 +9414,7 @@
       }
     } else if (outcome === "AWAITING_SESSION") {
       statusEl.className = "scan-status warning";
-      statusEl.textContent = "PREGÃO AINDA NÃO AVALIADO — SEM SINAIS DE HOJE";
+      statusEl.textContent = "RADAR AINDA NÃO AVALIADO HOJE — SEM SINAIS CONFIRMADOS";
     } else if (outcome === "INCONCLUSIVE_PARTIAL_DATA") {
       statusEl.className = "scan-status warning";
       statusEl.textContent = "DADOS PARCIAIS - RESULTADO INCONCLUSIVO";
