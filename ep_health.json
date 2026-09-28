@@ -9,5 +9,11 @@
     "event_count": 8,
     "visible_count": 2
   },
-  "retry_interval_minutes": 5
+  "retry_interval_minutes": null,
+  "schedule_policy": "OPEN_MINUS_30_AND_5_MINUTES",
+  "scheduled_times_et": [
+    "09:00",
+    "09:25"
+  ],
+  "schedule_changed_at": "2026-09-28T11:47:16.407386-03:00"
 }
