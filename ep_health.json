@@ -1,77 +1,11 @@
 {
     "schema_version":  "ep_premarket_health_v1",
-    "status":  "SUCCESS",
+    "status":  "FAILED",
     "session":  "2026-09-29",
-    "updated_at":  "2026-09-29T10:01:33.5516471-03:00",
+    "updated_at":  "2026-09-29T10:02:40.3678265-03:00",
     "open_time":  "2026-09-29T09:30:00-04:00",
-    "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado.",
-    "quality":  {
-                    "status":  "REFERENCE_QUOTES_PARTIAL",
-                    "event_count":  32,
-                    "watchlist_count":  32,
-                    "verified_events":  27,
-                    "pending_events":  5,
-                    "reference_quotes_available":  31,
-                    "reference_quotes_missing":  1,
-                    "note":  "Preços D-1 são indicativos; sua ausência não remove eventos nem autoriza operações.",
-                    "collection_status":  "COMPLETE",
-                    "complete_market_coverage":  false,
-                    "source_status":  [
-                                          {
-                                              "source":  "NASDAQ_EARNINGS_CALENDAR",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "SEC_EXCHANGE_DIRECTORY",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "TRADINGVIEW_REPORTED_EARNINGS",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "SEC_EFTS",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "SEC_EFTS",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "SEC_EFTS",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "SEC_FILINGS_VALIDATION",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          }
-                                      ],
-                    "collection_counts":  {
-                                              "collected":  32,
-                                              "published":  32,
-                                              "known_excluded":  34,
-                                              "builder_excluded":  0,
-                                              "upstream_exclusion_rows":  34,
-                                              "confirmed_reports":  22,
-                                              "confirmed_releases":  5,
-                                              "entry_eligible":  4,
-                                              "pending":  5,
-                                              "rejected_documents":  72,
-                                              "previously_observed_missing":  0,
-                                              "default_visible":  10,
-                                              "screening_failed":  22,
-                                              "screening_pending":  10,
-                                              "screening_pass":  0
-                                          },
-                    "collection_note":  "Execução da coleta validada; cobertura parcial de uma fonte não significa ausência de eventos."
-                },
+    "message":  "Lista validada localmente, mas publicacao ainda nao foi confirmada.",
+    "quality":  null,
     "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
     "scheduled_slots_et":  [
                                {
