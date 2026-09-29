@@ -1,51 +1,90 @@
 {
-  "schema_version": "ep_premarket_health_v1",
-  "status": "SUCCESS",
-  "mode": "INTRADAY_COVERAGE_REVALIDATION",
-  "session": "2026-09-28",
-  "updated_at": "2026-09-28T13:41:24.582895-04:00",
-  "message": "Coleta manual validada nas fontes declaradas; cotacoes ausentes permanecem sinalizadas.",
-  "quality": {
-    "event_count": 24,
-    "visible_count": 24,
-    "collection_status": "COMPLETE",
-    "quote_pending_count": 4,
-    "source_status": [
-      {
-        "source": "NASDAQ_EARNINGS_CALENDAR",
-        "status": "SUCCESS"
-      },
-      {
-        "source": "SEC_EXCHANGE_DIRECTORY",
-        "status": "SUCCESS"
-      },
-      {
-        "source": "TRADINGVIEW_REPORTED_EARNINGS",
-        "status": "SUCCESS"
-      },
-      {
-        "source": "SEC_EFTS",
-        "status": "SUCCESS"
-      },
-      {
-        "source": "SEC_EFTS",
-        "status": "SUCCESS"
-      },
-      {
-        "source": "SEC_EFTS",
-        "status": "SUCCESS"
-      },
-      {
-        "source": "SEC_FILINGS_VALIDATION",
-        "status": "SUCCESS"
-      }
-    ]
-  },
-  "retry_interval_minutes": null,
-  "schedule_policy": "OPEN_MINUS_30_AND_5_MINUTES",
-  "scheduled_times_et": [
-    "09:00",
-    "09:25"
-  ],
-  "schedule_changed_at": "2026-09-28T11:47:16.407386-03:00"
+    "schema_version":  "ep_premarket_health_v1",
+    "status":  "SUCCESS",
+    "session":  "2026-09-29",
+    "updated_at":  "2026-09-29T10:01:33.5516471-03:00",
+    "open_time":  "2026-09-29T09:30:00-04:00",
+    "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado.",
+    "quality":  {
+                    "status":  "REFERENCE_QUOTES_PARTIAL",
+                    "event_count":  32,
+                    "watchlist_count":  32,
+                    "verified_events":  27,
+                    "pending_events":  5,
+                    "reference_quotes_available":  31,
+                    "reference_quotes_missing":  1,
+                    "note":  "Preços D-1 são indicativos; sua ausência não remove eventos nem autoriza operações.",
+                    "collection_status":  "COMPLETE",
+                    "complete_market_coverage":  false,
+                    "source_status":  [
+                                          {
+                                              "source":  "NASDAQ_EARNINGS_CALENDAR",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "SEC_EXCHANGE_DIRECTORY",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "TRADINGVIEW_REPORTED_EARNINGS",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "SEC_EFTS",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "SEC_EFTS",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "SEC_EFTS",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "SEC_FILINGS_VALIDATION",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          }
+                                      ],
+                    "collection_counts":  {
+                                              "collected":  32,
+                                              "published":  32,
+                                              "known_excluded":  34,
+                                              "builder_excluded":  0,
+                                              "upstream_exclusion_rows":  34,
+                                              "confirmed_reports":  22,
+                                              "confirmed_releases":  5,
+                                              "entry_eligible":  4,
+                                              "pending":  5,
+                                              "rejected_documents":  72,
+                                              "previously_observed_missing":  0,
+                                              "default_visible":  10,
+                                              "screening_failed":  22,
+                                              "screening_pending":  10,
+                                              "screening_pass":  0
+                                          },
+                    "collection_note":  "Execução da coleta validada; cobertura parcial de uma fonte não significa ausência de eventos."
+                },
+    "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
+    "scheduled_slots_et":  [
+                               {
+                                   "slot":  "INITIAL",
+                                   "scheduled_at":  "2026-09-29T09:00:00-04:00"
+                               },
+                               {
+                                   "slot":  "REVALIDATION",
+                                   "scheduled_at":  "2026-09-29T09:25:00-04:00"
+                               }
+                           ],
+    "slot":  "INITIAL",
+    "scheduled_at":  "2026-09-29T09:00:00-04:00",
+    "next_scheduled_at":  "2026-09-29T09:25:00-04:00",
+    "retry_interval_minutes":  null
 }
