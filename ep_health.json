@@ -2,9 +2,9 @@
     "schema_version":  "ep_premarket_health_v1",
     "status":  "FAILED",
     "session":  "2026-10-06",
-    "updated_at":  "2026-10-06T10:23:59.5102307-03:00",
+    "updated_at":  "2026-10-06T10:29:20.8771527-03:00",
     "open_time":  "2026-10-06T09:30:00-04:00",
-    "message":  "Coleta/auditoria EP falhou apos 8 tentativa(s); o ultimo painel datado foi preservado.",
+    "message":  "Coleta/auditoria EP falhou apos 2 tentativa(s); o ultimo painel datado foi preservado.",
     "quality":  null,
     "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
     "scheduled_slots_et":  [
@@ -17,8 +17,8 @@
                                    "scheduled_at":  "2026-10-06T09:25:00-04:00"
                                }
                            ],
-    "slot":  "INITIAL",
-    "scheduled_at":  "2026-10-06T09:00:00-04:00",
-    "next_scheduled_at":  "2026-10-06T09:25:00-04:00",
+    "slot":  "REVALIDATION",
+    "scheduled_at":  "2026-10-06T09:25:00-04:00",
+    "next_scheduled_at":  null,
     "retry_interval_minutes":  null
 }
