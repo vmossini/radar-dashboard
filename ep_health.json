@@ -1,18 +1,18 @@
 {
     "schema_version":  "ep_premarket_health_v1",
     "status":  "SUCCESS",
-    "session":  "2026-10-07",
-    "updated_at":  "2026-10-07T10:26:40.1593315-03:00",
-    "open_time":  "2026-10-07T09:30:00-04:00",
+    "session":  "2026-10-08",
+    "updated_at":  "2026-10-08T10:02:55.6000434-03:00",
+    "open_time":  "2026-10-08T09:30:00-04:00",
     "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado.",
     "quality":  {
-                    "status":  "REFERENCE_QUOTES_PARTIAL",
-                    "event_count":  23,
-                    "watchlist_count":  23,
-                    "verified_events":  21,
-                    "pending_events":  2,
-                    "reference_quotes_available":  22,
-                    "reference_quotes_missing":  1,
+                    "status":  "REFERENCE_QUOTES_COMPLETE",
+                    "event_count":  26,
+                    "watchlist_count":  26,
+                    "verified_events":  22,
+                    "pending_events":  4,
+                    "reference_quotes_available":  26,
+                    "reference_quotes_missing":  0,
                     "note":  "Preços D-1 são indicativos; sua ausência não remove eventos nem autoriza operações.",
                     "collection_status":  "COMPLETE",
                     "complete_market_coverage":  false,
@@ -54,29 +54,29 @@
                                           }
                                       ],
                     "collection_counts":  {
-                                              "collected":  23,
-                                              "published":  23,
-                                              "known_excluded":  25,
+                                              "collected":  26,
+                                              "published":  26,
+                                              "known_excluded":  19,
                                               "builder_excluded":  0,
-                                              "upstream_exclusion_rows":  25,
+                                              "upstream_exclusion_rows":  19,
                                               "confirmed_reports":  4,
-                                              "confirmed_releases":  5,
-                                              "entry_eligible":  2,
-                                              "pending":  2,
-                                              "rejected_documents":  309,
+                                              "confirmed_releases":  9,
+                                              "entry_eligible":  3,
+                                              "pending":  4,
+                                              "rejected_documents":  207,
                                               "previously_observed_missing":  0,
-                                              "default_visible":  10,
-                                              "radar_pass":  10,
-                                              "radar_pending":  6,
-                                              "radar_failed":  7,
+                                              "default_visible":  9,
+                                              "radar_pass":  9,
+                                              "radar_pending":  5,
+                                              "radar_failed":  12,
                                               "radar_observation":  5,
-                                              "historical_visible":  10,
+                                              "historical_visible":  9,
                                               "extended_visible":  5,
-                                              "historical_match":  14,
-                                              "documentary_events":  17,
+                                              "historical_match":  15,
+                                              "documentary_events":  18,
                                               "screening_observation":  0,
-                                              "screening_failed":  10,
-                                              "screening_pending":  13,
+                                              "screening_failed":  8,
+                                              "screening_pending":  18,
                                               "screening_pass":  0
                                           },
                     "collection_note":  "Execução da coleta validada; cobertura parcial de uma fonte não significa ausência de eventos."
@@ -85,15 +85,15 @@
     "scheduled_slots_et":  [
                                {
                                    "slot":  "INITIAL",
-                                   "scheduled_at":  "2026-10-07T09:00:00-04:00"
+                                   "scheduled_at":  "2026-10-08T09:00:00-04:00"
                                },
                                {
                                    "slot":  "REVALIDATION",
-                                   "scheduled_at":  "2026-10-07T09:25:00-04:00"
+                                   "scheduled_at":  "2026-10-08T09:25:00-04:00"
                                }
                            ],
-    "slot":  "REVALIDATION",
-    "scheduled_at":  "2026-10-07T09:25:00-04:00",
-    "next_scheduled_at":  null,
+    "slot":  "INITIAL",
+    "scheduled_at":  "2026-10-08T09:00:00-04:00",
+    "next_scheduled_at":  "2026-10-08T09:25:00-04:00",
     "retry_interval_minutes":  null
 }
