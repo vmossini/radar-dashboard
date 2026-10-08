@@ -2,7 +2,7 @@
     "schema_version":  "ep_premarket_health_v1",
     "status":  "SUCCESS",
     "session":  "2026-10-08",
-    "updated_at":  "2026-10-08T10:02:55.6000434-03:00",
+    "updated_at":  "2026-10-08T10:26:41.2869799-03:00",
     "open_time":  "2026-10-08T09:30:00-04:00",
     "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado.",
     "quality":  {
@@ -63,7 +63,7 @@
                                               "confirmed_releases":  9,
                                               "entry_eligible":  3,
                                               "pending":  4,
-                                              "rejected_documents":  207,
+                                              "rejected_documents":  220,
                                               "previously_observed_missing":  0,
                                               "default_visible":  9,
                                               "radar_pass":  9,
@@ -92,8 +92,8 @@
                                    "scheduled_at":  "2026-10-08T09:25:00-04:00"
                                }
                            ],
-    "slot":  "INITIAL",
-    "scheduled_at":  "2026-10-08T09:00:00-04:00",
-    "next_scheduled_at":  "2026-10-08T09:25:00-04:00",
+    "slot":  "REVALIDATION",
+    "scheduled_at":  "2026-10-08T09:25:00-04:00",
+    "next_scheduled_at":  null,
     "retry_interval_minutes":  null
 }
