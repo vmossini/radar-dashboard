@@ -2,5 +2,6 @@
   "build_id": "2026-10-08T09:36:09.627869-04:00",
   "trade_date": "2026-10-08",
   "data_status": "PARTIAL",
-  "system": "EP_LONG_SHORT"
+  "system": "EP_LONG_SHORT",
+  "html_sha256": "225c06786b6b0a57129da93b6a1c3bd2b07a3536648700ec92d09ff3fbefa7d0"
 }

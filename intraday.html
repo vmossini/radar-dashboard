@@ -172,14 +172,21 @@
     return zone?Date.parse(text+zone.replace('GMT','')):NaN;
   }
   const healthStorageKey='ep-last-failed-health';
-  let lastHealthFailure=null,latestHealth=null;
+  const publicationStorageKey='ep-last-verified-publication';
+  let lastHealthFailure=null,lastVerifiedPublication=null,latestHealth=null,freshnessSequence=0;
   try{lastHealthFailure=JSON.parse(sessionStorage.getItem(healthStorageKey)||'null');}catch(_){/* storage may be unavailable for a local file */}
+  try{lastVerifiedPublication=JSON.parse(sessionStorage.getItem(publicationStorageKey)||'null');}catch(_){/* a fresh public proof is still required */}
   function keepHealthFailure(value){
     lastHealthFailure=value;
     try{if(value)sessionStorage.setItem(healthStorageKey,JSON.stringify(value));else sessionStorage.removeItem(healthStorageKey);}catch(_){/* in-memory warning remains active */}
   }
+  function keepPublicationProof(value){
+    lastVerifiedPublication=value;
+    try{sessionStorage.setItem(publicationStorageKey,JSON.stringify(value));}catch(_){/* the verified proof remains in memory */}
+  }
   async function freshness(){
-    const note=$('freshness'),now=new Date();
+    const note=$('freshness'),now=new Date(),sequence=++freshnessSequence;
+    let currentVersion=null,currentHealth=null;
     const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
     const dateLabel=value=>String(value).split('-').reverse().join('/');
     const sessionRelation=d.session<today?'sessão histórica':d.session===today?'sessão de hoje':'próximo pregão';
@@ -190,6 +197,22 @@
     if(sourceFailure||['PARTIAL','UNAVAILABLE'].includes(d.collection_coverage?.status))messages.push('Coleta incompleta: há fontes indisponíveis.');
     const et=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(now).map(part=>[part.type,part.value]));
     const clockLabel=instant=>new Intl.DateTimeFormat('pt-BR',{timeZone:'America/New_York',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date(instant));
+    const auditInstant=value=>typeof value==='string' && /^\d{4}-\d{2}-\d{2}T\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|[+-]\d\d:\d\d)$/.test(value)?eventInstant(value):NaN;
+    const verifiedPublication=value=>{
+      if(d.session!==today || value?.session!==today || value?.status!=='SUCCESS' || value?.publication_status!=='VERIFIED')return null;
+      if(value.build_id!==d.build_id || currentVersion?.build_id!==d.build_id)return null;
+      if(currentVersion.session && currentVersion.session!==today || currentVersion.trade_date && currentVersion.trade_date!==today)return null;
+      const digest=/^[a-fA-F0-9]{64}$/;
+      if(typeof value.html_sha256!=='string' || typeof currentVersion.html_sha256!=='string' || !digest.test(value.html_sha256) || !digest.test(currentVersion.html_sha256) || value.html_sha256.toLowerCase()!==currentVersion.html_sha256.toLowerCase())return null;
+      const instant=auditInstant(value.public_verified_at);
+      if(!Number.isFinite(instant) || instant>now.getTime())return null;
+      const proofDate=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(instant));
+      return proofDate===today?value:null;
+    };
+    const coversFailure=(proof,failure)=>{
+      const failedAt=auditInstant(failure?.updated_at),verifiedAt=auditInstant(proof?.public_verified_at);
+      return proof?.session===failure?.session && Number.isFinite(failedAt) && Number.isFinite(verifiedAt) && verifiedAt>=failedAt;
+    };
     const healthSchedule=()=>{
       const health=latestHealth?.session===today?latestHealth:lastHealthFailure?.session===today?lastHealthFailure:null;
       const entries=Array.isArray(health?.scheduled_slots_et)?health.scheduled_slots_et:[];
@@ -220,17 +243,22 @@
     };
     let versionMessage='';
     const show=()=>{
-      // A later successful manual collection can supersede a failed scheduled run.
-      // Prefer the collection time; merely rebuilding old events must not clear it.
-      const snapshotAt=eventInstant(d.event_generated_at_et||d.generated_at),failureAt=eventInstant(lastHealthFailure?.updated_at);
-      if(d.session===today && lastHealthFailure?.session===today && Number.isFinite(snapshotAt) && Number.isFinite(failureAt) && snapshotAt>failureAt)keepHealthFailure(null);
+      if(sequence!==freshnessSequence)return;
+      // Recovery is an explicit audit proof bound to this page and the fresh
+      // version sidecar. A new build/collection timestamp is never recovery.
+      const proof=verifiedPublication(lastVerifiedPublication);
+      if(lastHealthFailure?.session===today && proof && coversFailure(proof,lastHealthFailure))keepHealthFailure(null);
       const schedule=healthSchedule(),failed=lastHealthFailure?.session===today;
       $('scheduleStamp').textContent='Rodadas antes da abertura: '+clockLabel(schedule.initialAt)+' e '+clockLabel(schedule.revalidationAt)+' ET';
       const referenceDates=[...new Set(candidates.map(row=>row.reference_asof).filter(Boolean))].join(', ');
       $('eventStamp').title='Eventos coletados: '+eventWhen(d.event_generated_at_et)+' · Apresentação: '+when(d.presentation_generated_at||d.generated_at)+' · Geração original dos dados: '+when(d.generated_at)+(referenceDates?' · Referências D−1: '+referenceDates:'')+' · '+$('scheduleStamp').textContent;
-      const failureMessage=failed?'A atualização EP antes da abertura de '+dateLabel(today)+' falhou. A lista desta sessão ainda não foi confirmada pela rotina. '+nextRound(schedule):'';
+      const cause=String(lastHealthFailure?.message||'').trim();
+      const causeText=cause?' Motivo: '+cause.replace(/[.\s]+$/,'')+'.':'';
+      const stage=String(lastHealthFailure?.failed_stage||'').toUpperCase();
+      const failureMessage=failed?(stage==='PUBLICATION'?'A publicação EP de '+dateLabel(today)+' não foi confirmada pela rotina.':stage==='COLLECTION'?'A coleta EP de '+dateLabel(today)+' falhou.':stage==='VALIDATION'?'A validação dos dados EP de '+dateLabel(today)+' falhou.':'A atualização EP antes da abertura de '+dateLabel(today)+' falhou.')+causeText+' '+nextRound(schedule):'';
+      const proofMessage=!proof && currentHealth?.session===today && currentHealth.status==='SUCCESS'?'Confirmação pública pendente: o status recebido não comprova esta versão e seu hash auditado.':!proof && currentHealth?.session===today && currentHealth.status==='PUBLICATION_PENDING'?'Publicação EP em processamento; aguardando confirmação auditada desta versão no site.':!failed && !proof && currentHealth?.session===today && ['RUNNING','RETRYING','PENDING'].includes(currentHealth.status)?'Atualização EP em andamento; confirmação pública pendente.':'';
       const missingSlot=slotWarning(schedule);
-      note.textContent=[...messages,missingSlot,failureMessage,versionMessage].filter(Boolean).join(' ');
+      note.textContent=[...messages,missingSlot,failureMessage,proofMessage,versionMessage].filter(Boolean).join(' ');
       note.hidden=!note.textContent;note.className=failed?'notice error':'notice';
       note.title=failed?String(lastHealthFailure.message||''):'';
     };
@@ -238,20 +266,29 @@
     await Promise.allSettled([
       (async()=>{
         const response=await fetch('./intraday_version.json?v='+Date.now(),{cache:'no-store'});
-        if(response.ok){const version=await response.json();if(version.build_id!==d.build_id)versionMessage='Uma versão mais recente foi publicada. Recarregue a página.';show();}
+        if(response.ok){currentVersion=await response.json();if(currentVersion.build_id!==d.build_id)versionMessage='Uma versão mais recente foi publicada. Recarregue a página.';}
       })(),
       (async()=>{
         const response=await fetch('./ep_health.json?v='+Date.now(),{cache:'no-store'});
         if(!response.ok)return;
         const health=await response.json(),status=String(health.status??health.runstatus??'').toUpperCase();
         if(health.session!==today)return;
-        latestHealth=health;
-        if(status==='FAILED')keepHealthFailure({session:today,message:String(health.message||'').slice(0,300),updated_at:health.updated_at,
-          schedule_policy:health.schedule_policy,scheduled_slots_et:health.scheduled_slots_et,slot:health.slot,scheduled_at:health.scheduled_at,next_scheduled_at:health.next_scheduled_at});
-        else if(status==='SUCCESS')keepHealthFailure(null);
-        show();
+        currentHealth={...health,status};
       })(),
     ]);
+    if(sequence!==freshnessSequence)return;
+    if(currentHealth){
+      latestHealth=currentHealth;
+      const success=verifiedPublication(currentHealth),previous=verifiedPublication(lastVerifiedPublication);
+      if(success && (!previous || eventInstant(success.public_verified_at)>=eventInstant(previous.public_verified_at)))keepPublicationProof({session:success.session,status:'SUCCESS',publication_status:'VERIFIED',build_id:success.build_id,html_sha256:success.html_sha256,public_verified_at:success.public_verified_at});
+      if(currentHealth.status==='FAILED'){
+        const proof=verifiedPublication(lastVerifiedPublication),incomingAt=eventInstant(currentHealth.updated_at),previousAt=eventInstant(lastHealthFailure?.updated_at);
+        const older=lastHealthFailure?.session===today && Number.isFinite(incomingAt) && Number.isFinite(previousAt) && incomingAt<previousAt;
+        if(!coversFailure(proof,currentHealth) && !older)keepHealthFailure({session:today,message:String(currentHealth.message||'').slice(0,600),updated_at:currentHealth.updated_at,failed_stage:currentHealth.failed_stage,
+          schedule_policy:currentHealth.schedule_policy,scheduled_slots_et:currentHealth.scheduled_slots_et,slot:currentHealth.slot,scheduled_at:currentHealth.scheduled_at,next_scheduled_at:currentHealth.next_scheduled_at});
+      }
+    }
+    show();
   }
   freshness();setInterval(freshness,60000);
 })();
