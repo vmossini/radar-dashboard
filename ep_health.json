@@ -1,24 +1,40 @@
 {
-    "schema_version":  "ep_premarket_health_v1",
-    "status":  "FAILED",
-    "session":  "2026-10-08",
-    "updated_at":  "2026-10-08T10:27:57.0313035-03:00",
-    "open_time":  "2026-10-08T09:30:00-04:00",
-    "message":  "Lista validada localmente, mas publicacao ainda nao foi confirmada.",
-    "quality":  null,
-    "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
-    "scheduled_slots_et":  [
-                               {
-                                   "slot":  "INITIAL",
-                                   "scheduled_at":  "2026-10-08T09:00:00-04:00"
-                               },
-                               {
-                                   "slot":  "REVALIDATION",
-                                   "scheduled_at":  "2026-10-08T09:25:00-04:00"
-                               }
-                           ],
-    "slot":  "REVALIDATION",
-    "scheduled_at":  "2026-10-08T09:25:00-04:00",
-    "next_scheduled_at":  null,
-    "retry_interval_minutes":  null
+  "schema_version": "ep_premarket_health_v2",
+  "status": "SUCCESS",
+  "session": "2026-10-08",
+  "updated_at": "2026-10-08T18:38:24.236436+00:00",
+  "open_time": "2026-10-08T09:30:00-04:00",
+  "message": "Lista validada localmente e publicacao confirmada para o build atual.",
+  "quality": "PARTIAL",
+  "schedule_policy": "OPEN_MINUS_30_AND_5_MINUTES",
+  "scheduled_slots_et": [
+    {
+      "slot": "INITIAL",
+      "scheduled_at": "2026-10-08T09:00:00-04:00"
+    },
+    {
+      "slot": "REVALIDATION",
+      "scheduled_at": "2026-10-08T09:25:00-04:00"
+    }
+  ],
+  "slot": "REVALIDATION",
+  "scheduled_at": "2026-10-08T09:25:00-04:00",
+  "next_scheduled_at": null,
+  "retry_interval_minutes": null,
+  "last_failure": {
+    "status": "FAILED",
+    "failed_stage": "PUBLICATION",
+    "message": "Lista validada localmente, mas publicacao ainda nao foi confirmada.",
+    "updated_at": "2026-10-08T10:27:57.0313035-03:00",
+    "session": "2026-10-08",
+    "build_id": null,
+    "recovered_by": "CURRENT_LOCAL_RAW_PUBLIC_AUDIT"
+  },
+  "failed_stage": null,
+  "publication_status": "VERIFIED",
+  "build_id": "2026-10-08T09:36:09.627869-04:00",
+  "html_sha256": "225c06786b6b0a57129da93b6a1c3bd2b07a3536648700ec92d09ff3fbefa7d0",
+  "public_verified_at": "2026-10-08T18:38:22.208256+00:00",
+  "public_verified_at_basis": "RELEASE_AUDIT_RECEIPT_MTIME_UTC",
+  "data_quality": "PARTIAL"
 }
