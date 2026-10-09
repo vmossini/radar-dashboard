@@ -1,114 +1,125 @@
 {
-    "schema_version":  "ep_premarket_health_v2",
-    "status":  "PUBLICATION_PENDING",
-    "failed_stage":  null,
-    "collection_status":  "COMPLETE",
-    "publication_status":  "PENDING",
-    "build_id":  "2026-10-09T09:00:59.281113-04:00",
-    "html_sha256":  "d6931cb46049c710389814cd81897963243820954ab61f0eb0b77c56fb370f5c",
-    "public_verified_at":  null,
-    "session":  "2026-10-09",
-    "updated_at":  "2026-10-09T10:01:36.2218214-03:00",
-    "open_time":  "2026-10-09T09:30:00-04:00",
-    "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.",
-    "quality":  {
-                    "status":  "REFERENCE_QUOTES_PARTIAL",
-                    "event_count":  16,
-                    "watchlist_count":  16,
-                    "verified_events":  16,
-                    "pending_events":  0,
-                    "reference_quotes_available":  15,
-                    "reference_quotes_missing":  1,
-                    "note":  "Preços D-1 são indicativos; sua ausência não remove eventos nem autoriza operações.",
-                    "collection_status":  "COMPLETE",
-                    "complete_market_coverage":  false,
-                    "source_status":  [
-                                          {
-                                              "source":  "NASDAQ_EARNINGS_CALENDAR",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "SEC_EXCHANGE_DIRECTORY",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "TRADINGVIEW_REPORTED_EARNINGS",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "SEC_EFTS",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "SEC_EFTS",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "SEC_EFTS",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          },
-                                          {
-                                              "source":  "SEC_FILINGS_VALIDATION",
-                                              "status":  "SUCCESS",
-                                              "error":  null
-                                          }
-                                      ],
-                    "collection_counts":  {
-                                              "collected":  16,
-                                              "published":  16,
-                                              "known_excluded":  17,
-                                              "builder_excluded":  0,
-                                              "upstream_exclusion_rows":  17,
-                                              "confirmed_reports":  4,
-                                              "confirmed_releases":  1,
-                                              "entry_eligible":  2,
-                                              "pending":  0,
-                                              "rejected_documents":  213,
-                                              "previously_observed_missing":  0,
-                                              "default_visible":  8,
-                                              "radar_pass":  8,
-                                              "radar_pending":  4,
-                                              "radar_failed":  4,
-                                              "radar_observation":  3,
-                                              "historical_visible":  8,
-                                              "extended_visible":  3,
-                                              "historical_match":  10,
-                                              "documentary_events":  12,
-                                              "screening_observation":  0,
-                                              "screening_failed":  5,
-                                              "screening_pending":  11,
-                                              "screening_pass":  0
-                                          },
-                    "collection_note":  "Execução da coleta validada; cobertura parcial de uma fonte não significa ausência de eventos."
-                },
-    "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
-    "scheduled_slots_et":  [
-                               {
-                                   "slot":  "INITIAL",
-                                   "scheduled_at":  "2026-10-09T09:00:00-04:00"
-                               },
-                               {
-                                   "slot":  "REVALIDATION",
-                                   "scheduled_at":  "2026-10-09T09:25:00-04:00"
-                               }
-                           ],
-    "slot":  "INITIAL",
-    "scheduled_at":  "2026-10-09T09:00:00-04:00",
-    "next_scheduled_at":  "2026-10-09T09:25:00-04:00",
-    "retry_interval_minutes":  null,
-    "last_failure":  {
-                         "status":  "FAILED",
-                         "failed_stage":  "PUBLICATION",
-                         "message":  "Lista validada localmente, mas publicacao ainda nao foi confirmada.",
-                         "updated_at":  "2026-10-08T10:27:57.0313035-03:00",
-                         "session":  "2026-10-08",
-                         "build_id":  null,
-                         "recovered_by":  "CURRENT_LOCAL_RAW_PUBLIC_AUDIT"
-                     }
+  "schema_version": "ep_premarket_health_v2",
+  "status": "SUCCESS",
+  "failed_stage": null,
+  "collection_status": "COMPLETE",
+  "publication_status": "VERIFIED",
+  "build_id": "2026-10-09T09:00:59.281113-04:00",
+  "html_sha256": "d6931cb46049c710389814cd81897963243820954ab61f0eb0b77c56fb370f5c",
+  "public_verified_at": "2026-10-09T13:03:20.502836+00:00",
+  "session": "2026-10-09",
+  "updated_at": "2026-10-09T13:03:22.881999+00:00",
+  "open_time": "2026-10-09T09:30:00-04:00",
+  "message": "Lista validada localmente e publicacao confirmada para o build atual.",
+  "quality": {
+    "status": "REFERENCE_QUOTES_PARTIAL",
+    "event_count": 16,
+    "watchlist_count": 16,
+    "verified_events": 16,
+    "pending_events": 0,
+    "reference_quotes_available": 15,
+    "reference_quotes_missing": 1,
+    "note": "Preços D-1 são indicativos; sua ausência não remove eventos nem autoriza operações.",
+    "collection_status": "COMPLETE",
+    "complete_market_coverage": false,
+    "source_status": [
+      {
+        "source": "NASDAQ_EARNINGS_CALENDAR",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "source": "SEC_EXCHANGE_DIRECTORY",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "source": "TRADINGVIEW_REPORTED_EARNINGS",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "source": "SEC_EFTS",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "source": "SEC_EFTS",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "source": "SEC_EFTS",
+        "status": "SUCCESS",
+        "error": null
+      },
+      {
+        "source": "SEC_FILINGS_VALIDATION",
+        "status": "SUCCESS",
+        "error": null
+      }
+    ],
+    "collection_counts": {
+      "collected": 16,
+      "published": 16,
+      "known_excluded": 17,
+      "builder_excluded": 0,
+      "upstream_exclusion_rows": 17,
+      "confirmed_reports": 4,
+      "confirmed_releases": 1,
+      "entry_eligible": 2,
+      "pending": 0,
+      "rejected_documents": 213,
+      "previously_observed_missing": 0,
+      "default_visible": 8,
+      "radar_pass": 8,
+      "radar_pending": 4,
+      "radar_failed": 4,
+      "radar_observation": 3,
+      "historical_visible": 8,
+      "extended_visible": 3,
+      "historical_match": 10,
+      "documentary_events": 12,
+      "screening_observation": 0,
+      "screening_failed": 5,
+      "screening_pending": 11,
+      "screening_pass": 0
+    },
+    "collection_note": "Execução da coleta validada; cobertura parcial de uma fonte não significa ausência de eventos."
+  },
+  "schedule_policy": "OPEN_MINUS_30_AND_5_MINUTES",
+  "scheduled_slots_et": [
+    {
+      "slot": "INITIAL",
+      "scheduled_at": "2026-10-09T09:00:00-04:00"
+    },
+    {
+      "slot": "REVALIDATION",
+      "scheduled_at": "2026-10-09T09:25:00-04:00"
+    }
+  ],
+  "slot": "INITIAL",
+  "scheduled_at": "2026-10-09T09:00:00-04:00",
+  "next_scheduled_at": "2026-10-09T09:25:00-04:00",
+  "retry_interval_minutes": null,
+  "last_failure": {
+    "status": "PUBLICATION_PENDING",
+    "failed_stage": "PUBLICATION",
+    "message": "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.",
+    "updated_at": "2026-10-09T10:01:36.2218214-03:00",
+    "session": "2026-10-09",
+    "build_id": "2026-10-09T09:00:59.281113-04:00",
+    "recovered_by": "CURRENT_LOCAL_RAW_PUBLIC_AUDIT",
+    "previous_last_failure": {
+      "status": "FAILED",
+      "failed_stage": "PUBLICATION",
+      "message": "Lista validada localmente, mas publicacao ainda nao foi confirmada.",
+      "updated_at": "2026-10-08T10:27:57.0313035-03:00",
+      "session": "2026-10-08",
+      "build_id": null,
+      "recovered_by": "CURRENT_LOCAL_RAW_PUBLIC_AUDIT"
+    }
+  },
+  "public_verified_at_basis": "RELEASE_AUDIT_RECEIPT_MTIME_UTC",
+  "data_quality": "OBSERVATION_ONLY"
 }
