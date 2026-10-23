@@ -1,184 +1,263 @@
 {
     "schema_version":  "ep_premarket_health_v2",
-    "status":  "FAILED",
-    "failed_stage":  "VALIDATION",
-    "collection_status":  "UNKNOWN",
+    "status":  "PUBLICATION_PENDING",
+    "failed_stage":  null,
+    "collection_status":  "COMPLETE",
     "publication_status":  "PENDING",
-    "build_id":  "2026-10-22T09:27:34.670530-04:00",
-    "html_sha256":  "200be91ebf5f29f7d18f3856ea21cce19ee2be6529d4913bb37cd43493ea9be6",
+    "build_id":  "2026-10-23T09:02:55.583475-04:00",
+    "html_sha256":  "55d5e278d9a33ba3a50bdc53160c6172d06d1738215945e60541cd2e84537745",
     "public_verified_at":  null,
-    "session":  "2026-10-22",
-    "updated_at":  "2026-10-22T10:32:26.8983667-03:00",
-    "open_time":  "2026-10-22T09:30:00-04:00",
-    "message":  "Lista EP nao esta pronta para a sessao: {\"mode\": \"verify-ready\", \"session\": \"2026-10-22\", \"now_et\": \"2026-10-22T09:32:26.447551-04:00\", \"open_time\": \"2026-10-22T09:30:00-04:00\", \"previous_session\": \"2026-10-21\", \"ready\": false, \"reason\": \"PREMARKET_ENDED\", \"errors\": [\"PREMARKET_ENDED\"], \"source_generated_at_et\": \"2026-10-22T09:25:25.192911\", \"source_age_seconds\": 421.25464, \"quality\": {\"status\": \"REFERENCE_QUOTES_PARTIAL\", \"event_count\": 161, \"watchlist_count\": 161, \"verified_events\": 143, \"pending_events\": 18, \"reference_quotes_available\": 160, \"reference_quotes_missing\": 1, \"note\": \"Pre\\u00e7os D-1 s\\u00e3o indicativos; sua aus\\u00eancia n\\u00e3o remove eventos nem autoriza opera\\u00e7\\u00f5es.\", \"collection_status\": \"COMPLETE\", \"complete_market_coverage\": false, \"source_status\": [{\"source\": \"NASDAQ_EARNINGS_CALENDAR\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EXCHANGE_DIRECTORY\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"TRADINGVIEW_REPORTED_EARNINGS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EFTS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EFTS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EFTS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_FILINGS_VALIDATION\", \"status\": \"SUCCESS\", \"error\": null}], \"collection_counts\": {\"collected\": 161, \"published\": 161, \"known_excluded\": 185, \"builder_excluded\": 0, \"upstream_exclusion_rows\": 185, \"confirmed_reports\": 15, \"confirmed_releases\": 67, \"entry_eligible\": 9, \"pending\": 18, \"rejected_documents\": 332, \"previously_observed_missing\": 0, \"default_visible\": 107, \"radar_pass\": 107, \"radar_pending\": 32, \"radar_failed\": 22, \"radar_observation\": 31, \"historical_visible\": 107, \"extended_visible\": 31, \"historical_match\": 119, \"documentary_events\": 128, \"screening_observation\": 0, \"screening_failed\": 30, \"screening_pending\": 131, \"screening_pass\": 0}, \"collection_note\": \"Execu\\u00e7\\u00e3o da coleta validada; cobertura parcial de uma fonte n\\u00e3o significa aus\\u00eancia de eventos.\"}}",
-    "quality":  null,
+    "session":  "2026-10-23",
+    "updated_at":  "2026-10-23T10:06:25.1908408-03:00",
+    "open_time":  "2026-10-23T09:30:00-04:00",
+    "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.",
+    "quality":  {
+                    "status":  "REFERENCE_QUOTES_COMPLETE",
+                    "event_count":  120,
+                    "watchlist_count":  120,
+                    "verified_events":  109,
+                    "pending_events":  11,
+                    "reference_quotes_available":  120,
+                    "reference_quotes_missing":  0,
+                    "note":  "Preços D-1 são indicativos; sua ausência não remove eventos nem autoriza operações.",
+                    "collection_status":  "COMPLETE",
+                    "complete_market_coverage":  false,
+                    "source_status":  [
+                                          {
+                                              "source":  "NASDAQ_EARNINGS_CALENDAR",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "SEC_EXCHANGE_DIRECTORY",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "TRADINGVIEW_REPORTED_EARNINGS",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "SEC_EFTS",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "SEC_EFTS",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "SEC_EFTS",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          },
+                                          {
+                                              "source":  "SEC_FILINGS_VALIDATION",
+                                              "status":  "SUCCESS",
+                                              "error":  null
+                                          }
+                                      ],
+                    "collection_counts":  {
+                                              "collected":  120,
+                                              "published":  120,
+                                              "known_excluded":  123,
+                                              "builder_excluded":  0,
+                                              "upstream_exclusion_rows":  123,
+                                              "confirmed_reports":  28,
+                                              "confirmed_releases":  45,
+                                              "entry_eligible":  3,
+                                              "pending":  11,
+                                              "rejected_documents":  371,
+                                              "previously_observed_missing":  0,
+                                              "default_visible":  70,
+                                              "radar_pass":  70,
+                                              "radar_pending":  36,
+                                              "radar_failed":  14,
+                                              "radar_observation":  36,
+                                              "historical_visible":  70,
+                                              "extended_visible":  36,
+                                              "historical_match":  77,
+                                              "documentary_events":  81,
+                                              "screening_observation":  0,
+                                              "screening_failed":  33,
+                                              "screening_pending":  87,
+                                              "screening_pass":  0
+                                          },
+                    "collection_note":  "Execução da coleta validada; cobertura parcial de uma fonte não significa ausência de eventos."
+                },
     "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
     "scheduled_slots_et":  [
                                {
                                    "slot":  "INITIAL",
-                                   "scheduled_at":  "2026-10-22T09:00:00-04:00"
+                                   "scheduled_at":  "2026-10-23T09:00:00-04:00"
                                },
                                {
                                    "slot":  "REVALIDATION",
-                                   "scheduled_at":  "2026-10-22T09:25:00-04:00"
+                                   "scheduled_at":  "2026-10-23T09:25:00-04:00"
                                },
                                {
                                    "slot":  "LATE",
-                                   "scheduled_at":  "2026-10-22T09:30:30-04:00"
+                                   "scheduled_at":  "2026-10-23T09:30:30-04:00"
                                }
                            ],
-    "slot":  "REVALIDATION",
-    "scheduled_at":  "2026-10-22T09:25:00-04:00",
-    "next_scheduled_at":  "2026-10-22T09:30:30-04:00",
+    "slot":  "INITIAL",
+    "scheduled_at":  "2026-10-23T09:00:00-04:00",
+    "next_scheduled_at":  "2026-10-23T09:25:00-04:00",
     "retry_interval_minutes":  null,
     "last_failure":  {
-                         "status":  "PUBLICATION_PENDING",
-                         "failed_stage":  "PUBLICATION",
-                         "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.",
-                         "updated_at":  "2026-10-22T10:18:41.6987755-03:00",
+                         "schema_version":  "ep_premarket_health_v2",
+                         "status":  "FAILED",
+                         "failed_stage":  "VALIDATION",
+                         "collection_status":  "UNKNOWN",
+                         "publication_status":  "PENDING",
+                         "build_id":  "2026-10-22T09:27:34.670530-04:00",
+                         "html_sha256":  "200be91ebf5f29f7d18f3856ea21cce19ee2be6529d4913bb37cd43493ea9be6",
+                         "public_verified_at":  null,
                          "session":  "2026-10-22",
-                         "build_id":  "2026-10-22T09:13:34.726367-04:00",
-                         "recovered_by":  "CURRENT_LOCAL_RAW_PUBLIC_AUDIT",
-                         "previous_last_failure":  {
-                                                       "status":  "FAILED",
-                                                       "failed_stage":  "PUBLICATION",
-                                                       "message":  "Publicacao EP falhou; nao afirmar lista atualizada no site.",
-                                                       "updated_at":  "2026-10-21T10:28:43.4995348-03:00",
-                                                       "session":  "2026-10-21",
-                                                       "build_id":  "2026-10-21T09:26:33.004451-04:00",
-                                                       "recovered_by":  "CURRENT_LOCAL_RAW_PUBLIC_AUDIT",
-                                                       "previous_last_failure":  {
-                                                                                     "schema_version":  "ep_premarket_health_v2",
-                                                                                     "status":  "FAILED",
-                                                                                     "failed_stage":  "PUBLICATION",
-                                                                                     "collection_status":  "COMPLETE",
-                                                                                     "publication_status":  "FAILED",
-                                                                                     "build_id":  "2026-10-21T09:01:45.579250-04:00",
-                                                                                     "html_sha256":  "5d4f716d89a381302fdb219207987d2b2f8ddcabe342c5f3185a702b756f81a7",
-                                                                                     "public_verified_at":  null,
-                                                                                     "session":  "2026-10-21",
-                                                                                     "updated_at":  "2026-10-21T10:03:52.8599824-03:00",
-                                                                                     "open_time":  "2026-10-21T09:30:00-04:00",
-                                                                                     "message":  "Publicacao EP falhou; nao afirmar lista atualizada no site.",
-                                                                                     "quality":  {
-                                                                                                     "status":  "REFERENCE_QUOTES_PARTIAL",
-                                                                                                     "event_count":  74,
-                                                                                                     "watchlist_count":  74,
-                                                                                                     "verified_events":  69,
-                                                                                                     "pending_events":  5,
-                                                                                                     "reference_quotes_available":  71,
-                                                                                                     "reference_quotes_missing":  3,
-                                                                                                     "note":  "Preços D-1 são indicativos; sua ausência não remove eventos nem autoriza operações.",
-                                                                                                     "collection_status":  "COMPLETE",
-                                                                                                     "complete_market_coverage":  false,
-                                                                                                     "source_status":  [
-                                                                                                                           {
-                                                                                                                               "source":  "NASDAQ_EARNINGS_CALENDAR",
-                                                                                                                               "status":  "SUCCESS",
-                                                                                                                               "error":  null
-                                                                                                                           },
-                                                                                                                           {
-                                                                                                                               "source":  "SEC_EXCHANGE_DIRECTORY",
-                                                                                                                               "status":  "SUCCESS",
-                                                                                                                               "error":  null
-                                                                                                                           },
-                                                                                                                           {
-                                                                                                                               "source":  "TRADINGVIEW_REPORTED_EARNINGS",
-                                                                                                                               "status":  "SUCCESS",
-                                                                                                                               "error":  null
-                                                                                                                           },
-                                                                                                                           {
-                                                                                                                               "source":  "SEC_EFTS",
-                                                                                                                               "status":  "SUCCESS",
-                                                                                                                               "error":  null
-                                                                                                                           },
-                                                                                                                           {
-                                                                                                                               "source":  "SEC_EFTS",
-                                                                                                                               "status":  "SUCCESS",
-                                                                                                                               "error":  null
-                                                                                                                           },
-                                                                                                                           {
-                                                                                                                               "source":  "SEC_EFTS",
-                                                                                                                               "status":  "SUCCESS",
-                                                                                                                               "error":  null
-                                                                                                                           },
-                                                                                                                           {
-                                                                                                                               "source":  "SEC_FILINGS_VALIDATION",
-                                                                                                                               "status":  "SUCCESS",
-                                                                                                                               "error":  null
-                                                                                                                           }
-                                                                                                                       ],
-                                                                                                     "collection_counts":  {
-                                                                                                                               "collected":  74,
-                                                                                                                               "published":  74,
-                                                                                                                               "known_excluded":  127,
-                                                                                                                               "builder_excluded":  0,
-                                                                                                                               "upstream_exclusion_rows":  127,
-                                                                                                                               "confirmed_reports":  8,
-                                                                                                                               "confirmed_releases":  24,
-                                                                                                                               "entry_eligible":  4,
-                                                                                                                               "pending":  5,
-                                                                                                                               "rejected_documents":  286,
-                                                                                                                               "previously_observed_missing":  0,
-                                                                                                                               "default_visible":  51,
-                                                                                                                               "radar_pass":  51,
-                                                                                                                               "radar_pending":  15,
-                                                                                                                               "radar_failed":  8,
-                                                                                                                               "radar_observation":  13,
-                                                                                                                               "historical_visible":  51,
-                                                                                                                               "extended_visible":  13,
-                                                                                                                               "historical_match":  56,
-                                                                                                                               "documentary_events":  61,
-                                                                                                                               "screening_observation":  0,
-                                                                                                                               "screening_failed":  10,
-                                                                                                                               "screening_pending":  64,
-                                                                                                                               "screening_pass":  0
-                                                                                                                           },
-                                                                                                     "collection_note":  "Execução da coleta validada; cobertura parcial de uma fonte não significa ausência de eventos."
-                                                                                                 },
-                                                                                     "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
-                                                                                     "scheduled_slots_et":  [
-                                                                                                                {
-                                                                                                                    "slot":  "INITIAL",
-                                                                                                                    "scheduled_at":  "2026-10-21T09:00:00-04:00"
-                                                                                                                },
-                                                                                                                {
-                                                                                                                    "slot":  "REVALIDATION",
-                                                                                                                    "scheduled_at":  "2026-10-21T09:25:00-04:00"
-                                                                                                                }
-                                                                                                            ],
-                                                                                     "slot":  "INITIAL",
-                                                                                     "scheduled_at":  "2026-10-21T09:00:00-04:00",
-                                                                                     "next_scheduled_at":  "2026-10-21T09:25:00-04:00",
-                                                                                     "retry_interval_minutes":  null,
-                                                                                     "last_failure":  {
+                         "updated_at":  "2026-10-22T10:32:26.8983667-03:00",
+                         "open_time":  "2026-10-22T09:30:00-04:00",
+                         "message":  "Lista EP nao esta pronta para a sessao: {\"mode\": \"verify-ready\", \"session\": \"2026-10-22\", \"now_et\": \"2026-10-22T09:32:26.447551-04:00\", \"open_time\": \"2026-10-22T09:30:00-04:00\", \"previous_session\": \"2026-10-21\", \"ready\": false, \"reason\": \"PREMARKET_ENDED\", \"errors\": [\"PREMARKET_ENDED\"], \"source_generated_at_et\": \"2026-10-22T09:25:25.192911\", \"source_age_seconds\": 421.25464, \"quality\": {\"status\": \"REFERENCE_QUOTES_PARTIAL\", \"event_count\": 161, \"watchlist_count\": 161, \"verified_events\": 143, \"pending_events\": 18, \"reference_quotes_available\": 160, \"reference_quotes_missing\": 1, \"note\": \"Pre\\u00e7os D-1 s\\u00e3o indicativos; sua aus\\u00eancia n\\u00e3o remove eventos nem autoriza opera\\u00e7\\u00f5es.\", \"collection_status\": \"COMPLETE\", \"complete_market_coverage\": false, \"source_status\": [{\"source\": \"NASDAQ_EARNINGS_CALENDAR\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EXCHANGE_DIRECTORY\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"TRADINGVIEW_REPORTED_EARNINGS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EFTS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EFTS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EFTS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_FILINGS_VALIDATION\", \"status\": \"SUCCESS\", \"error\": null}], \"collection_counts\": {\"collected\": 161, \"published\": 161, \"known_excluded\": 185, \"builder_excluded\": 0, \"upstream_exclusion_rows\": 185, \"confirmed_reports\": 15, \"confirmed_releases\": 67, \"entry_eligible\": 9, \"pending\": 18, \"rejected_documents\": 332, \"previously_observed_missing\": 0, \"default_visible\": 107, \"radar_pass\": 107, \"radar_pending\": 32, \"radar_failed\": 22, \"radar_observation\": 31, \"historical_visible\": 107, \"extended_visible\": 31, \"historical_match\": 119, \"documentary_events\": 128, \"screening_observation\": 0, \"screening_failed\": 30, \"screening_pending\": 131, \"screening_pass\": 0}, \"collection_note\": \"Execu\\u00e7\\u00e3o da coleta validada; cobertura parcial de uma fonte n\\u00e3o significa aus\\u00eancia de eventos.\"}}",
+                         "quality":  null,
+                         "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
+                         "scheduled_slots_et":  [
+                                                    {
+                                                        "slot":  "INITIAL",
+                                                        "scheduled_at":  "2026-10-22T09:00:00-04:00"
+                                                    },
+                                                    {
+                                                        "slot":  "REVALIDATION",
+                                                        "scheduled_at":  "2026-10-22T09:25:00-04:00"
+                                                    },
+                                                    {
+                                                        "slot":  "LATE",
+                                                        "scheduled_at":  "2026-10-22T09:30:30-04:00"
+                                                    }
+                                                ],
+                         "slot":  "REVALIDATION",
+                         "scheduled_at":  "2026-10-22T09:25:00-04:00",
+                         "next_scheduled_at":  "2026-10-22T09:30:30-04:00",
+                         "retry_interval_minutes":  null,
+                         "last_failure":  {
+                                              "status":  "PUBLICATION_PENDING",
+                                              "failed_stage":  "PUBLICATION",
+                                              "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.",
+                                              "updated_at":  "2026-10-22T10:18:41.6987755-03:00",
+                                              "session":  "2026-10-22",
+                                              "build_id":  "2026-10-22T09:13:34.726367-04:00",
+                                              "recovered_by":  "CURRENT_LOCAL_RAW_PUBLIC_AUDIT",
+                                              "previous_last_failure":  {
+                                                                            "status":  "FAILED",
+                                                                            "failed_stage":  "PUBLICATION",
+                                                                            "message":  "Publicacao EP falhou; nao afirmar lista atualizada no site.",
+                                                                            "updated_at":  "2026-10-21T10:28:43.4995348-03:00",
+                                                                            "session":  "2026-10-21",
+                                                                            "build_id":  "2026-10-21T09:26:33.004451-04:00",
+                                                                            "recovered_by":  "CURRENT_LOCAL_RAW_PUBLIC_AUDIT",
+                                                                            "previous_last_failure":  {
                                                                                                           "schema_version":  "ep_premarket_health_v2",
                                                                                                           "status":  "FAILED",
-                                                                                                          "failed_stage":  "COLLECTION",
-                                                                                                          "collection_status":  "FAILED",
-                                                                                                          "publication_status":  "PENDING",
-                                                                                                          "build_id":  "2026-10-20T09:26:05.350928-04:00",
-                                                                                                          "html_sha256":  "a1b23f956327103e5e555da44b62b25c8ba7a98b21f2369e12b307694f32b005",
+                                                                                                          "failed_stage":  "PUBLICATION",
+                                                                                                          "collection_status":  "COMPLETE",
+                                                                                                          "publication_status":  "FAILED",
+                                                                                                          "build_id":  "2026-10-21T09:01:45.579250-04:00",
+                                                                                                          "html_sha256":  "5d4f716d89a381302fdb219207987d2b2f8ddcabe342c5f3185a702b756f81a7",
                                                                                                           "public_verified_at":  null,
-                                                                                                          "session":  "2026-10-20",
-                                                                                                          "updated_at":  "2026-10-20T10:27:33.1113780-03:00",
-                                                                                                          "open_time":  "2026-10-20T09:30:00-04:00",
-                                                                                                          "message":  "Coleta/auditoria EP falhou apos 1 tentativa(s); o ultimo painel datado foi preservado.",
-                                                                                                          "quality":  null,
+                                                                                                          "session":  "2026-10-21",
+                                                                                                          "updated_at":  "2026-10-21T10:03:52.8599824-03:00",
+                                                                                                          "open_time":  "2026-10-21T09:30:00-04:00",
+                                                                                                          "message":  "Publicacao EP falhou; nao afirmar lista atualizada no site.",
+                                                                                                          "quality":  {
+                                                                                                                          "status":  "REFERENCE_QUOTES_PARTIAL",
+                                                                                                                          "event_count":  74,
+                                                                                                                          "watchlist_count":  74,
+                                                                                                                          "verified_events":  69,
+                                                                                                                          "pending_events":  5,
+                                                                                                                          "reference_quotes_available":  71,
+                                                                                                                          "reference_quotes_missing":  3,
+                                                                                                                          "note":  "Preços D-1 são indicativos; sua ausência não remove eventos nem autoriza operações.",
+                                                                                                                          "collection_status":  "COMPLETE",
+                                                                                                                          "complete_market_coverage":  false,
+                                                                                                                          "source_status":  [
+                                                                                                                                                {
+                                                                                                                                                    "source":  "NASDAQ_EARNINGS_CALENDAR",
+                                                                                                                                                    "status":  "SUCCESS",
+                                                                                                                                                    "error":  null
+                                                                                                                                                },
+                                                                                                                                                {
+                                                                                                                                                    "source":  "SEC_EXCHANGE_DIRECTORY",
+                                                                                                                                                    "status":  "SUCCESS",
+                                                                                                                                                    "error":  null
+                                                                                                                                                },
+                                                                                                                                                {
+                                                                                                                                                    "source":  "TRADINGVIEW_REPORTED_EARNINGS",
+                                                                                                                                                    "status":  "SUCCESS",
+                                                                                                                                                    "error":  null
+                                                                                                                                                },
+                                                                                                                                                {
+                                                                                                                                                    "source":  "SEC_EFTS",
+                                                                                                                                                    "status":  "SUCCESS",
+                                                                                                                                                    "error":  null
+                                                                                                                                                },
+                                                                                                                                                {
+                                                                                                                                                    "source":  "SEC_EFTS",
+                                                                                                                                                    "status":  "SUCCESS",
+                                                                                                                                                    "error":  null
+                                                                                                                                                },
+                                                                                                                                                {
+                                                                                                                                                    "source":  "SEC_EFTS",
+                                                                                                                                                    "status":  "SUCCESS",
+                                                                                                                                                    "error":  null
+                                                                                                                                                },
+                                                                                                                                                {
+                                                                                                                                                    "source":  "SEC_FILINGS_VALIDATION",
+                                                                                                                                                    "status":  "SUCCESS",
+                                                                                                                                                    "error":  null
+                                                                                                                                                }
+                                                                                                                                            ],
+                                                                                                                          "collection_counts":  {
+                                                                                                                                                    "collected":  74,
+                                                                                                                                                    "published":  74,
+                                                                                                                                                    "known_excluded":  127,
+                                                                                                                                                    "builder_excluded":  0,
+                                                                                                                                                    "upstream_exclusion_rows":  127,
+                                                                                                                                                    "confirmed_reports":  8,
+                                                                                                                                                    "confirmed_releases":  24,
+                                                                                                                                                    "entry_eligible":  4,
+                                                                                                                                                    "pending":  5,
+                                                                                                                                                    "rejected_documents":  286,
+                                                                                                                                                    "previously_observed_missing":  0,
+                                                                                                                                                    "default_visible":  51,
+                                                                                                                                                    "radar_pass":  51,
+                                                                                                                                                    "radar_pending":  15,
+                                                                                                                                                    "radar_failed":  8,
+                                                                                                                                                    "radar_observation":  13,
+                                                                                                                                                    "historical_visible":  51,
+                                                                                                                                                    "extended_visible":  13,
+                                                                                                                                                    "historical_match":  56,
+                                                                                                                                                    "documentary_events":  61,
+                                                                                                                                                    "screening_observation":  0,
+                                                                                                                                                    "screening_failed":  10,
+                                                                                                                                                    "screening_pending":  64,
+                                                                                                                                                    "screening_pass":  0
+                                                                                                                                                },
+                                                                                                                          "collection_note":  "Execução da coleta validada; cobertura parcial de uma fonte não significa ausência de eventos."
+                                                                                                                      },
                                                                                                           "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
                                                                                                           "scheduled_slots_et":  [
                                                                                                                                      {
                                                                                                                                          "slot":  "INITIAL",
-                                                                                                                                         "scheduled_at":  "2026-10-20T09:00:00-04:00"
+                                                                                                                                         "scheduled_at":  "2026-10-21T09:00:00-04:00"
                                                                                                                                      },
                                                                                                                                      {
                                                                                                                                          "slot":  "REVALIDATION",
-                                                                                                                                         "scheduled_at":  "2026-10-20T09:25:00-04:00"
+                                                                                                                                         "scheduled_at":  "2026-10-21T09:25:00-04:00"
                                                                                                                                      }
                                                                                                                                  ],
-                                                                                                          "slot":  "REVALIDATION",
-                                                                                                          "scheduled_at":  "2026-10-20T09:25:00-04:00",
-                                                                                                          "next_scheduled_at":  null,
+                                                                                                          "slot":  "INITIAL",
+                                                                                                          "scheduled_at":  "2026-10-21T09:00:00-04:00",
+                                                                                                          "next_scheduled_at":  "2026-10-21T09:25:00-04:00",
                                                                                                           "retry_interval_minutes":  null,
                                                                                                           "last_failure":  {
                                                                                                                                "schema_version":  "ep_premarket_health_v2",
@@ -186,13 +265,13 @@
                                                                                                                                "failed_stage":  "COLLECTION",
                                                                                                                                "collection_status":  "FAILED",
                                                                                                                                "publication_status":  "PENDING",
-                                                                                                                               "build_id":  "2026-10-20T09:20:28.996688-04:00",
-                                                                                                                               "html_sha256":  "d416a326537d6ae561d3190d996fc0b322355e4017be91fd6eea0dcf2954134f",
+                                                                                                                               "build_id":  "2026-10-20T09:26:05.350928-04:00",
+                                                                                                                               "html_sha256":  "a1b23f956327103e5e555da44b62b25c8ba7a98b21f2369e12b307694f32b005",
                                                                                                                                "public_verified_at":  null,
                                                                                                                                "session":  "2026-10-20",
-                                                                                                                               "updated_at":  "2026-10-20T10:22:05.5193009-03:00",
+                                                                                                                               "updated_at":  "2026-10-20T10:27:33.1113780-03:00",
                                                                                                                                "open_time":  "2026-10-20T09:30:00-04:00",
-                                                                                                                               "message":  "Coleta/auditoria EP falhou apos 7 tentativa(s); o ultimo painel datado foi preservado.",
+                                                                                                                               "message":  "Coleta/auditoria EP falhou apos 1 tentativa(s); o ultimo painel datado foi preservado.",
                                                                                                                                "quality":  null,
                                                                                                                                "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
                                                                                                                                "scheduled_slots_et":  [
@@ -205,41 +284,62 @@
                                                                                                                                                               "scheduled_at":  "2026-10-20T09:25:00-04:00"
                                                                                                                                                           }
                                                                                                                                                       ],
-                                                                                                                               "slot":  "INITIAL",
-                                                                                                                               "scheduled_at":  "2026-10-20T09:00:00-04:00",
-                                                                                                                               "next_scheduled_at":  "2026-10-20T09:25:00-04:00",
+                                                                                                                               "slot":  "REVALIDATION",
+                                                                                                                               "scheduled_at":  "2026-10-20T09:25:00-04:00",
+                                                                                                                               "next_scheduled_at":  null,
                                                                                                                                "retry_interval_minutes":  null,
                                                                                                                                "last_failure":  {
-                                                                                                                                                    "status":  "PUBLICATION_PENDING",
-                                                                                                                                                    "failed_stage":  "PUBLICATION",
-                                                                                                                                                    "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.",
-                                                                                                                                                    "updated_at":  "2026-10-19T10:26:47.9813182-03:00",
-                                                                                                                                                    "session":  "2026-10-19",
-                                                                                                                                                    "build_id":  "2026-10-19T09:25:57.990893-04:00",
-                                                                                                                                                    "recovered_by":  "CURRENT_LOCAL_RAW_PUBLIC_AUDIT",
-                                                                                                                                                    "previous_last_failure":  {
-                                                                                                                                                                                  "status":  "PUBLICATION_PENDING",
-                                                                                                                                                                                  "failed_stage":  "PUBLICATION",
-                                                                                                                                                                                  "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.",
-                                                                                                                                                                                  "updated_at":  "2026-10-19T10:01:39.7686932-03:00",
-                                                                                                                                                                                  "session":  "2026-10-19",
-                                                                                                                                                                                  "build_id":  "2026-10-19T09:01:00.167814-04:00",
-                                                                                                                                                                                  "recovered_by":  "CURRENT_LOCAL_RAW_PUBLIC_AUDIT",
-                                                                                                                                                                                  "previous_last_failure":  {
-                                                                                                                                                                                                                "status":  "PUBLICATION_PENDING",
-                                                                                                                                                                                                                "failed_stage":  "PUBLICATION",
-                                                                                                                                                                                                                "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.",
-                                                                                                                                                                                                                "updated_at":  "2026-10-16T10:29:02.2987475-03:00",
-                                                                                                                                                                                                                "session":  "2026-10-16",
-                                                                                                                                                                                                                "build_id":  "2026-10-16T09:27:59.861461-04:00",
-                                                                                                                                                                                                                "recovered_by":  "CURRENT_LOCAL_RAW_PUBLIC_AUDIT",
-                                                                                                                                                                                                                "previous_last_failure":  "@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-16T10:04:44.4377613-03:00; session=2026-10-16; build_id=2026-10-16T09:03:36.503396-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-15T10:27:06.7954854-03:00; session=2026-10-15; build_id=2026-10-15T09:26:06.686163-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{schema_version=ep_premarket_health_v2; status=FAILED; failed_stage=PUBLICATION; collection_status=COMPLETE; publication_status=FAILED; build_id=2026-10-15T09:08:18.292674-04:00; html_sha256=c9c13271f25f8bab63ddae471b33339af902405df260d219fdbc87b5978eafa2; public_verified_at=; session=2026-10-15; updated_at=2026-10-15T10:09:22.6195835-03:00; open_time=2026-10-15T09:30:00-04:00; message=Publicacao EP falhou; nao afirmar lista atualizada no site.; quality=@{status=REFERENCE_QUOTES_COMPLETE; event_count=35; watchlist_count=35; verified_events=29; pending_events=6; reference_quotes_available=35; reference_quotes_missing=0; note=Preços D-1 são indicativos; sua ausência não remove eventos nem autoriza operações.; collection_status=COMPLETE; complete_market_coverage=False; source_status=@{source=NASDAQ_EARNINGS_CALENDAR; status=SUCCESS; error=} @{source=SEC_EXCHANGE_DIRECTORY; status=SUCCESS; error=} @{source=TRADINGVIEW_REPORTED_EARNINGS; status=SUCCESS; error=} @{source=SEC_EFTS; status=SUCCESS; error=} @{source=SEC_EFTS; status=SUCCESS; error=} @{source=SEC_EFTS; status=SUCCESS; error=} @{source=SEC_FILINGS_VALIDATION; status=SUCCESS; error=}; collection_counts=@{collected=35; published=35; known_excluded=79; builder_excluded=0; upstream_exclusion_rows=79; confirmed_reports=1; confirmed_releases=7; entry_eligible=5; pending=6; rejected_documents=274; previously_observed_missing=0; default_visible=18; radar_pass=18; radar_pending=8; radar_failed=9; radar_observation=8; historical_visible=18; extended_visible=8; historical_match=23; documentary_events=28; screening_observation=0; screening_failed=7; screening_pending=28; screening_pass=0}; collection_note=Execução da coleta validada; cobertura parcial de uma fonte não significa ausência de eventos.}; schedule_policy=OPEN_MINUS_30_AND_5_MINUTES; scheduled_slots_et=@{slot=INITIAL; scheduled_at=2026-10-15T09:00:00-04:00} @{slot=REVALIDATION; scheduled_at=2026-10-15T09:25:00-04:00}; slot=INITIAL; scheduled_at=2026-10-15T09:00:00-04:00; next_scheduled_at=2026-10-15T09:25:00-04:00; retry_interval_minutes=; last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-14T10:27:43.3175406-03:00; session=2026-10-14; build_id=2026-10-14T09:26:26.163890-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-14T10:02:41.4399396-03:00; session=2026-10-14; build_id=2026-10-14T09:01:33.242214-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-13T10:26:28.3237663-03:00; session=2026-10-13; build_id=2026-10-13T09:25:43.168778-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-13T10:04:01.6685649-03:00; session=2026-10-13; build_id=2026-10-13T09:02:34.014486-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-12T10:25:54.8407031-03:00; session=2026-10-12; build_id=2026-10-12T09:25:38.273242-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-12T10:01:12.6068218-03:00; session=2026-10-12; build_id=2026-10-12T09:00:48.473489-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-09T10:26:23.1674840-03:00; session=2026-10-09; build_id=2026-10-09T09:25:51.058586-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-09T10:01:36.2218214-03:00; session=2026-10-09; build_id=2026-10-09T09:00:59.281113-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=FAILED; failed_stage=PUBLICATION; message=Lista validada localmente, mas publicacao ainda nao foi confirmada.; updated_at=2026-10-08T10:27:57.0313035-03:00; session=2026-10-08; build_id=; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT}}}}}}}}}}}}"
-                                                                                                                                                                                                            }
-                                                                                                                                                                              }
+                                                                                                                                                    "schema_version":  "ep_premarket_health_v2",
+                                                                                                                                                    "status":  "FAILED",
+                                                                                                                                                    "failed_stage":  "COLLECTION",
+                                                                                                                                                    "collection_status":  "FAILED",
+                                                                                                                                                    "publication_status":  "PENDING",
+                                                                                                                                                    "build_id":  "2026-10-20T09:20:28.996688-04:00",
+                                                                                                                                                    "html_sha256":  "d416a326537d6ae561d3190d996fc0b322355e4017be91fd6eea0dcf2954134f",
+                                                                                                                                                    "public_verified_at":  null,
+                                                                                                                                                    "session":  "2026-10-20",
+                                                                                                                                                    "updated_at":  "2026-10-20T10:22:05.5193009-03:00",
+                                                                                                                                                    "open_time":  "2026-10-20T09:30:00-04:00",
+                                                                                                                                                    "message":  "Coleta/auditoria EP falhou apos 7 tentativa(s); o ultimo painel datado foi preservado.",
+                                                                                                                                                    "quality":  null,
+                                                                                                                                                    "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
+                                                                                                                                                    "scheduled_slots_et":  [
+                                                                                                                                                                               {
+                                                                                                                                                                                   "slot":  "INITIAL",
+                                                                                                                                                                                   "scheduled_at":  "2026-10-20T09:00:00-04:00"
+                                                                                                                                                                               },
+                                                                                                                                                                               {
+                                                                                                                                                                                   "slot":  "REVALIDATION",
+                                                                                                                                                                                   "scheduled_at":  "2026-10-20T09:25:00-04:00"
+                                                                                                                                                                               }
+                                                                                                                                                                           ],
+                                                                                                                                                    "slot":  "INITIAL",
+                                                                                                                                                    "scheduled_at":  "2026-10-20T09:00:00-04:00",
+                                                                                                                                                    "next_scheduled_at":  "2026-10-20T09:25:00-04:00",
+                                                                                                                                                    "retry_interval_minutes":  null,
+                                                                                                                                                    "last_failure":  {
+                                                                                                                                                                         "status":  "PUBLICATION_PENDING",
+                                                                                                                                                                         "failed_stage":  "PUBLICATION",
+                                                                                                                                                                         "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.",
+                                                                                                                                                                         "updated_at":  "2026-10-19T10:26:47.9813182-03:00",
+                                                                                                                                                                         "session":  "2026-10-19",
+                                                                                                                                                                         "build_id":  "2026-10-19T09:25:57.990893-04:00",
+                                                                                                                                                                         "recovered_by":  "CURRENT_LOCAL_RAW_PUBLIC_AUDIT",
+                                                                                                                                                                         "previous_last_failure":  {
+                                                                                                                                                                                                       "status":  "PUBLICATION_PENDING",
+                                                                                                                                                                                                       "failed_stage":  "PUBLICATION",
+                                                                                                                                                                                                       "message":  "Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.",
+                                                                                                                                                                                                       "updated_at":  "2026-10-19T10:01:39.7686932-03:00",
+                                                                                                                                                                                                       "session":  "2026-10-19",
+                                                                                                                                                                                                       "build_id":  "2026-10-19T09:01:00.167814-04:00",
+                                                                                                                                                                                                       "recovered_by":  "CURRENT_LOCAL_RAW_PUBLIC_AUDIT",
+                                                                                                                                                                                                       "previous_last_failure":  "@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-16T10:29:02.2987475-03:00; session=2026-10-16; build_id=2026-10-16T09:27:59.861461-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-16T10:04:44.4377613-03:00; session=2026-10-16; build_id=2026-10-16T09:03:36.503396-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-15T10:27:06.7954854-03:00; session=2026-10-15; build_id=2026-10-15T09:26:06.686163-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{schema_version=ep_premarket_health_v2; status=FAILED; failed_stage=PUBLICATION; collection_status=COMPLETE; publication_status=FAILED; build_id=2026-10-15T09:08:18.292674-04:00; html_sha256=c9c13271f25f8bab63ddae471b33339af902405df260d219fdbc87b5978eafa2; public_verified_at=; session=2026-10-15; updated_at=2026-10-15T10:09:22.6195835-03:00; open_time=2026-10-15T09:30:00-04:00; message=Publicacao EP falhou; nao afirmar lista atualizada no site.; quality=@{status=REFERENCE_QUOTES_COMPLETE; event_count=35; watchlist_count=35; verified_events=29; pending_events=6; reference_quotes_available=35; reference_quotes_missing=0; note=Preços D-1 são indicativos; sua ausência não remove eventos nem autoriza operações.; collection_status=COMPLETE; complete_market_coverage=False; source_status=@{source=NASDAQ_EARNINGS_CALENDAR; status=SUCCESS; error=} @{source=SEC_EXCHANGE_DIRECTORY; status=SUCCESS; error=} @{source=TRADINGVIEW_REPORTED_EARNINGS; status=SUCCESS; error=} @{source=SEC_EFTS; status=SUCCESS; error=} @{source=SEC_EFTS; status=SUCCESS; error=} @{source=SEC_EFTS; status=SUCCESS; error=} @{source=SEC_FILINGS_VALIDATION; status=SUCCESS; error=}; collection_counts=@{collected=35; published=35; known_excluded=79; builder_excluded=0; upstream_exclusion_rows=79; confirmed_reports=1; confirmed_releases=7; entry_eligible=5; pending=6; rejected_documents=274; previously_observed_missing=0; default_visible=18; radar_pass=18; radar_pending=8; radar_failed=9; radar_observation=8; historical_visible=18; extended_visible=8; historical_match=23; documentary_events=28; screening_observation=0; screening_failed=7; screening_pending=28; screening_pass=0}; collection_note=Execução da coleta validada; cobertura parcial de uma fonte não significa ausência de eventos.}; schedule_policy=OPEN_MINUS_30_AND_5_MINUTES; scheduled_slots_et=@{slot=INITIAL; scheduled_at=2026-10-15T09:00:00-04:00} @{slot=REVALIDATION; scheduled_at=2026-10-15T09:25:00-04:00}; slot=INITIAL; scheduled_at=2026-10-15T09:00:00-04:00; next_scheduled_at=2026-10-15T09:25:00-04:00; retry_interval_minutes=; last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-14T10:27:43.3175406-03:00; session=2026-10-14; build_id=2026-10-14T09:26:26.163890-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-14T10:02:41.4399396-03:00; session=2026-10-14; build_id=2026-10-14T09:01:33.242214-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-13T10:26:28.3237663-03:00; session=2026-10-13; build_id=2026-10-13T09:25:43.168778-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-13T10:04:01.6685649-03:00; session=2026-10-13; build_id=2026-10-13T09:02:34.014486-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-12T10:25:54.8407031-03:00; session=2026-10-12; build_id=2026-10-12T09:25:38.273242-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-12T10:01:12.6068218-03:00; session=2026-10-12; build_id=2026-10-12T09:00:48.473489-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-09T10:26:23.1674840-03:00; session=2026-10-09; build_id=2026-10-09T09:25:51.058586-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=PUBLICATION_PENDING; failed_stage=PUBLICATION; message=Coleta concluida nas fontes declaradas; nao representa todos os resultados do mercado. Confirmacao publica pendente.; updated_at=2026-10-09T10:01:36.2218214-03:00; session=2026-10-09; build_id=2026-10-09T09:00:59.281113-04:00; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT; previous_last_failure=@{status=FAILED; failed_stage=PUBLICATION; message=Lista validada localmente, mas publicacao ainda nao foi confirmada.; updated_at=2026-10-08T10:27:57.0313035-03:00; session=2026-10-08; build_id=; recovered_by=CURRENT_LOCAL_RAW_PUBLIC_AUDIT}}}}}}}}}}}}}"
+                                                                                                                                                                                                   }
+                                                                                                                                                                     }
                                                                                                                                                 }
                                                                                                                            }
                                                                                                       }
-                                                                                 }
-                                                   }
+                                                                        }
+                                          }
                      }
 }
