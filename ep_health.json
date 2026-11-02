@@ -4,11 +4,11 @@
   "failed_stage": null,
   "collection_status": "COMPLETE",
   "publication_status": "VERIFIED",
-  "build_id": "2026-11-02T09:26:05.991167-05:00",
-  "html_sha256": "7e3293d9b853f120fc758a8b015b4e475a7e3ca3798314fa969b2f165ade93f4",
-  "public_verified_at": "2026-11-02T14:27:50.528804+00:00",
+  "build_id": "2026-11-02T09:36:05.786126-05:00",
+  "html_sha256": "54f71e8cb6b8a7cddda6ba7cbaefec0d78b5d98241002642d46e053253fc5007",
+  "public_verified_at": "2026-11-02T14:38:09.008026+00:00",
   "session": "2026-11-02",
-  "updated_at": "2026-11-02T14:27:52.658915+00:00",
+  "updated_at": "2026-11-02T14:38:11.141781+00:00",
   "open_time": "2026-11-02T09:30:00-05:00",
   "message": "Lista validada localmente e publicacao confirmada para o build atual.",
   "quality": {
@@ -226,5 +226,5 @@
     }
   },
   "public_verified_at_basis": "RELEASE_AUDIT_RECEIPT_MTIME_UTC",
-  "data_quality": "OBSERVATION_ONLY"
+  "data_quality": "PARTIAL"
 }
