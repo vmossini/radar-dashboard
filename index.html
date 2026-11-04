@@ -193,82 +193,43 @@
     "unprocessed_after": "",
     "unprocessed_through": ""
   },
-  "generated_at": "2026-11-03T17:08:52-05:00",
+  "generated_at": "2026-11-04T09:31:09-05:00",
   "moc_exit_audit": {
-    "asof": "2026-10-26",
-    "checked": 4,
-    "checked_at_et": "2026-10-26T09:31:08-04:00",
+    "asof": "2026-11-04",
+    "checked": 1,
+    "checked_at_et": "2026-11-04T09:31:05-05:00",
     "data_status": "OK",
     "decisions": [
       {
-        "close_10_sessions_ago": 55.09000015258789,
-        "close_10_sessions_ago_asof": "2026-10-09",
-        "decision": "SEM MOC",
-        "entry_price": 49.95,
-        "gain_since_entry_pct": 13.4134,
-        "opening_gap_pct": 0.6574,
-        "prior_10_session_gain_pct": 2.1601,
-        "prior_close": 56.279998779296875,
-        "prior_close_asof": "2026-10-23",
-        "ticker": "GTLB",
-        "today_open": 56.65
-      },
-      {
-        "close_10_sessions_ago": 110.41999816894531,
-        "close_10_sessions_ago_asof": "2026-10-09",
+        "close_10_sessions_ago": 124.37000274658203,
+        "close_10_sessions_ago_asof": "2026-10-20",
         "decision": "SEM MOC",
         "entry_price": 116.82,
-        "gain_since_entry_pct": 8.2435,
-        "opening_gap_pct": 0.6527,
-        "prior_10_session_gain_pct": 13.7747,
-        "prior_close": 125.62999725341797,
-        "prior_close_asof": "2026-10-23",
+        "gain_since_entry_pct": 10.0068,
+        "opening_gap_pct": -0.0855,
+        "prior_10_session_gain_pct": 3.4172,
+        "prior_close": 128.6199951171875,
+        "prior_close_asof": "2026-11-03",
         "ticker": "HALO",
-        "today_open": 126.45
-      },
-      {
-        "close_10_sessions_ago": 206.7899932861328,
-        "close_10_sessions_ago_asof": "2026-10-09",
-        "decision": "SEM MOC",
-        "entry_price": 196.65,
-        "gain_since_entry_pct": 15.0318,
-        "opening_gap_pct": -0.6151,
-        "prior_10_session_gain_pct": 10.0682,
-        "prior_close": 227.61000061035156,
-        "prior_close_asof": "2026-10-23",
-        "ticker": "TEAM",
-        "today_open": 226.21
-      },
-      {
-        "close_10_sessions_ago": 33.09000015258789,
-        "close_10_sessions_ago_asof": "2026-10-09",
-        "decision": "SEM MOC",
-        "entry_price": 31.57,
-        "gain_since_entry_pct": 6.937,
-        "opening_gap_pct": -0.6474,
-        "prior_10_session_gain_pct": 2.6896,
-        "prior_close": 33.97999954223633,
-        "prior_close_asof": "2026-10-23",
-        "ticker": "ZETA",
-        "today_open": 33.76
+        "today_open": 128.51
       }
     ],
     "eligible": 0,
     "failures": [],
     "mode": "OpenMocCheck",
-    "positions_in_current_system": 4,
+    "positions_in_current_system": 1,
     "quote_audit": {
-      "alpaca_symbols_requested": 4,
+      "alpaca_symbols_requested": 1,
       "batches_failed": 0,
       "batches_requested": 1,
       "batches_succeeded": 1,
       "data_status": "OK",
       "errors": [],
       "quote_coverage_pct": 100.0,
-      "quotes_received": 4,
+      "quotes_received": 1,
       "source": "alpaca",
       "symbol_aliases_normalized": 0,
-      "symbols_requested": 4
+      "symbols_requested": 1
     },
     "rule": "open >= entry*1.50; D-1 close >= close 10 sessions earlier*1.25; open >= D-1 close*1.03"
   },
@@ -8179,8 +8140,16 @@
       "timestamp_et": "2026-08-14T18:02:24-04:00"
     }
   ],
-  "phase": "PÓS-FECHAMENTO",
-  "preclose_audit": null,
+  "phase": "PRÉ-MERCADO",
+  "preclose_audit": {
+    "candidate_count": 0,
+    "candidate_date": "2026-11-04",
+    "data_status": "PENDING",
+    "evaluated": 0,
+    "last_completed_eod": "2026-11-03",
+    "mode": "OpenMocCheck",
+    "scan_outcome": "AWAITING_SESSION"
+  },
   "qqq_regime": {
     "candidate_date": "2026-11-03",
     "daily_close": 681.09,
