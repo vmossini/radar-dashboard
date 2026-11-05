@@ -1,16 +1,16 @@
 {
     "schema_version":  "ep_premarket_health_v2",
-    "status":  "RUNNING",
-    "failed_stage":  null,
+    "status":  "FAILED",
+    "failed_stage":  "VALIDATION",
     "collection_status":  "UNKNOWN",
     "publication_status":  "PENDING",
-    "build_id":  "2026-11-05T09:07:09.299351-05:00",
-    "html_sha256":  "4cda55a0e488a5d6ab78c76fec749c98e81e75920b68ed749023b88b59e7874e",
+    "build_id":  "2026-11-05T09:27:58.964999-05:00",
+    "html_sha256":  "8a0e20067b00b10b63193f1f494faef3e88253ae868c85812ecda08a03ce230b",
     "public_verified_at":  null,
     "session":  "2026-11-05",
-    "updated_at":  "2026-11-05T11:25:09.0064396-03:00",
+    "updated_at":  "2026-11-05T11:32:18.7855697-03:00",
     "open_time":  "2026-11-05T09:30:00-05:00",
-    "message":  "Atualizacao dos eventos antes da abertura em andamento.",
+    "message":  "Lista EP nao esta pronta para a sessao: {\"mode\": \"verify-ready\", \"session\": \"2026-11-05\", \"now_et\": \"2026-11-05T09:32:18.203880-05:00\", \"open_time\": \"2026-11-05T09:30:00-05:00\", \"previous_session\": \"2026-11-04\", \"ready\": false, \"reason\": \"PREMARKET_ENDED\", \"errors\": [\"PREMARKET_ENDED\"], \"source_generated_at_et\": \"2026-11-05T09:25:24.161966\", \"source_age_seconds\": 414.041914, \"quality\": {\"status\": \"REFERENCE_QUOTES_PARTIAL\", \"event_count\": 669, \"watchlist_count\": 669, \"verified_events\": 625, \"pending_events\": 44, \"reference_quotes_available\": 657, \"reference_quotes_missing\": 12, \"note\": \"Pre\\u00e7os D-1 s\\u00e3o indicativos; sua aus\\u00eancia n\\u00e3o remove eventos nem autoriza opera\\u00e7\\u00f5es.\", \"collection_status\": \"COMPLETE\", \"complete_market_coverage\": false, \"source_status\": [{\"source\": \"NASDAQ_EARNINGS_CALENDAR\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EXCHANGE_DIRECTORY\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"TRADINGVIEW_REPORTED_EARNINGS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EFTS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EFTS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_EFTS\", \"status\": \"SUCCESS\", \"error\": null}, {\"source\": \"SEC_FILINGS_VALIDATION\", \"status\": \"SUCCESS\", \"error\": null}], \"collection_counts\": {\"collected\": 669, \"published\": 669, \"known_excluded\": 639, \"builder_excluded\": 0, \"upstream_exclusion_rows\": 639, \"confirmed_reports\": 122, \"confirmed_releases\": 352, \"entry_eligible\": 0, \"pending\": 44, \"rejected_documents\": 755, \"previously_observed_missing\": 0, \"default_visible\": 381, \"radar_pass\": 381, \"radar_pending\": 152, \"radar_failed\": 136, \"radar_observation\": 141, \"historical_visible\": 381, \"extended_visible\": 141, \"historical_match\": 485, \"documentary_events\": 503, \"six_k_blocked_no_results_content\": 4, \"six_k_blocked_out_of_robot\": 12, \"screening_observation\": 0, \"screening_failed\": 174, \"screening_pending\": 495, \"screening_pass\": 0}, \"collection_note\": \"Execu\\u00e7\\u00e3o da coleta validada; cobertura parcial de uma fonte n\\u00e3o significa aus\\u00eancia de eventos.\"}}",
     "quality":  null,
     "schedule_policy":  "OPEN_MINUS_30_AND_5_MINUTES",
     "scheduled_slots_et":  [
@@ -33,9 +33,44 @@
     "retry_interval_minutes":  null,
     "last_collection_error":  null,
     "stage_timings":  [
-
+                          {
+                              "stage":  "collection_attempt_1",
+                              "started_at":  "2026-11-05T11:25:09.0992003-03:00",
+                              "ended_at":  "2026-11-05T11:32:16.5034690-03:00",
+                              "seconds":  427.4,
+                              "result":  "OK"
+                          },
+                          {
+                              "stage":  "verify_ready",
+                              "started_at":  "2026-11-05T11:32:16.5188273-03:00",
+                              "ended_at":  "2026-11-05T11:32:18.7408109-03:00",
+                              "seconds":  2.2,
+                              "result":  "FAILED"
+                          }
                       ],
-    "cycle_stage_timings":  null,
+    "cycle_stage_timings":  [
+                                {
+                                    "stage":  "discovery",
+                                    "started_at":  "2026-11-05T09:25:21-05:00",
+                                    "ended_at":  "2026-11-05T09:27:58-05:00",
+                                    "seconds":  157.6,
+                                    "result":  "OK"
+                                },
+                                {
+                                    "stage":  "build",
+                                    "started_at":  "2026-11-05T09:27:58-05:00",
+                                    "ended_at":  "2026-11-05T09:32:08-05:00",
+                                    "seconds":  249.2,
+                                    "result":  "OK"
+                                },
+                                {
+                                    "stage":  "render",
+                                    "started_at":  "2026-11-05T09:32:08-05:00",
+                                    "ended_at":  "2026-11-05T09:32:11-05:00",
+                                    "seconds":  3.7,
+                                    "result":  "OK"
+                                }
+                            ],
     "last_failure":  {
                          "schema_version":  "ep_premarket_health_v2",
                          "status":  "FAILED",
