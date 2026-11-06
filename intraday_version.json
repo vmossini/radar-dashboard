@@ -1,7 +1,7 @@
 {
-  "build_id": "2026-11-05T09:36:07.652205-05:00",
-  "trade_date": "2026-11-05",
-  "data_status": "PARTIAL",
+  "build_id": "2026-11-06T09:20:05.436873-05:00",
+  "trade_date": "2026-11-06",
+  "data_status": "OBSERVATION_ONLY",
   "system": "EP_LONG_SHORT",
-  "html_sha256": "f265f62bd61b85a77ed2f563be32986eac8aac02c9a3729dda7740b233fd3b40"
+  "html_sha256": "cad8fb4b4b2eaafba6b17d3876a1890683037f2e55c84aa4bece981e04ff7060"
 }

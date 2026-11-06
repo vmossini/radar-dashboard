@@ -193,44 +193,17 @@
     "unprocessed_after": "",
     "unprocessed_through": ""
   },
-  "generated_at": "2026-11-05T17:08:30-05:00",
+  "generated_at": "2026-11-06T09:31:07-05:00",
   "moc_exit_audit": {
-    "asof": "2026-11-05",
-    "checked": 1,
-    "checked_at_et": "2026-11-05T09:31:04-05:00",
+    "asof": "2026-11-06",
+    "checked": 0,
+    "checked_at_et": "2026-11-06T09:31:04-05:00",
     "data_status": "OK",
-    "decisions": [
-      {
-        "close_10_sessions_ago": 124.83000183105469,
-        "close_10_sessions_ago_asof": "2026-10-21",
-        "decision": "SEM MOC",
-        "entry_price": 116.82,
-        "gain_since_entry_pct": 10.3193,
-        "opening_gap_pct": -1.124,
-        "prior_10_session_gain_pct": 4.414,
-        "prior_close": 130.33999633789062,
-        "prior_close_asof": "2026-11-04",
-        "ticker": "HALO",
-        "today_open": 128.875
-      }
-    ],
+    "decisions": [],
     "eligible": 0,
     "failures": [],
     "mode": "OpenMocCheck",
-    "positions_in_current_system": 1,
-    "quote_audit": {
-      "alpaca_symbols_requested": 1,
-      "batches_failed": 0,
-      "batches_requested": 1,
-      "batches_succeeded": 1,
-      "data_status": "OK",
-      "errors": [],
-      "quote_coverage_pct": 100.0,
-      "quotes_received": 1,
-      "source": "alpaca",
-      "symbol_aliases_normalized": 0,
-      "symbols_requested": 1
-    },
+    "positions_in_current_system": 0,
     "rule": "open >= entry*1.50; D-1 close >= close 10 sessions earlier*1.25; open >= D-1 close*1.03"
   },
   "open_position_marks_audit": {
@@ -8140,8 +8113,16 @@
       "timestamp_et": "2026-08-14T18:02:24-04:00"
     }
   ],
-  "phase": "PÓS-FECHAMENTO",
-  "preclose_audit": null,
+  "phase": "PRÉ-MERCADO",
+  "preclose_audit": {
+    "candidate_count": 0,
+    "candidate_date": "2026-11-06",
+    "data_status": "PENDING",
+    "evaluated": 0,
+    "last_completed_eod": "2026-11-05",
+    "mode": "OpenMocCheck",
+    "scan_outcome": "AWAITING_SESSION"
+  },
   "qqq_regime": {
     "candidate_date": "2026-11-05",
     "daily_close": 691.95,
