@@ -171,26 +171,14 @@
       "status": "UNVERIFIED_ENTRIES",
       "through": "2026-10-12"
     },
-    "last_eod": "2026-11-17",
+    "last_eod": "2026-11-18",
     "latest_verified_completed_session": "",
-    "source_coverage": {
-      "complete_universe_claim_allowed": false,
-      "current_bar_at_target": 5101,
-      "not_returned": 574,
-      "note": "Not returned by the >=252-bar fetch does not prove no price or delisting.",
-      "source": "Yahoo EOD 1d; production fetch with minimum 252 bars",
-      "stale_returned": 71,
-      "status": "PARTIAL",
-      "symbols_in_dated_universe": 5746,
-      "target_date": "2026-11-17",
-      "yahoo_mapping_collision_pairs": 0,
-      "yahoo_mapping_collision_symbols": 0
-    },
+    "source_coverage": null,
     "status": "UNVERIFIED",
     "unprocessed_after": "",
     "unprocessed_through": ""
   },
-  "generated_at": "2026-11-19T16:07:54-05:00",
+  "generated_at": "2026-11-19T17:04:21-05:00",
   "moc_exit_audit": {
     "asof": "2026-11-18",
     "checked": 0,
@@ -204,12 +192,11 @@
     "rule": "open >= entry*1.50; D-1 close >= close 10 sessions earlier*1.25; open >= D-1 close*1.03"
   },
   "open_position_marks_audit": {
-    "checked_at_et": "2026-11-19T16:07:54-05:00",
-    "failed": [],
-    "received": 0,
-    "requested": 0,
-    "source": "Yahoo FastInfo",
-    "symbols_retained_from_state": []
+    "asof": "2026-11-19",
+    "source": "regular_session_daily_close",
+    "symbols_marked": 0,
+    "symbols_missing": [],
+    "symbols_requested": 0
   },
   "open_positions": [],
   "operations": [
@@ -8114,17 +8101,39 @@
       "timestamp_et": "2026-08-14T18:02:24-04:00"
     }
   ],
-  "phase": "FECHAMENTO REGULAR — LEITURA FINAL",
+  "phase": "FECHAMENTO REGULAR — DADOS PARCIAIS",
   "preclose_audit": {
     "candidate_count": 0,
     "candidate_date": "2026-11-19",
-    "daily_cache": "REFRESH_FAILED",
-    "data_status": "FAILED",
-    "evaluated": 0,
-    "failure_reason": "Yahoo daily history failed: RuntimeError: Yahoo EOD batch 3/24 failed; a full-universe result cannot be inferred from this partial download.",
-    "mode": "CloseFinal",
-    "scan_outcome": "DATA_FAILURE",
-    "symbols_requested": 5751
+    "data_status": "PARTIAL",
+    "entry_reconciliation": "NOT_RUN",
+    "failure_reason": "Yahoo diário indisponível: RuntimeError: Yahoo EOD batch 1/24 failed; a full-universe result cannot be inferred from this partial download.",
+    "mode": "EodPostClose",
+    "regular_close_reconcile": {
+      "asof": "2026-11-19",
+      "daily_bars": {
+        "bars_received": 0,
+        "data_status": "OK",
+        "symbols_requested": 0
+      },
+      "data_status": "OK",
+      "missing_sma20_bar_or_history": [],
+      "positions_marked": 0,
+      "sma20_exits": 0,
+      "sma20_positions_checked": 0,
+      "source": "alpaca_regular_close_fallback",
+      "stops": {
+        "asof": "2026-11-19",
+        "missing_quote_or_stop": [],
+        "positions_checked": 0,
+        "quote_audit": {
+          "data_status": "OK",
+          "quotes_received": 0
+        },
+        "stops_triggered": 0
+      }
+    },
+    "scan_outcome": "INCONCLUSIVE_PARTIAL_DATA"
   },
   "qqq_regime": {},
   "schema_version": "5dh_dashboard_v1",
