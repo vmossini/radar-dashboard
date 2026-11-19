@@ -156,7 +156,7 @@
   },
   "current_setup": "5DH_EOD_S470_DOL2M",
   "eod_health": {
-    "current_candidate_asof": "2026-11-18",
+    "current_candidate_asof": "2026-11-19",
     "historical_gap": {
       "note": "20 saídas paper de posições existentes corrigidas retrospectivamente (13 omitidas, 6 antecipadas, WBD convertida em caixa); eventos originais preservados. Entradas de 06 a 12/10 sem EOD completo/PIT permanecem UNKNOWN, não zero. Preenchimentos retrospectivos não foram operações executadas.",
       "record_name": "recovery_plan.json",
@@ -190,7 +190,7 @@
     "unprocessed_after": "",
     "unprocessed_through": ""
   },
-  "generated_at": "2026-11-18T17:10:25-05:00",
+  "generated_at": "2026-11-19T15:35:04-05:00",
   "moc_exit_audit": {
     "asof": "2026-11-18",
     "checked": 0,
@@ -204,11 +204,12 @@
     "rule": "open >= entry*1.50; D-1 close >= close 10 sessions earlier*1.25; open >= D-1 close*1.03"
   },
   "open_position_marks_audit": {
-    "asof": "2026-11-18",
-    "source": "regular_session_daily_close",
-    "symbols_marked": 0,
-    "symbols_missing": [],
-    "symbols_requested": 0
+    "checked_at_et": "2026-11-19T15:35:04-05:00",
+    "failed": [],
+    "received": 0,
+    "requested": 0,
+    "source": "Yahoo FastInfo",
+    "symbols_retained_from_state": []
   },
   "open_positions": [],
   "operations": [
@@ -8113,39 +8114,17 @@
       "timestamp_et": "2026-08-14T18:02:24-04:00"
     }
   ],
-  "phase": "FECHAMENTO REGULAR — DADOS PARCIAIS",
+  "phase": "PRÉ-FECHAMENTO 30 MIN",
   "preclose_audit": {
     "candidate_count": 0,
-    "candidate_date": "2026-11-18",
-    "data_status": "PARTIAL",
-    "entry_reconciliation": "NOT_RUN",
-    "failure_reason": "Yahoo diário indisponível: RuntimeError: Yahoo EOD batch 14/23 failed; a full-universe result cannot be inferred from this partial download.",
-    "mode": "EodPostClose",
-    "regular_close_reconcile": {
-      "asof": "2026-11-18",
-      "daily_bars": {
-        "bars_received": 0,
-        "data_status": "OK",
-        "symbols_requested": 0
-      },
-      "data_status": "OK",
-      "missing_sma20_bar_or_history": [],
-      "positions_marked": 0,
-      "sma20_exits": 0,
-      "sma20_positions_checked": 0,
-      "source": "alpaca_regular_close_fallback",
-      "stops": {
-        "asof": "2026-11-18",
-        "missing_quote_or_stop": [],
-        "positions_checked": 0,
-        "quote_audit": {
-          "data_status": "OK",
-          "quotes_received": 0
-        },
-        "stops_triggered": 0
-      }
-    },
-    "scan_outcome": "INCONCLUSIVE_PARTIAL_DATA"
+    "candidate_date": "2026-11-19",
+    "daily_cache": "REFRESH_FAILED",
+    "data_status": "FAILED",
+    "evaluated": 0,
+    "failure_reason": "Yahoo daily history failed: RuntimeError: Yahoo EOD batch 2/24 failed; a full-universe result cannot be inferred from this partial download.",
+    "mode": "PreClose30",
+    "scan_outcome": "DATA_FAILURE",
+    "symbols_requested": 5751
   },
   "qqq_regime": {},
   "schema_version": "5dh_dashboard_v1",
