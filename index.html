@@ -171,18 +171,33 @@
       "status": "UNVERIFIED_ENTRIES",
       "through": "2026-10-12"
     },
-    "last_eod": "2026-11-19",
-    "latest_verified_completed_session": "",
-    "source_coverage": null,
-    "status": "UNVERIFIED",
+    "last_eod": "2026-11-20",
+    "latest_verified_completed_session": "2026-11-19",
+    "source_coverage": {
+      "complete_universe_claim_allowed": false,
+      "current_bar_at_target": 5150,
+      "generated_at_et": "2026-11-20T21:46:12-05:00",
+      "not_returned": 578,
+      "note": "Not returned by the >=252-bar fetch does not prove no price or delisting.",
+      "schema": "5dh_eod_source_coverage_v1",
+      "source": "Yahoo EOD 1d; production fetch with minimum 252 bars",
+      "stale_returned": 24,
+      "status": "PARTIAL",
+      "symbols_in_dated_universe": 5752,
+      "target_date": "2026-11-20",
+      "universe_sha256": "31b9c3e88fd3c4e47d7c08377bcc801444e17383147b5cbaed1dcbc2cd086141",
+      "yahoo_mapping_collision_pairs": 0,
+      "yahoo_mapping_collision_symbols": 0
+    },
+    "status": "CURRENT",
     "unprocessed_after": "",
     "unprocessed_through": ""
   },
-  "generated_at": "2026-11-20T17:19:23-05:00",
+  "generated_at": "2026-11-23T09:31:06-05:00",
   "moc_exit_audit": {
-    "asof": "2026-11-18",
+    "asof": "2026-11-23",
     "checked": 0,
-    "checked_at_et": "2026-11-18T09:31:04-05:00",
+    "checked_at_et": "2026-11-23T09:31:05-05:00",
     "data_status": "OK",
     "decisions": [],
     "eligible": 0,
@@ -8101,41 +8116,29 @@
       "timestamp_et": "2026-08-14T18:02:24-04:00"
     }
   ],
-  "phase": "FECHAMENTO REGULAR — DADOS PARCIAIS",
+  "phase": "PRÉ-MERCADO",
   "preclose_audit": {
     "candidate_count": 0,
-    "candidate_date": "2026-11-20",
-    "data_status": "PARTIAL",
-    "entry_reconciliation": "NOT_RUN",
-    "failure_reason": "Yahoo diário indisponível: RuntimeError: Yahoo EOD batch 1/24 failed; a full-universe result cannot be inferred from this partial download.",
-    "mode": "EodPostClose",
-    "regular_close_reconcile": {
-      "asof": "2026-11-20",
-      "daily_bars": {
-        "bars_received": 0,
-        "data_status": "OK",
-        "symbols_requested": 0
-      },
-      "data_status": "OK",
-      "missing_sma20_bar_or_history": [],
-      "positions_marked": 0,
-      "sma20_exits": 0,
-      "sma20_positions_checked": 0,
-      "source": "alpaca_regular_close_fallback",
-      "stops": {
-        "asof": "2026-11-20",
-        "missing_quote_or_stop": [],
-        "positions_checked": 0,
-        "quote_audit": {
-          "data_status": "OK",
-          "quotes_received": 0
-        },
-        "stops_triggered": 0
-      }
-    },
-    "scan_outcome": "INCONCLUSIVE_PARTIAL_DATA"
+    "candidate_date": "2026-11-23",
+    "data_status": "PENDING",
+    "evaluated": 0,
+    "last_completed_eod": "2026-11-20",
+    "mode": "OpenMocCheck",
+    "scan_outcome": "AWAITING_SESSION"
   },
-  "qqq_regime": {},
+  "qqq_regime": {
+    "candidate_date": "2026-11-20",
+    "daily_close": 645.04,
+    "daily_ok": false,
+    "daily_reference_asof": "2026-11-19",
+    "daily_sma20": 683.328,
+    "is_bull": false,
+    "monthly_close": 690.49,
+    "monthly_ok": true,
+    "monthly_reference_month": "2026-10",
+    "monthly_sma10": 678.38,
+    "reason": "QQQ não atende simultaneamente aos filtros diário e mensal"
+  },
   "schema_version": "5dh_dashboard_v1",
   "summary": {
     "candidate_count": 0,
